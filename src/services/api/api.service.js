@@ -73,6 +73,7 @@ const MASTODON_MUTE_CONVERSATION = id => `/api/v1/statuses/${id}/mute`
 const MASTODON_UNMUTE_CONVERSATION = id => `/api/v1/statuses/${id}/unmute`
 const MASTODON_SEARCH_2 = `/api/v2/search`
 const MASTODON_USER_SEARCH_URL = '/api/v1/accounts/search'
+const MASTODON_MASCOT_URL = '/api/v1/pleroma/mascot'
 const MASTODON_DOMAIN_BLOCKS_URL = '/api/v1/domain_blocks'
 const MASTODON_STREAMING = '/api/v1/streaming'
 const PLEROMA_EMOJI_REACTIONS_URL = id => `/api/v1/pleroma/statuses/${id}/reactions`
@@ -800,6 +801,20 @@ const unmuteUser = ({ id, credentials }) => {
   return promisedRequest({ url: MASTODON_UNMUTE_USER_URL(id), credentials, method: 'POST' })
 }
 
+const fetchMascot = ({ credentials }) => {
+  return promisedRequest({ url: MASTODON_MASCOT_URL, credentials })
+}
+
+const updateMascot = ({ mascot, credentials }) => {
+  const form = new FormData()
+  form.append('file', mascot)
+  return fetch(MASTODON_MASCOT_URL, {
+    headers: authHeaders(credentials),
+    method: 'PUT',
+    body: form
+  }).then((data) => data.json())
+}
+
 const subscribeUser = ({ id, credentials }) => {
   return promisedRequest({ url: MASTODON_SUBSCRIBE_USER(id), credentials, method: 'POST' })
 }
@@ -1180,6 +1195,8 @@ const apiService = {
   fetchPoll,
   fetchFavoritedByUsers,
   fetchRebloggedByUsers,
+  fetchMascot,
+  updateMascot,
   fetchEmojiReactions,
   reactWithEmoji,
   unreactWithEmoji,

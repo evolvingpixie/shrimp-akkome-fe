@@ -65,6 +65,9 @@ const UserSettings = {
       backgroundPreview: null,
       bannerUploadError: null,
       backgroundUploadError: null,
+      mascot: this.$store.state.users.currentUser.mascot,
+      mascotPreview: null,
+      mascotUploadError: null,
       changeEmailError: false,
       changeEmailPassword: '',
       changedEmail: false,
@@ -81,6 +84,7 @@ const UserSettings = {
   },
   created () {
     this.$store.dispatch('fetchTokens')
+    this.$store.dispatch('fetchMascot')
   },
   components: {
     StyleSwitcher,
@@ -251,6 +255,20 @@ const UserSettings = {
           this.backgroundUploadError = this.$t('upload.error.base') + data.error
         }
         this.backgroundUploading = false
+      })
+    },
+    submitMascot () {
+      if (!this.mascotPreview) { return }
+      let mascot = this.mascot
+      this.mascotUploading = true
+      this.$store.state.api.backendInteractor.updateMascot({ mascot }).then((data) => {
+        if (!data.error) {
+          this.mascotPreview = null
+          this.$store.commit('updateMascot', data.url)
+        } else {
+          this.mascotUploadError = this.$t('upload.error.base') + ' ' + data.error
+        }
+        this.mascotUploading = false
       })
     },
     importFollows (file) {

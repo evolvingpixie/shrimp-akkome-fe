@@ -233,6 +233,47 @@
               />
             </div>
           </div>
+          <div class="setting-item">
+            <h2>{{ $t('settings.mascot') }}</h2>
+            <p>{{ $t('settings.current_mascot') }}</p>
+            <img
+              :src="user.mascot"
+              class="current-mascot"
+            >
+            <p>{{ $t('settings.set_new_mascot') }}</p>
+            <img
+              v-if="mascotPreview"
+              class="mascot"
+              :src="mascotPreview"
+            >
+            <div>
+              <input
+                type="file"
+                @change="uploadFile('mascot', $event)"
+              >
+            </div>
+            <i
+              v-if="mascotUploading"
+              class=" icon-spin4 animate-spin uploading"
+            />
+            <button
+              v-else-if="mascotPreview"
+              class="btn btn-default"
+              @click="submitMascot"
+            >
+              {{ $t('general.submit') }}
+            </button>
+            <div
+              v-if="mascotUploadError"
+              class="alert error"
+            >
+              Error: {{ mascotUploadError }}
+              <i
+                class="button-icon icon-cancel"
+                @click="clearUploadError('mascot')"
+              />
+            </div>
+          </div>
         </div>
 
         <div :label="$t('settings.security_tab')">
@@ -681,6 +722,15 @@
     height: 150px;
     border-radius: $fallback--avatarRadius;
     border-radius: var(--avatarRadius, $fallback--avatarRadius);
+  }
+
+  .current-mascot {
+    display: block;
+    max-height: 250px;
+  }
+
+  .mascot {
+    max-width: 100%;
   }
 
   .oauth-tokens {
