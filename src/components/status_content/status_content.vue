@@ -176,8 +176,8 @@ $status-margin: 0.75em;
       object-fit: contain;
 
       &.emoji {
-        width: 32px;
-        height: 32px;
+        width: 50px;
+        height: 50px;
       }
     }
 
