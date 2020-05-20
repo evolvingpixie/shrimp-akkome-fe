@@ -438,7 +438,7 @@ const users = {
         store.commit('setUserForNotification', notification)
       })
     },
-    searchUsers (store, query) {
+    searchUsers (store, { query }) {
       return store.rootState.api.backendInteractor.searchUsers({ query })
         .then((users) => {
           store.commit('addNewUsers', users)

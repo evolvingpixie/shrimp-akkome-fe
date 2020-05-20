@@ -325,7 +325,8 @@ const fetchFriends = ({ id, maxId, sinceId, limit = 20, credentials }) => {
   const args = [
     maxId && `max_id=${maxId}`,
     sinceId && `since_id=${sinceId}`,
-    limit && `limit=${limit}`
+    limit && `limit=${limit}`,
+    `with_relationships=true`
   ].filter(_ => _).join('&')
 
   url = url + (args ? '?' + args : '')
@@ -359,7 +360,8 @@ const fetchFollowers = ({ id, maxId, sinceId, limit = 20, credentials }) => {
   const args = [
     maxId && `max_id=${maxId}`,
     sinceId && `since_id=${sinceId}`,
-    limit && `limit=${limit}`
+    limit && `limit=${limit}`,
+    `with_relationships=true`
   ].filter(_ => _).join('&')
 
   url += args ? '?' + args : ''
@@ -985,6 +987,8 @@ const search2 = ({ credentials, q, resolve, limit, offset, following }) => {
   if (following) {
     params.push(['following', true])
   }
+
+  params.push(['with_relationships', true])
 
   let queryString = map(params, (param) => `${param[0]}=${param[1]}`).join('&')
   url += `?${queryString}`

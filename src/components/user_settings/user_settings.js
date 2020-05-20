@@ -116,7 +116,7 @@ const UserSettings = {
           ...this.$store.state.instance.customEmoji
         ],
         users: this.$store.state.users.users,
-        updateUsersList: (input) => this.$store.dispatch('searchUsers', input)
+        updateUsersList: (query) => this.$store.dispatch('searchUsers', { query })
       })
     },
     emojiSuggestor () {
@@ -380,7 +380,7 @@ const UserSettings = {
       })
     },
     queryUserIds (query) {
-      return this.$store.dispatch('searchUsers', query)
+      return this.$store.dispatch('searchUsers', { query })
         .then((users) => map(users, 'id'))
     },
     blockUsers (ids) {
