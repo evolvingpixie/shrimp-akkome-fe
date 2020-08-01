@@ -72,7 +72,10 @@
           :user="statusoid.user"
         />
         <div class="media-body faint">
-          <span class="user-name">
+          <span
+            class="user-name"
+            :title="retweeter"
+          >
             <router-link
               v-if="retweeterHtml"
               :to="retweeterProfileLink"
@@ -129,20 +132,28 @@
                 <h4
                   v-if="status.user.name_html"
                   class="user-name"
+                  :title="status.user.name"
                   v-html="status.user.name_html"
                 />
                 <h4
                   v-else
                   class="user-name"
+                  :title="status.user.name"
                 >
                   {{ status.user.name }}
                 </h4>
                 <router-link
                   class="account-name"
+                  :title="status.user.screen_name"
                   :to="userProfileLink"
                 >
                   {{ status.user.screen_name }}
                 </router-link>
+                <img
+                  class="status-favicon"
+                  v-if="!!(status.user && status.user.favicon)"
+                  :src="status.user.favicon"
+                >
               </div>
 
               <span class="heading-right">
@@ -222,7 +233,10 @@
                 >
                   <span class="reply-to-text">{{ $t('status.reply_to') }}</span>
                 </span>
-                <router-link :to="replyProfileLink">
+                <router-link
+                  :title="replyToName"
+                  :to="replyProfileLink"
+                >
                   {{ replyToName }}
                 </router-link>
                 <span
@@ -265,24 +279,30 @@
               class="favs-repeated-users"
             >
               <div class="stats">
-                <div
+                <UserListPopover
                   v-if="statusFromGlobalRepository.rebloggedBy && statusFromGlobalRepository.rebloggedBy.length > 0"
-                  class="stat-count"
+                  :users="statusFromGlobalRepository.rebloggedBy"
                 >
-                  <a class="stat-title">{{ $t('status.repeats') }}</a>
-                  <div class="stat-number">
-                    {{ statusFromGlobalRepository.rebloggedBy.length }}
+                  <div class="stat-count">
+                    <a class="stat-title">{{ $t('status.repeats') }}</a>
+                    <div class="stat-number">
+                      {{ statusFromGlobalRepository.rebloggedBy.length }}
+                    </div>
                   </div>
-                </div>
-                <div
+                </UserListPopover>
+                <UserListPopover
                   v-if="statusFromGlobalRepository.favoritedBy && statusFromGlobalRepository.favoritedBy.length > 0"
-                  class="stat-count"
+                  :users="statusFromGlobalRepository.favoritedBy"
                 >
-                  <a class="stat-title">{{ $t('status.favorites') }}</a>
-                  <div class="stat-number">
-                    {{ statusFromGlobalRepository.favoritedBy.length }}
+                  <div
+                    class="stat-count"
+                  >
+                    <a class="stat-title">{{ $t('status.favorites') }}</a>
+                    <div class="stat-number">
+                      {{ statusFromGlobalRepository.favoritedBy.length }}
+                    </div>
                   </div>
-                </div>
+                </UserListPopover>
                 <div class="avatar-row">
                   <AvatarList :users="combinedFavsAndRepeatsUsers" />
                 </div>
@@ -426,6 +446,12 @@ $status-margin: 0.75em;
       vertical-align: middle;
       object-fit: contain
     }
+  }
+
+  .status-favicon {
+    height: 18px;
+    width: 18px;
+    margin-right: 0.4em;
   }
 
   .media-heading {
@@ -722,6 +748,11 @@ $status-margin: 0.75em;
 
     .stat-count {
       margin-right: $status-margin;
+      user-select: none;
+
+      &:hover .stat-title {
+        text-decoration: underline;
+      }
 
       .stat-title {
         color: var(--faint, $fallback--faint);

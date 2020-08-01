@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Greentext now has separate color slot for it
 - Removed the use of with_move parameters when fetching notifications
 - Push notifications now are the same as normal notfication, and are localized.
+- Updated Notification Settings to match new BE API
 
 ### Fixed
 - Weird bug related to post being sent seemingly after pasting with keyboard (hopefully)
@@ -23,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Descriptions can be set on uploaded files before posting
 - Added status preview option to preview your statuses before posting
 - When a post is a reply to an unavailable post, the 'Reply to'-text has a strike-through style
+- Added ability to see all favoriting or repeating users when hovering the number on highlighted statuses
 
 ### Changed
 - Registration page no longer requires email if the server is configured not to require it
@@ -31,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Add colons to the emoji alt text, to make them copyable
 - Add better visual indication for drag-and-drop for files
 - When disabling attachments, the placeholder links now show an icon and the description instead of just IMAGE or VIDEO etc
+- Remove unnecessary options for 'automatic loading when loading older' and 'reply previews'
 
 ### Fixed
 - Custom Emoji will display in poll options now.
@@ -48,6 +51,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Videos are not cropped awkwardly in the uploads section anymore
 - Reply filtering options in Settings -> Filtering now work again using filtering on server
 - Don't show just blank-screen when cookies are disabled
+- Add status idempotency to prevent accidental double posting when posting returns an error
 
 ## [2.0.3] - 2020-05-02
 ### Fixed

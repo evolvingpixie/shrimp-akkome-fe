@@ -27,6 +27,11 @@ const buildMentionsString = ({ user, attentions = [] }, currentUser) => {
   return mentions.length > 0 ? mentions.join(' ') + ' ' : ''
 }
 
+// Converts a string with px to a number like '2px' -> 2
+const pxStringToNumber = (str) => {
+  return Number(str.substring(0, str.length - 2))
+}
+
 const PostStatusForm = {
   props: [
     'replyTo',
@@ -61,6 +66,7 @@ const PostStatusForm = {
     StatusContent
   },
   mounted () {
+    this.updateIdempotencyKey()
     this.resize(this.$refs.textarea)
 
     if (this.replyTo) {
@@ -111,7 +117,8 @@ const PostStatusForm = {
       dropStopTimeout: null,
       preview: null,
       previewLoading: false,
-      emojiInputShown: false
+      emojiInputShown: false,
+      idempotencyKey: ''
     }
   },
   computed: {
@@ -206,17 +213,46 @@ const PostStatusForm = {
     })
   },
   watch: {
-    'newStatus.contentType': function () {
-      this.autoPreview()
-    },
-    'newStatus.spoilerText': function () {
-      this.autoPreview()
+    'newStatus': {
+      deep: true,
+      handler () {
+        this.statusChanged()
+      }
     }
   },
   methods: {
+    statusChanged () {
+      this.autoPreview()
+      this.updateIdempotencyKey()
+    },
+    clearStatus () {
+      const newStatus = this.newStatus
+      this.newStatus = {
+        status: '',
+        spoilerText: '',
+        files: [],
+        visibility: newStatus.visibility,
+        contentType: newStatus.contentType,
+        poll: {},
+        mediaDescriptions: {}
+      }
+      this.pollFormVisible = false
+      this.$refs.mediaUpload && this.$refs.mediaUpload.clearFile()
+      this.clearPollForm()
+      if (this.preserveFocus) {
+        this.$nextTick(() => {
+          this.$refs.textarea.focus()
+        })
+      }
+      let el = this.$el.querySelector('textarea')
+      el.style.height = 'auto'
+      el.style.height = undefined
+      this.error = null
+      if (this.preview) this.previewStatus()
+    },
     async postStatus (event, newStatus, opts = {}) {
       if (this.posting) { return }
-      if (this.submitDisabled) { return }
+      if (this.disableSubmit) { return }
       if (this.emojiInputShown) { return }
       if (this.submitOnEnter) {
         event.stopPropagation()
@@ -253,36 +289,16 @@ const PostStatusForm = {
         store: this.$store,
         inReplyToStatusId: this.replyTo,
         contentType: newStatus.contentType,
-        poll
+        poll,
+        idempotencyKey: this.idempotencyKey
       }
 
       const postHandler = this.postHandler ? this.postHandler : statusPoster.postStatus
 
       postHandler(postingOptions).then((data) => {
         if (!data.error) {
-          this.newStatus = {
-            status: '',
-            spoilerText: '',
-            files: [],
-            visibility: newStatus.visibility,
-            contentType: newStatus.contentType,
-            poll: {},
-            mediaDescriptions: {}
-          }
-          this.pollFormVisible = false
-          this.$refs.mediaUpload && this.$refs.mediaUpload.clearFile()
-          this.clearPollForm()
+          this.clearStatus()
           this.$emit('posted', data)
-          if (this.preserveFocus) {
-            this.$nextTick(() => {
-              this.$refs.textarea.focus()
-            })
-          }
-          let el = this.$el.querySelector('textarea')
-          el.style.height = 'auto'
-          el.style.height = undefined
-          this.error = null
-          if (this.preview) this.previewStatus()
         } else {
           this.error = data.error
         }
@@ -399,7 +415,6 @@ const PostStatusForm = {
       }
     },
     onEmojiInputInput (e) {
-      this.autoPreview()
       this.$nextTick(() => {
         this.resize(this.$refs['textarea'])
       })
@@ -423,7 +438,7 @@ const PostStatusForm = {
        * scroll is different for `Window` and `Element`s
        */
       const bottomBottomPaddingStr = window.getComputedStyle(bottomRef)['padding-bottom']
-      const bottomBottomPadding = Number(bottomBottomPaddingStr.substring(0, bottomBottomPaddingStr.length - 2))
+      const bottomBottomPadding = pxStringToNumber(bottomBottomPaddingStr)
 
       const scrollerRef = this.$el.closest('.sidebar-scroller') ||
             this.$el.closest('.post-form-modal-view') ||
@@ -432,9 +447,11 @@ const PostStatusForm = {
       // Getting info about padding we have to account for, removing 'px' part
       const topPaddingStr = window.getComputedStyle(target)['padding-top']
       const bottomPaddingStr = window.getComputedStyle(target)['padding-bottom']
-      const topPadding = Number(topPaddingStr.substring(0, topPaddingStr.length - 2))
-      const bottomPadding = Number(bottomPaddingStr.substring(0, bottomPaddingStr.length - 2))
+      const topPadding = pxStringToNumber(topPaddingStr)
+      const bottomPadding = pxStringToNumber(bottomPaddingStr)
       const vertPadding = topPadding + bottomPadding
+
+      const oldHeight = pxStringToNumber(target.style.height)
 
       /* Explanation:
        *
@@ -464,8 +481,13 @@ const PostStatusForm = {
 
       // BEGIN content size update
       target.style.height = 'auto'
-      const heightWithoutPadding = target.scrollHeight - vertPadding
-      const newHeight = this.maxHeight ? Math.min(heightWithoutPadding, this.maxHeight) : heightWithoutPadding
+      const heightWithoutPadding = Math.floor(target.scrollHeight - vertPadding)
+      let newHeight = this.maxHeight ? Math.min(heightWithoutPadding, this.maxHeight) : heightWithoutPadding
+      // This is a bit of a hack to combat target.scrollHeight being different on every other input
+      // on some browsers for whatever reason. Don't change the height if difference is 1px or less.
+      if (Math.abs(newHeight - oldHeight) <= 1) {
+        newHeight = oldHeight
+      }
       target.style.height = `${newHeight}px`
       this.$emit('resize', newHeight)
       // END content size update
@@ -530,6 +552,9 @@ const PostStatusForm = {
     },
     handleEmojiInputShow (value) {
       this.emojiInputShown = value
+    },
+    updateIdempotencyKey () {
+      this.idempotencyKey = Date.now().toString()
     }
   }
 }
