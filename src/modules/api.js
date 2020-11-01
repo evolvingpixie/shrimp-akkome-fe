@@ -20,7 +20,7 @@ const api = {
       state.fetchers[fetcherName] = fetcher
     },
     removeFetcher (state, { fetcherName, fetcher }) {
-      window.clearInterval(fetcher)
+      state.fetchers[fetcherName].stop()
       delete state.fetchers[fetcherName]
     },
     setWsToken (state, token) {
@@ -72,6 +72,8 @@ const api = {
                   showImmediately: timelineData.visibleStatuses.length === 0,
                   timeline: 'friends'
                 })
+              } else if (message.event === 'delete') {
+                dispatch('deleteStatusById', message.id)
               } else if (message.event === 'pleroma:chat_update') {
                 dispatch('addChatMessages', {
                   chatId: message.chatUpdate.id,

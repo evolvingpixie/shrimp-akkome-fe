@@ -5,7 +5,18 @@ import ChatMessage from '../chat_message/chat_message.vue'
 import PostStatusForm from '../post_status_form/post_status_form.vue'
 import ChatTitle from '../chat_title/chat_title.vue'
 import chatService from '../../services/chat_service/chat_service.js'
+import { promiseInterval } from '../../services/promise_interval/promise_interval.js'
 import { getScrollPosition, getNewTopPosition, isBottomedOut, scrollableContainerHeight } from './chat_layout_utils.js'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faChevronDown,
+  faChevronLeft
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faChevronDown,
+  faChevronLeft
+)
 
 const BOTTOMED_OUT_OFFSET = 10
 const JUMP_TO_BOTTOM_BUTTON_VISIBILITY_OFFSET = 150
@@ -204,9 +215,9 @@ const Chat = {
       }
     },
     readChat () {
-      if (!(this.currentChatMessageService && this.currentChatMessageService.lastMessage)) { return }
+      if (!(this.currentChatMessageService && this.currentChatMessageService.maxId)) { return }
       if (document.hidden) { return }
-      const lastReadId = this.currentChatMessageService.lastMessage.id
+      const lastReadId = this.currentChatMessageService.maxId
       this.$store.dispatch('readChat', { id: this.currentChat.id, lastReadId })
     },
     bottomedOut (offset) {
@@ -244,9 +255,9 @@ const Chat = {
 
       const chatId = chatMessageService.chatId
       const fetchOlderMessages = !!maxId
-      const sinceId = fetchLatest && chatMessageService.lastMessage && chatMessageService.lastMessage.id
+      const sinceId = fetchLatest && chatMessageService.maxId
 
-      this.backendInteractor.chatMessages({ id: chatId, maxId, sinceId })
+      return this.backendInteractor.chatMessages({ id: chatId, maxId, sinceId })
         .then((messages) => {
           // Clear the current chat in case we're recovering from a ws connection loss.
           if (isFirstFetch) {
@@ -287,7 +298,7 @@ const Chat = {
     },
     doStartFetching () {
       this.$store.dispatch('startFetchingCurrentChat', {
-        fetcher: () => setInterval(() => this.fetchChat({ fetchLatest: true }), 5000)
+        fetcher: () => promiseInterval(() => this.fetchChat({ fetchLatest: true }), 5000)
       })
       this.fetchChat({ isFirstFetch: true })
     },
@@ -303,7 +314,11 @@ const Chat = {
 
       return this.backendInteractor.sendChatMessage(params)
         .then(data => {
-          this.$store.dispatch('addChatMessages', { chatId: this.currentChat.id, messages: [data] }).then(() => {
+          this.$store.dispatch('addChatMessages', {
+            chatId: this.currentChat.id,
+            messages: [data],
+            updateMaxId: false
+          }).then(() => {
             this.$nextTick(() => {
               this.handleResize()
               // When the posting form size changes because of a media attachment, we need an extra resize

@@ -3,6 +3,7 @@ import { find, omitBy, orderBy, sumBy } from 'lodash'
 import chatService from '../services/chat_service/chat_service.js'
 import { parseChat, parseChatMessage } from '../services/entity_normalizer/entity_normalizer.service.js'
 import { maybeShowChatNotification } from '../services/chat_utils/chat_utils.js'
+import { promiseInterval } from '../services/promise_interval/promise_interval.js'
 
 const emptyChatList = () => ({
   data: [],
@@ -42,12 +43,10 @@ const chats = {
   actions: {
     // Chat list
     startFetchingChats ({ dispatch, commit }) {
-      const fetcher = () => {
-        dispatch('fetchChats', { latest: true })
-      }
+      const fetcher = () => dispatch('fetchChats', { latest: true })
       fetcher()
       commit('setChatListFetcher', {
-        fetcher: () => setInterval(() => { fetcher() }, 5000)
+        fetcher: () => promiseInterval(fetcher, 5000)
       })
     },
     stopFetchingChats ({ commit }) {
@@ -113,14 +112,14 @@ const chats = {
     setChatListFetcher (state, { commit, fetcher }) {
       const prevFetcher = state.chatListFetcher
       if (prevFetcher) {
-        clearInterval(prevFetcher)
+        prevFetcher.stop()
       }
       state.chatListFetcher = fetcher && fetcher()
     },
     setCurrentChatFetcher (state, { fetcher }) {
       const prevFetcher = state.fetcher
       if (prevFetcher) {
-        clearInterval(prevFetcher)
+        prevFetcher.stop()
       }
       state.fetcher = fetcher && fetcher()
     },
@@ -143,6 +142,7 @@ const chats = {
           const isNewMessage = (chat.lastMessage && chat.lastMessage.id) !== (updatedChat.lastMessage && updatedChat.lastMessage.id)
           chat.lastMessage = updatedChat.lastMessage
           chat.unread = updatedChat.unread
+          chat.updated_at = updatedChat.updated_at
           if (isNewMessage && chat.unread) {
             newChatMessageSideEffects(updatedChat)
           }
@@ -181,30 +181,16 @@ const chats = {
     setChatsLoading (state, { value }) {
       state.chats.loading = value
     },
-    addChatMessages (state, { commit, chatId, messages }) {
+    addChatMessages (state, { chatId, messages, updateMaxId }) {
       const chatMessageService = state.openedChatMessageServices[chatId]
       if (chatMessageService) {
-        chatService.add(chatMessageService, { messages: messages.map(parseChatMessage) })
-        commit('refreshLastMessage', { chatId })
+        chatService.add(chatMessageService, { messages: messages.map(parseChatMessage), updateMaxId })
       }
     },
-    refreshLastMessage (state, { chatId }) {
-      const chatMessageService = state.openedChatMessageServices[chatId]
-      if (chatMessageService) {
-        const chat = getChatById(state, chatId)
-        if (chat) {
-          chat.lastMessage = chatMessageService.lastMessage
-          if (chatMessageService.lastMessage) {
-            chat.updated_at = chatMessageService.lastMessage.created_at
-          }
-        }
-      }
-    },
-    deleteChatMessage (state, { commit, chatId, messageId }) {
+    deleteChatMessage (state, { chatId, messageId }) {
       const chatMessageService = state.openedChatMessageServices[chatId]
       if (chatMessageService) {
         chatService.deleteMessage(chatMessageService, messageId)
-        commit('refreshLastMessage', { chatId })
       }
     },
     resetChatNewMessageCount (state, _value) {
