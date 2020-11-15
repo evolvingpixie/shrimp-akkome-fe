@@ -53,7 +53,7 @@ export const parseUser = (data) => {
     output.fields = data.fields
     output.fields_html = data.fields.map(field => {
       return {
-        name: addEmojis(field.name, data.emojis),
+        name: addEmojis(escape(field.name), data.emojis),
         value: addEmojis(field.value, data.emojis)
       }
     })
@@ -429,6 +429,9 @@ export const parseChatMessage = (message) => {
   } else {
     output.attachments = []
   }
+  output.pending = !!message.pending
+  output.error = false
+  output.idempotency_key = message.idempotency_key
   output.isNormalized = true
   return output
 }

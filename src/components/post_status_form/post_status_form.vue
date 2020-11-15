@@ -85,11 +85,16 @@
             {{ $t('post_status.preview') }}
             <FAIcon :icon="showPreview ? 'chevron-left' : 'chevron-right'" />
           </a>
-          <FAIcon
+          <div
             v-show="previewLoading"
-            spin
-            icon="circle-notch"
-          />
+            class="preview-spinner"
+          >
+            <FAIcon
+              class="fa-old-padding"
+              spin
+              icon="circle-notch"
+            />
+          </div>
         </div>
         <div
           v-if="showPreview"
@@ -124,7 +129,7 @@
             v-model="newStatus.spoilerText"
             type="text"
             :placeholder="$t('post_status.content_warning')"
-            :disabled="posting"
+            :disabled="posting && !optimisticPosting"
             size="1"
             class="form-post-subject"
           >
@@ -150,7 +155,7 @@
             :placeholder="placeholder || $t('post_status.default')"
             rows="1"
             cols="1"
-            :disabled="posting"
+            :disabled="posting && !optimisticPosting"
             class="form-post-body"
             :class="{ 'scrollable-form': !!maxHeight }"
             @keydown.exact.enter="submitOnEnter && postStatus($event, newStatus)"
@@ -383,12 +388,12 @@
   }
 
   .preview-heading {
-    padding-left: 0.5em;
     display: flex;
-    width: 100%;
+    padding-left: 0.5em;
   }
 
   .preview-toggle {
+    flex: 1;
     cursor: pointer;
     user-select: none;
 

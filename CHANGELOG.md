@@ -3,19 +3,48 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
 ## [Unreleased]
+### Fixed
+- Fixed the occasional bug where screen would scroll 1px when typing into a reply form
+- Fixed custom emoji not working in profile field names
+
+
+## [2.2.1] - 2020-11-11
+### Fixed
+- Fixed regression in react popup alignment and overflowing
+
+
+## [2.2.0] - 2020-11-06
 ### Added
 - New option to optimize timeline rendering to make the site more responsive (enabled by default)
-
-## [Unreleased patch]
-### Fixed
-- Fixed chats list not updating its order when new messages come in
-- Fixed chat messages sometimes getting lost when you receive a message at the same time
-- Fixed clicking NSFW hider through status popover
-
-### Added
+- New instance option `logoLeft` to move logo to the left side in desktop nav bar
 - Import/export a muted users
 - Proper handling of deletes when using websocket streaming
+- Added optimistic chat message sending, so you can start writing next message before the previous one has been sent
+
+### Fixed
+- Fixed clicking NSFW hider through status popover
+- Fixed chat-view back button being hard to click
+- Fixed fresh chat notifications being cleared immediately while leaving the chat view and not having time to actually see the messages
+- Fixed multiple regressions in CSS styles
+- Fixed multiple issues with input fields when using CJK font as default
+- Fixed search field in navbar infringing into logo in some cases
+- Fixed not being able to load the chat history in vertical screens when the message list doesn't take the full height of the scrollable container on the first fetch.
+
+### Changed
+- Clicking immediately when timeline shifts is now blocked to prevent misclicks
+- Icons changed from fontello (FontAwesome 4 + others) to FontAwesome 5 due to problems with fontello.
+- Some icons changed for better accessibility (lock, globe)
+- Logo is now clickable
+- Changed default logo to SVG version
+
+
+## [2.1.2] - 2020-09-17
+### Fixed
+- Fixed chats list not updating its order when new messages come in
+- Fixed chat messages sometimes getting lost when you receive a message at the same time 
+
 
 ## [2.1.1] - 2020-09-08
 ### Changed
@@ -142,8 +171,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Ability to change user's email
 - About page
 - Added remote user redirect
-- Bookmarks
+
 ### Changed
 - changed the way fading effects for user profile/long statuses works, now uses css-mask instead of gradient background hacks which weren't exactly compatible with semi-transparent themes
+
 ### Fixed
 - improved hotkey behavior on autocomplete popup
