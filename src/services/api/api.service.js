@@ -163,7 +163,12 @@ const updateProfileImages = ({ credentials, avatar = null, banner = null, backgr
     body: form
   })
     .then((data) => data.json())
-    .then((data) => parseUser(data))
+    .then((data) => {
+      if (data.error) {
+        throw new Error(data.error)
+      }
+      return parseUser(data)
+    })
 }
 
 const updateProfile = ({ credentials, params }) => {
@@ -561,7 +566,7 @@ const fetchTimeline = ({
     })
     .then((data) => data.json())
     .then((data) => {
-      if (!data.error) {
+      if (!data.errors) {
         return { data: data.map(isNotifications ? parseNotification : parseStatus), pagination }
       } else {
         data.status = status

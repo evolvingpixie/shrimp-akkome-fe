@@ -29,12 +29,8 @@ const withLoadMore = ({
       return {
         loading: false,
         bottomedOut: false,
-        error: false
-      }
-    },
-    computed: {
-      entries () {
-        return select(this.$props, this.$store) || []
+        error: false,
+        entries: []
       }
     },
     created () {
@@ -48,6 +44,11 @@ const withLoadMore = ({
       destroy && destroy(this.$props, this.$store)
     },
     methods: {
+      // Entries is not a computed because computed can't track the dynamic
+      // selector for changes and won't trigger after fetch.
+      updateEntries () {
+        this.entries = select(this.$props, this.$store) || []
+      },
       fetchEntries () {
         if (!this.loading) {
           this.loading = true
@@ -60,6 +61,9 @@ const withLoadMore = ({
             .catch(() => {
               this.loading = false
               this.error = true
+            })
+            .finally(() => {
+              this.updateEntries()
             })
         }
       },
@@ -91,7 +95,11 @@ const withLoadMore = ({
             {children}
           </WrappedComponent>
           <div class="with-load-more-footer">
-            {this.error && <a onClick={this.fetchEntries} class="alert error">{this.$t('general.generic_error')}</a>}
+            {this.error &&
+              <button onClick={this.fetchEntries} class="button-unstyled -link -fullwidth alert error">
+                {this.$t('general.generic_error')}
+              </button>
+            }
             {!this.error && this.loading && <FAIcon spin icon="circle-notch"/>}
             {!this.error && !this.loading && !this.bottomedOut && <a onClick={this.fetchEntries}>{this.$t('general.more')}</a>}
           </div>
