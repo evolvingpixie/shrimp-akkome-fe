@@ -3,10 +3,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-
 ## [Unreleased]
 ### Fixed
+- Button to remove uploaded media in post status form is now properly placed and sized.
+
+
+## [2.2.3] - 2021-01-18
+### Added
+- Added Report button to status ellipsis menu for easier reporting
+
+### Fixed
 - Follows/Followers tabs on user profiles now display the content properly.
+- Handle punycode in screen names
+
+### Changed
+- Don't filter own posts when they hit your wordfilter
+- Language picker now uses native language names
+
 
 ## [2.2.2] - 2020-12-22
 ### Added
