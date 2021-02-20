@@ -75,7 +75,11 @@
     "confirm": "Confirm",
     "verify": "Verify",
     "close": "Close",
-    "peek": "Peek"
+    "peek": "Peek",
+    "role": {
+      "admin": "Admin",
+      "moderator": "Moderator"
+    }
   },
   "image_cropper": {
     "crop_picture": "Crop picture",
@@ -148,6 +152,8 @@
     "add_option": "Add Option",
     "option": "Option",
     "votes": "votes",
+    "people_voted_count": "{count} person voted | {count} people voted",
+    "votes_count": "{count} vote | {count} votes",
     "vote": "Vote",
     "type": "Poll type",
     "single_choice": "Single choice",
@@ -242,6 +248,7 @@
   "settings": {
     "app_name": "App name",
     "security": "Security",
+    "setting_changed": "Setting is different from default",
     "enter_current_password_to_confirm": "Enter your current password to confirm your identity",
     "mfa": {
       "otp": "OTP",
@@ -715,6 +722,7 @@
     "mute_progress": "Muting…",
     "hide_repeats": "Hide repeats",
     "show_repeats": "Show repeats",
+    "bot": "Bot",
     "admin_menu": {
       "moderation": "Moderation",
       "grant_admin": "Grant Admin",
@@ -733,10 +741,6 @@
       "quarantine": "Disallow user posts from federating",
       "delete_user": "Delete user",
       "delete_user_confirmation": "Are you absolutely sure? This action cannot be undone."
-    },
-    "roles": {
-      "admin": "Admin",
-      "moderator": "Moderator"
     }
   },
   "user_profile": {
