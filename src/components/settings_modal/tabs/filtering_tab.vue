@@ -72,12 +72,3 @@
   </div>
 </template>
 <script src="./filtering_tab.js"></script>
-<style lang="scss">
-.select-multiple {
-  display: flex;
-  .option-list {
-    margin: 0;
-    padding-left: .5em;
-  }
-}
-</style>
