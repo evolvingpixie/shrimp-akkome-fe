@@ -132,25 +132,16 @@
               class="userHighlightCl"
               type="color"
             >
-            <label
-              for="theme_tab"
-              class="userHighlightSel select"
+            <Select
+              :id="'userHighlightSel'+user.id"
+              v-model="userHighlightType"
+              class="userHighlightSel"
             >
-              <select
-                :id="'userHighlightSel'+user.id"
-                v-model="userHighlightType"
-                class="userHighlightSel"
-              >
-                <option value="disabled">{{ $t('user_card.highlight.disabled') }}</option>
-                <option value="solid">{{ $t('user_card.highlight.solid') }}</option>
-                <option value="striped">{{ $t('user_card.highlight.striped') }}</option>
-                <option value="side">{{ $t('user_card.highlight.side') }}</option>
-              </select>
-              <FAIcon
-                class="select-down-icon"
-                icon="chevron-down"
-              />
-            </label>
+              <option value="disabled">{{ $t('user_card.highlight.disabled') }}</option>
+              <option value="solid">{{ $t('user_card.highlight.solid') }}</option>
+              <option value="striped">{{ $t('user_card.highlight.striped') }}</option>
+              <option value="side">{{ $t('user_card.highlight.side') }}</option>
+            </Select>
           </div>
         </div>
         <div

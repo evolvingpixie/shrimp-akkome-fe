@@ -38,26 +38,17 @@
       </div>
       <div>
         {{ $t('settings.replies_in_timeline') }}
-        <label
-          for="replyVisibility"
-          class="select"
+        <Select
+          id="replyVisibility"
+          v-model="replyVisibility"
         >
-          <select
-            id="replyVisibility"
-            v-model="replyVisibility"
-          >
-            <option
-              value="all"
-              selected
-            >{{ $t('settings.reply_visibility_all') }}</option>
-            <option value="following">{{ $t('settings.reply_visibility_following') }}</option>
-            <option value="self">{{ $t('settings.reply_visibility_self') }}</option>
-          </select>
-          <FAIcon
-            class="select-down-icon"
-            icon="chevron-down"
-          />
-        </label>
+          <option
+            value="all"
+            selected
+          >{{ $t('settings.reply_visibility_all') }}</option>
+          <option value="following">{{ $t('settings.reply_visibility_following') }}</option>
+          <option value="self">{{ $t('settings.reply_visibility_self') }}</option>
+        </Select>
       </div>
       <div>
         <BooleanSetting path="hidePostStats">
@@ -88,3 +79,12 @@
   </div>
 </template>
 <script src="./filtering_tab.js"></script>
+<style lang="scss">
+.select-multiple {
+  display: flex;
+  .option-list {
+    margin: 0;
+    padding-left: .5em;
+  }
+}
+</style>

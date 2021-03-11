@@ -46,23 +46,13 @@
         class="poll-type"
         :title="$t('polls.type')"
       >
-        <label
-          for="poll-type-selector"
-          class="select"
+        <Select
+          v-model="pollType"
+          @change="updatePollToParent"
         >
-          <select
-            v-model="pollType"
-            class="select"
-            @change="updatePollToParent"
-          >
-            <option value="single">{{ $t('polls.single_choice') }}</option>
-            <option value="multiple">{{ $t('polls.multiple_choices') }}</option>
-          </select>
-          <FAIcon
-            class="select-down-icon"
-            icon="chevron-down"
-          />
-        </label>
+          <option value="single">{{ $t('polls.single_choice') }}</option>
+          <option value="multiple">{{ $t('polls.multiple_choices') }}</option>
+        </Select>
       </div>
       <div
         class="poll-expiry"
@@ -76,24 +66,19 @@
           :max="maxExpirationInCurrentUnit"
           @change="expiryAmountChange"
         >
-        <label class="expiry-unit select">
-          <select
-            v-model="expiryUnit"
-            @change="expiryAmountChange"
+        <Select
+          v-model="expiryUnit"
+          class="expiry-unit"
+          @change="expiryAmountChange"
+        >
+          <option
+            v-for="unit in expiryUnits"
+            :key="unit"
+            :value="unit"
           >
-            <option
-              v-for="unit in expiryUnits"
-              :key="unit"
-              :value="unit"
-            >
-              {{ $t(`time.${unit}_short`, ['']) }}
-            </option>
-          </select>
-          <FAIcon
-            class="select-down-icon"
-            icon="chevron-down"
-          />
-        </label>
+            {{ $t(`time.${unit}_short`, ['']) }}
+          </option>
+        </Select>
       </div>
     </div>
   </div>

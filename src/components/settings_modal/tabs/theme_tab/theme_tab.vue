@@ -59,32 +59,23 @@
           <template slot="before">
             <div class="presets">
               {{ $t('settings.presets') }}
-              <label
-                for="preset-switcher"
-                class="select"
+              <Select
+                id="preset-switcher"
+                v-model="selected"
+                class="preset-switcher"
               >
-                <select
-                  id="preset-switcher"
-                  v-model="selected"
-                  class="preset-switcher"
+                <option
+                  v-for="style in availableStyles"
+                  :key="style.name"
+                  :value="style"
+                  :style="{
+                    backgroundColor: style[1] || (style.theme || style.source).colors.bg,
+                    color: style[3] || (style.theme || style.source).colors.text
+                  }"
                 >
-                  <option
-                    v-for="style in availableStyles"
-                    :key="style.name"
-                    :value="style"
-                    :style="{
-                      backgroundColor: style[1] || (style.theme || style.source).colors.bg,
-                      color: style[3] || (style.theme || style.source).colors.text
-                    }"
-                  >
-                    {{ style[0] || style.name }}
-                  </option>
-                </select>
-                <FAIcon
-                  class="select-down-icon"
-                  icon="chevron-down"
-                />
-              </label>
+                  {{ style[0] || style.name }}
+                </option>
+              </Select>
             </div>
           </template>
         </ExportImport>
@@ -902,28 +893,19 @@
           <div class="tab-header shadow-selector">
             <div class="select-container">
               {{ $t('settings.style.shadows.component') }}
-              <label
-                for="shadow-switcher"
-                class="select"
+              <Select
+                id="shadow-switcher"
+                v-model="shadowSelected"
+                class="shadow-switcher"
               >
-                <select
-                  id="shadow-switcher"
-                  v-model="shadowSelected"
-                  class="shadow-switcher"
+                <option
+                  v-for="shadow in shadowsAvailable"
+                  :key="shadow"
+                  :value="shadow"
                 >
-                  <option
-                    v-for="shadow in shadowsAvailable"
-                    :key="shadow"
-                    :value="shadow"
-                  >
-                    {{ $t('settings.style.shadows.components.' + shadow) }}
-                  </option>
-                </select>
-                <FAIcon
-                  class="select-down-icon"
-                  icon="chevron-down"
-                />
-              </label>
+                  {{ $t('settings.style.shadows.components.' + shadow) }}
+                </option>
+              </Select>
             </div>
             <div class="override">
               <label

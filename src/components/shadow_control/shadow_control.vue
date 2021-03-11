@@ -59,30 +59,20 @@
         :disabled="usingFallback"
         class="id-control style-control"
       >
-        <label
-          for="shadow-switcher"
-          class="select"
+        <Select
+          id="shadow-switcher"
+          v-model="selectedId"
+          class="shadow-switcher"
           :disabled="!ready || usingFallback"
         >
-          <select
-            id="shadow-switcher"
-            v-model="selectedId"
-            class="shadow-switcher"
-            :disabled="!ready || usingFallback"
+          <option
+            v-for="(shadow, index) in cValue"
+            :key="index"
+            :value="index"
           >
-            <option
-              v-for="(shadow, index) in cValue"
-              :key="index"
-              :value="index"
-            >
-              {{ $t('settings.style.shadows.shadow_id', { value: index }) }}
-            </option>
-          </select>
-          <FAIcon
-            icon="chevron-down"
-            class="select-down-icon"
-          />
-        </label>
+            {{ $t('settings.style.shadows.shadow_id', { value: index }) }}
+          </option>
+        </Select>
         <button
           class="btn button-default"
           :disabled="!ready || !present"
