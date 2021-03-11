@@ -47,7 +47,8 @@
         :title="$t('polls.type')"
       >
         <Select
-          kind="ghost"
+          class="poll-type-select"
+          unstyled="true"
           v-model="pollType"
           @change="updatePollToParent"
         >
@@ -69,7 +70,7 @@
         >
         <Select
           v-model="expiryUnit"
-          kind="ghost"
+          unstyled="true"
           class="expiry-unit"
           @change="expiryAmountChange"
         >
@@ -134,6 +135,10 @@
   .poll-type {
     margin-right: 0.75em;
     flex: 1 1 60%;
+
+    .poll-type-select {
+      padding-right: 0.75em;
+    }
   }
 
   .poll-expiry {

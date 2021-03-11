@@ -306,19 +306,19 @@
 
     .id-control {
       align-items: stretch;
-      .select, .btn {
+
+      .shadow-switcher {
+        flex: 1;
+      }
+
+      .shadow-switcher, .btn {
         min-width: 1px;
         margin-right: 5px;
       }
+
       .btn {
         padding: 0 .4em;
         margin: 0 .1em;
-      }
-      .select {
-        flex: 1;
-        select {
-          align-self: initial;
-        }
       }
     }
   }

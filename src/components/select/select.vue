@@ -2,7 +2,7 @@
 <template>
   <label
     class="Select input"
-    :class="[ kindClass, { disabled } ]"
+    :class="{ disabled, unstyled }"
   >
     <select
       :disabled="disabled"
@@ -26,14 +26,6 @@
 .Select {
   padding: 0;
 
-  /* Overriding input styles, probably should make proper Input component? */
-  &.-kind_ghost {
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
-    padding-right: 0.75em;
-  }
-
   select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -52,5 +44,19 @@
     height: 28px;
     line-height: 16px;
   }
+
+  .select-down-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 5px;
+    height: 100%;
+    color: $fallback--text;
+    color: var(--inputText, $fallback--text);
+    line-height: 28px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
 }
 </style>

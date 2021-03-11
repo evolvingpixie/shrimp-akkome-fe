@@ -532,14 +532,10 @@
         flex: 1 0 auto;
       }
 
-      .userHighlightSel,
-      .userHighlightSel.select {
+      .userHighlightSel {
         padding-top: 0;
         padding-bottom: 0;
         flex: 1 0 auto;
-      }
-      .userHighlightSel.select svg {
-        line-height: 22px;
       }
 
       .userHighlightText {
@@ -549,9 +545,7 @@
 
       .userHighlightCl,
       .userHighlightText,
-      .userHighlightSel,
-      .userHighlightSel.select {
-        height: 22px;
+      .userHighlightSel {
         vertical-align: top;
         margin-right: .5em;
         margin-bottom: .25em;

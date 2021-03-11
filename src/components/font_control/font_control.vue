@@ -55,7 +55,8 @@
     min-width: 10em;
   }
   &.custom {
-    .select {
+    /* TODO Should make proper joiners... */
+    .font-switcher {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
