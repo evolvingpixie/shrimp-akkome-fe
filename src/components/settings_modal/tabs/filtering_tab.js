@@ -1,18 +1,23 @@
 import { filter, trim } from 'lodash'
 import BooleanSetting from '../helpers/boolean_setting.vue'
-import Select from '../../select/select.vue'
+import ChoiceSetting from '../helpers/choice_setting.vue'
 
 import SharedComputedObject from '../helpers/shared_computed_object.js'
 
 const FilteringTab = {
   data () {
     return {
-      muteWordsStringLocal: this.$store.getters.mergedConfig.muteWords.join('\n')
+      muteWordsStringLocal: this.$store.getters.mergedConfig.muteWords.join('\n'),
+      replyVisibilityOptions: ['all', 'following', 'self'].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.reply_visibility_${mode}`)
+      }))
     }
   },
   components: {
     BooleanSetting,
-    Select
+    ChoiceSetting
   },
   computed: {
     ...SharedComputedObject(),

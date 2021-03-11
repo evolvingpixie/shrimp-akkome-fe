@@ -85,44 +85,22 @@
           </BooleanSetting>
         </li>
         <li>
-          <div>
+          <ChoiceSetting
+            id="subjectLineBehavior"
+            path="subjectLineBehavior"
+            :options="subjectLineOptions"
+          >
             {{ $t('settings.subject_line_behavior') }}
-            <Select
-              id="subjectLineBehavior"
-              v-model="subjectLineBehavior"
-            >
-              <option value="email">
-                {{ $t('settings.subject_line_email') }}
-                {{ subjectLineBehaviorDefaultValue == 'email' ? $t('settings.instance_default_simple') : '' }}
-              </option>
-              <option value="masto">
-                {{ $t('settings.subject_line_mastodon') }}
-                {{ subjectLineBehaviorDefaultValue == 'mastodon' ? $t('settings.instance_default_simple') : '' }}
-              </option>
-              <option value="noop">
-                {{ $t('settings.subject_line_noop') }}
-                {{ subjectLineBehaviorDefaultValue == 'noop' ? $t('settings.instance_default_simple') : '' }}
-              </option>
-            </Select>
-          </div>
+          </ChoiceSetting>
         </li>
         <li v-if="postFormats.length > 0">
-          <div>
+          <ChoiceSetting
+            id="postContentType"
+            path="postContentType"
+            :options="postContentOptions"
+          >
             {{ $t('settings.post_status_content_type') }}
-            <Select
-              id="postContentType"
-              v-model="postContentType"
-            >
-              <option
-                v-for="postFormat in postFormats"
-                :key="postFormat"
-                :value="postFormat"
-              >
-                {{ $t(`post_status.content_type["${postFormat}"]`) }}
-                {{ postContentTypeDefaultValue === postFormat ? $t('settings.instance_default_simple') : '' }}
-              </option>
-            </Select>
-          </div>
+          </ChoiceSetting>
         </li>
         <li>
           <BooleanSetting path="minimalScopesMode">

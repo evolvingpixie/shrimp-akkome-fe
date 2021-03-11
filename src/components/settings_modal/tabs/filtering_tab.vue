@@ -36,20 +36,13 @@
           </li>
         </ul>
       </div>
-      <div>
-        {{ $t('settings.replies_in_timeline') }}
-        <Select
+      <ChoiceSetting
           id="replyVisibility"
-          v-model="replyVisibility"
+          path="replyVisibility"
+          :options="replyVisibilityOptions"
         >
-          <option
-            value="all"
-            selected
-          >{{ $t('settings.reply_visibility_all') }}</option>
-          <option value="following">{{ $t('settings.reply_visibility_following') }}</option>
-          <option value="self">{{ $t('settings.reply_visibility_self') }}</option>
-        </Select>
-      </div>
+        {{ $t('settings.replies_in_timeline') }}
+      </ChoiceSetting>
       <div>
         <BooleanSetting path="hidePostStats">
           {{ $t('settings.hide_post_stats') }}
