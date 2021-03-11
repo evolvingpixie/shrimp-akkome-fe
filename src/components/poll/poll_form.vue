@@ -47,6 +47,7 @@
         :title="$t('polls.type')"
       >
         <Select
+          kind="ghost"
           v-model="pollType"
           @change="updatePollToParent"
         >
@@ -68,6 +69,7 @@
         >
         <Select
           v-model="expiryUnit"
+          kind="ghost"
           class="expiry-unit"
           @change="expiryAmountChange"
         >
@@ -132,12 +134,6 @@
   .poll-type {
     margin-right: 0.75em;
     flex: 1 1 60%;
-    .select {
-      border: none;
-      box-shadow: none;
-      background-color: transparent;
-      padding-right: 0.75em;
-    }
   }
 
   .poll-expiry {
@@ -146,12 +142,6 @@
     .expiry-amount {
       width: 3em;
       text-align: right;
-    }
-
-    .expiry-unit {
-      border: none;
-      box-shadow: none;
-      background-color: transparent;
     }
   }
 }

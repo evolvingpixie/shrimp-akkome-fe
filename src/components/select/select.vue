@@ -2,7 +2,7 @@
 <template>
   <label
     class="Select input"
-    :class="{ disabled }"
+    :class="[ kindClass, { disabled } ]"
   >
     <select
       :disabled="disabled"
@@ -18,32 +18,21 @@
   </label>
 </template>
 
-<script>
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faChevronDown
-} from '@fortawesome/free-solid-svg-icons'
-
-library.add(
-  faChevronDown
-)
-export default {
-  model: {
-    prop: 'value',
-    event: 'change'
-  },
-  props: [
-    'value',
-    'disabled'
-  ]
-}
-</script>
+<script src="./select.js"> </script>
 
 <style lang="scss">
 @import '../../_variables.scss';
 
 .Select {
   padding: 0;
+
+  /* Overriding input styles, probably should make proper Input component? */
+  &.-kind_ghost {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    padding-right: 0.75em;
+  }
 
   select {
     -webkit-appearance: none;
