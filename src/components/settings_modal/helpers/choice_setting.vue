@@ -14,7 +14,7 @@
         :value="option.value"
       >
         {{ option.label }}
-        {{ option.value === defaultValue ? $t('settings.instance_default_simple') : '' }}
+        {{ option.value === defaultState ? $t('settings.instance_default_simple') : '' }}
       </option>
     </Select>
     <ModifiedIndicator :changed="isChanged" />
