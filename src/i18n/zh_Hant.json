@@ -541,7 +541,8 @@
     "hide_media_previews": "隱藏媒體預覽",
     "word_filter": "詞過濾",
     "setting_changed": "與默認設置不同",
-    "more_settings": "更多設置"
+    "more_settings": "更多設置",
+    "save": "保存更改"
   },
   "chats": {
     "more": "更多",
@@ -674,7 +675,9 @@
     "up_to_date": "已是最新",
     "no_more_statuses": "没有更多發文",
     "no_statuses": "没有發文",
-    "error": "取得時間線時發生錯誤：{0}"
+    "error": "取得時間線時發生錯誤：{0}",
+    "socket_reconnected": "已建立實時連接",
+    "socket_broke": "丟失實時連接：CloseEvent代碼{0}"
   },
   "interactions": {
     "load_older": "載入更早的互動",
@@ -711,7 +714,8 @@
     "email": "電子郵箱",
     "bio": "簡介",
     "reason_placeholder": "此實例的註冊需要手動批准。\n請讓管理知道您為什麼想要註冊。",
-    "reason": "註冊理由"
+    "reason": "註冊理由",
+    "register": "註冊"
   },
   "user_card": {
     "its_you": "就是你！!",
