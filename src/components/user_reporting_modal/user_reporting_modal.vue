@@ -45,10 +45,7 @@
         </div>
         <div class="user-reporting-panel-right">
           <List :items="statuses">
-            <template
-              slot="item"
-              slot-scope="{item}"
-            >
+            <template v-slot:item="{item}">
               <div class="status-fadein user-reporting-panel-sitem">
                 <Status
                   :in-conversation="false"

@@ -50,7 +50,7 @@
                 @show="menuOpened = true"
                 @close="menuOpened = false"
               >
-                <div slot="content">
+                <template v-slot:content>
                   <div class="dropdown-menu">
                     <button
                       class="button-default dropdown-item dropdown-item-icon"
@@ -59,26 +59,28 @@
                       <FAIcon icon="times" /> {{ $t("chats.delete") }}
                     </button>
                   </div>
-                </div>
-                <button
-                  slot="trigger"
-                  class="button-default menu-icon"
-                  :title="$t('chats.more')"
-                >
-                  <FAIcon icon="ellipsis-h" />
-                </button>
+                </template>
+                <template v-slot:trigger>
+                  <button
+                    class="button-default menu-icon"
+                    :title="$t('chats.more')"
+                  >
+                    <FAIcon icon="ellipsis-h" />
+                  </button>
+                </template>
               </Popover>
             </div>
             <StatusContent
               :status="messageForStatusContent"
               :full-content="true"
             >
-              <span
-                slot="footer"
-                class="created-at"
-              >
-                {{ createdAt }}
-              </span>
+              <template v-slot:footer>
+                <span
+                  class="created-at"
+                >
+                  {{ createdAt }}
+                </span>
+              </template>
             </StatusContent>
           </div>
         </div>

@@ -54,7 +54,7 @@ const Popover = {
       }
 
       // Popover will be anchored around this element, trigger ref is the container, so
-      // its children are what are inside the slot. Expect only one slot="trigger".
+      // its children are what are inside the slot. Expect only one v-slot:trigger.
       const anchorEl = (this.$refs.trigger && this.$refs.trigger.children[0]) || this.$el
       // SVGs don't have offsetWidth/Height, use fallback
       const anchorWidth = anchorEl.offsetWidth || anchorEl.clientWidth

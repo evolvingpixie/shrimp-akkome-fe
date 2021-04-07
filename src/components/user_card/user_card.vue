@@ -53,17 +53,17 @@
               >
                 {{ user.name }}
               </div>
-              <a
+              <button
                 v-if="isOtherUser && !user.is_local"
                 :href="user.statusnet_profile_url"
                 target="_blank"
-                class="external-link-button"
+                class="button-unstyled external-link-button"
               >
                 <FAIcon
                   class="icon"
                   icon="external-link-alt"
                 />
-              </a>
+              </button>
               <AccountActions
                 v-if="isOtherUser && loggedIn"
                 :user="user"
