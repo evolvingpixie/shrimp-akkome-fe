@@ -72,10 +72,6 @@
                   {{ style[0] || style.name }}
                 </option>
               </Select>
-              <FAIcon
-                class="select-down-icon"
-                icon="chevron-down"
-              />
             </label>
           </div>
           <div class="export-import">
