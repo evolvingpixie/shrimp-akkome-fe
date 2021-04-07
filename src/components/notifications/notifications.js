@@ -1,5 +1,6 @@
 import { mapGetters } from 'vuex'
 import Notification from '../notification/notification.vue'
+import NotificationFilters from './notification_filters.vue'
 import notificationsFetcher from '../../services/notifications_fetcher/notifications_fetcher.service.js'
 import {
   notificationsFromStore,
@@ -17,6 +18,10 @@ library.add(
 const DEFAULT_SEEN_TO_DISPLAY_COUNT = 30
 
 const Notifications = {
+  components: {
+    Notification,
+    NotificationFilters
+  },
   props: {
     // Disables display of panel header
     noHeading: Boolean,
@@ -34,11 +39,6 @@ const Notifications = {
       // older notifications, and cut back to default whenever hitting "Read!".
       seenToDisplayCount: DEFAULT_SEEN_TO_DISPLAY_COUNT
     }
-  },
-  created () {
-    const store = this.$store
-    const credentials = store.state.users.currentUser.credentials
-    notificationsFetcher.fetchAndUpdate({ store, credentials })
   },
   computed: {
     mainClass () {
@@ -69,9 +69,6 @@ const Notifications = {
       return this.filteredNotifications.slice(0, this.unseenCount + this.seenToDisplayCount)
     },
     ...mapGetters(['unreadChatCount'])
-  },
-  components: {
-    Notification
   },
   watch: {
     unseenCountTitle (count) {

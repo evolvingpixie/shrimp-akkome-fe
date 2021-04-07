@@ -16,6 +16,10 @@ import {
   colors2to3
 } from 'src/services/style_setter/style_setter.js'
 import {
+  newImporter,
+  newExporter
+} from 'src/services/export_import/export_import.js'
+import {
   SLOT_INHERITANCE
 } from 'src/services/theme_data/pleromafe.js'
 import {
@@ -31,7 +35,6 @@ import ShadowControl from 'src/components/shadow_control/shadow_control.vue'
 import FontControl from 'src/components/font_control/font_control.vue'
 import ContrastRatio from 'src/components/contrast_ratio/contrast_ratio.vue'
 import TabSwitcher from 'src/components/tab_switcher/tab_switcher.js'
-import ExportImport from 'src/components/export_import/export_import.vue'
 import Checkbox from 'src/components/checkbox/checkbox.vue'
 import Select from 'src/components/select/select.vue'
 
@@ -60,6 +63,15 @@ const colorConvert = (color) => {
 export default {
   data () {
     return {
+      themeImporter: newImporter({
+        validator: this.importValidator,
+        onImport: this.onImport,
+        onImportFailure: this.onImportFailure
+      }),
+      themeExporter: newExporter({
+        filename: 'pleroma_theme',
+        getExportedObject: () => this.exportedTheme
+      }),
       availableStyles: [],
       selected: this.$store.getters.mergedConfig.theme,
       themeWarning: undefined,
@@ -376,7 +388,6 @@ export default {
     FontControl,
     TabSwitcher,
     Preview,
-    ExportImport,
     Checkbox,
     Select
   },
@@ -522,9 +533,14 @@ export default {
         this.previewColors.mod
       )
     },
+    importTheme () { this.themeImporter.importData() },
+    exportTheme () { this.themeExporter.exportData() },
     onImport (parsed, forceSource = false) {
       this.tempImportFile = parsed
       this.loadTheme(parsed, 'file', forceSource)
+    },
+    onImportFailure (result) {
+      this.$store.dispatch('pushGlobalNotice', { messageKey: 'settings.invalid_theme_imported', level: 'error' })
     },
     importValidator (parsed) {
       const version = parsed._pleroma_theme_version

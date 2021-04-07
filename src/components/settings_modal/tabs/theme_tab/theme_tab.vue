@@ -48,17 +48,13 @@
             </template>
           </div>
         </div>
-        <ExportImport
-          :export-object="exportedTheme"
-          :export-label="$t(&quot;settings.export_theme&quot;)"
-          :import-label="$t(&quot;settings.import_theme&quot;)"
-          :import-failed-text="$t(&quot;settings.invalid_theme_imported&quot;)"
-          :on-import="onImport"
-          :validator="importValidator"
-        >
-          <template slot="before">
-            <div class="presets">
-              {{ $t('settings.presets') }}
+        <div class="top">
+          <div class="presets">
+            {{ $t('settings.presets') }}
+            <label
+              for="preset-switcher"
+              class="select"
+            >
               <Select
                 id="preset-switcher"
                 v-model="selected"
@@ -76,9 +72,27 @@
                   {{ style[0] || style.name }}
                 </option>
               </Select>
-            </div>
-          </template>
-        </ExportImport>
+              <FAIcon
+                class="select-down-icon"
+                icon="chevron-down"
+              />
+            </label>
+          </div>
+          <div class="export-import">
+            <button
+              class="btn button-default"
+              @click="importTheme"
+            >
+              {{ $t(&quot;settings.import_theme&quot;) }}
+            </button>
+            <button
+              class="btn button-default"
+              @click="exportTheme"
+            >
+              {{ $t(&quot;settings.export_theme&quot;) }}
+            </button>
+          </div>
+        </div>
       </div>
       <div class="save-load-options">
         <span class="keep-option">
