@@ -9,7 +9,7 @@
       class="btn button-default"
     >
       {{ $t('domain_mute_card.unmute') }}
-      <template slot="progress">
+      <template v-slot:progress>
         {{ $t('domain_mute_card.unmute_progress') }}
       </template>
     </ProgressButton>
@@ -19,7 +19,7 @@
       class="btn button-default"
     >
       {{ $t('domain_mute_card.mute') }}
-      <template slot="progress">
+      <template v-slot:progress>
         {{ $t('domain_mute_card.mute_progress') }}
       </template>
     </ProgressButton>

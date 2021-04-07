@@ -5,12 +5,10 @@
     :bound-to="{ x: 'container' }"
     @show="enter"
   >
-    <template slot="trigger">
+    <template v-slot:trigger>
       <slot />
     </template>
-    <div
-      slot="content"
-    >
+    <template v-slot:content>
       <Status
         v-if="status"
         :is-preview="true"
@@ -33,7 +31,7 @@
           size="2x"
         />
       </div>
-    </div>
+    </template>
   </Popover>
 </template>
 

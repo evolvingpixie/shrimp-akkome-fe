@@ -7,10 +7,7 @@
     :bound-to="{ x: 'container' }"
     remove-padding
   >
-    <div
-      slot="content"
-      slot-scope="{close}"
-    >
+    <template v-slot:content="{close}">
       <div class="dropdown-menu">
         <button
           v-if="canMute && !status.thread_muted"
@@ -120,16 +117,15 @@
           /><span>{{ $t("user_card.report") }}</span>
         </button>
       </div>
-    </div>
-    <span
-      slot="trigger"
-      class="popover-trigger"
-    >
-      <FAIcon
-        class="fa-scale-110 fa-old-padding"
-        icon="ellipsis-h"
-      />
-    </span>
+    </template>
+    <template v-slot:trigger>
+      <button class="button-unstyled popover-trigger">
+        <FAIcon
+          class="fa-scale-110 fa-old-padding"
+          icon="ellipsis-h"
+        />
+      </button>
+    </template>
   </Popover>
 </template>
 

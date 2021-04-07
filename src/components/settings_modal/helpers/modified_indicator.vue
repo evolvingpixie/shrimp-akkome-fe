@@ -6,18 +6,18 @@
     <Popover
       trigger="hover"
     >
-      <span slot="trigger">
+      <template v-slot:trigger>
         &nbsp;
         <FAIcon
           icon="wrench"
+          :aria-label="$t('settings.setting_changed')"
         />
-      </span>
-      <div
-        slot="content"
-        class="modified-tooltip"
-      >
-        {{ $t('settings.setting_changed') }}
-      </div>
+      </template>
+      <template v-slot:content>
+        <div class="modified-tooltip">
+          {{ $t('settings.setting_changed') }}
+        </div>
+      </template>
     </Popover>
   </span>
 </template>

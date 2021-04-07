@@ -10,20 +10,18 @@
           :query="queryUserIds"
           :placeholder="$t('settings.search_user_to_block')"
         >
-          <BlockCard
-            slot-scope="row"
-            :user-id="row.item"
-          />
+          <template v-slot="row">
+            <BlockCard
+              :user-id="row.item"
+            />
+          </template>
         </Autosuggest>
       </div>
       <BlockList
         :refresh="true"
         :get-key="i => i"
       >
-        <template
-          slot="header"
-          slot-scope="{selected}"
-        >
+        <template v-slot:header="{selected}">
           <div class="bulk-actions">
             <ProgressButton
               v-if="selected.length > 0"
@@ -31,7 +29,7 @@
               :click="() => blockUsers(selected)"
             >
               {{ $t('user_card.block') }}
-              <template slot="progress">
+              <template v-slot:progress>
                 {{ $t('user_card.block_progress') }}
               </template>
             </ProgressButton>
@@ -41,19 +39,16 @@
               :click="() => unblockUsers(selected)"
             >
               {{ $t('user_card.unblock') }}
-              <template slot="progress">
+              <template v-slot:progress>
                 {{ $t('user_card.unblock_progress') }}
               </template>
             </ProgressButton>
           </div>
         </template>
-        <template
-          slot="item"
-          slot-scope="{item}"
-        >
+        <template v-slot:item="{item}">
           <BlockCard :user-id="item" />
         </template>
-        <template slot="empty">
+        <template v-slot:empty>
           {{ $t('settings.no_blocks') }}
         </template>
       </BlockList>
@@ -68,20 +63,18 @@
               :query="queryUserIds"
               :placeholder="$t('settings.search_user_to_mute')"
             >
-              <MuteCard
-                slot-scope="row"
-                :user-id="row.item"
-              />
+              <template v-slot="row">
+                <MuteCard
+                  :user-id="row.item"
+                />
+              </template>
             </Autosuggest>
           </div>
           <MuteList
             :refresh="true"
             :get-key="i => i"
           >
-            <template
-              slot="header"
-              slot-scope="{selected}"
-            >
+            <template v-slot:header="{selected}">
               <div class="bulk-actions">
                 <ProgressButton
                   v-if="selected.length > 0"
@@ -89,7 +82,7 @@
                   :click="() => muteUsers(selected)"
                 >
                   {{ $t('user_card.mute') }}
-                  <template slot="progress">
+                  <template v-slot:progress>
                     {{ $t('user_card.mute_progress') }}
                   </template>
                 </ProgressButton>
@@ -99,19 +92,16 @@
                   :click="() => unmuteUsers(selected)"
                 >
                   {{ $t('user_card.unmute') }}
-                  <template slot="progress">
+                  <template v-slot:progress>
                     {{ $t('user_card.unmute_progress') }}
                   </template>
                 </ProgressButton>
               </div>
             </template>
-            <template
-              slot="item"
-              slot-scope="{item}"
-            >
+            <template v-slot:item="{item}">
               <MuteCard :user-id="item" />
             </template>
-            <template slot="empty">
+            <template v-slot:empty>
               {{ $t('settings.no_mutes') }}
             </template>
           </MuteList>
@@ -124,20 +114,18 @@
               :query="queryKnownDomains"
               :placeholder="$t('settings.type_domains_to_mute')"
             >
-              <DomainMuteCard
-                slot-scope="row"
-                :domain="row.item"
-              />
+              <template v-slot="row">
+                <DomainMuteCard
+                  :domain="row.item"
+                />
+              </template>
             </Autosuggest>
           </div>
           <DomainMuteList
             :refresh="true"
             :get-key="i => i"
           >
-            <template
-              slot="header"
-              slot-scope="{selected}"
-            >
+            <template v-slot:header="{selected}">
               <div class="bulk-actions">
                 <ProgressButton
                   v-if="selected.length > 0"
@@ -145,19 +133,16 @@
                   :click="() => unmuteDomains(selected)"
                 >
                   {{ $t('domain_mute_card.unmute') }}
-                  <template slot="progress">
+                  <template v-slot:progress>
                     {{ $t('domain_mute_card.unmute_progress') }}
                   </template>
                 </ProgressButton>
               </div>
             </template>
-            <template
-              slot="item"
-              slot-scope="{item}"
-            >
+            <template v-slot:item="{item}">
               <DomainMuteCard :domain="item" />
             </template>
-            <template slot="empty">
+            <template v-slot:empty>
               {{ $t('settings.no_mutes') }}
             </template>
           </DomainMuteList>
