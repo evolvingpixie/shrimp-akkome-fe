@@ -57,7 +57,8 @@
     "friend_requests": "關注請求",
     "back": "後退",
     "administration": "管理員",
-    "about": "關於"
+    "about": "關於",
+    "home_timeline": "家時間線"
   },
   "media_modal": {
     "next": "往後",
@@ -328,7 +329,7 @@
     "notification_visibility_moves": "用戶遷移",
     "notification_visibility_repeats": "轉發",
     "notification_visibility_mentions": "提及",
-    "notification_visibility_likes": "點贊",
+    "notification_visibility_likes": "喜歡",
     "interfaceLanguage": "界面語言",
     "instance_default": "(默認：{value})",
     "inputRadius": "輸入框",
@@ -542,7 +543,17 @@
     "word_filter": "詞過濾",
     "setting_changed": "與默認設置不同",
     "more_settings": "更多設置",
-    "save": "保存更改"
+    "save": "保存更改",
+    "file_export_import": {
+      "errors": {
+        "invalid_file": "所選文件不是受支持的Pleroma設置備份。 沒有進行任何更改。"
+      },
+      "restore_settings": "從文件還原設置",
+      "backup_settings_theme": "備份設置和主題到文件",
+      "backup_settings": "備份設置到文件",
+      "backup_restore": "設定備份"
+    },
+    "sensitive_by_default": "默認標記發文為敏感內容"
   },
   "chats": {
     "more": "更多",
@@ -658,7 +669,8 @@
     "attachments_sensitive": "標記附件為敏感內容",
     "account_not_locked_warning_link": "上鎖",
     "default": "剛剛抵達洛杉磯。",
-    "empty_status_error": "無法發佈沒有附件的空發文"
+    "empty_status_error": "無法發佈沒有附件的空發文",
+    "post": "發送"
   },
   "errors": {
     "storage_unavailable": "Pleroma無法訪問瀏覽器存儲。您的登錄名或本地設置將不會保存，您可能會遇到意外問題。嘗試啟用Cookie。"
