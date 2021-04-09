@@ -1,4 +1,5 @@
 import StillImage from '../still-image/still-image.vue'
+import Flash from '../flash/flash.vue'
 import VideoAttachment from '../video_attachment/video_attachment.vue'
 import nsfwImage from '../../assets/nsfw.png'
 import fileTypeService from '../../services/file_type/file_type.service.js'
@@ -43,6 +44,7 @@ const Attachment = {
     }
   },
   components: {
+    Flash,
     StillImage,
     VideoAttachment
   },

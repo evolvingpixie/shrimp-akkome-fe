@@ -2,6 +2,10 @@
 // or the entire service could be just mimetype service that only operates
 // on mimetypes and not files. Currently the naming is confusing.
 const fileType = mimetype => {
+  if (mimetype.match(/flash/)) {
+    return 'flash'
+  }
+
   if (mimetype.match(/text\/html/)) {
     return 'html'
   }
