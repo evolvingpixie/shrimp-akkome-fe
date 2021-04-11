@@ -8,13 +8,19 @@
     />
     <button
       v-if="player === false || player === 'hidden'"
-      @click="openPlayer"
       class="button-unstyled placeholder"
+      @click="openPlayer"
     >
-      <span v-if="player === 'hidden'" class="label">
+      <span
+        v-if="player === 'hidden'"
+        class="label"
+      >
         {{ $t('general.loading') }}
       </span>
-      <span v-else class="label">
+      <span
+        v-else
+        class="label"
+      >
         {{ $t('general.flash_content') }}
       </span>
     </button>
@@ -24,8 +30,8 @@
       @click="closePlayer"
     >
       <FAIcon icon="stop" />
-  </button>
-</div>
+    </button>
+  </div>
 </template>
 
 <script src="./flash.js"></script>

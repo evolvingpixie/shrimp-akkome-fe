@@ -3,7 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStop } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
-  faStop,
+  faStop
 )
 
 const Flash = {

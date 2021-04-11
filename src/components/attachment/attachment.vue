@@ -118,7 +118,10 @@
       </div>
     </div>
 
-    <Flash v-if="type === 'flash'" :src="attachment.large_thumb_url || attachment.url" />
+    <Flash
+      v-if="type === 'flash'"
+      :src="attachment.large_thumb_url || attachment.url"
+    />
   </div>
 </template>
 
