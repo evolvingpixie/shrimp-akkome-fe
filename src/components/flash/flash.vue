@@ -2,7 +2,7 @@
   <div class="Flash">
     <div
       v-if="player"
-      ref="cunt"
+      ref="container"
       class="player"
       :class="{ hidden: player === 'hidden' }"
     />

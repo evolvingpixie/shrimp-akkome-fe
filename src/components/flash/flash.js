@@ -24,7 +24,7 @@ const Flash = {
         player.config = {
           letterbox: 'on'
         }
-        const container = this.$refs.cunt
+        const container = this.$refs.container
         container.appendChild(player)
         player.style.width = '100%'
         player.style.height = '100%'
