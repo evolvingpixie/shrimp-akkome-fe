@@ -3,6 +3,7 @@ var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
+var CopyPlugin = require('copy-webpack-plugin');
 
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
@@ -93,6 +94,19 @@ module.exports = {
     new ServiceWorkerWebpackPlugin({
       entry: path.join(__dirname, '..', 'src/sw.js'),
       filename: 'sw-pleroma.js'
+    }),
+    // This copies Ruffle's WASM to a directory so that JS side can access it
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "node_modules/ruffle-mirror/*",
+          to: "static/ruffle",
+          flatten: true
+        },
+      ],
+      options: {
+        concurrency: 100,
+      },
     })
   ]
 }
