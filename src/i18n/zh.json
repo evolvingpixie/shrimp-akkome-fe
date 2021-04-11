@@ -842,7 +842,7 @@
     "mute": "隐藏"
   },
   "errors": {
-    "storage_unavailable": "Pleroma 无法访问浏览器储存。您的登陆名以及本地设置将不会被保存，您可能遇到意外问题。请尝试启用 cookies。"
+    "storage_unavailable": "Pleroma 无法访问浏览器储存。您的登陆以及本地设置将不会被保存，您也可能遇到未知问题。请尝试启用 cookies。"
   },
   "shoutbox": {
     "title": "留言板"
