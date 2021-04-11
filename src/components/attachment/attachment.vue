@@ -174,6 +174,7 @@
   }
 
   .non-gallery.attachment {
+    &.flash,
     &.video {
       flex: 1 0 40%;
     }
