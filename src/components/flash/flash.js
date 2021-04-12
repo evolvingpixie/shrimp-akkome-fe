@@ -1,9 +1,13 @@
 import RuffleService from '../../services/ruffle_service/ruffle_service.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStop } from '@fortawesome/free-solid-svg-icons'
+import {
+  faStop,
+  faExclamationTriangle
+} from '@fortawesome/free-solid-svg-icons'
 
 library.add(
-  faStop
+  faStop,
+  faExclamationTriangle
 )
 
 const Flash = {
@@ -17,7 +21,7 @@ const Flash = {
   },
   methods: {
     openPlayer () {
-      if (this.player) return // prevent double-loading
+      if (this.player) return // prevent double-loading, or re-loading on failure
       this.player = 'hidden'
       RuffleService.getRuffle().then((ruffle) => {
         const player = ruffle.newest().createPlayer()
@@ -30,6 +34,9 @@ const Flash = {
         player.style.height = '100%'
         player.load(this.src).then(() => {
           this.player = true
+        }).catch((e) => {
+          console.error('Error loading ruffle', e)
+          this.player = 'error'
         })
         this.ruffleInstance = player
       })

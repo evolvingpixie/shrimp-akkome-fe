@@ -1,13 +1,13 @@
 <template>
   <div class="Flash">
     <div
-      v-if="player"
+      v-if="player === true || player === 'hidden'"
       ref="container"
       class="player"
       :class="{ hidden: player === 'hidden' }"
     />
     <button
-      v-if="player === false || player === 'hidden'"
+      v-if="player !== true"
       class="button-unstyled placeholder"
       @click="openPlayer"
     >
@@ -18,10 +18,22 @@
         {{ $t('general.loading') }}
       </span>
       <span
+        v-if="player === 'error'"
+        class="label"
+      >
+        {{ $t('general.flash_fail') }}
+      </span>
+      <span
         v-else
         class="label"
       >
-        {{ $t('general.flash_content') }}
+        <p>
+          {{ $t('general.flash_content') }}
+        </p>
+        <p>
+          <FAIcon icon="exclamation-triangle" />
+          {{ $t('general.flash_security') }}
+        </p>
       </span>
     </button>
     <button
@@ -52,6 +64,14 @@
     top: 0;
   }
 
+  .label {
+    text-align: center;
+    flex: 1 1 0;
+    line-height: 1.2;
+    white-space: normal;
+    word-wrap: normal;
+  }
+
   .hidden {
     display: none;
     visibility: 'hidden';
@@ -59,7 +79,7 @@
 
   .placeholder {
     height: 100%;
-    width: 100%;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
