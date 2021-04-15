@@ -546,7 +546,10 @@
     "save": "保存更改",
     "file_export_import": {
       "errors": {
-        "invalid_file": "所選文件不是受支持的Pleroma設置備份。 沒有進行任何更改。"
+        "invalid_file": "所選文件不是受支持的Pleroma設置備份。 沒有進行任何更改。",
+        "file_too_new": "不兼容的主版本：{fileMajor}，此 PleromaFE（設置版本 {feMajor}）過舊，無法處理",
+        "file_too_old": "不兼容的主版本：{fileMajor}，文件版本過舊，不受支持（最小設置版本 {feMajor}）",
+        "file_slightly_new": "檔案的小版本不同，有些設置可能無法載入"
       },
       "restore_settings": "從文件還原設置",
       "backup_settings_theme": "備份設置和主題到文件",
