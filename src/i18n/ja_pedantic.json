@@ -86,7 +86,7 @@
     "mentions": "通知",
     "interactions": "インタラクション",
     "dms": "ダイレクトメッセージ",
-    "public_tl": "パブリックタイムライン",
+    "public_tl": "公開タイムライン",
     "timeline": "タイムライン",
     "twkn": "すべてのネットワーク",
     "user_search": "ユーザーを探す",
@@ -96,7 +96,8 @@
     "administration": "管理",
     "bookmarks": "ブックマーク",
     "timelines": "タイムライン",
-    "chats": "チャット"
+    "chats": "チャット",
+    "home_timeline": "ホームタイムライン"
   },
   "notifications": {
     "broken_favorite": "ステータスが見つかりません。探しています…",
@@ -173,14 +174,15 @@
     "scope": {
       "direct": "ダイレクト: メンションされたユーザーのみに届きます",
       "private": "フォロワー限定: フォロワーのみに届きます",
-      "public": "パブリック: パブリックタイムラインに届きます",
-      "unlisted": "アンリステッド: パブリックタイムラインに届きません"
+      "public": "パブリック: 公開タイムラインに届きます",
+      "unlisted": "アンリステッド: 公開タイムラインに届きません"
     },
     "media_description_error": "メディアのアップロードに失敗しました。もう一度お試しください",
     "empty_status_error": "投稿内容を入力してください",
     "preview_empty": "何もありません",
     "preview": "プレビュー",
-    "media_description": "メディアの説明"
+    "media_description": "メディアの説明",
+    "post": "投稿"
   },
   "registration": {
     "bio": "プロフィール",
@@ -203,7 +205,8 @@
       "password_confirmation_match": "パスワードが違います"
     },
     "reason_placeholder": "このインスタンスは、新規登録を手動で受け付けています。\n登録したい理由を、インスタンスの管理者に教えてください。",
-    "reason": "登録するための目的"
+    "reason": "登録するための目的",
+    "register": "登録"
   },
   "selectable_list": {
     "select_all": "すべて選択"
@@ -323,8 +326,8 @@
     "hide_followers_description": "フォロワーを見せない",
     "hide_follows_count_description": "フォローしている人の数を見せない",
     "hide_followers_count_description": "フォロワーの数を見せない",
-    "show_admin_badge": "管理者のバッジを見せる",
-    "show_moderator_badge": "モデレーターのバッジを見せる",
+    "show_admin_badge": "\"管理者\"のバッジを見せる",
+    "show_moderator_badge": "\"モデレーター\"のバッジを見せる",
     "nsfw_clickthrough": "NSFWなファイルを隠す",
     "oauth_tokens": "OAuthトークン",
     "token": "トークン",
@@ -334,8 +337,8 @@
     "panelRadius": "パネル",
     "pause_on_unfocused": "タブにフォーカスがないときストリーミングを止める",
     "presets": "プリセット",
-    "profile_background": "プロフィールのバックグラウンド",
-    "profile_banner": "プロフィールバナー",
+    "profile_background": "プロフィールの背景",
+    "profile_banner": "プロフィールのバナー",
     "profile_tab": "プロフィール",
     "radii_help": "インターフェースの丸さを設定する",
     "replies_in_timeline": "タイムラインのリプライ",
@@ -580,7 +583,17 @@
     "reply_visibility_following_short": "フォローしている人に宛てられたリプライを見る",
     "hide_all_muted_posts": "ミュートした投稿を隠す",
     "hide_media_previews": "メディアのプレビューを隠す",
-    "word_filter": "単語フィルタ"
+    "word_filter": "単語フィルタ",
+    "file_export_import": {
+      "errors": {
+        "invalid_file": "これはPleromaの設定をバックアップしたファイルではありません。"
+      },
+      "restore_settings": "設定をファイルから復元する",
+      "backup_settings_theme": "テーマを含む設定をファイルにバックアップする",
+      "backup_settings": "設定をファイルにバックアップする",
+      "backup_restore": "設定をバックアップ"
+    },
+    "save": "変更を保存"
   },
   "time": {
     "day": "{0}日",
@@ -796,8 +809,8 @@
         "media_nsfw": "メディアを閲覧注意に設定",
         "media_removal_desc": "このインスタンスでは、以下のインスタンスからの投稿に対して、メディアを除去します:",
         "media_removal": "メディア除去",
-        "ftl_removal": "「接続しているすべてのネットワーク」タイムラインから除外",
-        "ftl_removal_desc": "このインスタンスでは、以下のインスタンスを「接続しているすべてのネットワーク」タイムラインから除外します:",
+        "ftl_removal": "「既知のネットワーク」タイムラインから除外",
+        "ftl_removal_desc": "このインスタンスでは、以下のインスタンスを「既知のネットワーク」タイムラインから除外します:",
         "quarantine_desc": "このインスタンスでは、以下のインスタンスに対して公開投稿のみを送信します:",
         "quarantine": "検疫",
         "reject_desc": "このインスタンスでは、以下のインスタンスからのメッセージを受け付けません:",
