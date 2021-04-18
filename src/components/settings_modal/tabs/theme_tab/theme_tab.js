@@ -34,7 +34,7 @@ import OpacityInput from 'src/components/opacity_input/opacity_input.vue'
 import ShadowControl from 'src/components/shadow_control/shadow_control.vue'
 import FontControl from 'src/components/font_control/font_control.vue'
 import ContrastRatio from 'src/components/contrast_ratio/contrast_ratio.vue'
-import TabSwitcher from 'src/components/tab_switcher/tab_switcher.js'
+import TabSwitcher from 'src/components/tab_switcher/tab_switcher.jsx'
 import Checkbox from 'src/components/checkbox/checkbox.vue'
 
 import Preview from './preview.vue'
