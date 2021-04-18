@@ -53,6 +53,9 @@ const SettingsModalContent = {
     },
     open () {
       return this.$store.state.interface.settingsModalState !== 'hidden'
+    },
+    bodyLock () {
+      return this.$store.state.interface.settingsModalState === 'visible'
     }
   },
   methods: {

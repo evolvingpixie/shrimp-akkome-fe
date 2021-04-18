@@ -33,6 +33,11 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    bodyScrollLock: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -49,9 +54,6 @@ export default {
       } else {
         return this.active
       }
-    },
-    settingsModalVisible () {
-      return this.settingsModalState === 'visible'
     },
     ...mapState({
       settingsModalState: state => state.interface.settingsModalState
@@ -161,7 +163,11 @@ export default {
         <div class="tabs">
           {tabs}
         </div>
-        <div ref="contents" class={'contents' + (this.scrollableTabs ? ' scrollable-tabs' : '')} v-body-scroll-lock={this.settingsModalVisible}>
+        <div
+          ref="contents"
+          class={'contents' + (this.scrollableTabs ? ' scrollable-tabs' : '')}
+          v-body-scroll-lock={this.bodyScrollLock}
+        >
           {contents}
         </div>
       </div>

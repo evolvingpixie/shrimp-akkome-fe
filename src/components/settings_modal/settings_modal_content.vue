@@ -4,6 +4,7 @@
     class="settings_tab-switcher"
     :side-tab-bar="true"
     :scrollable-tabs="true"
+    :body-scroll-lock="bodyLock"
   >
     <div
       :label="$t('settings.general')"
