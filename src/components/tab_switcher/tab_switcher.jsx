@@ -36,17 +36,12 @@ export default {
     }
   },
   data () {
-    console.log(this.$slots.default)
     return {
       // TODO VUE3: add () after 'default'
       active: findFirstUsable(this.$slots.default)
     }
   },
   computed: {
-    slots () {
-      // TODO VUE3: add () at the end
-      return this.$slots.default
-    },
     activeIndex () {
       // In case of controlled component
       if (this.activeTab) {
@@ -63,11 +58,10 @@ export default {
     })
   },
   beforeUpdate () {
-    console.log(this.slots, this.active)
-    const currentSlot = this.slots[this.active]
+    const currentSlot = this.slots()[this.active]
     // TODO VUE3: change data to props
     if (!currentSlot.data) {
-      this.active = findFirstUsable(this.slots)
+      this.active = findFirstUsable(this.slots())
     }
   },
   methods: {
@@ -77,9 +71,14 @@ export default {
         this.setTab(index)
       }
     },
+    // DO NOT put it to computed, it doesn't work (caching?)
+    slots () {
+      // TODO VUE3: add () at the end
+      return this.$slots.default
+    },
     setTab (index) {
       if (typeof this.onSwitch === 'function') {
-        this.onSwitch.call(null, this.slots[index].key)
+        this.onSwitch.call(null, this.slots()[index].key)
       }
       this.active = index
       if (this.scrollableTabs) {
@@ -89,7 +88,7 @@ export default {
   },
   // TODO VUE3: remove 'h' here
   render (h) {
-    const tabs = this.slots
+    const tabs = this.slots()
       .map((slot, index) => {
         // TODO VUE3 change to slot.props
         const props = slot.data && slot.data.attrs
@@ -132,7 +131,7 @@ export default {
         )
       })
 
-    const contents = this.slots.map((slot, index) => {
+    const contents = this.slots().map((slot, index) => {
       // TODO VUE3 change to slot.props
       const props = slot.data && slot.data.attrs
       if (!props) return
