@@ -30,7 +30,7 @@
   "features_panel": {
     "gopher": "Gopher",
     "pleroma_chat_messages": "Чати",
-    "chat": "Міні-чат",
+    "chat": "Оголошення",
     "who_to_follow": "Кого відстежувати",
     "title": "Особливості",
     "scope_options": "Параметри обсягу",
@@ -49,7 +49,7 @@
     "mute": "Ігнорувати"
   },
   "shoutbox": {
-    "title": "Міні-чат"
+    "title": "Оголошення"
   },
   "about": {
     "staff": "Адміністрація",
