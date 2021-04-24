@@ -46,7 +46,7 @@ export default {
     this.$store.dispatch('setOption', { name: 'interfaceLanguage', value: val })
     window.addEventListener('resize', this.updateMobileState)
   },
-  destroyed () {
+  unmounted () {
     window.removeEventListener('resize', this.updateMobileState)
   },
   computed: {
