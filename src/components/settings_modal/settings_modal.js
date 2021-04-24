@@ -1,7 +1,7 @@
+import { defineAsyncComponent } from 'vue'
 import Modal from 'src/components/modal/modal.vue'
 import PanelLoading from 'src/components/panel_loading/panel_loading.vue'
 import AsyncComponentError from 'src/components/async_component_error/async_component_error.vue'
-import getResettableAsyncComponent from 'src/services/resettable_async_component.js'
 import Popover from '../popover/popover.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { cloneDeep } from 'lodash'
@@ -51,14 +51,12 @@ const SettingsModal = {
   components: {
     Modal,
     Popover,
-    SettingsModalContent: getResettableAsyncComponent(
-      () => import('./settings_modal_content.vue'),
-      {
-        loading: PanelLoading,
-        error: AsyncComponentError,
-        delay: 0
-      }
-    )
+    SettingsModalContent: defineAsyncComponent({
+      loader: () => import('./settings_modal_content.vue'),
+      loadingComponent: PanelLoading,
+      errorComponent: AsyncComponentError,
+      delay: 0
+    })
   },
   methods: {
     closeModal () {

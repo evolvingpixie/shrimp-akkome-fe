@@ -2,7 +2,7 @@
   <div class="user-panel">
     <div
       v-if="signedIn"
-      key="user-panel"
+      key="user-panel-signed"
       class="panel panel-default signed-in"
     >
       <UserCard
