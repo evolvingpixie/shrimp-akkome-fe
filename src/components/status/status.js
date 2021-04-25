@@ -83,7 +83,8 @@ const Status = {
     'inlineExpanded',
     'showPinned',
     'inProfile',
-    'profileUserId'
+    'profileUserId',
+    'virtualHidden'
   ],
   data () {
     return {
@@ -335,11 +336,6 @@ const Status = {
     },
     'isSuspendable': function (val) {
       this.suspendable = val
-    }
-  },
-  filters: {
-    capitalize: function (str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
     }
   }
 }

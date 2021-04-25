@@ -182,7 +182,7 @@
                 <span
                   v-if="status.visibility"
                   class="visibility-icon"
-                  :title="status.visibility | capitalize"
+                  :title="status.visibility"
                 >
                   <FAIcon
                     fixed-width

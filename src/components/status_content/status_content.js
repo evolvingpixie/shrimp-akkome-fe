@@ -33,7 +33,8 @@ const StatusContent = {
     'focused',
     'noHeading',
     'fullContent',
-    'singleLine'
+    'singleLine',
+    'compact'
   ],
   data () {
     return {
