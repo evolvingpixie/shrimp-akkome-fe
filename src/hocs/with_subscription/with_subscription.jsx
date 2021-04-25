@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import isEmpty from 'lodash/isEmpty'
 import { getComponentProps } from '../../services/component_utils/component_utils'
 import './with_subscription.scss'
@@ -22,7 +21,7 @@ const withSubscription = ({
   const originalProps = Object.keys(getComponentProps(WrappedComponent))
   const props = originalProps.filter(v => v !== childPropName).concat(additionalPropNames)
 
-  return Vue.component('withSubscription', {
+  return {
     props: [
       ...props,
       'refresh' // boolean saying to force-fetch data whenever created
@@ -88,7 +87,7 @@ const withSubscription = ({
         )
       }
     }
-  })
+  }
 }
 
 export default withSubscription

@@ -38,7 +38,7 @@ const withLoadMore = ({
         this.fetchEntries()
       }
     },
-    destroyed () {
+    unmounted () {
       window.removeEventListener('scroll', this.scrollLoad)
       destroy && destroy(this.$props, this.$store)
     },
