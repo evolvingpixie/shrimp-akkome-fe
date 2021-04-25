@@ -9,7 +9,9 @@
     "scope_options": "Zichtbaarheidsopties",
     "text_limit": "Tekst limiet",
     "title": "Kenmerken",
-    "who_to_follow": "Wie te volgen"
+    "who_to_follow": "Wie te volgen",
+    "upload_limit": "Upload limiet",
+    "pleroma_chat_messages": "Pleroma Chat"
   },
   "finder": {
     "error_fetching_user": "Fout tijdens ophalen gebruiker",
@@ -33,7 +35,11 @@
     "close": "Sluiten",
     "retry": "Opnieuw proberen",
     "error_retry": "Probeer het opnieuw",
-    "loading": "Laden…"
+    "loading": "Laden…",
+    "role": {
+      "moderator": "Moderator",
+      "admin": "Administrator"
+    }
   },
   "login": {
     "login": "Log in",
@@ -60,7 +66,7 @@
     "friend_requests": "Volgverzoeken",
     "mentions": "Vermeldingen",
     "dms": "Directe Berichten",
-    "public_tl": "Publieke Tijdlijn",
+    "public_tl": "Publieke tijdlijn",
     "timeline": "Tijdlijn",
     "twkn": "Het Geheel Bekende Netwerk",
     "user_search": "Gebruiker Zoeken",
@@ -68,7 +74,9 @@
     "preferences": "Voorkeuren",
     "administration": "Administratie",
     "search": "Zoeken",
-    "interactions": "Interacties"
+    "interactions": "Interacties",
+    "chats": "Chats",
+    "home_timeline": "Thuis tijdlijn"
   },
   "notifications": {
     "broken_favorite": "Onbekende status, aan het zoeken…",
@@ -110,7 +118,8 @@
       "public": "Dit bericht zal voor iedereen zichtbaar zijn",
       "unlisted": "Dit bericht zal niet zichtbaar zijn in de Publieke Tijdlijn en Het Geheel Bekende Netwerk",
       "private": "Dit bericht zal voor alleen je volgers zichtbaar zijn"
-    }
+    },
+    "post": "Bericht"
   },
   "registration": {
     "bio": "Bio",
@@ -591,7 +600,7 @@
       "mrf_policies_desc": "MRF regels beïnvloeden het federatie gedrag van de instantie. De volgende regels zijn ingeschakeld:",
       "mrf_policies": "Ingeschakelde MRF-regels",
       "simple": {
-        "simple_policies": "Instantiespecifieke Regels",
+        "simple_policies": "Instantiespecifieke regels",
         "accept": "Accepteren",
         "accept_desc": "Deze instantie accepteert alleen berichten van de volgende instanties:",
         "reject": "Afwijzen",
@@ -603,7 +612,7 @@
         "media_nsfw_desc": "Deze instantie stelt media in als gevoelig in berichten van de volgende instanties:",
         "ftl_removal": "Verwijderen van \"Bekende Netwerk\" Tijdlijn",
         "media_removal": "Media Verwijdering",
-        "media_nsfw": "Forceer Media als Gevoelig"
+        "media_nsfw": "Forceer media als gevoelig"
       }
     },
     "staff": "Personeel"
@@ -634,8 +643,8 @@
     "next": "Volgende"
   },
   "polls": {
-    "add_poll": "Poll Toevoegen",
-    "add_option": "Optie Toevoegen",
+    "add_poll": "Poll toevoegen",
+    "add_option": "Optie toevoegen",
     "option": "Optie",
     "votes": "stemmen",
     "vote": "Stem",
@@ -645,7 +654,9 @@
     "expires_in": "Poll eindigt in {0}",
     "expired": "Poll is {0} geleden beëindigd",
     "not_enough_options": "Te weinig opties in poll",
-    "type": "Poll type"
+    "type": "Poll type",
+    "votes_count": "{count} stem | {count} stemmen",
+    "people_voted_count": "{count} persoon heeft gestemd | {count} personen hebben gestemd"
   },
   "emoji": {
     "emoji": "Emoji",
@@ -659,7 +670,7 @@
     "custom": "Gepersonaliseerde emoji"
   },
   "interactions": {
-    "favs_repeats": "Herhalingen en Favorieten",
+    "favs_repeats": "Herhalingen en favorieten",
     "follows": "Nieuwe volgingen",
     "moves": "Gebruiker migreert",
     "load_older": "Oudere interacties laden"
@@ -750,5 +761,8 @@
     "day_short": "{0}d",
     "days": "{0} dagen",
     "day": "{0} dag"
+  },
+  "shoutbox": {
+    "title": "Shoutbox"
   }
 }
