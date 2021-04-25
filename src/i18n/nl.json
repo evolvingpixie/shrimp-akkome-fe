@@ -65,10 +65,10 @@
     "chat": "Lokale Chat",
     "friend_requests": "Volgverzoeken",
     "mentions": "Vermeldingen",
-    "dms": "Directe Berichten",
+    "dms": "Privéberichten",
     "public_tl": "Publieke tijdlijn",
     "timeline": "Tijdlijn",
-    "twkn": "Het Geheel Bekende Netwerk",
+    "twkn": "Bekende Netwerk",
     "user_search": "Gebruiker Zoeken",
     "who_to_follow": "Wie te volgen",
     "preferences": "Voorkeuren",
@@ -76,7 +76,9 @@
     "search": "Zoeken",
     "interactions": "Interacties",
     "chats": "Chats",
-    "home_timeline": "Thuis tijdlijn"
+    "home_timeline": "Thuis tijdlijn",
+    "timelines": "Tijdlijnen",
+    "bookmarks": "Bladwijzers"
   },
   "notifications": {
     "broken_favorite": "Onbekende status, aan het zoeken…",
@@ -89,7 +91,8 @@
     "no_more_notifications": "Geen meldingen meer",
     "migrated_to": "is gemigreerd naar",
     "follow_request": "wil je volgen",
-    "reacted_with": "reageerde met {0}"
+    "reacted_with": "reageerde met {0}",
+    "error": "Fout bij ophalen van meldingen: {0}"
   },
   "post_status": {
     "new_status": "Nieuwe status plaatsen",
@@ -119,7 +122,11 @@
       "unlisted": "Dit bericht zal niet zichtbaar zijn in de Publieke Tijdlijn en Het Geheel Bekende Netwerk",
       "private": "Dit bericht zal voor alleen je volgers zichtbaar zijn"
     },
-    "post": "Bericht"
+    "post": "Bericht",
+    "empty_status_error": "Kan geen lege status plaatsen zonder bijlages",
+    "preview_empty": "Leeg",
+    "preview": "Voorbeeld",
+    "media_description": "Mediaomschrijving"
   },
   "registration": {
     "bio": "Bio",
@@ -764,5 +771,8 @@
   },
   "shoutbox": {
     "title": "Shoutbox"
+  },
+  "errors": {
+    "storage_unavailable": "Pleroma kon browseropslag niet benaderen. Je login of lokale instellingen worden niet opgeslagen en je kunt onverwachte problemen ondervinden. Probeer cookies te accepteren."
   }
 }
