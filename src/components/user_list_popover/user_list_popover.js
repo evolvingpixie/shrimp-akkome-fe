@@ -1,3 +1,5 @@
+import { defineAsyncComponent } from 'vue'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,8 +13,8 @@ const UserListPopover = {
     'users'
   ],
   components: {
-    Popover: () => import('../popover/popover.vue'),
-    UserAvatar: () => import('../user_avatar/user_avatar.vue')
+    Popover: defineAsyncComponent(() => import('../popover/popover.vue')),
+    UserAvatar: defineAsyncComponent(() => import('../user_avatar/user_avatar.vue'))
   },
   computed: {
     usersCapped () {
