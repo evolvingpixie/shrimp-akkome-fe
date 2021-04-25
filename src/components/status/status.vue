@@ -2,6 +2,7 @@
   <!-- eslint-disable vue/no-v-html -->
   <div
     v-if="!hideStatus"
+    ref="root"
     class="Status"
     :class="[{ '-focused': isFocused }, { '-conversation': inlineExpanded }]"
   >

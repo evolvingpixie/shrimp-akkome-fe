@@ -308,7 +308,7 @@ const Status = {
   watch: {
     'highlight': function (id) {
       if (this.status.id === id) {
-        let rect = this.$el.getBoundingClientRect()
+        let rect = this.$refs.root.getBoundingClientRect()
         if (rect.top < 100) {
           // Post is above screen, match its top to screen top
           window.scrollBy(0, rect.top - 100)
