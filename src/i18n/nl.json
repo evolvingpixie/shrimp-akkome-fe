@@ -126,7 +126,8 @@
     "empty_status_error": "Kan geen lege status plaatsen zonder bijlagen",
     "preview_empty": "Leeg",
     "preview": "Voorbeeld",
-    "media_description": "Mediaomschrijving"
+    "media_description": "Mediaomschrijving",
+    "media_description_error": "Kon media niet ophalen, probeer opnieuw"
   },
   "registration": {
     "bio": "Bio",
