@@ -131,7 +131,7 @@
         <FAIcon icon="chevron-down" />
       </button>
     </Popover>
-    <portal to="modal">
+    <teleport to="#modal">
       <DialogModal
         v-if="showDeleteUserDialog"
         :on-cancel="deleteUserDialog.bind(this, false)"
@@ -155,7 +155,7 @@
           </button>
         </template>
       </DialogModal>
-    </portal>
+    </teleport>
   </div>
 </template>
 
