@@ -18,9 +18,9 @@
         <FAIcon :icon="uploadFileLimitReached ? 'ban' : 'upload'" />
       </div>
       <div class="form-group">
-        <i18n
+        <i18n-t
           v-if="!$store.state.users.currentUser.locked && newStatus.visibility == 'private' && !disableLockWarning"
-          path="post_status.account_not_locked_warning"
+          keypath="post_status.account_not_locked_warning"
           tag="p"
           class="visibility-notice"
         >
@@ -30,7 +30,7 @@
           >
             {{ $t('post_status.account_not_locked_warning_link') }}
           </button>
-        </i18n>
+        </i18n-t>
         <p
           v-if="!hideScopeNotice && newStatus.visibility === 'public'"
           class="visibility-notice notice-dismissible"
