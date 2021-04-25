@@ -18,21 +18,21 @@
       class="btn button-default"
       @click="submit"
     >
-      {{ submitButtonLabel }}
+      {{ submitButtonLabel || $t('importer.submit') }}
     </button>
     <div v-if="success">
       <FAIcon
         icon="times"
         @click="dismiss"
       />
-      <p>{{ successMessage }}</p>
+      <p>{{ successMessage || $t('importer.success')}}</p>
     </div>
     <div v-else-if="error">
       <FAIcon
         icon="times"
         @click="dismiss"
       />
-      <p>{{ errorMessage }}</p>
+      <p>{{ errorMessage || $t('importer.error')}}</p>
     </div>
   </div>
 </template>
