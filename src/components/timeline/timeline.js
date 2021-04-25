@@ -122,7 +122,7 @@ const Timeline = {
     window.addEventListener('keydown', this.handleShortKey)
     setTimeout(this.determineVisibleStatuses, 250)
   },
-  destroyed () {
+  unmounted () {
     window.removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('keydown', this.handleShortKey)
     if (typeof document.hidden !== 'undefined') document.removeEventListener('visibilitychange', this.handleVisibilityChange, false)

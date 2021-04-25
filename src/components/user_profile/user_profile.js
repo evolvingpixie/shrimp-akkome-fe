@@ -46,7 +46,7 @@ const UserProfile = {
     this.load(routeParams.name || routeParams.id)
     this.tab = get(this.$route, 'query.tab', defaultTabKey)
   },
-  destroyed () {
+  unmounted () {
     this.stopFetching()
   },
   computed: {

@@ -31,7 +31,7 @@ export default {
   created () {
     this.refreshRelativeTimeObject()
   },
-  destroyed () {
+  unmounted () {
     clearTimeout(this.interval)
   },
   methods: {
