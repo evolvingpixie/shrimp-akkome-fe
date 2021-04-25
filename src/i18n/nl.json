@@ -38,7 +38,7 @@
     "loading": "Laden…",
     "role": {
       "moderator": "Moderator",
-      "admin": "Administrator"
+      "admin": "Beheerder"
     }
   },
   "login": {
@@ -110,10 +110,10 @@
     "direct_warning": "Deze post zal enkel zichtbaar zijn voor de personen die genoemd zijn.",
     "posting": "Plaatsen",
     "scope": {
-      "direct": "Direct - Post enkel naar vermelde gebruikers",
-      "private": "Enkel volgers - Post enkel naar volgers",
-      "public": "Publiek - Post op publieke tijdlijnen",
-      "unlisted": "Niet Vermelden - Niet tonen op publieke tijdlijnen"
+      "direct": "Privé - post enkel naar vermelde gebruikers",
+      "private": "Enkel volgers - post enkel naar volgers",
+      "public": "Publiek - post op publieke tijdlijnen",
+      "unlisted": "Niet vermelden - niet tonen op publieke tijdlijnen"
     },
     "direct_warning_to_all": "Dit bericht zal zichtbaar zijn voor alle vermelde gebruikers.",
     "direct_warning_to_first_only": "Dit bericht zal alleen zichtbaar zijn voor de vermelde gebruikers aan het begin van het bericht.",
@@ -123,7 +123,7 @@
       "private": "Dit bericht zal voor alleen je volgers zichtbaar zijn"
     },
     "post": "Bericht",
-    "empty_status_error": "Kan geen lege status plaatsen zonder bijlages",
+    "empty_status_error": "Kan geen lege status plaatsen zonder bijlagen",
     "preview_empty": "Leeg",
     "preview": "Voorbeeld",
     "media_description": "Mediaomschrijving"
@@ -147,7 +147,9 @@
     },
     "username_placeholder": "bijv. lain",
     "fullname_placeholder": "bijv. Lain Iwakura",
-    "bio_placeholder": "bijv.\nHallo, ik ben Lain.\nIk ben een anime meisje woonachtig in een buitenwijk in Japan. Je kent me misschien van the Wired."
+    "bio_placeholder": "bijv.\nHallo, ik ben Lain.\nIk ben een anime meisje woonachtig in een buitenwijk in Japan. Je kent me misschien van the Wired.",
+    "reason_placeholder": "Deze instantie keurt registraties handmatig goed.\nLaat de beheerder weten waarom je wilt registreren.",
+    "reason": "Reden voor registratie"
   },
   "settings": {
     "attachmentRadius": "Bijlages",
