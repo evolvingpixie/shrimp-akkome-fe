@@ -1,4 +1,4 @@
-import TabSwitcher from 'src/components/tab_switcher/tab_switcher.js'
+import TabSwitcher from 'src/components/tab_switcher/tab_switcher.jsx'
 
 import DataImportExportTab from './tabs/data_import_export_tab.vue'
 import MutesAndBlocksTab from './tabs/mutes_and_blocks_tab.vue'
@@ -53,6 +53,9 @@ const SettingsModalContent = {
     },
     open () {
       return this.$store.state.interface.settingsModalState !== 'hidden'
+    },
+    bodyLock () {
+      return this.$store.state.interface.settingsModalState === 'visible'
     }
   },
   methods: {
