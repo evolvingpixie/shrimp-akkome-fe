@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused
+import { h } from 'vue'
 import isEmpty from 'lodash/isEmpty'
 import { getComponentProps } from '../../services/component_utils/component_utils'
 import './with_load_more.scss'
@@ -78,7 +80,7 @@ const withLoadMore = ({
         }
       }
     },
-    render (h) {
+    render () {
       const props = {
         props: {
           ...this.$props,

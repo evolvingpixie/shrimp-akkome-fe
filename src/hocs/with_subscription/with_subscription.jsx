@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused
+import { h } from 'vue'
 import isEmpty from 'lodash/isEmpty'
 import { getComponentProps } from '../../services/component_utils/component_utils'
 import './with_subscription.scss'
@@ -58,7 +60,7 @@ const withSubscription = ({
         }
       }
     },
-    render (h) {
+    render () {
       if (!this.error && !this.loading) {
         const props = {
           props: {
