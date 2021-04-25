@@ -1,8 +1,7 @@
-import Vue from 'vue'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import UserAvatar from '../user_avatar/user_avatar.vue'
 
-export default Vue.component('chat-title', {
+export default {
   name: 'ChatTitle',
   components: {
     UserAvatar
@@ -23,4 +22,4 @@ export default Vue.component('chat-title', {
       return generateProfileLink(user.id, user.screen_name)
     }
   }
-})
+}
