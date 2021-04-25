@@ -585,13 +585,13 @@
         "reject": "Afwijzen",
         "replace": "Vervangen",
         "is_replaced_by": "→",
-        "keyword_policies": "Zoekwoord Beleid",
+        "keyword_policies": "Zoekwoordbeleid",
         "ftl_removal": "Verwijdering van \"Het Geheel Bekende Netwerk\" Tijdlijn"
       },
       "mrf_policies_desc": "MRF regels beïnvloeden het federatie gedrag van de instantie. De volgende regels zijn ingeschakeld:",
-      "mrf_policies": "Ingeschakelde MRF Regels",
+      "mrf_policies": "Ingeschakelde MRF-regels",
       "simple": {
-        "simple_policies": "Instantie-specifieke Regels",
+        "simple_policies": "Instantiespecifieke Regels",
         "accept": "Accepteren",
         "accept_desc": "Deze instantie accepteert alleen berichten van de volgende instanties:",
         "reject": "Afwijzen",
