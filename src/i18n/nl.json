@@ -598,10 +598,10 @@
         "reject_desc": "Deze instantie zal geen berichten accepteren van de volgende instanties:",
         "quarantine": "Quarantaine",
         "quarantine_desc": "Deze instantie zal alleen publieke berichten sturen naar de volgende instanties:",
-        "ftl_removal_desc": "Deze instantie verwijdert de volgende instanties van \"Het Geheel Bekende Netwerk\" tijdlijn:",
+        "ftl_removal_desc": "Deze instantie verwijdert de volgende instanties van \"Bekende Netwerk\" tijdlijn:",
         "media_removal_desc": "Deze instantie verwijdert media van berichten van de volgende instanties:",
         "media_nsfw_desc": "Deze instantie stelt media in als gevoelig in berichten van de volgende instanties:",
-        "ftl_removal": "Verwijderen van \"Het Geheel Bekende Netwerk\" Tijdlijn",
+        "ftl_removal": "Verwijderen van \"Bekende Netwerk\" Tijdlijn",
         "media_removal": "Media Verwijdering",
         "media_nsfw": "Forceer Media als Gevoelig"
       }
