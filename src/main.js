@@ -66,8 +66,9 @@ const persistedStateOptions = {
       },
       interface: interfaceModule,
       instance: instanceModule,
-      statuses: statusesModule,
+      // TODO refactor users/statuses modules, they depend on each other
       users: usersModule,
+      statuses: statusesModule,
       api: apiModule,
       config: configModule,
       chat: chatModule,
