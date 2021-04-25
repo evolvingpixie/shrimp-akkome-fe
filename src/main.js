@@ -61,7 +61,7 @@ const persistedStateOptions = {
     modules: {
       i18n: {
         getters: {
-          i18n: () => i18n
+          i18n: () => i18n.global
         }
       },
       interface: interfaceModule,
