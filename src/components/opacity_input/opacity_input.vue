@@ -14,7 +14,7 @@
       :checked="present"
       :disabled="disabled"
       class="opt"
-      @change="$emit('input', !present ? fallback : undefined)"
+      @change="$emit('update:modelValue', !present ? fallback : undefined)"
     />
     <input
       :id="name"
@@ -25,7 +25,7 @@
       max="1"
       min="0"
       step=".05"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
   </div>
 </template>

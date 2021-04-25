@@ -15,7 +15,7 @@
       class="opt"
       type="checkbox"
       :checked="present"
-      @input="$emit('input', !present ? fallback : undefined)"
+      @input="$emit('update:modelValue', !present ? fallback : undefined)"
     >
     <label
       v-if="typeof fallback !== 'undefined'"
@@ -31,7 +31,7 @@
       :max="max || hardMax || 100"
       :min="min || hardMin || 0"
       :step="step || 1"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
     <input
       :id="name"
@@ -42,7 +42,7 @@
       :max="hardMax"
       :min="hardMin"
       :step="step || 1"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
   </div>
 </template>

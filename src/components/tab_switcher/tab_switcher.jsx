@@ -1,10 +1,11 @@
+// eslint-disable-next-line no-unused
+import { h } from 'vue'
 import { mapState } from 'vuex'
 import { FontAwesomeIcon as FAIcon } from '@fortawesome/vue-fontawesome'
 
 import './tab_switcher.scss'
 
-// TODO VUE3: change data to props
-const findFirstUsable = (slots) => slots.findIndex(_ => _.data && _.data.attrs)
+const findFirstUsable = (slots) => slots.findIndex(_ => _.props)
 
 export default {
   name: 'TabSwitcher',
@@ -42,15 +43,14 @@ export default {
   },
   data () {
     return {
-      // TODO VUE3: add () after 'default'
-      active: findFirstUsable(this.$slots.default)
+      active: findFirstUsable(this.$slots.default())
     }
   },
   computed: {
     activeIndex () {
       // In case of controlled component
       if (this.activeTab) {
-        return this.$slots.default.findIndex(slot => this.activeTab === slot.key)
+        return this.$slots.default().findIndex(slot => this.activeTab === slot.key)
       } else {
         return this.active
       }
@@ -61,8 +61,7 @@ export default {
   },
   beforeUpdate () {
     const currentSlot = this.slots()[this.active]
-    // TODO VUE3: change data to props
-    if (!currentSlot.data) {
+    if (!currentSlot.props) {
       this.active = findFirstUsable(this.slots())
     }
   },
@@ -75,8 +74,7 @@ export default {
     },
     // DO NOT put it to computed, it doesn't work (caching?)
     slots () {
-      // TODO VUE3: add () at the end
-      return this.$slots.default
+      return this.$slots.default()
     },
     setTab (index) {
       if (typeof this.onSwitch === 'function') {
@@ -88,12 +86,10 @@ export default {
       }
     }
   },
-  // TODO VUE3: remove 'h' here
-  render (h) {
+  render () {
     const tabs = this.slots()
       .map((slot, index) => {
-        // TODO VUE3 change to slot.props
-        const props = slot.data && slot.data.attrs
+        const props = slot.props
         if (!props) return
         const classesTab = ['tab', 'button-default']
         const classesWrapper = ['tab-wrapper']
@@ -134,8 +130,7 @@ export default {
       })
 
     const contents = this.slots().map((slot, index) => {
-      // TODO VUE3 change to slot.props
-      const props = slot.data && slot.data.attrs
+      const props = slot.props
       if (!props) return
       const active = this.activeIndex === index
       const classes = [ active ? 'active' : 'hidden' ]
