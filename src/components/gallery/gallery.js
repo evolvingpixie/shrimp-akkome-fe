@@ -34,7 +34,7 @@ const Gallery = {
   },
   methods: {
     onNaturalSizeLoad (id, size) {
-      this.$set(this.sizes, id, size)
+      this.sizes[id] = size
     },
     rowStyle (itemsPerRow) {
       return { 'padding-bottom': `${(100 / (itemsPerRow + 0.6))}%` }

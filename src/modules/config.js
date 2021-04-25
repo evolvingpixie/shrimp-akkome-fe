@@ -1,4 +1,3 @@
-import { set, delete as del } from 'vue'
 import { setPreset, applyTheme } from '../services/style_setter/style_setter.js'
 import messages from '../i18n/messages'
 
@@ -98,14 +97,14 @@ const config = {
   },
   mutations: {
     setOption (state, { name, value }) {
-      set(state, name, value)
+      state[name] = value
     },
     setHighlight (state, { user, color, type }) {
       const data = this.state.config.highlight[user]
       if (color || type) {
-        set(state.highlight, user, { color: color || data.color, type: type || data.type })
+        state.highlight[user] = { color: color || data.color, type: type || data.type }
       } else {
-        del(state.highlight, user)
+        delete state.highlight[user]
       }
     }
   },

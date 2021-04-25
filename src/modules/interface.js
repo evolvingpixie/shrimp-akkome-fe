@@ -1,5 +1,3 @@
-import { set, delete as del } from 'vue'
-
 const defaultState = {
   settingsModalState: 'hidden',
   settingsModalLoaded: false,
@@ -29,11 +27,10 @@ const interfaceMod = {
         if (state.noticeClearTimeout) {
           clearTimeout(state.noticeClearTimeout)
         }
-        set(state.settings, 'currentSaveStateNotice', { error: false, data: success })
-        set(state.settings, 'noticeClearTimeout',
-          setTimeout(() => del(state.settings, 'currentSaveStateNotice'), 2000))
+        state.settings.currentSaveStateNotice = { error: false, data: success }
+        state.settings.noticeClearTimeout = setTimeout(() => delete state.settings.currentSaveStateNotice, 2000)
       } else {
-        set(state.settings, 'currentSaveStateNotice', { error: true, errorData: error })
+        state.settings.currentSaveStateNotice = { error: true, errorData: error }
       }
     },
     setNotificationPermission (state, permission) {
