@@ -98,7 +98,7 @@
     "new_status": "Nieuwe status plaatsen",
     "account_not_locked_warning": "Je account is niet {0}. Iedereen kan je volgen om je alleen-volgers-berichten te lezen.",
     "account_not_locked_warning_link": "gesloten",
-    "attachments_sensitive": "Markeer bijlagen als gevoelig",
+    "attachments_sensitive": "Bijlagen als gevoelig markeren",
     "content_type": {
       "text/plain": "Platte tekst",
       "text/html": "HTML",
@@ -110,28 +110,28 @@
     "direct_warning": "Deze post zal enkel zichtbaar zijn voor de personen die genoemd zijn.",
     "posting": "Plaatsen",
     "scope": {
-      "direct": "Privé - post enkel naar vermelde gebruikers",
-      "private": "Enkel volgers - post enkel naar volgers",
-      "public": "Publiek - post op publieke tijdlijnen",
-      "unlisted": "Niet vermelden - niet tonen op publieke tijdlijnen"
+      "direct": "Privé - bericht enkel naar vermelde gebruikers sturen",
+      "private": "Enkel volgers - bericht enkel naar volgers sturen",
+      "public": "Openbaar - bericht op openbare tijdlijnen plaatsen",
+      "unlisted": "Niet vermelden - niet tonen op openbare tijdlijnen"
     },
     "direct_warning_to_all": "Dit bericht zal zichtbaar zijn voor alle vermelde gebruikers.",
     "direct_warning_to_first_only": "Dit bericht zal alleen zichtbaar zijn voor de vermelde gebruikers aan het begin van het bericht.",
     "scope_notice": {
       "public": "Dit bericht zal voor iedereen zichtbaar zijn",
-      "unlisted": "Dit bericht zal niet zichtbaar zijn in de Publieke Tijdlijn en Het Geheel Bekende Netwerk",
+      "unlisted": "Dit bericht zal niet zichtbaar zijn in de Openbare Tijdlijn en Het Geheel Bekende Netwerk",
       "private": "Dit bericht zal voor alleen je volgers zichtbaar zijn"
     },
     "post": "Bericht",
-    "empty_status_error": "Kan geen lege status plaatsen zonder bijlagen",
+    "empty_status_error": "Kan geen lege status zonder bijlagen plaatsen",
     "preview_empty": "Leeg",
     "preview": "Voorbeeld",
     "media_description": "Mediaomschrijving",
-    "media_description_error": "Kon media niet ophalen, probeer opnieuw"
+    "media_description_error": "Kon media niet ophalen, probeer het opnieuw"
   },
   "registration": {
     "bio": "Bio",
-    "email": "Email",
+    "email": "E-mail",
     "fullname": "Weergave naam",
     "password_confirm": "Wachtwoord bevestiging",
     "registration": "Registratie",
@@ -723,7 +723,7 @@
     "expires_in": "Poll eindigt in {0}",
     "expired": "Poll is {0} geleden beëindigd",
     "not_enough_options": "Te weinig opties in poll",
-    "type": "Poll type",
+    "type": "Poll-type",
     "votes_count": "{count} stem | {count} stemmen",
     "people_voted_count": "{count} persoon heeft gestemd | {count} personen hebben gestemd"
   },
@@ -747,7 +747,7 @@
   "remote_user_resolver": {
     "searching_for": "Zoeken naar",
     "error": "Niet gevonden.",
-    "remote_user_resolver": "Externe gebruikers zoeker"
+    "remote_user_resolver": "Externe gebruikers-zoeker"
   },
   "selectable_list": {
     "select_all": "Alles selecteren"
