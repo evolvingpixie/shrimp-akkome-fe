@@ -425,7 +425,7 @@
       "setup_otp": "OTP instellen",
       "wait_pre_setup_otp": "OTP voorinstellen",
       "confirm_and_enable": "Bevestig en schakel OTP in",
-      "title": "Tweefactorauthenticatie",
+      "title": "Twee-factorauthenticatie",
       "generate_new_recovery_codes": "Genereer nieuwe herstelcodes",
       "recovery_codes": "Herstelcodes.",
       "waiting_a_recovery_codes": "Backup codes ontvangen…",
