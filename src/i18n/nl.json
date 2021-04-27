@@ -501,7 +501,8 @@
     "save": "Wijzigingen opslaan",
     "hide_media_previews": "Media voorbeelden verbergen",
     "word_filter": "Woord filter",
-    "chatMessageRadius": "Chatbericht"
+    "chatMessageRadius": "Chatbericht",
+    "mute_export": "Genegeerden export"
   },
   "timeline": {
     "collapse": "Inklappen",
