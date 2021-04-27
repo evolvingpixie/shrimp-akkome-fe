@@ -429,17 +429,17 @@
       "generate_new_recovery_codes": "Genereer nieuwe herstelcodes",
       "recovery_codes": "Herstelcodes.",
       "waiting_a_recovery_codes": "Back-upcodes ontvangen…",
-      "authentication_methods": "Authenticatie methodes",
+      "authentication_methods": "Authenticatiemethodes",
       "scan": {
         "title": "Scannen",
-        "desc": "Scan de QR code of voer een sleutel in met je twee-factor applicatie:",
+        "desc": "Scan de QR-code of voer een sleutel in met je tweefactorapplicatie:",
         "secret_code": "Sleutel"
       },
       "verify": {
         "desc": "Voer de code van je twee-factor applicatie in om twee-factor authenticatie in te schakelen:"
       },
       "warning_of_generate_new_codes": "Wanneer je nieuwe herstelcodes genereert, zullen je oude codes niet langer werken.",
-      "recovery_codes_warning": "Schrijf de codes op of sla ze op een veilige locatie op - anders kun je ze niet meer inzien. Als je toegang tot je 2FA app en herstelcodes verliest, zal je buitengesloten zijn uit je account."
+      "recovery_codes_warning": "Schrijf de codes op of sla ze op een veilige locatie op - anders kun je ze niet meer inzien. Als je toegang tot je 2FA-app en herstelcodes verliest, zal je buitengesloten zijn van je account."
     },
     "allow_following_move": "Automatisch volgen toestaan wanneer een gevolgd account migreert",
     "block_export": "Blokkades exporteren",
