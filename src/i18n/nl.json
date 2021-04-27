@@ -56,7 +56,7 @@
     "recovery_code": "Herstelcode",
     "heading": {
       "totp": "Twee-factorauthenticatie",
-      "recovery": "Twee-factor herstelling"
+      "recovery": "Tweefactorherstelling"
     }
   },
   "nav": {
