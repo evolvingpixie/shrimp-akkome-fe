@@ -96,7 +96,7 @@
   },
   "post_status": {
     "new_status": "Nieuwe status plaatsen",
-    "account_not_locked_warning": "Je account is niet {0}. Iedereen kan je volgen om je alleen-volgers berichten te lezen.",
+    "account_not_locked_warning": "Je account is niet {0}. Iedereen kan je volgen om je alleen-volgers-berichten te lezen.",
     "account_not_locked_warning_link": "gesloten",
     "attachments_sensitive": "Markeer bijlagen als gevoelig",
     "content_type": {
