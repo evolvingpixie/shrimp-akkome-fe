@@ -150,13 +150,14 @@
     "fullname_placeholder": "bijv. Lain Iwakura",
     "bio_placeholder": "bijv.\nHallo, ik ben Lain.\nIk ben een anime meisje woonachtig in een buitenwijk in Japan. Je kent me misschien van the Wired.",
     "reason_placeholder": "Deze instantie keurt registraties handmatig goed.\nLaat de beheerder weten waarom je wilt registreren.",
-    "reason": "Reden voor registratie"
+    "reason": "Reden voor registratie",
+    "register": "Registreren"
   },
   "settings": {
     "attachmentRadius": "Bijlages",
     "attachments": "Bijlages",
     "avatar": "Avatar",
-    "avatarAltRadius": "Avatars (Meldingen)",
+    "avatarAltRadius": "Avatars (meldingen)",
     "avatarRadius": "Avatars",
     "background": "Achtergrond",
     "bio": "Bio",
@@ -495,7 +496,9 @@
       "add_field": "Veld Toevoegen",
       "label": "Profiel metadata"
     },
-    "bot": "Dit is een bot account"
+    "bot": "Dit is een bot account",
+    "setting_changed": "Instelling verschilt van standaard waarde",
+    "save": "Wijzigingen opslaan"
   },
   "timeline": {
     "collapse": "Inklappen",
