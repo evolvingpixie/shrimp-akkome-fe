@@ -432,7 +432,7 @@
       "authentication_methods": "Authenticatiemethodes",
       "scan": {
         "title": "Scannen",
-        "desc": "Scan de QR-code of voer een sleutel in met je tweefactorapplicatie:",
+        "desc": "Scan de QR-code of voer een sleutel in met je twee-factorapplicatie:",
         "secret_code": "Sleutel"
       },
       "verify": {
