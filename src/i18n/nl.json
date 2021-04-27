@@ -503,7 +503,9 @@
     "word_filter": "Woord filter",
     "chatMessageRadius": "Chatbericht",
     "mute_export": "Genegeerden export",
-    "mute_export_button": "Exporteer je negeringen naar een csv-bestand"
+    "mute_export_button": "Exporteer je genegeerden naar een csv-bestand",
+    "mute_import_error": "Fout tijdens het importeren van genegeerden",
+    "mute_import": "Genegeerden import"
   },
   "timeline": {
     "collapse": "Inklappen",
