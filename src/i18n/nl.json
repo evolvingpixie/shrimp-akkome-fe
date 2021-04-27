@@ -5,9 +5,9 @@
   "features_panel": {
     "chat": "Chat",
     "gopher": "Gopher",
-    "media_proxy": "Media proxy",
+    "media_proxy": "Mediaproxy",
     "scope_options": "Zichtbaarheidsopties",
-    "text_limit": "Tekst limiet",
+    "text_limit": "Tekstlimiet",
     "title": "Kenmerken",
     "who_to_follow": "Wie te volgen",
     "upload_limit": "Upload limiet",
@@ -50,12 +50,12 @@
     "register": "Registreren",
     "username": "Gebruikersnaam",
     "hint": "Log in om deel te nemen aan de discussie",
-    "authentication_code": "Authenticatie code",
+    "authentication_code": "Authenticatiecode",
     "enter_recovery_code": "Voer een herstelcode in",
-    "enter_two_factor_code": "Voer een twee-factor code in",
+    "enter_two_factor_code": "Voer een twee-factorcode in",
     "recovery_code": "Herstelcode",
     "heading": {
-      "totp": "Twee-factor authenticatie",
+      "totp": "Tweefactorauthenticatie",
       "recovery": "Twee-factor herstelling"
     }
   },
@@ -680,7 +680,7 @@
         "media_removal_desc": "Deze instantie verwijdert media van berichten van de volgende instanties:",
         "media_nsfw_desc": "Deze instantie stelt media in als gevoelig in berichten van de volgende instanties:",
         "ftl_removal": "Verwijderen van \"Bekende Netwerk\" Tijdlijn",
-        "media_removal": "Media Verwijdering",
+        "media_removal": "Mediaverwijdering",
         "media_nsfw": "Forceer media als gevoelig"
       }
     },
