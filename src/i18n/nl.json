@@ -740,8 +740,8 @@
   },
   "interactions": {
     "favs_repeats": "Herhalingen en favorieten",
-    "follows": "Nieuwe volgingen",
-    "moves": "Gebruiker migreert",
+    "follows": "Nieuwe gevolgden",
+    "moves": "Gebruikermigraties",
     "load_older": "Oudere interacties laden"
   },
   "remote_user_resolver": {
