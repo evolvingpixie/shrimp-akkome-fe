@@ -436,7 +436,7 @@
         "secret_code": "Sleutel"
       },
       "verify": {
-        "desc": "Voer de code van je tweefactorapplicatie in om tweefactorauthenticatie in te schakelen:"
+        "desc": "Voer de code van je twee-factorapplicatie in om twee-factorauthenticatie in te schakelen:"
       },
       "warning_of_generate_new_codes": "Wanneer je nieuwe herstelcodes genereert, zullen je oude codes niet langer werken.",
       "recovery_codes_warning": "Schrijf de codes op of sla ze op een veilige locatie op - anders kun je ze niet meer inzien. Als je toegang tot je 2FA-app en herstelcodes verliest, zal je buitengesloten zijn van je account."
