@@ -428,7 +428,7 @@
       "title": "Twee-factorauthenticatie",
       "generate_new_recovery_codes": "Genereer nieuwe herstelcodes",
       "recovery_codes": "Herstelcodes.",
-      "waiting_a_recovery_codes": "Backupcodes ontvangen…",
+      "waiting_a_recovery_codes": "Back-upcodes ontvangen…",
       "authentication_methods": "Authenticatie methodes",
       "scan": {
         "title": "Scannen",
