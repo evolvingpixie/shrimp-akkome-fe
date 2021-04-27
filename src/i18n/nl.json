@@ -505,7 +505,8 @@
     "mute_export": "Genegeerden export",
     "mute_export_button": "Exporteer je genegeerden naar een csv-bestand",
     "mute_import_error": "Fout tijdens het importeren van genegeerden",
-    "mute_import": "Genegeerden import"
+    "mute_import": "Genegeerden import",
+    "mutes_imported": "Negeringen geïmporteerd! Het kan even duren om ze te verwerken."
   },
   "timeline": {
     "collapse": "Inklappen",
