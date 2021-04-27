@@ -56,7 +56,7 @@
     "recovery_code": "Herstelcode",
     "heading": {
       "totp": "Twee-factorauthenticatie",
-      "recovery": "Tweefactorherstelling"
+      "recovery": "Twee-factorherstelling"
     }
   },
   "nav": {
@@ -66,13 +66,13 @@
     "friend_requests": "Volgverzoeken",
     "mentions": "Vermeldingen",
     "dms": "Privéberichten",
-    "public_tl": "Publieke tijdlijn",
+    "public_tl": "Openbare tijdlijn",
     "timeline": "Tijdlijn",
     "twkn": "Bekende Netwerk",
     "user_search": "Gebruiker Zoeken",
     "who_to_follow": "Wie te volgen",
     "preferences": "Voorkeuren",
-    "administration": "Administratie",
+    "administration": "Beheer",
     "search": "Zoeken",
     "interactions": "Interacties",
     "chats": "Chats",
@@ -84,10 +84,10 @@
     "broken_favorite": "Onbekende status, aan het zoeken…",
     "favorited_you": "vond je status leuk",
     "followed_you": "volgt jou",
-    "load_older": "Laad oudere meldingen",
+    "load_older": "Oudere meldingen laden",
     "notifications": "Meldingen",
     "read": "Gelezen!",
-    "repeated_you": "Herhaalde je status",
+    "repeated_you": "herhaalde je status",
     "no_more_notifications": "Geen meldingen meer",
     "migrated_to": "is gemigreerd naar",
     "follow_request": "wil je volgen",
@@ -730,7 +730,7 @@
   "emoji": {
     "emoji": "Emoji",
     "keep_open": "Picker openhouden",
-    "search_emoji": "Zoek voor een emoji",
+    "search_emoji": "Emoji zoeken",
     "add_emoji": "Emoji invoegen",
     "unicode": "Unicode emoji",
     "load_all": "Alle {emojiAmount} emoji worden geladen",
