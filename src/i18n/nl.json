@@ -666,7 +666,7 @@
         "keyword_policies": "Zoekwoordbeleid",
         "ftl_removal": "Verwijdering van \"Het Geheel Bekende Netwerk\" Tijdlijn"
       },
-      "mrf_policies_desc": "MRF regels beïnvloeden het federatie gedrag van de instantie. De volgende regels zijn ingeschakeld:",
+      "mrf_policies_desc": "MRF-regels beïnvloeden het federatiegedrag van de instantie. De volgende regels zijn ingeschakeld:",
       "mrf_policies": "Ingeschakelde MRF-regels",
       "simple": {
         "simple_policies": "Instantiespecifieke regels",
