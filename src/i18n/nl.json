@@ -502,7 +502,8 @@
     "hide_media_previews": "Media voorbeelden verbergen",
     "word_filter": "Woord filter",
     "chatMessageRadius": "Chatbericht",
-    "mute_export": "Genegeerden export"
+    "mute_export": "Genegeerden export",
+    "mute_export_button": "Exporteer je negeringen naar een csv-bestand"
   },
   "timeline": {
     "collapse": "Inklappen",
