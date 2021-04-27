@@ -55,7 +55,7 @@
     "enter_two_factor_code": "Voer een twee-factorcode in",
     "recovery_code": "Herstelcode",
     "heading": {
-      "totp": "Tweefactorauthenticatie",
+      "totp": "Twee-factorauthenticatie",
       "recovery": "Twee-factor herstelling"
     }
   },
