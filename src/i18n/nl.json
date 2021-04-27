@@ -166,7 +166,7 @@
     "cGreen": "Groen (Herhalen)",
     "cOrange": "Oranje (Favoriet)",
     "cRed": "Rood (Annuleren)",
-    "change_password": "Wachtwoord Wijzigen",
+    "change_password": "Wachtwoord wijzigen",
     "change_password_error": "Er is een fout opgetreden bij het wijzigen van je wachtwoord.",
     "changed_password": "Wachtwoord succesvol gewijzigd!",
     "collapse_subject": "Klap berichten met een onderwerp in",
@@ -177,7 +177,7 @@
     "current_profile_banner": "Je huidige profiel banner",
     "data_import_export_tab": "Data Import / Export",
     "default_vis": "Standaard zichtbaarheidsbereik",
-    "delete_account": "Account Verwijderen",
+    "delete_account": "Account verwijderen",
     "delete_account_description": "Permanent je gegevens verwijderen en account deactiveren.",
     "delete_account_error": "Er is een fout opgetreden bij het verwijderen van je account. Indien dit probleem zich voor blijft doen, neem dan contact op met de beheerder van deze instantie.",
     "delete_account_instructions": "Voer je wachtwoord in het onderstaande invoerveld in om het verwijderen van je account te bevestigen.",
@@ -440,7 +440,7 @@
     "block_import": "Blokkades importeren",
     "blocks_imported": "Blokkades geïmporteerd! Het kan even duren voordat deze verwerkt zijn.",
     "blocks_tab": "Blokkades",
-    "change_email": "E-mailadres wijzigen",
+    "change_email": "E-mail wijzigen",
     "change_email_error": "Er is een fout opgetreden tijdens het wijzigen van je email.",
     "changed_email": "Email succesvol gewijzigd!",
     "domain_mutes": "Domeinen",
@@ -498,7 +498,9 @@
     },
     "bot": "Dit is een bot account",
     "setting_changed": "Instelling verschilt van standaard waarde",
-    "save": "Wijzigingen opslaan"
+    "save": "Wijzigingen opslaan",
+    "hide_media_previews": "Media voorbeelden verbergen",
+    "word_filter": "Woord filter"
   },
   "timeline": {
     "collapse": "Inklappen",
