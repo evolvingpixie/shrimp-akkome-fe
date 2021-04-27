@@ -175,7 +175,7 @@
     "current_avatar": "Je huidige avatar",
     "current_password": "Huidig wachtwoord",
     "current_profile_banner": "Je huidige profiel banner",
-    "data_import_export_tab": "Data Import / Export",
+    "data_import_export_tab": "Data-import / export",
     "default_vis": "Standaard zichtbaarheidsbereik",
     "delete_account": "Account verwijderen",
     "delete_account_description": "Permanent je gegevens verwijderen en account deactiveren.",
@@ -500,7 +500,8 @@
     "setting_changed": "Instelling verschilt van standaard waarde",
     "save": "Wijzigingen opslaan",
     "hide_media_previews": "Media voorbeelden verbergen",
-    "word_filter": "Woord filter"
+    "word_filter": "Woord filter",
+    "chatMessageRadius": "Chatbericht"
   },
   "timeline": {
     "collapse": "Inklappen",
