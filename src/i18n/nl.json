@@ -132,10 +132,10 @@
   "registration": {
     "bio": "Bio",
     "email": "E-mail",
-    "fullname": "Weergave naam",
+    "fullname": "Weergavenaam",
     "password_confirm": "Wachtwoord bevestiging",
     "registration": "Registratie",
-    "token": "Uitnodigings-token",
+    "token": "Uitnodigingstoken",
     "captcha": "CAPTCHA",
     "new_captcha": "Klik op de afbeelding voor een nieuwe captcha",
     "validations": {
@@ -148,7 +148,7 @@
     },
     "username_placeholder": "bijv. lain",
     "fullname_placeholder": "bijv. Lain Iwakura",
-    "bio_placeholder": "bijv.\nHallo, ik ben Lain.\nIk ben een anime meisje woonachtig in een buitenwijk in Japan. Je kent me misschien van the Wired.",
+    "bio_placeholder": "bijv.\nHallo, ik ben Lain.\nIk ben een animemeisje woonachtig in een buitenwijk in Japan. Je kent me misschien van the Wired.",
     "reason_placeholder": "Deze instantie keurt registraties handmatig goed.\nLaat de beheerder weten waarom je wilt registreren.",
     "reason": "Reden voor registratie",
     "register": "Registreren"
@@ -425,7 +425,7 @@
       "setup_otp": "OTP instellen",
       "wait_pre_setup_otp": "OTP voorinstellen",
       "confirm_and_enable": "Bevestig en schakel OTP in",
-      "title": "Twee-factor Authenticatie",
+      "title": "Tweefactorauthenticatie",
       "generate_new_recovery_codes": "Genereer nieuwe herstelcodes",
       "recovery_codes": "Herstelcodes.",
       "waiting_a_recovery_codes": "Backup codes ontvangen…",
