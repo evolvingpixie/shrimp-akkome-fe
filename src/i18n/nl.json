@@ -732,7 +732,7 @@
     "keep_open": "Picker openhouden",
     "search_emoji": "Emoji zoeken",
     "add_emoji": "Emoji invoegen",
-    "unicode": "Unicode emoji",
+    "unicode": "Unicode-emoji",
     "load_all": "Alle {emojiAmount} emoji worden geladen",
     "stickers": "Stickers",
     "load_all_hint": "Eerste {saneAmount} emoji geladen, alle emoji tegelijk laden kan problemen veroorzaken met prestaties.",
