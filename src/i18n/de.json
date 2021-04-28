@@ -9,7 +9,9 @@
     "scope_options": "Reichweitenoptionen",
     "text_limit": "Zeichenlimit",
     "title": "Funktionen",
-    "who_to_follow": "Wem folgen?"
+    "who_to_follow": "Wem folgen?",
+    "upload_limit": "Maximale Upload Größe",
+    "pleroma_chat_messages": "Pleroma Chat"
   },
   "finder": {
     "error_fetching_user": "Fehler beim Suchen des Benutzers",
@@ -28,7 +30,16 @@
     "disable": "Deaktivieren",
     "enable": "Aktivieren",
     "confirm": "Bestätigen",
-    "verify": "Verifizieren"
+    "verify": "Verifizieren",
+    "role": {
+      "moderator": "Moderator",
+      "admin": "Admin"
+    },
+    "peek": "Schau rein",
+    "close": "Schliessen",
+    "retry": "Versuche es erneut",
+    "error_retry": "Bitte versuche es erneut",
+    "loading": "Lade…"
   },
   "login": {
     "login": "Anmelden",
@@ -63,7 +74,11 @@
     "search": "Suche",
     "preferences": "Voreinstellungen",
     "administration": "Administration",
-    "who_to_follow": "Wem folgen"
+    "who_to_follow": "Wem folgen",
+    "chats": "Chats",
+    "timelines": "Zeitlinie",
+    "bookmarks": "Lesezeichen",
+    "home_timeline": "Heim Zeitlinie"
   },
   "notifications": {
     "broken_favorite": "Unbekannte Nachricht, suche danach…",
@@ -76,7 +91,8 @@
     "follow_request": "möchte dir folgen",
     "migrated_to": "migrierte zu",
     "reacted_with": "reagierte mit {0}",
-    "no_more_notifications": "Keine Benachrichtigungen mehr"
+    "no_more_notifications": "Keine Benachrichtigungen mehr",
+    "error": "Error beim laden von Neuigkeiten"
   },
   "post_status": {
     "new_status": "Neuen Status veröffentlichen",
@@ -105,7 +121,13 @@
       "public": "Dieser Beitrag wird für alle sichtbar sein",
       "private": "Dieser Beitrag wird nur für deine Follower sichtbar sein",
       "unlisted": "Dieser Beitrag wird weder in der öffentlichen Zeitleiste noch im gesamten bekannten Netzwerk sichtbar sein"
-    }
+    },
+    "media_description_error": "Medien konnten nicht neu geladen werden, versuche es erneut",
+    "empty_status_error": "Eine leere Nachricht ohne Anhänge kann nicht gesendet werden",
+    "preview_empty": "Leer",
+    "preview": "Vorschau",
+    "post": "Post",
+    "media_description": "Medienbeschreibung"
   },
   "registration": {
     "bio": "Bio",
@@ -493,14 +515,14 @@
         "reject": "Ablehnen",
         "reject_desc": "Diese Instanz akzeptiert keine Nachrichten der folgenden Instanzen:",
         "quarantine": "Quarantäne",
-        "ftl_removal": "Von der Zeitleiste \"Das gesamte bekannte Netzwerk\" entfernen",
+        "ftl_removal": "Von der Zeitleiste \"Das bekannte Netzwerk\" entfernen",
         "media_removal": "Medienentfernung",
         "media_removal_desc": "Diese Instanz entfernt Medien von den Beiträgen der folgenden Instanzen:",
         "media_nsfw": "Erzwingen Medien als heikel zu makieren",
         "media_nsfw_desc": "Diese Instanz makiert die Medien in Beiträgen der folgenden Instanzen als heikel:",
         "accept_desc": "Diese Instanz akzeptiert nur Nachrichten von den folgenden Instanzen:",
         "quarantine_desc": "Diese Instanz sendet nur öffentliche Beiträge zu den folgenden Instanzen:",
-        "ftl_removal_desc": "Dieser Instanz entfernt folgende Instanzen von der \"Das gesamte bekannte Netzwerk\" Zeitleiste:"
+        "ftl_removal_desc": "Dieser Instanz entfernt folgende Instanzen von der \"Das bekannte Netzwerk\" Zeitleiste:"
       },
       "keyword": {
         "keyword_policies": "Keyword Richtlinien",
@@ -550,7 +572,9 @@
     "expiry": "Alter der Umfrage",
     "expired": "Die Umfrage endete vor {0}",
     "not_enough_options": "Zu wenig einzigartige Auswahlmöglichkeiten in der Umfrage",
-    "expires_in": "Die Umfrage endet in {0}"
+    "expires_in": "Die Umfrage endet in {0}",
+    "votes_count": "{count} Stimme | {count} Stimmen",
+    "people_voted_count": "{count} Person hat gewählt | {count} Personen haben gewählt"
   },
   "emoji": {
     "stickers": "Sticker",
@@ -575,5 +599,8 @@
   "remote_user_resolver": {
     "searching_for": "Suche nach",
     "error": "Nicht gefunden."
+  },
+  "errors": {
+    "storage_unavailable": "Pleroma konnte nicht auf den Browser Speicher zugreifen. Deine Anmeldung und deine Einstellungen werden nicht gespeichert. Es kann unvorhersehbare Probleme geben. Versuche ansonsten Cookies zu erlauben."
   }
 }
