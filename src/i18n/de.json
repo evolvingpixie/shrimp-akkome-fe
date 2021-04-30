@@ -433,7 +433,10 @@
     },
     "bot": "Dies ist ein Bot Account",
     "blocks_tab": "Blockierungen",
-    "save": "Änderungen speichern"
+    "save": "Änderungen speichern",
+    "show_moderator_badge": "Zeige Moderator-Abzeichen auf meinem Profil",
+    "show_admin_badge": "Zeige Admin-Abzeichen auf meinem Profil",
+    "no_mutes": "Keine Stummschaltungen"
   },
   "timeline": {
     "collapse": "Einklappen",
