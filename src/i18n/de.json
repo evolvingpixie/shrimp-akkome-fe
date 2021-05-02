@@ -148,7 +148,10 @@
     },
     "bio_placeholder": "z.B.\nHallo, ich bin Lain.\nIch bin ein Anime Mödchen aus dem vorstädtischen Japan. Du kennst mich vielleicht vom Wired.",
     "fullname_placeholder": "z.B. Lain Iwakura",
-    "username_placeholder": "z.B. lain"
+    "username_placeholder": "z.B. lain",
+    "register": "Registrierung",
+    "reason_placeholder": "Diese Instanz akzeptiert Registrierungen manuell. \nLass die Admins wissen warum du dich registrieren willst.",
+    "reason": "Grund zur Anmeldung"
   },
   "settings": {
     "attachmentRadius": "Anhänge",
@@ -406,7 +409,9 @@
       },
       "verify": {
         "desc": "Um 2FA zu aktivieren, gib den Code von deiner 2FA-App ein:"
-      }
+      },
+      "confirm_and_enable": "Bestätige und aktiviere OTP",
+      "setup_otp": "Richte OTP ein"
     },
     "enter_current_password_to_confirm": "Gib dein aktuelles Passwort ein, um deine Identität zu bestätigen",
     "security": "Sicherheit",
@@ -429,14 +434,45 @@
     "profile_fields": {
       "value": "Inhalt",
       "name": "Label",
-      "add_field": "Feld hinzufügen"
+      "add_field": "Feld hinzufügen",
+      "label": "Profil Metadaten"
     },
     "bot": "Dies ist ein Bot Account",
     "blocks_tab": "Blockierungen",
     "save": "Änderungen speichern",
     "show_moderator_badge": "Zeige Moderator-Abzeichen auf meinem Profil",
     "show_admin_badge": "Zeige Admin-Abzeichen auf meinem Profil",
-    "no_mutes": "Keine Stummschaltungen"
+    "no_mutes": "Keine Stummschaltungen",
+    "reset_profile_background": "Profil Hintergrund zurücksetzen",
+    "reset_avatar": "Avatar zurücksetzten",
+    "search_user_to_mute": "Suche wen du stummschalten möchtest",
+    "search_user_to_block": "Suche wen du blocken willst",
+    "reply_visibility_self_short": "Zeige antworten nur einem selbst",
+    "reply_visibility_following_short": "Zeige Antworten an meine Follower",
+    "notification_visibility_moves": "Nutzermigriert",
+    "file_export_import": {
+      "errors": {
+        "file_too_new": "Inkompatible Major Version: {fileMajor}, dieses PleromaFE Version (settings ver {feMajor}) ist zu alt",
+        "invalid_file": "Die ausgewählte Datei kann nicht zur Wiederherstellung verwendet werden. Keine Änderungen wurden umgesetzt."
+      },
+      "restore_settings": "Einstellungen von einer Datei wiederherstellen",
+      "backup_settings_theme": "Einstellungen und Theme in eine Datei speichern",
+      "backup_settings": "Einstellungen in Datei speichern",
+      "backup_restore": "Einstellungen backuppen"
+    },
+    "hide_wallpaper": "Verstecke Instanzhintergrundbild",
+    "hide_all_muted_posts": "Verstecke stummgeschaltete Posts",
+    "hide_media_previews": "Verstecke Vorschau von Medien",
+    "word_filter": "Wort Filter",
+    "mutes_and_blocks": "Stummgeschaltete und Geblockte",
+    "chatMessageRadius": "Chat Nachricht",
+    "import_mutes_from_a_csv_file": "Importiere stummgeschaltete User von einer cvs Datei",
+    "mutes_imported": "Stummgeschaltete User wurden importiert! Verarbeitung dauert eine Weile.",
+    "mute_import_error": "Fehler beim Importieren von stummgeschalteten Usern",
+    "mute_import": "Stumm geschaltete User importieren",
+    "mute_export_button": "Stumm geschaltete User in eine cvs Datei exportieren",
+    "mute_export": "Stumm geschaltete User exportieren",
+    "setting_changed": "Einstellungen weichen von den Standardeinstellungen ab"
   },
   "timeline": {
     "collapse": "Einklappen",
@@ -616,5 +652,8 @@
   },
   "errors": {
     "storage_unavailable": "Pleroma konnte nicht auf den Browser Speicher zugreifen. Deine Anmeldung und deine Einstellungen werden nicht gespeichert. Es kann unvorhersehbare Probleme geben. Versuche ansonsten Cookies zu erlauben."
+  },
+  "shoutbox": {
+    "title": "Shoutbox"
   }
 }
