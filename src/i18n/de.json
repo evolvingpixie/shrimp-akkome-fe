@@ -146,7 +146,7 @@
       "password_confirmation_required": "darf nicht leer sein",
       "password_confirmation_match": "sollte mit dem Passwort identisch sein"
     },
-    "bio_placeholder": "z.B.\nHallo, ich bin Lain.\nIch bin ein Anime Mödchen aus dem vorstädtischen Japan. Du kennst mich vielleicht vom Wired.",
+    "bio_placeholder": "z.B.\nHallo, ich bin Lain.\nIch bin ein super süßes blushy-crushy Anime Girl aus dem vorstädtischen Japan.\nDu kennst mich vielleicht von Wired.",
     "fullname_placeholder": "z.B. Lain Iwakura",
     "username_placeholder": "z.B. lain",
     "register": "Registrierung",
@@ -293,7 +293,18 @@
         "save_load_hint": "Die \"Beibehalten\"-Optionen behalten die aktuell eingestellten Optionen beim Auswählen oder Laden von Designs bei, sie speichern diese Optionen auch beim Exportieren eines Designs. Wenn alle Kontrollkästchen deaktiviert sind, wird beim Exportieren des Designs alles gespeichert.",
         "reset": "Zurücksetzen",
         "clear_all": "Alles leeren",
-        "clear_opacity": "Deckkraft leeren"
+        "clear_opacity": "Deckkraft leeren",
+        "help": {
+          "fe_downgraded": "PleromaFE Version wurde zurückgerollt. ",
+          "older_version_imported": "Die Datei, die du importiert hast, wurde für eine ältere Version vom FE gemacht.",
+          "future_version_imported": "Die Datei, die du importiert hast, wurde für eine neuere Version vom FE gemacht.",
+          "v2_imported": "Die Datei, die du importiert hast, war für eine ältere Version des FEs. Wir versuchen, die Kompatibilität zu maximieren, aber es könnte trotzdem Inkonsistenz auftreten.",
+          "upgraded_from_v2": "PleromaFE wurde modernisiert, dein Theme könnte etwas anders aussehen als vorher."
+        },
+        "use_source": "Neue Version",
+        "use_snapshot": "Alte Version",
+        "keep_as_is": "Lass es so, wie es ist",
+        "load_theme": "Lade Theme"
       },
       "common": {
         "color": "Farbe",
@@ -328,7 +339,17 @@
         "borders": "Rahmen",
         "buttons": "Schaltflächen",
         "inputs": "Eingabefelder",
-        "faint_text": "Verblasster Text"
+        "faint_text": "Verblasster Text",
+        "disabled": "Verkrüppelt",
+        "selectedMenu": "Ausgewähltes Menüelement",
+        "selectedPost": "Ausgewählter Post",
+        "pressed": "Gedrückt",
+        "highlight": "Hervorgehobene Elemente",
+        "icons": "Icons",
+        "poll": "Umfragegraph",
+        "post": "Posts/Benutzerinfo",
+        "alert_neutral": "Neutral",
+        "alert_warning": "Warnung"
       },
       "radii": {
         "_tab_label": "Abrundungen"
@@ -415,7 +436,7 @@
     },
     "enter_current_password_to_confirm": "Gib dein aktuelles Passwort ein, um deine Identität zu bestätigen",
     "security": "Sicherheit",
-    "allow_following_move": "Erlaube automatisches Folgen, sobald ein gefolgter Nutzer umzieht",
+    "allow_following_move": "Erlaube auto-follow, wenn von dir verfolgte Accounts umziehen",
     "blocks_imported": "Blocks importiert! Die Verarbeitung wird einen Moment brauchen.",
     "block_import_error": "Fehler beim Importieren der Blocks",
     "block_import": "Block Import",
@@ -438,15 +459,15 @@
       "label": "Profil Metadaten"
     },
     "bot": "Dies ist ein Bot Account",
-    "blocks_tab": "Blockierungen",
+    "blocks_tab": "Blocks",
     "save": "Änderungen speichern",
     "show_moderator_badge": "Zeige Moderator-Abzeichen auf meinem Profil",
     "show_admin_badge": "Zeige Admin-Abzeichen auf meinem Profil",
     "no_mutes": "Keine Stummschaltungen",
     "reset_profile_background": "Profil Hintergrund zurücksetzen",
     "reset_avatar": "Avatar zurücksetzten",
-    "search_user_to_mute": "Suche wen du stummschalten möchtest",
-    "search_user_to_block": "Suche wen du blocken willst",
+    "search_user_to_mute": "Suche, wen du stummschalten willst",
+    "search_user_to_block": "Suche, wen du blocken willst",
     "reply_visibility_self_short": "Zeige antworten nur einem selbst",
     "reply_visibility_following_short": "Zeige Antworten an meine Follower",
     "notification_visibility_moves": "Nutzermigriert",
@@ -472,7 +493,23 @@
     "mute_import": "Stumm geschaltete User importieren",
     "mute_export_button": "Stumm geschaltete User in eine cvs Datei exportieren",
     "mute_export": "Stumm geschaltete User exportieren",
-    "setting_changed": "Einstellungen weichen von den Standardeinstellungen ab"
+    "setting_changed": "Einstellungen weichen von den Standardeinstellungen ab",
+    "notification_blocks": "Einen User zu blocken stoppt alle Benachrichtigungen von ihm und deabonniert ihn.",
+    "version": {
+      "frontend_version": "Frontend Version",
+      "backend_version": "Backend Version",
+      "title": "Version"
+    },
+    "notification_mutes": "Um nicht mehr die Benachrichtigungen von einem bestimmten User zu bekommen, verwende eine Stummschaltung.",
+    "user_mutes": "User",
+    "notification_setting_privacy": "Privatsphäre",
+    "notification_setting_filters": "Filter",
+    "greentext": "Meme Pfeile",
+    "fun": "Spaß",
+    "upload_a_photo": "Lade ein Foto hoch",
+    "type_domains_to_mute": "Tippe die Domains ein, die du stummschalten willst",
+    "useStreamingApiWarning": "(Nicht empfohlen, experimentell, bekannt dafür, Posts zu überspringen)",
+    "useStreamingApi": "Empfange Posts und Benachrichtigungen in Echtzeit"
   },
   "timeline": {
     "collapse": "Einklappen",
@@ -482,7 +519,9 @@
     "no_retweet_hint": "Der Beitrag ist als nur-für-Follower oder als Direktnachricht markiert und kann nicht wiederholt werden",
     "repeated": "wiederholte",
     "show_new": "Zeige Neuere",
-    "up_to_date": "Aktuell"
+    "up_to_date": "Aktuell",
+    "no_statuses": "Keine Beiträge",
+    "no_more_statuses": "Keine weiteren Beiträge"
   },
   "user_card": {
     "approve": "Genehmigen",
@@ -505,11 +544,31 @@
     "remote_follow": "Folgen",
     "statuses": "Beiträge",
     "admin_menu": {
-      "sandbox": "Erzwinge Beiträge nur für Follower sichtbar zu sein"
-    }
+      "sandbox": "Erzwinge Beiträge nur für Follower sichtbar zu sein",
+      "delete_user_confirmation": "Achtung! Diese Entscheidung kann nicht rückgängig gemacht werden! Trotzdem durchführen?",
+      "grant_admin": "Administratorprivilegien gewähren",
+      "delete_user": "Nutzer löschen",
+      "strip_media": "Medien von Beiträgen entfernen",
+      "force_nsfw": "Alle Beiträge als pervers markieren",
+      "activate_account": "Aktiviere Account",
+      "revoke_moderator": "Administratorstatuß wiederrufen",
+      "grant_moderator": "Moderatorstatuß gewähren",
+      "revoke_admin": "Administratorstatuß wiederrufen",
+      "moderation": "Moderation"
+    },
+    "block_progress": "Blocken...",
+    "unblock_progress": "Entblocken...",
+    "unblock": "Entblocken",
+    "report": "Melden",
+    "mention": "Erwähnungen",
+    "media": "Medien",
+    "hidden": "Versteckt",
+    "favorites": "Favoriten"
   },
   "user_profile": {
-    "timeline_title": "Beiträge"
+    "timeline_title": "Beiträge",
+    "profile_loading_error": "Beim Laden dieses Profils ist ein Fehler aufgetreten.",
+    "profile_does_not_exist": "Profil nicht vorhanden"
   },
   "who_to_follow": {
     "more": "Mehr",
@@ -520,13 +579,18 @@
     "repeat": "Wiederholen",
     "reply": "Antworten",
     "favorite": "Favorisieren",
-    "user_settings": "Benutzereinstellungen"
+    "user_settings": "Benutzereinstellungen",
+    "bookmark": "Lesezeichen",
+    "reject_follow_request": "Folgeanfrage ablehnen",
+    "accept_follow_request": "Folgeanfrage annehmen",
+    "add_reaction": "Emoji-Reaktion hinzufügen"
   },
   "upload": {
     "error": {
       "base": "Hochladen fehlgeschlagen.",
       "file_too_big": "Datei ist zu groß [{filesize}{filesizeunit} / {allowedsize}{allowedsizeunit}]",
-      "default": "Bitte versuche es später erneut"
+      "default": "Bitte versuche es später erneut",
+      "message": "Hochladen fehlgeschlagen"
     },
     "file_size_units": {
       "B": "B",
@@ -550,7 +614,7 @@
     "placeholder": "Dein Benutzername oder die zugehörige E-Mail-Adresse",
     "check_email": "Im E-Mail-Posteingang des angebenen Kontos müsste sich jetzt (oder zumindest in Kürze) die E-Mail mit dem Link zum Passwortzurücksetzen befinden.",
     "return_home": "Zurück zur Heimseite",
-    "too_many_requests": "Kurze Pause. Zu viele Versuche. Bitte, später nochmal probieren.",
+    "too_many_requests": "Kurze Pause. Zu viele Versuche. Bitte später nochmal probieren.",
     "password_reset_disabled": "Passwortzurücksetzen deaktiviert. Bitte Administrator kontaktieren.",
     "password_reset_required": "Passwortzurücksetzen erforderlich.",
     "password_reset_required_but_mailer_is_disabled": "Passwortzurücksetzen wäre erforderlich, ist aber deaktiviert. Bitte Administrator kontaktieren."
@@ -558,14 +622,14 @@
   "about": {
     "mrf": {
       "federation": "Föderation",
-      "mrf_policies": "Aktivierte MRF Richtlinien",
+      "mrf_policies": "MRF-Richtlinien aktiviert",
       "simple": {
         "simple_policies": "Instanzspezifische Richtlinien",
         "accept": "Akzeptieren",
         "reject": "Ablehnen",
         "reject_desc": "Diese Instanz akzeptiert keine Nachrichten der folgenden Instanzen:",
         "quarantine": "Quarantäne",
-        "ftl_removal": "Von der Zeitleiste \"Das bekannte Netzwerk\" entfernen",
+        "ftl_removal": "Von der Zeitleiste \"Das  bekannte Netzwerk\" entfernen",
         "media_removal": "Medienentfernung",
         "media_removal_desc": "Diese Instanz entfernt Medien von den Beiträgen der folgenden Instanzen:",
         "media_nsfw": "Erzwingen Medien als heikel zu makieren",
@@ -634,12 +698,12 @@
     "keep_open": "Auswahlfenster offen halten",
     "add_emoji": "Emoji einfügen",
     "load_all": "Lade alle {emojiAmount} Emoji",
-    "load_all_hint": "Erfolgreich erste {saneAmount} Emoji geladen, alle Emojis zu laden würde Leistungsprobleme hervorrufen.",
+    "load_all_hint": "Erste {saneAmount} Emoji geladen, alle Emoji zu laden könnte Leistungsprobleme verursachen.",
     "unicode": "Unicode Emoji"
   },
   "interactions": {
     "load_older": "Lade ältere Interaktionen",
-    "follows": "Neue Follows",
+    "follows": "Neue Follower",
     "favs_repeats": "Wiederholungen und Favoriten",
     "moves": "Benutzer migriert zu"
   },
@@ -647,7 +711,7 @@
     "select_all": "Wähle alle"
   },
   "remote_user_resolver": {
-    "searching_for": "Suche nach",
+    "searching_for": "Suche für",
     "error": "Nicht gefunden."
   },
   "errors": {
@@ -655,5 +719,43 @@
   },
   "shoutbox": {
     "title": "Shoutbox"
+  },
+  "chats": {
+    "error_sending_message": "Beim Senden der Nachricht ist ein Fehler aufgetreten.",
+    "error_loading_chat": "Beim Laden des Chats ist ein Fehler aufgetreten.",
+    "delete_confirm": "Soll diese Nachricht wirklich gelöscht werden?",
+    "empty_message_error": "Die Nachricht darf nicht leer sein.",
+    "delete": "Löschen",
+    "message_user": "Nachricht an {nickname} senden"
+  },
+  "user_reporting": {
+    "generic_error": "Beim Verarbeiten der Anfrage ist ein Fehler aufgetreten.",
+    "submit": "Senden",
+    "forward_to": "Weiterleiten an {0}",
+    "forward_description": "Das fragliche Konto befindet sich auf einem anderen Server. Soll eine Kopie der Beschwerde an den dortigen Verantwortlichen gesendet werden?",
+    "additional_comments": "Weitere Anmerkungen",
+    "add_comment_description": "Die Beschwerde wird an die Moderatoren dieser Instanz gesendet. Die Gründe für die Beschwerde können hier angegeben werden:",
+    "title": "{0} melddn"
+  },
+  "status": {
+    "copy_link": "Beitragslink kopieren",
+    "status_unavailable": "Beitrag nicht verfügbar",
+    "unmute_conversation": "Konversation nicht mehr stummstellen",
+    "mute_conversation": "Konversation stummstellen",
+    "replies_list": "Antworten:",
+    "reply_to": "Antworten auf",
+    "delete_confirm": "Möchtest du diese Beitrag wirklich löschen?",
+    "pinned": "Angeheftet",
+    "unpin": "Nicht mehr an Profil anheften",
+    "pin": "An Profil anheften",
+    "delete": "Lösche Beitrag",
+    "favorites": "Favoriten"
+  },
+  "time": {
+    "seconds_short": "{0}s",
+    "second_short": "{0}s",
+    "seconds": "{0} Sekunden",
+    "second": "{0} Sekunde",
+    "now_short": "jetzt"
   }
 }
