@@ -150,7 +150,7 @@
     "fullname_placeholder": "z.B. Lain Iwakura",
     "username_placeholder": "z.B. lain",
     "register": "Registrierung",
-    "reason_placeholder": "Diese Instanz akzeptiert Registrierungen manuell. \nLass die Admins wissen warum du dich registrieren willst.",
+    "reason_placeholder": "Diese Instanz bestätigt Registrierungen manuell. \nLass die Admins wissen warum du dich registrieren willst.",
     "reason": "Grund zur Anmeldung"
   },
   "settings": {
@@ -295,7 +295,7 @@
         "clear_all": "Alles leeren",
         "clear_opacity": "Deckkraft leeren",
         "help": {
-          "fe_downgraded": "PleromaFE Version wurde zurückgerollt. ",
+          "fe_downgraded": "PleromaFE Version wurde zurückgerollt.",
           "older_version_imported": "Die Datei, die du importiert hast, wurde für eine ältere Version vom FE gemacht.",
           "future_version_imported": "Die Datei, die du importiert hast, wurde für eine neuere Version vom FE gemacht.",
           "v2_imported": "Die Datei, die du importiert hast, war für eine ältere Version des FEs. Wir versuchen, die Kompatibilität zu maximieren, aber es könnte trotzdem Inkonsistenz auftreten.",
@@ -342,7 +342,7 @@
         "buttons": "Schaltflächen",
         "inputs": "Eingabefelder",
         "faint_text": "Verblasster Text",
-        "disabled": "Verkrüppelt",
+        "disabled": "aus",
         "selectedMenu": "Ausgewähltes Menüelement",
         "selectedPost": "Ausgewählter Post",
         "pressed": "Gedrückt",
@@ -353,7 +353,10 @@
         "alert_neutral": "Neutral",
         "alert_warning": "Warnung",
         "wallpaper": "Hintergrund",
-        "popover": "Kurzinfo, Menüs, popovers"
+        "popover": "Kurzinfo, Menüs, popovers",
+        "chat": {
+          "border": "Ränder"
+        }
       },
       "radii": {
         "_tab_label": "Abrundungen"
@@ -535,7 +538,9 @@
     "show_new": "Zeige Neuere",
     "up_to_date": "Aktuell",
     "no_statuses": "Keine Beiträge",
-    "no_more_statuses": "Keine weiteren Beiträge"
+    "no_more_statuses": "Keine weiteren Beiträge",
+    "reload": "Neu laden",
+    "error": "Fehler beim Lesen der Timeline: {0}"
   },
   "user_card": {
     "approve": "Genehmigen",
@@ -568,7 +573,9 @@
       "revoke_moderator": "Administratorstatuß wiederrufen",
       "grant_moderator": "Moderatorstatuß gewähren",
       "revoke_admin": "Administratorstatuß wiederrufen",
-      "moderation": "Moderation"
+      "moderation": "Moderation",
+      "delete_account": "Konto löschen",
+      "deactivate_account": "Konto deaktivieren"
     },
     "block_progress": "Blocken...",
     "unblock_progress": "Entblocken...",
@@ -577,7 +584,16 @@
     "mention": "Erwähnungen",
     "media": "Medien",
     "hidden": "Versteckt",
-    "favorites": "Favoriten"
+    "favorites": "Favoriten",
+    "bot": "Bot",
+    "show_repeats": "Geteilte Beiträge anzeigen",
+    "hide_repeats": "Geteilte Beiträge nicht anzeigen",
+    "mute_progress": "Stummschalten erfolgt…",
+    "unmute_progress": "Aufhebung erfolgt…",
+    "unmute": "Stummschalten aufheben",
+    "unsubscribe": "Entfolgen",
+    "subscribe": "Folgen",
+    "message": "Nachricht"
   },
   "user_profile": {
     "timeline_title": "Beiträge",
@@ -643,7 +659,7 @@
         "reject": "Ablehnen",
         "reject_desc": "Diese Instanz akzeptiert keine Nachrichten der folgenden Instanzen:",
         "quarantine": "Quarantäne",
-        "ftl_removal": "Von der Zeitleiste \"Das  bekannte Netzwerk\" entfernen",
+        "ftl_removal": "Von der Zeitleiste \"Das bekannte Netzwerk\" entfernen",
         "media_removal": "Medienentfernung",
         "media_removal_desc": "Diese Instanz entfernt Medien von den Beiträgen der folgenden Instanzen:",
         "media_nsfw": "Erzwingen Medien als heikel zu makieren",
@@ -768,14 +784,53 @@
     "unpin": "Nicht mehr an Profil anheften",
     "pin": "An Profil anheften",
     "delete": "Lösche Beitrag",
-    "favorites": "Favoriten"
+    "favorites": "Favoriten",
+    "expand": "Ausklappen",
+    "nsfw": "NSFW",
+    "status_deleted": "Dieser Beitrag wurde gelöscht",
+    "hide_content": "Inhalt verbergen",
+    "show_content": "Inhalt anzeigen",
+    "hide_full_subject": "Vollständiges Thema verbergen",
+    "show_full_subject": "Vollständiges Thema anzeigen",
+    "thread_muted": "Thread stummgeschaltet",
+    "external_source": "Externe Quelle",
+    "unbookmark": "Lesezeichen entfernen",
+    "bookmark": "Lesezeichen setzen",
+    "repeats": "Geteilte Beiträge"
   },
   "time": {
     "seconds_short": "{0}s",
     "second_short": "{0}s",
     "seconds": "{0} Sekunden",
     "second": "{0} Sekunde",
-    "now_short": "jetzt"
+    "now_short": "jetzt",
+    "years_short": "{0}Jhr",
+    "year_short": "{0}Jhr",
+    "years": "{0} Jahren",
+    "year": "{0} Jahr",
+    "weeks_short": "{0}W",
+    "week_short": "{0}W",
+    "weeks": "{0} Wochen",
+    "week": "{0} Woche",
+    "now": "gerade eben",
+    "months_short": "{0}Mo",
+    "month_short": "{0}Mo",
+    "months": "{0} Monaten",
+    "month": "{0} Monat",
+    "minutes_short": "{0}Min",
+    "minute_short": "{0}Min",
+    "minutes": "{0} Minuten",
+    "minute": "{0} Minute",
+    "in_past": "vor {0}",
+    "in_future": "in {0}",
+    "hours_short": "{0}Std",
+    "hour_short": "{0}Std",
+    "hours": "{0} Stunden",
+    "hour": "{0} Stunde",
+    "days_short": "{0}T",
+    "day_short": "{0}T",
+    "days": "{0} Tage",
+    "day": "{0} Tag"
   },
   "display_date": {
     "today": "Heute"
