@@ -299,7 +299,9 @@
           "older_version_imported": "Die Datei, die du importiert hast, wurde für eine ältere Version vom FE gemacht.",
           "future_version_imported": "Die Datei, die du importiert hast, wurde für eine neuere Version vom FE gemacht.",
           "v2_imported": "Die Datei, die du importiert hast, war für eine ältere Version des FEs. Wir versuchen, die Kompatibilität zu maximieren, aber es könnte trotzdem Inkonsistenz auftreten.",
-          "upgraded_from_v2": "PleromaFE wurde modernisiert, dein Theme könnte etwas anders aussehen als vorher."
+          "upgraded_from_v2": "PleromaFE wurde modernisiert, dein Theme könnte etwas anders aussehen als vorher.",
+          "snapshot_source_mismatch": "Versionskonflikt: vermutlich wurde das FE zurückgesetzt und dann ein Update durchgeführt. Falls das Theme mit einer alten FE-Version erstellt wurde, sollte vermutlich die alte Version verwendet werden, andernfalls die neue.",
+          "migration_napshot_gone": "Snapshot konnte nicht gefunden werden, die Anzeige könnte daher teilweise möglicherweise nicht den Erwartungen entsprechen."
         },
         "use_source": "Neue Version",
         "use_snapshot": "Alte Version",
@@ -349,7 +351,9 @@
         "poll": "Umfragegraph",
         "post": "Posts/Benutzerinfo",
         "alert_neutral": "Neutral",
-        "alert_warning": "Warnung"
+        "alert_warning": "Warnung",
+        "wallpaper": "Hintergrund",
+        "popover": "Kurzinfo, Menüs, popovers"
       },
       "radii": {
         "_tab_label": "Abrundungen"
@@ -464,7 +468,7 @@
     "show_moderator_badge": "Zeige Moderator-Abzeichen auf meinem Profil",
     "show_admin_badge": "Zeige Admin-Abzeichen auf meinem Profil",
     "no_mutes": "Keine Stummschaltungen",
-    "reset_profile_background": "Profil Hintergrund zurücksetzen",
+    "reset_profile_background": "Profilhintergrund zurücksetzen",
     "reset_avatar": "Avatar zurücksetzten",
     "search_user_to_mute": "Suche, wen du stummschalten willst",
     "search_user_to_block": "Suche, wen du blocken willst",
@@ -474,7 +478,8 @@
     "file_export_import": {
       "errors": {
         "file_too_new": "Inkompatible Major Version: {fileMajor}, dieses PleromaFE Version (settings ver {feMajor}) ist zu alt",
-        "invalid_file": "Die ausgewählte Datei kann nicht zur Wiederherstellung verwendet werden. Keine Änderungen wurden umgesetzt."
+        "invalid_file": "Die ausgewählte Datei kann nicht zur Wiederherstellung verwendet werden. Keine Änderungen wurden umgesetzt.",
+        "file_too_old": "Inkompatible Major Version: {fileMajor}, die Dateiversion ist zu alt und wird nicht mehr unterstützt (min. set. ver. {feMajor})"
       },
       "restore_settings": "Einstellungen von einer Datei wiederherstellen",
       "backup_settings_theme": "Einstellungen und Theme in eine Datei speichern",
@@ -509,7 +514,16 @@
     "upload_a_photo": "Lade ein Foto hoch",
     "type_domains_to_mute": "Tippe die Domains ein, die du stummschalten willst",
     "useStreamingApiWarning": "(Nicht empfohlen, experimentell, bekannt dafür, Posts zu überspringen)",
-    "useStreamingApi": "Empfange Posts und Benachrichtigungen in Echtzeit"
+    "useStreamingApi": "Empfange Posts und Benachrichtigungen in Echtzeit",
+    "more_settings": "Weitere Einstellungen",
+    "notification_setting_hide_notification_contents": "Absender und Inhalte von Push-Nachrichten verbergen",
+    "notification_setting_block_from_strangers": "Benachrichtigungen von Nutzern blockieren, denen Du nicht folgst",
+    "virtual_scrolling": "Rendering der Timeline optimieren",
+    "sensitive_by_default": "Alle Beiträge standardmäßig als heikel markieren",
+    "reset_background_confirm": "Hintergrund wirklich zurücksetzen?",
+    "reset_banner_confirm": "Banner wirklich zurücksetzen?",
+    "reset_avatar_confirm": "Avatar wirklich zurücksetzen?",
+    "reset_profile_banner": "Profilbanner zurücksetzen"
   },
   "timeline": {
     "collapse": "Einklappen",
@@ -726,7 +740,12 @@
     "delete_confirm": "Soll diese Nachricht wirklich gelöscht werden?",
     "empty_message_error": "Die Nachricht darf nicht leer sein.",
     "delete": "Löschen",
-    "message_user": "Nachricht an {nickname} senden"
+    "message_user": "Nachricht an {nickname} senden",
+    "empty_chat_list_placeholder": "Es sind noch keine Chats vorhanden. Jetzt einen Chat starten!",
+    "more": "Mehr",
+    "you": "Du:",
+    "new": "Neuer Chat",
+    "chats": "Chats"
   },
   "user_reporting": {
     "generic_error": "Beim Verarbeiten der Anfrage ist ein Fehler aufgetreten.",
@@ -757,5 +776,14 @@
     "seconds": "{0} Sekunden",
     "second": "{0} Sekunde",
     "now_short": "jetzt"
+  },
+  "display_date": {
+    "today": "Heute"
+  },
+  "file_type": {
+    "file": "Datei",
+    "image": "Bild",
+    "video": "Video",
+    "audio": "Audio"
   }
 }
