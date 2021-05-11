@@ -672,7 +672,7 @@
     "attachments_sensitive": "標記附件為敏感內容",
     "account_not_locked_warning_link": "上鎖",
     "default": "剛剛抵達洛杉磯。",
-    "empty_status_error": "無法發佈沒有附件的空發文",
+    "empty_status_error": "不能發布沒有內容，沒有附件的發文",
     "post": "發送"
   },
   "errors": {
