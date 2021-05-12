@@ -68,7 +68,8 @@ export const defaultState = {
   hidePostStats: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default
-  sensitiveByDefault: undefined // instance default
+  sensitiveByDefault: undefined, // instance default
+  sensitiveIfSubject: undefined
 }
 
 // caching the instance default properties

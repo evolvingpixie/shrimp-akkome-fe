@@ -115,7 +115,7 @@ const PostStatusForm = {
       ? this.copyMessageScope
       : this.$store.state.users.currentUser.default_scope
 
-    const { postContentType: contentType, sensitiveByDefault } = this.$store.getters.mergedConfig
+    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject } = this.$store.getters.mergedConfig
 
     return {
       dropFiles: [],
@@ -272,6 +272,8 @@ const PostStatusForm = {
       if (this.preview) this.previewStatus()
     },
     async postStatus (event, newStatus, opts = {}) {
+      const { sensitiveIfSubject } = this.$store.getters.mergedConfig
+
       if (this.posting && !this.optimisticPosting) { return }
       if (this.disableSubmit) { return }
       if (this.emojiInputShown) { return }
@@ -307,7 +309,7 @@ const PostStatusForm = {
         status: newStatus.status,
         spoilerText: newStatus.spoilerText || null,
         visibility: newStatus.visibility,
-        sensitive: newStatus.nsfw,
+        sensitive: (newStatus.nsfw || (sensitiveIfSubject && newStatus.spoilerText)),
         media: newStatus.files,
         store: this.$store,
         inReplyToStatusId: this.replyTo,

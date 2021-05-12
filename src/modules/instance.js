@@ -44,6 +44,7 @@ const defaultState = {
   theme: 'pleroma-dark',
   virtualScrolling: true,
   sensitiveByDefault: false,
+  sensitiveIfSubject: false,
 
   // Nasty stuff
   customEmoji: [],

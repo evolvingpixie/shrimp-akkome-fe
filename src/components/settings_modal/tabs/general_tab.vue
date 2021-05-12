@@ -153,6 +153,11 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="sensitiveIfSubject">
+            {{ $t('settings.sensitive_if_subject') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting path="autohideFloatingPostButton">
             {{ $t('settings.autohide_floating_post_button') }}
           </BooleanSetting>
