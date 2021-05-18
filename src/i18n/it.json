@@ -447,7 +447,7 @@
   },
   "timeline": {
     "error_fetching": "Errore nell'aggiornamento",
-    "load_older": "Carica messaggi più vecchi",
+    "load_older": "Carica messaggi precedenti",
     "show_new": "Mostra nuovi",
     "up_to_date": "Aggiornato",
     "collapse": "Ripiega",
