@@ -88,6 +88,10 @@ const showReblogs = (store, userId) => {
     .then((relationship) => store.commit('updateUserRelationship', [relationship]))
 }
 
+const fetchMascot = (store) => {
+  return store.rootState.api.backendInteractor.fetchMascot()
+    .then(({ url }) => store.commit('updateMascot', url))
+}
 const muteDomain = (store, domain) => {
   return store.rootState.api.backendInteractor.muteDomain({ domain })
     .then(() => store.commit('addDomainMute', domain))
@@ -185,6 +189,9 @@ export const mutations = {
     if (state.currentUser.muteIds.indexOf(muteId) === -1) {
       state.currentUser.muteIds.push(muteId)
     }
+  },
+  updateMascot (state, mascotUrl) {
+    state.currentUser.mascot = mascotUrl
   },
   saveDomainMutes (state, domainMutes) {
     state.currentUser.domainMutes = domainMutes
@@ -331,6 +338,9 @@ const users = {
     },
     unmuteUsers (store, ids = []) {
       return Promise.all(ids.map(id => unmuteUser(store, id)))
+    },
+    fetchMascot (store) {
+      return fetchMascot(store)
     },
     fetchDomainMutes (store) {
       return store.rootState.api.backendInteractor.fetchDomainMutes()
