@@ -767,7 +767,7 @@
   "remote_user_resolver": {
     "searching_for": "Suche für",
     "error": "Nicht gefunden.",
-    "remote_user_resolver": "Drittinstanzenkoordinatenwandler"
+    "remote_user_resolver": "Resolver für Nutzer auf anderen Instanzen"
   },
   "errors": {
     "storage_unavailable": "Pleroma konnte nicht auf den Browser Speicher zugreifen. Deine Anmeldung und deine Einstellungen werden nicht gespeichert. Es kann unvorhersehbare Probleme geben. Versuche ansonsten Cookies zu erlauben."
