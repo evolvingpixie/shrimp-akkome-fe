@@ -77,7 +77,8 @@
     "search": "검색",
     "bookmarks": "북마크",
     "interactions": "대화",
-    "administration": "관리"
+    "administration": "관리",
+    "home_timeline": "홈 타임라인"
   },
   "notifications": {
     "broken_favorite": "알 수 없는 게시물입니다, 검색합니다…",
@@ -90,7 +91,8 @@
     "no_more_notifications": "알림이 없습니다",
     "migrated_to": "이사했습니다",
     "reacted_with": "{0} 로 반응했습니다",
-    "error": "알림 불러오기 실패: {0}"
+    "error": "알림 불러오기 실패: {0}",
+    "follow_request": "당신에게 팔로우 신청"
   },
   "post_status": {
     "new_status": "새 게시물 게시",
@@ -402,7 +404,7 @@
     },
     "mutes_and_blocks": "침묵과 차단",
     "chatMessageRadius": "챗 메시지",
-    "change_email": "전자메일 주소 바꾸기",
+    "change_email": "메일주소 바꾸기",
     "changed_email": "메일주소가 갱신되었습니다!",
     "bot": "이 계정은 bot입니다",
     "mutes_tab": "침묵",
@@ -525,8 +527,8 @@
         "media_nsfw": "매체를 민감함으로 설정",
         "media_removal_desc": "이 인스턴스에서는 아래의 인스턴스로부터 보내온 투고에 붙혀 있는 매체는 제거됩니다:",
         "media_removal": "매체 제거",
-        "ftl_removal_desc": "이 인스턴스에서 아래의 인스턴스들은 \"알려진 모든 네트워크\" 타임라인에서 제외됩니다:",
-        "ftl_removal": "\"알려진 모든 네트워크\" 타임라인에서 제외",
+        "ftl_removal_desc": "이 인스턴스에서 아래의 인스턴스들은 \"알려진 네트워크\" 타임라인에서 제외됩니다:",
+        "ftl_removal": "\"알려진 네트워크\" 타임라인에서 제외",
         "quarantine_desc": "이 인스턴스는 아래의 인스턴스에게 공개투고만을 보냅니다:",
         "quarantine": "검역",
         "reject_desc": "이 인스턴스에서는 아래의 인스턴스로부터 보내온 투고를 받아들이지 않습니다:",

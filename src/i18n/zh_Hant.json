@@ -57,7 +57,8 @@
     "friend_requests": "關注請求",
     "back": "後退",
     "administration": "管理員",
-    "about": "關於"
+    "about": "關於",
+    "home_timeline": "家時間線"
   },
   "media_modal": {
     "next": "往後",
@@ -328,7 +329,7 @@
     "notification_visibility_moves": "用戶遷移",
     "notification_visibility_repeats": "轉發",
     "notification_visibility_mentions": "提及",
-    "notification_visibility_likes": "點贊",
+    "notification_visibility_likes": "喜歡",
     "interfaceLanguage": "界面語言",
     "instance_default": "(默認：{value})",
     "inputRadius": "輸入框",
@@ -541,7 +542,21 @@
     "hide_media_previews": "隱藏媒體預覽",
     "word_filter": "詞過濾",
     "setting_changed": "與默認設置不同",
-    "more_settings": "更多設置"
+    "more_settings": "更多設置",
+    "save": "保存更改",
+    "file_export_import": {
+      "errors": {
+        "invalid_file": "所選文件不是受支持的Pleroma設置備份。 沒有進行任何更改。",
+        "file_too_new": "不兼容的主版本：{fileMajor}，此 PleromaFE（設置版本 {feMajor}）過舊，無法處理",
+        "file_too_old": "不兼容的主版本：{fileMajor}，文件版本過舊，不受支持（最小設置版本 {feMajor}）",
+        "file_slightly_new": "檔案的小版本不同，有些設置可能無法載入"
+      },
+      "restore_settings": "從文件還原設置",
+      "backup_settings_theme": "備份設置和主題到文件",
+      "backup_settings": "備份設置到文件",
+      "backup_restore": "設定備份"
+    },
+    "sensitive_by_default": "默認標記發文為敏感內容"
   },
   "chats": {
     "more": "更多",
@@ -657,7 +672,8 @@
     "attachments_sensitive": "標記附件為敏感內容",
     "account_not_locked_warning_link": "上鎖",
     "default": "剛剛抵達洛杉磯。",
-    "empty_status_error": "無法發佈沒有附件的空發文"
+    "empty_status_error": "不能發布沒有內容，沒有附件的發文",
+    "post": "發送"
   },
   "errors": {
     "storage_unavailable": "Pleroma無法訪問瀏覽器存儲。您的登錄名或本地設置將不會保存，您可能會遇到意外問題。嘗試啟用Cookie。"
@@ -674,7 +690,9 @@
     "up_to_date": "已是最新",
     "no_more_statuses": "没有更多發文",
     "no_statuses": "没有發文",
-    "error": "取得時間線時發生錯誤：{0}"
+    "error": "取得時間線時發生錯誤：{0}",
+    "socket_reconnected": "已建立實時連接",
+    "socket_broke": "丟失實時連接：CloseEvent代碼{0}"
   },
   "interactions": {
     "load_older": "載入更早的互動",
@@ -711,7 +729,8 @@
     "email": "電子郵箱",
     "bio": "簡介",
     "reason_placeholder": "此實例的註冊需要手動批准。\n請讓管理知道您為什麼想要註冊。",
-    "reason": "註冊理由"
+    "reason": "註冊理由",
+    "register": "註冊"
   },
   "user_card": {
     "its_you": "就是你！!",
