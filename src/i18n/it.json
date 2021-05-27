@@ -443,7 +443,8 @@
       "backup_settings_theme": "Archivia impostazioni e tema localmente",
       "backup_settings": "Archivia impostazioni localmente",
       "backup_restore": "Archiviazione impostazioni"
-    }
+    },
+    "right_sidebar": "Mostra barra laterale a destra"
   },
   "timeline": {
     "error_fetching": "Errore nell'aggiornamento",
