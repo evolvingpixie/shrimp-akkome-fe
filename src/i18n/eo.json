@@ -87,7 +87,8 @@
     "interactions": "Interagoj",
     "administration": "Administrado",
     "bookmarks": "Legosignoj",
-    "timelines": "Historioj"
+    "timelines": "Historioj",
+    "home_timeline": "Hejma historio"
   },
   "notifications": {
     "broken_favorite": "Nekonata stato, serĉante ĝin…",
@@ -119,10 +120,10 @@
     "direct_warning": "Ĉi tiu afiŝo estos videbla nur por ĉiuj menciitaj uzantoj.",
     "posting": "Afiŝante",
     "scope": {
-      "direct": "Rekta – Afiŝi nur al menciitaj uzantoj",
-      "private": "Nur abonantoj – Afiŝi nur al abonantoj",
-      "public": "Publika – Afiŝi al publikaj historioj",
-      "unlisted": "Nelistigita – Ne afiŝi al publikaj historioj"
+      "direct": "Rekta – afiŝi nur al menciitaj uzantoj",
+      "private": "Nur abonantoj – afiŝi nur al abonantoj",
+      "public": "Publika – afiŝi al publikaj historioj",
+      "unlisted": "Nelistigita – ne afiŝi al publikaj historioj"
     },
     "scope_notice": {
       "unlisted": "Ĉi tiu afiŝo ne estos videbla en la Publika historio kaj La tuta konata reto",
@@ -135,7 +136,8 @@
     "preview": "Antaŭrigardo",
     "direct_warning_to_first_only": "Ĉi tiu afiŝo estas nur videbla al uzantoj menciitaj je la komenco de la mesaĝo.",
     "direct_warning_to_all": "Ĉi tiu afiŝo estos videbla al ĉiuj menciitaj uzantoj.",
-    "media_description": "Priskribo de vidaŭdaĵo"
+    "media_description": "Priskribo de vidaŭdaĵo",
+    "post": "Afiŝo"
   },
   "registration": {
     "bio": "Priskribo",
@@ -143,7 +145,7 @@
     "fullname": "Prezenta nomo",
     "password_confirm": "Konfirmo de pasvorto",
     "registration": "Registriĝo",
-    "token": "Invita ĵetono",
+    "token": "Invita peco",
     "captcha": "TESTO DE HOMECO",
     "new_captcha": "Klaku la bildon por akiri novan teston",
     "username_placeholder": "ekz. lain",
@@ -158,7 +160,8 @@
       "password_confirmation_match": "samu la pasvorton"
     },
     "reason_placeholder": "Ĉi-node oni aprobas registriĝojn permane.\nSciigu la administrantojn kial vi volas registriĝi.",
-    "reason": "Kialo registriĝi"
+    "reason": "Kialo registriĝi",
+    "register": "Registriĝi"
   },
   "settings": {
     "app_name": "Nomo de aplikaĵo",
@@ -244,9 +247,9 @@
     "show_admin_badge": "Montri la insignon de administranto en mia profilo",
     "show_moderator_badge": "Montri la insignon de reguligisto en mia profilo",
     "nsfw_clickthrough": "Ŝalti traklakan kaŝadon de kunsendaĵoj kaj antaŭmontroj de ligiloj por konsternaj statoj",
-    "oauth_tokens": "Ĵetonoj de OAuth",
-    "token": "Ĵetono",
-    "refresh_token": "Ĵetono de aktualigo",
+    "oauth_tokens": "Pecoj de OAuth",
+    "token": "Peco",
+    "refresh_token": "Aktualiga peco",
     "valid_until": "Valida ĝis",
     "revoke_token": "Senvalidigi",
     "panelRadius": "Bretoj",
@@ -532,7 +535,21 @@
     "hide_all_muted_posts": "Kaŝi silentigitajn afiŝojn",
     "hide_media_previews": "Kaŝi antaŭrigardojn al vidaŭdaĵoj",
     "word_filter": "Vortofiltro",
-    "reply_visibility_self_short": "Montri nur respondojn por mi"
+    "reply_visibility_self_short": "Montri nur respondojn por mi",
+    "file_export_import": {
+      "errors": {
+        "file_slightly_new": "Etversio de dosiero malsamas, iuj agordoj eble ne funkcios",
+        "file_too_old": "Nekonforma ĉefa versio: {fileMajor}, versio de dosiero estas tro malnova kaj nesubtenata (minimuma estas {feMajor})",
+        "file_too_new": "Nekonforma ĉefa versio: {fileMajor}, ĉi tiu PleromaFE (agordoj je versio {feMajor}) tro malnovas por tio",
+        "invalid_file": "La elektita dosiero ne estas subtenata savkopio de agordoj de Pleroma. Nenio ŝanĝiĝis."
+      },
+      "restore_settings": "Rehavi agordojn el dosiero",
+      "backup_settings_theme": "Savkopii agordojn kaj haŭton al dosiero",
+      "backup_settings": "Savkopii agordojn al dosiero",
+      "backup_restore": "Savkopio de agordoj"
+    },
+    "right_sidebar": "Montri flankan breton dekstre",
+    "save": "Konservi ŝanĝojn"
   },
   "timeline": {
     "collapse": "Maletendi",
@@ -696,7 +713,7 @@
         "media_nsfw": "Devige marki vidaŭdaĵojn konsternaj",
         "media_removal_desc": "Ĉi tiu nodo forigas vidaŭdaĵojn de afiŝoj el la jenaj nodoj:",
         "media_removal": "Forigo de vidaŭdaĵoj",
-        "ftl_removal": "Forigo el la historio de «La tuta konata reto»",
+        "ftl_removal": "Forigo el la historio de «Konata reto»",
         "quarantine_desc": "Ĉi tiu nodo sendos nur publikajn aﬁŝojn al la jenaj nodoj:",
         "quarantine": "Kvaranteno",
         "reject_desc": "Ĉi tiu nodo ne akceptos mesaĝojn de la jenaj nodoj:",
@@ -704,7 +721,7 @@
         "accept_desc": "Ĉi tiu nodo nur akceptas mesaĝojn de la jenaj nodoj:",
         "accept": "Akcepti",
         "simple_policies": "Specialaj politikoj de la nodo",
-        "ftl_removal_desc": "Ĉi tiu nodo forigas la jenajn nodojn el la historio de «La tuta konata reto»:"
+        "ftl_removal_desc": "Ĉi tiu nodo forigas la jenajn nodojn el la historio de «Konata reto»:"
       },
       "mrf_policies": "Ŝaltis politikon de Mesaĝa ŝanĝilaro (MRF)",
       "keyword": {
