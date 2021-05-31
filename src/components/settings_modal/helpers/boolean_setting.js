@@ -18,8 +18,11 @@ export default {
     state () {
       return get(this.$parent, this.path)
     },
+    defaultState () {
+      return get(this.$parent, this.pathDefault)
+    },
     isChanged () {
-      return get(this.$parent, this.path) !== get(this.$parent, this.pathDefault)
+      return this.state !== undefined && this.state !== this.defaultState
     }
   },
   methods: {

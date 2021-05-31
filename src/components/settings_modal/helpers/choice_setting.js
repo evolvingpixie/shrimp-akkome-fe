@@ -17,13 +17,13 @@ export default {
       return [firstSegment + 'DefaultValue', ...rest].join('.')
     },
     state () {
-      return get(this.$parent, this.path)
+      return get(this.$parent, this.path) || get(this.$parent, this.pathDefault)
     },
     defaultState () {
       return get(this.$parent, this.pathDefault)
     },
     isChanged () {
-      return get(this.$parent, this.path) !== get(this.$parent, this.pathDefault)
+      return this.state !== undefined && this.state !== this.defaultState
     }
   },
   methods: {
