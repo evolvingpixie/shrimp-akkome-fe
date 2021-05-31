@@ -268,7 +268,7 @@ const EmojiInput = {
       this.$nextTick(function () {
         // Re-focus inputbox after clicking suggestion
         // Set selection right after the replacement instead of the very end
-        // this.input.setSelectionRange(position, position)
+        this.input.setSelectionRange(position, position)
         this.caret = position
       })
     },
