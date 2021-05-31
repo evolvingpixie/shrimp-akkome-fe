@@ -60,10 +60,7 @@
           :disabled="!user.friends_count"
         >
           <FriendList :user-id="userId">
-            <template
-              slot="item"
-              slot-scope="{item}"
-            >
+            <template v-slot:item="{item}">
               <FollowCard :user="item" />
             </template>
           </FriendList>
@@ -75,10 +72,7 @@
           :disabled="!user.followers_count"
         >
           <FollowerList :user-id="userId">
-            <template
-              slot="item"
-              slot-scope="{item}"
-            >
+            <template v-slot:item="{item}">
               <FollowCard
                 :user="item"
                 :no-follows-you="isUs"

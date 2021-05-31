@@ -5,9 +5,7 @@
     placement="bottom"
     :bound-to="{ x: 'container' }"
   >
-    <template
-      v-slot:content
-    >
+    <template v-slot:content>
       <div class="dropdown-menu">
         <button
           class="button-default dropdown-item"
@@ -66,7 +64,9 @@
       </div>
     </template>
     <template v-slot:trigger>
-      <FAIcon icon="filter" />
+      <button class="button-unstyled">
+        <FAIcon icon="filter" />
+      </button>
     </template>
   </Popover>
 </template>

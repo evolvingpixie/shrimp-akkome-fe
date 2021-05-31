@@ -6,10 +6,7 @@
       :bound-to="{ x: 'container' }"
       remove-padding
     >
-      <div
-        slot="content"
-        class="account-tools-popover"
-      >
+      <template v-slot:content>
         <div class="dropdown-menu">
           <template v-if="relationship.following">
             <button
@@ -59,16 +56,15 @@
             {{ $t('user_card.message') }}
           </button>
         </div>
-      </div>
-      <div
-        slot="trigger"
-        class="ellipsis-button"
-      >
-        <FAIcon
-          class="icon"
-          icon="ellipsis-v"
-        />
-      </div>
+      </template>
+      <template v-slot:trigger>
+        <button class="button-unstyled ellipsis-button">
+          <FAIcon
+            class="icon"
+            icon="ellipsis-v"
+          />
+        </button>
+      </template>
     </Popover>
   </div>
 </template>
@@ -83,7 +79,6 @@
   }
 
   .ellipsis-button {
-    cursor: pointer;
     width: 2.5em;
     margin: -0.5em 0;
     padding: 0.5em 0;

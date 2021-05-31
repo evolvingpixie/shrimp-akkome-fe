@@ -23,10 +23,7 @@
         class="timeline"
       >
         <List :items="sortedChatList">
-          <template
-            slot="item"
-            slot-scope="{item}"
-          >
+          <template v-slot:item="{item}">
             <ChatListItem
               :key="item.id"
               :compact="false"
