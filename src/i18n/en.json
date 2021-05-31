@@ -81,7 +81,7 @@
       "moderator": "Moderator"
     },
     "flash_content": "Click to show Flash content using Ruffle (Experimental, may not work).",
-    "flash_security": "Note that this can be potentially dangerous since Flash content is still arbitrary code, it might leak your cookies.",
+    "flash_security": "Note that this can be potentially dangerous since Flash content is still arbitrary code.",
     "flash_fail": "Failed to load flash content, see console for details."
   },
   "image_cropper": {
