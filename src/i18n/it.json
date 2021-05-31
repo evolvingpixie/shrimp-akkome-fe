@@ -21,7 +21,10 @@
     "role": {
       "moderator": "Moderatore",
       "admin": "Amministratore"
-    }
+    },
+    "flash_fail": "Contenuto Flash non caricato, vedi console del browser.",
+    "flash_content": "Mostra contenuto Flash tramite Ruffle (funzione in prova).",
+    "flash_security": "Può essere pericoloso perché i contenuti in Flash sono eseguibili."
   },
   "nav": {
     "mentions": "Menzioni",
