@@ -16,13 +16,18 @@ export default {
       return [firstSegment + 'DefaultValue', ...rest].join('.')
     },
     state () {
-      return get(this.$parent, this.path)
+      const value = get(this.$parent, this.path)
+      if (value === undefined) {
+        return this.defaultState
+      } else {
+        return value
+      }
     },
     defaultState () {
       return get(this.$parent, this.pathDefault)
     },
     isChanged () {
-      return this.state !== undefined && this.state !== this.defaultState
+      return this.state !== this.defaultState
     }
   },
   methods: {
