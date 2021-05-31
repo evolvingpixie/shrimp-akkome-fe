@@ -57,6 +57,7 @@ const EmojiInput = {
       required: true,
       type: Function
     },
+    // TODO VUE3: change to modelValue, change 'input' event to 'input'
     value: {
       /**
        * Used for v-model
@@ -143,32 +144,31 @@ const EmojiInput = {
     }
   },
   mounted () {
-    const slots = this.$slots.default
-    if (!slots || slots.length === 0) return
-    const input = slots.find(slot => ['input', 'textarea'].includes(slot.tag))
+    const { root } = this.$refs
+    const input = root.querySelector('.emoji-input > input') || root.querySelector('.emoji-input > textarea')
     if (!input) return
     this.input = input
     this.resize()
-    input.elm.addEventListener('blur', this.onBlur)
-    input.elm.addEventListener('focus', this.onFocus)
-    input.elm.addEventListener('paste', this.onPaste)
-    input.elm.addEventListener('keyup', this.onKeyUp)
-    input.elm.addEventListener('keydown', this.onKeyDown)
-    input.elm.addEventListener('click', this.onClickInput)
-    input.elm.addEventListener('transitionend', this.onTransition)
-    input.elm.addEventListener('input', this.onInput)
+    input.addEventListener('blur', this.onBlur)
+    input.addEventListener('focus', this.onFocus)
+    input.addEventListener('paste', this.onPaste)
+    input.addEventListener('keyup', this.onKeyUp)
+    input.addEventListener('keydown', this.onKeyDown)
+    input.addEventListener('click', this.onClickInput)
+    input.addEventListener('transitionend', this.onTransition)
+    input.addEventListener('input', this.onInput)
   },
   unmounted () {
     const { input } = this
     if (input) {
-      input.elm.removeEventListener('blur', this.onBlur)
-      input.elm.removeEventListener('focus', this.onFocus)
-      input.elm.removeEventListener('paste', this.onPaste)
-      input.elm.removeEventListener('keyup', this.onKeyUp)
-      input.elm.removeEventListener('keydown', this.onKeyDown)
-      input.elm.removeEventListener('click', this.onClickInput)
-      input.elm.removeEventListener('transitionend', this.onTransition)
-      input.elm.removeEventListener('input', this.onInput)
+      input.removeEventListener('blur', this.onBlur)
+      input.removeEventListener('focus', this.onFocus)
+      input.removeEventListener('paste', this.onPaste)
+      input.removeEventListener('keyup', this.onKeyUp)
+      input.removeEventListener('keydown', this.onKeyDown)
+      input.removeEventListener('click', this.onClickInput)
+      input.removeEventListener('transitionend', this.onTransition)
+      input.removeEventListener('input', this.onInput)
     }
   },
   watch: {
@@ -216,7 +216,7 @@ const EmojiInput = {
       }, 0)
     },
     togglePicker () {
-      this.input.elm.focus()
+      this.input.focus()
       this.showPicker = !this.showPicker
       if (this.showPicker) {
         this.scrollIntoView()
@@ -262,13 +262,13 @@ const EmojiInput = {
       this.$emit('input', newValue)
       const position = this.caret + (insertion + spaceAfter + spaceBefore).length
       if (!keepOpen) {
-        this.input.elm.focus()
+        this.input.focus()
       }
 
       this.$nextTick(function () {
         // Re-focus inputbox after clicking suggestion
         // Set selection right after the replacement instead of the very end
-        this.input.elm.setSelectionRange(position, position)
+        this.input.setSelectionRange(position, position)
         this.caret = position
       })
     },
@@ -285,9 +285,9 @@ const EmojiInput = {
 
         this.$nextTick(function () {
           // Re-focus inputbox after clicking suggestion
-          this.input.elm.focus()
+          this.input.focus()
           // Set selection right after the replacement instead of the very end
-          this.input.elm.setSelectionRange(position, position)
+          this.input.setSelectionRange(position, position)
           this.caret = position
         })
         e.preventDefault()
@@ -349,7 +349,7 @@ const EmojiInput = {
       }
 
       this.$nextTick(() => {
-        const { offsetHeight } = this.input.elm
+        const { offsetHeight } = this.input
         const { picker } = this.$refs
         const pickerBottom = picker.$el.getBoundingClientRect().bottom
         if (pickerBottom > window.innerHeight) {
@@ -414,8 +414,8 @@ const EmojiInput = {
 
         // Scroll the input element to the position of the cursor
         this.$nextTick(() => {
-          this.input.elm.blur()
-          this.input.elm.focus()
+          this.input.blur()
+          this.input.focus()
         })
       }
       // Disable suggestions hotkeys if suggestions are hidden
@@ -444,7 +444,7 @@ const EmojiInput = {
       // de-focuses the element (i.e. default browser behavior)
       if (key === 'Escape') {
         if (!this.temporarilyHideSuggestions) {
-          this.input.elm.focus()
+          this.input.focus()
         }
       }
 
@@ -480,7 +480,7 @@ const EmojiInput = {
       if (!panel) return
       const picker = this.$refs.picker.$el
       const panelBody = this.$refs['panel-body']
-      const { offsetHeight, offsetTop } = this.input.elm
+      const { offsetHeight, offsetTop } = this.input
       const offsetBottom = offsetTop + offsetHeight
 
       this.setPlacement(panelBody, panel, offsetBottom)
@@ -494,7 +494,7 @@ const EmojiInput = {
 
       if (this.placement === 'top' || (this.placement === 'auto' && this.overflowsBottom(container))) {
         target.style.top = 'auto'
-        target.style.bottom = this.input.elm.offsetHeight + 'px'
+        target.style.bottom = this.input.offsetHeight + 'px'
       }
     },
     overflowsBottom (el) {

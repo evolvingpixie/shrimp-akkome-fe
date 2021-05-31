@@ -3,6 +3,7 @@
     v-click-outside="onClickOutside"
     class="emoji-input"
     :class="{ 'with-picker': !hideEmojiButton }"
+    ref='root'
   >
     <slot />
     <template v-if="enableEmojiPicker">
