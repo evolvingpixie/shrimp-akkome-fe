@@ -47,13 +47,17 @@
         :title="$t('polls.type')"
       >
         <Select
+          v-model="pollType"
           class="poll-type-select"
           unstyled="true"
-          v-model="pollType"
           @change="updatePollToParent"
         >
-          <option value="single">{{ $t('polls.single_choice') }}</option>
-          <option value="multiple">{{ $t('polls.multiple_choices') }}</option>
+          <option value="single">
+            {{ $t('polls.single_choice') }}
+          </option>
+          <option value="multiple">
+            {{ $t('polls.multiple_choices') }}
+          </option>
         </Select>
       </div>
       <div

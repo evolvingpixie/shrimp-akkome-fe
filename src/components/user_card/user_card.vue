@@ -137,10 +137,18 @@
               v-model="userHighlightType"
               class="userHighlightSel"
             >
-              <option value="disabled">{{ $t('user_card.highlight.disabled') }}</option>
-              <option value="solid">{{ $t('user_card.highlight.solid') }}</option>
-              <option value="striped">{{ $t('user_card.highlight.striped') }}</option>
-              <option value="side">{{ $t('user_card.highlight.side') }}</option>
+              <option value="disabled">
+                {{ $t('user_card.highlight.disabled') }}
+              </option>
+              <option value="solid">
+                {{ $t('user_card.highlight.solid') }}
+              </option>
+              <option value="striped">
+                {{ $t('user_card.highlight.striped') }}
+              </option>
+              <option value="side">
+                {{ $t('user_card.highlight.side') }}
+              </option>
             </Select>
           </div>
         </div>

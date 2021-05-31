@@ -37,10 +37,10 @@
         </ul>
       </div>
       <ChoiceSetting
-          id="replyVisibility"
-          path="replyVisibility"
-          :options="replyVisibilityOptions"
-        >
+        id="replyVisibility"
+        path="replyVisibility"
+        :options="replyVisibilityOptions"
+      >
         {{ $t('settings.replies_in_timeline') }}
       </ChoiceSetting>
       <div>
