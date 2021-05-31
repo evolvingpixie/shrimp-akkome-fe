@@ -90,62 +90,22 @@
           </BooleanSetting>
         </li>
         <li>
-          <div>
+          <ChoiceSetting
+            id="subjectLineBehavior"
+            path="subjectLineBehavior"
+            :options="subjectLineOptions"
+          >
             {{ $t('settings.subject_line_behavior') }}
-            <label
-              for="subjectLineBehavior"
-              class="select"
-            >
-              <select
-                id="subjectLineBehavior"
-                v-model="subjectLineBehavior"
-              >
-                <option value="email">
-                  {{ $t('settings.subject_line_email') }}
-                  {{ subjectLineBehaviorDefaultValue == 'email' ? $t('settings.instance_default_simple') : '' }}
-                </option>
-                <option value="masto">
-                  {{ $t('settings.subject_line_mastodon') }}
-                  {{ subjectLineBehaviorDefaultValue == 'mastodon' ? $t('settings.instance_default_simple') : '' }}
-                </option>
-                <option value="noop">
-                  {{ $t('settings.subject_line_noop') }}
-                  {{ subjectLineBehaviorDefaultValue == 'noop' ? $t('settings.instance_default_simple') : '' }}
-                </option>
-              </select>
-              <FAIcon
-                class="select-down-icon"
-                icon="chevron-down"
-              />
-            </label>
-          </div>
+          </ChoiceSetting>
         </li>
         <li v-if="postFormats.length > 0">
-          <div>
+          <ChoiceSetting
+            id="postContentType"
+            path="postContentType"
+            :options="postContentOptions"
+          >
             {{ $t('settings.post_status_content_type') }}
-            <label
-              for="postContentType"
-              class="select"
-            >
-              <select
-                id="postContentType"
-                v-model="postContentType"
-              >
-                <option
-                  v-for="postFormat in postFormats"
-                  :key="postFormat"
-                  :value="postFormat"
-                >
-                  {{ $t(`post_status.content_type["${postFormat}"]`) }}
-                  {{ postContentTypeDefaultValue === postFormat ? $t('settings.instance_default_simple') : '' }}
-                </option>
-              </select>
-              <FAIcon
-                class="select-down-icon"
-                icon="chevron-down"
-              />
-            </label>
-          </div>
+          </ChoiceSetting>
         </li>
         <li>
           <BooleanSetting path="minimalScopesMode">

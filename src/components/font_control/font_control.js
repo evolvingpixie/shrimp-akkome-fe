@@ -1,14 +1,10 @@
 import { set } from 'vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faChevronDown
-} from '@fortawesome/free-solid-svg-icons'
-
-library.add(
-  faChevronDown
-)
+import Select from '../select/select.vue'
 
 export default {
+  components: {
+    Select
+  },
   props: [
     'name', 'label', 'value', 'fallback', 'options', 'no-inherit'
   ],
