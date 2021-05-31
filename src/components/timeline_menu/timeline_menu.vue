@@ -10,10 +10,7 @@
     @close="() => isOpen = false"
   >
     <template v-slot:content>
-      <div
-        slot="content"
-        class="timeline-menu-popover popover-default"
-        >
+      <div class="timeline-menu-popover popover-default">
         <TimelineMenuContent />
       </div>
     </template>

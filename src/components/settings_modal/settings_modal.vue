@@ -73,7 +73,7 @@
               />
             </button>
           </template>
-          <template v-slot:content ="{close}">
+          <template v-slot:content="{close}">
             <div class="dropdown-menu">
               <button
                 class="button-default dropdown-item dropdown-item-icon"
