@@ -17,7 +17,7 @@ const shout = {
   },
   actions: {
     initializeShout (store, socket) {
-      const channel = socket.channel('shout:public')
+      const channel = socket.channel('chat:public')
       channel.on('new_msg', (msg) => {
         store.commit('addMessage', msg)
       })
