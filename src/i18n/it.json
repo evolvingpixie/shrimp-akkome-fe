@@ -68,7 +68,7 @@
     "current_avatar": "La tua icona attuale",
     "current_profile_banner": "Il tuo stendardo attuale",
     "filtering": "Filtri",
-    "filtering_explanation": "Tutti i post contenenti queste parole saranno silenziati, una per riga",
+    "filtering_explanation": "Tutti i messaggi contenenti queste parole saranno silenziati, una per riga",
     "hide_attachments_in_convo": "Nascondi gli allegati presenti nelle conversazioni",
     "hide_attachments_in_tl": "Nascondi gli allegati presenti nelle sequenze",
     "name": "Nome",
@@ -664,7 +664,7 @@
   },
   "domain_mute_card": {
     "mute": "Silenzia",
-    "mute_progress": "Silenzio…",
+    "mute_progress": "Procedo…",
     "unmute": "Ascolta",
     "unmute_progress": "Procedo…"
   },
