@@ -19,7 +19,6 @@ const defaultState = {
   defaultBanner: '/images/banner.png',
   background: '/static/aurora_borealis.jpg',
   collapseMessageWithSubject: false,
-  disableShout: false,
   greentext: false,
   hideFilteredStatuses: false,
   hideMutedPosts: false,

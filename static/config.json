@@ -2,7 +2,6 @@
   "alwaysShowSubjectInput": true,
   "background": "/static/aurora_borealis.jpg",
   "collapseMessageWithSubject": false,
-  "disableShout": false,
   "greentext": false,
   "hideFilteredStatuses": false,
   "hideMutedPosts": false,
