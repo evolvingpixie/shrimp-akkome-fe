@@ -14,6 +14,7 @@ const createFaviconService = () => {
       favcanvas.width = faviconWidth
       favcanvas.height = faviconHeight
       favimg = new Image()
+      favimg.crossOrigin = 'anonymous'
       favimg.src = favicon.href
       favcontext = favcanvas.getContext('2d')
     }
