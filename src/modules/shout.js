@@ -1,4 +1,4 @@
-const chat = {
+const shout = {
   state: {
     messages: [],
     channel: { state: '' }
@@ -16,9 +16,8 @@ const chat = {
     }
   },
   actions: {
-    initializeChat (store, socket) {
+    initializeShout (store, socket) {
       const channel = socket.channel('chat:public')
-
       channel.on('new_msg', (msg) => {
         store.commit('addMessage', msg)
       })
@@ -31,4 +30,4 @@ const chat = {
   }
 }
 
-export default chat
+export default shout

@@ -11,7 +11,7 @@ import statusesModule from './modules/statuses.js'
 import usersModule from './modules/users.js'
 import apiModule from './modules/api.js'
 import configModule from './modules/config.js'
-import chatModule from './modules/chat.js'
+import shoutModule from './modules/shout.js'
 import oauthModule from './modules/oauth.js'
 import authFlowModule from './modules/auth_flow.js'
 import mediaViewerModule from './modules/media_viewer.js'
@@ -88,7 +88,7 @@ const persistedStateOptions = {
       users: usersModule,
       api: apiModule,
       config: configModule,
-      chat: chatModule,
+      shout: shoutModule,
       oauth: oauthModule,
       authFlow: authFlowModule,
       mediaViewer: mediaViewerModule,

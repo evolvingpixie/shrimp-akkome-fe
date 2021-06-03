@@ -16,7 +16,7 @@ import FollowRequests from 'components/follow_requests/follow_requests.vue'
 import OAuthCallback from 'components/oauth_callback/oauth_callback.vue'
 import Notifications from 'components/notifications/notifications.vue'
 import AuthForm from 'components/auth_form/auth_form.js'
-import ChatPanel from 'components/chat_panel/chat_panel.vue'
+import ShoutPanel from 'components/shout_panel/shout_panel.vue'
 import WhoToFollow from 'components/who_to_follow/who_to_follow.vue'
 import About from 'components/about/about.vue'
 import RemoteUserResolver from 'components/remote_user_resolver/remote_user_resolver.vue'
@@ -64,7 +64,7 @@ export default (store) => {
     { name: 'friend-requests', path: '/friend-requests', component: FollowRequests, beforeEnter: validateAuthenticatedRoute },
     { name: 'notifications', path: '/:username/notifications', component: Notifications, beforeEnter: validateAuthenticatedRoute },
     { name: 'login', path: '/login', component: AuthForm },
-    { name: 'chat-panel', path: '/chat-panel', component: ChatPanel, props: () => ({ floating: false }) },
+    { name: 'shout-panel', path: '/shout-panel', component: ShoutPanel, props: () => ({ floating: false }) },
     { name: 'oauth-callback', path: '/oauth-callback', component: OAuthCallback, props: (route) => ({ code: route.query.code }) },
     { name: 'search', path: '/search', component: Search, props: (route) => ({ query: route.query.query }) },
     { name: 'who-to-follow', path: '/who-to-follow', component: WhoToFollow, beforeEnter: validateAuthenticatedRoute },
