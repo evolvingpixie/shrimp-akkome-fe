@@ -169,10 +169,9 @@ const StatusContent = {
     RichContent
   },
   mounted () {
-    const { attentions } = this.status
-    attentions.forEach(attn => {
+    this.status.attentions.forEach(attn => {
       const { id } = attn
-      this.$store.state.api.backendInteractor.fetchUserIfMissing(this.$store, id)
+      this.$store.dispatch('fetchUserIfMissing', id)
     })
   },
   methods: {
