@@ -1,7 +1,10 @@
 <template>
   <div class="StatusContent">
     <slot name="header" />
-    <StatusBody :status="status" :single-line="singleLine">
+    <StatusBody
+      :status="status"
+      :single-line="singleLine"
+    >
       <div v-if="status.poll && status.poll.options">
         <poll :base-poll="status.poll" />
       </div>
