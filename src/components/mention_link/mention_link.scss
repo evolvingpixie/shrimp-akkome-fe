@@ -42,13 +42,14 @@
     &.-striped,
     &.-solid,
     &.-side {
-      .full {
-      }
       .short {
+        font-size: 90%;
+        line-height: 1.5;
+        vertical-align: middle;
+
         &::before {
           display: inline-block;
           height: 50%;
-          font-size: 90%;
           line-height: 1;
           vertical-align: 6%;
         }
@@ -65,12 +66,16 @@
       }
 
       .userName {
+        display: inline-block;
         color: var(--link);
+        line-height: inherit;
         margin-left: 0.25em;
         padding-left: 0.25em;
         padding-right: 0.25em;
         padding-top: 0;
         padding-bottom: 0;
+        border-top-right-radius: var(--btnRadius);
+        border-bottom-right-radius: var(--btnRadius);
       }
     }
 
