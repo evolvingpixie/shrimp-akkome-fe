@@ -1,7 +1,8 @@
 import Vue from 'vue'
-import { unescape } from 'lodash'
+import { unescape, flattenDeep } from 'lodash'
 import { convertHtml, getTagName, processTextForEmoji, getAttrs } from 'src/services/mini_html_converter/mini_html_converter.service.js'
 import StillImage from 'src/components/still-image/still-image.vue'
+import MentionLink from 'src/components/mention_link/mention_link.vue'
 
 import './rich_content.scss'
 
@@ -21,6 +22,9 @@ export default Vue.component('RichContent', {
     const renderImage = (tag) => {
       const attrs = getAttrs(tag)
       return <StillImage {...{ attrs }} class="img"/>
+    }
+    const renderMention = (attrs, children) => {
+      return <MentionLink url={attrs.href} content={flattenDeep(children).join('')} origattrs={attrs}/>
     }
     const structure = convertHtml(this.html)
     const processItem = (item) => {
@@ -45,8 +49,14 @@ export default Vue.component('RichContent', {
       if (Array.isArray(item)) {
         const [opener, children] = item
         const Tag = getTagName(opener)
-        if (Tag === 'img') {
-          return renderImage(opener)
+        switch (Tag) {
+          case 'img':
+            return renderImage(opener)
+          case 'a':
+            const attrs = getAttrs(opener)
+            if (attrs['class'] && attrs['class'].includes('mention')) {
+              return renderMention(attrs, children)
+            }
         }
         if (children !== undefined) {
           return <Tag {...{ attrs: getAttrs(opener) }}>

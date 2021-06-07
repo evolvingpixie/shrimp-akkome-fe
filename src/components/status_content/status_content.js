@@ -168,6 +168,13 @@ const StatusContent = {
     LinkPreview,
     RichContent
   },
+  mounted () {
+    const { attentions } = this.status
+    attentions.forEach(attn => {
+      const { id } = attn
+      this.$store.state.api.backendInteractor.fetchUserIfMissing(this.$store, id)
+    })
+  },
   methods: {
     linkClicked (event) {
       const target = event.target.closest('.status-content a')
