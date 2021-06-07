@@ -185,16 +185,11 @@ $status-margin: 0.75em;
     }
   }
 
-  img, video {
+  video {
     max-width: 100%;
     max-height: 400px;
     vertical-align: middle;
     object-fit: contain;
-
-    &.emoji {
-      width: 32px;
-      height: 32px;
-    }
   }
 
   .summary-wrapper {
@@ -230,54 +225,6 @@ $status-margin: 0.75em;
   }
 
   .status-content {
-    font-family: var(--postFont, sans-serif);
-    line-height: 1.4em;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-
-    blockquote {
-      margin: 0.2em 0 0.2em 2em;
-      font-style: italic;
-    }
-
-    pre {
-      overflow: auto;
-    }
-
-    code, samp, kbd, var, pre {
-      font-family: var(--postCodeFont, monospace);
-    }
-
-    p {
-      margin: 0 0 1em 0;
-    }
-
-    p:last-child {
-      margin: 0 0 0 0;
-    }
-
-    h1 {
-      font-size: 1.1em;
-      line-height: 1.2em;
-      margin: 1.4em 0;
-    }
-
-    h2 {
-      font-size: 1.1em;
-      margin: 1.0em 0;
-    }
-
-    h3 {
-      font-size: 1em;
-      margin: 1.2em 0;
-    }
-
-    h4 {
-      margin: 1.1em 0;
-    }
-
     &.single-line {
       white-space: nowrap;
       text-overflow: ellipsis;

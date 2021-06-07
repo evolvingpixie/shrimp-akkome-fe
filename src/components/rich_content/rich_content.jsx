@@ -19,7 +19,8 @@ export default Vue.component('RichContent', {
   },
   render (h) {
     const renderImage = (tag) => {
-      return <StillImage {...{ attrs: getAttrs(tag) }} />
+      const attrs = getAttrs(tag)
+      return <StillImage {...{ attrs }} class="img"/>
     }
     const structure = convertHtml(this.html)
     const processItem = (item) => {
@@ -30,7 +31,7 @@ export default Vue.component('RichContent', {
             this.emoji,
             ({ shortcode, url }) => {
               return <StillImage
-                class="emoji"
+                class="emoji img"
                 src={url}
                 title={`:${shortcode}:`}
                 alt={`:${shortcode}:`}
@@ -56,8 +57,8 @@ export default Vue.component('RichContent', {
         }
       }
     }
-    return <div>
+    return <span class="RichContent">
       { structure.map(processItem) }
-    </div>
+    </span>
   }
 })
