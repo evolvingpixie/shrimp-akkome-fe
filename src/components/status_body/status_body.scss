@@ -1,8 +1,19 @@
 @import '../../_variables.scss';
 
 .StatusBody {
+
   .emoji {
     --_still_image-label-scale: 0.5;
+  }
+
+  & .text,
+  & .summary {
+    font-family: var(--postFont, sans-serif);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.4em;
   }
 
   .summary {
