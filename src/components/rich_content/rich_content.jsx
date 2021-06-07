@@ -1,9 +1,6 @@
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
-import { processHtml } from 'src/services/tiny_post_html_processor/tiny_post_html_processor.service.js'
+import { unescape } from 'lodash'
 import { convertHtml, getTagName, processTextForEmoji, getAttrs } from 'src/services/mini_html_converter/mini_html_converter.service.js'
-import { mentionMatchesUrl, extractTagFromUrl } from 'src/services/matcher/matcher.service.js'
-import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import StillImage from 'src/components/still-image/still-image.vue'
 
 import './rich_content.scss'
@@ -29,7 +26,7 @@ export default Vue.component('RichContent', {
       if (typeof item === 'string') {
         if (item.includes(':')) {
           return processTextForEmoji(
-            item,
+            unescape(item),
             this.emoji,
             ({ shortcode, url }) => {
               return <StillImage
@@ -41,7 +38,7 @@ export default Vue.component('RichContent', {
             }
           )
         } else {
-          return item
+          return unescape(item)
         }
       }
       if (Array.isArray(item)) {
