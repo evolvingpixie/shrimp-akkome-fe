@@ -93,12 +93,8 @@ $status-margin: 0.75em;
     margin-right: 0.4em;
     text-overflow: ellipsis;
 
-    .emoji {
-      width: 14px;
-      height: 14px;
-      vertical-align: middle;
-      object-fit: contain;
-    }
+    --_still_image-label-scale: 0.25;
+    --emoji-size: 14px;
   }
 
   .status-favicon {

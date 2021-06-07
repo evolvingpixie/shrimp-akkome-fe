@@ -56,8 +56,8 @@
   }
 
   .emoji {
-    width: 32px;
-    height: 32px;
+    width: var(--emoji-size, 32px);
+    height: var(--emoji-size, 32px);
   }
 
   .img,

@@ -9,6 +9,7 @@ import UserAvatar from '../user_avatar/user_avatar.vue'
 import AvatarList from '../avatar_list/avatar_list.vue'
 import Timeago from '../timeago/timeago.vue'
 import StatusContent from '../status_content/status_content.vue'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 import StatusPopover from '../status_popover/status_popover.vue'
 import UserListPopover from '../user_list_popover/user_list_popover.vue'
 import EmojiReactions from '../emoji_reactions/emoji_reactions.vue'
@@ -68,7 +69,8 @@ const Status = {
     StatusPopover,
     UserListPopover,
     EmojiReactions,
-    StatusContent
+    StatusContent,
+    RichContent
   },
   props: [
     'statusoid',
@@ -136,8 +138,9 @@ const Status = {
       }
     },
     retweet () { return !!this.statusoid.retweeted_status },
+    retweeterUser () { return this.statusoid.user },
     retweeter () { return this.statusoid.user.name || this.statusoid.user.screen_name_ui },
-    retweeterHtml () { return this.statusoid.user.name_html },
+    retweeterHtml () { return this.statusoid.user.name },
     retweeterProfileLink () { return this.generateUserProfileLink(this.statusoid.user.id, this.statusoid.user.screen_name) },
     status () {
       if (this.retweet) {

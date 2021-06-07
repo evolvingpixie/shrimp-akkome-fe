@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <div
     v-if="!hideStatus"
     class="Status"
@@ -89,8 +88,9 @@
             <router-link
               v-if="retweeterHtml"
               :to="retweeterProfileLink"
-              v-html="retweeterHtml"
-            />
+            >
+              <RichContent :html="retweeterHtml" :emoji="retweeterUser.emoji"/>
+            </router-link>
             <router-link
               v-else
               :to="retweeterProfileLink"
@@ -145,8 +145,9 @@
                   v-if="status.user.name_html"
                   class="status-username"
                   :title="status.user.name"
-                  v-html="status.user.name_html"
-                />
+                >
+                  <RichContent :html="status.user.name" :emoji="status.user.emoji" />
+                </h4>
                 <h4
                   v-else
                   class="status-username"
@@ -402,7 +403,6 @@
       </div>
     </template>
   </div>
-<!-- eslint-enable vue/no-v-html -->
 </template>
 
 <script src="./status.js" ></script>
