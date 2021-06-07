@@ -1,131 +1,46 @@
 <template>
   <div class="StatusContent">
     <slot name="header" />
-    <div
-      v-if="status.summary_html"
-      class="summary-wrapper"
-      :class="{ 'tall-subject': (longSubject && !showingLongSubject) }"
-    >
-      <RichContent
-        class="media-body summary"
-        :html="status.summary_raw_html"
-        :emoji="status.emojis"
-        @click.prevent="linkClicked"
-      />
-      <button
-        v-if="longSubject && showingLongSubject"
-        class="button-unstyled -link tall-subject-hider"
-        @click.prevent="showingLongSubject=false"
-      >
-        {{ $t("status.hide_full_subject") }}
-      </button>
-      <button
-        v-else-if="longSubject"
-        class="button-unstyled -link tall-subject-hider"
-        :class="{ 'tall-subject-hider_focused': focused }"
-        @click.prevent="showingLongSubject=true"
-      >
-        {{ $t("status.show_full_subject") }}
-      </button>
-    </div>
-    <div
-      :class="{'tall-status': hideTallStatus}"
-      class="status-content-wrapper"
-    >
-      <button
-        v-if="hideTallStatus"
-        class="button-unstyled -link tall-status-hider"
-        :class="{ 'tall-status-hider_focused': focused }"
-        @click.prevent="toggleShowMore"
-      >
-        {{ $t("general.show_more") }}
-      </button>
-      <RichContent
-        v-if="!hideSubjectStatus"
-        :class="{ 'single-line': singleLine }"
-        class="status-content media-body"
-        :html="postBodyHtml"
-        :emoji="status.emojis"
-        @click.prevent="linkClicked"
-      />
-      <button
-        v-if="hideSubjectStatus"
-        class="button-unstyled -link cw-status-hider"
-        @click.prevent="toggleShowMore"
-      >
-        {{ $t("status.show_content") }}
-        <FAIcon
-          v-if="attachmentTypes.includes('image')"
-          icon="image"
-        />
-        <FAIcon
-          v-if="attachmentTypes.includes('video')"
-          icon="video"
-        />
-        <FAIcon
-          v-if="attachmentTypes.includes('audio')"
-          icon="music"
-        />
-        <FAIcon
-          v-if="attachmentTypes.includes('unknown')"
-          icon="file"
-        />
-        <FAIcon
-          v-if="status.poll && status.poll.options"
-          icon="poll-h"
-        />
-        <FAIcon
-          v-if="status.card"
-          icon="link"
-        />
-      </button>
-      <button
-        v-if="showingMore && !fullContent"
-        class="button-unstyled -link status-unhider"
-        @click.prevent="toggleShowMore"
-      >
-        {{ tallStatus ? $t("general.show_less") : $t("status.hide_content") }}
-      </button>
-    </div>
+    <StatusText :status="status">
+      <div v-if="status.poll && status.poll.options">
+        <poll :base-poll="status.poll" />
+      </div>
 
-    <div v-if="status.poll && status.poll.options && !hideSubjectStatus">
-      <poll :base-poll="status.poll" />
-    </div>
+      <div
+        v-if="status.attachments.length !== 0"
+        class="attachments media-body"
+      >
+        <attachment
+          v-for="attachment in nonGalleryAttachments"
+          :key="attachment.id"
+          class="non-gallery"
+          :size="attachmentSize"
+          :nsfw="nsfwClickthrough"
+          :attachment="attachment"
+          :allow-play="true"
+          :set-media="setMedia()"
+          @play="$emit('mediaplay', attachment.id)"
+          @pause="$emit('mediapause', attachment.id)"
+        />
+        <gallery
+          v-if="galleryAttachments.length > 0"
+          :nsfw="nsfwClickthrough"
+          :attachments="galleryAttachments"
+          :set-media="setMedia()"
+        />
+      </div>
 
-    <div
-      v-if="status.attachments.length !== 0 && (!hideSubjectStatus || showingLongSubject)"
-      class="attachments media-body"
-    >
-      <attachment
-        v-for="attachment in nonGalleryAttachments"
-        :key="attachment.id"
-        class="non-gallery"
-        :size="attachmentSize"
-        :nsfw="nsfwClickthrough"
-        :attachment="attachment"
-        :allow-play="true"
-        :set-media="setMedia()"
-        @play="$emit('mediaplay', attachment.id)"
-        @pause="$emit('mediapause', attachment.id)"
-      />
-      <gallery
-        v-if="galleryAttachments.length > 0"
-        :nsfw="nsfwClickthrough"
-        :attachments="galleryAttachments"
-        :set-media="setMedia()"
-      />
-    </div>
-
-    <div
-      v-if="status.card && !hideSubjectStatus && !noHeading"
-      class="link-preview media-body"
-    >
-      <link-preview
-        :card="status.card"
-        :size="attachmentSize"
-        :nsfw="nsfwClickthrough"
-      />
-    </div>
+      <div
+        v-if="status.card && !noHeading"
+        class="link-preview media-body"
+      >
+        <link-preview
+          :card="status.card"
+          :size="attachmentSize"
+          :nsfw="nsfwClickthrough"
+        />
+      </div>
+    </StatusText>
     <slot name="footer" />
   </div>
 </template>
