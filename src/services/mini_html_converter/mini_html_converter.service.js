@@ -118,6 +118,7 @@ export const processTextForEmoji = (text, emojis, processor) => {
       textBuffer += char
     }
   }
+  if (textBuffer) buffer.push(textBuffer)
   return buffer
 }
 

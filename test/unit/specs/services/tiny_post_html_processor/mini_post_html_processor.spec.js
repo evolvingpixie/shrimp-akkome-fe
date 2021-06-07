@@ -57,7 +57,7 @@ describe('MiniHtmlConverter', () => {
         ]
       ])
     })
-    it('realistic case', () => {
+    it('realistic case 1', () => {
       const inputOutput = '<p><span class="h-card"><a class="u-url mention" data-user="9wRC6T2ZZiKWJ0vUi8" href="https://cawfee.club/users/benis" rel="ugc">@<span>benis</span></a></span> <span class="h-card"><a class="u-url mention" data-user="194" href="https://shigusegubu.club/users/hj" rel="ugc">@<span>hj</span></a></span> nice</p>'
       expect(convertHtml(inputOutput)).to.eql([
         [
@@ -110,6 +110,24 @@ describe('MiniHtmlConverter', () => {
         ]
       ])
     })
+    it('realistic case 2', () => {
+      const inputOutput = 'Country improv: give me a city<br/>Audience: Memphis<br/>Improv troupe: come on, a better one<br/>Audience: el paso'
+      expect(convertHtml(inputOutput)).to.eql([
+        'Country improv: give me a city',
+        [
+          '<br/>'
+        ],
+        'Audience: Memphis',
+        [
+          '<br/>'
+        ],
+        'Improv troupe: come on, a better one',
+        [
+          '<br/>'
+        ],
+        'Audience: el paso'
+      ])
+    })
   })
   describe('processTextForEmoji', () => {
     it('processes all emoji in text', () => {
@@ -126,5 +144,14 @@ describe('MiniHtmlConverter', () => {
         { shortcode: 'lmao', src: 'LMAO' }
       ])
     })
+    it('leaves text as is', () => {
+      const inputOutput = 'Number one: that\'s terror'
+      const emojis = []
+      const processor = ({ shortcode, src }) => ({ shortcode, src })
+      expect(processTextForEmoji(inputOutput, emojis, processor)).to.eql([
+        'Number one: that\'s terror'
+      ])
+    })
+  })
   })
 })
