@@ -33,6 +33,7 @@
   & .short,
   & .full {
     &::before {
+      color: var(--faint);
       content: '@';
     }
   }
