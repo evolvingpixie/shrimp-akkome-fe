@@ -1,6 +1,7 @@
 import Attachment from '../attachment/attachment.vue'
 import Poll from '../poll/poll.vue'
 import Gallery from '../gallery/gallery.vue'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 import LinkPreview from '../link-preview/link-preview.vue'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import fileType from 'src/services/file_type/file_type.service'
@@ -125,7 +126,7 @@ const StatusContent = {
       return this.mergedConfig.maxThumbnails
     },
     postBodyHtml () {
-      const html = this.status.statusnet_html
+      const html = this.status.raw_html
 
       if (this.mergedConfig.greentext) {
         try {
@@ -164,7 +165,8 @@ const StatusContent = {
     Attachment,
     Poll,
     Gallery,
-    LinkPreview
+    LinkPreview,
+    RichContent
   },
   methods: {
     linkClicked (event) {

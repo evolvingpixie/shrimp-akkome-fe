@@ -267,6 +267,8 @@ export const parseStatus = (data) => {
     output.nsfw = data.sensitive
 
     output.statusnet_html = addEmojis(data.content, data.emojis)
+    output.raw_html = data.content
+    output.emojis = data.emojis
 
     output.tags = data.tags
 
@@ -293,6 +295,7 @@ export const parseStatus = (data) => {
       output.retweeted_status = parseStatus(data.reblog)
     }
 
+    output.summary_raw_html = escape(data.spoiler_text)
     output.summary_html = addEmojis(escape(data.spoiler_text), data.emojis)
     output.external_url = data.url
     output.poll = data.poll

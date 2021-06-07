@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <div class="StatusContent">
     <slot name="header" />
     <div
@@ -7,11 +6,11 @@
       class="summary-wrapper"
       :class="{ 'tall-subject': (longSubject && !showingLongSubject) }"
     >
-      <div
+      <RichContent
         class="media-body summary"
         @click.prevent="linkClicked"
-        v-html="status.summary_html"
-      />
+        :html="status.summary_raw_html"
+        :emoji="status.emojis"/>
       <button
         v-if="longSubject && showingLongSubject"
         class="button-unstyled -link tall-subject-hider"
@@ -40,13 +39,13 @@
       >
         {{ $t("general.show_more") }}
       </button>
-      <div
+      <RichContent
         v-if="!hideSubjectStatus"
         :class="{ 'single-line': singleLine }"
         class="status-content media-body"
         @click.prevent="linkClicked"
-        v-html="postBodyHtml"
-      />
+        :html="postBodyHtml"
+        :emoji="status.emojis"/>
       <button
         v-if="hideSubjectStatus"
         class="button-unstyled -link cw-status-hider"
@@ -127,7 +126,6 @@
     </div>
     <slot name="footer" />
   </div>
-  <!-- eslint-enable vue/no-v-html -->
 </template>
 
 <script src="./status_content.js" ></script>
