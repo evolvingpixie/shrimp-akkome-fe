@@ -1,7 +1,6 @@
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
-import { getTextColor, rgb2hex } from 'src/services/color_convert/color_convert.js'
 import { mapGetters, mapState } from 'vuex'
-import { convert } from 'chromatism'
+import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
 
 const MentionLink = {
   name: 'MentionLink',
@@ -45,21 +44,22 @@ const MentionLink = {
     highlight () {
       return this.mergedConfig.highlight[this.user.screen_name]
     },
-    bg () {
-      if (this.highlight) return this.highlight.color
+    highlightType () {
+      return this.highlight && ('-' + this.highlight.type)
     },
-    text () {
-      if (this.bg) {
-        const linkColor = this.mergedConfig.customTheme.colors.link
-        const color = getTextColor(convert(this.bg).rgb, convert(linkColor).rgb)
-        return rgb2hex(color)
-      }
+    highlightClass () {
+      if (this.highlight) return highlightClass(this.user)
     },
     style () {
-      return [
-        this.bg && `--mention-bg: ${this.bg}`,
-        this.text && `--mention-text: ${this.text}`
-      ].filter(_ => _).join('; ')
+      if (this.highlight) {
+        const {
+          backgroundColor,
+          backgroundPosition,
+          backgroundImage,
+          ...rest
+        } = highlightStyle(this.highlight)
+        return rest
+      }
     },
     ...mapGetters(['mergedConfig']),
     ...mapState({

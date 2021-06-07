@@ -2,12 +2,10 @@
   position: relative;
   white-space: normal;
   display: inline-block;
+  color: var(--link);
 
   & .new,
-  & .original,
-  & .full {
-    padding: 0 2px;
-    margin: 0 -2px;
+  & .original {
     display: inline-block;
     border-radius: 2px;
   }
@@ -17,24 +15,95 @@
   }
 
   .full {
-    pointer-events: none;
     position: absolute;
+    display: inline-block;
+    pointer-events: none;
     opacity: 0;
-    top: 0;
-    bottom: 0;
+    top: 100%;
     left: 0;
+    height: 100%;
     word-wrap: normal;
     white-space: nowrap;
     transition: opacity 0.2s ease;
-    background-color: var(--mention-bg, var(--popover));
-    color: var(--mention-text, var(--link));
     z-index: 1;
+    margin-top: 0.25em;
+    padding: 0.5em;
+  }
+
+  & .short,
+  & .full {
+    &::before {
+      content: '@';
+    }
+  }
+
+  & .new {
+    &,
+    &.-striped,
+    &.-solid,
+    &.-side {
+      .full {
+      }
+      .short {
+        &::before {
+          display: inline-block;
+          height: 50%;
+          font-size: 90%;
+          line-height: 1;
+          vertical-align: 6%;
+        }
+      }
+
+      .you {
+        padding-right: 0.25em;
+      }
+      .short {
+        padding-left: 0.25em;
+        padding-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .userName {
+        color: var(--link);
+        margin-left: 0.25em;
+        padding-left: 0.25em;
+        padding-right: 0.25em;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    &.-striped {
+      & .userName,
+      & .full {
+        background-image:
+          repeating-linear-gradient(
+            135deg,
+            var(--____highlight-tintColor),
+            var(--____highlight-tintColor) 5px,
+            var(--____highlight-tintColor2) 5px,
+            var(--____highlight-tintColor2) 10px
+          );
+      }
+    }
+
+    &.-solid {
+      & .userName,
+      & .full {
+        background-image: linear-gradient(var(--____highlight-tintColor2), var(--____highlight-tintColor2));
+      }
+    }
+
+    &.-side {
+      & .userName,
+      & .userNameFull {
+        box-shadow: 0 -5px 3px -4px inset var(--____highlight-solidColor);
+      }
+    }
   }
 
   .new {
-    background-color: var(--mention-bg);
-    color: var(--mention-text, var(--link));
-
     &.-you {
       & .shortName,
       & .full {
@@ -45,5 +114,6 @@
 
   &:hover .new .full {
     opacity: 1;
+    pointer-events: initial;
   }
 }

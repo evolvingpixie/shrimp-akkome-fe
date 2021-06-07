@@ -12,22 +12,24 @@
       v-if="user"
       class="new"
       :style="style"
-      :class="{ '-you': isYou }"
+      :class="[{ '-you': isYou }, highlightType]"
     >
       <button
-        class="button-unstyled short"
+        class="short"
+        :class="highlight ? 'button-default' : 'button-default' "
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <span class="shortName">@<span v-html="userName" /></span> <span v-if="isYou">{{ $t('status.you')}}</span>
+        <span class="shortName"><span class="userName" v-html="userName" /></span><span class="you" v-if="isYou">{{ $t('status.you')}}</span>
         <!-- eslint-enable vue/no-v-html -->
       </button>
       <span
         v-if="userName !== userNameFull"
-        class="full"
+        class="full popover-default"
+        :class="[highlightType]"
       >
         <!-- eslint-disable vue/no-v-html -->
-        @<span v-html="userNameFull" />
+        <span class="userNameFull" v-html="userNameFull" />
         <!-- eslint-enable vue/no-v-html -->
       </span>
     </span>
