@@ -37,13 +37,15 @@
     }
   }
 
-  & .new {
+  .new:not(.-highlighted) {
+    .short {
+      background: none;
+    }
+  }
+  .new {
     &,
-    &.-striped,
-    &.-solid,
-    &.-side {
+    &.-highlighted {
       .short {
-        font-size: 90%;
         line-height: 1.5;
         vertical-align: middle;
 
@@ -58,6 +60,7 @@
       .you {
         padding-right: 0.25em;
       }
+
       .short {
         padding-left: 0.25em;
         padding-right: 0;
