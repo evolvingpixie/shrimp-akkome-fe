@@ -19,7 +19,7 @@
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <span class="shortName">@<span v-html="userName" /></span> <span v-if="isYou">(You)</span>
+        <span class="shortName">@<span v-html="userName" /></span> <span v-if="isYou">{{ $t('status.you')}}</span>
         <!-- eslint-enable vue/no-v-html -->
       </button>
       <span

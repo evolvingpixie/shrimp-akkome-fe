@@ -711,7 +711,8 @@
     "hide_content": "Hide content",
     "status_deleted": "This post was deleted",
     "nsfw": "NSFW",
-    "expand": "Expand"
+    "expand": "Expand",
+    "you": "(You)"
   },
   "user_card": {
     "approve": "Approve",
