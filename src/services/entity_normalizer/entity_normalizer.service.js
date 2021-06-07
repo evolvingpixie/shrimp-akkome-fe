@@ -448,6 +448,8 @@ export const parseChatMessage = (message) => {
   output.id = message.id
   output.created_at = new Date(message.created_at)
   output.chat_id = message.chat_id
+  output.emojis = message.emojis
+  output.content_raw = message.content
   if (message.content) {
     output.content = addEmojis(message.content, message.emojis)
   } else {

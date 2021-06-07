@@ -1,7 +1,7 @@
 import Attachment from '../attachment/attachment.vue'
 import Poll from '../poll/poll.vue'
 import Gallery from '../gallery/gallery.vue'
-import StatusText from 'src/components/status_text/status_text.vue'
+import StatusBody from 'src/components/status_body/status_body.vue'
 import LinkPreview from '../link-preview/link-preview.vue'
 import fileType from 'src/services/file_type/file_type.service'
 import { mapGetters, mapState } from 'vuex'
@@ -88,7 +88,7 @@ const StatusContent = {
     Poll,
     Gallery,
     LinkPreview,
-    StatusText
+    StatusBody
   },
   methods: {
     setMedia () {

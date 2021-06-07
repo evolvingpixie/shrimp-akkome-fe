@@ -1,6 +1,6 @@
 /**
  * This is a not-so-tiny purpose-built HTML parser/processor. It was made for use
- * with StatusText component for purpose of replacing tags with vue components
+ * with StatusBody component for purpose of replacing tags with vue components
  *
  * known issue: doesn't handle CDATA so nested CDATA might not work well
  *

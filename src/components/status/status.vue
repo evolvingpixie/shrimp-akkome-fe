@@ -89,7 +89,10 @@
               v-if="retweeterHtml"
               :to="retweeterProfileLink"
             >
-              <RichContent :html="retweeterHtml" :emoji="retweeterUser.emoji"/>
+              <RichContent
+                :html="retweeterHtml"
+                :emoji="retweeterUser.emoji"
+              />
             </router-link>
             <router-link
               v-else
@@ -146,7 +149,10 @@
                   class="status-username"
                   :title="status.user.name"
                 >
-                  <RichContent :html="status.user.name" :emoji="status.user.emoji" />
+                  <RichContent
+                    :html="status.user.name"
+                    :emoji="status.user.emoji"
+                  />
                 </h4>
                 <h4
                   v-else

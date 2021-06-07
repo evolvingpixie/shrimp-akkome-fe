@@ -94,7 +94,7 @@ const StatusContent = {
             return html
           }
         } catch (e) {
-          console.err('Failed to process status html', e)
+          console.error('Failed to process status html', e)
           return html
         }
       } else {
@@ -104,13 +104,13 @@ const StatusContent = {
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
-    ...mapGetters(['mergedConfig']),
+    ...mapGetters(['mergedConfig'])
   },
   components: {
     RichContent
   },
   mounted () {
-    this.status.attentions.forEach(attn => {
+    this.status.attentions && this.status.attentions.forEach(attn => {
       const { id } = attn
       this.$store.dispatch('fetchUserIfMissing', id)
     })
