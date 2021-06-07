@@ -8,9 +8,10 @@
     >
       <RichContent
         class="media-body summary"
-        @click.prevent="linkClicked"
         :html="status.summary_raw_html"
-        :emoji="status.emojis"/>
+        :emoji="status.emojis"
+        @click.prevent="linkClicked"
+      />
       <button
         v-if="longSubject && showingLongSubject"
         class="button-unstyled -link tall-subject-hider"
@@ -43,9 +44,10 @@
         v-if="!hideSubjectStatus"
         :class="{ 'single-line': singleLine }"
         class="status-content media-body"
-        @click.prevent="linkClicked"
         :html="postBodyHtml"
-        :emoji="status.emojis"/>
+        :emoji="status.emojis"
+        @click.prevent="linkClicked"
+      />
       <button
         v-if="hideSubjectStatus"
         class="button-unstyled -link cw-status-hider"
