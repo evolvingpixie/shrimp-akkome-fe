@@ -248,7 +248,8 @@ export const getters = {
   },
   findUserByUrl: state => query => {
     return state.users
-      .find(u => u.statusnet_profile_url.toLowerCase() === query.toLowerCase())
+      .find(u => u.statusnet_profile_url &&
+            u.statusnet_profile_url.toLowerCase() === query.toLowerCase())
   },
   relationship: state => id => {
     const rel = id && state.relationships[id]
