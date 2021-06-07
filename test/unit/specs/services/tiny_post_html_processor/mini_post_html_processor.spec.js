@@ -157,7 +157,7 @@ describe('MiniHtmlConverter', () => {
 
   describe('getAttrs', () => {
     it('extracts arguments from tag', () => {
-      const input = '<img src="boop" cool ebin="true">'
+      const input = '<img src="boop" cool ebin=\'true\'>'
       const output = { src: 'boop', cool: true, ebin: 'true' }
 
       expect(getAttrs(input)).to.eql(output)

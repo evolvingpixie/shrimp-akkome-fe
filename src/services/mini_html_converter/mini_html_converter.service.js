@@ -128,11 +128,11 @@ export const getAttrs = tag => {
     .replace(new RegExp('^' + getTagName(tag)), '')
     .replace(/\/?$/, '')
     .trim()
-  const attrs = Array.from(innertag.matchAll(/([a-z0-9-]+)(?:=(?:"([^"]+?)"|'([^']+?)'))?/gi))
+  const attrs = Array.from(innertag.matchAll(/([a-z0-9-]+)(?:=("[^"]+?"|'[^']+?'))?/gi))
     .map(([trash, key, value]) => [key, value])
     .map(([k, v]) => {
       if (!v) return [k, true]
-      return [k, v]
+      return [k, v.substring(1, v.length - 1)]
     })
   return Object.fromEntries(attrs)
 }
