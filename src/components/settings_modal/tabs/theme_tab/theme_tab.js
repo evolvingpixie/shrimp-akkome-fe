@@ -745,7 +745,7 @@ export default {
         console.warn(e)
       }
     },
-    selected() {
+    selected () {
       this.selectedTheme = Object.entries(this.availableStyles).find(([k, s]) => {
         if (Array.isArray(s)) {
           console.log(s[0] === this.selected, this.selected)
