@@ -46,8 +46,8 @@ export default Vue.component('RichContent', {
     const processItem = (item) => {
       // Handle text noes - just add emoji
       if (typeof item === 'string') {
-        const emptyText = item.trim()
-        if (!emptyText) {
+        const emptyText = item.trim() === ''
+        if (emptyText) {
           return encounteredText ? item : item.trim()
         }
         let unescapedItem = unescape(item)

@@ -3,7 +3,6 @@
   white-space: normal;
   display: inline-block;
   color: var(--link);
-  margin-right: 0.25em;
 
   & .new,
   & .original {
@@ -12,7 +11,7 @@
   }
 
   .original {
-    opacity: 0.5;
+    margin-right: 0.25em;
   }
 
   .full {
@@ -39,6 +38,8 @@
   }
 
   .new {
+    margin-right: 0.25em;
+
     &.-you {
       & .shortName,
       & .full {
