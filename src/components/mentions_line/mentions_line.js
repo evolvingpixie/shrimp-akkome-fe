@@ -6,7 +6,7 @@ const MentionsLine = {
   props: {
     attentions: {
       required: true,
-      type: Object
+      type: Array
     }
   },
   data: () => ({ expanded: false }),

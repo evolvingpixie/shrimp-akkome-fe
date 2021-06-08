@@ -6,11 +6,18 @@ const MentionLink = {
   name: 'MentionLink',
   props: {
     url: {
-      required: true,
       type: String
     },
     content: {
       required: true,
+      type: String
+    },
+    userId: {
+      required: false,
+      type: String
+    },
+    userScreenName: {
+      required: false,
       type: String
     },
     firstMention: {
@@ -21,29 +28,32 @@ const MentionLink = {
   },
   methods: {
     onClick () {
-      const link = generateProfileLink(this.user.id, this.user.screen_name)
+      const link = generateProfileLink(
+        this.userId || this.user.id,
+        this.userScreenName || this.user.screen_name
+      )
       this.$router.push(link)
     }
   },
   computed: {
     user () {
-      return this.$store.getters.findUserByUrl(this.url)
+      return this.url && this.$store.getters.findUserByUrl(this.url)
     },
     isYou () {
       // FIXME why user !== currentUser???
-      return this.user.screen_name === this.currentUser.screen_name
+      return this.user && this.user.screen_name === this.currentUser.screen_name
     },
     userName () {
-      return this.userNameFullUi.split('@')[0]
+      return this.user && this.userNameFullUi.split('@')[0]
     },
     userNameFull () {
-      return this.user.screen_name
+      return this.user && this.user.screen_name
     },
     userNameFullUi () {
-      return this.user.screen_name_ui
+      return this.user && this.user.screen_name_ui
     },
     highlight () {
-      return this.mergedConfig.highlight[this.user.screen_name]
+      return this.user && this.mergedConfig.highlight[this.user.screen_name]
     },
     highlightType () {
       return this.highlight && ('-' + this.highlight.type)

@@ -262,6 +262,8 @@
                   class="mention-link"
                   :content="replyToName"
                   :url="replyProfileLink"
+                  :userId="status.in_reply_to_user_id"
+                  :userScreenName="status.in_reply_to_screen_name"
                   :first-mention="false"
                 />
                 <span

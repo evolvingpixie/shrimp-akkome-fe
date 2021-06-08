@@ -139,7 +139,10 @@ const Status = {
       return this.generateUserProfileLink(this.status.user.id, this.status.user.screen_name)
     },
     replyProfileLink () {
-      return this.$store.getters.findUser(this.status.in_reply_to_user_id).statusnet_profile_url
+      if (this.isReply) {
+        const user = this.$store.getters.findUser(this.status.in_reply_to_user_id)
+        return user && user.statusnet_profile_url
+      }
     },
     retweet () { return !!this.statusoid.retweeted_status },
     retweeterUser () { return this.statusoid.user },
