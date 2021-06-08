@@ -38,11 +38,6 @@
     }
   }
 
-  .new:not(.-highlighted) {
-    .short {
-      background: none;
-    }
-  }
   .new {
     &,
     &.-highlighted {

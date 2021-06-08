@@ -15,8 +15,8 @@
       :class="[{ '-you': isYou, '-highlighted': highlight }, highlightType]"
     >
       <button
-        class="short"
-        :class="highlight ? 'button-default' : 'button-default' "
+        class="short button-default"
+        :class="{ '-sublime': !highlight }"
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
