@@ -40,6 +40,7 @@
           {{ $t("general.show_more") }}
         </button>
         <span
+          class="text-wrapper"
           v-if="!hideSubjectStatus && !(singleLine && status.summary_html)"
         >
           <MentionsLine
