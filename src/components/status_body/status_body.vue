@@ -46,7 +46,7 @@
             v-if="!mentionsOwnLine"
             :attentions="status.attentions"
             class="mentions-line"
-            />
+          />
           <RichContent
             :class="{ '-single-line': singleLine }"
             class="text media-body"

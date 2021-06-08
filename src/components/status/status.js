@@ -36,7 +36,7 @@ import {
   faEyeSlash,
   faEye,
   faThumbtack,
-  faAt,
+  faAt
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
