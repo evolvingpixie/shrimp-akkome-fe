@@ -40,6 +40,10 @@
   .new {
     margin-right: 0.25em;
 
+    &.-firstMention {
+      display: none;
+    }
+
     &.-you {
       & .shortName,
       & .full {
@@ -112,12 +116,6 @@
       & .userNameFull {
         box-shadow: 0 -5px 3px -4px inset var(--____highlight-solidColor);
       }
-    }
-  }
-
-  &:not(.-oldPlace) {
-    .new.-firstMention {
-      display: none;
     }
   }
 

@@ -310,13 +310,9 @@
                     {{ $t('status.mentions') }}
                   </span>
                 </span>
-                <MentionLink
-                  v-for="mention in mentions"
-                  class="mention-link"
-                  :key="mention.statusnet_profile_url"
-                  :content="mention.statusnet_profile_url"
-                  :url="mention.statusnet_profile_url"
-                  :first-mention="false"
+                <MentionsLine
+                  :attentions="mentions"
+                  class="mentions-line"
                 />
               </div>
             </div>

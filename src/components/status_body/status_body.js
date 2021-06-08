@@ -1,5 +1,6 @@
 import fileType from 'src/services/file_type/file_type.service'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
+import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
 import { processHtml } from 'src/services/tiny_post_html_processor/tiny_post_html_processor.service.js'
 import { extractTagFromUrl } from 'src/services/matcher/matcher.service.js'
 import { mapGetters } from 'vuex'
@@ -104,10 +105,17 @@ const StatusContent = {
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
+    mentionsOldPlace () {
+      return this.mergedConfig.mentionsOldPlace
+    },
+    mentions () {
+      return this.status.attentions
+    },
     ...mapGetters(['mergedConfig'])
   },
   components: {
-    RichContent
+    RichContent,
+    MentionsLine
   },
   mounted () {
     this.status.attentions && this.status.attentions.forEach(attn => {

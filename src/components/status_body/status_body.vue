@@ -39,15 +39,24 @@
         >
           {{ $t("general.show_more") }}
         </button>
-        <RichContent
+        <span
           v-if="!hideSubjectStatus && !(singleLine && status.summary_html)"
-          :class="{ '-single-line': singleLine }"
-          class="text media-body"
-          :html="postBodyHtml"
-          :emoji="status.emojis"
-          :handle-links="true"
-          @click.prevent="linkClicked"
-        />
+        >
+          <MentionsLine
+            v-if="mentionsOldPlace"
+            :attentions="status.attentions"
+            class="mentions-line"
+            />
+          <RichContent
+            :class="{ '-single-line': singleLine }"
+            class="text media-body"
+            :html="postBodyHtml"
+            :emoji="status.emojis"
+            :handle-links="true"
+            @click.prevent="linkClicked"
+          />
+        </span>
+
         <button
           v-if="hideSubjectStatus"
           class="button-unstyled -link cw-status-hider"

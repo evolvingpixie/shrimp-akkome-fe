@@ -13,6 +13,7 @@ import RichContent from 'src/components/rich_content/rich_content.jsx'
 import StatusPopover from '../status_popover/status_popover.vue'
 import UserListPopover from '../user_list_popover/user_list_popover.vue'
 import EmojiReactions from '../emoji_reactions/emoji_reactions.vue'
+import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
 import MentionLink from 'src/components/mention_link/mention_link.vue'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
@@ -74,7 +75,8 @@ const Status = {
     EmojiReactions,
     StatusContent,
     RichContent,
-    MentionLink
+    MentionLink,
+    MentionsLine
   },
   props: [
     'statusoid',
@@ -104,9 +106,6 @@ const Status = {
   computed: {
     muteWords () {
       return this.mergedConfig.muteWords
-    },
-    mentionsOldPlace () {
-      return this.mergedConfig.mentionsOldPlace
     },
     showReasonMutedThread () {
       return (
@@ -163,6 +162,9 @@ const Status = {
     },
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
+    },
+    mentionsOldPlace () {
+      return this.mergedConfig.mentionsOldPlace
     },
     mentions () {
       return this.statusoid.attentions.filter(attn => {

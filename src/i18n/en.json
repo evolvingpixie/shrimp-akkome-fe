@@ -715,7 +715,8 @@
     "status_deleted": "This post was deleted",
     "nsfw": "NSFW",
     "expand": "Expand",
-    "you": "(You)"
+    "you": "(You)",
+    "plus_more": "+{number} more"
   },
   "user_card": {
     "approve": "Approve",
