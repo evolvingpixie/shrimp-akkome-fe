@@ -23,6 +23,8 @@ export const defaultState = {
   hideInstanceWallpaper: false,
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: undefined, // instance default
+  hideMutedThreads: undefined, // instance default
+  hideWordFilteredPosts: undefined, // instance default
   collapseMessageWithSubject: undefined, // instance default
   padEmoji: true,
   hideAttachments: false,

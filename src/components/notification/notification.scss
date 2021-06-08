@@ -2,6 +2,12 @@
 
 // TODO Copypaste from Status, should unify it somehow
 .Notification {
+  border-bottom: 1px solid;
+  border-color: $fallback--border;
+  border-color: var(--border, $fallback--border);
+  word-wrap: break-word;
+  word-break: break-word;
+
   &.-muted {
     padding: 0.25em 0.6em;
     height: 1.2em;

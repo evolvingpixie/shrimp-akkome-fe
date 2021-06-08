@@ -1,6 +1,7 @@
 <template>
   <Status
     v-if="notification.type === 'mention'"
+    class="Notification"
     :compact="true"
     :statusoid="notification.status"
   />
