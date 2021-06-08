@@ -170,9 +170,9 @@ const Status = {
       return this.mergedConfig.mentionsOwnLine
     },
     mentions () {
-      return this.statusoid.attentions.filter(attn => {
+      return this.status.attentions.filter(attn => {
         return attn.screen_name !== this.replyToName &&
-          attn.screen_name !== this.statusoid.user.screen_name
+          attn.screen_name !== this.status.user.screen_name
       })
     },
     hasMentions () {
