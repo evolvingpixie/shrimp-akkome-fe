@@ -12,7 +12,7 @@
       v-if="user"
       class="new"
       :style="style"
-      :class="[{ '-you': isYou, '-highlighted': highlight }, highlightType]"
+      :class="classnames"
     >
       <button
         class="short button-default"

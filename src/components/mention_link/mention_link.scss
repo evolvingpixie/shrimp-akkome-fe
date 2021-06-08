@@ -39,10 +39,15 @@
   }
 
   .new {
+    &.-firstMention {
+      display: none;
+    }
+
     &,
     &.-highlighted {
       .short {
         line-height: 1.5;
+        font-size: inherit;
 
         &::before {
           display: inline-block;

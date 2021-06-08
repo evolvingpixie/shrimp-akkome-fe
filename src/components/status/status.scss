@@ -155,7 +155,8 @@ $status-margin: 0.75em;
     margin-right: 0.2em;
   }
 
-  .heading-reply-row {
+  & .heading-mentions-row,
+  & .heading-reply-row {
     position: relative;
     align-content: baseline;
     font-size: 12px;

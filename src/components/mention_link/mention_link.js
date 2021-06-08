@@ -14,8 +14,14 @@ const MentionLink = {
       type: String
     },
     origattrs: {
-      required: true,
-      type: Object
+      required: false,
+      type: Object,
+      default: {}
+    },
+    firstMention: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -60,6 +66,16 @@ const MentionLink = {
         } = highlightStyle(this.highlight)
         return rest
       }
+    },
+    classnames () {
+      return [
+        {
+          '-you': this.isYou,
+          '-highlighted': this.highlight,
+          '-firstMention': this.firstMention
+        },
+        this.highlightType
+      ]
     },
     ...mapGetters(['mergedConfig']),
     ...mapState({

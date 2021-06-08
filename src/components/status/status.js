@@ -13,6 +13,7 @@ import RichContent from 'src/components/rich_content/rich_content.jsx'
 import StatusPopover from '../status_popover/status_popover.vue'
 import UserListPopover from '../user_list_popover/user_list_popover.vue'
 import EmojiReactions from '../emoji_reactions/emoji_reactions.vue'
+import MentionLink from 'src/components/mention_link/mention_link.vue'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
 import { muteWordHits } from '../../services/status_parser/status_parser.js'
@@ -33,7 +34,8 @@ import {
   faStar,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faAt,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -50,7 +52,8 @@ library.add(
   faEllipsisH,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faAt
 )
 
 const Status = {
@@ -70,7 +73,8 @@ const Status = {
     UserListPopover,
     EmojiReactions,
     StatusContent,
-    RichContent
+    RichContent,
+    MentionLink
   },
   props: [
     'statusoid',
@@ -133,9 +137,7 @@ const Status = {
       return this.generateUserProfileLink(this.status.user.id, this.status.user.screen_name)
     },
     replyProfileLink () {
-      if (this.isReply) {
-        return this.generateUserProfileLink(this.status.in_reply_to_user_id, this.replyToName)
-      }
+      return this.$store.getters.findUser(this.status.in_reply_to_screen_name).statusnet_profile_url
     },
     retweet () { return !!this.statusoid.retweeted_status },
     retweeterUser () { return this.statusoid.user },
@@ -158,6 +160,14 @@ const Status = {
     },
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
+    },
+    mentions () {
+      return this.statusoid.attentions.filter(attn => {
+        return attn.screen_name !== this.replyToName
+      })
+    },
+    hasMentions () {
+      return this.mentions.length > 0
     },
     muted () {
       if (this.statusoid.user.id === this.currentUser.id) return false

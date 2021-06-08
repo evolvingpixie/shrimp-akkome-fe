@@ -33,21 +33,32 @@ export default Vue.component('RichContent', {
         class="img"
       />
     }
-    const renderMention = (attrs, children) => {
+    const renderMention = (attrs, children, encounteredText) => {
       return <MentionLink
         url={attrs.href}
         content={flattenDeep(children).join('')}
+        firstMention={!encounteredText}
         origattrs={attrs}
       />
     }
 
+    let encounteredText = false
     // Processor to use with mini_html_converter
     const processItem = (item) => {
       // Handle text noes - just add emoji
       if (typeof item === 'string') {
+        const emptyText = item.trim()
+        if (!emptyText) {
+          return encounteredText ? item : item.trim()
+        }
+        let unescapedItem = unescape(item)
+        if (!encounteredText) {
+          unescapedItem = unescapedItem.trimStart()
+          encounteredText = true
+        }
         if (item.includes(':')) {
           return processTextForEmoji(
-            unescape(item),
+            unescapedItem,
             this.emoji,
             ({ shortcode, url }) => {
               return <StillImage
@@ -59,7 +70,7 @@ export default Vue.component('RichContent', {
             }
           )
         } else {
-          return unescape(item)
+          return unescapedItem
         }
       }
       // Handle tag nodes
@@ -73,7 +84,7 @@ export default Vue.component('RichContent', {
             if (!this.handleLinks) break
             const attrs = getAttrs(opener)
             if (attrs['class'] && attrs['class'].includes('mention')) {
-              return renderMention(attrs, children)
+              return renderMention(attrs, children, encounteredText)
             }
         }
         // Render tag as is
