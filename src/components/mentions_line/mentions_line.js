@@ -18,7 +18,7 @@ const MentionsLine = {
       return this.mergedConfig.mentionsOldStyle
     },
     limit () {
-      return 1
+      return 6
     },
     mentions () {
       return this.attentions.slice(0, this.limit)
