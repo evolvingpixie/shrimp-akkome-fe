@@ -163,8 +163,8 @@ const Status = {
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
     },
-    mentionsOldPlace () {
-      return this.mergedConfig.mentionsOldPlace
+    mentionsOwnLine () {
+      return this.mergedConfig.mentionsOwnLine
     },
     mentions () {
       return this.statusoid.attentions.filter(attn => {

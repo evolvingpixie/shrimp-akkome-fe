@@ -52,10 +52,10 @@ const MentionLink = {
       if (this.highlight) return highlightClass(this.user)
     },
     oldPlace () {
-      return this.mergedConfig.mentionsOldPlace
+      return !this.mergedConfig.mentionsOwnLine
     },
     oldStyle () {
-      return this.mergedConfig.mentionsOldStyle
+      return !this.mergedConfig.mentionsNewStyle
     },
     style () {
       if (this.highlight) {

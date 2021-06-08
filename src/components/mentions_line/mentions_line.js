@@ -15,7 +15,7 @@ const MentionsLine = {
   },
   computed: {
     oldStyle () {
-      return this.mergedConfig.mentionsOldStyle
+      return !this.mergedConfig.mentionsNewStyle
     },
     limit () {
       return 6
@@ -39,7 +39,7 @@ const MentionsLine = {
           : '-newStyle'
       ]
     },
-    ...mapGetters(['mergedConfig']),
+    ...mapGetters(['mergedConfig'])
   },
   methods: {
     toggleShowMore () {

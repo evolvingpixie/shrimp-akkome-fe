@@ -105,8 +105,8 @@ const StatusContent = {
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
-    mentionsOldPlace () {
-      return this.mergedConfig.mentionsOldPlace
+    mentionsOwnLine () {
+      return this.mergedConfig.mentionsOwnLine
     },
     mentions () {
       return this.status.attentions

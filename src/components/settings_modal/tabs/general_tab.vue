@@ -37,13 +37,13 @@
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="mentionsOldPlace">
-            {{ $t('settings.mentions_old_place') }}
+          <BooleanSetting path="mentionsOwnLine">
+            {{ $t('settings.mentions_new_place') }}
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="mentionsOldStyle">
-            {{ $t('settings.mentions_old_style') }}
+          <BooleanSetting path="mentionsNewStyle">
+            {{ $t('settings.mentions_new_style') }}
           </BooleanSetting>
         </li>
         <li>

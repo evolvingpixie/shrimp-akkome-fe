@@ -43,7 +43,7 @@
           v-if="!hideSubjectStatus && !(singleLine && status.summary_html)"
         >
           <MentionsLine
-            v-if="mentionsOldPlace"
+            v-if="!mentionsOwnLine"
             :attentions="status.attentions"
             class="mentions-line"
             />

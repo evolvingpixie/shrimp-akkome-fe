@@ -1,8 +1,8 @@
 <template>
-<span
-  class="MentionLink"
-  :class="{ '-oldPlace': oldPlace }"
->
+  <span
+    class="MentionLink"
+    :class="{ '-oldPlace': oldPlace }"
+  >
     <!-- eslint-disable vue/no-v-html -->
     <a
       v-if="!user"
@@ -23,8 +23,14 @@
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <span class="shortName"><span class="userName" v-html="userName" /></span>
-        <span class="you" v-if="isYou">{{ $t('status.you') }}</span>
+        <span class="shortName"><span
+          class="userName"
+          v-html="userName"
+        /></span>
+        <span
+          v-if="isYou"
+          class="you"
+        >{{ $t('status.you') }}</span>
         <!-- eslint-enable vue/no-v-html -->
       </button>
       <span
@@ -33,7 +39,10 @@
         :class="[highlightType]"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <span class="userNameFull" v-html="userNameFull" />
+        <span
+          class="userNameFull"
+          v-html="userNameFull"
+        />
         <!-- eslint-enable vue/no-v-html -->
       </span>
     </span>

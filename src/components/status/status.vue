@@ -291,7 +291,10 @@
               </div>
             </div>
 
-            <div v-if="hasMentions && !mentionsOldPlace" class="heading-mentions-row">
+            <div
+              v-if="hasMentions && mentionsOwnLine"
+              class="heading-mentions-row"
+            >
               <div
                 class="mentions"
               >

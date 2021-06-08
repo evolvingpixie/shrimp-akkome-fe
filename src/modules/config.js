@@ -54,8 +54,8 @@ export const defaultState = {
   interfaceLanguage: browserLocale,
   hideScopeNotice: false,
   useStreamingApi: false,
-  mentionsOldPlace: false,
-  mentionsOldStyle: false,
+  mentionsOwnLine: false,
+  mentionsNewStyle: false,
   sidebarRight: undefined, // instance default
   scopeCopy: undefined, // instance default
   subjectLineBehavior: undefined, // instance default
