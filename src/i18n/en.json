@@ -259,6 +259,8 @@
     "security": "Security",
     "setting_changed": "Setting is different from default",
     "enter_current_password_to_confirm": "Enter your current password to confirm your identity",
+    "mentions_old_style": "Old style mentions",
+    "mentions_old_place": "Leave mentions inside post",
     "mfa": {
       "otp": "OTP",
       "setup_otp": "Setup OTP",

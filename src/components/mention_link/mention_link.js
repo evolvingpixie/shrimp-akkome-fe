@@ -13,11 +13,6 @@ const MentionLink = {
       required: true,
       type: String
     },
-    origattrs: {
-      required: false,
-      type: Object,
-      default: {}
-    },
     firstMention: {
       required: false,
       type: Boolean,
@@ -56,6 +51,12 @@ const MentionLink = {
     highlightClass () {
       if (this.highlight) return highlightClass(this.user)
     },
+    oldPlace () {
+      return this.mergedConfig.mentionsOldPlace
+    },
+    oldStyle () {
+      return this.mergedConfig.mentionsOldStyle
+    },
     style () {
       if (this.highlight) {
         const {
@@ -72,7 +73,8 @@ const MentionLink = {
         {
           '-you': this.isYou,
           '-highlighted': this.highlight,
-          '-firstMention': this.firstMention
+          '-firstMention': this.firstMention,
+          '-oldStyle': this.oldStyle
         },
         this.highlightType
       ]

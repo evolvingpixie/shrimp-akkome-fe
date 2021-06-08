@@ -105,6 +105,9 @@ const Status = {
     muteWords () {
       return this.mergedConfig.muteWords
     },
+    mentionsOldPlace () {
+      return this.mergedConfig.mentionsOldPlace
+    },
     showReasonMutedThread () {
       return (
         this.status.thread_muted ||
@@ -137,7 +140,7 @@ const Status = {
       return this.generateUserProfileLink(this.status.user.id, this.status.user.screen_name)
     },
     replyProfileLink () {
-      return this.$store.getters.findUser(this.status.in_reply_to_screen_name).statusnet_profile_url
+      return this.$store.getters.findUser(this.status.in_reply_to_user_id).statusnet_profile_url
     },
     retweet () { return !!this.statusoid.retweeted_status },
     retweeterUser () { return this.statusoid.user },
@@ -163,7 +166,8 @@ const Status = {
     },
     mentions () {
       return this.statusoid.attentions.filter(attn => {
-        return attn.screen_name !== this.replyToName
+        return attn.screen_name !== this.replyToName &&
+          attn.screen_name !== this.statusoid.user.screen_name
       })
     },
     hasMentions () {

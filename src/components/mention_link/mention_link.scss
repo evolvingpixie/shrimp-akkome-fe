@@ -3,6 +3,7 @@
   white-space: normal;
   display: inline-block;
   color: var(--link);
+  margin-right: 0.25em;
 
   & .new,
   & .original {
@@ -33,23 +34,25 @@
   & .short,
   & .full {
     &::before {
-      color: var(--faint);
       content: '@';
     }
   }
 
   .new {
-    &.-firstMention {
-      display: none;
+    &.-you {
+      & .shortName,
+      & .full {
+        font-weight: 600;
+      }
     }
 
-    &,
-    &.-highlighted {
+    &:not(.-oldStyle) {
       .short {
         line-height: 1.5;
         font-size: inherit;
 
         &::before {
+          color: var(--faint);
           display: inline-block;
           height: 50%;
           line-height: 1;
@@ -111,12 +114,9 @@
     }
   }
 
-  .new {
-    &.-you {
-      & .shortName,
-      & .full {
-        font-weight: 600;
-      }
+  &:not(.-oldPlace) {
+    .new.-firstMention {
+      display: none;
     }
   }
 

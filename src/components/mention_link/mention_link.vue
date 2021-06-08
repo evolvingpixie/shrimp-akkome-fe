@@ -1,5 +1,8 @@
 <template>
-  <span class="MentionLink">
+<span
+  class="MentionLink"
+  :class="{ '-oldPlace': oldPlace }"
+>
     <!-- eslint-disable vue/no-v-html -->
     <a
       v-if="!user"
@@ -15,8 +18,8 @@
       :class="classnames"
     >
       <button
-        class="short button-default"
-        :class="{ '-sublime': !highlight }"
+        class="short"
+        :class="[{ '-sublime': !highlight }, oldStyle ? 'button-unstyled' : 'button-default']"
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->

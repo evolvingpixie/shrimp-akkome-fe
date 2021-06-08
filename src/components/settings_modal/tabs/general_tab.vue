@@ -37,6 +37,16 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="mentionsOldPlace">
+            {{ $t('settings.mentions_old_place') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="mentionsOldStyle">
+            {{ $t('settings.mentions_old_style') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting path="streaming">
             {{ $t('settings.streaming') }}
           </BooleanSetting>

@@ -221,36 +221,6 @@
                 </button>
               </span>
             </div>
-
-            <div v-if="hasMentions" class="heading-mentions-row">
-              <div
-                class="mentions"
-              >
-                <span
-                  class="button-unstyled reply-to"
-                  :aria-label="$t('tool_tip.reply')"
-                  @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
-                >
-                  <FAIcon
-                    class="fa-scale-110 fa-old-padding"
-                    icon="at"
-                  />
-                  <span
-                    class="faint-link reply-to-text"
-                  >
-                    {{ $t('status.mentions') }}
-                  </span>
-                </span>
-                <MentionLink
-                  v-for="mention in mentions"
-                  class="mention-link"
-                  :key="mention.statusnet_profile_url"
-                  :content="mention.statusnet_profile_url"
-                  :url="mention.statusnet_profile_url"
-                  :first-mention="false"
-                />
-              </div>
-            </div>
             <div class="heading-reply-row">
               <div
                 v-if="isReply"
@@ -318,6 +288,36 @@
                     {{ reply.name }}
                   </button>
                 </StatusPopover>
+              </div>
+            </div>
+
+            <div v-if="hasMentions && !mentionsOldPlace" class="heading-mentions-row">
+              <div
+                class="mentions"
+              >
+                <span
+                  class="button-unstyled reply-to"
+                  :aria-label="$t('tool_tip.reply')"
+                  @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
+                >
+                  <FAIcon
+                    class="fa-scale-110 fa-old-padding"
+                    icon="at"
+                  />
+                  <span
+                    class="faint-link reply-to-text"
+                  >
+                    {{ $t('status.mentions') }}
+                  </span>
+                </span>
+                <MentionLink
+                  v-for="mention in mentions"
+                  class="mention-link"
+                  :key="mention.statusnet_profile_url"
+                  :content="mention.statusnet_profile_url"
+                  :url="mention.statusnet_profile_url"
+                  :first-mention="false"
+                />
               </div>
             </div>
           </div>

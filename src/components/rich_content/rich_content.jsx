@@ -38,7 +38,6 @@ export default Vue.component('RichContent', {
         url={attrs.href}
         content={flattenDeep(children).join('')}
         firstMention={!encounteredText}
-        origattrs={attrs}
       />
     }
 
