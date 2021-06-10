@@ -4,7 +4,7 @@ import { mapGetters } from 'vuex'
 const MentionsLine = {
   name: 'MentionsLine',
   props: {
-    attentions: {
+    mentions: {
       required: true,
       type: Array
     }
@@ -20,11 +20,11 @@ const MentionsLine = {
     limit () {
       return 6
     },
-    mentions () {
-      return this.attentions.slice(0, this.limit)
+    mentionsComputed () {
+      return this.mentions.slice(0, this.limit)
     },
     extraMentions () {
-      return this.attentions.slice(this.limit)
+      return this.mentions.slice(this.limit)
     },
     manyMentions () {
       return this.extraMentions.length > 0

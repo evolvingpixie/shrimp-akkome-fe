@@ -1,8 +1,6 @@
 import fileType from 'src/services/file_type/file_type.service'
-import RichContent from 'src/components/rich_content/rich_content.jsx'
+import RichContent, { getHeadTailLinks } from 'src/components/rich_content/rich_content.jsx'
 import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
-import { processHtml } from 'src/services/tiny_post_html_processor/tiny_post_html_processor.service.js'
-import { extractTagFromUrl } from 'src/services/matcher/matcher.service.js'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -28,7 +26,10 @@ const StatusContent = {
     'focused',
     'noHeading',
     'fullContent',
-    'singleLine'
+    'singleLine',
+    // if this was computed at upper level it can be passed here, otherwise
+    // it will be in this component
+    'headTailLinks'
   ],
   data () {
     return {
@@ -72,44 +73,18 @@ const StatusContent = {
     showingMore () {
       return (this.mightHideBecauseTall && this.showingTall) || (this.mightHideBecauseSubject && this.expandingSubject)
     },
-    postBodyHtml () {
-      const html = this.status.raw_html
-
-      if (this.mergedConfig.greentext) {
-        try {
-          if (html.includes('&gt;')) {
-            // This checks if post has '>' at the beginning, excluding mentions so that @mention >impying works
-            return processHtml(html, (string) => {
-              if (string.includes('&gt;') &&
-                  string
-                    .replace(/<[^>]+?>/gi, '') // remove all tags
-                    .replace(/@\w+/gi, '') // remove mentions (even failed ones)
-                    .trim()
-                    .startsWith('&gt;')) {
-                return `<span class='greentext'>${string}</span>`
-              } else {
-                return string
-              }
-            })
-          } else {
-            return html
-          }
-        } catch (e) {
-          console.error('Failed to process status html', e)
-          return html
-        }
-      } else {
-        return html
-      }
-    },
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
     mentionsOwnLine () {
       return this.mergedConfig.mentionsOwnLine
     },
+    headTailLinksComputed () {
+      if (this.headTailLinks) return this.headTailLinks
+      return getHeadTailLinks(this.status.raw_html)
+    },
     mentions () {
-      return this.status.attentions
+      return this.headTailLinksComputed.firstMentions
     },
     ...mapGetters(['mergedConfig'])
   },
@@ -124,21 +99,6 @@ const StatusContent = {
     })
   },
   methods: {
-    linkClicked (event) {
-      const target = event.target.closest('.status-content a')
-      if (target) {
-        if (target.rel.match(/(?:^|\s)tag(?:$|\s)/) || target.className.match(/hashtag/)) {
-          // Extract tag name from dataset or link url
-          const tag = target.dataset.tag || extractTagFromUrl(target.href)
-          if (tag) {
-            const link = this.generateTagLink(tag)
-            this.$router.push(link)
-            return
-          }
-        }
-        window.open(target.href, '_blank')
-      }
-    },
     toggleShowMore () {
       if (this.mightHideBecauseTall) {
         this.showingTall = !this.showingTall

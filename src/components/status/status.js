@@ -19,6 +19,7 @@ import generateProfileLink from 'src/services/user_profile_link_generator/user_p
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
 import { muteWordHits } from '../../services/status_parser/status_parser.js'
 import { unescape, uniqBy } from 'lodash'
+import { getHeadTailLinks } from 'src/components/rich_content/rich_content.jsx'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -166,17 +167,33 @@ const Status = {
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
     },
-    mentionsOwnLine () {
-      return this.mergedConfig.mentionsOwnLine
+    headTailLinks () {
+      return getHeadTailLinks(this.status.raw_html)
     },
     mentions () {
       return this.status.attentions.filter(attn => {
         return attn.screen_name !== this.replyToName &&
           attn.screen_name !== this.status.user.screen_name
+      }).map(attn => ({
+        url: attn.statusnet_profile_url,
+        content: attn.screen_name,
+        userId: attn.id
+      }))
+    },
+    alsoMentions () {
+      const set = new Set(this.headTailLinks.writtenMentions.map(m => m.url))
+      return this.headTailLinks.writtenMentions.filter(mention => {
+        return !set.has(mention.url)
       })
     },
-    hasMentions () {
-      return this.mentions.length > 0
+    mentionsLine () {
+      return this.mentionsOwnLine ? this.mentions : this.alsoMentions
+    },
+    mentionsOwnLine () {
+      return this.mergedConfig.mentionsOwnLine
+    },
+    hasMentionsLine () {
+      return this.mentionsLine.length > 0
     },
     muted () {
       if (this.statusoid.user.id === this.currentUser.id) return false

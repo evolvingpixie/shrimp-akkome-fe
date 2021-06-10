@@ -294,7 +294,7 @@
             </div>
 
             <div
-              v-if="hasMentions && mentionsOwnLine"
+              v-if="hasMentionsLine"
               class="heading-mentions-row"
             >
               <div
@@ -316,7 +316,7 @@
                   </span>
                 </span>
                 <MentionsLine
-                  :attentions="mentions"
+                  :mentions="mentionsLine"
                   class="mentions-line"
                 />
               </div>

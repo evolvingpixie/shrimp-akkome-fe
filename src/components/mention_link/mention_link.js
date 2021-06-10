@@ -6,6 +6,7 @@ const MentionLink = {
   name: 'MentionLink',
   props: {
     url: {
+      required: true,
       type: String
     },
     content: {

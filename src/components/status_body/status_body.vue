@@ -10,7 +10,6 @@
           class="media-body summary"
           :html="status.summary_raw_html"
           :emoji="status.emojis"
-          @click.prevent="linkClicked"
         />
         <button
           v-if="longSubject && showingLongSubject"
@@ -43,19 +42,22 @@
           class="text-wrapper"
           v-if="!hideSubjectStatus && !(singleLine && status.summary_html)"
         >
-          <MentionsLine
-            v-if="!mentionsOwnLine"
-            :attentions="status.attentions"
-            class="mentions-line"
-          />
           <RichContent
             :class="{ '-single-line': singleLine }"
             class="text media-body"
-            :html="postBodyHtml"
+            :html="status.raw_html"
             :emoji="status.emojis"
             :handle-links="true"
-            @click.prevent="linkClicked"
-          />
+            :greentext="mergedConfig.greentext"
+          >
+            <template v-slot:prefix>
+              <MentionsLine
+                v-if="!mentionsOwnLine"
+                :mentions="mentions"
+                class="mentions-line"
+              />
+            </template>
+          </RichContent>
         </span>
 
         <button

@@ -1,11 +1,11 @@
 <template>
   <span class="MentionsLine">
     <MentionLink
-      v-for="mention in mentions"
-      :key="mention.statusnet_profile_url"
+      v-for="mention in mentionsComputed"
+      :key="mention.index"
       class="mention-link"
-      :content="mention.statusnet_profile_url"
-      :url="mention.statusnet_profile_url"
+      :content="mention.content"
+      :url="mention.url"
       :first-mention="false"
     /><span
       v-if="manyMentions"
@@ -17,10 +17,10 @@
       >
         <MentionLink
           v-for="mention in extraMentions"
-          :key="mention.statusnet_profile_url"
+          :key="mention.index"
           class="mention-link"
-          :content="mention.statusnet_profile_url"
-          :url="mention.statusnet_profile_url"
+          :content="mention.content"
+          :url="mention.url"
           :first-mention="false"
         />
       </span><button
