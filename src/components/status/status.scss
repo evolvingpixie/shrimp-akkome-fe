@@ -1,4 +1,3 @@
-
 @import '../../_variables.scss';
 
 $status-margin: 0.75em;
@@ -151,6 +150,11 @@ $status-margin: 0.75em;
     }
   }
 
+  .glued-label {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+
   .timeago {
     margin-right: 0.2em;
   }
@@ -161,8 +165,6 @@ $status-margin: 0.75em;
     font-size: 12px;
     line-height: 160%;
     max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
     align-items: stretch;
   }
 
@@ -206,6 +208,7 @@ $status-margin: 0.75em;
   & .reply-to {
     white-space: nowrap;
     position: relative;
+    padding-right: 0.25em;
   }
 
   & .reply-to-text {
@@ -215,7 +218,7 @@ $status-margin: 0.75em;
   }
 
   .mentions-line {
-    display: inline-block;
+    display: inline;
   }
 
   .replies {
