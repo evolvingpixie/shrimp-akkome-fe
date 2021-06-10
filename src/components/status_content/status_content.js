@@ -31,7 +31,9 @@ const StatusContent = {
     'focused',
     'noHeading',
     'fullContent',
-    'singleLine'
+    'singleLine',
+    'hideFirstMentions',
+    'headTailLinks'
   ],
   computed: {
     hideAttachments () {

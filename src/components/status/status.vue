@@ -267,8 +267,8 @@
                   :first-mention="false"
                 />
                 <span
-                  v-if="isReply && hasMentions"
-                  class="faint replies-separator"
+                  v-if="isReply && hasMentionsLine"
+                  class="faint mentions-separator"
                 >
                   -
                 </span>
@@ -276,7 +276,7 @@
                   v-if="hasMentionsLine"
                 >
                   <span
-                    class="button-unstyled reply-to"
+                    class="button-unstyled mentions"
                     :aria-label="$t('tool_tip.reply')"
                     @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
                   >
@@ -285,7 +285,7 @@
                       icon="at"
                       />
                     <span
-                      class="faint-link reply-to-text"
+                      class="faint-link mentions-text"
                       >
                       {{ $t('status.mentions') }}
                     </span>
@@ -304,6 +304,8 @@
             :no-heading="noHeading"
             :highlight="highlight"
             :focused="isFocused"
+            :hide-first-mentions="mentionsOwnLine"
+            :head-tail-links="headTailLinks"
             @mediaplay="addMediaPlaying($event)"
             @mediapause="removeMediaPlaying($event)"
           />

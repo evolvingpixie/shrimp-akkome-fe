@@ -142,7 +142,8 @@ const Status = {
     replyProfileLink () {
       if (this.isReply) {
         const user = this.$store.getters.findUser(this.status.in_reply_to_user_id)
-        return user && user.statusnet_profile_url
+        // FIXME Why user not found sometimes???
+        return user ? user.statusnet_profile_url : 'NOT_FOUND'
       }
     },
     retweet () { return !!this.statusoid.retweeted_status },

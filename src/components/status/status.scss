@@ -217,21 +217,23 @@ $status-margin: 0.75em;
     }
   }
 
-  .reply-to {
+  & .mentions,
+  & .reply-to {
     position: relative;
   }
 
-  .reply-to-text {
+  & .reply-to-text {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .replies-separator {
+  .mentions-separator {
     margin-left: 0.4em;
   }
 
   .replies {
+    margin-top: 0.25em;
     line-height: 18px;
     font-size: 12px;
     display: flex;

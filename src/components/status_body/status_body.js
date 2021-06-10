@@ -29,14 +29,18 @@ const StatusContent = {
     'singleLine',
     // if this was computed at upper level it can be passed here, otherwise
     // it will be in this component
-    'headTailLinks'
+    'headTailLinks',
+    'hideFirstMentions'
   ],
   data () {
     return {
       showingTall: this.fullContent || (this.inConversation && this.focused),
       showingLongSubject: false,
       // not as computed because it sets the initial state which will be changed later
-      expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject
+      expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject,
+      headTailLinksComputed: this.headTailLinks
+        ? this.headTailLinks
+        : getHeadTailLinks(this.status.raw_html)
     }
   },
   computed: {
@@ -75,13 +79,6 @@ const StatusContent = {
     },
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
-    },
-    mentionsOwnLine () {
-      return this.mergedConfig.mentionsOwnLine
-    },
-    headTailLinksComputed () {
-      if (this.headTailLinks) return this.headTailLinks
-      return getHeadTailLinks(this.status.raw_html)
     },
     mentions () {
       return this.headTailLinksComputed.firstMentions

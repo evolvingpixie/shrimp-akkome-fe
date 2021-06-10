@@ -52,7 +52,7 @@
           >
             <template v-slot:prefix>
               <MentionsLine
-                v-if="!mentionsOwnLine"
+                v-if="!hideFirstMentions"
                 :mentions="mentions"
                 class="mentions-line"
               />
