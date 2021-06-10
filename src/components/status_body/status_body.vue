@@ -54,7 +54,6 @@
               <MentionsLine
                 v-if="!hideFirstMentions"
                 :mentions="mentions"
-                class="mentions-line"
               />
             </template>
           </RichContent>

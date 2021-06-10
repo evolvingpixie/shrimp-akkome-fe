@@ -155,30 +155,15 @@ $status-margin: 0.75em;
     margin-right: 0.2em;
   }
 
-  & .heading-mentions-row,
   & .heading-reply-row {
     position: relative;
     align-content: baseline;
     font-size: 12px;
-    line-height: 18px;
+    line-height: 160%;
     max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-  }
-
-  .reply-to-and-accountname {
-    display: flex;
-    height: 18px;
-    margin-right: 0.5em;
-    max-width: 100%;
-
-    .reply-to-link {
-      white-space: nowrap;
-      word-break: break-word;
-      text-overflow: ellipsis;
-      overflow-x: hidden;
-    }
   }
 
   & .reply-to-popover,
@@ -219,6 +204,7 @@ $status-margin: 0.75em;
 
   & .mentions,
   & .reply-to {
+    white-space: nowrap;
     position: relative;
   }
 
@@ -228,8 +214,8 @@ $status-margin: 0.75em;
     white-space: nowrap;
   }
 
-  .mentions-separator {
-    margin-left: 0.4em;
+  .mentions-line {
+    display: inline-block;
   }
 
   .replies {

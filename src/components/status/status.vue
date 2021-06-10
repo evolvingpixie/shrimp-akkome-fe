@@ -221,81 +221,71 @@
                 </button>
               </span>
             </div>
-            <div class="heading-reply-row">
-              <div
-                v-if="isReply"
-                class="reply-to-and-accountname"
+            <div
+              class="heading-reply-row"
+              v-if="isReply || hasMentionsLine"
               >
-                <StatusPopover
-                  v-if="!isPreview"
-                  :status-id="status.parent_visible && status.in_reply_to_status_id"
-                  class="reply-to-popover"
-                  style="min-width: 0"
-                  :class="{ '-strikethrough': !status.parent_visible }"
+              <StatusPopover
+                v-if="isReply && !isPreview"
+                :status-id="status.parent_visible && status.in_reply_to_status_id"
+                class="reply-to-popover"
+                style="min-width: 0"
+                :class="{ '-strikethrough': !status.parent_visible }"
+              >
+                <button
+                  class="button-unstyled reply-to"
+                  :aria-label="$t('tool_tip.reply')"
+                  @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
                 >
-                  <button
-                    class="button-unstyled reply-to"
-                    :aria-label="$t('tool_tip.reply')"
-                    @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
+                  <FAIcon
+                    class="fa-scale-110 fa-old-padding"
+                    icon="reply"
+                    flip="horizontal"
+                  />
+                  <span
+                    class="faint-link reply-to-text"
                   >
-                    <FAIcon
-                      class="fa-scale-110 fa-old-padding"
-                      icon="reply"
-                      flip="horizontal"
-                    />
-                    <span
-                      class="faint-link reply-to-text"
-                    >
-                      {{ $t('status.reply_to') }}
-                    </span>
-                  </button>
-                </StatusPopover>
+                    {{ $t('status.reply_to') }}
+                  </span>
+                </button>
+              </StatusPopover>
 
-                <span
-                  v-else
-                  class="reply-to-no-popover"
-                >
-                  <span class="reply-to-text">{{ $t('status.reply_to') }}</span>
-                </span>
+              <span
+                v-else-if="isReply"
+                class="reply-to-no-popover"
+              >
+                <span class="reply-to-text">{{ $t('status.reply_to') }}</span>
+              </span>
 
-                <MentionLink
-                  class="mention-link"
-                  :content="replyToName"
-                  :url="replyProfileLink"
-                  :user-id="status.in_reply_to_user_id"
-                  :user-screen-name="status.in_reply_to_screen_name"
-                  :first-mention="false"
+              <MentionLink
+                :content="replyToName"
+                :url="replyProfileLink"
+                :user-id="status.in_reply_to_user_id"
+                :user-screen-name="status.in_reply_to_screen_name"
+                :first-mention="false"
+              />
+
+              <span
+                v-if="hasMentionsLine"
+                class="mentions"
+                :aria-label="$t('tool_tip.mentions')"
+                @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
+              >
+                <FAIcon
+                  class="fa-scale-110 fa-old-padding"
+                  icon="at"
                 />
                 <span
-                  v-if="isReply && hasMentionsLine"
-                  class="faint mentions-separator"
+                  class="faint-link mentions-text"
                 >
-                  -
+                  {{ $t('status.mentions') }}
                 </span>
-                <span
-                  v-if="hasMentionsLine"
-                >
-                  <span
-                    class="button-unstyled mentions"
-                    :aria-label="$t('tool_tip.reply')"
-                    @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
-                  >
-                    <FAIcon
-                      class="fa-scale-110 fa-old-padding"
-                      icon="at"
-                      />
-                    <span
-                      class="faint-link mentions-text"
-                      >
-                      {{ $t('status.mentions') }}
-                    </span>
-                  </span>
-                  <MentionsLine
-                    :mentions="mentionsLine"
-                    class="mentions-line"
-                  />
-                </span>
-              </div>
+              </span>
+              <MentionsLine
+                v-if="hasMentionsLine"
+                :mentions="mentionsLine"
+                class="mentions-line"
+              />
             </div>
           </div>
 
