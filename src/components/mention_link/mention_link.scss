@@ -49,6 +49,17 @@
       }
     }
 
+    .at {
+      color: var(--link);
+      opacity: 0.8;
+      display: inline-block;
+      height: 50%;
+      line-height: 1;
+      padding: 0 0.1em;
+      vertical-align: -25%;
+      margin: 0;
+    }
+
     &:not(.-oldStyle) {
       .short {
         padding-left: 0.25em;
@@ -61,9 +72,8 @@
         .at {
           color: var(--faint);
           opacity: 0.8;
-          display: inline-block;
-          height: 50%;
-          line-height: 1;
+          padding-right: 0.25em;
+          vertical-align: -20%;
         }
       }
 
