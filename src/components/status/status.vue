@@ -267,58 +267,34 @@
                   :first-mention="false"
                 />
                 <span
-                  v-if="replies && replies.length"
+                  v-if="isReply && hasMentions"
                   class="faint replies-separator"
                 >
                   -
                 </span>
-              </div>
-              <div
-                v-if="inConversation && !isPreview && replies && replies.length"
-                class="replies"
-              >
-                <span class="faint">{{ $t('status.replies_list') }}</span>
-                <StatusPopover
-                  v-for="reply in replies"
-                  :key="reply.id"
-                  :status-id="reply.id"
-                >
-                  <button
-                    class="button-unstyled -link reply-link"
-                    @click.prevent="gotoOriginal(reply.id)"
-                  >
-                    {{ reply.name }}
-                  </button>
-                </StatusPopover>
-              </div>
-            </div>
-
-            <div
-              v-if="hasMentionsLine"
-              class="heading-mentions-row"
-            >
-              <div
-                class="mentions"
-              >
                 <span
-                  class="button-unstyled reply-to"
-                  :aria-label="$t('tool_tip.reply')"
-                  @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
+                  v-if="hasMentionsLine"
                 >
-                  <FAIcon
-                    class="fa-scale-110 fa-old-padding"
-                    icon="at"
-                  />
                   <span
-                    class="faint-link reply-to-text"
+                    class="button-unstyled reply-to"
+                    :aria-label="$t('tool_tip.reply')"
+                    @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
                   >
-                    {{ $t('status.mentions') }}
+                    <FAIcon
+                      class="fa-scale-110 fa-old-padding"
+                      icon="at"
+                      />
+                    <span
+                      class="faint-link reply-to-text"
+                      >
+                      {{ $t('status.mentions') }}
+                    </span>
                   </span>
+                  <MentionsLine
+                    :mentions="mentionsLine"
+                    class="mentions-line"
+                  />
                 </span>
-                <MentionsLine
-                  :mentions="mentionsLine"
-                  class="mentions-line"
-                />
               </div>
             </div>
           </div>
@@ -331,6 +307,25 @@
             @mediaplay="addMediaPlaying($event)"
             @mediapause="removeMediaPlaying($event)"
           />
+
+          <div
+            v-if="inConversation && !isPreview && replies && replies.length"
+            class="replies"
+            >
+            <span class="faint">{{ $t('status.replies_list') }}</span>
+            <StatusPopover
+              v-for="reply in replies"
+              :key="reply.id"
+              :status-id="reply.id"
+              >
+              <button
+                class="button-unstyled -link reply-link"
+                @click.prevent="gotoOriginal(reply.id)"
+                >
+                {{ reply.name }}
+              </button>
+            </StatusPopover>
+          </div>
 
           <transition name="fade">
             <div
