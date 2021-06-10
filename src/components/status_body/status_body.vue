@@ -49,11 +49,19 @@
             :emoji="status.emojis"
             :handle-links="true"
             :greentext="mergedConfig.greentext"
+            :hide-first-mentions="hideFirstMentions"
+            :hide-last-mentions="hideLastMentions"
           >
             <template v-slot:prefix>
               <MentionsLine
-                v-if="!hideFirstMentions"
-                :mentions="mentions"
+                v-if="!hideFirstMentions && mentionsFirst"
+                :mentions="mentionsFirst"
+              />
+            </template>
+            <template v-slot:suffix>
+              <MentionsLine
+                v-if="!hideFirstMentions && mentionsLast"
+                :mentions="mentionsLast"
               />
             </template>
           </RichContent>

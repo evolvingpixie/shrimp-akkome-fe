@@ -1,7 +1,6 @@
 <template>
   <span
     class="MentionLink"
-    :class="{ '-oldPlace': oldPlace }"
   >
     <!-- eslint-disable vue/no-v-html -->
     <a

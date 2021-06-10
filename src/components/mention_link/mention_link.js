@@ -70,9 +70,6 @@ const MentionLink = {
     highlightClass () {
       if (this.highlight) return highlightClass(this.user)
     },
-    oldPlace () {
-      return !this.mergedConfig.mentionsOwnLine
-    },
     oldStyle () {
       return !this.mergedConfig.mentionsNewStyle
     },

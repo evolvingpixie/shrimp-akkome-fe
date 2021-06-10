@@ -196,6 +196,9 @@ const Status = {
     hasMentionsLine () {
       return this.mentionsLine.length > 0
     },
+    hideLastMentions () {
+      return this.headTailLinks.firstMentions.length === 0
+    },
     muted () {
       if (this.statusoid.user.id === this.currentUser.id) return false
       const { status } = this

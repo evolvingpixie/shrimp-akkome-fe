@@ -30,7 +30,8 @@ const StatusContent = {
     // if this was computed at upper level it can be passed here, otherwise
     // it will be in this component
     'headTailLinks',
-    'hideFirstMentions'
+    'hideFirstMentions',
+    'hideLastMentions'
   ],
   data () {
     return {
@@ -80,8 +81,11 @@ const StatusContent = {
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
-    mentions () {
+    mentionsFirst () {
       return this.headTailLinksComputed.firstMentions
+    },
+    mentionsLast () {
+      return this.headTailLinksComputed.lastMentions
     },
     ...mapGetters(['mergedConfig'])
   },

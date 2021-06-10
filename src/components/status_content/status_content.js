@@ -33,6 +33,7 @@ const StatusContent = {
     'fullContent',
     'singleLine',
     'hideFirstMentions',
+    'hideLastMentions',
     'headTailLinks'
   ],
   computed: {

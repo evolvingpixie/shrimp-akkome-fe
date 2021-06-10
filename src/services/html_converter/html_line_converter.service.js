@@ -1,18 +1,26 @@
 /**
- * This is a tiny purpose-built HTML parser/processor. This basically detects any type of visual newline and
- * allows it to be processed, useful for greentexting, mostly
+ * This is a tiny purpose-built HTML parser/processor. This basically detects
+ * any type of visual newline and converts entire HTML into a array structure.
+ *
+ * Text nodes are represented as object with single property - text - containing
+ * the visual line. Intended usage is to process the array with .map() in which
+ * map function returns a string and resulting array can be converted back to html
+ * with a .join('').
+ *
+ * Generally this isn't very useful except for when you really need to either
+ * modify visual lines (greentext i.e. simple quoting) or do something with
+ * first/last line.
  *
  * known issue: doesn't handle CDATA so nested CDATA might not work well
  *
  * @param {Object} input - input data
- * @param {(string) => string} processor - function that will be called on every line
- * @return {string} processed html
+ * @return {(string|{ text: string })[]} processed html in form of a list.
  */
-export const processHtml = (html, processor) => {
+export const convertHtmlToLines = (html) => {
   const handledTags = new Set(['p', 'br', 'div'])
   const openCloseTags = new Set(['p', 'div'])
 
-  let buffer = '' // Current output buffer
+  let buffer = [] // Current output buffer
   const level = [] // How deep we are in tags and which tags were there
   let textBuffer = '' // Current line content
   let tagBuffer = null // Current tag buffer, if null = we are not currently reading a tag
@@ -25,27 +33,27 @@ export const processHtml = (html, processor) => {
 
   const flush = () => { // Processes current line buffer, adds it to output buffer and clears line buffer
     if (textBuffer.trim().length > 0) {
-      buffer += processor(textBuffer)
+      buffer.push({ text: textBuffer })
     } else {
-      buffer += textBuffer
+      buffer.push(textBuffer)
     }
     textBuffer = ''
   }
 
   const handleBr = (tag) => { // handles single newlines/linebreaks/selfclosing
     flush()
-    buffer += tag
+    buffer.push(tag)
   }
 
   const handleOpen = (tag) => { // handles opening tags
     flush()
-    buffer += tag
+    buffer.push(tag)
     level.push(tag)
   }
 
   const handleClose = (tag) => { // handles closing tags
     flush()
-    buffer += tag
+    buffer.push(tag)
     if (level[level.length - 1] === tag) {
       level.pop()
     }

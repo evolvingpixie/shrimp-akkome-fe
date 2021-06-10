@@ -1,15 +1,23 @@
 /**
- * This is a not-so-tiny purpose-built HTML parser/processor. It was made for use
- * with StatusBody component for purpose of replacing tags with vue components
+ * This is a not-so-tiny purpose-built HTML parser/processor. This parses html
+ * and converts it into a tree structure representing tag openers/closers and
+ * children.
  *
- * known issue: doesn't handle CDATA so nested CDATA might not work well
+ * Structure follows this pattern: [opener, [...children], closer] except root
+ * node which is just [...children]. Text nodes can only be within children and
+ * are represented as strings.
+ *
+ * Intended use is to convert HTML structure and then recursively iterate over it
+ * most likely using a map. Very useful for dynamically rendering html replacing
+ * tags with JSX elements in a render function.
+ *
+ * known issue: doesn't handle CDATA so CDATA might not work well
+ * known issue: doesn't handle HTML comments
  *
  * @param {Object} input - input data
- * @param {(string) => string} lineProcessor - function that will be called on every line
- * @param {{ key[string]: (string) => string}} tagProcessor - map of processors for tags
  * @return {string} processed html
  */
-export const convertHtml = (html) => {
+export const convertHtmlToTree = (html) => {
   // Elements that are implicitly self-closing
   // https://developer.mozilla.org/en-US/docs/Glossary/empty_element
   const emptyElements = new Set([

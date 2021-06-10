@@ -5,7 +5,8 @@
       :status="status"
       :single-line="singleLine"
       :hide-first-mentions="hideFirstMentions"
-      :headTailLinks="headTailLinks"
+      :hide-last-mentions="hideLastMentions"
+      :head-tail-links="headTailLinks"
     >
       <div v-if="status.poll && status.poll.options">
         <poll :base-poll="status.poll" />
