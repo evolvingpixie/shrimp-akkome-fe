@@ -1,6 +1,14 @@
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { mapGetters, mapState } from 'vuex'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faAt
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faAt
+)
 
 const MentionLink = {
   name: 'MentionLink',

@@ -33,10 +33,6 @@
   & .short,
   & .full {
     white-space: nowrap;
-
-    &::before {
-      content: '@';
-    }
   }
 
   .new {
@@ -55,15 +51,19 @@
 
     &:not(.-oldStyle) {
       .short {
+        padding-left: 0.25em;
+        padding-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
         line-height: 1.5;
         font-size: inherit;
 
-        &::before {
+        .at {
           color: var(--faint);
+          opacity: 0.8;
           display: inline-block;
           height: 50%;
           line-height: 1;
-          vertical-align: 6%;
         }
       }
 
@@ -71,18 +71,11 @@
         padding-right: 0.25em;
       }
 
-      .short {
-        padding-left: 0.25em;
-        padding-right: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-
       .userName {
         display: inline-block;
         color: var(--link);
         line-height: inherit;
-        margin-left: 0.125em;
+        margin-left: 0;
         padding-left: 0.125em;
         padding-right: 0.25em;
         padding-top: 0;

@@ -22,6 +22,11 @@
         :class="[{ '-sublime': !highlight }, oldStyle ? 'button-unstyled' : 'button-default']"
         @click.prevent="onClick"
       >
+        <FAIcon
+          size="s"
+          icon="at"
+          class="at"
+        />
         <!-- eslint-disable vue/no-v-html -->
         <span class="shortName"><span
           class="userName"
