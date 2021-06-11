@@ -320,7 +320,3 @@ export const preProcessPerLine = (html, greentext) => {
 
   return { newHtml, lastMentions }
 }
-
-export const getHeadTailLinks = (html) => {
-  // Exported object properties
-}

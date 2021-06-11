@@ -52,9 +52,7 @@
             :hide-mentions="hideMentions"
             :greentext="mergedConfig.greentext"
             @parseReady="setHeadTailLinks"
-            ref="text"
-          >
-          </RichContent>
+          />
           <MentionsLine
             v-if="!hideMentions && lastMentions.length > 0 && firstMentions.length === 0"
             :mentions="lastMentions"

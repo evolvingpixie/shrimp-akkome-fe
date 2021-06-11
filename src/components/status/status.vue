@@ -222,15 +222,15 @@
               </span>
             </div>
             <div
-              class="heading-reply-row"
               v-if="isReply || hasMentionsLine"
-              >
+              class="heading-reply-row"
+            >
               <span
-                class="glued-label"
                 v-if="isReply"
+                class="glued-label"
               >
                 <StatusPopover
-                   v-if="!isPreview"
+                  v-if="!isPreview"
                   :status-id="status.parent_visible && status.in_reply_to_status_id"
                   class="reply-to-popover"
                   style="min-width: 0"
@@ -301,6 +301,7 @@
           </div>
 
           <StatusContent
+            ref="content"
             :status="status"
             :no-heading="noHeading"
             :highlight="highlight"
@@ -309,23 +310,22 @@
             @mediaplay="addMediaPlaying($event)"
             @mediapause="removeMediaPlaying($event)"
             @parseReady="setHeadTailLinks"
-            ref="content"
           />
 
           <div
             v-if="inConversation && !isPreview && replies && replies.length"
             class="replies"
-            >
+          >
             <span class="faint">{{ $t('status.replies_list') }}</span>
             <StatusPopover
               v-for="reply in replies"
               :key="reply.id"
               :status-id="reply.id"
-              >
+            >
               <button
                 class="button-unstyled -link reply-link"
                 @click.prevent="gotoOriginal(reply.id)"
-                >
+              >
                 {{ reply.name }}
               </button>
             </StatusPopover>
