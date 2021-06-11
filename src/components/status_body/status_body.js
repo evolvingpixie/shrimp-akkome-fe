@@ -3,6 +3,7 @@ import RichContent, { getHeadTailLinks } from 'src/components/rich_content/rich_
 import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { set } from 'vue'
 import {
   faFile,
   faMusic,
@@ -27,11 +28,7 @@ const StatusContent = {
     'noHeading',
     'fullContent',
     'singleLine',
-    // if this was computed at upper level it can be passed here, otherwise
-    // it will be in this component
-    'headTailLinks',
-    'hideFirstMentions',
-    'hideLastMentions'
+    'hideMentions'
   ],
   data () {
     return {
@@ -39,9 +36,9 @@ const StatusContent = {
       showingLongSubject: false,
       // not as computed because it sets the initial state which will be changed later
       expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject,
-      headTailLinksComputed: this.headTailLinks
-        ? this.headTailLinks
-        : getHeadTailLinks(this.status.raw_html)
+      headTailLinks: null,
+      firstMentions: [],
+      lastMentions: []
     }
   },
   computed: {
@@ -81,12 +78,6 @@ const StatusContent = {
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
-    mentionsFirst () {
-      return this.headTailLinksComputed.firstMentions
-    },
-    mentionsLast () {
-      return this.headTailLinksComputed.lastMentions
-    },
     ...mapGetters(['mergedConfig'])
   },
   components: {
@@ -106,6 +97,11 @@ const StatusContent = {
       } else if (this.mightHideBecauseSubject) {
         this.expandingSubject = !this.expandingSubject
       }
+    },
+    setHeadTailLinks (headTailLinks) {
+      set(this, 'headTailLinks', headTailLinks)
+      set(this, 'firstMentions', headTailLinks.firstMentions)
+      set(this, 'lastMentions', headTailLinks.lastMentions)
     },
     generateTagLink (tag) {
       return `/tag/${tag}`

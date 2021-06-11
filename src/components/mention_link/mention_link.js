@@ -28,11 +28,6 @@ const MentionLink = {
     userScreenName: {
       required: false,
       type: String
-    },
-    firstMention: {
-      required: false,
-      type: Boolean,
-      default: false
     }
   },
   methods: {
@@ -89,7 +84,6 @@ const MentionLink = {
         {
           '-you': this.isYou,
           '-highlighted': this.highlight,
-          '-firstMention': this.firstMention,
           '-oldStyle': this.oldStyle
         },
         this.highlightType

@@ -4,9 +4,8 @@
     <StatusBody
       :status="status"
       :single-line="singleLine"
-      :hide-first-mentions="hideFirstMentions"
-      :hide-last-mentions="hideLastMentions"
-      :head-tail-links="headTailLinks"
+      :hide-mentions="hideMentions"
+      @parseReady="setHeadTailLinks"
     >
       <div v-if="status.poll && status.poll.options">
         <poll :base-poll="status.poll" />

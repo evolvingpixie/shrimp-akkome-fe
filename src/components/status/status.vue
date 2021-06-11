@@ -305,11 +305,11 @@
             :no-heading="noHeading"
             :highlight="highlight"
             :focused="isFocused"
-            :hide-first-mentions="mentionsOwnLine && isReply"
-            :hide-last-mentions="hideLastMentions"
-            :head-tail-links="headTailLinks"
+            :hide-mentions="mentionsOwnLine && (isReply || true)"
             @mediaplay="addMediaPlaying($event)"
             @mediapause="removeMediaPlaying($event)"
+            @parseReady="setHeadTailLinks"
+            ref="content"
           />
 
           <div

@@ -38,10 +38,6 @@
   .new {
     margin-right: 0.25em;
 
-    &.-firstMention {
-      display: none;
-    }
-
     &.-you {
       & .shortName,
       & .full {

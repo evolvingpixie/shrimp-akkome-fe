@@ -48,20 +48,21 @@
             :html="status.raw_html"
             :emoji="status.emojis"
             :handle-links="true"
+            :hide-mentions="hideMentions"
             :greentext="mergedConfig.greentext"
-            :hide-first-mentions="hideFirstMentions"
-            :hide-last-mentions="hideLastMentions"
+            @parseReady="setHeadTailLinks"
+            ref="text"
           >
             <template v-slot:prefix>
               <MentionsLine
-                v-if="!hideFirstMentions && mentionsFirst"
-                :mentions="mentionsFirst"
+                v-if="!hideMentions && firstMentions && firstMentions.length > 0"
+                :mentions="firstMentions"
               />
             </template>
             <template v-slot:suffix>
               <MentionsLine
-                v-if="!hideFirstMentions && mentionsLast"
-                :mentions="mentionsLast"
+                v-if="!hideMentions && lastMentions.length > 0 && firstMentions.length === 0"
+                :mentions="lastMentions"
               />
             </template>
           </RichContent>

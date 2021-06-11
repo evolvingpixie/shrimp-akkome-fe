@@ -19,7 +19,6 @@ import generateProfileLink from 'src/services/user_profile_link_generator/user_p
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
 import { muteWordHits } from '../../services/status_parser/status_parser.js'
 import { unescape, uniqBy } from 'lodash'
-import { getHeadTailLinks } from 'src/components/rich_content/rich_content.jsx'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -101,7 +100,8 @@ const Status = {
       userExpanded: false,
       mediaPlaying: [],
       suspendable: true,
-      error: null
+      error: null,
+      headTailLinks: null
     }
   },
   computed: {
@@ -168,9 +168,6 @@ const Status = {
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
     },
-    headTailLinks () {
-      return getHeadTailLinks(this.status.raw_html)
-    },
     mentions () {
       return this.status.attentions.filter(attn => {
         return attn.screen_name !== this.replyToName &&
@@ -182,6 +179,7 @@ const Status = {
       }))
     },
     alsoMentions () {
+      if (!this.headTailLinks) return []
       const set = new Set(this.headTailLinks.writtenMentions.map(m => m.url))
       return this.headTailLinks.writtenMentions.filter(mention => {
         return !set.has(mention.url)
@@ -195,9 +193,6 @@ const Status = {
     },
     hasMentionsLine () {
       return this.mentionsLine.length > 0
-    },
-    hideLastMentions () {
-      return this.headTailLinks.firstMentions.length === 0
     },
     muted () {
       if (this.statusoid.user.id === this.currentUser.id) return false
@@ -346,6 +341,9 @@ const Status = {
     },
     removeMediaPlaying (id) {
       this.mediaPlaying = this.mediaPlaying.filter(mediaId => mediaId !== id)
+    },
+    setHeadTailLinks (headTailLinks) {
+      this.headTailLinks = headTailLinks
     }
   },
   watch: {
@@ -356,7 +354,7 @@ const Status = {
           // Post is above screen, match its top to screen top
           window.scrollBy(0, rect.top - 100)
         } else if (rect.height >= (window.innerHeight - 50)) {
-          // Post we want to see is taller than screen so match its top to screen top
+          // Post we wahttp://localhost:8080/users/hj/dmsnt to see is taller than screen so match its top to screen top
           window.scrollBy(0, rect.top - 100)
         } else if (rect.bottom > window.innerHeight - 50) {
           // Post is below screen, match its bottom to screen bottom
