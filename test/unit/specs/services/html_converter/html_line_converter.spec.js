@@ -126,5 +126,30 @@ describe('TinyPostHTMLProcessor', () => {
       const comparableResult = result.map(mapOnlyText(processorReplace)).join('')
       expect(comparableResult).to.eql(output)
     })
+
+    it('Testing handling ignored blocks', () => {
+      const input = `
+      <pre><code>&gt; rei = &quot;0&quot;
+      &#39;0&#39;
+      &gt; rei == 0
+      true
+      &gt; rei == null
+      false</code></pre><blockquote>That, christian-like JS diagram but it’s evangelion instead.</blockquote>
+      `
+      const result = convertHtmlToLines(input)
+      const comparableResult = result.map(mapOnlyText(processorReplace)).join('')
+      expect(comparableResult).to.eql(input)
+    })
+    it('Testing handling ignored blocks 2', () => {
+      const input = `
+      <blockquote>An SSL error has happened.</blockquote><p>Shakespeare</p>
+      `
+      const output = `
+      <blockquote>An SSL error has happened.</blockquote><p>_</p>
+      `
+      const result = convertHtmlToLines(input)
+      const comparableResult = result.map(mapOnlyText(processorReplace)).join('')
+      expect(comparableResult).to.eql(output)
+    })
   })
 })

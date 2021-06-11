@@ -17,8 +17,9 @@
  * @return {(string|{ text: string })[]} processed html in form of a list.
  */
 export const convertHtmlToLines = (html) => {
-  const handledTags = new Set(['p', 'br', 'div'])
-  const openCloseTags = new Set(['p', 'div'])
+  const ignoredTags = new Set(['code', 'blockquote'])
+  const handledTags = new Set(['p', 'br', 'div', 'pre', 'code', 'blockquote'])
+  const openCloseTags = new Set(['p', 'div', 'pre', 'code', 'blockquote'])
 
   let buffer = [] // Current output buffer
   const level = [] // How deep we are in tags and which tags were there
@@ -32,7 +33,7 @@ export const convertHtmlToLines = (html) => {
   }
 
   const flush = () => { // Processes current line buffer, adds it to output buffer and clears line buffer
-    if (textBuffer.trim().length > 0) {
+    if (textBuffer.trim().length > 0 && !level.some(l => ignoredTags.has(l))) {
       buffer.push({ text: textBuffer })
     } else {
       buffer.push(textBuffer)
@@ -48,14 +49,14 @@ export const convertHtmlToLines = (html) => {
   const handleOpen = (tag) => { // handles opening tags
     flush()
     buffer.push(tag)
-    level.push(tag)
+    level.unshift(getTagName(tag))
   }
 
   const handleClose = (tag) => { // handles closing tags
     flush()
     buffer.push(tag)
-    if (level[level.length - 1] === tag) {
-      level.pop()
+    if (level[0] === getTagName(tag)) {
+      level.shift()
     }
   }
 
