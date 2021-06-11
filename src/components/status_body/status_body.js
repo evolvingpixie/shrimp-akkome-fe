@@ -1,5 +1,5 @@
 import fileType from 'src/services/file_type/file_type.service'
-import RichContent, { getHeadTailLinks } from 'src/components/rich_content/rich_content.jsx'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
