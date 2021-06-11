@@ -112,6 +112,10 @@
     color: var(--postGreentext, $fallback--cGreen);
   }
 
+  .cyantext {
+    color: var(--postCyantext, $fallback--cBlue);
+  }
+
   /* Not sure if this is necessary */
   video {
     max-width: 100%;

@@ -23,7 +23,7 @@
       >
         <!-- eslint-disable vue/no-v-html -->
         <FAIcon
-          size="s"
+          size="sm"
           icon="at"
           class="at"
         /><span class="shortName"><span
@@ -44,7 +44,7 @@
         <!-- eslint-disable vue/no-v-html -->
         <span
           class="userNameFull"
-          v-html="userNameFull"
+          v-text="'@' + userNameFull"
         />
         <!-- eslint-enable vue/no-v-html -->
       </span>
