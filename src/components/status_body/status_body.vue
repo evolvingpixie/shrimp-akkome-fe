@@ -38,10 +38,11 @@
         >
           {{ $t("general.show_more") }}
         </button>
-        <span
-          class="text-wrapper"
-          v-if="!hideSubjectStatus && !(singleLine && status.summary_html)"
-        >
+        <span v-if="!hideSubjectStatus && !(singleLine && status.summary_html)">
+          <MentionsLine
+            v-if="!hideMentions && firstMentions && firstMentions.length > 0"
+            :mentions="firstMentions"
+          />
           <RichContent
             :class="{ '-single-line': singleLine }"
             class="text media-body"
@@ -53,19 +54,11 @@
             @parseReady="setHeadTailLinks"
             ref="text"
           >
-            <template v-slot:prefix>
-              <MentionsLine
-                v-if="!hideMentions && firstMentions && firstMentions.length > 0"
-                :mentions="firstMentions"
-              />
-            </template>
-            <template v-slot:suffix>
-              <MentionsLine
-                v-if="!hideMentions && lastMentions.length > 0 && firstMentions.length === 0"
-                :mentions="lastMentions"
-              />
-            </template>
           </RichContent>
+          <MentionsLine
+            v-if="!hideMentions && lastMentions.length > 0 && firstMentions.length === 0"
+            :mentions="lastMentions"
+          />
         </span>
 
         <button

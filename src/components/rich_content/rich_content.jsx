@@ -42,7 +42,7 @@ export default Vue.component('RichContent', {
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render (h) {
     // Pre-process HTML
-    const { newHtml: html, lastMentions } = preProcessPerLine(this.html, this.greentext, this.hideLastMentions)
+    const { newHtml: html, lastMentions } = preProcessPerLine(this.html, this.greentext, this.hideMentions)
     const firstMentions = [] // Mentions that appear in the beginning of post body
     const lastTags = [] // Tags that appear at the end of post body
     const writtenMentions = [] // All mentions that appear in post body
@@ -187,6 +187,13 @@ export default Vue.component('RichContent', {
       return item
     }
 
+    // DO NOT USE SLOTS they cause a re-render feedback loop here.
+    // slots updated -> rerender -> emit -> update up the tree -> rerender -> ...
+    // at least until vue3?
+    const result = <span class="RichContent">
+      { convertHtmlToTree(html).map(processItem).reverse().map(processItemReverse).reverse() }
+    </span>
+
     const event = {
       firstMentions,
       lastMentions,
@@ -194,12 +201,6 @@ export default Vue.component('RichContent', {
       writtenMentions,
       writtenTags
     }
-
-    const result = <span class="RichContent">
-      { this.$slots.prefix }
-      { convertHtmlToTree(html).map(processItem).reverse().map(processItemReverse).reverse() }
-      { this.$slots.suffix }
-    </span>
 
     // DO NOT MOVE TO UPDATE. BAD IDEA.
     this.$emit('parseReady', event)
