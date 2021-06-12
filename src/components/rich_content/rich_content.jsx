@@ -141,6 +141,7 @@ export default Vue.component('RichContent', {
             if (attrs['class'] && attrs['class'].includes('mention')) {
               return renderMention(attrs, children, encounteredText)
             } else if (attrs['class'] && attrs['class'].includes('hashtag')) {
+              encounteredText = true
               return item // We'll handle it later
             } else {
               attrs.target = '_blank'
@@ -167,7 +168,7 @@ export default Vue.component('RichContent', {
       // Handle text nodes - just add emoji
       if (typeof item === 'string') {
         const emptyText = item.trim() === ''
-        if (emptyText) return encounteredTextReverse ? item : item.trim()
+        if (emptyText) return item
         if (!encounteredTextReverse) encounteredTextReverse = true
         return item
       } else if (Array.isArray(item)) {
