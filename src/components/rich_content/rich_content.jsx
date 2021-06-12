@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { unescape, flattenDeep } from 'lodash'
-import { convertHtmlToTree, getTagName, processTextForEmoji, getAttrs } from 'src/services/html_converter/html_tree_converter.service.js'
+import { getTagName, processTextForEmoji, getAttrs } from 'src/services/html_converter/utility.service.js'
+import { convertHtmlToTree } from 'src/services/html_converter/html_tree_converter.service.js'
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
 import StillImage from 'src/components/still-image/still-image.vue'
 import MentionLink from 'src/components/mention_link/mention_link.vue'
@@ -31,18 +32,12 @@ export default Vue.component('RichContent', {
       required: false,
       type: Boolean,
       default: false
-    },
-    // Whether to hide last mentions (hellthreads)
-    hideMentions: {
-      required: false,
-      type: Boolean,
-      default: false
     }
   },
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render (h) {
     // Pre-process HTML
-    const { newHtml: html, lastMentions } = preProcessPerLine(this.html, this.greentext, this.hideMentions)
+    const { newHtml: html, lastMentions } = preProcessPerLine(this.html, this.greentext, this.handleLinks)
     const firstMentions = [] // Mentions that appear in the beginning of post body
     const lastTags = [] // Tags that appear at the end of post body
     const writtenMentions = [] // All mentions that appear in post body
@@ -228,8 +223,9 @@ const getLinkData = (attrs, children, index) => {
  *
  * @param {String} html - raw HTML to process
  * @param {Boolean} greentext - whether to enable greentexting or not
+ * @param {Boolean} handleLinks - whether to handle links or not
  */
-export const preProcessPerLine = (html, greentext) => {
+export const preProcessPerLine = (html, greentext, handleLinks) => {
   const lastMentions = []
 
   let nonEmptyIndex = 0
@@ -264,6 +260,7 @@ export const preProcessPerLine = (html, greentext) => {
         const tag = getTagName(opener)
         // If we have a link we probably have mentions
         if (tag === 'a') {
+          if (!handleLinks) return [opener, children, closer]
           const attrs = getAttrs(opener)
           if (attrs['class'] && attrs['class'].includes('mention')) {
             // Got mentions
@@ -297,7 +294,7 @@ export const preProcessPerLine = (html, greentext) => {
     const result = [...tree].map(process)
 
     // Only check last (first since list is reversed) line
-    if (hasMentions && !hasLooseText && nonEmptyIndex++ === 0) {
+    if (handleLinks && hasMentions && !hasLooseText && nonEmptyIndex++ === 0) {
       let mentionIndex = 0
       const process = (item) => {
         if (Array.isArray(item)) {

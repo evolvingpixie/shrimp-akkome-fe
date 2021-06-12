@@ -1,3 +1,5 @@
+import { getTagName } from './utility.service.js'
+
 /**
  * This is a tiny purpose-built HTML parser/processor. This basically detects
  * any type of visual newline and converts entire HTML into a array structure.
@@ -25,12 +27,6 @@ export const convertHtmlToLines = (html) => {
   const level = [] // How deep we are in tags and which tags were there
   let textBuffer = '' // Current line content
   let tagBuffer = null // Current tag buffer, if null = we are not currently reading a tag
-
-  // Extracts tag name from tag, i.e. <span a="b"> => span
-  const getTagName = (tag) => {
-    const result = /(?:<\/(\w+)>|<(\w+)\s?[^/]*?\/?>)/gi.exec(tag)
-    return result && (result[1] || result[2])
-  }
 
   const flush = () => { // Processes current line buffer, adds it to output buffer and clears line buffer
     if (textBuffer.trim().length > 0 && !level.some(l => ignoredTags.has(l))) {

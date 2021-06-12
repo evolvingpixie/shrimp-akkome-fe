@@ -2,7 +2,7 @@ import { convertHtmlToLines } from 'src/services/html_converter/html_line_conver
 
 const mapOnlyText = (processor) => (input) => input.text ? processor(input.text) : input
 
-describe('TinyPostHTMLProcessor', () => {
+describe('html_line_converter', () => {
   describe('with processor that keeps original line should not make any changes to HTML when', () => {
     const processorKeep = (line) => line
     it('fed with regular HTML with newlines', () => {

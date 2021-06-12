@@ -1,3 +1,5 @@
+import { getTagName } from './utility.service.js'
+
 /**
  * This is a not-so-tiny purpose-built HTML parser/processor. This parses html
  * and converts it into a tree structure representing tag openers/closers and
@@ -92,55 +94,4 @@ export const convertHtmlToTree = (html) => {
 
   flushText()
   return buffer
-}
-
-// Extracts tag name from tag, i.e. <span a="b"> => span
-export const getTagName = (tag) => {
-  const result = /(?:<\/(\w+)>|<(\w+)\s?.*?\/?>)/gi.exec(tag)
-  return result && (result[1] || result[2])
-}
-
-export const processTextForEmoji = (text, emojis, processor) => {
-  const buffer = []
-  let textBuffer = ''
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i]
-    if (char === ':') {
-      const next = text.slice(i + 1)
-      let found = false
-      for (let emoji of emojis) {
-        if (next.slice(0, emoji.shortcode.length + 1) === (emoji.shortcode + ':')) {
-          found = emoji
-          break
-        }
-      }
-      if (found) {
-        buffer.push(textBuffer)
-        textBuffer = ''
-        buffer.push(processor(found))
-        i += found.shortcode.length + 1
-      } else {
-        textBuffer += char
-      }
-    } else {
-      textBuffer += char
-    }
-  }
-  if (textBuffer) buffer.push(textBuffer)
-  return buffer
-}
-
-export const getAttrs = tag => {
-  const innertag = tag
-    .substring(1, tag.length - 1)
-    .replace(new RegExp('^' + getTagName(tag)), '')
-    .replace(/\/?$/, '')
-    .trim()
-  const attrs = Array.from(innertag.matchAll(/([a-z0-9-]+)(?:=("[^"]+?"|'[^']+?'))?/gi))
-    .map(([trash, key, value]) => [key, value])
-    .map(([k, v]) => {
-      if (!v) return [k, true]
-      return [k, v.substring(1, v.length - 1)]
-    })
-  return Object.fromEntries(attrs)
 }
