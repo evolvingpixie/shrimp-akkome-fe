@@ -247,12 +247,13 @@ const getLinkData = (attrs, children, index) => {
 export const preProcessPerLine = (html, greentext, handleLinks) => {
   const lastMentions = []
 
-  let nonEmptyIndex = 0
+  let nonEmptyIndex = -1
   const newHtml = convertHtmlToLines(html).reverse().map((item, index, array) => {
     // Going over each line in reverse to detect last mentions,
     // keeping non-text stuff as-is
     if (!item.text) return item
     const string = item.text
+    nonEmptyIndex += 1
 
     // Greentext stuff
     if (greentext && (string.includes('&gt;') || string.includes('&lt;'))) {
@@ -260,10 +261,8 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
         .replace(/@\w+/gi, '') // remove mentions (even failed ones)
         .trim()
       if (cleanedString.startsWith('&gt;')) {
-        nonEmptyIndex += 1
         return `<span class='greentext'>${string}</span>`
       } else if (cleanedString.startsWith('&lt;')) {
-        nonEmptyIndex += 1
         return `<span class='cyantext'>${string}</span>`
       }
     }

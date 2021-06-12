@@ -381,4 +381,39 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
+
+  it('One buggy example', () => {
+    const html = [
+      'Bruh',
+      'Bruh',
+      [
+        makeMention('foo'),
+        makeMention('bar'),
+        makeMention('baz')
+      ].join(''),
+      'Bruh'
+    ].join('<br>')
+    const expected = [
+      'Bruh',
+      'Bruh',
+      [
+        stubMention('foo'),
+        stubMention('bar'),
+        stubMention('baz')
+      ].join(''),
+      'Bruh'
+    ].join('<br>')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
 })
