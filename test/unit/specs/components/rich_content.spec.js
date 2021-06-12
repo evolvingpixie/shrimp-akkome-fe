@@ -381,5 +381,4 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
-
 })
