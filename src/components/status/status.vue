@@ -247,7 +247,7 @@
                       flip="horizontal"
                     />
                     <span
-                      class="faint-link reply-to-text"
+                      class="reply-to-text"
                     >
                       {{ $t('status.reply_to') }}
                     </span>
@@ -281,7 +281,7 @@
                   @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
                 >
                   <span
-                    class="faint-link mentions-text"
+                    class="mentions-text"
                   >
                     {{ $t('status.mentions') }}
                   </span>
