@@ -62,7 +62,7 @@
       overflow-y: hidden;
       z-index: 1;
 
-      .text-wrapper {
+      .rich-content-wrapper {
         min-height: 0;
         mask:
           linear-gradient(to top, white, transparent) bottom/100% 70px no-repeat,
@@ -123,5 +123,4 @@
     vertical-align: middle;
     object-fit: contain;
   }
-
 }

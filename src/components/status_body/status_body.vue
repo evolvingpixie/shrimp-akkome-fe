@@ -38,7 +38,10 @@
         >
           {{ $t("general.show_more") }}
         </button>
-        <span v-if="!hideSubjectStatus && !(singleLine && status.summary_html)">
+        <span
+          v-if="!hideSubjectStatus && !(singleLine && status.summary_html)"
+          class="rich-content-wrapper"
+        >
           <MentionsLine
             v-if="!hideMentions && firstMentions && firstMentions.length > 0"
             :mentions="firstMentions"
