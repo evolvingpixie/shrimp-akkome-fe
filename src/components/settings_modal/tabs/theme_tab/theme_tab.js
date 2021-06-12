@@ -474,7 +474,7 @@ export default {
           this.loadThemeFromLocalStorage(false, true)
           break
         case 'file':
-          console.error('Forcing snapshout from file is not supported yet')
+          console.error('Forcing snapshot from file is not supported yet')
           break
       }
       this.dismissWarning()

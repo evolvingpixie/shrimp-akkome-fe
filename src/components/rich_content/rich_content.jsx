@@ -8,6 +8,25 @@ import MentionLink from 'src/components/mention_link/mention_link.vue'
 
 import './rich_content.scss'
 
+/**
+ * RichContent, The Über-powered component for rendering Post HTML.
+ *
+ * This takes post HTML and does multiple things to it:
+ * - Converts mention links to <MentionLink>-s
+ * - Removes mentions from beginning and end (hellthread style only)
+ * - Replaces emoji shortcodes with <StillImage>'d images.
+ *
+ * Stuff like removing mentions from beginning and end is done so that they could
+ * be either replaced by collapsible <MentionsLine>  or moved to separate place.
+ * There are two problems with this component's architecture:
+ * 1. Parsing HTML and rendering are inseparable. Attempts to separate the two
+ *    proven to be a massive overcomplication due to amount of things done here.
+ * 2. We need to output both render and some extra data, which seems to be imp-
+ *    possible in vue. Current solution is to emit 'parseReady' event when parsing
+ *    is done within render() function.
+ *
+ * Apart from that one small hiccup with emit in render this _should_ be vue3-ready
+ */
 export default Vue.component('RichContent', {
   name: 'RichContent',
   props: {
@@ -241,8 +260,10 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
         .replace(/@\w+/gi, '') // remove mentions (even failed ones)
         .trim()
       if (cleanedString.startsWith('&gt;')) {
+        nonEmptyIndex += 1
         return `<span class='greentext'>${string}</span>`
       } else if (cleanedString.startsWith('&lt;')) {
+        nonEmptyIndex += 1
         return `<span class='cyantext'>${string}</span>`
       }
     }

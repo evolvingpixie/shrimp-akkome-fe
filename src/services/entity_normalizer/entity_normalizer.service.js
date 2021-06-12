@@ -296,7 +296,6 @@ export const parseStatus = (data) => {
     }
 
     output.summary_raw_html = escape(data.spoiler_text)
-    output.summary_html = addEmojis(escape(data.spoiler_text), data.emojis)
     output.external_url = data.url
     output.poll = data.poll
     if (output.poll) {
@@ -449,11 +448,6 @@ export const parseChatMessage = (message) => {
   output.chat_id = message.chat_id
   output.emojis = message.emojis
   output.content = message.content
-  if (message.content) {
-    output.content = addEmojis(message.content, message.emojis)
-  } else {
-    output.content = ''
-  }
   if (message.attachment) {
     output.attachments = [parseAttachment(message.attachment)]
   } else {

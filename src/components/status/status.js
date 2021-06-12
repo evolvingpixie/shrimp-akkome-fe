@@ -35,8 +35,7 @@ import {
   faStar,
   faEyeSlash,
   faEye,
-  faThumbtack,
-  faAt
+  faThumbtack
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -53,8 +52,7 @@ library.add(
   faEllipsisH,
   faEyeSlash,
   faEye,
-  faThumbtack,
-  faAt
+  faThumbtack
 )
 
 const Status = {

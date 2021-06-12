@@ -231,14 +231,6 @@ describe('API Entities normalizer', () => {
         expect(parsedRepeat).to.have.property('retweeted_status')
         expect(parsedRepeat).to.have.deep.property('retweeted_status.id', 'deadbeef')
       })
-
-      it('adds emojis to subject line', () => {
-        const post = makeMockStatusMasto({ emojis: makeMockEmojiMasto(), spoiler_text: 'CW: 300 IQ :thinking:' })
-
-        const parsedPost = parseStatus(post)
-
-        expect(parsedPost).to.have.property('summary_html').that.contains('<img')
-      })
     })
   })
 

@@ -354,4 +354,32 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(html))
   })
+
+  it('Greentext + last mentions', () => {
+    const html = [
+      '&gt;quote',
+      makeMention('lol'),
+      '&gt;quote',
+      '&gt;quote'
+    ].join('\n')
+    const expected = [
+      '<span class="greentext">&gt;quote</span>',
+      stubMention('lol'),
+      '<span class="greentext">&gt;quote</span>',
+      '<span class="greentext">&gt;quote</span>'
+    ].join('\n')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
 })

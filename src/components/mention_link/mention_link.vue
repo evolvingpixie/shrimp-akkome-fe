@@ -41,12 +41,10 @@
         class="full popover-default"
         :class="[highlightType]"
       >
-        <!-- eslint-disable vue/no-v-html -->
         <span
           class="userNameFull"
           v-text="'@' + userNameFull"
         />
-        <!-- eslint-enable vue/no-v-html -->
       </span>
     </span>
   </span>

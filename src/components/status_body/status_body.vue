@@ -2,7 +2,7 @@
   <div class="StatusBody">
     <div class="body">
       <div
-        v-if="status.summary_html"
+        v-if="status.summary_raw_html"
         class="summary-wrapper"
         :class="{ '-tall': (longSubject && !showingLongSubject) }"
       >
@@ -39,7 +39,7 @@
           {{ $t("general.show_more") }}
         </button>
         <span
-          v-if="!hideSubjectStatus && !(singleLine && status.summary_html)"
+          v-if="!hideSubjectStatus && !(singleLine && status.summary_raw_html)"
           class="rich-content-wrapper"
         >
           <MentionsLine
