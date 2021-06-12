@@ -23,7 +23,6 @@ const makeMockStatusQvitter = (overrides = {}) => {
     repeat_num: 0,
     repeated: false,
     statusnet_conversation_id: '16300488',
-    statusnet_html: '<p>haha benis</p>',
     summary: null,
     tags: [],
     text: 'haha benis',
@@ -231,14 +230,6 @@ describe('API Entities normalizer', () => {
         expect(parsedRepeat).to.have.property('type', 'retweet')
         expect(parsedRepeat).to.have.property('retweeted_status')
         expect(parsedRepeat).to.have.deep.property('retweeted_status.id', 'deadbeef')
-      })
-
-      it('adds emojis to post content', () => {
-        const post = makeMockStatusMasto({ emojis: makeMockEmojiMasto(), content: 'Makes you think :thinking:' })
-
-        const parsedPost = parseStatus(post)
-
-        expect(parsedPost).to.have.property('statusnet_html').that.contains('<img')
       })
 
       it('adds emojis to subject line', () => {

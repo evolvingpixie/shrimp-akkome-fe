@@ -53,7 +53,7 @@ const StatusContent = {
     // Using max-height + overflow: auto for status components resulted in false positives
     // very often with japanese characters, and it was very annoying.
     tallStatus () {
-      const lengthScore = this.status.statusnet_html.split(/<p|<br/).length + this.status.text.length / 80
+      const lengthScore = this.status.raw_html.split(/<p|<br/).length + this.status.text.length / 80
       return lengthScore > 20
     },
     longSubject () {

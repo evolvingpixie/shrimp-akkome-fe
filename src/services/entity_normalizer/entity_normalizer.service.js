@@ -267,7 +267,6 @@ export const parseStatus = (data) => {
     output.type = data.reblog ? 'retweet' : 'status'
     output.nsfw = data.sensitive
 
-    output.statusnet_html = addEmojis(data.content, data.emojis)
     output.raw_html = data.content
     output.emojis = data.emojis
 
@@ -329,7 +328,7 @@ export const parseStatus = (data) => {
       output.nsfw = data.nsfw
     }
 
-    output.statusnet_html = data.statusnet_html
+    output.raw_html = data.statusnet_html
     output.text = data.text
 
     output.in_reply_to_status_id = data.in_reply_to_status_id
@@ -449,7 +448,7 @@ export const parseChatMessage = (message) => {
   output.created_at = new Date(message.created_at)
   output.chat_id = message.chat_id
   output.emojis = message.emojis
-  output.content_raw = message.content
+  output.content = message.content
   if (message.content) {
     output.content = addEmojis(message.content, message.emojis)
   } else {

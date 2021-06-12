@@ -40,12 +40,11 @@ const ChatListItem = {
       const message = this.chat.lastMessage
       const messageEmojis = message ? message.emojis : []
       const isYou = message && message.account_id === this.currentUser.id
-      const content = message ? (this.attachmentInfo || message.content_raw) : ''
+      const content = message ? (this.attachmentInfo || message.content) : ''
       const messagePreview = isYou ? `<i>${this.$t('chats.you')}</i> ${content}` : content
       return {
         summary: '',
         emojis: messageEmojis,
-        statusnet_html: messagePreview,
         raw_html: messagePreview,
         text: messagePreview,
         attachments: []
