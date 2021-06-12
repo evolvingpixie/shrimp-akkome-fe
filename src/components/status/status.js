@@ -352,7 +352,7 @@ const Status = {
           // Post is above screen, match its top to screen top
           window.scrollBy(0, rect.top - 100)
         } else if (rect.height >= (window.innerHeight - 50)) {
-          // Post we wahttp://localhost:8080/users/hj/dmsnt to see is taller than screen so match its top to screen top
+          // Post we want to see is taller than screen so match its top to screen top
           window.scrollBy(0, rect.top - 100)
         } else if (rect.bottom > window.innerHeight - 50) {
           // Post is below screen, match its bottom to screen bottom
