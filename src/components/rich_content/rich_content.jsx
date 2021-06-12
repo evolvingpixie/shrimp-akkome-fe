@@ -126,7 +126,7 @@ export default Vue.component('RichContent', {
         switch (Tag) {
           case 'span': // replace images with StillImage
             if (attrs['class'] && attrs['class'].includes('lastMentions')) {
-              if (firstMentions.length > 0) {
+              if (firstMentions.length > 1) {
                 break
               } else {
                 return ''
@@ -231,6 +231,7 @@ const getLinkData = (attrs, children, index) => {
 export const preProcessPerLine = (html, greentext) => {
   const lastMentions = []
 
+  let nonEmptyIndex = 0
   const newHtml = convertHtmlToLines(html).reverse().map((item, index, array) => {
     // Going over each line in reverse to detect last mentions,
     // keeping non-text stuff as-is
@@ -295,7 +296,7 @@ export const preProcessPerLine = (html, greentext) => {
     const result = [...tree].map(process)
 
     // Only check last (first since list is reversed) line
-    if (hasMentions && !hasLooseText && index === 0) {
+    if (hasMentions && !hasLooseText && nonEmptyIndex++ === 0) {
       let mentionIndex = 0
       const process = (item) => {
         if (Array.isArray(item)) {
