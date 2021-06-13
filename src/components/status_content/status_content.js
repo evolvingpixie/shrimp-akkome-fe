@@ -28,6 +28,7 @@ const StatusContent = {
   name: 'StatusContent',
   props: [
     'status',
+    'compact',
     'focused',
     'noHeading',
     'fullContent',

@@ -23,6 +23,7 @@ library.add(
 const StatusContent = {
   name: 'StatusContent',
   props: [
+    'compact',
     'status',
     'focused',
     'noHeading',

@@ -36,7 +36,10 @@
   height: 0;
   width: 100%;
   flex-grow: 1;
-  margin-top: 0.5em;
+
+  &:not(:first-child) {
+    margin-top: 0.5em;
+  }
 
   .gallery-row-inner {
     position: absolute;

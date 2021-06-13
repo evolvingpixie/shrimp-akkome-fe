@@ -1,5 +1,8 @@
 <template>
-  <div class="StatusBody">
+<div
+  class="StatusBody"
+  :class="{ '-compact': compact }"
+>
     <div class="body">
       <div
         v-if="status.summary_raw_html"
@@ -8,6 +11,7 @@
       >
         <RichContent
           class="media-body summary"
+          :single-line="compact"
           :html="status.summary_raw_html"
           :emoji="status.emojis"
         />
@@ -52,6 +56,7 @@
             :html="status.raw_html"
             :emoji="status.emojis"
             :handle-links="true"
+            :single-line="compact"
             :greentext="mergedConfig.greentext"
             @parseReady="setHeadTailLinks"
           />
