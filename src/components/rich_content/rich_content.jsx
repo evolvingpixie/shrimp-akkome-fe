@@ -246,6 +246,7 @@ const getLinkData = (attrs, children, index) => {
  */
 export const preProcessPerLine = (html, greentext, handleLinks) => {
   const lastMentions = []
+  const greentextHandle = new Set(['p', 'div'])
 
   let nonEmptyIndex = -1
   const newHtml = convertHtmlToLines(html).reverse().map((item, index, array) => {
@@ -256,7 +257,14 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
     nonEmptyIndex += 1
 
     // Greentext stuff
-    if (greentext && (string.includes('&gt;') || string.includes('&lt;'))) {
+    if (
+      // Only if greentext is engaged
+      greentext &&
+        // Only handle p's and divs. Don't want to affect blocquotes, code etc
+        item.level.every(l => greentextHandle.has(l)) &&
+        // Only if line begins with '>' or '<'
+        (string.includes('&gt;') || string.includes('&lt;'))
+    ) {
       const cleanedString = string.replace(/<[^>]+?>/gi, '') // remove all tags
         .replace(/@\w+/gi, '') // remove mentions (even failed ones)
         .trim()

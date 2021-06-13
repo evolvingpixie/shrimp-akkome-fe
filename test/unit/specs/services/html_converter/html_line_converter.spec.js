@@ -1,8 +1,17 @@
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
 
-const mapOnlyText = (processor) => (input) => input.text ? processor(input.text) : input
+const greentextHandle = new Set(['p', 'div'])
+const mapOnlyText = (processor) => (input) => {
+  if (input.text && input.level.every(l => greentextHandle.has(l))) {
+    return processor(input.text)
+  } else if (input.text) {
+    return input.text
+  } else {
+    return input
+  }
+}
 
-describe('html_line_converter', () => {
+describe.only('html_line_converter', () => {
   describe('with processor that keeps original line should not make any changes to HTML when', () => {
     const processorKeep = (line) => line
     it('fed with regular HTML with newlines', () => {
@@ -81,7 +90,7 @@ describe('html_line_converter', () => {
 
     it('fed with very broken HTML with broken composition', () => {
       const input = '</p> lmao what </div> whats going on <div> wha <p>'
-      const output = '</p>_</div>_<div>_<p>'
+      const output = '_<div>_<p>'
       const result = convertHtmlToLines(input)
       const comparableResult = result.map(mapOnlyText(processorReplace)).join('')
       expect(comparableResult).to.eql(output)
@@ -111,7 +120,7 @@ describe('html_line_converter', () => {
       expect(comparableResult).to.eql(output)
     })
 
-    it('fed with maybe valid HTML? self-closing divs and ps', () => {
+    it('fed with maybe valid HTML? (XHTML) self-closing divs and ps', () => {
       const input = 'a <div class="what"/> what now <p aria-label="wtf"/> ?'
       const output = '_<div class="what"/>_<p aria-label="wtf"/>_'
       const result = convertHtmlToLines(input)

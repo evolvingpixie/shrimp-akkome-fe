@@ -19,9 +19,42 @@ import { getTagName } from './utility.service.js'
  * @return {(string|{ text: string })[]} processed html in form of a list.
  */
 export const convertHtmlToLines = (html) => {
-  const ignoredTags = new Set(['code', 'blockquote'])
-  const handledTags = new Set(['p', 'br', 'div', 'pre', 'code', 'blockquote'])
-  const openCloseTags = new Set(['p', 'div', 'pre', 'code', 'blockquote'])
+  // Elements that are implicitly self-closing
+  // https://developer.mozilla.org/en-US/docs/Glossary/empty_element
+  const emptyElements = new Set([
+    'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
+    'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'
+  ])
+  // Block-level element (they make a visual line)
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements
+  const blockElements = new Set([
+    'address', 'article', 'aside', 'blockquote', 'details', 'dialog', 'dd',
+    'div', 'dl', 'dt', 'fieldset', 'figcaption', 'figure', 'footer', 'form',
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hgroup', 'hr', 'li', 'main',
+    'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul'
+  ])
+  // br is very weird in a way that it's technically not block-level, it's
+  // essentially converted to a \n (or \r\n). There's also wbr but it doesn't
+  // guarantee linebreak, only suggest it.
+  const linebreakElements = new Set(['br'])
+
+  const visualLineElements = new Set([
+    ...blockElements.values(),
+    ...linebreakElements.values()
+  ])
+
+  // All block-level elements that aren't empty elements, i.e. not <hr>
+  const nonEmptyElements = new Set(visualLineElements)
+  // Difference
+  for (let elem of emptyElements) {
+    nonEmptyElements.delete(elem)
+  }
+
+  // All elements that we are recognizing
+  const allElements = new Set([
+    ...nonEmptyElements.values(),
+    ...emptyElements.values()
+  ])
 
   let buffer = [] // Current output buffer
   const level = [] // How deep we are in tags and which tags were there
@@ -29,8 +62,8 @@ export const convertHtmlToLines = (html) => {
   let tagBuffer = null // Current tag buffer, if null = we are not currently reading a tag
 
   const flush = () => { // Processes current line buffer, adds it to output buffer and clears line buffer
-    if (textBuffer.trim().length > 0 && !level.some(l => ignoredTags.has(l))) {
-      buffer.push({ text: textBuffer })
+    if (textBuffer.trim().length > 0) {
+      buffer.push({ level: [...level], text: textBuffer })
     } else {
       buffer.push(textBuffer)
     }
@@ -49,10 +82,12 @@ export const convertHtmlToLines = (html) => {
   }
 
   const handleClose = (tag) => { // handles closing tags
-    flush()
-    buffer.push(tag)
     if (level[0] === getTagName(tag)) {
+      flush()
+      buffer.push(tag)
       level.shift()
+    } else { // Broken case
+      textBuffer += tag
     }
   }
 
@@ -67,10 +102,10 @@ export const convertHtmlToLines = (html) => {
       const tagFull = tagBuffer
       tagBuffer = null
       const tagName = getTagName(tagFull)
-      if (handledTags.has(tagName)) {
-        if (tagName === 'br') {
+      if (allElements.has(tagName)) {
+        if (linebreakElements.has(tagName)) {
           handleBr(tagFull)
-        } else if (openCloseTags.has(tagName)) {
+        } else if (nonEmptyElements.has(tagName)) {
           if (tagFull[1] === '/') {
             handleClose(tagFull)
           } else if (tagFull[tagFull.length - 2] === '/') {
