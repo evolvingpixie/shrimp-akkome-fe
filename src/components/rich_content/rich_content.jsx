@@ -140,7 +140,7 @@ export default Vue.component('RichContent', {
         switch (Tag) {
           case 'span': // replace images with StillImage
             if (attrs['class'] && attrs['class'].includes('lastMentions')) {
-              if (firstMentions.length > 1) {
+              if (firstMentions.length > 1 && lastMentions.length > 1) {
                 break
               } else {
                 return ''
@@ -249,7 +249,9 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
   const greentextHandle = new Set(['p', 'div'])
 
   let nonEmptyIndex = -1
-  const newHtml = convertHtmlToLines(html).reverse().map((item, index, array) => {
+  const lines = convertHtmlToLines(html)
+  const linesNum = lines.filter(c => c.text).length
+  const newHtml = lines.reverse().map((item, index, array) => {
     // Going over each line in reverse to detect last mentions,
     // keeping non-text stuff as-is
     if (!item.text) return item
@@ -281,7 +283,7 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
     // If line has loose text, i.e. text outside a mention or a tag
     // we won't touch mentions.
     let hasLooseText = false
-    let hasMentions = false
+    let mentionsNum = 0
     const process = (item) => {
       if (Array.isArray(item)) {
         const [opener, children, closer] = item
@@ -292,7 +294,7 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
           const attrs = getAttrs(opener)
           if (attrs['class'] && attrs['class'].includes('mention')) {
             // Got mentions
-            hasMentions = true
+            mentionsNum++
             return [opener, children, closer]
           } else {
             // Not a mention? Means we have loose text or whatever
@@ -321,8 +323,13 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
     // We now processed our tree, now we need to mark line as lastMentions
     const result = [...tree].map(process)
 
-    // Only check last (first since list is reversed) line
-    if (handleLinks && hasMentions && !hasLooseText && nonEmptyIndex++ === 0) {
+    if (
+      handleLinks && // Do we handle links at all?
+        mentionsNum > 1 && // Does it have more than one mention?
+        !hasLooseText && // Don't do anything if it has something besides mentions
+        nonEmptyIndex === 0 && // Only check last (first since list is reversed) line
+        nonEmptyIndex !== linesNum - 1 // Don't do anything if there's only one line
+    ) {
       let mentionIndex = 0
       const process = (item) => {
         if (Array.isArray(item)) {

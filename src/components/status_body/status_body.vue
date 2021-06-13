@@ -56,7 +56,7 @@
             @parseReady="setHeadTailLinks"
           />
           <MentionsLine
-            v-if="!hideMentions && lastMentions.length > 0 && firstMentions.length <= 1"
+            v-if="!hideMentions && lastMentions.length > 1 && firstMentions.length <= 1"
             :mentions="lastMentions"
           />
         </span>

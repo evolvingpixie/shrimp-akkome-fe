@@ -416,4 +416,103 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
+
+  it('Don\'t remove last mention if it\'s the only one', () => {
+    const html = [
+      'Bruh',
+      'Bruh',
+      makeMention('foo'),
+      makeMention('bar'),
+      makeMention('baz')
+    ].join('<br>')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(html))
+  })
+
+  it('Don\'t remove last mentions if there are more than one first mention - remove first instead', () => {
+    const html = [
+      [
+        makeMention('foo'),
+        makeMention('bar')
+      ].join(' '),
+      'Bruh',
+      'Bruh',
+      [
+        makeMention('foo'),
+        makeMention('bar'),
+        makeMention('baz')
+      ].join(' ')
+    ].join('\n')
+
+    const expected = [
+      [
+        removedMentionSpan,
+        removedMentionSpan,
+        'Bruh' // Due to trim we remove extra newline
+      ].join(''),
+      'Bruh',
+      lastMentions([
+        stubMention('foo'),
+        stubMention('bar'),
+        stubMention('baz')
+      ].join(' '))
+    ].join('\n')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
+  it('Remove last mentions if there\'s just one first mention - remove all', () => {
+    const html = [
+      [
+        makeMention('foo')
+      ].join(' '),
+      'Bruh',
+      'Bruh',
+      [
+        makeMention('foo'),
+        makeMention('bar'),
+        makeMention('baz')
+      ].join(' ')
+    ].join('\n')
+
+    const expected = [
+      [
+        removedMentionSpan,
+        'Bruh' // Due to trim we remove extra newline
+      ].join(''),
+      'Bruh\n' // Can't remove this one yet
+    ].join('\n')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
 })
