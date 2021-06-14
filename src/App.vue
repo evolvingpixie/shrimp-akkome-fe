@@ -50,7 +50,7 @@
       <media-modal />
     </div>
     <shout-panel
-      v-if="currentUser && shout && !hideSB"
+      v-if="currentUser && shout && !hideShoutbox"
       :floating="true"
       class="floating-shout mobile-hidden"
     />
