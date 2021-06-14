@@ -73,6 +73,9 @@ export default {
         this.$store.state.instance.instanceSpecificPanelContent
     },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
+    hideSB () {
+      return this.$store.getters.mergedConfig.hideShoutbox
+    },
     isMobileLayout () { return this.$store.state.interface.mobileLayout },
     privateMode () { return this.$store.state.instance.private },
     sidebarAlign () {
