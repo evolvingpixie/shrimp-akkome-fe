@@ -7,5 +7,3 @@ test/e2e/reports
 selenium-debug.log
 .idea/
 config/local.json
-.gitignore
-config/local.example.json
