@@ -93,7 +93,8 @@ const config = {
       const { defaultConfig } = rootGetters
       return {
         ...defaultConfig,
-        ...state
+        // Do not override with undefined
+        ...Object.fromEntries(Object.entries(state).filter(([k, v]) => v !== undefined))
       }
     }
   },
