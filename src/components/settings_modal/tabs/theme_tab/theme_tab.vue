@@ -1,21 +1,6 @@
 <template>
   <div class="theme-tab">
     <div class="presets-container">
-      <div class="apply-container">
-        <button
-          class="btn button-default submit"
-          :disabled="!themeValid"
-          @click="setCustomTheme"
-        >
-          {{ $t('general.apply') }}
-        </button>
-        <button
-          class="btn button-default"
-          @click="clearAll"
-        >
-          {{ $t('settings.style.switcher.reset') }}
-        </button>
-      </div><br>
       <div class="save-load">
         <div
           v-if="themeWarning"
