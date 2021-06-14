@@ -38,28 +38,17 @@
         >
           {{ $t("general.show_more") }}
         </button>
-        <span
+        <RichContent
           v-if="!hideSubjectStatus && !(singleLine && status.summary_raw_html)"
-          class="rich-content-wrapper"
-        >
-          <MentionsLine
-            v-if="!hideMentions && firstMentions && firstMentions.length > 0"
-            :mentions="firstMentions"
-          />
-          <RichContent
-            :class="{ '-single-line': singleLine }"
-            class="text media-body"
-            :html="status.raw_html"
-            :emoji="status.emojis"
-            :handle-links="true"
-            :greentext="mergedConfig.greentext"
-            @parseReady="setHeadTailLinks"
-          />
-          <MentionsLine
-            v-if="!hideMentions && lastMentions.length > 1 && firstMentions.length <= 1"
-            :mentions="lastMentions"
-          />
-        </span>
+          :class="{ '-single-line': singleLine }"
+          class="text media-body"
+          :html="status.raw_html"
+          :emoji="status.emojis"
+          :handle-links="true"
+          :hide-mentions="hideMentions"
+          :greentext="mergedConfig.greentext"
+          @parseReady="$emit('parseReady', $event)"
+        />
 
         <button
           v-if="hideSubjectStatus"

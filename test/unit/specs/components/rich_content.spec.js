@@ -16,6 +16,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -38,6 +39,34 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
+  it('replaces first mention with mentionsline if hideMentions=false', () => {
+    const html = p(
+      makeMention('John'),
+      ' how are you doing thoday?'
+    )
+    const expected = p(
+      '<span class="h-card">',
+      '<mentionsline-stub mentions="',
+      '[object Object]',
+      '"></mentionsline-stub>',
+      '</span>',
+      'how are you doing thoday?'
+    )
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        hideMentions: false,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -68,6 +97,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -77,6 +107,44 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
+
+  it('replaces mentions at the end of the hellpost if hideMentions=false (<p>)', () => {
+    const html = [
+      p('How are you doing today, fine gentlemen?'),
+      p(
+        makeMention('John'),
+        makeMention('Josh'),
+        makeMention('Jeremy')
+      )
+    ].join('')
+    const expected = [
+      p(
+        'How are you doing today, fine gentlemen?'
+      ),
+      // TODO fix this extra line somehow?
+      p(
+        '<mentionsline-stub mentions="',
+        '[object Object],',
+        '[object Object],',
+        '[object Object]',
+        '"></mentionsline-stub>'
+      )
+    ].join('')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        hideMentions: false,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
 
   it('removes mentions from the end of the hellpost (<br>)', () => {
     const html = [
@@ -96,6 +164,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -124,6 +193,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -165,6 +235,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -199,6 +270,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -240,6 +312,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -267,6 +340,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: false,
         greentext: true,
         emoji: [],
@@ -290,6 +364,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: false,
         greentext: true,
         emoji: [],
@@ -309,6 +384,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: false,
         greentext: false,
         emoji: [],
@@ -329,6 +405,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: false,
         greentext: false,
         emoji: [{ url: 'about:blank', shortcode: 'spurdo' }],
@@ -345,6 +422,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: false,
         greentext: false,
         emoji: [],
@@ -407,6 +485,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -425,10 +504,18 @@ describe('RichContent', () => {
       makeMention('bar'),
       makeMention('baz')
     ].join('<br>')
+    const expected = [
+      'Bruh',
+      'Bruh',
+      stubMention('foo'),
+      stubMention('bar'),
+      stubMention('baz')
+    ].join('<br>')
 
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -436,7 +523,7 @@ describe('RichContent', () => {
       }
     })
 
-    expect(wrapper.html()).to.eql(compwrap(html))
+    expect(wrapper.html()).to.eql(compwrap(expected))
   })
 
   it('Don\'t remove last mentions if there are more than one first mention - remove first instead', () => {
@@ -471,6 +558,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -506,6 +594,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        hideMentions: true,
         handleLinks: true,
         greentext: true,
         emoji: [],

@@ -5,6 +5,7 @@ import { convertHtmlToTree } from 'src/services/html_converter/html_tree_convert
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
 import StillImage from 'src/components/still-image/still-image.vue'
 import MentionLink from 'src/components/mention_link/mention_link.vue'
+import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
 
 import './rich_content.scss'
 
@@ -51,6 +52,11 @@ export default Vue.component('RichContent', {
       required: false,
       type: Boolean,
       default: false
+    },
+    hideMentions: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   // NEVER EVER TOUCH DATA INSIDE RENDER
@@ -64,6 +70,7 @@ export default Vue.component('RichContent', {
     // unique index for vue "tag" property
     let mentionIndex = 0
     let tagsIndex = 0
+    let firstMentionReplaced = false
 
     const renderImage = (tag) => {
       return <StillImage
@@ -90,7 +97,12 @@ export default Vue.component('RichContent', {
       writtenMentions.push(linkData)
       if (!encounteredText) {
         firstMentions.push(linkData)
-        return ''
+        if (!firstMentionReplaced && !this.hideMentions) {
+          firstMentionReplaced = true
+          return <MentionsLine mentions={ firstMentions } />
+        } else {
+          return ''
+        }
       } else {
         return <MentionLink
           url={attrs.href}
@@ -143,7 +155,7 @@ export default Vue.component('RichContent', {
               if (firstMentions.length > 1 && lastMentions.length > 1) {
                 break
               } else {
-                return ''
+                return !this.hideMentions ? <MentionsLine mentions={lastMentions} /> : ''
               }
             } else {
               break

@@ -11,7 +11,7 @@ const mapOnlyText = (processor) => (input) => {
   }
 }
 
-describe.only('html_line_converter', () => {
+describe('html_line_converter', () => {
   describe('with processor that keeps original line should not make any changes to HTML when', () => {
     const processorKeep = (line) => line
     it('fed with regular HTML with newlines', () => {

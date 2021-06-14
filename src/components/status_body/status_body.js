@@ -1,6 +1,5 @@
 import fileType from 'src/services/file_type/file_type.service'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
-import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { set } from 'vue'
@@ -36,9 +35,6 @@ const StatusContent = {
       showingLongSubject: false,
       // not as computed because it sets the initial state which will be changed later
       expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject,
-      headTailLinks: null,
-      firstMentions: [],
-      lastMentions: []
     }
   },
   computed: {
@@ -81,8 +77,7 @@ const StatusContent = {
     ...mapGetters(['mergedConfig'])
   },
   components: {
-    RichContent,
-    MentionsLine
+    RichContent
   },
   mounted () {
     this.status.attentions && this.status.attentions.forEach(attn => {
@@ -97,11 +92,6 @@ const StatusContent = {
       } else if (this.mightHideBecauseSubject) {
         this.expandingSubject = !this.expandingSubject
       }
-    },
-    setHeadTailLinks (headTailLinks) {
-      set(this, 'headTailLinks', headTailLinks)
-      set(this, 'firstMentions', headTailLinks.firstMentions)
-      set(this, 'lastMentions', headTailLinks.lastMentions)
     },
     generateTagLink (tag) {
       return `/tag/${tag}`

@@ -92,9 +92,6 @@ const StatusContent = {
     StatusBody
   },
   methods: {
-    setHeadTailLinks (headTailLinks) {
-      this.$emit('parseReady', headTailLinks)
-    },
     setMedia () {
       const attachments = this.attachmentSize === 'hide' ? this.status.attachments : this.galleryAttachments
       return () => this.$store.dispatch('setMedia', attachments)
