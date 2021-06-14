@@ -34,7 +34,7 @@ export const defaultState = {
   loopVideoSilentOnly: true,
   streaming: false,
   emojiReactionsOnTimeline: true,
-  showNewPostButton: false,
+  alwaysShowNewPostButton: false,
   autohideFloatingPostButton: false,
   pauseOnUnfocused: true,
   stopGifs: false,

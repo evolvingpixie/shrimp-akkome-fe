@@ -118,8 +118,8 @@
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="showNewPostButton">
-            {{ $t('settings.showPostButton') }}
+          <BooleanSetting path="alwaysShowNewPostButton">
+            {{ $t('settings.always_show_post_button') }}
           </BooleanSetting>
         </li>
         <li>
