@@ -2,7 +2,6 @@ import fileType from 'src/services/file_type/file_type.service'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { set } from 'vue'
 import {
   faFile,
   faMusic,
@@ -34,7 +33,7 @@ const StatusContent = {
       showingTall: this.fullContent || (this.inConversation && this.focused),
       showingLongSubject: false,
       // not as computed because it sets the initial state which will be changed later
-      expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject,
+      expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject
     }
   },
   computed: {

@@ -145,7 +145,6 @@ describe('RichContent', () => {
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
 
-
   it('removes mentions from the end of the hellpost (<br>)', () => {
     const html = [
       'How are you doing today, fine gentlemen?',
