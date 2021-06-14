@@ -118,6 +118,11 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="showNewPostButton">
+            {{ $t('settings.showPostButton') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting path="autohideFloatingPostButton">
             {{ $t('settings.autohide_floating_post_button') }}
           </BooleanSetting>

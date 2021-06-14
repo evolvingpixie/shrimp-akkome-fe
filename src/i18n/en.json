@@ -349,6 +349,7 @@
     "max_thumbnails": "Maximum amount of thumbnails per post",
     "hide_isp": "Hide instance-specific panel",
     "right_sidebar": "Show sidebar on the right side",
+    "showPostButton": "Always show floating New Post button",
     "hide_wallpaper": "Hide instance wallpaper",
     "preload_images": "Preload images",
     "use_one_click_nsfw": "Open NSFW attachments with just one click",
