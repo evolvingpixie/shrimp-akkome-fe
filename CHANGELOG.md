@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added option to mark posts as sensitive by default
 - Added quick filters for notifications
 - Implemented user option to change sidebar position to the right side
+- Implemented user option to hide floating shout panel
 - Added Apply and Reset buttons to the bottom of theme tab to minimize UI travel
 
 
