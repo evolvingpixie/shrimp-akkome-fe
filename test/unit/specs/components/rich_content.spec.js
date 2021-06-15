@@ -639,4 +639,48 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
+
+  it('contents of a link', () => {
+    const html = [
+      '<p>',
+      'Freenode is dead.</p>',
+      '<p>',
+      '<a href="https://isfreenodedeadyet.com/">',
+      '<span>',
+      'https://</span>',
+      '<span>',
+      'isfreenodedeadyet.com/</span>',
+      '<span>',
+      '</span>',
+      '</a>',
+      '</p>'
+    ].join('')
+    const expected = [
+      '<p>',
+      'Freenode is dead.</p>',
+      '<p>',
+      '<a href="https://isfreenodedeadyet.com/" target="_blank">',
+      '<span>',
+      'https://</span>',
+      '<span>',
+      'isfreenodedeadyet.com/</span>',
+      '<span>',
+      '</span>',
+      '</a>',
+      '</p>'
+    ].join('')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        hideMentions: false,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
 })

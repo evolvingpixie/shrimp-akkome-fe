@@ -164,17 +164,15 @@ export default Vue.component('RichContent', {
           case 'a': // replace mentions with MentionLink
             if (!this.handleLinks) break
             if (attrs['class'] && attrs['class'].includes('mention')) {
+              // Handling mentions here
               return renderMention(attrs, children, encounteredText)
-            } else if (attrs['class'] && attrs['class'].includes('hashtag')) {
+            } else {
+              // Everything else will be handled in reverse pass
               encounteredText = true
               return item // We'll handle it later
-            } else {
-              attrs.target = '_blank'
-              return <a {...{ attrs }}>
-                { children.map(processItem) }
-              </a>
             }
         }
+
         if (children !== undefined) {
           return [opener, children.map(processItem), closer]
         } else {
@@ -203,16 +201,28 @@ export default Vue.component('RichContent', {
             // should only be this
             if (attrs['class'] && attrs['class'].includes('hashtag')) {
               return renderHashtag(attrs, children, encounteredTextReverse)
+            } else {
+              attrs.target = '_blank'
+              html.includes('freenode') && console.log('PASS1', children)
+              const newChildren = [...children].reverse().map(processItemReverse).reverse()
+              html.includes('freenode') && console.log('PASS1b', newChildren)
+
+              return <a {...{ attrs }}>
+                { newChildren }
+              </a>
             }
-            break
           case '':
             return [...children].reverse().map(processItemReverse).reverse()
         }
 
         // Render tag as is
         if (children !== undefined) {
+          html.includes('freenode') && console.log('PASS2', children)
+          const newChildren = Array.isArray(children)
+            ? [...children].reverse().map(processItemReverse).reverse()
+            : children
           return <Tag {...{ attrs: getAttrs(opener) }}>
-            { Array.isArray(children) ? [...children].reverse().map(processItemReverse).reverse() : children }
+            { newChildren }
           </Tag>
         } else {
           return <Tag/>
