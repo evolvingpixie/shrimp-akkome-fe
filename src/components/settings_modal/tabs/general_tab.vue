@@ -23,7 +23,7 @@
         </li>
         <li v-if="instanceShoutboxPresent">
           <BooleanSetting path="hideShoutbox">
-            {{ $t('general.hide') }} {{ $t('shoutbox.title') }}
+            {{ $t('settings.hide_shoutbox') }}
           </BooleanSetting>
         </li>
       </ul>
