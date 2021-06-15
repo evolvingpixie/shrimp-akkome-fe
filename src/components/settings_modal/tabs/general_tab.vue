@@ -23,7 +23,7 @@
         </li>
         <li v-if="shout">
           <BooleanSetting path="hideShoutbox">
-            {{ $t('settings.hide_shoutbox') }} {{ $t('shoutbox.title') }}
+            {{ $t('general.hide') }} {{ $t('shoutbox.title') }}
           </BooleanSetting>
         </li>
       </ul>

@@ -75,6 +75,7 @@
     "confirm": "Confirm",
     "verify": "Verify",
     "close": "Close",
+    "hide": "Hide",
     "peek": "Peek",
     "role": {
       "admin": "Admin",
@@ -351,7 +352,6 @@
     "max_thumbnails": "Maximum amount of thumbnails per post",
     "hide_isp": "Hide instance-specific panel",
     "right_sidebar": "Show sidebar on the right side",
-    "hide_shoutbox": "Hide ",
     "hide_wallpaper": "Hide instance wallpaper",
     "preload_images": "Preload images",
     "use_one_click_nsfw": "Open NSFW attachments with just one click",
