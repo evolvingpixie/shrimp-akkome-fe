@@ -603,4 +603,40 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
+
+  it('buggy example/hashtags', () => {
+    const html = [
+      '<p>',
+      '<a href="http://macrochan.org/images/N/H/NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg">',
+      'NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg</a>',
+      ' <a class="hashtag" data-tag="nou" href="https://shitposter.club/tag/nou">',
+      '#nou</a>',
+      ' <a class="hashtag" data-tag="screencap" href="https://shitposter.club/tag/screencap">',
+      '#screencap</a>',
+      ' </p>'
+    ].join('')
+    const expected = [
+      '<p>',
+      '<a href="http://macrochan.org/images/N/H/NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg" target="_blank">',
+      'NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg</a>',
+      ' <a class="hashtag" data-tag="nou" href="https://shitposter.club/tag/nou" target="_blank">',
+      '#nou</a>',
+      ' <a class="hashtag" data-tag="screencap" href="https://shitposter.club/tag/screencap" target="_blank">',
+      '#screencap</a>',
+      ' </p>'
+    ].join('')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        hideMentions: true,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
 })

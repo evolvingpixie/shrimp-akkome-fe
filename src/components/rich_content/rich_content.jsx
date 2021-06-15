@@ -85,7 +85,6 @@ export default Vue.component('RichContent', {
       attrs.target = '_blank'
       if (!encounteredTextReverse) {
         lastTags.push(linkData)
-        attrs['data-parser-last'] = true
       }
       return <a {...{ attrs }}>
         { children.map(processItem) }
@@ -128,7 +127,7 @@ export default Vue.component('RichContent', {
           encounteredText = true
         }
         if (item.includes(':')) {
-          unescapedItem = processTextForEmoji(
+          unescapedItem = ['', processTextForEmoji(
             unescapedItem,
             this.emoji,
             ({ shortcode, url }) => {
@@ -139,14 +138,14 @@ export default Vue.component('RichContent', {
                 alt={`:${shortcode}:`}
               />
             }
-          )
+          )]
         }
         return unescapedItem
       }
 
       // Handle tag nodes
       if (Array.isArray(item)) {
-        const [opener, children] = item
+        const [opener, children, closer] = item
         const Tag = getTagName(opener)
         const attrs = getAttrs(opener)
         switch (Tag) {
@@ -176,14 +175,10 @@ export default Vue.component('RichContent', {
               </a>
             }
         }
-
-        // Render tag as is
         if (children !== undefined) {
-          return <Tag {...{ attrs: getAttrs(opener) }}>
-            { children.map(processItem) }
-          </Tag>
+          return [opener, children.map(processItem), closer]
         } else {
-          return <Tag/>
+          return item
         }
       }
     }
@@ -200,7 +195,7 @@ export default Vue.component('RichContent', {
       } else if (Array.isArray(item)) {
         // Handle tag nodes
         const [opener, children] = item
-        const Tag = getTagName(opener)
+        const Tag = opener === '' ? '' : getTagName(opener)
         switch (Tag) {
           case 'a': // replace mentions with MentionLink
             if (!this.handleLinks) break
@@ -209,16 +204,30 @@ export default Vue.component('RichContent', {
             if (attrs['class'] && attrs['class'].includes('hashtag')) {
               return renderHashtag(attrs, children, encounteredTextReverse)
             }
+            break
+          case '':
+            return [...children].reverse().map(processItemReverse).reverse()
+        }
+
+        // Render tag as is
+        if (children !== undefined) {
+          return <Tag {...{ attrs: getAttrs(opener) }}>
+            { Array.isArray(children) ? [...children].reverse().map(processItemReverse).reverse() : children }
+          </Tag>
+        } else {
+          return <Tag/>
         }
       }
       return item
     }
 
+    const pass1 = convertHtmlToTree(html).map(processItem)
+    const pass2 = [...pass1].reverse().map(processItemReverse).reverse()
     // DO NOT USE SLOTS they cause a re-render feedback loop here.
     // slots updated -> rerender -> emit -> update up the tree -> rerender -> ...
     // at least until vue3?
     const result = <span class="RichContent">
-      { convertHtmlToTree(html).map(processItem).reverse().map(processItemReverse).reverse() }
+      { pass2 }
     </span>
 
     const event = {
