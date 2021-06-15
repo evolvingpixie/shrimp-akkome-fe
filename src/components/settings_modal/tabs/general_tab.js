@@ -50,7 +50,7 @@ const GeneralTab = {
       return this.$store.state.instance.background &&
         !this.$store.state.users.currentUser.background_image
     },
-    shout () { return this.$store.state.shout.channel.state === 'joined' },
+    instanceShoutboxPresent () { return this.$store.state.instance.shoutAvailable },
     ...SharedComputedObject()
   }
 }
