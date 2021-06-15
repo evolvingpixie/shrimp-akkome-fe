@@ -21,7 +21,7 @@
             {{ $t('settings.hide_wallpaper') }}
           </BooleanSetting>
         </li>
-        <li v-if="shout">
+        <li v-if="instanceShoutboxPresent">
           <BooleanSetting path="hideShoutbox">
             {{ $t('general.hide') }} {{ $t('shoutbox.title') }}
           </BooleanSetting>
