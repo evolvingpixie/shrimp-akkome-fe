@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
 
 const localVue = createLocalVue()
@@ -640,7 +640,107 @@ describe('RichContent', () => {
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
 
-  it('contents of a link', () => {
+  it('rich contents of a mention are handled properly', () => {
+    const html = [
+      p(
+        'Testing'
+      ),
+      p(
+        '<a href="lol" class="mention">',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '</a>'
+      )
+    ].join('')
+    const expected = [
+      p(
+        'Testing'
+      ),
+      p(
+        '<mentionlink-stub url="lol" content="',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '">',
+        '</mentionlink-stub>'
+      )
+    ].join('')
+
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        hideMentions: false,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
+  it('rich contents of a mention in beginning are handled properly', () => {
+    const html = [
+      p(
+        '<a href="lol" class="mention">',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '</a>'
+      ),
+      p(
+        'Testing'
+      )
+    ].join('')
+    const expected = [
+      p(
+        '<span class="MentionsLine">',
+        '<mentionlink-stub content="',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '" url="lol" class="mention-link">',
+        '</mentionlink-stub>',
+        '<!---->', // v-if placeholder
+        '</span>'
+      ),
+      p(
+        'Testing'
+      )
+    ].join('')
+
+    const wrapper = mount(RichContent, {
+      localVue,
+      stubs: {
+        MentionLink: true
+      },
+      propsData: {
+        hideMentions: false,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
+  it('rich contents of a link are handled properly', () => {
     const html = [
       '<p>',
       'Freenode is dead.</p>',
