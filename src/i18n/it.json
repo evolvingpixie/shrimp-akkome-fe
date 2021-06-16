@@ -447,7 +447,8 @@
       "backup_settings": "Archivia impostazioni localmente",
       "backup_restore": "Archiviazione impostazioni"
     },
-    "right_sidebar": "Mostra barra laterale a destra"
+    "right_sidebar": "Mostra barra laterale a destra",
+    "hide_shoutbox": "Nascondi muro dei graffiti"
   },
   "timeline": {
     "error_fetching": "Errore nell'aggiornamento",
