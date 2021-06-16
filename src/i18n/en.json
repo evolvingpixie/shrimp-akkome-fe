@@ -350,6 +350,7 @@
     "hide_all_muted_posts": "Hide muted posts",
     "max_thumbnails": "Maximum amount of thumbnails per post (empty = no limit)",
     "hide_isp": "Hide instance-specific panel",
+    "hide_shoutbox": "Hide instance shoutbox",
     "right_sidebar": "Show sidebar on the right side",
     "hide_wallpaper": "Hide instance wallpaper",
     "preload_images": "Preload images",

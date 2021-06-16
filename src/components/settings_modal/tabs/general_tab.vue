@@ -63,6 +63,11 @@
             {{ $t('settings.autohide_floating_post_button') }}
           </BooleanSetting>
         </li>
+        <li v-if="instanceShoutboxPresent">
+          <BooleanSetting path="hideShoutbox">
+            {{ $t('settings.hide_shoutbox') }}
+          </BooleanSetting>
+        </li>
       </ul>
     </div>
     <div class="setting-item">
