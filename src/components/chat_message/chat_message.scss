@@ -91,7 +91,7 @@
   .without-attachment {
     .message-content {
       // TODO figure out how to do it properly
-      .rich-content-wrapper::after {
+      .RichContent::after {
         margin-right: 5.4em;
         content: " ";
         display: inline-block;
