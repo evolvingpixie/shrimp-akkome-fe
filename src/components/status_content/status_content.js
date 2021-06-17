@@ -72,12 +72,6 @@ const StatusContent = {
     Gallery,
     LinkPreview,
     StatusBody
-  },
-  methods: {
-    setMedia () {
-      const attachments = this.status.attachments
-      return () => this.$store.dispatch('setMedia', attachments)
-    }
   }
 }
 

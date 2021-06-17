@@ -28,6 +28,13 @@
       :title="currentMedia.description"
       controls
     />
+    <Flash
+      v-if="type === 'flash'"
+      class="modal-image"
+      :src="currentMedia.url"
+      :alt="currentMedia.description"
+      :title="currentMedia.description"
+    />
     <button
       v-if="canNavigate"
       :title="$t('media_modal.previous')"

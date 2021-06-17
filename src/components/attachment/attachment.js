@@ -113,13 +113,14 @@ const Attachment = {
     },
     openModal (event) {
       if (this.useModal) {
-        this.setMedia()
-        this.$store.dispatch('setCurrent', this.attachment)
+        this.$emit('setMedia')
+        this.$store.dispatch('setCurrentMedia', this.attachment)
       }
     },
     openModalForce (event) {
-      this.setMedia()
-      this.$store.dispatch('setCurrent', this.attachment)
+      this.$emit('setMedia')
+      this.$store.dispatch('setCurrentMedia', this.attachment)
+    },
     },
     stopFlash () {
       this.$refs.flash.closePlayer()

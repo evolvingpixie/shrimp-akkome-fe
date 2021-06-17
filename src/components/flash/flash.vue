@@ -44,13 +44,24 @@
 <style lang="scss">
 @import '../../_variables.scss';
 .Flash {
+  display: inline-block;
   width: 100%;
-  height: 260px;
+  height: 100%;
   position: relative;
 
   .player {
     height: 100%;
     width: 100%;
+  }
+
+  .placeholder {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--link);
   }
 
   .hider {
@@ -68,14 +79,6 @@
   .hidden {
     display: none;
     visibility: 'hidden';
-  }
-
-  .placeholder {
-    height: 100%;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 </style>

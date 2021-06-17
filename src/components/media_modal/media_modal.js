@@ -3,6 +3,7 @@ import VideoAttachment from '../video_attachment/video_attachment.vue'
 import Modal from '../modal/modal.vue'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import GestureService from '../../services/gesture_service/gesture_service'
+import Flash from 'src/components/flash/flash.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faChevronLeft,
@@ -18,7 +19,8 @@ const MediaModal = {
   components: {
     StillImage,
     VideoAttachment,
-    Modal
+    Modal,
+    Flash
   },
   computed: {
     showing () {
@@ -67,13 +69,13 @@ const MediaModal = {
     goPrev () {
       if (this.canNavigate) {
         const prevIndex = this.currentIndex === 0 ? this.media.length - 1 : (this.currentIndex - 1)
-        this.$store.dispatch('setCurrent', this.media[prevIndex])
+        this.$store.dispatch('setCurrentMedia', this.media[prevIndex])
       }
     },
     goNext () {
       if (this.canNavigate) {
         const nextIndex = this.currentIndex === this.media.length - 1 ? 0 : (this.currentIndex + 1)
-        this.$store.dispatch('setCurrent', this.media[nextIndex])
+        this.$store.dispatch('setCurrentMedia', this.media[nextIndex])
       }
     },
     handleKeyupEvent (e) {
