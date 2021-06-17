@@ -20,6 +20,7 @@
         v-if="status.attachments.length !== 0"
         :nsfw="nsfwClickthrough"
         :attachments="status.attachments"
+        :limit="this.compact ? 1 : 0"
         :size="attachmentSize"
         @setMedia="onMedia"
         @play="$emit('mediaplay', attachment.id)"

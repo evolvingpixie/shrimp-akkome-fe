@@ -1,5 +1,8 @@
 <template>
-  <div class="StatusBody">
+<div
+  class="StatusBody"
+  :class="{ '-compact': compact }"
+  >
     <div class="body">
       <div
         v-if="status.summary_raw_html"

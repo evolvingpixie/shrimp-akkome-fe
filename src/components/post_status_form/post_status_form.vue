@@ -298,7 +298,6 @@
         :editable="true"
         :editAttachment="editAttachment"
         :removeAttachment="removeMediaFile"
-        size="small"
         @play="$emit('mediaplay', attachment.id)"
         @pause="$emit('mediapause', attachment.id)"
       />

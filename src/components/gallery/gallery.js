@@ -6,6 +6,7 @@ const Gallery = {
     'attachments',
     'limitRows',
     'descriptions',
+    'limit',
     'nsfw',
     'setMedia',
     'size',
@@ -26,11 +27,14 @@ const Gallery = {
       if (!this.attachments) {
         return []
       }
+      console.log(this.limit)
+      const attachments = this.limit > 0
+        ? this.attachments.slice(0, this.limit)
+        : this.attachments
       if (this.size === 'hide') {
-        return this.attachments.map(item => ({ minimal: true, items: [item] }))
+        return attachments.map(item => ({ minimal: true, items: [item] }))
       }
-      const rows = this.attachments.reduce((acc, attachment, i) => {
-        if (this.size === 'small' && acc.length === 2) return acc
+      const rows = attachments.reduce((acc, attachment, i) => {
         if (attachment.mimetype.includes('audio')) {
           return [...acc, { audio: true, items: [attachment] }, { items: [] }]
         }

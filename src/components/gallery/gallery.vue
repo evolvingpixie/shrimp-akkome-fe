@@ -25,7 +25,7 @@
             :remove="removeAttachment"
             :edit="editAttachment"
             :description="descriptions && descriptions[attachment.id]"
-            :hideDescription="tooManyAttachments && hidingLong"
+            :hideDescription="size === 'small' || tooManyAttachments && hidingLong"
             :style="itemStyle(attachment.id, row.items)"
             @setMedia="onMedia"
             @naturalSizeLoad="onNaturalSizeLoad"
