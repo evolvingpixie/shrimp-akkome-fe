@@ -1,8 +1,12 @@
 <template>
-  <div class="StatusContent">
+<div
+  class="StatusContent"
+  :class="{ '-compact': compact }"
+>
     <slot name="header" />
     <StatusBody
       :status="status"
+      :compact="compact"
       :single-line="singleLine"
       :hide-mentions="hideMentions"
       @parseReady="$emit('parseReady', $event)"
@@ -23,7 +27,7 @@
       />
 
       <div
-        v-if="status.card && !noHeading"
+        v-if="status.card && !noHeading && !compact"
         class="link-preview media-body"
       >
         <link-preview
@@ -46,5 +50,10 @@ $status-margin: 0.75em;
 .StatusContent {
   flex: 1;
   min-width: 0;
+  &.-compact {
+    flex {
+      display: flex;
+    }
+  }
 }
 </style>
