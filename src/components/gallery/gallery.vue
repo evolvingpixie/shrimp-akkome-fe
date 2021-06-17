@@ -17,13 +17,18 @@
             v-for="attachment in row.items"
             class="gallery-item"
             :key="attachment.id"
-            :set-media="setMedia"
             :nsfw="nsfw"
             :attachment="attachment"
             :allow-play="false"
             :size="size"
-            :natural-size-load="onNaturalSizeLoad.bind(null, attachment.id)"
+            :editable="editable"
+            :remove="removeAttachment"
+            :edit="editAttachment"
+            :description="descriptions && descriptions[attachment.id]"
+            :hideDescription="tooManyAttachments && hidingLong"
             :style="itemStyle(attachment.id, row.items)"
+            @setMedia="onMedia"
+            @naturalSizeLoad="onNaturalSizeLoad"
           />
         </div>
       </div>

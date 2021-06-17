@@ -13,7 +13,9 @@ import {
   faPlayCircle,
   faTimes,
   faStop,
-  faSearchPlus
+  faSearchPlus,
+  faTrashAlt,
+  faPencilAlt
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -24,19 +26,25 @@ library.add(
   faPlayCircle,
   faTimes,
   faStop,
-  faSearchPlus
+  faSearchPlus,
+  faTrashAlt,
+  faPencilAlt
 )
 
 const Attachment = {
   props: [
     'attachment',
+    'description',
+    'hideDescription',
     'nsfw',
     'size',
     'setMedia',
-    'naturalSizeLoad'
+    'remove',
+    'edit'
   ],
   data () {
     return {
+      localDescription: this.description || this.attachment.description,
       nsfwImage: this.$store.state.instance.nsfwCensorImage || nsfwImage,
       hideNsfwLocal: this.$store.getters.mergedConfig.hideNsfw,
       preloadImage: this.$store.getters.mergedConfig.preloadImage,
@@ -93,9 +101,6 @@ const Attachment = {
     isEmpty () {
       return (this.type === 'html' && !this.attachment.oembed) || this.type === 'unknown'
     },
-    isSmall () {
-      return this.size === 'small'
-    },
     useModal () {
       const modalTypes = this.size === 'hide' ? ['image', 'video', 'audio']
         : this.mergedConfig.playVideosInModal
@@ -104,6 +109,11 @@ const Attachment = {
       return modalTypes.includes(this.type)
     },
     ...mapGetters(['mergedConfig'])
+  },
+  watch: {
+    localDescription (newVal) {
+      this.onEdit(newVal)
+    }
   },
   methods: {
     linkClicked ({ target }) {
@@ -121,6 +131,12 @@ const Attachment = {
       this.$emit('setMedia')
       this.$store.dispatch('setCurrentMedia', this.attachment)
     },
+    onEdit (event) {
+      console.log('ONEDIT', event)
+      this.edit && this.edit(this.attachment, event)
+    },
+    onRemove () {
+      this.remove && this.remove(this.attachment)
     },
     stopFlash () {
       this.$refs.flash.closePlayer()
@@ -154,7 +170,7 @@ const Attachment = {
     onImageLoad (image) {
       const width = image.naturalWidth
       const height = image.naturalHeight
-      this.naturalSizeLoad && this.naturalSizeLoad({ width, height })
+      this.$emit('naturalSizeLoad', { id: this.attachment.id, width, height })
     }
   }
 }

@@ -4,9 +4,15 @@ import { sumBy } from 'lodash'
 const Gallery = {
   props: [
     'attachments',
+    'limitRows',
+    'descriptions',
     'nsfw',
     'setMedia',
-    'size'
+    'size',
+    'editable',
+    'removeAttachment',
+    'editAttachment',
+    'maxPerRow'
   ],
   data () {
     return {
@@ -20,24 +26,19 @@ const Gallery = {
       if (!this.attachments) {
         return []
       }
-      console.log(this.size)
       if (this.size === 'hide') {
         return this.attachments.map(item => ({ minimal: true, items: [item] }))
       }
       const rows = this.attachments.reduce((acc, attachment, i) => {
+        if (this.size === 'small' && acc.length === 2) return acc
         if (attachment.mimetype.includes('audio')) {
           return [...acc, { audio: true, items: [attachment] }, { items: [] }]
         }
-        const maxPerRow = 3
-        const attachmentsRemaining = this.attachments.length - i - 1
+        const maxPerRow = this.maxPerRow || 3
+        const attachmentsRemaining = this.attachments.length - i + 1
         const currentRow = acc[acc.length - 1].items
-        if (
-          currentRow.length <= maxPerRow ||
-            attachmentsRemaining === 1
-        ) {
-          currentRow.push(attachment)
-        }
-        if (currentRow.length === maxPerRow && attachmentsRemaining > 1) {
+        currentRow.push(attachment)
+        if (currentRow.length >= maxPerRow && attachmentsRemaining > maxPerRow) {
           return [...acc, { items: [] }]
         } else {
           return acc
@@ -51,7 +52,9 @@ const Gallery = {
       }, 0)
     },
     tooManyAttachments () {
-      if (this.size === 'hide') {
+      if (this.editable || this.size === 'small') {
+        return false
+      } else if (this.size === 'hide') {
         return this.attachments.length > 8
       } else {
         return this.attachmentsDimensionalScore > 1
@@ -59,8 +62,8 @@ const Gallery = {
     }
   },
   methods: {
-    onNaturalSizeLoad (id, size) {
-      this.$set(this.sizes, id, size)
+    onNaturalSizeLoad ({ id, width, height }) {
+      this.$set(this.sizes, id, { width, height })
     },
     rowStyle (row) {
       if (row.audio) {
@@ -81,8 +84,11 @@ const Gallery = {
       this.hidingLong = event
     },
     openGallery () {
-      this.setMedia()
-      this.$store.dispatch('setCurrent', this.attachments[0])
+      this.$store.dispatch('setMedia', this.attachments)
+      this.$store.dispatch('setCurrentMedia', this.attachments[0])
+    },
+    onMedia () {
+      this.$store.dispatch('setMedia', this.attachments)
     }
   }
 }

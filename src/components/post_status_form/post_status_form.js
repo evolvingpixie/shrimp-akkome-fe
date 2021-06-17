@@ -4,6 +4,7 @@ import ScopeSelector from '../scope_selector/scope_selector.vue'
 import EmojiInput from '../emoji_input/emoji_input.vue'
 import PollForm from '../poll/poll_form.vue'
 import Attachment from '../attachment/attachment.vue'
+import Gallery from 'src/components/gallery/gallery.vue'
 import StatusContent from '../status_content/status_content.vue'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import { findOffset } from '../../services/offset_finder/offset_finder.service.js'
@@ -85,7 +86,8 @@ const PostStatusForm = {
     Checkbox,
     Select,
     Attachment,
-    StatusContent
+    StatusContent,
+    Gallery
   },
   mounted () {
     this.updateIdempotencyKey()
@@ -387,6 +389,10 @@ const PostStatusForm = {
       let index = this.newStatus.files.indexOf(fileInfo)
       this.newStatus.files.splice(index, 1)
       this.$emit('resize')
+    },
+    editAttachment (fileInfo, newText) {
+      console.log(fileInfo, newText)
+      this.newStatus.mediaDescriptions[fileInfo.id] = newText
     },
     uploadFailed (errString, templateArgs) {
       templateArgs = templateArgs || {}
