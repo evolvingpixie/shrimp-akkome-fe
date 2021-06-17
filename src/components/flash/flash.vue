@@ -36,13 +36,6 @@
         </p>
       </span>
     </button>
-    <button
-      v-if="player"
-      class="button-unstyled hider"
-      @click="closePlayer"
-    >
-      <FAIcon icon="stop" />
-    </button>
   </div>
 </template>
 

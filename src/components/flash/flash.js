@@ -39,12 +39,13 @@ const Flash = {
           this.player = 'error'
         })
         this.ruffleInstance = player
+        this.$emit('playerOpened')
       })
     },
     closePlayer () {
-      console.log(this.ruffleInstance)
-      this.ruffleInstance.remove()
+      this.ruffleInstance && this.ruffleInstance.remove()
       this.player = false
+      this.$emit('playerClosed')
     }
   }
 }

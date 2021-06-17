@@ -11,29 +11,16 @@
         <poll :base-poll="status.poll" />
       </div>
 
-      <div
-        v-if="status.attachments.length !== 0"
+      <gallery
         class="attachments media-body"
-      >
-        <attachment
-          v-for="attachment in nonGalleryAttachments"
-          :key="attachment.id"
-          class="non-gallery"
-          :size="attachmentSize"
-          :nsfw="nsfwClickthrough"
-          :attachment="attachment"
-          :allow-play="true"
-          :set-media="setMedia()"
-          @play="$emit('mediaplay', attachment.id)"
-          @pause="$emit('mediapause', attachment.id)"
-        />
-        <gallery
-          v-if="galleryAttachments.length > 0"
-          :nsfw="nsfwClickthrough"
-          :attachments="galleryAttachments"
-          :set-media="setMedia()"
-        />
-      </div>
+        v-if="status.attachments.length !== 0"
+        :nsfw="nsfwClickthrough"
+        :attachments="status.attachments"
+        :set-media="setMedia()"
+        :size="attachmentSize"
+        @play="$emit('mediaplay', attachment.id)"
+        @pause="$emit('mediapause', attachment.id)"
+      />
 
       <div
         v-if="status.card && !noHeading"

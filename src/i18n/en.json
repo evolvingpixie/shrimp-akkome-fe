@@ -717,7 +717,11 @@
     "nsfw": "NSFW",
     "expand": "Expand",
     "you": "(You)",
-    "plus_more": "+{number} more"
+    "plus_more": "+{number} more",
+    "many_attachments": "Post has {number} attachment(s)",
+    "collapse_attachments": "Collapse attachments",
+    "show_all_attachments": "Show all attachments",
+    "open_gallery": "Open gallery"
   },
   "user_card": {
     "approve": "Approve",

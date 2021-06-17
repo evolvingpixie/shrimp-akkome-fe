@@ -58,24 +58,6 @@ const StatusContent = {
       }
       return 'normal'
     },
-    galleryTypes () {
-      if (this.attachmentSize === 'hide') {
-        return []
-      }
-      return this.mergedConfig.playVideosInModal
-        ? ['image', 'video']
-        : ['image']
-    },
-    galleryAttachments () {
-      return this.status.attachments.filter(
-        file => fileType.fileMatchesSomeType(this.galleryTypes, file)
-      )
-    },
-    nonGalleryAttachments () {
-      return this.status.attachments.filter(
-        file => !fileType.fileMatchesSomeType(this.galleryTypes, file)
-      )
-    },
     maxThumbnails () {
       return this.mergedConfig.maxThumbnails
     },
@@ -93,7 +75,7 @@ const StatusContent = {
   },
   methods: {
     setMedia () {
-      const attachments = this.attachmentSize === 'hide' ? this.status.attachments : this.galleryAttachments
+      const attachments = this.status.attachments
       return () => this.$store.dispatch('setMedia', attachments)
     }
   }

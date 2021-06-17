@@ -1,15 +1,17 @@
 import Attachment from '../attachment/attachment.vue'
-import { chunk, last, dropRight, sumBy } from 'lodash'
+import { sumBy } from 'lodash'
 
 const Gallery = {
   props: [
     'attachments',
     'nsfw',
-    'setMedia'
+    'setMedia',
+    'size'
   ],
   data () {
     return {
-      sizes: {}
+      sizes: {},
+      hidingLong: true
     }
   },
   components: { Attachment },
@@ -18,26 +20,54 @@ const Gallery = {
       if (!this.attachments) {
         return []
       }
-      const rows = chunk(this.attachments, 3)
-      if (last(rows).length === 1 && rows.length > 1) {
-        // if 1 attachment on last row -> add it to the previous row instead
-        const lastAttachment = last(rows)[0]
-        const allButLastRow = dropRight(rows)
-        last(allButLastRow).push(lastAttachment)
-        return allButLastRow
+      console.log(this.size)
+      if (this.size === 'hide') {
+        return this.attachments.map(item => ({ minimal: true, items: [item] }))
       }
+      const rows = this.attachments.reduce((acc, attachment, i) => {
+        if (attachment.mimetype.includes('audio')) {
+          return [...acc, { audio: true, items: [attachment] }, { items: [] }]
+        }
+        const maxPerRow = 3
+        const attachmentsRemaining = this.attachments.length - i - 1
+        const currentRow = acc[acc.length - 1].items
+        if (
+          currentRow.length <= maxPerRow ||
+            attachmentsRemaining === 1
+        ) {
+          currentRow.push(attachment)
+        }
+        if (currentRow.length === maxPerRow && attachmentsRemaining > 1) {
+          return [...acc, { items: [] }]
+        } else {
+          return acc
+        }
+      }, [{ items: [] }]).filter(_ => _.items.length > 0)
       return rows
     },
-    useContainFit () {
-      return this.$store.getters.mergedConfig.useContainFit
+    attachmentsDimensionalScore () {
+      return this.rows.reduce((acc, row) => {
+        return acc + (row.audio ? 0.25 : (1 / (row.items.length + 0.6)))
+      }, 0)
+    },
+    tooManyAttachments () {
+      if (this.size === 'hide') {
+        return this.attachments.length > 8
+      } else {
+        return this.attachmentsDimensionalScore > 1
+      }
     }
   },
   methods: {
     onNaturalSizeLoad (id, size) {
       this.$set(this.sizes, id, size)
     },
-    rowStyle (itemsPerRow) {
-      return { 'padding-bottom': `${(100 / (itemsPerRow + 0.6))}%` }
+    rowStyle (row) {
+      if (row.audio) {
+        return { 'padding-bottom': '25%' } // fixed reduced height for audio
+      } else if (!row.minimal) {
+        return { 'padding-bottom': `${(100 / (row.items.length + 0.6))}%` }
+      }
     },
     itemStyle (id, row) {
       const total = sumBy(row, item => this.getAspectRatio(item.id))
@@ -46,6 +76,13 @@ const Gallery = {
     getAspectRatio (id) {
       const size = this.sizes[id]
       return size ? size.width / size.height : 1
+    },
+    toggleHidingLong (event) {
+      this.hidingLong = event
+    },
+    openGallery () {
+      this.setMedia()
+      this.$store.dispatch('setCurrent', this.attachments[0])
     }
   }
 }

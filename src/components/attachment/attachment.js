@@ -11,7 +11,9 @@ import {
   faImage,
   faVideo,
   faPlayCircle,
-  faTimes
+  faTimes,
+  faStop,
+  faSearchPlus
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -20,7 +22,9 @@ library.add(
   faImage,
   faVideo,
   faPlayCircle,
-  faTimes
+  faTimes,
+  faStop,
+  faSearchPlus
 )
 
 const Attachment = {
@@ -28,7 +32,6 @@ const Attachment = {
     'attachment',
     'nsfw',
     'size',
-    'allowPlay',
     'setMedia',
     'naturalSizeLoad'
   ],
@@ -40,7 +43,8 @@ const Attachment = {
       loading: false,
       img: fileTypeService.fileType(this.attachment.mimetype) === 'image' && document.createElement('img'),
       modalOpen: false,
-      showHidden: false
+      showHidden: false,
+      flashLoaded: false
     }
   },
   components: {
@@ -49,8 +53,21 @@ const Attachment = {
     VideoAttachment
   },
   computed: {
+    classNames () {
+      return [
+        {
+          '-loading': this.loading,
+          '-nsfw-placeholder': this.hidden
+        },
+        '-' + this.type,
+        `-${this.useContainFit ? 'contain' : 'cover'}-fit`
+      ]
+    },
     usePlaceholder () {
       return this.size === 'hide' || this.type === 'unknown'
+    },
+    useContainFit () {
+      return this.$store.getters.mergedConfig.useContainFit
     },
     placeholderName () {
       if (this.attachment.description === '' || !this.attachment.description) {
@@ -79,10 +96,6 @@ const Attachment = {
     isSmall () {
       return this.size === 'small'
     },
-    fullwidth () {
-      if (this.size === 'hide') return false
-      return this.type === 'html' || this.type === 'audio' || this.type === 'unknown'
-    },
     useModal () {
       const modalTypes = this.size === 'hide' ? ['image', 'video', 'audio']
         : this.mergedConfig.playVideosInModal
@@ -100,11 +113,19 @@ const Attachment = {
     },
     openModal (event) {
       if (this.useModal) {
-        event.stopPropagation()
-        event.preventDefault()
         this.setMedia()
         this.$store.dispatch('setCurrent', this.attachment)
       }
+    },
+    openModalForce (event) {
+      this.setMedia()
+      this.$store.dispatch('setCurrent', this.attachment)
+    },
+    stopFlash () {
+      this.$refs.flash.closePlayer()
+    },
+    setFlashLoaded (event) {
+      this.flashLoaded = event
     },
     toggleHidden (event) {
       if (
