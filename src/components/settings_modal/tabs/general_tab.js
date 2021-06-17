@@ -50,6 +50,7 @@ const GeneralTab = {
       return this.$store.state.instance.background &&
         !this.$store.state.users.currentUser.background_image
     },
+    instanceShoutboxPresent () { return this.$store.state.instance.shoutAvailable },
     ...SharedComputedObject()
   }
 }
