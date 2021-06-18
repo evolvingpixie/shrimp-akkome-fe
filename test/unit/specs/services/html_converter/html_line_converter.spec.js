@@ -69,6 +69,13 @@ describe('html_line_converter', () => {
       const comparableResult = result.map(mapOnlyText(processorKeep)).join('')
       expect(comparableResult).to.eql(inputOutput)
     })
+
+    it('fed with some recognized but not handled elements', () => {
+      const inputOutput = 'testing images\n\n<img src="benis.png">'
+      const result = convertHtmlToLines(inputOutput)
+      const comparableResult = result.map(mapOnlyText(processorKeep)).join('')
+      expect(comparableResult).to.eql(inputOutput)
+    })
   })
   describe('with processor that replaces lines with word "_" should match expected line when', () => {
     const processorReplace = (line) => '_'

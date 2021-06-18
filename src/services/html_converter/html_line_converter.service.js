@@ -114,6 +114,8 @@ export const convertHtmlToLines = (html) => {
           } else {
             handleOpen(tagFull)
           }
+        } else {
+          textBuffer += tagFull
         }
       } else {
         textBuffer += tagFull
