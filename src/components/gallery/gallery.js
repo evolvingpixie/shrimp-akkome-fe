@@ -38,6 +38,13 @@ const Gallery = {
         if (attachment.mimetype.includes('audio')) {
           return [...acc, { audio: true, items: [attachment] }, { items: [] }]
         }
+        if (!(
+          attachment.mimetype.includes('image') ||
+            attachment.mimetype.includes('video') ||
+            attachment.mimetype.includes('flash')
+        )) {
+          return [...acc, { minimal: true, items: [attachment] }, { items: [] }]
+        }
         const maxPerRow = this.maxPerRow || 3
         const attachmentsRemaining = this.attachments.length - i + 1
         const currentRow = acc[acc.length - 1].items
@@ -52,7 +59,15 @@ const Gallery = {
     },
     attachmentsDimensionalScore () {
       return this.rows.reduce((acc, row) => {
-        return acc + (row.audio ? 0.25 : (1 / (row.items.length + 0.6)))
+        let size = 0
+        if (row.minimal) {
+          size += 1 / 8
+        } else if (row.audio) {
+          size += 1 / 4
+        } else {
+          size += 1 / (row.items.length + 0.6)
+        }
+        return acc + size
       }, 0)
     },
     tooManyAttachments () {

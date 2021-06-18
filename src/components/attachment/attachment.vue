@@ -15,8 +15,37 @@
       @click.prevent=""
     >
       <FAIcon :icon="placeholderIconClass" />
-      <b>{{ nsfw ? "NSFW / " : "" }}</b>{{ placeholderName }}
+      <b>{{ nsfw ? "NSFW / " : "" }}</b>{{ this.edit ? '' : placeholderName }}
     </a>
+    <div
+      class="attachment-buttons"
+      v-if="edit || remove"
+      >
+      <button
+        v-if="remove"
+        class="button-unstyled attachment-button"
+        @click.prevent="onRemove"
+      >
+        <FAIcon icon="trash-alt" />
+      </button>
+    </div>
+    <div
+      v-if="size !== 'hide' && !hideDescription && (edit || localDescription)"
+      class="description-container"
+      :class="{ '-static': !edit }"
+    >
+      <input
+        v-if="edit"
+        v-model="localDescription"
+        type="text"
+        class="description-field"
+        :placeholder="$t('post_status.media_description')"
+        @keydown.enter.prevent=""
+      >
+      <p v-else>
+        {{ localDescription }}
+      </p>
+    </div>
   </button>
   <div
     class="Attachment"

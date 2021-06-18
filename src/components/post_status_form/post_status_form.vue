@@ -338,6 +338,10 @@
 .post-status-form {
   position: relative;
 
+  .attachments {
+    margin-bottom: 0.5em;
+  }
+
   .form-bottom {
     display: flex;
     justify-content: space-between;

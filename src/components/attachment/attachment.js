@@ -65,10 +65,11 @@ const Attachment = {
       return [
         {
           '-loading': this.loading,
-          '-nsfw-placeholder': this.hidden
+          '-nsfw-placeholder': this.hidden,
+          '-editable': this.edit !== undefined
         },
-        '-' + this.type,
-        '-' + this.size,
+        '-type-' + this.type,
+        this.size && '-size-' + this.size,
         `-${this.useContainFit ? 'contain' : 'cover'}-fit`
       ]
     },
