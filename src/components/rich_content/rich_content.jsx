@@ -121,14 +121,13 @@ export default Vue.component('RichContent', {
         if (emptyText) {
           return encounteredText ? item : item.trim()
         }
-        let unescapedItem = unescape(item)
         if (!encounteredText) {
-          unescapedItem = unescapedItem.trimStart()
+          item = item.trimStart()
           encounteredText = true
         }
         if (item.includes(':')) {
-          unescapedItem = ['', processTextForEmoji(
-            unescapedItem,
+          item = ['', processTextForEmoji(
+            item,
             this.emoji,
             ({ shortcode, url }) => {
               return <StillImage
@@ -140,7 +139,7 @@ export default Vue.component('RichContent', {
             }
           )]
         }
-        return unescapedItem
+        return item
       }
 
       // Handle tag nodes
@@ -189,7 +188,7 @@ export default Vue.component('RichContent', {
         const emptyText = item.trim() === ''
         if (emptyText) return item
         if (!encounteredTextReverse) encounteredTextReverse = true
-        return item
+        return unescape(item)
       } else if (Array.isArray(item)) {
         // Handle tag nodes
         const [opener, children] = item
@@ -203,9 +202,7 @@ export default Vue.component('RichContent', {
               return renderHashtag(attrs, children, encounteredTextReverse)
             } else {
               attrs.target = '_blank'
-              html.includes('freenode') && console.log('PASS1', children)
               const newChildren = [...children].reverse().map(processItemReverse).reverse()
-              html.includes('freenode') && console.log('PASS1b', newChildren)
 
               return <a {...{ attrs }}>
                 { newChildren }
