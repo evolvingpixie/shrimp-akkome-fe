@@ -123,6 +123,7 @@
   }
 
   &.-compact {
+    align-items: top;
     flex-direction: row;
 
     --emoji-size: 16px;
@@ -140,9 +141,7 @@
       mask-size: auto 3.5em, auto auto;
       mask-position: 0 0, 0 0;
       mask-repeat: repeat-x, repeat;
-      mask-image:
-        linear-gradient(to top, white 0.5em, transparent 2.5em),
-        linear-gradient(to top, white, white);
+      mask-image: linear-gradient(to bottom, white 2em, transparent 3em);
 
       /* Autoprefixed seem to ignore this one, and also syntax is different */
       -webkit-mask-composite: xor;
@@ -154,6 +153,7 @@
       flex: 1 1 0;
       min-width: 5em;
       height: 100%;
+      margin-left: 0.5em;
     }
 
     .summary-wrapper {

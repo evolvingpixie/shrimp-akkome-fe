@@ -68,6 +68,7 @@ const Attachment = {
           '-nsfw-placeholder': this.hidden
         },
         '-' + this.type,
+        '-' + this.size,
         `-${this.useContainFit ? 'contain' : 'cover'}-fit`
       ]
     },
@@ -102,10 +103,18 @@ const Attachment = {
       return (this.type === 'html' && !this.attachment.oembed) || this.type === 'unknown'
     },
     useModal () {
-      const modalTypes = this.size === 'hide' ? ['image', 'video', 'audio']
-        : this.mergedConfig.playVideosInModal
-          ? ['image', 'video']
-          : ['image']
+      let modalTypes = []
+      switch (this.size) {
+        case 'hide':
+        case 'small':
+          modalTypes = ['image', 'video', 'audio', 'flash']
+          break
+        default:
+          modalTypes = this.mergedConfig.playVideosInModal
+            ? ['image', 'video', 'flash']
+            : ['image']
+          break
+      }
       return modalTypes.includes(this.type)
     },
     ...mapGetters(['mergedConfig'])

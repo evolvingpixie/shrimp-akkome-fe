@@ -51,10 +51,5 @@ $status-margin: 0.75em;
 .StatusContent {
   flex: 1;
   min-width: 0;
-  &.-compact {
-    flex {
-      display: flex;
-    }
-  }
 }
 </style>
