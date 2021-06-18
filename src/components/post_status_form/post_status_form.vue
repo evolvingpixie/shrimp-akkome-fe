@@ -290,7 +290,7 @@
       <gallery
         v-if="newStatus.files && newStatus.files.length > 0"
         class="attachments"
-        :maxPerRow="1"
+        :grid="true"
         :nsfw="false"
         :attachments="newStatus.files"
         :descriptions="newStatus.mediaDescriptions"
@@ -317,23 +317,6 @@
 
 <style lang="scss">
 @import '../../_variables.scss';
-
-.tribute-container {
-  ul {
-    padding: 0px;
-    li {
-      display: flex;
-      align-items: center;
-    }
-  }
-  img {
-    padding: 3px;
-    width: 16px;
-    height: 16px;
-    border-radius: $fallback--avatarAltRadius;
-    border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
-  }
-}
 
 .post-status-form {
   position: relative;

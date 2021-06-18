@@ -13,7 +13,7 @@ const Gallery = {
     'editable',
     'removeAttachment',
     'editAttachment',
-    'maxPerRow'
+    'grid'
   ],
   data () {
     return {
@@ -27,34 +27,35 @@ const Gallery = {
       if (!this.attachments) {
         return []
       }
-      console.log(this.limit)
       const attachments = this.limit > 0
         ? this.attachments.slice(0, this.limit)
         : this.attachments
       if (this.size === 'hide') {
         return attachments.map(item => ({ minimal: true, items: [item] }))
       }
-      const rows = attachments.reduce((acc, attachment, i) => {
-        if (attachment.mimetype.includes('audio')) {
-          return [...acc, { audio: true, items: [attachment] }, { items: [] }]
-        }
-        if (!(
-          attachment.mimetype.includes('image') ||
-            attachment.mimetype.includes('video') ||
-            attachment.mimetype.includes('flash')
-        )) {
-          return [...acc, { minimal: true, items: [attachment] }, { items: [] }]
-        }
-        const maxPerRow = this.maxPerRow || 3
-        const attachmentsRemaining = this.attachments.length - i + 1
-        const currentRow = acc[acc.length - 1].items
-        currentRow.push(attachment)
-        if (currentRow.length >= maxPerRow && attachmentsRemaining > maxPerRow) {
-          return [...acc, { items: [] }]
-        } else {
-          return acc
-        }
-      }, [{ items: [] }]).filter(_ => _.items.length > 0)
+      const rows = this.grid
+        ? [{ grid: true, items: attachments }]
+        : attachments.reduce((acc, attachment, i) => {
+          if (attachment.mimetype.includes('audio')) {
+            return [...acc, { audio: true, items: [attachment] }, { items: [] }]
+          }
+          if (!(
+            attachment.mimetype.includes('image') ||
+              attachment.mimetype.includes('video') ||
+              attachment.mimetype.includes('flash')
+          )) {
+            return [...acc, { minimal: true, items: [attachment] }, { items: [] }]
+          }
+          const maxPerRow = 3
+          const attachmentsRemaining = this.attachments.length - i + 1
+          const currentRow = acc[acc.length - 1].items
+          currentRow.push(attachment)
+          if (currentRow.length >= maxPerRow && attachmentsRemaining > maxPerRow) {
+            return [...acc, { items: [] }]
+          } else {
+            return acc
+          }
+        }, [{ items: [] }]).filter(_ => _.items.length > 0)
       return rows
     },
     attachmentsDimensionalScore () {
@@ -87,7 +88,7 @@ const Gallery = {
     rowStyle (row) {
       if (row.audio) {
         return { 'padding-bottom': '25%' } // fixed reduced height for audio
-      } else if (!row.minimal) {
+      } else if (!row.minimal && !row.grid) {
         return { 'padding-bottom': `${(100 / (row.items.length + 0.6))}%` }
       }
     },

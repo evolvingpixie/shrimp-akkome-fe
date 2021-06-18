@@ -10,9 +10,12 @@
         :key="index"
         class="gallery-row"
         :style="rowStyle(row)"
-        :class="{ '-audio': row.audio, '-minimal': row.minimal }"
+        :class="{ '-audio': row.audio, '-minimal': row.minimal, '-grid': grid }"
       >
-        <div class="gallery-row-inner">
+        <div
+          class="gallery-row-inner"
+          :class="{ '-grid': grid }"
+        >
           <attachment
             v-for="attachment in row.items"
             class="gallery-item"
@@ -136,10 +139,9 @@
   }
 
   .gallery-row {
-
+    &.-grid,
     &.-minimal {
       height: auto;
-
       .gallery-row-inner {
         position: relative;
       }
@@ -156,6 +158,21 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: stretch;
+
+    &.-grid {
+      width: 100%;
+      height: auto;
+      position: relative;
+      display: grid;
+      grid-column-gap: 0.5em;
+      grid-row-gap: 0.5em;
+      grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+
+      .gallery-item {
+        margin: 0;
+        height: 200px;
+      }
+    }
   }
 
   .gallery-item {
