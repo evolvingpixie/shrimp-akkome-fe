@@ -273,9 +273,7 @@
   --icon: var(--popoverIcon, $fallback--icon);
 
   .badge {
-    position: absolute;
-    right: 0.7rem;
-    top: 1em;
+    margin-left: 10px;
   }
 }
 
