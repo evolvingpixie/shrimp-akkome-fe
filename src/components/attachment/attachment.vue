@@ -127,7 +127,7 @@
         />
       </a>
 
-      <a
+      <span
         v-if="type === 'video' && !hidden"
         class="video-container"
         :href="attachment.url"
@@ -145,9 +145,9 @@
           class="play-icon"
           icon="play-circle"
         />
-      </a>
+      </span>
 
-      <a
+      <span
         v-if="type === 'audio' && !hidden"
         class="audio-container"
         :href="attachment.url"
@@ -162,7 +162,7 @@
           @play="$emit('play')"
           @pause="$emit('pause')"
         />
-      </a>
+      </span>
 
       <div
         v-if="type === 'html' && attachment.oembed"
@@ -183,7 +183,7 @@
         </div>
       </div>
 
-      <a
+      <span
         v-if="type === 'flash' && !hidden"
         class="flash-container"
         :href="attachment.url"
@@ -196,7 +196,7 @@
           @playerOpened="setFlashLoaded(true)"
           @playerClosed="setFlashLoaded(false)"
         />
-      </a>
+      </span>
     </div>
     <div
       v-if="size !== 'hide' && !hideDescription && (edit || localDescription)"
