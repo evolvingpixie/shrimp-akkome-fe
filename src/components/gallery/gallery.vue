@@ -166,7 +166,7 @@
       display: grid;
       grid-column-gap: 0.5em;
       grid-row-gap: 0.5em;
-      grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
 
       .gallery-item {
         margin: 0;
