@@ -50,7 +50,8 @@
           :handle-links="true"
           :hide-mentions="hideMentions"
           :greentext="mergedConfig.greentext"
-          @parseReady="$emit('parseReady', $event)"
+          :attentions="status.attentions"
+          @parseReady="onParseReady"
         />
 
         <button

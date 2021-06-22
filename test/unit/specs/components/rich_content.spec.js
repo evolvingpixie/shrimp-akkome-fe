@@ -27,6 +27,29 @@ describe('RichContent', () => {
     expect(wrapper.html()).to.eql(compwrap(html))
   })
 
+  it('unescapes everything as needed', () => {
+    const html = [
+      p('Testing &#39;em all'),
+      'Testing &#39;em all'
+    ].join('')
+    const expected = [
+      p('Testing \'em all'),
+      'Testing \'em all'
+    ].join('')
+    const wrapper = shallowMount(RichContent, {
+      localVue,
+      propsData: {
+        hideMentions: true,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
   it('removes mentions from the beginning of post', () => {
     const html = p(
       makeMention('John'),
