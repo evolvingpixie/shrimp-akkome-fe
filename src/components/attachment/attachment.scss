@@ -13,14 +13,12 @@
   border-radius: var(--attachmentRadius, $fallback--attachmentRadius);
   border-color: $fallback--border;
   border-color: var(--border, $fallback--border);
-  z-index: 1;
 
   .attachment-wrapper {
     flex: 1 1 auto;
     height: 100%;
     position: relative;
     overflow: hidden;
-    z-index: 2;
   }
 
   .description-container {
@@ -44,7 +42,6 @@
       left: 0;
       right: 0;
       top: 0;
-      z-index: 1;
       background: var(--popover);
       box-shadow: var(--popupShadow);
       opacity: 0;
@@ -91,7 +88,6 @@
       max-height: 100%;
       object-fit: contain;
       align-self: center;
-      z-index: 0;
     }
   }
 
@@ -123,13 +119,12 @@
     position: absolute;
     right: 0;
     top: 0;
-    z-index: 2;
     margin-top: 0.5em;
     margin-right: 0.5em;
+    z-index: 1;
 
     .attachment-button {
       padding: 0;
-      z-index: 4;
       border-radius: $fallback--tooltipRadius;
       border-radius: var(--tooltipRadius, $fallback--tooltipRadius);
       text-align: center;
