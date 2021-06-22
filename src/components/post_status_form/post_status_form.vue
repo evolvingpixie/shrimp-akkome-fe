@@ -296,8 +296,8 @@
         :descriptions="newStatus.mediaDescriptions"
         :set-media="() => $store.dispatch('setMedia', newStatus.files)"
         :editable="true"
-        :editAttachment="editAttachment"
-        :removeAttachment="removeMediaFile"
+        :edit-attachment="editAttachment"
+        :remove-attachment="removeMediaFile"
         @play="$emit('mediaplay', attachment.id)"
         @pause="$emit('mediapause', attachment.id)"
       />

@@ -3,7 +3,6 @@ import Poll from '../poll/poll.vue'
 import Gallery from '../gallery/gallery.vue'
 import StatusBody from 'src/components/status_body/status_body.vue'
 import LinkPreview from '../link-preview/link-preview.vue'
-import fileType from 'src/services/file_type/file_type.service'
 import { mapGetters, mapState } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {

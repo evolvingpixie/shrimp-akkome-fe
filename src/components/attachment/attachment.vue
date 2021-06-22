@@ -15,12 +15,12 @@
       @click.prevent=""
     >
       <FAIcon :icon="placeholderIconClass" />
-      <b>{{ nsfw ? "NSFW / " : "" }}</b>{{ this.edit ? '' : placeholderName }}
+      <b>{{ nsfw ? "NSFW / " : "" }}</b>{{ edit ? '' : placeholderName }}
     </a>
     <div
-      class="attachment-buttons"
       v-if="edit || remove"
-      >
+      class="attachment-buttons"
+    >
       <button
         v-if="remove"
         class="button-unstyled attachment-button"
@@ -48,13 +48,13 @@
     </div>
   </button>
   <div
+    v-else
     class="Attachment"
     :class="classNames"
-    v-else
   >
     <div
-      class="attachment-wrapper"
       v-show="!isEmpty"
+      class="attachment-wrapper"
     >
       <a
         v-if="hidden"
@@ -76,9 +76,9 @@
         />
       </a>
       <div
-        class="attachment-buttons"
         v-if="!hidden"
-        >
+        class="attachment-buttons"
+      >
         <button
           v-if="type === 'flash' && flashLoaded"
           class="button-unstyled attachment-button"
@@ -190,8 +190,8 @@
         @click.stop.prevent="openModal"
       >
         <Flash
-          class="flash"
           ref="flash"
+          class="flash"
           :src="attachment.large_thumb_url || attachment.url"
           @playerOpened="setFlashLoaded(true)"
           @playerClosed="setFlashLoaded(false)"

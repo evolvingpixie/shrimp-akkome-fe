@@ -1,8 +1,8 @@
 <template>
   <div
-    class="Gallery"
     ref="galleryContainer"
-    :class="{ '-long': tooManyAttachments && hidingLong  }"
+    class="Gallery"
+    :class="{ '-long': tooManyAttachments && hidingLong }"
   >
     <div class="gallery-rows">
       <div
@@ -18,8 +18,8 @@
         >
           <attachment
             v-for="attachment in row.items"
-            class="gallery-item"
             :key="attachment.id"
+            class="gallery-item"
             :nsfw="nsfw"
             :attachment="attachment"
             :allow-play="false"
@@ -28,7 +28,7 @@
             :remove="removeAttachment"
             :edit="editAttachment"
             :description="descriptions && descriptions[attachment.id]"
-            :hideDescription="size === 'small' || tooManyAttachments && hidingLong"
+            :hide-description="size === 'small' || tooManyAttachments && hidingLong"
             :style="itemStyle(attachment.id, row.items)"
             @setMedia="onMedia"
             @naturalSizeLoad="onNaturalSizeLoad"
@@ -41,7 +41,7 @@
       class="many-attachments"
     >
       <div class="many-attachments-text">
-        {{ $t("status.many_attachments", { number: attachments.length })}}
+        {{ $t("status.many_attachments", { number: attachments.length }) }}
       </div>
       <div class="many-attachments-buttons">
         <span
@@ -67,8 +67,8 @@
           </button>
         </span>
         <span
-          class="many-attachments-button"
           v-if="hidingLong"
+          class="many-attachments-button"
         >
           <button
             class="button-unstyled -link"

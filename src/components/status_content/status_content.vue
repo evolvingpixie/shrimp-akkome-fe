@@ -1,8 +1,8 @@
 <template>
-<div
-  class="StatusContent"
-  :class="{ '-compact': compact }"
->
+  <div
+    class="StatusContent"
+    :class="{ '-compact': compact }"
+  >
     <slot name="header" />
     <StatusBody
       :status="status"
@@ -16,11 +16,11 @@
       </div>
 
       <gallery
-        class="attachments media-body"
         v-if="status.attachments.length !== 0"
+        class="attachments media-body"
         :nsfw="nsfwClickthrough"
         :attachments="status.attachments"
-        :limit="this.compact ? 1 : 0"
+        :limit="compact ? 1 : 0"
         :size="attachmentSize"
         @setMedia="onMedia"
         @play="$emit('mediaplay', attachment.id)"
