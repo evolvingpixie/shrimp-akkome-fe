@@ -85,6 +85,20 @@ const StatusContent = {
     })
   },
   methods: {
+    onParseReady (event) {
+      this.$emit('parseReady', event)
+      const { writtenMentions } = event
+      writtenMentions
+        .filter(mention => !mention.notifying)
+        .forEach(mention => {
+          const { content, url } = mention
+          const cleanedString = content.replace(/<[^>]+?>/gi, '') // remove all tags
+          if (!cleanedString.startsWith('@')) return
+          const handle = cleanedString.slice(1)
+          const host = url.replace(/^https?:\/\//, '').replace(/\/.+?$/, '')
+          this.$store.dispatch('fetchUserIfMissing', `${handle}@${host}`)
+        })
+    },
     toggleShowMore () {
       if (this.mightHideBecauseTall) {
         this.showingTall = !this.showingTall

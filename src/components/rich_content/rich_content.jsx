@@ -36,6 +36,10 @@ export default Vue.component('RichContent', {
       required: true,
       type: String
     },
+    attentions: {
+      required: false,
+      default: () => []
+    },
     // Emoji object, as in status.emojis, note the "s" at the end...
     emoji: {
       required: true,
@@ -91,8 +95,12 @@ export default Vue.component('RichContent', {
       </a>
     }
 
-    const renderMention = (attrs, children, encounteredText) => {
+    const renderMention = (attrs, children) => {
       const linkData = getLinkData(attrs, children, mentionIndex++)
+      linkData.notifying = this.attentions.some(a => a.statusnet_profile_url === linkData.url)
+      if (!linkData.notifying) {
+        encounteredText = true
+      }
       writtenMentions.push(linkData)
       if (!encounteredText) {
         firstMentions.push(linkData)
@@ -148,7 +156,7 @@ export default Vue.component('RichContent', {
         const Tag = getTagName(opener)
         const attrs = getAttrs(opener)
         switch (Tag) {
-          case 'span': // replace images with StillImage
+          case 'span': // Replace last mentions class with mentionsline
             if (attrs['class'] && attrs['class'].includes('lastMentions')) {
               if (firstMentions.length > 1 && lastMentions.length > 1) {
                 break

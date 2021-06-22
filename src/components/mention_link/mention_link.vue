@@ -5,8 +5,9 @@
     <!-- eslint-disable vue/no-v-html -->
     <a
       v-if="!user"
-      href="url"
+      :href="url"
       class="original"
+      target="_blank"
       v-html="content"
     />
     <!-- eslint-enable vue/no-v-html -->
