@@ -2,8 +2,12 @@ import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
 
 const localVue = createLocalVue()
+const attentions = []
 
-const makeMention = (who) => `<span class="h-card"><a class="u-url mention" href="https://fake.tld/@${who}">@<span>${who}</span></a></span>`
+const makeMention = (who) => {
+  attentions.push({ statusnet_profile_url: `https://fake.tld/@${who}` })
+  return `<span class="h-card"><a class="u-url mention" href="https://fake.tld/@${who}">@<span>${who}</span></a></span>`
+}
 const stubMention = (who) => `<span class="h-card"><mentionlink-stub url="https://fake.tld/@${who}" content="@<span>${who}</span>"></mentionlink-stub></span>`
 const lastMentions = (...data) => `<span class="lastMentions">${data.join('')}</span>`
 const p = (...data) => `<p>${data.join('')}</p>`
@@ -16,6 +20,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -39,6 +44,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -62,6 +68,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -89,6 +96,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: false,
         handleLinks: true,
         greentext: true,
@@ -120,6 +128,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -157,6 +166,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: false,
         handleLinks: true,
         greentext: true,
@@ -186,6 +196,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -215,6 +226,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -257,6 +269,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -292,6 +305,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -334,6 +348,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -362,6 +377,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: false,
         greentext: true,
@@ -386,6 +402,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: false,
         greentext: true,
@@ -406,6 +423,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: false,
         greentext: false,
@@ -427,6 +445,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: false,
         greentext: false,
@@ -444,6 +463,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: false,
         greentext: false,
@@ -472,6 +492,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         handleLinks: true,
         greentext: true,
         emoji: [],
@@ -507,6 +528,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -537,6 +559,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -580,6 +603,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -616,6 +640,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -652,6 +677,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: true,
         handleLinks: true,
         greentext: true,
@@ -699,6 +725,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: false,
         handleLinks: true,
         greentext: true,
@@ -711,6 +738,7 @@ describe('RichContent', () => {
   })
 
   it('rich contents of a mention in beginning are handled properly', () => {
+    attentions.push({ statusnet_profile_url: 'lol' })
     const html = [
       p(
         '<a href="lol" class="mention">',
@@ -752,6 +780,7 @@ describe('RichContent', () => {
         MentionLink: true
       },
       propsData: {
+        attentions,
         hideMentions: false,
         handleLinks: true,
         greentext: true,
@@ -796,6 +825,7 @@ describe('RichContent', () => {
     const wrapper = shallowMount(RichContent, {
       localVue,
       propsData: {
+        attentions,
         hideMentions: false,
         handleLinks: true,
         greentext: true,
