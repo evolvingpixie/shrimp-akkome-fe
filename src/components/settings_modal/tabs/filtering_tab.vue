@@ -36,29 +36,13 @@
           </li>
         </ul>
       </div>
-      <div>
+      <ChoiceSetting
+        id="replyVisibility"
+        path="replyVisibility"
+        :options="replyVisibilityOptions"
+      >
         {{ $t('settings.replies_in_timeline') }}
-        <label
-          for="replyVisibility"
-          class="select"
-        >
-          <select
-            id="replyVisibility"
-            v-model="replyVisibility"
-          >
-            <option
-              value="all"
-              selected
-            >{{ $t('settings.reply_visibility_all') }}</option>
-            <option value="following">{{ $t('settings.reply_visibility_following') }}</option>
-            <option value="self">{{ $t('settings.reply_visibility_self') }}</option>
-          </select>
-          <FAIcon
-            class="select-down-icon"
-            icon="chevron-down"
-          />
-        </label>
-      </div>
+      </ChoiceSetting>
       <div>
         <BooleanSetting path="hidePostStats">
           {{ $t('settings.hide_post_stats') }}

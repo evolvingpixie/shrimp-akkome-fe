@@ -9,28 +9,26 @@
     @show="openMenu"
     @close="() => isOpen = false"
   >
-    <div
-      slot="content"
-      class="timeline-menu-popover panel panel-default"
-    >
-      <TimelineMenuContent />
-    </div>
-    <div
-      slot="trigger"
-      class="title timeline-menu-title"
-    >
-      <span class="timeline-title">{{ timelineName() }}</span>
-      <span>
-        <FAIcon
-          size="sm"
-          icon="chevron-down"
+    <template v-slot:content>
+      <div class="timeline-menu-popover popover-default">
+        <TimelineMenuContent />
+      </div>
+    </template>
+    <template v-slot:trigger>
+      <button class="button-unstyled title timeline-menu-title">
+        <span class="timeline-title">{{ timelineName() }}</span>
+        <span>
+          <FAIcon
+            size="sm"
+            icon="chevron-down"
+          />
+        </span>
+        <span
+          class="click-blocker"
+          @click="blockOpen"
         />
-      </span>
-      <span
-        class="click-blocker"
-        @click="blockOpen"
-      />
-    </div>
+      </button>
+    </template>
   </Popover>
 </template>
 

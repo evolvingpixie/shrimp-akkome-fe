@@ -8,10 +8,7 @@
     remove-padding
     @show="focusInput"
   >
-    <div
-      slot="content"
-      slot-scope="{close}"
-    >
+    <template v-slot:content="{close}">
       <div class="reaction-picker-filter">
         <input
           v-model="filterWord"
@@ -41,17 +38,18 @@
         </span>
         <div class="reaction-bottom-fader" />
       </div>
-    </div>
-    <span
-      slot="trigger"
-      class="popover-trigger"
-      :title="$t('tool_tip.add_reaction')"
-    >
-      <FAIcon
-        class="fa-scale-110 fa-old-padding"
-        :icon="['far', 'smile-beam']"
-      />
-    </span>
+    </template>
+    <template v-slot:trigger>
+      <button
+        class="button-unstyled popover-trigger"
+        :title="$t('tool_tip.add_reaction')"
+      >
+        <FAIcon
+          class="fa-scale-110 fa-old-padding"
+          :icon="['far', 'smile-beam']"
+        />
+      </button>
+    </template>
   </Popover>
 </template>
 

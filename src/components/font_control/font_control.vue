@@ -22,30 +22,20 @@
       class="opt-l"
       :for="name + '-o'"
     />
-    <label
-      :for="name + '-font-switcher'"
-      class="select"
+    <Select
+      :id="name + '-font-switcher'"
+      v-model="preset"
       :disabled="!present"
+      class="font-switcher"
     >
-      <select
-        :id="name + '-font-switcher'"
-        v-model="preset"
-        :disabled="!present"
-        class="font-switcher"
+      <option
+        v-for="option in availableOptions"
+        :key="option"
+        :value="option"
       >
-        <option
-          v-for="option in availableOptions"
-          :key="option"
-          :value="option"
-        >
-          {{ option === 'custom' ? $t('settings.style.fonts.custom') : option }}
-        </option>
-      </select>
-      <FAIcon
-        class="select-down-icon"
-        icon="chevron-down"
-      />
-    </label>
+        {{ option === 'custom' ? $t('settings.style.fonts.custom') : option }}
+      </option>
+    </Select>
     <input
       v-if="isCustom"
       :id="name"
@@ -65,7 +55,8 @@
     min-width: 10em;
   }
   &.custom {
-    .select {
+    /* TODO Should make proper joiners... */
+    .font-switcher {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }

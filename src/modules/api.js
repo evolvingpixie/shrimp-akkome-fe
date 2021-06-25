@@ -255,12 +255,12 @@ const api = {
     initializeSocket ({ dispatch, commit, state, rootState }) {
       // Set up websocket connection
       const token = state.wsToken
-      if (rootState.instance.chatAvailable && typeof token !== 'undefined' && state.socket === null) {
+      if (rootState.instance.shoutAvailable && typeof token !== 'undefined' && state.socket === null) {
         const socket = new Socket('/socket', { params: { token } })
         socket.connect()
 
         commit('setSocket', socket)
-        dispatch('initializeChat', socket)
+        dispatch('initializeShout', socket)
       }
     },
     disconnectFromSocket ({ commit, state }) {

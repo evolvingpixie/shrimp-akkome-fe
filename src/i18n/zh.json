@@ -96,7 +96,8 @@
     "administration": "管理员",
     "chats": "聊天",
     "timelines": "时间线",
-    "bookmarks": "书签"
+    "bookmarks": "书签",
+    "home_timeline": "主页时间线"
   },
   "notifications": {
     "broken_favorite": "未知的状态，正在搜索中…",
@@ -300,7 +301,7 @@
     "new_password": "新密码",
     "notification_visibility": "要显示的通知类型",
     "notification_visibility_follows": "关注",
-    "notification_visibility_likes": "点赞",
+    "notification_visibility_likes": "喜欢",
     "notification_visibility_mentions": "提及",
     "notification_visibility_repeats": "转发",
     "no_rich_text_description": "不显示富文本格式",
@@ -571,7 +572,19 @@
     "hide_all_muted_posts": "不显示已隐藏的发文",
     "hide_media_previews": "隐藏媒体预览",
     "word_filter": "词语过滤",
-    "save": "保存更改"
+    "save": "保存更改",
+    "file_export_import": {
+      "errors": {
+        "file_slightly_new": "文件的小版本不同，有些设置可能无法加载",
+        "file_too_old": "不兼容的主版本：{fileMajor}，文件版本过旧，不受支持（最小设置版本 {feMajor}）",
+        "file_too_new": "不兼容的主版本：{fileMajor}，此 PleromaFE（设置版本 {feMajor}）过旧，无法处理",
+        "invalid_file": "所选文件不是受支持的 Pleroma 设置备份。没有进行任何更改。"
+      },
+      "restore_settings": "从文件恢复设置",
+      "backup_settings_theme": "备份设置和主题到文件",
+      "backup_settings": "备份设置到文件",
+      "backup_restore": "设置备份"
+    }
   },
   "time": {
     "day": "{0} 天",
@@ -829,7 +842,7 @@
     "mute": "隐藏"
   },
   "errors": {
-    "storage_unavailable": "Pleroma 无法访问浏览器储存。您的登陆名以及本地设置将不会被保存，您可能遇到意外问题。请尝试启用 cookies。"
+    "storage_unavailable": "Pleroma 无法访问浏览器储存。您的登陆以及本地设置将不会被保存，您也可能遇到未知问题。请尝试启用 cookies。"
   },
   "shoutbox": {
     "title": "留言板"

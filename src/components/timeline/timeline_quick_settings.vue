@@ -4,77 +4,78 @@
     class="TimelineQuickSettings"
     :bound-to="{ x: 'container' }"
   >
-    <div
-      slot="content"
-      class="dropdown-menu"
-    >
-      <div v-if="loggedIn">
+    <template v-slot:content>
+      <div class="dropdown-menu">
+        <div v-if="loggedIn">
+          <button
+            class="button-default dropdown-item"
+            @click="replyVisibilityAll = true"
+          >
+            <span
+              class="menu-checkbox"
+              :class="{ 'menu-checkbox-radio': replyVisibilityAll }"
+            />{{ $t('settings.reply_visibility_all') }}
+          </button>
+          <button
+            class="button-default dropdown-item"
+            @click="replyVisibilityFollowing = true"
+          >
+            <span
+              class="menu-checkbox"
+              :class="{ 'menu-checkbox-radio': replyVisibilityFollowing }"
+            />{{ $t('settings.reply_visibility_following_short') }}
+          </button>
+          <button
+            class="button-default dropdown-item"
+            @click="replyVisibilitySelf = true"
+          >
+            <span
+              class="menu-checkbox"
+              :class="{ 'menu-checkbox-radio': replyVisibilitySelf }"
+            />{{ $t('settings.reply_visibility_self_short') }}
+          </button>
+          <div
+            role="separator"
+            class="dropdown-divider"
+          />
+        </div>
         <button
           class="button-default dropdown-item"
-          @click="replyVisibilityAll = true"
+          @click="hideMedia = !hideMedia"
         >
           <span
             class="menu-checkbox"
-            :class="{ 'menu-checkbox-radio': replyVisibilityAll }"
-          />{{ $t('settings.reply_visibility_all') }}
+            :class="{ 'menu-checkbox-checked': hideMedia }"
+          />{{ $t('settings.hide_media_previews') }}
         </button>
         <button
           class="button-default dropdown-item"
-          @click="replyVisibilityFollowing = true"
+          @click="hideMutedPosts = !hideMutedPosts"
         >
           <span
             class="menu-checkbox"
-            :class="{ 'menu-checkbox-radio': replyVisibilityFollowing }"
-          />{{ $t('settings.reply_visibility_following_short') }}
+            :class="{ 'menu-checkbox-checked': hideMutedPosts }"
+          />{{ $t('settings.hide_all_muted_posts') }}
         </button>
         <button
-          class="button-default dropdown-item"
-          @click="replyVisibilitySelf = true"
+          class="button-default dropdown-item dropdown-item-icon"
+          @click="openTab('filtering')"
         >
-          <span
-            class="menu-checkbox"
-            :class="{ 'menu-checkbox-radio': replyVisibilitySelf }"
-          />{{ $t('settings.reply_visibility_self_short') }}
+          <FAIcon icon="font" />{{ $t('settings.word_filter') }}
         </button>
-        <div
-          role="separator"
-          class="dropdown-divider"
-        />
+        <button
+          class="button-default dropdown-item dropdown-item-icon"
+          @click="openTab('general')"
+        >
+          <FAIcon icon="wrench" />{{ $t('settings.more_settings') }}
+        </button>
       </div>
-      <button
-        class="button-default dropdown-item"
-        @click="hideMedia = !hideMedia"
-      >
-        <span
-          class="menu-checkbox"
-          :class="{ 'menu-checkbox-checked': hideMedia }"
-        />{{ $t('settings.hide_media_previews') }}
+    </template>
+    <template v-slot:trigger>
+      <button class="button-unstyled">
+        <FAIcon icon="filter" />
       </button>
-      <button
-        class="button-default dropdown-item"
-        @click="hideMutedPosts = !hideMutedPosts"
-      >
-        <span
-          class="menu-checkbox"
-          :class="{ 'menu-checkbox-checked': hideMutedPosts }"
-        />{{ $t('settings.hide_all_muted_posts') }}
-      </button>
-      <button
-        class="button-default dropdown-item dropdown-item-icon"
-        @click="openTab('filtering')"
-      >
-        <FAIcon icon="font" />{{ $t('settings.word_filter') }}
-      </button>
-      <button
-        class="button-default dropdown-item dropdown-item-icon"
-        @click="openTab('general')"
-      >
-        <FAIcon icon="wrench" />{{ $t('settings.more_settings') }}
-      </button>
-    </div>
-    <div slot="trigger">
-      <FAIcon icon="filter" />
-    </div>
+    </template>
   </Popover>
 </template>
 

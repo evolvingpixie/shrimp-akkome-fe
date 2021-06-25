@@ -62,20 +62,18 @@
           :bound-to="{ x: 'container' }"
           remove-padding
         >
-          <button
-            slot="trigger"
-            class="btn button-default"
-            :title="$t('general.close')"
-          >
-            <span>{{ $t("settings.file_export_import.backup_restore") }}</span>
-            <FAIcon
-              icon="chevron-down"
-            />
-          </button>
-          <div
-            slot="content"
-            slot-scope="{close}"
-          >
+          <template v-slot:trigger>
+            <button
+              class="btn button-default"
+              :title="$t('general.close')"
+            >
+              <span>{{ $t("settings.file_export_import.backup_restore") }}</span>
+              <FAIcon
+                icon="chevron-down"
+              />
+            </button>
+          </template>
+          <template v-slot:content="{close}">
             <div class="dropdown-menu">
               <button
                 class="button-default dropdown-item dropdown-item-icon"
@@ -108,7 +106,7 @@
                 /><span>{{ $t("settings.file_export_import.restore_settings") }}</span>
               </button>
             </div>
-          </div>
+          </template>
         </Popover>
       </div>
     </div>

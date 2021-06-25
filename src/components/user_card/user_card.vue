@@ -53,17 +53,17 @@
               >
                 {{ user.name }}
               </div>
-              <a
+              <button
                 v-if="isOtherUser && !user.is_local"
                 :href="user.statusnet_profile_url"
                 target="_blank"
-                class="external-link-button"
+                class="button-unstyled external-link-button"
               >
                 <FAIcon
                   class="icon"
                   icon="external-link-alt"
                 />
-              </a>
+              </button>
               <AccountActions
                 v-if="isOtherUser && loggedIn"
                 :user="user"
@@ -132,25 +132,24 @@
               class="userHighlightCl"
               type="color"
             >
-            <label
-              for="theme_tab"
-              class="userHighlightSel select"
+            <Select
+              :id="'userHighlightSel'+user.id"
+              v-model="userHighlightType"
+              class="userHighlightSel"
             >
-              <select
-                :id="'userHighlightSel'+user.id"
-                v-model="userHighlightType"
-                class="userHighlightSel"
-              >
-                <option value="disabled">{{ $t('user_card.highlight.disabled') }}</option>
-                <option value="solid">{{ $t('user_card.highlight.solid') }}</option>
-                <option value="striped">{{ $t('user_card.highlight.striped') }}</option>
-                <option value="side">{{ $t('user_card.highlight.side') }}</option>
-              </select>
-              <FAIcon
-                class="select-down-icon"
-                icon="chevron-down"
-              />
-            </label>
+              <option value="disabled">
+                {{ $t('user_card.highlight.disabled') }}
+              </option>
+              <option value="solid">
+                {{ $t('user_card.highlight.solid') }}
+              </option>
+              <option value="striped">
+                {{ $t('user_card.highlight.striped') }}
+              </option>
+              <option value="side">
+                {{ $t('user_card.highlight.side') }}
+              </option>
+            </Select>
           </div>
         </div>
         <div
@@ -557,14 +556,10 @@
         flex: 1 0 auto;
       }
 
-      .userHighlightSel,
-      .userHighlightSel.select {
+      .userHighlightSel {
         padding-top: 0;
         padding-bottom: 0;
         flex: 1 0 auto;
-      }
-      .userHighlightSel.select svg {
-        line-height: 22px;
       }
 
       .userHighlightText {
@@ -574,9 +569,7 @@
 
       .userHighlightCl,
       .userHighlightText,
-      .userHighlightSel,
-      .userHighlightSel.select {
-        height: 22px;
+      .userHighlightSel {
         vertical-align: top;
         margin-right: .5em;
         margin-bottom: .25em;

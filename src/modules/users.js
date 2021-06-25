@@ -541,7 +541,7 @@ const users = {
               if (user.token) {
                 store.dispatch('setWsToken', user.token)
 
-                // Initialize the chat socket.
+                // Initialize the shout socket.
                 store.dispatch('initializeSocket')
               }
 

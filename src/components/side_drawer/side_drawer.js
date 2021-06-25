@@ -49,7 +49,6 @@ const SideDrawer = {
     currentUser () {
       return this.$store.state.users.currentUser
     },
-    chat () { return this.$store.state.chat.channel.state === 'joined' },
     unseenNotifications () {
       return unseenNotificationsFromStore(this.$store)
     },

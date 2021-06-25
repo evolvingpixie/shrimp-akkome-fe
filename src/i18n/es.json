@@ -34,7 +34,7 @@
     "enable": "Habilitar",
     "confirm": "Confirmar",
     "verify": "Verificar",
-    "peek": "Ojear",
+    "peek": "Previsualizar",
     "close": "Cerrar",
     "dismiss": "Descartar",
     "retry": "Inténtalo de nuevo",
@@ -582,7 +582,16 @@
     "reply_visibility_following_short": "Mostrar las réplicas a mis seguidores",
     "hide_media_previews": "Ocultar la vista previa multimedia",
     "word_filter": "Filtro de palabras",
-    "save": "Guardar los cambios"
+    "save": "Guardar los cambios",
+    "file_export_import": {
+      "errors": {
+        "invalid_file": "El archivo seleccionado no es válido como copia de seguridad de Pleroma. No se han realizado cambios."
+      },
+      "restore_settings": "Restaurar ajustes desde archivo",
+      "backup_settings_theme": "Copia de seguridad de la configuración y tema a archivo",
+      "backup_settings": "Copia de seguridad de la configuración a archivo",
+      "backup_restore": "Copia de seguridad de la configuración"
+    }
   },
   "time": {
     "day": "{0} día",

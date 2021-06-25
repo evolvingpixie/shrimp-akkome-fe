@@ -3,27 +3,18 @@
     <label for="interface-language-switcher">
       {{ $t('settings.interfaceLanguage') }}
     </label>
-    <label
-      for="interface-language-switcher"
-      class="select"
+    <Select
+      id="interface-language-switcher"
+      v-model="language"
     >
-      <select
-        id="interface-language-switcher"
-        v-model="language"
+      <option
+        v-for="lang in languages"
+        :key="lang.code"
+        :value="lang.code"
       >
-        <option
-          v-for="lang in languages"
-          :key="lang.code"
-          :value="lang.code"
-        >
-          {{ lang.name }}
-        </option>
-      </select>
-      <FAIcon
-        class="select-down-icon"
-        icon="chevron-down"
-      />
-    </label>
+        {{ lang.name }}
+      </option>
+    </Select>
   </div>
 </template>
 
@@ -32,16 +23,12 @@ import languagesObject from '../../i18n/messages'
 import localeService from '../../services/locale/locale.service.js'
 import ISO6391 from 'iso-639-1'
 import _ from 'lodash'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faChevronDown
-} from '@fortawesome/free-solid-svg-icons'
-
-library.add(
-  faChevronDown
-)
+import Select from '../select/select.vue'
 
 export default {
+  components: {
+    Select
+  },
   computed: {
     languages () {
       return _.map(languagesObject.languages, (code) => ({ code: code, name: this.getLanguageName(code) })).sort((a, b) => a.name.localeCompare(b.name))
