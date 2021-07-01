@@ -268,6 +268,8 @@ const Status = {
           return 'lock-open'
         case 'direct':
           return 'envelope'
+        case 'local':
+	  return "users"
         default:
           return 'globe'
       }

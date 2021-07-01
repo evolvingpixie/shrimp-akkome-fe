@@ -33,6 +33,9 @@ const ScopeSelector = {
     showPublic () {
       return this.originalScope !== 'direct' && this.shouldShow('public')
     },
+    showLocal () {
+      return this.originalScope !== 'direct' && this.shouldShow('local')
+    },
     showUnlisted () {
       return this.originalScope !== 'direct' && this.shouldShow('unlisted')
     },
@@ -47,7 +50,8 @@ const ScopeSelector = {
         public: { selected: this.currentScope === 'public' },
         unlisted: { selected: this.currentScope === 'unlisted' },
         private: { selected: this.currentScope === 'private' },
-        direct: { selected: this.currentScope === 'direct' }
+        direct: { selected: this.currentScope === 'direct' },
+	local: { selected: this.currentScope === 'local' }
       }
     }
   },

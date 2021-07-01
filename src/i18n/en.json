@@ -212,13 +212,15 @@
     "scope_notice": {
       "public": "This post will be visible to everyone",
       "private": "This post will be visible to your followers only",
-      "unlisted": "This post will not be visible in Public Timeline and The Whole Known Network"
+      "unlisted": "This post will not be visible in Public Timeline and The Whole Known Network",
+      "local": "This post won't be visible outside of IHBA"
     },
     "scope": {
       "direct": "Direct - post to mentioned users only",
       "private": "Followers-only - post to followers only",
       "public": "Public - post to public timelines",
-      "unlisted": "Unlisted - do not post to public timelines"
+      "unlisted": "Unlisted - do not post to public timelines",
+      "local": "Local - do not federate this post"
     }
   },
   "registration": {
