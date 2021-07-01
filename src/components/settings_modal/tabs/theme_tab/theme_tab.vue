@@ -63,7 +63,7 @@
                 <option
                   v-for="style in availableStyles"
                   :key="style.name"
-                  :value="style"
+                  :value="JSON.stringify(style)"
                   :style="{
                     backgroundColor: style[1] || (style.theme || style.source).colors.bg,
                     color: style[3] || (style.theme || style.source).colors.text

@@ -746,6 +746,9 @@ export default {
     },
     selected () {
       this.dismissWarning()
+      if (Object.prototype.toString.call(this.selected) === '[object String]') {
+        this.selected = JSON.parse(this.selected)
+      }
       if (this.selectedVersion === 1) {
         if (!this.keepRoundness) {
           this.clearRoundness()
