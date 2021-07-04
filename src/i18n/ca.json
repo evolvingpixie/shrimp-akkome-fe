@@ -10,7 +10,8 @@
     "text_limit": "Límit de text",
     "title": "Funcionalitats",
     "who_to_follow": "A qui seguir",
-    "pleroma_chat_messages": "Xat de Pleroma"
+    "pleroma_chat_messages": "Xat de Pleroma",
+    "upload_limit": "Límit de càrrega"
   },
   "finder": {
     "error_fetching_user": "No s'ha pogut carregar l'usuari/a",
@@ -32,7 +33,16 @@
     "error_retry": "Si us plau, prova de nou",
     "generic_error": "Hi ha hagut un error",
     "loading": "Carregant…",
-    "more": "Més"
+    "more": "Més",
+    "flash_content": "Fes clic per mostrar el contingut Flash utilitzant Ruffle (experimental, pot no funcionar).",
+    "flash_security": "Tingues en compte que això pot ser potencialment perillós, ja que el contingut Flash encara és un codi arbitrari.",
+    "flash_fail": "No s'ha pogut carregar el contingut del flaix, consulta la consola per als detalls.",
+    "role": {
+      "moderator": "Moderador/a",
+      "admin": "Administrador/a"
+    },
+    "dismiss": "Descartar",
+    "peek": "Donar un cop d'ull"
   },
   "login": {
     "login": "Inicia sessió",
@@ -45,15 +55,20 @@
     "enter_recovery_code": "Posa un codi de recuperació",
     "authentication_code": "Codi d'autenticació",
     "hint": "Entra per participar a la conversa",
-    "description": "Entra amb OAuth"
+    "description": "Entra amb OAuth",
+    "heading": {
+      "totp": "Autenticació de dos factors",
+      "recovery": "Recuperació de dos factors"
+    },
+    "enter_two_factor_code": "Introdueix un codi de dos factors"
   },
   "nav": {
     "chat": "Xat local públic",
-    "friend_requests": "Soŀlicituds de connexió",
+    "friend_requests": "Sol·licituds de seguiment",
     "mentions": "Mencions",
-    "public_tl": "Flux públic del node",
+    "public_tl": "Línia temporal pública",
     "timeline": "Flux personal",
-    "twkn": "Flux de la xarxa coneguda",
+    "twkn": "Xarxa coneguda",
     "chats": "Xats",
     "timelines": "Línies de temps",
     "preferences": "Preferències",
@@ -62,10 +77,14 @@
     "dms": "Missatges directes",
     "interactions": "Interaccions",
     "back": "Enrere",
-    "administration": "Administració"
+    "administration": "Administració",
+    "about": "Quant a",
+    "bookmarks": "Marcadors",
+    "user_search": "Cerca d'usuaris",
+    "home_timeline": "Línea temporal personal"
   },
   "notifications": {
-    "broken_favorite": "No es coneix aquest estat. S'està cercant.",
+    "broken_favorite": "Publicació desconeguda, s'està cercant…",
     "favorited_you": "ha marcat un estat teu",
     "followed_you": "ha començat a seguir-te",
     "load_older": "Carrega més notificacions",
@@ -365,7 +384,8 @@
   },
   "importer": {
     "error": "Ha succeït un error mentre s'importava aquest arxiu.",
-    "success": "Importat amb èxit."
+    "success": "Importat amb èxit.",
+    "submit": "Enviar"
   },
   "image_cropper": {
     "cancel": "Cancel·la",
@@ -379,7 +399,9 @@
   },
   "domain_mute_card": {
     "mute_progress": "Silenciant…",
-    "mute": "Silencia"
+    "mute": "Silencia",
+    "unmute": "Deixar de  silenciar",
+    "unmute_progress": "Deixant de silenciar…"
   },
   "about": {
     "staff": "Equip responsable",
@@ -391,16 +413,27 @@
         "reject": "Rebutja",
         "accept_desc": "Aquesta instància només accepta missatges de les següents instàncies:",
         "accept": "Accepta",
-        "simple_policies": "Polítiques específiques de la instància"
+        "simple_policies": "Polítiques específiques de la instància",
+        "ftl_removal_desc": "Aquesta instància elimina aquestes instàncies de la línia de temps coneguda:",
+        "ftl_removal": "Eliminació de la línia de temps coneguda",
+        "media_nsfw_desc": "Aquesta instància obliga el contingut multimèdia a establir-se com a sensible dins de les publicacions en les següents instàncies:",
+        "media_removal": "Eliminació de la multimèdia",
+        "media_removal_desc": "Aquesta instància elimina els suports multimèdia de les publicacions en les següents instàncies:",
+        "media_nsfw": "Forçar contingut multimèdia com a sensible"
       },
       "mrf_policies_desc": "Les polítiques MRF controlen el comportament federat de la instància. Les següents polítiques estan habilitades:",
       "mrf_policies": "Polítiques MRF habilitades",
       "keyword": {
         "replace": "Reemplaça",
         "reject": "Rebutja",
-        "keyword_policies": "Polítiques de paraules clau"
+        "keyword_policies": "Filtratge per paraules clau",
+        "is_replaced_by": "→",
+        "ftl_removal": "Eliminació de la línia de temps federada"
       },
       "federation": "Federació"
     }
+  },
+  "shoutbox": {
+    "title": "Gàbia de Grills"
   }
 }
