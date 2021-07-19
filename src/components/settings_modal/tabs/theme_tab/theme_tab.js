@@ -757,7 +757,6 @@ export default {
     },
     selectedTheme () {
       this.dismissWarning()
-      console.log(this.selectedVersion)
       if (this.selectedVersion === 1) {
         if (!this.keepRoundness) {
           this.clearRoundness()
