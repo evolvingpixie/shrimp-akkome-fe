@@ -39,7 +39,10 @@
     "role": {
       "moderator": "Reguligisto",
       "admin": "Administranto"
-    }
+    },
+    "flash_content": "Klaku por montri enhavon de Flash per Ruffle. (Eksperimente, eble ne funkcios.)",
+    "flash_security": "Sciu, ke tio povas esti danĝera, ĉar la enhavo de Flash ja estas arbitra programo.",
+    "flash_fail": "Malsukcesis enlegi enhavon de Flash; vidu detalojn en konzolo."
   },
   "image_cropper": {
     "crop_picture": "Tondi bildon",
@@ -549,7 +552,8 @@
       "backup_restore": "Savkopio de agordoj"
     },
     "right_sidebar": "Montri flankan breton dekstre",
-    "save": "Konservi ŝanĝojn"
+    "save": "Konservi ŝanĝojn",
+    "hide_shoutbox": "Kaŝi kriujon de nodo"
   },
   "timeline": {
     "collapse": "Maletendi",
@@ -563,7 +567,9 @@
     "no_more_statuses": "Neniuj pliaj statoj",
     "no_statuses": "Neniuj statoj",
     "reload": "Enlegi ree",
-    "error": "Eraris akirado de historio: {0}"
+    "error": "Eraris akirado de historio: {0}",
+    "socket_reconnected": "Realtempa konekto fariĝis",
+    "socket_broke": "Realtempa konekto perdiĝis: CloseEvent code {0}"
   },
   "user_card": {
     "approve": "Aprobi",
