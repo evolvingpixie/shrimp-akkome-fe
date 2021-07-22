@@ -10,8 +10,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added quick filters for notifications
 - Implemented user option to change sidebar position to the right side
 - Implemented user option to hide floating shout panel
+- Implemented "edit profile" button if viewing own profile which opens profile settings
 - Added Apply and Reset buttons to the bottom of theme tab to minimize UI travel
 
+### Fixed
+- Fixed follow request count showing in the wrong location in mobile view
 
 ## [2.3.0] - 2021-03-01
 ### Fixed
