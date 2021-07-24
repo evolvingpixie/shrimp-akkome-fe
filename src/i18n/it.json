@@ -74,7 +74,7 @@
     "name": "Nome",
     "name_bio": "Nome ed introduzione",
     "nsfw_clickthrough": "Fai click per visualizzare gli allegati offuscati",
-    "profile_background": "Sfondo della tua pagina",
+    "profile_background": "Sfondo del tuo profilo",
     "profile_banner": "Gonfalone del tuo profilo",
     "set_new_avatar": "Scegli una nuova icona",
     "set_new_profile_background": "Scegli un nuovo sfondo",
@@ -368,8 +368,8 @@
     "search_user_to_mute": "Cerca utente da silenziare",
     "search_user_to_block": "Cerca utente da bloccare",
     "autohide_floating_post_button": "Nascondi automaticamente il pulsante di composizione (mobile)",
-    "show_moderator_badge": "Mostra l'insegna di moderatore sulla mia pagina",
-    "show_admin_badge": "Mostra l'insegna di amministratore sulla mia pagina",
+    "show_moderator_badge": "Mostra l'insegna di moderatore sul mio profilo",
+    "show_admin_badge": "Mostra l'insegna di amministratore sul mio profilo",
     "hide_followers_count_description": "Non mostrare quanti seguaci ho",
     "hide_follows_count_description": "Non mostrare quanti utenti seguo",
     "hide_followers_description": "Non mostrare i miei seguaci",
@@ -527,7 +527,8 @@
       "striped": "A righe",
       "solid": "Un colore",
       "disabled": "Nessun risalto"
-    }
+    },
+    "edit_profile": "Modifica profilo"
   },
   "chat": {
     "title": "Chat"
