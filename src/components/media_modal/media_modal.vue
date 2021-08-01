@@ -13,6 +13,7 @@
       :title="currentMedia.description"
       @touchstart.stop="mediaTouchStart"
       @touchmove.stop="mediaTouchMove"
+      @touchend.stop="mediaTouchEnd"
       @click="hide"
       @load="onImageLoaded"
     >

@@ -53,28 +53,25 @@ const MediaModal = {
     }
   },
   created () {
-    this.mediaSwipeGestureRight = GestureService.swipeGesture(
-      GestureService.DIRECTION_RIGHT,
-      this.goPrev,
-      50
-    )
-    this.mediaSwipeGestureLeft = GestureService.swipeGesture(
-      GestureService.DIRECTION_LEFT,
-      this.goNext,
-      50
-    )
+    this.mediaGesture = new GestureService.SwipeAndScaleGesture({
+      direction: GestureService.DIRECTION_LEFT,
+      callbackPositive: this.goNext,
+      callbackNegative: this.goPrev,
+      threshold: 50
+    })
   },
   methods: {
     getType (media) {
       return fileTypeService.fileType(media.mimetype)
     },
     mediaTouchStart (e) {
-      GestureService.beginSwipe(e, this.mediaSwipeGestureRight)
-      GestureService.beginSwipe(e, this.mediaSwipeGestureLeft)
+      this.mediaGesture.start(e)
     },
     mediaTouchMove (e) {
-      GestureService.updateSwipe(e, this.mediaSwipeGestureRight)
-      GestureService.updateSwipe(e, this.mediaSwipeGestureLeft)
+      this.mediaGesture.move(e)
+    },
+    mediaTouchEnd (e) {
+      this.mediaGesture.end(e)
     },
     hide () {
       this.$store.dispatch('closeMediaViewer')

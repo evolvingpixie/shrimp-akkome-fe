@@ -4,9 +4,17 @@ const DIRECTION_RIGHT = [1, 0]
 const DIRECTION_UP = [0, -1]
 const DIRECTION_DOWN = [0, 1]
 
+const isSwipeEvent = e => (e.touches.length === 1)
+const isSwipeEventEnd = e => (e.changedTouches.length === 1)
+
+const isScaleEvent = e => (e.targetTouches.length === 2)
+// const isScaleEventEnd = e => (e.changedTouches.length === 2)
+
 const deltaCoord = (oldCoord, newCoord) => [newCoord[0] - oldCoord[0], newCoord[1] - oldCoord[1]]
 
-const touchEventCoord = e => ([e.touches[0].screenX, e.touches[0].screenY])
+const touchCoord = touch => [touch.screenX, touch.screenY]
+
+const touchEventCoord = e => touchCoord(e.touches[0])
 
 const vectorLength = v => Math.sqrt(v[0] * v[0] + v[1] * v[1])
 
@@ -61,6 +69,76 @@ const updateSwipe = (event, gesture) => {
   gesture._swiping = false
 }
 
+class SwipeAndScaleGesture {
+  constructor ({
+    direction, callbackPositive, callbackNegative,
+    previewCallback, threshold = 30, perpendicularTolerance = 1.0
+  }) {
+    this.direction = direction
+    this.previewCallback = previewCallback
+    this.callbackPositive = callbackPositive
+    this.callbackNegative = callbackNegative
+    this.threshold = threshold
+    this.perpendicularTolerance = perpendicularTolerance
+    this._startPos = [0, 0]
+    this._swiping = false
+  }
+
+  start (event) {
+    console.log('start() called', event)
+    if (isSwipeEvent(event)) {
+      this._startPos = touchEventCoord(event)
+      console.log('start pos:', this._startPos)
+      this._swiping = true
+    } else if (isScaleEvent(event)) {
+      this._scalePoints = [...event.targetTouches]
+      this._swiping = false
+    }
+  }
+
+  move (event) {
+    if (isScaleEvent(event)) {
+    }
+  }
+
+  end (event) {
+    console.log('end() called', event)
+    if (!isSwipeEventEnd(event)) {
+      console.log('not swipe event')
+      return
+    }
+    if (!this._swiping) {
+      console.log('not swiping')
+      return
+    }
+    this.swiping = false
+
+    console.log('is swipe event')
+
+    // movement too small
+    const touch = event.changedTouches[0]
+    const delta = deltaCoord(this._startPos, touchCoord(touch))
+    if (vectorLength(delta) < this.threshold) return
+    // movement is opposite from direction
+    const isPositive = dotProduct(delta, this.direction) > 0
+
+    // movement perpendicular to direction is too much
+    const towardsDir = project(delta, this.direction)
+    const perpendicularDir = perpendicular(this.direction)
+    const towardsPerpendicular = project(delta, perpendicularDir)
+    if (
+      vectorLength(towardsDir) * this.perpendicularTolerance <
+        vectorLength(towardsPerpendicular)
+    ) return
+
+    if (isPositive) {
+      this.callbackPositive()
+    } else {
+      this.callbackNegative()
+    }
+  }
+}
+
 const GestureService = {
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
@@ -68,7 +146,8 @@ const GestureService = {
   DIRECTION_DOWN,
   swipeGesture,
   beginSwipe,
-  updateSwipe
+  updateSwipe,
+  SwipeAndScaleGesture
 }
 
 export default GestureService
