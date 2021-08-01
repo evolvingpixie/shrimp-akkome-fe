@@ -70,14 +70,28 @@ const updateSwipe = (event, gesture) => {
 }
 
 class SwipeAndScaleGesture {
+  // swipePreviewCallback(offsets: Array[Number])
+  //   offsets: the offset vector which the underlying component should move, from the starting position
+  // pinchPreviewCallback(offsets: Array[Number], scaling: Number)
+  //   offsets: the offset vector which the underlying component should move, from the starting position
+  //   scaling: the scaling factor we should apply to the underlying component, from the starting position
+  // swipeEndcallback(sign: 0|-1|1)
+  //   sign: if the swipe does not meet the threshold, 0
+  //         if the swipe meets the threshold in the positive direction, 1
+  //         if the swipe meets the threshold in the negative direction, -1
   constructor ({
-    direction, callbackPositive, callbackNegative,
-    previewCallback, threshold = 30, perpendicularTolerance = 1.0
+    direction,
+    // swipeStartCallback, pinchStartCallback,
+    swipePreviewCallback, pinchPreviewCallback,
+    swipeEndCallback, pinchEndCallback,
+    threshold = 30, perpendicularTolerance = 1.0
   }) {
+    const nop = () => {}
     this.direction = direction
-    this.previewCallback = previewCallback
-    this.callbackPositive = callbackPositive
-    this.callbackNegative = callbackNegative
+    this.swipePreviewCallback = swipePreviewCallback || nop
+    this.pinchPreviewCallback = pinchPreviewCallback || nop
+    this.swipeEndCallback = swipeEndCallback || nop
+    this.pinchEndCallback = pinchEndCallback || nop
     this.threshold = threshold
     this.perpendicularTolerance = perpendicularTolerance
     this._startPos = [0, 0]
@@ -97,7 +111,12 @@ class SwipeAndScaleGesture {
   }
 
   move (event) {
-    if (isScaleEvent(event)) {
+    if (isSwipeEvent(event)) {
+      const touch = event.changedTouches[0]
+      const delta = deltaCoord(this._startPos, touchCoord(touch))
+
+      this.swipePreviewCallback(delta)
+    } else if (isScaleEvent(event)) {
     }
   }
 
@@ -118,24 +137,30 @@ class SwipeAndScaleGesture {
     // movement too small
     const touch = event.changedTouches[0]
     const delta = deltaCoord(this._startPos, touchCoord(touch))
-    if (vectorLength(delta) < this.threshold) return
-    // movement is opposite from direction
-    const isPositive = dotProduct(delta, this.direction) > 0
+    this.swipePreviewCallback(delta)
 
-    // movement perpendicular to direction is too much
-    const towardsDir = project(delta, this.direction)
-    const perpendicularDir = perpendicular(this.direction)
-    const towardsPerpendicular = project(delta, perpendicularDir)
-    if (
-      vectorLength(towardsDir) * this.perpendicularTolerance <
-        vectorLength(towardsPerpendicular)
-    ) return
+    const sign = (() => {
+      if (vectorLength(delta) < this.threshold) {
+        return 0
+      }
+      // movement is opposite from direction
+      const isPositive = dotProduct(delta, this.direction) > 0
 
-    if (isPositive) {
-      this.callbackPositive()
-    } else {
-      this.callbackNegative()
-    }
+      // movement perpendicular to direction is too much
+      const towardsDir = project(delta, this.direction)
+      const perpendicularDir = perpendicular(this.direction)
+      const towardsPerpendicular = project(delta, perpendicularDir)
+      if (
+        vectorLength(towardsDir) * this.perpendicularTolerance <
+          vectorLength(towardsPerpendicular)
+      ) {
+        return 0
+      }
+
+      return isPositive ? 1 : -1
+    })()
+
+    this.swipeEndCallback(sign)
   }
 }
 

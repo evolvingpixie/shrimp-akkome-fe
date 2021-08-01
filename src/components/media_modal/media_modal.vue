@@ -11,6 +11,7 @@
       :src="currentMedia.url"
       :alt="currentMedia.description"
       :title="currentMedia.description"
+      :style="{ transform }"
       @touchstart.stop="mediaTouchStart"
       @touchmove.stop="mediaTouchMove"
       @touchend.stop="mediaTouchEnd"

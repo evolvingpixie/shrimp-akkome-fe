@@ -4,6 +4,7 @@ import Modal from '../modal/modal.vue'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import GestureService from '../../services/gesture_service/gesture_service'
 import Flash from 'src/components/flash/flash.vue'
+import Vuex from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faChevronLeft,
@@ -16,6 +17,8 @@ library.add(
   faChevronRight,
   faCircleNotch
 )
+
+const onlyXAxis = ([x, y]) => [x, 0]
 
 const MediaModal = {
   components: {
@@ -50,6 +53,15 @@ const MediaModal = {
     },
     type () {
       return this.currentMedia ? this.getType(this.currentMedia) : null
+    },
+    scaling () {
+      return this.$store.state.mediaViewer.swipeScaler.scaling
+    },
+    offsets () {
+      return this.$store.state.mediaViewer.swipeScaler.offsets
+    },
+    transform () {
+      return `scale(${this.scaling}, ${this.scaling}) translate(${this.offsets[0]}px, ${this.offsets[1]}px)`
     }
   },
   created () {
@@ -57,6 +69,8 @@ const MediaModal = {
       direction: GestureService.DIRECTION_LEFT,
       callbackPositive: this.goNext,
       callbackNegative: this.goPrev,
+      swipePreviewCallback: this.handleSwipePreview,
+      swipeEndCallback: this.handleSwipeEnd,
       threshold: 50
     })
   },
@@ -98,6 +112,18 @@ const MediaModal = {
     },
     onImageLoaded () {
       this.loading = false
+    },
+    handleSwipePreview (offsets) {
+      this.$store.dispatch('swipeScaler/apply', { offsets: onlyXAxis(offsets) })
+    },
+    handleSwipeEnd (sign) {
+      if (sign === 0) {
+        this.$store.dispatch('swipeScaler/revert')
+      } else if (sign > 0) {
+        this.goNext()
+      } else {
+        this.goPrev()
+      }
     },
     handleKeyupEvent (e) {
       if (this.showing && e.keyCode === 27) { // escape

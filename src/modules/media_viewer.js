@@ -20,19 +20,79 @@ const mediaViewer = {
     }
   },
   actions: {
-    setMedia ({ commit }, attachments) {
+    setMedia ({ commit, dispatch }, attachments) {
       const media = attachments.filter(attachment => {
         const type = fileTypeService.fileType(attachment.mimetype)
         return supportedTypes.has(type)
       })
       commit('setMedia', media)
+      dispatch('swipeScaler/reset')
     },
     setCurrentMedia ({ commit, state }, current) {
       const index = state.media.indexOf(current)
       commit('setCurrentMedia', index || 0)
+      dispatch('swipeScaler/reset')
     },
-    closeMediaViewer ({ commit }) {
+    closeMediaViewer ({ commit, dispatch }) {
       commit('close')
+      dispatch('swipeScaler/reset')
+    }
+  },
+  modules: {
+    swipeScaler: {
+      namespaced: true,
+
+      state: {
+        origOffsets: [0, 0],
+        offsets: [0, 0],
+        origScaling: 1,
+        scaling: 1
+      },
+
+      mutations: {
+        reset (state) {
+          state.origOffsets = [0, 0]
+          state.offsets = [0, 0]
+          state.origScaling = 1
+          state.scaling = 1
+        },
+        applyOffsets (state, { offsets }) {
+          state.offsets = state.origOffsets.map((k, n) => k + offsets[n])
+        },
+        applyScaling (state, { scaling }) {
+          state.scaling = state.origScaling * scaling
+        },
+        finishOffsets (state) {
+          state.origOffsets = [...state.offsets]
+        },
+        finishScaling (state) {
+          state.origScaling = state.scaling
+        },
+        revertOffsets (state) {
+          state.offsets = [...state.origOffsets]
+        },
+        revertScaling (state) {
+          state.scaling = state.origScaling
+        }
+      },
+
+      actions: {
+        reset ({ commit }) {
+          commit('reset')
+        },
+        apply ({ commit }, { offsets, scaling = 1 }) {
+          commit('applyOffsets', { offsets })
+          commit('applyScaling', { scaling })
+        },
+        finish ({ commit }) {
+          commit('finishOffsets')
+          commit('finishScaling')
+        },
+        revert ({ commit }) {
+          commit('revertOffsets')
+          commit('revertScaling')
+        }
+      }
     }
   }
 }
