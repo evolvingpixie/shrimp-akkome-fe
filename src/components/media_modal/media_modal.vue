@@ -4,9 +4,16 @@
     class="media-modal-view"
     @backdropClicked="hide"
   >
-    <div class="modal-image-container">
+    <SwipeClick
+      class="modal-image-container"
+      :direction="swipeDirection"
+      :threshold="swipeThreshold"
+      @preview-requested="handleSwipePreview"
+      @swipe-finished="handleSwipeEnd"
+      @swipeless-clicked="hide"
+    >
       <PinchZoom
-        options="pinchZoomOptions"
+        ref="pinchZoom"
         class="modal-image-container-inner"
         selector=".modal-image"
         allow-pan-min-scale="1"
@@ -26,7 +33,7 @@
           @load="onImageLoaded"
         >
       </PinchZoom>
-    </div>
+    </SwipeClick>
     <VideoAttachment
       v-if="type === 'video'"
       class="modal-image"

@@ -2,10 +2,11 @@ import StillImage from '../still-image/still-image.vue'
 import VideoAttachment from '../video_attachment/video_attachment.vue'
 import Modal from '../modal/modal.vue'
 import PinchZoom from '../pinch_zoom/pinch_zoom.vue'
-import fileTypeService from '../../services/file_type/file_type.service.js'
+import SwipeClick from '../swipe_click/swipe_click.vue'
 import GestureService from '../../services/gesture_service/gesture_service'
 import Flash from 'src/components/flash/flash.vue'
 import Vuex from 'vuex'
+import fileTypeService from '../../services/file_type/file_type.service.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faChevronLeft,
@@ -28,13 +29,15 @@ const MediaModal = {
     StillImage,
     VideoAttachment,
     PinchZoom,
+    SwipeClick,
     Modal,
     Flash
   },
   data () {
     return {
       loading: false,
-      pinchZoomOptions: {}
+      swipeDirection: GestureService.DIRECTION_LEFT,
+      swipeThreshold: 50
     }
   },
   computed: {
@@ -70,29 +73,18 @@ const MediaModal = {
     }
   },
   created () {
-    this.mediaGesture = new GestureService.SwipeAndScaleGesture({
-      direction: GestureService.DIRECTION_LEFT,
-      callbackPositive: this.goNext,
-      callbackNegative: this.goPrev,
-      swipePreviewCallback: this.handleSwipePreview,
-      swipeEndCallback: this.handleSwipeEnd,
-      pinchPreviewCallback: this.handlePinchPreview,
-      pinchEndCallback: this.handlePinchEnd,
-      threshold: 50
-    })
+    // this.mediaGesture = new GestureService.SwipeAndScaleGesture({
+    //   callbackPositive: this.goNext,
+    //   callbackNegative: this.goPrev,
+    //   swipePreviewCallback: this.handleSwipePreview,
+    //   swipeEndCallback: this.handleSwipeEnd,
+    //   pinchPreviewCallback: this.handlePinchPreview,
+    //   pinchEndCallback: this.handlePinchEnd
+    // })
   },
   methods: {
     getType (media) {
       return fileTypeService.fileType(media.mimetype)
-    },
-    mediaTouchStart (e) {
-      this.mediaGesture.start(e)
-    },
-    mediaTouchMove (e) {
-      this.mediaGesture.move(e)
-    },
-    mediaTouchEnd (e) {
-      this.mediaGesture.end(e)
     },
     hide () {
       this.$store.dispatch('closeMediaViewer')
@@ -105,6 +97,7 @@ const MediaModal = {
           this.loading = true
         }
         this.$store.dispatch('setCurrentMedia', newMedia)
+        this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
       }
     },
     goNext () {
@@ -115,38 +108,23 @@ const MediaModal = {
           this.loading = true
         }
         this.$store.dispatch('setCurrentMedia', newMedia)
+        this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
       }
     },
     onImageLoaded () {
       this.loading = false
     },
     handleSwipePreview (offsets) {
-      this.$store.dispatch('swipeScaler/apply', {
-        offsets: this.scaling > SCALING_ENABLE_MOVE_THRESHOLD ? offsets : onlyXAxis(offsets)
-      })
+      this.$refs.pinchZoom.setTransform({ scale: 1, x: offsets[0], y: 0 })
     },
     handleSwipeEnd (sign) {
-      if (this.scaling > SCALING_ENABLE_MOVE_THRESHOLD) {
-        this.$store.dispatch('swipeScaler/finish')
-        return
-      }
+      console.log('handleSwipeEnd:', sign)
       if (sign === 0) {
-        this.$store.dispatch('swipeScaler/reset')
+        this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
       } else if (sign > 0) {
         this.goNext()
       } else {
         this.goPrev()
-      }
-    },
-    handlePinchPreview (offsets, scaling) {
-      console.log('handle pinch preview:', offsets, scaling)
-      this.$store.dispatch('swipeScaler/apply', { offsets, scaling })
-    },
-    handlePinchEnd () {
-      if (this.scaling > SCALING_RESET_MIN) {
-        this.$store.dispatch('swipeScaler/finish')
-      } else {
-        this.$store.dispatch('swipeScaler/reset')
       }
     },
     handleKeyupEvent (e) {
