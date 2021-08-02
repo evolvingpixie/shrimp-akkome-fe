@@ -19,6 +19,8 @@ library.add(
 )
 
 const onlyXAxis = ([x, y]) => [x, 0]
+const SCALING_RESET_MIN = 1.1
+const SCALING_ENABLE_MOVE_THRESHOLD = 1
 
 const MediaModal = {
   components: {
@@ -116,11 +118,17 @@ const MediaModal = {
       this.loading = false
     },
     handleSwipePreview (offsets) {
-      this.$store.dispatch('swipeScaler/apply', { offsets: onlyXAxis(offsets) })
+      this.$store.dispatch('swipeScaler/apply', {
+        offsets: this.scaling > SCALING_ENABLE_MOVE_THRESHOLD ? offsets : onlyXAxis(offsets)
+      })
     },
     handleSwipeEnd (sign) {
+      if (this.scaling > SCALING_ENABLE_MOVE_THRESHOLD) {
+        this.$store.dispatch('swipeScaler/finish')
+        return
+      }
       if (sign === 0) {
-        this.$store.dispatch('swipeScaler/revert')
+        this.$store.dispatch('swipeScaler/reset')
       } else if (sign > 0) {
         this.goNext()
       } else {
@@ -132,7 +140,11 @@ const MediaModal = {
       this.$store.dispatch('swipeScaler/apply', { offsets, scaling })
     },
     handlePinchEnd () {
-      this.$store.dispatch('swipeScaler/finish')
+      if (this.scaling > SCALING_RESET_MIN) {
+        this.$store.dispatch('swipeScaler/finish')
+      } else {
+        this.$store.dispatch('swipeScaler/reset')
+      }
     },
     handleKeyupEvent (e) {
       if (this.showing && e.keyCode === 27) { // escape
