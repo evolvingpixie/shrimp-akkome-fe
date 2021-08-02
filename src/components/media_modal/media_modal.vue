@@ -12,9 +12,9 @@
       :alt="currentMedia.description"
       :title="currentMedia.description"
       :style="{ transform }"
-      @touchstart.stop="mediaTouchStart"
-      @touchmove.stop="mediaTouchMove"
-      @touchend.stop="mediaTouchEnd"
+      @touchstart.stop.prevent="mediaTouchStart"
+      @touchmove.stop.prevent="mediaTouchMove"
+      @touchend.stop.prevent="mediaTouchEnd"
       @click="hide"
       @load="onImageLoaded"
     >

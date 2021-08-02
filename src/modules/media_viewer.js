@@ -62,16 +62,12 @@ const mediaViewer = {
         applyScaling (state, { scaling }) {
           state.scaling = state.origScaling * scaling
         },
-        finishOffsets (state) {
+        finish (state) {
           state.origOffsets = [...state.offsets]
-        },
-        finishScaling (state) {
           state.origScaling = state.scaling
         },
-        revertOffsets (state) {
+        revert (state) {
           state.offsets = [...state.origOffsets]
-        },
-        revertScaling (state) {
           state.scaling = state.origScaling
         }
       },
@@ -85,12 +81,10 @@ const mediaViewer = {
           commit('applyScaling', { scaling })
         },
         finish ({ commit }) {
-          commit('finishOffsets')
-          commit('finishScaling')
+          commit('finish')
         },
         revert ({ commit }) {
-          commit('revertOffsets')
-          commit('revertScaling')
+          commit('revert')
         }
       }
     }

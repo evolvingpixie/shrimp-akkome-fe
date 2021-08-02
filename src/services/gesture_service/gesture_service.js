@@ -4,13 +4,20 @@ const DIRECTION_RIGHT = [1, 0]
 const DIRECTION_UP = [0, -1]
 const DIRECTION_DOWN = [0, 1]
 
+const DISTANCE_MIN = 1
+
 const isSwipeEvent = e => (e.touches.length === 1)
 const isSwipeEventEnd = e => (e.changedTouches.length === 1)
 
 const isScaleEvent = e => (e.targetTouches.length === 2)
-// const isScaleEventEnd = e => (e.changedTouches.length === 2)
+const isScaleEventEnd = e => (e.targetTouches.length === 1)
 
 const deltaCoord = (oldCoord, newCoord) => [newCoord[0] - oldCoord[0], newCoord[1] - oldCoord[1]]
+
+const vectorMinus = (a, b) => a.map((k, n) => k - b[n])
+const vectorAdd = (a, b) => a.map((k, n) => k + b[n])
+
+const avgCoord = (coords) => [...coords].reduce(vectorAdd, [0, 0]).map(d => d / coords.length)
 
 const touchCoord = touch => [touch.screenX, touch.screenY]
 
@@ -21,6 +28,8 @@ const vectorLength = v => Math.sqrt(v[0] * v[0] + v[1] * v[1])
 const perpendicular = v => [v[1], -v[0]]
 
 const dotProduct = (v1, v2) => v1[0] * v2[0] + v1[1] * v2[1]
+
+// const numProduct = (num, v) => v.map(k => num * k)
 
 const project = (v1, v2) => {
   const scalar = (dotProduct(v1, v2) / dotProduct(v2, v2))
@@ -86,7 +95,7 @@ class SwipeAndScaleGesture {
     swipeEndCallback, pinchEndCallback,
     threshold = 30, perpendicularTolerance = 1.0
   }) {
-    const nop = () => {}
+    const nop = () => { console.log('Warning: Not implemented') }
     this.direction = direction
     this.swipePreviewCallback = swipePreviewCallback || nop
     this.pinchPreviewCallback = pinchPreviewCallback || nop
@@ -95,6 +104,7 @@ class SwipeAndScaleGesture {
     this.threshold = threshold
     this.perpendicularTolerance = perpendicularTolerance
     this._startPos = [0, 0]
+    this._startDistance = DISTANCE_MIN
     this._swiping = false
   }
 
@@ -105,23 +115,51 @@ class SwipeAndScaleGesture {
       console.log('start pos:', this._startPos)
       this._swiping = true
     } else if (isScaleEvent(event)) {
+      const coords = [...event.targetTouches].map(touchCoord)
+      this._startPos = avgCoord(coords)
+      this._startDistance = vectorLength(deltaCoord(coords[0], coords[1]))
+      if (this._startDistance < DISTANCE_MIN) {
+        this._startDistance = DISTANCE_MIN
+      }
       this._scalePoints = [...event.targetTouches]
       this._swiping = false
+      console.log(
+        'is scale event, start =', this._startPos,
+        'dist =', this._startDistance)
     }
   }
 
   move (event) {
+    // console.log('move called', event)
     if (isSwipeEvent(event)) {
       const touch = event.changedTouches[0]
       const delta = deltaCoord(this._startPos, touchCoord(touch))
 
       this.swipePreviewCallback(delta)
     } else if (isScaleEvent(event)) {
+      console.log('is scale event')
+      const coords = [...event.targetTouches].map(touchCoord)
+      const curPos = avgCoord(coords)
+      const curDistance = vectorLength(deltaCoord(coords[0], coords[1]))
+      const scaling = curDistance / this._startDistance
+      const posDiff = vectorMinus(curPos, this._startPos)
+      // const delta = vectorAdd(numProduct((1 - scaling), this._startPos), posDiff)
+      const delta = posDiff
+      // console.log(
+      //   'is scale event, cur =', curPos,
+      //   'dist =', curDistance,
+      //   'scale =', scaling,
+      //   'delta =', delta)
+      this.pinchPreviewCallback(delta, scaling)
     }
   }
 
   end (event) {
     console.log('end() called', event)
+    if (isScaleEventEnd(event)) {
+      this.pinchEndCallback()
+    }
+
     if (!isSwipeEventEnd(event)) {
       console.log('not swipe event')
       return

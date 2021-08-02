@@ -61,7 +61,7 @@ const MediaModal = {
       return this.$store.state.mediaViewer.swipeScaler.offsets
     },
     transform () {
-      return `scale(${this.scaling}, ${this.scaling}) translate(${this.offsets[0]}px, ${this.offsets[1]}px)`
+      return `translate(${this.offsets[0]}px, ${this.offsets[1]}px) scale(${this.scaling}, ${this.scaling})`
     }
   },
   created () {
@@ -71,6 +71,8 @@ const MediaModal = {
       callbackNegative: this.goPrev,
       swipePreviewCallback: this.handleSwipePreview,
       swipeEndCallback: this.handleSwipeEnd,
+      pinchPreviewCallback: this.handlePinchPreview,
+      pinchEndCallback: this.handlePinchEnd,
       threshold: 50
     })
   },
@@ -124,6 +126,13 @@ const MediaModal = {
       } else {
         this.goPrev()
       }
+    },
+    handlePinchPreview (offsets, scaling) {
+      console.log('handle pinch preview:', offsets, scaling)
+      this.$store.dispatch('swipeScaler/apply', { offsets, scaling })
+    },
+    handlePinchEnd () {
+      this.$store.dispatch('swipeScaler/finish')
     },
     handleKeyupEvent (e) {
       if (this.showing && e.keyCode === 27) { // escape
