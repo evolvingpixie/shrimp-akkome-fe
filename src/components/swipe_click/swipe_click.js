@@ -78,7 +78,7 @@ const SwipeClick = {
       swipeEndCallback: this.end,
       swipeCancelCallback: this.cancel,
       swipelessClickCallback: this.click
-    });
+    })
   }
 }
 

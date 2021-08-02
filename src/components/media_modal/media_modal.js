@@ -20,10 +20,6 @@ library.add(
   faCircleNotch
 )
 
-const onlyXAxis = ([x, y]) => [x, 0]
-const SCALING_RESET_MIN = 1.1
-const SCALING_ENABLE_MOVE_THRESHOLD = 1
-
 const MediaModal = {
   components: {
     StillImage,
