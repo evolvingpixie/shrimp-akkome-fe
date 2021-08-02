@@ -4,20 +4,29 @@
     class="media-modal-view"
     @backdropClicked="hide"
   >
-    <img
-      v-if="type === 'image'"
-      :class="{ loading }"
-      class="modal-image"
-      :src="currentMedia.url"
-      :alt="currentMedia.description"
-      :title="currentMedia.description"
-      :style="{ transform }"
-      @touchstart.stop.prevent="mediaTouchStart"
-      @touchmove.stop.prevent="mediaTouchMove"
-      @touchend.stop.prevent="mediaTouchEnd"
-      @click="hide"
-      @load="onImageLoaded"
-    >
+    <div class="modal-image-container">
+      <PinchZoom
+        options="pinchZoomOptions"
+        class="modal-image-container-inner"
+        selector=".modal-image"
+        allow-pan-min-scale="1"
+        min-scale="1"
+        reset-to-min-scale-limit="1.2"
+        reach-min-scale-strategy="reset"
+        stop-propagate-handled="stop-propgate-handled"
+        :inner-class="'modal-image-container-inner'"
+      >
+        <img
+          v-if="type === 'image'"
+          :class="{ loading }"
+          class="modal-image"
+          :src="currentMedia.url"
+          :alt="currentMedia.description"
+          :title="currentMedia.description"
+          @load="onImageLoaded"
+        >
+      </PinchZoom>
+    </div>
     <VideoAttachment
       v-if="type === 'video'"
       class="modal-image"
@@ -105,6 +114,7 @@
       opacity: 1;
     }
   }
+  overflow: hidden;
 }
 
 .media-modal-view {
@@ -116,6 +126,40 @@
       opacity: 1;
     }
   }
+
+.modal-image-container {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex-direction: column;
+  max-width: 90%;
+  max-height: 95%;
+  flex-grow: 1;
+
+  &-inner {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-shadow: 0px 5px 15px 0 rgba(0, 0, 0, 0.5);
+  image-orientation: from-image; // NOTE: only FF supports this
+  animation: 0.1s cubic-bezier(0.7, 0, 1, 0.6) media-fadein;
+}
+
+//.modal-image {
+//  height: 90vh;
+//  width: 100%;
+//}
 
   .description,
   .counter {

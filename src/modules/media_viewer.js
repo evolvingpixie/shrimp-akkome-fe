@@ -28,7 +28,7 @@ const mediaViewer = {
       commit('setMedia', media)
       dispatch('swipeScaler/reset')
     },
-    setCurrentMedia ({ commit, state }, current) {
+    setCurrentMedia ({ commit, state, dispatch }, current) {
       const index = state.media.indexOf(current)
       commit('setCurrentMedia', index || 0)
       dispatch('swipeScaler/reset')
