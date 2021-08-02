@@ -16,12 +16,11 @@
         ref="pinchZoom"
         class="modal-image-container-inner"
         selector=".modal-image"
-        allow-pan-min-scale="1"
-        min-scale="1"
-        reset-to-min-scale-limit="1.2"
         reach-min-scale-strategy="reset"
         stop-propagate-handled="stop-propgate-handled"
-        :inner-class="'modal-image-container-inner'"
+        :allow-pan-min-scale="pinchZoomMinScale"
+        :min-scale="pinchZoomMinScale"
+        :reset-to-min-scale-limit="pinchZoomScaleResetLimit"
       >
         <img
           v-if="type === 'image'"

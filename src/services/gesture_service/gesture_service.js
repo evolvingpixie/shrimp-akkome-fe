@@ -4,20 +4,7 @@ const DIRECTION_RIGHT = [1, 0]
 const DIRECTION_UP = [0, -1]
 const DIRECTION_DOWN = [0, 1]
 
-// const DISTANCE_MIN = 1
-
-// const isSwipeEvent = e => (e.touches.length === 1)
-// const isSwipeEventEnd = e => (e.changedTouches.length === 1)
-
-// const isScaleEvent = e => (e.targetTouches.length === 2)
-// const isScaleEventEnd = e => (e.targetTouches.length === 1)
-
 const deltaCoord = (oldCoord, newCoord) => [newCoord[0] - oldCoord[0], newCoord[1] - oldCoord[1]]
-
-// const vectorMinus = (a, b) => a.map((k, n) => k - b[n])
-// const vectorAdd = (a, b) => a.map((k, n) => k + b[n])
-
-// const avgCoord = (coords) => [...coords].reduce(vectorAdd, [0, 0]).map(d => d / coords.length)
 
 const touchCoord = touch => [touch.screenX, touch.screenY]
 
@@ -31,12 +18,13 @@ const perpendicular = v => [v[1], -v[0]]
 
 const dotProduct = (v1, v2) => v1[0] * v2[0] + v1[1] * v2[1]
 
-// const numProduct = (num, v) => v.map(k => num * k)
-
 const project = (v1, v2) => {
   const scalar = (dotProduct(v1, v2) / dotProduct(v2, v2))
   return [scalar * v2[0], scalar * v2[1]]
 }
+
+// const debug = console.log
+const debug = () => {}
 
 // direction: either use the constants above or an arbitrary 2d vector.
 // threshold: how many Px to move from touch origin before checking if the
@@ -96,7 +84,7 @@ class SwipeAndClickGesture {
     swipelessClickCallback,
     threshold = 30, perpendicularTolerance = 1.0
   }) {
-    const nop = () => { console.log('Warning: Not implemented') }
+    const nop = () => { debug('Warning: Not implemented') }
     this.direction = direction
     this.swipePreviewCallback = swipePreviewCallback || nop
     this.swipeEndCallback = swipeEndCallback || nop
@@ -115,11 +103,11 @@ class SwipeAndClickGesture {
   }
 
   start (event) {
-    console.log('start() called', event)
+    debug('start() called', event)
 
     this._startPos = pointerEventCoord(event)
     this._pointerId = event.pointerId
-    console.log('start pos:', this._startPos)
+    debug('start pos:', this._startPos)
     this._swiping = true
     this._swiped = false
   }
@@ -145,18 +133,18 @@ class SwipeAndClickGesture {
 
   end (event) {
     if (!this._swiping) {
-      console.log('not swiping')
+      debug('not swiping')
       return
     }
 
     if (this._pointerId !== event.pointerId) {
-      console.log('pointer id does not match')
+      debug('pointer id does not match')
       return
     }
 
     this._swiping = false
 
-    console.log('end: is swipe event')
+    debug('end: is swipe event')
 
     // movement too small
     const coord = pointerEventCoord(event)

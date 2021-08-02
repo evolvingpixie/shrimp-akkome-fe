@@ -37,7 +37,9 @@ const MediaModal = {
     return {
       loading: false,
       swipeDirection: GestureService.DIRECTION_LEFT,
-      swipeThreshold: 50
+      swipeThreshold: 50,
+      pinchZoomMinScale: 1,
+      pinchZoomScaleResetLimit: 1.2
     }
   },
   computed: {
@@ -62,25 +64,6 @@ const MediaModal = {
     type () {
       return this.currentMedia ? this.getType(this.currentMedia) : null
     },
-    scaling () {
-      return this.$store.state.mediaViewer.swipeScaler.scaling
-    },
-    offsets () {
-      return this.$store.state.mediaViewer.swipeScaler.offsets
-    },
-    transform () {
-      return `translate(${this.offsets[0]}px, ${this.offsets[1]}px) scale(${this.scaling}, ${this.scaling})`
-    }
-  },
-  created () {
-    // this.mediaGesture = new GestureService.SwipeAndScaleGesture({
-    //   callbackPositive: this.goNext,
-    //   callbackNegative: this.goPrev,
-    //   swipePreviewCallback: this.handleSwipePreview,
-    //   swipeEndCallback: this.handleSwipeEnd,
-    //   pinchPreviewCallback: this.handlePinchPreview,
-    //   pinchEndCallback: this.handlePinchEnd
-    // })
   },
   methods: {
     getType (media) {
