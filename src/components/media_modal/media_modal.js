@@ -70,7 +70,12 @@ const MediaModal = {
       return fileTypeService.fileType(media.mimetype)
     },
     hide () {
-      this.$store.dispatch('closeMediaViewer')
+      // HACK: Closing immediately via a touch will cause the click
+      // to be processed on the content below the overlay
+      const transitionTime = 100 // ms
+      setTimeout(() => {
+        this.$store.dispatch('closeMediaViewer')
+      }, transitionTime)
     },
     goPrev () {
       if (this.canNavigate) {
