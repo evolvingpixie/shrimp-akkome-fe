@@ -81,7 +81,6 @@ const MediaModal = {
           this.loading = true
         }
         this.$store.dispatch('setCurrentMedia', newMedia)
-        this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
       }
     },
     goNext () {
@@ -92,7 +91,6 @@ const MediaModal = {
           this.loading = true
         }
         this.$store.dispatch('setCurrentMedia', newMedia)
-        this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
       }
     },
     onImageLoaded () {
@@ -103,9 +101,8 @@ const MediaModal = {
     },
     handleSwipeEnd (sign) {
       console.log('handleSwipeEnd:', sign)
-      if (sign === 0) {
-        this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
-      } else if (sign > 0) {
+      this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
+      if (sign > 0) {
         this.goNext()
       } else {
         this.goPrev()
