@@ -190,7 +190,11 @@ class SwipeAndClickGesture {
       this.swipeEndCallback(sign)
     }
     this._reset()
-    if (swiped) {
+    // Only a mouse will fire click event when
+    // the end point is far from the starting point
+    // so for other kinds of pointers do not check
+    // whether we have swiped
+    if (swiped && event.pointerType === 'mouse') {
       this._preventNextClick = true
     }
   }
