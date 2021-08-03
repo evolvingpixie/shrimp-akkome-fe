@@ -140,7 +140,10 @@
   flex-direction: column;
   max-width: 90%;
   max-height: 95%;
+  width: 100%;
+  height: 100%;
   flex-grow: 1;
+  justify-content: center;
 
   &-inner {
     width: 100%;
@@ -149,6 +152,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 }
 
