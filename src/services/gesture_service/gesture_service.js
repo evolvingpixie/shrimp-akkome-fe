@@ -4,6 +4,8 @@ const DIRECTION_RIGHT = [1, 0]
 const DIRECTION_UP = [0, -1]
 const DIRECTION_DOWN = [0, 1]
 
+const BUTTON_LEFT = 0
+
 const deltaCoord = (oldCoord, newCoord) => [newCoord[0] - oldCoord[0], newCoord[1] - oldCoord[1]]
 
 const touchCoord = touch => [touch.screenX, touch.screenY]
@@ -23,8 +25,8 @@ const project = (v1, v2) => {
   return [scalar * v2[0], scalar * v2[1]]
 }
 
-// const debug = console.log
-const debug = () => {}
+const debug = console.log
+// const debug = () => {}
 
 // direction: either use the constants above or an arbitrary 2d vector.
 // threshold: how many Px to move from touch origin before checking if the
@@ -100,10 +102,16 @@ class SwipeAndClickGesture {
     this._pointerId = -1
     this._swiping = false
     this._swiped = false
+    this._preventNextClick = false
   }
 
   start (event) {
     debug('start() called', event)
+
+    // Only handle left click
+    if (event.button !== BUTTON_LEFT) {
+      return
+    }
 
     this._startPos = pointerEventCoord(event)
     this._pointerId = event.pointerId
@@ -124,6 +132,7 @@ class SwipeAndClickGesture {
   }
 
   cancel (event) {
+    debug('cancel called')
     if (!this._swiping || this._pointerId !== event.pointerId) {
       return
     }
@@ -145,6 +154,8 @@ class SwipeAndClickGesture {
     this._swiping = false
 
     debug('end: is swipe event')
+
+    debug('button = ', event.button)
 
     // movement too small
     const coord = pointerEventCoord(event)
@@ -171,9 +182,18 @@ class SwipeAndClickGesture {
       return isPositive ? 1 : -1
     })()
 
+    const swiped = this._swiped
     if (this._swiped) {
       this.swipeEndCallback(sign)
-    } else {
+    }
+    this._reset()
+    if (swiped) {
+      this._preventNextClick = true
+    }
+  }
+
+  click (event) {
+    if (!this._preventNextClick) {
       this.swipelessClickCallback()
     }
     this._reset()

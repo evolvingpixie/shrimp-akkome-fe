@@ -53,8 +53,7 @@ const SwipeClick = {
       this.$gesture.cancel(event)
     },
     handleNativeClick (event) {
-      event.stopPropagation()
-      event.preventDefault()
+      this.$gesture.click(event)
     },
     preview (offsets) {
       this.$emit('preview-requested', offsets)
