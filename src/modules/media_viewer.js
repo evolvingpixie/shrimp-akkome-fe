@@ -20,7 +20,7 @@ const mediaViewer = {
     }
   },
   actions: {
-    setMedia ({ commit, dispatch }, attachments) {
+    setMedia ({ commit }, attachments) {
       const media = attachments.filter(attachment => {
         const type = fileTypeService.fileType(attachment.mimetype)
         return supportedTypes.has(type)
@@ -31,7 +31,7 @@ const mediaViewer = {
       const index = state.media.indexOf(current)
       commit('setCurrentMedia', index || 0)
     },
-    closeMediaViewer ({ commit, dispatch }) {
+    closeMediaViewer ({ commit }) {
       commit('close')
     }
   }
