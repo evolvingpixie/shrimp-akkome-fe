@@ -31,8 +31,8 @@ const SwipeClick = {
       type: Array
     },
     threshold: {
-      type: Number,
-      default: 30
+      type: Function,
+      default: () => 30
     },
     perpendicularTolerance: {
       type: Number,

@@ -25,8 +25,8 @@ const project = (v1, v2) => {
   return [scalar * v2[0], scalar * v2[1]]
 }
 
-const debug = console.log
-// const debug = () => {}
+// const debug = console.log
+const debug = () => {}
 
 // direction: either use the constants above or an arbitrary 2d vector.
 // threshold: how many Px to move from touch origin before checking if the
@@ -92,7 +92,7 @@ class SwipeAndClickGesture {
     this.swipeEndCallback = swipeEndCallback || nop
     this.swipeCancelCallback = swipeCancelCallback || nop
     this.swipelessClickCallback = swipelessClickCallback || nop
-    this.threshold = threshold
+    this.threshold = typeof threshold === 'function' ? threshold : () => threshold
     this.perpendicularTolerance = perpendicularTolerance
     this._reset()
   }
@@ -162,7 +162,10 @@ class SwipeAndClickGesture {
     const delta = deltaCoord(this._startPos, coord)
 
     const sign = (() => {
-      if (vectorLength(delta) < this.threshold) {
+      debug(
+        'threshold = ', this.threshold(),
+        'vector len =', vectorLength(delta))
+      if (vectorLength(delta) < this.threshold()) {
         return 0
       }
       // movement is opposite from direction

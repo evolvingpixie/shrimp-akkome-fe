@@ -33,7 +33,10 @@ const MediaModal = {
     return {
       loading: false,
       swipeDirection: GestureService.DIRECTION_LEFT,
-      swipeThreshold: 50,
+      swipeThreshold: () => {
+        const considerableMoveRatio = 1 / 4
+        return window.innerWidth * considerableMoveRatio
+      },
       pinchZoomMinScale: 1,
       pinchZoomScaleResetLimit: 1.2
     }
@@ -104,7 +107,7 @@ const MediaModal = {
       this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
       if (sign > 0) {
         this.goNext()
-      } else {
+      } else if (sign < 0) {
         this.goPrev()
       }
     },
