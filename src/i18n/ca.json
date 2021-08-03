@@ -93,7 +93,9 @@
     "repeated_you": "ha repetit el teu estat",
     "migrated_to": "migrat a",
     "no_more_notifications": "No més notificacions",
-    "follow_request": "et vol seguir"
+    "follow_request": "et vol seguir",
+    "reacted_with": "ha reaccionat amb {0}",
+    "error": "Error obtenint notificacions: {0}"
   },
   "post_status": {
     "account_not_locked_warning": "El teu compte no està {0}. Qualsevol persona pot seguir-te per llegir les teves entrades reservades només a seguidores.",
@@ -102,7 +104,8 @@
     "content_type": {
       "text/plain": "Text pla",
       "text/markdown": "Markdown",
-      "text/html": "HTML"
+      "text/html": "HTML",
+      "text/bbcode": "BBCode"
     },
     "content_warning": "Assumpte (opcional)",
     "default": "Em sento…",
@@ -119,7 +122,13 @@
       "public": "Aquesta entrada serà visible per a tothom"
     },
     "preview_empty": "Buida",
-    "preview": "Vista prèvia"
+    "preview": "Vista prèvia",
+    "direct_warning_to_first_only": "Aquesta publicació només serà visible per als usuaris mencionats al principi del missatge.",
+    "empty_status_error": "No es pot publicar un estat buit sense fitxers adjunts",
+    "media_description": "Descripció multimèdia",
+    "direct_warning_to_all": "Aquesta publicació serà visible per a tots els usuaris mencionats.",
+    "new_status": "Publicar un nou estat",
+    "post": "Publicació"
   },
   "registration": {
     "bio": "Presentació",
@@ -137,7 +146,10 @@
       "username_required": "no es pot deixar en blanc"
     },
     "fullname_placeholder": "p. ex. Lain Iwakura",
-    "username_placeholder": "p. ex. lain"
+    "username_placeholder": "p. ex. lain",
+    "captcha": "CAPTCHA",
+    "register": "Registrar-se",
+    "reason": "Raó per a registrar-se"
   },
   "settings": {
     "attachmentRadius": "Adjunts",
@@ -273,17 +285,81 @@
     "allow_following_move": "Permet el seguiment automàtic quan un compte a qui seguim es mou",
     "mfa": {
       "scan": {
-        "secret_code": "Clau"
+        "secret_code": "Clau",
+        "title": "Escanejar"
       },
       "authentication_methods": "Mètodes d'autenticació",
       "waiting_a_recovery_codes": "Rebent còpies de seguretat dels codis…",
       "recovery_codes": "Codis de recuperació.",
       "warning_of_generate_new_codes": "Quan generes nous codis de recuperació, els antics ja no funcionaran més.",
-      "generate_new_recovery_codes": "Genera nous codis de recuperació"
+      "generate_new_recovery_codes": "Genera nous codis de recuperació",
+      "otp": "OTP",
+      "confirm_and_enable": "Confirmar i habilitar OTP",
+      "recovery_codes_warning": "Anote els codis o guarda'ls en un lloc segur, o no els veuràs una altra volta. Si perds l'accés a la teua aplicació 2FA i els codis de recuperació, no podràs accedir al compte.",
+      "title": "Autenticació de dos factors",
+      "setup_otp": "Configurar OTP"
     },
     "enter_current_password_to_confirm": "Posar la contrasenya actual per confirmar la teva identitat",
     "security": "Seguretat",
-    "app_name": "Nom de l'aplicació"
+    "app_name": "Nom de l'aplicació",
+    "subject_line_mastodon": "Com a mastodon: copiar com és",
+    "mute_export_button": "Exportar silenciats a un fitxer csv",
+    "mute_import_error": "Error al importar silenciats",
+    "mutes_imported": "Silenciats importats! Processar-los portarà una estona.",
+    "import_mutes_from_a_csv_file": "Importar silenciats des d'un fitxer csv",
+    "word_filter": "Filtre de paraules",
+    "hide_media_previews": "Ocultar les vistes prèvies multimèdia",
+    "hide_filtered_statuses": "Amagar estats filtrats",
+    "play_videos_in_modal": "Reproduir vídeos en un marc emergent",
+    "file_export_import": {
+      "errors": {
+        "invalid_file": "El fitxer seleccionat no és vàlid com a còpia de seguretat de la configuració. No s'ha realitzat cap canvi."
+      },
+      "backup_settings": "Còpia de seguretat de la configuració a un fitxer",
+      "backup_settings_theme": "Còpia de seguretat de la configuració i tema a un fitxer",
+      "restore_settings": "Restaurar configuració des d'un fitxer",
+      "backup_restore": "Còpia de seguretat de la configuració"
+    },
+    "user_mutes": "Usuaris",
+    "subject_line_email": "Com a l'email: \"re: tema\"",
+    "search_user_to_block": "Busca a qui vols bloquejar",
+    "save": "Guardar els canvis",
+    "use_contain_fit": "No retallar els adjunts en miniatures",
+    "reset_profile_background": "Restablir fons del perfil",
+    "reset_profile_banner": "Restablir banner del perfil",
+    "emoji_reactions_on_timeline": "Mostrar reaccions emoji al flux",
+    "max_thumbnails": "Quantitat màxima de miniatures per publicació",
+    "hide_user_stats": "Amagar les estadístiques de l'usuari (p. ex. el nombre de seguidors)",
+    "reset_banner_confirm": "Realment vols restablir el banner?",
+    "reset_background_confirm": "Realment vols restablir el fons del perfil?",
+    "subject_input_always_show": "Sempre mostrar el camp del tema",
+    "subject_line_noop": "No copiar",
+    "subject_line_behavior": "Copiar el tema a les respostes",
+    "search_user_to_mute": "Busca a qui vols silenciar",
+    "mute_export": "Exportar silenciats",
+    "scope_copy": "Copiar visibilitat quan contestes (En els missatges directes sempre es copia)",
+    "reset_avatar": "Restablir avatar",
+    "right_sidebar": "Mostrar barra lateral a la dreta",
+    "no_blocks": "No hi han bloquejats",
+    "no_mutes": "No hi han silenciats",
+    "hide_follows_count_description": "No mostrar el nombre de comptes que segueixo",
+    "mute_import": "Importar silenciats",
+    "hide_all_muted_posts": "Ocultar publicacions silenciades",
+    "hide_wallpaper": "Amagar el fons de la instància",
+    "notification_visibility_moves": "Usuari Migrat",
+    "reply_visibility_following_short": "Mostrar respostes als meus seguidors",
+    "reply_visibility_self_short": "Mostrar respostes només a un mateix",
+    "autohide_floating_post_button": "Ocultar automàticament el botó 'Nova Publicació' (mòbil)",
+    "minimal_scopes_mode": "Minimitzar les opcions de visibilitat de la publicació",
+    "sensitive_by_default": "Marcar publicacions com a sensibles per defecte",
+    "useStreamingApi": "Rebre publicacions i notificacions en temps real",
+    "hide_isp": "Ocultar el panell especific de la instància",
+    "preload_images": "Precarregar les imatges",
+    "setting_changed": "La configuració és diferent a la predeterminada",
+    "hide_followers_count_description": "No mostrar el nombre de seguidors",
+    "reset_avatar_confirm": "Realment vols restablir l'avatar?",
+    "accent": "Accent",
+    "useStreamingApiWarning": "(No recomanat, experimental, pot ometre publicacions)"
   },
   "time": {
     "day": "{0} dia",
@@ -361,10 +437,19 @@
   },
   "interactions": {
     "load_older": "Carrega antigues interaccions",
-    "favs_repeats": "Repeticions i favorits"
+    "favs_repeats": "Repeticions i favorits",
+    "follows": "Nous seguidors"
   },
   "emoji": {
-    "stickers": "Adhesius"
+    "stickers": "Adhesius",
+    "keep_open": "Mantindre el selector obert",
+    "custom": "Emojis personalitzats",
+    "unicode": "Emojis unicode",
+    "load_all_hint": "Carregat el primer emoji {saneAmount}, carregar tots els emoji pot causar problemes de rendiment.",
+    "emoji": "Emoji",
+    "search_emoji": "Buscar un emoji",
+    "add_emoji": "Inserir un emoji",
+    "load_all": "Carregant tots els {emojiAmount} emoji"
   },
   "polls": {
     "expired": "L'enquesta va acabar fa {0}",
@@ -376,7 +461,10 @@
     "votes": "vots",
     "option": "Opció",
     "add_option": "Afegeix opció",
-    "add_poll": "Afegeix enquesta"
+    "add_poll": "Afegeix enquesta",
+    "expiry": "Temps de vida de l'enquesta",
+    "people_voted_count": "{count} persona ha votat | {count} persones han votat",
+    "votes_count": "{count} vot | {count} vots"
   },
   "media_modal": {
     "next": "Següent",
