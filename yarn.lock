@@ -918,7 +918,7 @@
 
 "@kazvmoe-infra/pinch-zoom-element@https://lily.kazv.moe/infra/pinch-zoom-element.git":
   version "1.1.1"
-  resolved "https://lily.kazv.moe/infra/pinch-zoom-element.git#de150c01057f0de0c3ef669917399fe370e36f40"
+  resolved "https://lily.kazv.moe/infra/pinch-zoom-element.git#fbb4d71b1c09c2e24db054cf15d716e125a53bf9"
   dependencies:
     pointer-tracker "^2.0.3"
 
