@@ -146,7 +146,7 @@ const conversation = {
 
         return a
       }, {
-        forest: {},
+        forest: {}
       })
 
       debug('threads = ', threads)
@@ -217,7 +217,7 @@ const conversation = {
     topLevel () {
       const topLevel = this.conversation.reduce((tl, cur) =>
         tl.filter(k => this.getReplies(cur.id).map(v => v.id).indexOf(k.id) === -1), this.conversation)
-      debug("toplevel =", topLevel)
+      debug('toplevel =', topLevel)
       return topLevel
     },
     showingTopLevel () {
@@ -282,7 +282,6 @@ const conversation = {
     statusContentProperties () {
       return this.conversation.reduce((a, k) => {
         const id = k.id
-        const depth = this.depths[id]
         const props = (() => {
           if (this.statusContentPropertiesObject[id]) {
             return this.statusContentPropertiesObject[id]
@@ -290,7 +289,7 @@ const conversation = {
           return {
             showingTall: false,
             expandingSubject: false,
-            showingLongSubject: false,
+            showingLongSubject: false
           }
         })()
 
@@ -448,7 +447,7 @@ const conversation = {
         cur = this.parentOf(cur)
       }
       // nothing found, fall back to toplevel
-      return topLevel[0].id
+      return this.topLevel[0] ? this.topLevel[0].id : undefined
     },
     diveIntoStatus (id, preventScroll) {
       this.diveHistory = [...this.diveHistory, id]
@@ -473,6 +472,9 @@ const conversation = {
       }
     },
     tryScrollTo (id) {
+      if (!id) {
+        return
+      }
       if (this.isPage) {
         // set statusId
         this.$router.push({ name: 'conversation', params: { id } })

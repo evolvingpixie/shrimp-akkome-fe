@@ -39,7 +39,6 @@ const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
 const controlledOrUncontrolledToggle = (obj, name) => {
   const camelized = camelCase(name)
   const toggle = `controlledToggle${camelized}`
-  const controlledName = `controlled${camelized}`
   const uncontrolledName = `uncontrolled${camelized}`
   if (obj[toggle]) {
     obj[toggle]()
