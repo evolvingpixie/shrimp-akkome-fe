@@ -753,7 +753,10 @@
     "open_gallery": "Open gallery",
     "thread_hide": "Hide this thread",
     "thread_show": "Show this thread",
-    "thread_show_full": "Show everything under this thread ({numStatus} status in total, max depth {depth}) | Show everything under this thread ({numStatus} statuses in total, max depth {depth})"
+    "thread_show_full": "Show everything under this thread ({numStatus} status in total, max depth {depth}) | Show everything under this thread ({numStatus} statuses in total, max depth {depth})",
+    "thread_show_full_with_icon": "{icon} {text}",
+    "show_all_conversation": "{0} Show full conversation",
+    "show_only_conversation_under_this": "Only show replies to this status"
   },
   "user_card": {
     "approve": "Approve",
