@@ -18,6 +18,13 @@
       :controlled-thread-display-status="threadDisplayStatus[status.id]"
       :controlled-toggle-thread-display="() => toggleThreadDisplay(status.id)"
 
+      :controlled-showing-tall="currentProp.showingTall"
+      :controlled-expanding-subject="currentProp.expandingSubject"
+      :controlled-showing-long-subject="currentProp.showingLongSubject"
+      :controlled-toggle-showing-tall="() => toggleCurrentProp('ShowingTall')"
+      :controlled-toggle-expanding-subject="() => toggleCurrentProp('expandingSubject')"
+      :controlled-toggle-showing-long-subject="() => toggleCurrentProp('showingLongSubject')"
+
       @goto="setHighlight"
       @toggleExpanded="toggleExpanded"
     />
@@ -50,6 +57,9 @@
         :show-thread-recursively="showThreadRecursively"
         :total-reply-count="totalReplyCount"
         :total-reply-depth="totalReplyDepth"
+        :status-content-properties="statusContentProperties"
+        :set-status-content-property="setStatusContentProperty"
+        :toggle-status-content-property="toggleStatusContentProperty"
       />
     </div>
     <div

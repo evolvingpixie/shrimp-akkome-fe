@@ -2,7 +2,8 @@ import { reduce, filter, findIndex, clone, get } from 'lodash'
 import Status from '../status/status.vue'
 import ThreadTree from '../thread_tree/thread_tree.vue'
 
-const debug = console.log
+// const debug = console.log
+const debug = () => {}
 
 const sortById = (a, b) => {
   const idA = a.type === 'retweet' ? a.retweeted_status.id : a.id
@@ -39,7 +40,8 @@ const conversation = {
     return {
       highlight: null,
       expanded: false,
-      threadDisplayStatusObject: {} // id => 'showing' | 'hidden'
+      threadDisplayStatusObject: {}, // id => 'showing' | 'hidden'
+      statusContentPropertiesObject: {}
     }
   },
   props: [
@@ -236,6 +238,25 @@ const conversation = {
         a[id] = status
         return a
       }, {})
+    },
+    statusContentProperties () {
+      return this.conversation.reduce((a, k) => {
+        const id = k.id
+        const depth = this.depths[id]
+        const props = (() => {
+          if (this.statusContentPropertiesObject[id]) {
+            return this.statusContentPropertiesObject[id]
+          }
+          return {
+            showingTall: false,
+            expandingSubject: false,
+            showingLongSubject: false,
+          }
+        })()
+
+        a[id] = props
+        return a
+      }, {})
     }
   },
   components: {
@@ -326,6 +347,18 @@ const conversation = {
     },
     showThreadRecursively (id) {
       this.setThreadDisplayRecursively(id, 'showing')
+    },
+    setStatusContentProperty (id, name, value) {
+      this.statusContentPropertiesObject = {
+        ...this.statusContentPropertiesObject,
+        [id]: {
+          ...this.statusContentPropertiesObject[id],
+          [name]: value
+        }
+      }
+    },
+    toggleStatusContentProperty (id, name) {
+      this.setStatusContentProperty(id, name, !this.statusContentProperties[id][name])
     }
   }
 }

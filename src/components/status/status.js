@@ -96,7 +96,14 @@ const Status = {
     'profileUserId',
 
     'controlledThreadDisplayStatus',
-    'controlledToggleThreadDisplay'
+    'controlledToggleThreadDisplay',
+
+    'controlledShowingTall',
+    'controlledToggleShowingTall',
+    'controlledExpandingSubject',
+    'controlledToggleExpandingSubject',
+    'controlledShowingLongSubject',
+    'controlledToggleShowingLongSubject'
   ],
   data () {
     return {

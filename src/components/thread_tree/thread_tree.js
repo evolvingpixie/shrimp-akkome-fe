@@ -28,7 +28,10 @@ const ThreadTree = {
     threadDisplayStatus: Object,
     showThreadRecursively: Function,
     totalReplyCount: Object,
-    totalReplyDepth: Object
+    totalReplyDepth: Object,
+    statusContentProperties: Object,
+    setStatusContentProperty: Function,
+    toggleStatusContentProperty: Function
   },
   computed: {
     reverseLookupTable () {
@@ -44,6 +47,9 @@ const ThreadTree = {
     },
     threadShowing () {
       return this.threadDisplayStatus[this.status.id] === 'showing'
+    },
+    currentProp () {
+      return this.statusContentProperties[this.status.id]
     }
   },
   methods: {
@@ -55,6 +61,9 @@ const ThreadTree = {
     showThread () {
     },
     showAllSubthreads () {
+    },
+    toggleCurrentProp (name) {
+      this.toggleStatusContentProperty(this.status.id, name)
     }
   }
 }

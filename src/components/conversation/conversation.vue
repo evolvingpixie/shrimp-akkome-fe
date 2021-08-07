@@ -44,6 +44,9 @@
         :show-thread-recursively="showThreadRecursively"
         :total-reply-count="totalReplyCount"
         :total-reply-depth="totalReplyDepth"
+        :status-content-properties="statusContentProperties"
+        :set-status-content-property="setStatusContentProperty"
+        :toggle-status-content-property="toggleStatusContentProperty"
       />
     </div>
     <div v-if="isLinearView">
