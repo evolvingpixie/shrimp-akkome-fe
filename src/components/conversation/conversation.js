@@ -329,6 +329,7 @@ const conversation = {
       } else {
         // if we collapse it, we should reset the dive
         this._diven = false
+        this.undive()
       }
     },
     virtualHidden (value) {
