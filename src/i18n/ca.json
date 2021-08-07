@@ -15,7 +15,7 @@
   },
   "finder": {
     "error_fetching_user": "No s'ha pogut carregar l'usuari/a",
-    "find_user": "Find user"
+    "find_user": "Trobar usuari"
   },
   "general": {
     "apply": "Aplica",
@@ -89,7 +89,7 @@
     "followed_you": "ha començat a seguir-te",
     "load_older": "Carrega més notificacions",
     "notifications": "Notificacions",
-    "read": "Read!",
+    "read": "Llegit!",
     "repeated_you": "ha repetit el teu estat",
     "migrated_to": "migrat a",
     "no_more_notifications": "No més notificacions",
@@ -108,14 +108,14 @@
       "text/bbcode": "BBCode"
     },
     "content_warning": "Assumpte (opcional)",
-    "default": "Em sento…",
+    "default": "Acabe d'aterrar a L.A.",
     "direct_warning": "Aquesta entrada només serà visible per les usuràries que etiquetis",
     "posting": "Publicació",
     "scope": {
-      "direct": "Directa - Publica només per les usuàries etiquetades",
-      "private": "Només seguidors/es - Publica només per comptes que et segueixin",
-      "public": "Pública - Publica als fluxos públics",
-      "unlisted": "Silenciosa - No la mostris en fluxos públics"
+      "direct": "Directa - publica només per als usuaris etiquetats",
+      "private": "Només seguidors/es - publica només per comptes que et segueixin",
+      "public": "Pública - publica als fluxos públics",
+      "unlisted": "Silenciosa - no la mostris en fluxos públics"
     },
     "scope_notice": {
       "private": "Aquesta entrada serà visible només per a qui et segueixi",
@@ -160,7 +160,7 @@
     "attachmentRadius": "Adjunts",
     "attachments": "Adjunts",
     "avatar": "Avatar",
-    "avatarAltRadius": "Avatars en les notificacions",
+    "avatarAltRadius": "Avatars (notificacions)",
     "avatarRadius": "Avatars",
     "background": "Fons de pantalla",
     "bio": "Presentació",
@@ -170,8 +170,8 @@
     "cOrange": "Taronja (marca com a preferit)",
     "cRed": "Vermell (canceŀla)",
     "change_password": "Canvia la contrasenya",
-    "change_password_error": "No s'ha pogut canviar la contrasenya",
-    "changed_password": "S'ha canviat la contrasenya",
+    "change_password_error": "No s'ha pogut canviar la contrasenya.",
+    "changed_password": "S'ha canviat la contrasenya correctament!",
     "collapse_subject": "Replega les entrades amb títol",
     "confirm_new_password": "Confirma la nova contrasenya",
     "current_avatar": "L'avatar actual",
@@ -212,7 +212,7 @@
     "new_password": "Contrasenya nova",
     "notification_visibility": "Notifica'm quan algú",
     "notification_visibility_follows": "Comença a seguir-me",
-    "notification_visibility_likes": "Marca com a preferida una entrada meva",
+    "notification_visibility_likes": "Favorits",
     "notification_visibility_mentions": "Em menciona",
     "notification_visibility_repeats": "Republica una entrada meva",
     "no_rich_text_description": "Neteja el formatat de text de totes les entrades",
@@ -229,7 +229,7 @@
     "profile_banner": "Fons de perfil",
     "profile_tab": "Perfil",
     "radii_help": "Configura l'arrodoniment de les vores (en píxels)",
-    "replies_in_timeline": "Replies in timeline",
+    "replies_in_timeline": "Respostes al flux",
     "reply_visibility_all": "Mostra totes les respostes",
     "reply_visibility_following": "Mostra només les respostes a entrades meves o d'usuàries que jo segueixo",
     "reply_visibility_self": "Mostra només les respostes a entrades meves",
@@ -252,7 +252,7 @@
       "true": "sí"
     },
     "show_moderator_badge": "Mostra una insígnia de Moderació en el meu perfil",
-    "show_admin_badge": "Mostra una insígnia d'Administració en el meu perfil",
+    "show_admin_badge": "Mostra una insígnia \"d'Administració\" en el meu perfil",
     "hide_followers_description": "No mostris qui m'està seguint",
     "hide_follows_description": "No mostris a qui segueixo",
     "notification_visibility_emoji_reactions": "Reaccions",
@@ -374,7 +374,15 @@
       "fonts": {
         "family": "Nom de la font",
         "size": "Mida (en píxels)",
-        "custom": "Personalitza"
+        "custom": "Personalitza",
+        "_tab_label": "Fonts",
+        "help": "Selecciona la font per als elements de la interfície. Per a \"personalitzat\" deus escriure el nom de la font exactament com apareix al sistema.",
+        "components": {
+          "post": "Text de les publicacions",
+          "postCode": "Text monoespai en publicació (text enriquit)",
+          "input": "Camps d'entrada",
+          "interface": "Interfície"
+        }
       },
       "preview": {
         "input": "Acabo d'aterrar a Los Angeles.",
@@ -388,7 +396,119 @@
         "checkbox": "He llegit els termes i condicions"
       },
       "shadows": {
-        "spread": "Difon"
+        "spread": "Difon",
+        "filter_hint": {
+          "drop_shadow_syntax": "{0} no suporta el paràmetre {1} i la paraula clau {2}.",
+          "avatar_inset": "Tingues en compte que combinar ombres interiors i no interiors als avatars podria donar resultats inesperats amb avatars transparents.",
+          "inset_classic": "Les ombres interiors estaran usant {0}",
+          "always_drop_shadow": "Advertència, aquesta ombra sempre utilitza {0} quan el navegador ho suporta.",
+          "spread_zero": "Ombres amb propagació > 0 apareixeran com si estigueren posades a zero"
+        },
+        "components": {
+          "popup": "Texts i finestres emergents (popups & tooltips)",
+          "panel": "Panell",
+          "panelHeader": "Capçalera del panell",
+          "avatar": "Avatar de l'usuari (en vista de perfil)",
+          "input": "Camp d'entrada",
+          "buttonHover": "Botó (surant)",
+          "buttonPressed": "Botó (pressionat)",
+          "topBar": "Barra superior",
+          "buttonPressedHover": "Botó (surant i pressionat)",
+          "avatarStatus": "Avatar de l'usuari (en vista de publicació)",
+          "button": "Botó"
+        },
+        "hintV3": "per a les ombres també pots usar la notació {0} per a utilitzar un altre espai de color.",
+        "blur": "Difuminat",
+        "component": "Component",
+        "override": "Sobreescriure",
+        "shadow_id": "Ombra #{value}",
+        "_tab_label": "Ombra i il·luminació",
+        "inset": "Ombra interior"
+      },
+      "switcher": {
+        "use_snapshot": "Versió antiga",
+        "help": {
+          "future_version_imported": "El fitxer importat es va crear per a una versió del front-end més recent.",
+          "migration_snapshot_ok": "Per a estar segurs, s'ha carregat la instantània del tema. Pots intentar carregar les dades del tema.",
+          "migration_napshot_gone": "Per alguna raó, faltava la instantània, algunes coses podrien veure's diferents del que recordes.",
+          "snapshot_source_mismatch": "Conflicte de versions: probablement el front-end s'ha revertit i actualitzat una altra volta, si has canviat el tema en una versió anterior, segurament vols utilitzar la versió antiga; d'altra banda utilitza la nova versió.",
+          "v2_imported": "El fitxer que has importat va ser creat per a un front-end més antic. Intentem maximitzar la compatibilitat, però podrien haver inconsistències.",
+          "fe_upgraded": "El motor de temes de PleromaFE es va actualitzar després de l'actualització de la versió.",
+          "snapshot_missing": "No hi havia cap instantània del tema al fitxer, per tant podria veure's diferent del previst originalment.",
+          "upgraded_from_v2": "PleromaFE s'ha actualitzat, el tema pot veure's un poc diferent de com recordes.",
+          "fe_downgraded": "Versió de PleromaFE revertida.",
+          "older_version_imported": "El fitxer que has importat va ser creat en una versió del front-end més antiga."
+        },
+        "keep_as_is": "Mantindre com està",
+        "save_load_hint": "Les opcions \"Mantindre\" conserven les opcions configurades actualment al seleccionar o carregar temes, també emmagatzema aquestes opcions quan s'exporta un tema. Quan es desactiven totes les caselles de verificació, el tema exportat ho guardarà tot.",
+        "keep_color": "Mantindre colors",
+        "keep_opacity": "Mantindre opacitat",
+        "keep_shadows": "Mantindre ombres",
+        "keep_fonts": "Mantindre fonts",
+        "keep_roundness": "Mantindre rodoneses",
+        "clear_all": "Netejar tot",
+        "reset": "Reinciar",
+        "load_theme": "Carregar tema",
+        "use_source": "Nova versió",
+        "clear_opacity": "Netejar opacitat"
+      },
+      "common": {
+        "contrast": {
+          "hint": "El ràtio de contrast és {ratio}. {level} {context}",
+          "level": {
+            "bad": "no compleix amb cap pauta d'accecibilitat",
+            "aaa": "Compleix amb el nivell AA (recomanat)",
+            "aa": "Compleix amb el nivell AA (mínim)"
+          },
+          "context": {
+            "18pt": "per a textos grans (+18pt)",
+            "text": "per a textos"
+          }
+        },
+        "opacity": "Opacitat",
+        "color": "Color"
+      },
+      "advanced_colors": {
+        "badge": "Fons de insígnies",
+        "inputs": "Camps d'entrada",
+        "wallpaper": "Fons de pantalla",
+        "pressed": "Pressionat",
+        "chat": {
+          "outgoing": "Eixint",
+          "border": "Borde",
+          "incoming": "Entrants"
+        },
+        "borders": "Bordes",
+        "panel_header": "Capçalera del panell",
+        "buttons": "Botons",
+        "faint_text": "Text esvaït",
+        "poll": "Gràfica de l'enquesta",
+        "toggled": "Commutat",
+        "alert": "Fons d'alertes",
+        "alert_error": "Error",
+        "alert_warning": "Precaució",
+        "post": "Publicacions/Biografies d'usuaris",
+        "badge_notification": "Notificacions",
+        "selectedMenu": "Element del menú seleccionat",
+        "tabs": "Pestanyes",
+        "_tab_label": "Avançat",
+        "alert_neutral": "Neutral",
+        "popover": "Suggeriments, menús, superposicions",
+        "top_bar": "Barra superior",
+        "highlight": "Elements destacats",
+        "disabled": "Deshabilitat",
+        "icons": "Icones",
+        "selectedPost": "Publicació seleccionada",
+        "underlay": "Subratllat"
+      },
+      "common_colors": {
+        "main": "Colors comuns",
+        "rgbo": "Icones, accents, insígnies",
+        "foreground_hint": "mira la pestanya \"Avançat\" per a un control més detallat",
+        "_tab_label": "Comú"
+      },
+      "radii": {
+        "_tab_label": "Rodonesa"
       }
     },
     "version": {
@@ -396,15 +516,30 @@
       "backend_version": "Versió \"backend\"",
       "title": "Versió"
     },
-    "theme_help_v2_1": "També pots anular alguns components de color i opacitat activant la casella. Usa el botó \"Esborrar tot\" per esborrar totes les anulacions."
+    "theme_help_v2_1": "També pots anular alguns components de color i opacitat activant la casella. Usa el botó \"Esborrar tot\" per esborrar totes les anulacions.",
+    "type_domains_to_mute": "Buscar dominis per a silenciar",
+    "greentext": "Text verd (meme arrows)",
+    "fun": "Divertit",
+    "notification_setting_filters": "Filtres",
+    "virtual_scrolling": "Optimitzar la representació del flux",
+    "notification_setting_block_from_strangers": "Bloqueja les notificacions dels usuaris que no segueixes",
+    "enable_web_push_notifications": "Habilitar notificacions del navegador",
+    "notification_blocks": "Bloquejar a un usuari para totes les notificacions i també les cancel·la.",
+    "more_settings": "Més opcions",
+    "notification_setting_privacy": "Privacitat",
+    "upload_a_photo": "Pujar una foto",
+    "notification_setting_hide_notification_contents": "Amagar el remitent i els continguts de les notificacions push",
+    "notifications": "Notificacions",
+    "notification_mutes": "Per a deixar de rebre notificacions d'un usuari en concret, silencia'l-ho.",
+    "theme_help_v2_2": "Les icones per baix d'algunes entrades són indicadors del contrast del fons/text, desplaça el ratolí per a més informació. Tingues en compte que quan s'utilitzen indicadors de contrast de transparència es mostra el pitjor cas possible."
   },
   "time": {
     "day": "{0} dia",
     "days": "{0} dies",
     "day_short": "{0} dia",
     "days_short": "{0} dies",
-    "hour": "{0} hour",
-    "hours": "{0} hours",
+    "hour": "{0} hora",
+    "hours": "{0} hores",
     "hour_short": "{0}h",
     "hours_short": "{0}h",
     "in_future": "in {0}",
@@ -419,12 +554,12 @@
     "months_short": "{0} mesos",
     "now": "ara mateix",
     "now_short": "ara mateix",
-    "second": "{0} second",
-    "seconds": "{0} seconds",
+    "second": "{0} segon",
+    "seconds": "{0} segons",
     "second_short": "{0}s",
     "seconds_short": "{0}s",
-    "week": "{0} setm.",
-    "weeks": "{0} setm.",
+    "week": "{0} setmana",
+    "weeks": "{0} setmanes",
     "week_short": "{0} setm.",
     "weeks_short": "{0} setm.",
     "year": "{0} any",
@@ -507,7 +642,7 @@
     "profile_does_not_exist": "Disculpes, aquest perfil no existeix."
   },
   "who_to_follow": {
-    "more": "More",
+    "more": "Més",
     "who_to_follow": "A qui seguir"
   },
   "selectable_list": {
@@ -571,7 +706,7 @@
   "domain_mute_card": {
     "mute_progress": "Silenciant…",
     "mute": "Silencia",
-    "unmute": "Deixar de  silenciar",
+    "unmute": "Deixar de silenciar",
     "unmute_progress": "Deixant de silenciar…"
   },
   "about": {
@@ -585,7 +720,7 @@
         "accept_desc": "Aquesta instància només accepta missatges de les següents instàncies:",
         "accept": "Accepta",
         "simple_policies": "Polítiques específiques de la instància",
-        "ftl_removal_desc": "Aquesta instància elimina aquestes instàncies de la línia de temps coneguda:",
+        "ftl_removal_desc": "Aquesta instància elimina les següents instàncies del flux de la xarxa coneguda:",
         "ftl_removal": "Eliminació de la línia de temps coneguda",
         "media_nsfw_desc": "Aquesta instància obliga el contingut multimèdia a establir-se com a sensible dins de les publicacions en les següents instàncies:",
         "media_removal": "Eliminació de la multimèdia",
