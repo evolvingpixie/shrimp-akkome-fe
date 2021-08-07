@@ -5,12 +5,14 @@ import ThreadTree from '../thread_tree/thread_tree.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faAngleDoubleDown,
-  faAngleDoubleLeft
+  faAngleDoubleLeft,
+  faChevronLeft
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faAngleDoubleDown,
-  faAngleDoubleLeft
+  faAngleDoubleLeft,
+  faChevronLeft
 )
 
 // const debug = console.log
@@ -53,7 +55,7 @@ const conversation = {
       expanded: false,
       threadDisplayStatusObject: {}, // id => 'showing' | 'hidden'
       statusContentPropertiesObject: {},
-      diveRoot: null
+      diveHistory: []
     }
   },
   props: [
@@ -119,6 +121,14 @@ const conversation = {
       }
 
       return sortAndFilterConversation(conversation, this.status)
+    },
+    conversationDive () {
+    },
+    statusMap () {
+      return this.conversation.reduce((res, s) => {
+        res[s.id] = s
+        return res
+      }, {})
     },
     threadTree () {
       const reverseLookupTable = this.conversation.reduce((table, status, index) => {
@@ -208,16 +218,19 @@ const conversation = {
       return topLevel
     },
     showingTopLevel () {
-      if (this.diveRoot) {
-        return [this.conversation.filter(k => this.diveRoot === k.id)[0]]
+      if (this.canDive && this.diveRoot) {
+        return [this.statusMap[this.diveRoot]]
       }
       return this.topLevel
     },
+    diveRoot () {
+      return this.diveHistory[this.diveHistory.length - 1]
+    },
     diveDepth () {
-      return this.diveRoot ? this.depths[this.diveRoot] : 0
+      return this.canDive && this.diveRoot ? this.depths[this.diveRoot] : 0
     },
     diveMode () {
-      return !!this.diveRoot
+      return this.canDive && !!this.diveRoot
     },
     replies () {
       let i = 1
@@ -252,7 +265,7 @@ const conversation = {
           if (this.threadDisplayStatusObject[id]) {
             return this.threadDisplayStatusObject[id]
           }
-          if (depth <= this.maxDepthToShowByDefault) {
+          if ((depth - this.diveDepth) <= this.maxDepthToShowByDefault) {
             return 'showing'
           } else {
             return 'hidden'
@@ -281,6 +294,9 @@ const conversation = {
         a[id] = props
         return a
       }, {})
+    },
+    canDive () {
+      return this.isTreeView && this.isExpanded
     }
   },
   components: {
@@ -310,6 +326,25 @@ const conversation = {
     }
   },
   methods: {
+    conversationFetched () {
+      if (!this.isExpanded) {
+        return
+      }
+
+      if (!this._diven) {
+        if (!this.threadDisplayStatus[this.statusId]) {
+          return
+        }
+        this._diven = true
+        const parentOrSelf = this.parentOrSelf(this.originalStatusId)
+        console.log(
+          'this.threadDisplayStatus ', this.threadDisplayStatus,
+          'this.statusId', this.statusId)
+        if (this.threadDisplayStatus[this.statusId] === 'hidden') {
+          this.diveIntoStatus(parentOrSelf)
+        }
+      }
+    },
     fetchConversation () {
       if (this.status) {
         this.$store.state.api.backendInteractor.fetchConversation({ id: this.statusId })
@@ -318,6 +353,7 @@ const conversation = {
             this.$store.dispatch('addNewStatuses', { statuses: descendants })
             this.setHighlight(this.originalStatusId)
           })
+          .then(this.conversationFetched)
       } else {
         this.$store.state.api.backendInteractor.fetchStatus({ id: this.statusId })
           .then((status) => {
@@ -385,10 +421,23 @@ const conversation = {
       this.setStatusContentProperty(id, name, !this.statusContentProperties[id][name])
     },
     diveIntoStatus (id) {
-      this.diveRoot = id
+      this.diveHistory = [...this.diveHistory, id]
+    },
+    diveBack () {
+      this.diveHistory = [...this.diveHistory.slice(0, this.diveHistory.length - 1)]
     },
     undive () {
-      this.diveRoot = null
+      this.diveHistory = []
+    },
+    statusById (id) {
+      return this.statusMap[id]
+    },
+    parentOf (id) {
+      const { in_reply_to_status_id: parentId } = this.statusById(id)
+      return parentId
+    },
+    parentOrSelf (id) {
+      return this.parentOf(id) || id
     }
   }
 }

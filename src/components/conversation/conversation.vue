@@ -31,6 +31,19 @@
         <FAIcon icon="angle-double-left" />
       </i18n>
     </div>
+    <div
+      v-if="diveMode"
+      class="conversation-undive-box"
+    >
+      <i18n
+        path="status.return_to_last_showing"
+        tag="button"
+        class="button-unstyled -link"
+        @click.prevent="diveBack"
+      >
+        <FAIcon icon="chevron-left" />
+      </i18n>
+    </div>
     <div v-if="isTreeView">
       <thread-tree
         v-for="status in showingTopLevel"
@@ -60,7 +73,7 @@
         :status-content-properties="statusContentProperties"
         :set-status-content-property="setStatusContentProperty"
         :toggle-status-content-property="toggleStatusContentProperty"
-        :dive="diveIntoStatus"
+        :dive="canDive ? diveIntoStatus : undefined"
       />
     </div>
     <div v-if="isLinearView">

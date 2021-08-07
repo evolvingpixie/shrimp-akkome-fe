@@ -74,7 +74,10 @@
         class="button-unstyled -link thread-tree-show-replies-button"
         @click.prevent="showThreadRecursively(status.id)"
       >
-        <FAIcon place="icon" icon="angle-double-down" />
+        <FAIcon
+          place="icon"
+          icon="angle-double-down"
+        />
         <span place="text">
           {{ $tc('status.thread_show_full', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
         </span>

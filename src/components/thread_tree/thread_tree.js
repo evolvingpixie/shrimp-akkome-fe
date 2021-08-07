@@ -1,6 +1,7 @@
 import Status from '../status/status.vue'
 
-const debug = console.log
+// const debug = console.log
+const debug = () => {}
 
 const ThreadTree = {
   components: {

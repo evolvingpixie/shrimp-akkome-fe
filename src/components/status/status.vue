@@ -220,7 +220,7 @@
                   />
                 </button>
                 <button
-                  v-if="inThreadForest && replies && replies.length"
+                  v-if="inThreadForest && replies && replies.length && toggleThreadDisplay"
                   class="button-unstyled"
                   :title="threadShowing ? $t('status.thread_hide') : $t('status.thread_show')"
                   :aria-expanded="threadShowing ? 'true' : 'false'"
