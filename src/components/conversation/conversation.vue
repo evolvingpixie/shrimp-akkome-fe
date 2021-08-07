@@ -18,9 +18,22 @@
         {{ $t('timeline.collapse') }}
       </button>
     </div>
+    <div
+      v-if="diveMode"
+      class="conversation-undive-box"
+    >
+      <i18n
+        path="status.show_all_conversation"
+        tag="button"
+        class="button-unstyled -link"
+        @click.prevent="undive"
+      >
+        <FAIcon icon="angle-double-left" />
+      </i18n>
+    </div>
     <div v-if="isTreeView">
       <thread-tree
-        v-for="status in topLevel"
+        v-for="status in showingTopLevel"
         :key="status.id"
         ref="statusComponent"
         :depth="0"
@@ -47,6 +60,7 @@
         :status-content-properties="statusContentProperties"
         :set-status-content-property="setStatusContentProperty"
         :toggle-status-content-property="toggleStatusContentProperty"
+        :dive="diveIntoStatus"
       />
     </div>
     <div v-if="isLinearView">
@@ -65,6 +79,16 @@
         :in-profile="inProfile"
         :profile-user-id="profileUserId"
         class="conversation-status status-fadein panel-body"
+
+        :toggle-thread-display="toggleThreadDisplay"
+        :thread-display-status="threadDisplayStatus"
+        :show-thread-recursively="showThreadRecursively"
+        :total-reply-count="totalReplyCount"
+        :total-reply-depth="totalReplyDepth"
+        :status-content-properties="statusContentProperties"
+        :set-status-content-property="setStatusContentProperty"
+        :toggle-status-content-property="toggleStatusContentProperty"
+
         @goto="setHighlight"
         @toggleExpanded="toggleExpanded"
       />
@@ -82,6 +106,10 @@
 @import '../../_variables.scss';
 
 .Conversation {
+  .conversation-undive-box {
+    padding: 1em;
+  }
+  .conversation-undive-box,
   .conversation-status {
     border-bottom-width: 1px;
     border-bottom-style: solid;

@@ -2,6 +2,17 @@ import { reduce, filter, findIndex, clone, get } from 'lodash'
 import Status from '../status/status.vue'
 import ThreadTree from '../thread_tree/thread_tree.vue'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faAngleDoubleDown,
+  faAngleDoubleLeft
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faAngleDoubleDown,
+  faAngleDoubleLeft
+)
+
 // const debug = console.log
 const debug = () => {}
 
@@ -41,7 +52,8 @@ const conversation = {
       highlight: null,
       expanded: false,
       threadDisplayStatusObject: {}, // id => 'showing' | 'hidden'
-      statusContentPropertiesObject: {}
+      statusContentPropertiesObject: {},
+      diveRoot: null
     }
   },
   props: [
@@ -194,6 +206,18 @@ const conversation = {
         tl.filter(k => this.getReplies(cur.id).map(v => v.id).indexOf(k.id) === -1), this.conversation)
       debug("toplevel =", topLevel)
       return topLevel
+    },
+    showingTopLevel () {
+      if (this.diveRoot) {
+        return [this.conversation.filter(k => this.diveRoot === k.id)[0]]
+      }
+      return this.topLevel
+    },
+    diveDepth () {
+      return this.diveRoot ? this.depths[this.diveRoot] : 0
+    },
+    diveMode () {
+      return !!this.diveRoot
     },
     replies () {
       let i = 1
@@ -359,6 +383,12 @@ const conversation = {
     },
     toggleStatusContentProperty (id, name) {
       this.setStatusContentProperty(id, name, !this.statusContentProperties[id][name])
+    },
+    diveIntoStatus (id) {
+      this.diveRoot = id
+    },
+    undive () {
+      this.diveRoot = null
     }
   }
 }

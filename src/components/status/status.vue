@@ -229,7 +229,19 @@
                   <FAIcon
                     fixed-width
                     class="fa-scale-110"
-                    :icon="threadShowing ? 'angle-double-up' : 'angle-double-down'"
+                    :icon="threadShowing ? 'chevron-up' : 'chevron-down'"
+                  />
+                </button>
+                <button
+                  v-if="dive"
+                  class="button-unstyled"
+                  :title="$t('status.show_only_conversation_under_this')"
+                  @click.prevent="dive"
+                >
+                  <FAIcon
+                    fixed-width
+                    class="fa-scale-110"
+                    :icon="'angle-double-right'"
                   />
                 </button>
               </span>

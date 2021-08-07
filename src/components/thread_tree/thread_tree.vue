@@ -24,6 +24,7 @@
       :controlled-toggle-showing-tall="() => toggleCurrentProp('ShowingTall')"
       :controlled-toggle-expanding-subject="() => toggleCurrentProp('expandingSubject')"
       :controlled-toggle-showing-long-subject="() => toggleCurrentProp('showingLongSubject')"
+      :dive="dive ? () => dive(status.id) : undefined"
 
       @goto="setHighlight"
       @toggleExpanded="toggleExpanded"
@@ -60,18 +61,24 @@
         :status-content-properties="statusContentProperties"
         :set-status-content-property="setStatusContentProperty"
         :toggle-status-content-property="toggleStatusContentProperty"
+        :dive="dive"
       />
     </div>
     <div
       v-if="currentReplies.length && !threadShowing"
       class="thread-tree-replies thread-tree-replies-hidden"
     >
-      <button
+      <i18n
+        tag="button"
+        path="status.thread_show_full_with_icon"
         class="button-unstyled -link thread-tree-show-replies-button"
-        @click="showThreadRecursively(status.id)"
+        @click.prevent="showThreadRecursively(status.id)"
       >
-        {{ $tc('status.thread_show_full', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
-      </button>
+        <FAIcon place="icon" icon="angle-double-down" />
+        <span place="text">
+          {{ $tc('status.thread_show_full', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
+        </span>
+      </i18n>
     </div>
   </div>
 </template>

@@ -31,7 +31,8 @@ const ThreadTree = {
     totalReplyDepth: Object,
     statusContentProperties: Object,
     setStatusContentProperty: Function,
-    toggleStatusContentProperty: Function
+    toggleStatusContentProperty: Function,
+    dive: Function
   },
   computed: {
     reverseLookupTable () {

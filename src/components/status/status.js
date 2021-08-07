@@ -36,8 +36,9 @@ import {
   faEyeSlash,
   faEye,
   faThumbtack,
-  faAngleDoubleUp,
-  faAngleDoubleDown
+  faChevronUp,
+  faChevronDown,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -55,8 +56,9 @@ library.add(
   faEyeSlash,
   faEye,
   faThumbtack,
-  faAngleDoubleUp,
-  faAngleDoubleDown
+  faChevronUp,
+  faChevronDown,
+  faAngleDoubleRight
 )
 
 const Status = {
@@ -103,7 +105,8 @@ const Status = {
     'controlledExpandingSubject',
     'controlledToggleExpandingSubject',
     'controlledShowingLongSubject',
-    'controlledToggleShowingLongSubject'
+    'controlledToggleShowingLongSubject',
+    'dive'
   ],
   data () {
     return {
