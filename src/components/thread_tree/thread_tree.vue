@@ -60,7 +60,7 @@
         class="button-unstyled -link thread-tree-show-replies-button"
         @click="showThreadRecursively(status.id)"
       >
-        {{ $t('status.thread_show_full', { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
+        {{ $tc('status.thread_show_full', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
       </button>
     </div>
   </div>
