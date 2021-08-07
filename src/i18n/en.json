@@ -467,6 +467,7 @@
     "subject_line_noop": "Do not copy",
     "conversation_display": "Conversation display style",
     "conversation_display_tree": "Tree-style",
+    "conversation_display_simple_tree": "Simplified tree-style",
     "conversation_display_linear": "Linear-style",
     "post_status_content_type": "Post status content type",
     "sensitive_by_default": "Mark posts as sensitive by default",
@@ -755,6 +756,8 @@
     "thread_show": "Show this thread",
     "thread_show_full": "Show everything under this thread ({numStatus} status in total, max depth {depth}) | Show everything under this thread ({numStatus} statuses in total, max depth {depth})",
     "thread_show_full_with_icon": "{icon} {text}",
+    "thread_follow": "See the remaining part of this thread ({numStatus} status in total) | See the remaining part of this thread ({numStatus} statuses in total)",
+    "thread_follow_with_icon": "{icon} {text}",
     "show_all_conversation": "{0} Show full conversation",
     "return_to_last_showing": "{0} Return to last position",
     "show_only_conversation_under_this": "Only show replies to this status"
