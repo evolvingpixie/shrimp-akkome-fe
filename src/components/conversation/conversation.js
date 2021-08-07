@@ -77,7 +77,7 @@ const conversation = {
       return 4
     },
     displayStyle () {
-      return this.$store.state.config.conversationDisplay
+      return this.$store.state.config.conversationDisplay || 'simple_tree'
     },
     isTreeView () {
       return this.displayStyle === 'tree' || this.displayStyle === 'simple_tree'
