@@ -12,6 +12,7 @@ const browserLocale = (window.navigator.language || 'en').split('-')[0]
 export const multiChoiceProperties = [
   'postContentType',
   'subjectLineBehavior',
+  'conversationDisplay', // tree | linear
   'mentionLinkDisplay' // short | full_for_remote | full
 ]
 
@@ -81,7 +82,8 @@ export const defaultState = {
   hidePostStats: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default
-  sensitiveByDefault: undefined // instance default
+  sensitiveByDefault: undefined, // instance default
+  conversationDisplay: undefined // instance default
 }
 
 // caching the instance default properties

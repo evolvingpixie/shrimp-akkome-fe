@@ -20,6 +20,11 @@ const GeneralTab = {
         value: mode,
         label: this.$t(`settings.subject_line_${mode === 'masto' ? 'mastodon' : mode}`)
       })),
+      conversationDisplayOptions: ['tree', 'linear'].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.conversation_display_${mode}`)
+      })),
       mentionLinkDisplayOptions: ['short', 'full_for_remote', 'full'].map(mode => ({
         key: mode,
         value: mode,

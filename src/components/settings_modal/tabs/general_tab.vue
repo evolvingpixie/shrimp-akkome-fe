@@ -154,6 +154,15 @@
         </li>
         <li>
           <ChoiceSetting
+            id="conversationDisplay"
+            path="conversationDisplay"
+            :options="conversationDisplayOptions"
+          >
+            {{ $t('settings.conversation_display') }}
+          </ChoiceSetting>
+        </li>
+        <li>
+          <ChoiceSetting
             id="mentionLinkDisplay"
             path="mentionLinkDisplay"
             :options="mentionLinkDisplayOptions"

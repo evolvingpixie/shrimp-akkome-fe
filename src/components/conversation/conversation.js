@@ -1,5 +1,8 @@
 import { reduce, filter, findIndex, clone, get } from 'lodash'
 import Status from '../status/status.vue'
+import ThreadTree from '../thread_tree/thread_tree.vue'
+
+const debug = console.log
 
 const sortById = (a, b) => {
   const idA = a.type === 'retweet' ? a.retweeted_status.id : a.id
@@ -53,6 +56,15 @@ const conversation = {
     }
   },
   computed: {
+    displayStyle () {
+      return this.$store.state.config.conversationDisplay
+    },
+    isTreeView () {
+      return this.displayStyle === 'tree'
+    },
+    isLinearView () {
+      return this.displayStyle === 'linear'
+    },
     hideStatus () {
       if (this.$refs.statusComponent && this.$refs.statusComponent[0]) {
         return this.virtualHidden && this.$refs.statusComponent[0].suspendable
@@ -90,6 +102,49 @@ const conversation = {
 
       return sortAndFilterConversation(conversation, this.status)
     },
+    threadTree () {
+      const reverseLookupTable = this.conversation.reduce((table, status, index) => {
+        table[status.id] = index
+        return table
+      }, {})
+
+      const threads = this.conversation.reduce((a, cur) => {
+        const id = cur.id
+        a.forest[id] = this.getReplies(id)
+          .map(s => s.id)
+          .sort((a, b) => reverseLookupTable[a] - reverseLookupTable[b])
+
+        a.topLevel = a.topLevel.filter(k => a.forest[id].contains(k))
+        return a
+      }, {
+        forest: {},
+        topLevel: this.conversation.map(s => s.id)
+      })
+
+      const walk = (forest, topLevel, depth = 0, processed = {}) => topLevel.map(id => {
+        if (processed[id]) {
+          return []
+        }
+
+        processed[id] = true
+        return [{
+          status: this.conversation[reverseLookupTable[id]],
+          id,
+          depth
+        }, walk(forest, forest[child], depth + 1, processed)].reduce((a, b) => a.concat(b), [])
+      }).reduce((a, b) => a.concat(b), [])
+
+      const linearized = walk(threads.forest, threads.topLevel)
+
+      return linearized
+    },
+    topLevel () {
+      const topLevel = this.conversation.reduce((tl, cur) =>
+        tl.filter(k => this.getReplies(cur.id).map(v => v.id).indexOf(k.id) === -1), this.conversation)
+      debug("toplevel =", topLevel)
+      debug("toplevel =", topLevel)
+      return topLevel
+    },
     replies () {
       let i = 1
       // eslint-disable-next-line camelcase
@@ -109,7 +164,7 @@ const conversation = {
       }, {})
     },
     isExpanded () {
-      return this.expanded || this.isPage
+      return !!(this.expanded || this.isPage)
     },
     hiddenStyle () {
       const height = (this.status && this.status.virtualHeight) || '120px'
@@ -117,7 +172,8 @@ const conversation = {
     }
   },
   components: {
-    Status
+    Status,
+    ThreadTree
   },
   watch: {
     statusId (newVal, oldVal) {
