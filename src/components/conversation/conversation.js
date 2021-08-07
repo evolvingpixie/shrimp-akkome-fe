@@ -336,9 +336,6 @@ const conversation = {
         'setVirtualHeight',
         { statusId: this.statusId, height: `${this.$el.clientHeight}px` }
       )
-    },
-    highlight (value, old) {
-      console.log('highlight:', old, ' => ', value)
     }
   },
   methods: {
@@ -353,9 +350,6 @@ const conversation = {
         }
         this._diven = true
         const parentOrSelf = this.parentOrSelf(this.originalStatusId)
-        console.log(
-          'this.threadDisplayStatus ', this.threadDisplayStatus,
-          'this.statusId', this.statusId)
         if (this.threadDisplayStatus[this.statusId] === 'hidden') {
           this.diveIntoStatus(parentOrSelf, /* preventScroll */ true)
           this.tryScrollTo(this.statusId)
@@ -386,7 +380,6 @@ const conversation = {
       return this.isExpanded ? this.highlight : null
     },
     setHighlight (id) {
-      console.log('setHighlight', id)
       if (!id) return
       this.highlight = id
       this.$store.dispatch('fetchFavsAndRepeats', id)
