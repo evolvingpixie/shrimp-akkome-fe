@@ -80,7 +80,10 @@ const conversation = {
       return this.$store.state.config.conversationDisplay
     },
     isTreeView () {
-      return this.displayStyle === 'tree'
+      return this.displayStyle === 'tree' || this.displayStyle === 'simple_tree'
+    },
+    treeViewIsSimple () {
+      return this.displayStyle === 'simple_tree'
     },
     isLinearView () {
       return this.displayStyle === 'linear'
@@ -297,6 +300,14 @@ const conversation = {
     },
     canDive () {
       return this.isTreeView && this.isExpanded
+    },
+    focused () {
+      return (id) => {
+        return (this.isExpanded) && id === this.highlight
+      }
+    },
+    maybeHighlight () {
+      return this.isExpanded ? this.highlight : null
     }
   },
   components: {
@@ -316,6 +327,9 @@ const conversation = {
     expanded (value) {
       if (value) {
         this.fetchConversation()
+      } else {
+        // if we collapse it, we should reset the dive
+        this._diven = false
       }
     },
     virtualHidden (value) {
@@ -323,6 +337,9 @@ const conversation = {
         'setVirtualHeight',
         { statusId: this.statusId, height: `${this.$el.clientHeight}px` }
       )
+    },
+    highlight (value, old) {
+      console.log('highlight:', old, ' => ', value)
     }
   },
   methods: {
@@ -341,7 +358,8 @@ const conversation = {
           'this.threadDisplayStatus ', this.threadDisplayStatus,
           'this.statusId', this.statusId)
         if (this.threadDisplayStatus[this.statusId] === 'hidden') {
-          this.diveIntoStatus(parentOrSelf)
+          this.diveIntoStatus(parentOrSelf, /* preventScroll */ true)
+          this.tryScrollTo(this.statusId)
         }
       }
     },
@@ -365,17 +383,15 @@ const conversation = {
     getReplies (id) {
       return this.replies[id] || []
     },
-    focused (id) {
-      return (this.isExpanded) && id === this.statusId
+    getHighlight () {
+      return this.isExpanded ? this.highlight : null
     },
     setHighlight (id) {
+      console.log('setHighlight', id)
       if (!id) return
       this.highlight = id
       this.$store.dispatch('fetchFavsAndRepeats', id)
       this.$store.dispatch('fetchEmojiReactionsBy', id)
-    },
-    getHighlight () {
-      return this.isExpanded ? this.highlight : null
     },
     toggleExpanded () {
       this.expanded = !this.expanded
@@ -420,14 +436,52 @@ const conversation = {
     toggleStatusContentProperty (id, name) {
       this.setStatusContentProperty(id, name, !this.statusContentProperties[id][name])
     },
-    diveIntoStatus (id) {
+    leastShowingAncestor (id) {
+      let cur = id
+      let parent = this.parentOf(cur)
+      while (cur) {
+        // if the parent is showing it means cur is visible
+        if (this.threadDisplayStatus[parent] === 'showing') {
+          return cur
+        }
+        parent = this.parentOf(parent)
+        cur = this.parentOf(cur)
+      }
+      // nothing found, fall back to toplevel
+      return topLevel[0].id
+    },
+    diveIntoStatus (id, preventScroll) {
       this.diveHistory = [...this.diveHistory, id]
+      if (!preventScroll) {
+        this.goToCurrent()
+      }
     },
     diveBack () {
+      const oldHighlight = this.highlight
       this.diveHistory = [...this.diveHistory.slice(0, this.diveHistory.length - 1)]
+      if (oldHighlight) {
+        this.tryScrollTo(this.leastShowingAncestor(oldHighlight))
+      }
     },
     undive () {
+      const oldHighlight = this.highlight
       this.diveHistory = []
+      if (oldHighlight) {
+        this.tryScrollTo(this.leastShowingAncestor(oldHighlight))
+      } else {
+        this.goToCurrent()
+      }
+    },
+    tryScrollTo (id) {
+      if (this.isPage) {
+        // set statusId
+        this.$router.push({ name: 'conversation', params: { id } })
+      }
+
+      this.setHighlight(id)
+    },
+    goToCurrent () {
+      this.tryScrollTo(this.diveRoot || this.topLevel[0].id)
     },
     statusById (id) {
       return this.statusMap[id]

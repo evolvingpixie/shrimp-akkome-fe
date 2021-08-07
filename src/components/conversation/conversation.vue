@@ -61,10 +61,11 @@
 
         :focused="focused"
         :get-replies="getReplies"
-        :get-highlight="getHighlight"
+        :highlight="maybeHighlight"
         :set-highlight="setHighlight"
         :toggle-expanded="toggleExpanded"
 
+        :simple="treeViewIsSimple"
         :toggle-thread-display="toggleThreadDisplay"
         :thread-display-status="threadDisplayStatus"
         :show-thread-recursively="showThreadRecursively"

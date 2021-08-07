@@ -1,5 +1,16 @@
 import Status from '../status/status.vue'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faAngleDoubleDown,
+  faAngleDoubleRight
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faAngleDoubleDown,
+  faAngleDoubleRight
+)
+
 // const debug = console.log
 const debug = () => {}
 
@@ -19,11 +30,12 @@ const ThreadTree = {
     profileUserId: String,
 
     focused: Function,
-    getHighlight: Function,
+    highlight: String,
     getReplies: Function,
     setHighlight: Function,
     toggleExpanded: Function,
 
+    simple: Boolean,
     // to control display of the whole thread forest
     toggleThreadDisplay: Function,
     threadDisplayStatus: Object,

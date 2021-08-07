@@ -9,12 +9,13 @@
       :show-pinned="pinnedStatusIdsObject && pinnedStatusIdsObject[status.id]"
       :focused="focused(status.id)"
       :in-conversation="isExpanded"
-      :highlight="getHighlight()"
+      :highlight="highlight"
       :replies="getReplies(status.id)"
       :in-profile="inProfile"
       :profile-user-id="profileUserId"
       class="conversation-status conversation-status-treeview status-fadein panel-body"
 
+      :simple-tree="simple"
       :controlled-thread-display-status="threadDisplayStatus[status.id]"
       :controlled-toggle-thread-display="() => toggleThreadDisplay(status.id)"
 
@@ -49,10 +50,11 @@
 
         :focused="focused"
         :get-replies="getReplies"
-        :get-highlight="getHighlight"
+        :highlight="highlight"
         :set-highlight="setHighlight"
         :toggle-expanded="toggleExpanded"
 
+        :simple="simple"
         :toggle-thread-display="toggleThreadDisplay"
         :thread-display-status="threadDisplayStatus"
         :show-thread-recursively="showThreadRecursively"
@@ -69,6 +71,22 @@
       class="thread-tree-replies thread-tree-replies-hidden"
     >
       <i18n
+        v-if="simple"
+        tag="button"
+        path="status.thread_follow_with_icon"
+        class="button-unstyled -link thread-tree-show-replies-button"
+        @click.prevent="dive(status.id)"
+      >
+        <FAIcon
+          place="icon"
+          icon="angle-double-right"
+        />
+        <span place="text">
+          {{ $tc('status.thread_follow', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id] }) }}
+        </span>
+      </i18n>
+      <i18n
+        v-else
         tag="button"
         path="status.thread_show_full_with_icon"
         class="button-unstyled -link thread-tree-show-replies-button"

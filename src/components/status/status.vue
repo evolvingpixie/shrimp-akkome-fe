@@ -220,7 +220,7 @@
                   />
                 </button>
                 <button
-                  v-if="inThreadForest && replies && replies.length && toggleThreadDisplay"
+                  v-if="inThreadForest && replies && replies.length && !simpleTree"
                   class="button-unstyled"
                   :title="threadShowing ? $t('status.thread_hide') : $t('status.thread_show')"
                   :aria-expanded="threadShowing ? 'true' : 'false'"
@@ -233,7 +233,7 @@
                   />
                 </button>
                 <button
-                  v-if="dive"
+                  v-if="dive && !simpleTree"
                   class="button-unstyled"
                   :title="$t('status.show_only_conversation_under_this')"
                   @click.prevent="dive"

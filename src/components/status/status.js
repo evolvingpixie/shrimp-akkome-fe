@@ -97,6 +97,7 @@ const Status = {
     'inProfile',
     'profileUserId',
 
+    'simpleTree',
     'controlledThreadDisplayStatus',
     'controlledToggleThreadDisplay',
 
@@ -379,10 +380,9 @@ const Status = {
     },
     toggleThreadDisplay () {
       this.controlledToggleThreadDisplay()
-    }
-  },
-  watch: {
-    'highlight': function (id) {
+    },
+    scrollIfHighlighted (highlightId) {
+      const id = highlightId
       if (this.status.id === id) {
         let rect = this.$el.getBoundingClientRect()
         if (rect.top < 100) {
@@ -396,6 +396,14 @@ const Status = {
           window.scrollBy(0, rect.bottom - window.innerHeight + 50)
         }
       }
+    }
+  },
+  mounted () {
+    this.scrollIfHighlighted(this.highlight)
+  },
+  watch: {
+    'highlight': function (id) {
+      this.scrollIfHighlighted(id)
     },
     'status.repeat_num': function (num) {
       // refetch repeats when repeat_num is changed in any way

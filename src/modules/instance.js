@@ -53,7 +53,7 @@ const defaultState = {
   theme: 'pleroma-dark',
   virtualScrolling: true,
   sensitiveByDefault: false,
-  conversationDisplay: 'tree',
+  conversationDisplay: 'simple_tree',
 
   // Nasty stuff
   customEmoji: [],
