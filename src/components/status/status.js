@@ -35,7 +35,9 @@ import {
   faStar,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faAngleDoubleUp,
+  faAngleDoubleDown
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -52,7 +54,9 @@ library.add(
   faEllipsisH,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faAngleDoubleUp,
+  faAngleDoubleDown
 )
 
 const Status = {
@@ -89,7 +93,10 @@ const Status = {
     'inlineExpanded',
     'showPinned',
     'inProfile',
-    'profileUserId'
+    'profileUserId',
+
+    'controlledThreadDisplayStatus',
+    'controlledToggleThreadDisplay'
   ],
   data () {
     return {
@@ -304,6 +311,12 @@ const Status = {
     },
     isSuspendable () {
       return !this.replying && this.mediaPlaying.length === 0
+    },
+    inThreadForest () {
+      return !!this.controlledThreadDisplayStatus
+    },
+    threadShowing () {
+      return this.controlledThreadDisplayStatus === 'showing'
     }
   },
   methods: {
@@ -353,6 +366,9 @@ const Status = {
     },
     setHeadTailLinks (headTailLinks) {
       this.headTailLinks = headTailLinks
+    },
+    toggleThreadDisplay () {
+      this.controlledToggleThreadDisplay()
     }
   },
   watch: {

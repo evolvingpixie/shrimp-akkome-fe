@@ -21,7 +21,14 @@ const ThreadTree = {
     getHighlight: Function,
     getReplies: Function,
     setHighlight: Function,
-    toggleExpanded: Function
+    toggleExpanded: Function,
+
+    // to control display of the whole thread forest
+    toggleThreadDisplay: Function,
+    threadDisplayStatus: Object,
+    showThreadRecursively: Function,
+    totalReplyCount: Object,
+    totalReplyDepth: Object
   },
   computed: {
     reverseLookupTable () {
@@ -35,6 +42,9 @@ const ThreadTree = {
       debug('getReplies:', this.getReplies(this.status.id))
       return this.getReplies(this.status.id).map(({ id }) => this.statusById(id))
     },
+    threadShowing () {
+      return this.threadDisplayStatus[this.status.id] === 'showing'
+    }
   },
   methods: {
     statusById (id) {

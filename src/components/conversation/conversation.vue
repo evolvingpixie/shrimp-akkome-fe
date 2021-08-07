@@ -23,6 +23,7 @@
         v-for="status in topLevel"
         :key="status.id"
         ref="statusComponent"
+        :depth="0"
 
         :status="status"
         :in-profile="inProfile"
@@ -37,6 +38,12 @@
         :get-highlight="getHighlight"
         :set-highlight="setHighlight"
         :toggle-expanded="toggleExpanded"
+
+        :toggle-thread-display="toggleThreadDisplay"
+        :thread-display-status="threadDisplayStatus"
+        :show-thread-recursively="showThreadRecursively"
+        :total-reply-count="totalReplyCount"
+        :total-reply-depth="totalReplyDepth"
       />
     </div>
     <div v-if="isLinearView">

@@ -38,7 +38,8 @@ const conversation = {
   data () {
     return {
       highlight: null,
-      expanded: false
+      expanded: false,
+      threadDisplayStatusObject: {} // id => 'showing' | 'hidden'
     }
   },
   props: [
@@ -56,6 +57,9 @@ const conversation = {
     }
   },
   computed: {
+    maxDepthToShowByDefault () {
+      return 4
+    },
     displayStyle () {
       return this.$store.state.config.conversationDisplay
     },
@@ -112,14 +116,13 @@ const conversation = {
         const id = cur.id
         a.forest[id] = this.getReplies(id)
           .map(s => s.id)
-          .sort((a, b) => reverseLookupTable[a] - reverseLookupTable[b])
 
-        a.topLevel = a.topLevel.filter(k => a.forest[id].contains(k))
         return a
       }, {
         forest: {},
-        topLevel: this.conversation.map(s => s.id)
       })
+
+      debug('threads = ', threads)
 
       const walk = (forest, topLevel, depth = 0, processed = {}) => topLevel.map(id => {
         if (processed[id]) {
@@ -131,17 +134,62 @@ const conversation = {
           status: this.conversation[reverseLookupTable[id]],
           id,
           depth
-        }, walk(forest, forest[child], depth + 1, processed)].reduce((a, b) => a.concat(b), [])
+        }, walk(forest, forest[id], depth + 1, processed)].reduce((a, b) => a.concat(b), [])
       }).reduce((a, b) => a.concat(b), [])
 
-      const linearized = walk(threads.forest, threads.topLevel)
+      const linearized = walk(threads.forest, this.topLevel.map(k => k.id))
 
       return linearized
+    },
+    replyIds () {
+      return this.conversation.map(k => k.id)
+        .reduce((res, id) => {
+          res[id] = (this.replies[id] || []).map(k => k.id)
+          return res
+        }, {})
+    },
+    totalReplyCount () {
+      debug('replyIds=', this.replyIds)
+      const sizes = {}
+      const subTreeSizeFor = (id) => {
+        if (sizes[id]) {
+          return sizes[id]
+        }
+        sizes[id] = 1 + this.replyIds[id].map(cid => subTreeSizeFor(cid)).reduce((a, b) => a + b, 0)
+        return sizes[id]
+      }
+      this.conversation.map(k => k.id).map(subTreeSizeFor)
+      debug('totalReplyCount=', sizes)
+      return Object.keys(sizes).reduce((res, id) => {
+        res[id] = sizes[id] - 1 // exclude itself
+        return res
+      }, {})
+    },
+    totalReplyDepth () {
+      const depths = {}
+      const subTreeDepthFor = (id) => {
+        if (depths[id]) {
+          return depths[id]
+        }
+        depths[id] = 1 + this.replyIds[id].map(cid => subTreeDepthFor(cid)).reduce((a, b) => a > b ? a : b, 0)
+        return depths[id]
+      }
+      this.conversation.map(k => k.id).map(subTreeDepthFor)
+      return Object.keys(depths).reduce((res, id) => {
+        res[id] = depths[id] - 1 // exclude itself
+        return res
+      }, {})
+    },
+    depths () {
+      debug('threadTree', this.threadTree)
+      return this.threadTree.reduce((a, k) => {
+        a[k.id] = k.depth
+        return a
+      }, {})
     },
     topLevel () {
       const topLevel = this.conversation.reduce((tl, cur) =>
         tl.filter(k => this.getReplies(cur.id).map(v => v.id).indexOf(k.id) === -1), this.conversation)
-      debug("toplevel =", topLevel)
       debug("toplevel =", topLevel)
       return topLevel
     },
@@ -169,6 +217,25 @@ const conversation = {
     hiddenStyle () {
       const height = (this.status && this.status.virtualHeight) || '120px'
       return this.virtualHidden ? { height } : {}
+    },
+    threadDisplayStatus () {
+      return this.conversation.reduce((a, k) => {
+        const id = k.id
+        const depth = this.depths[id]
+        const status = (() => {
+          if (this.threadDisplayStatusObject[id]) {
+            return this.threadDisplayStatusObject[id]
+          }
+          if (depth <= this.maxDepthToShowByDefault) {
+            return 'showing'
+          } else {
+            return 'hidden'
+          }
+        })()
+
+        a[id] = status
+        return a
+      }, {})
     }
   },
   components: {
@@ -235,6 +302,30 @@ const conversation = {
     getConversationId (statusId) {
       const status = this.$store.state.statuses.allStatusesObject[statusId]
       return get(status, 'retweeted_status.statusnet_conversation_id', get(status, 'statusnet_conversation_id'))
+    },
+    setThreadDisplay (id, nextStatus) {
+      this.threadDisplayStatusObject = {
+        ...this.threadDisplayStatusObject,
+        [id]: nextStatus
+      }
+    },
+    toggleThreadDisplay (id) {
+      const depth = this.depths[id]
+      debug('depth = ', depth)
+      debug(
+        'threadDisplayStatus = ', this.threadDisplayStatus,
+        'threadDisplayStatusObject = ', this.threadDisplayStatusObject)
+      const curStatus = this.threadDisplayStatus[id]
+      const nextStatus = curStatus === 'showing' ? 'hidden' : 'showing'
+      debug('toggling', id, 'to', nextStatus)
+      this.setThreadDisplay(id, nextStatus)
+    },
+    setThreadDisplayRecursively (id, nextStatus) {
+      this.setThreadDisplay(id, nextStatus)
+      this.getReplies(id).map(k => k.id).map(id => this.setThreadDisplayRecursively(id, nextStatus))
+    },
+    showThreadRecursively (id) {
+      this.setThreadDisplayRecursively(id, 'showing')
     }
   }
 }

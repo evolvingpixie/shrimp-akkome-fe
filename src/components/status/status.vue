@@ -219,6 +219,19 @@
                     class="fa-scale-110"
                   />
                 </button>
+                <button
+                  v-if="inThreadForest && replies && replies.length"
+                  class="button-unstyled"
+                  :title="threadShowing ? $t('status.thread_hide') : $t('status.thread_show')"
+                  :aria-expanded="threadShowing ? 'true' : 'false'"
+                  @click.prevent="toggleThreadDisplay"
+                >
+                  <FAIcon
+                    fixed-width
+                    class="fa-scale-110"
+                    :icon="threadShowing ? 'angle-double-up' : 'angle-double-down'"
+                  />
+                </button>
               </span>
             </div>
             <div

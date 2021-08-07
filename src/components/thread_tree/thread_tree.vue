@@ -13,18 +13,23 @@
       :replies="getReplies(status.id)"
       :in-profile="inProfile"
       :profile-user-id="profileUserId"
-      class="conversation-status status-fadein panel-body"
+      class="conversation-status conversation-status-treeview status-fadein panel-body"
+
+      :controlled-thread-display-status="threadDisplayStatus[status.id]"
+      :controlled-toggle-thread-display="() => toggleThreadDisplay(status.id)"
+
       @goto="setHighlight"
       @toggleExpanded="toggleExpanded"
     />
     <div
-      v-if="currentReplies.length"
+      v-if="currentReplies.length && threadShowing"
       class="thread-tree-replies"
     >
       <thread-tree
         v-for="replyStatus in currentReplies"
         :key="replyStatus.id"
         ref="childComponent"
+        :depth="depth + 1"
         :status="replyStatus"
 
         :in-profile="inProfile"
@@ -40,8 +45,23 @@
         :set-highlight="setHighlight"
         :toggle-expanded="toggleExpanded"
 
-        class="conversation-status status-fadein panel-body"
+        :toggle-thread-display="toggleThreadDisplay"
+        :thread-display-status="threadDisplayStatus"
+        :show-thread-recursively="showThreadRecursively"
+        :total-reply-count="totalReplyCount"
+        :total-reply-depth="totalReplyDepth"
       />
+    </div>
+    <div
+      v-if="currentReplies.length && !threadShowing"
+      class="thread-tree-replies thread-tree-replies-hidden"
+    >
+      <button
+        class="button-unstyled -link thread-tree-show-replies-button"
+        @click="showThreadRecursively(status.id)"
+      >
+        {{ $t('status.thread_show_full', { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
+      </button>
     </div>
   </div>
 </template>
@@ -49,7 +69,16 @@
 <script src="./thread_tree.js"></script>
 
 <style lang="scss">
+@import '../../_variables.scss';
 .thread-tree-replies {
   margin-left: 1em;
+}
+.thread-tree-replies-hidden {
+  padding: 1em;
+  border-bottom: 1px solid var(--border, #222);
+}
+.conversation-status.conversation-status-treeview:last-child,
+.Conversation.-expanded .conversation-status.conversation-status-treeview:last-child {
+  border-bottom: 1px solid var(--border, #222);
 }
 </style>
