@@ -465,6 +465,9 @@
     "subject_line_email": "Like email: \"re: subject\"",
     "subject_line_mastodon": "Like mastodon: copy as is",
     "subject_line_noop": "Do not copy",
+    "conversation_display": "Conversation display style",
+    "conversation_display_tree": "Tree-style",
+    "conversation_display_linear": "Linear-style",
     "post_status_content_type": "Post status content type",
     "sensitive_by_default": "Mark posts as sensitive by default",
     "stop_gifs": "Pause animated images until you hover on them",
@@ -747,7 +750,10 @@
     "attachment_stop_flash": "Stop Flash player",
     "move_up": "Shift attachment left",
     "move_down": "Shift attachment right",
-    "open_gallery": "Open gallery"
+    "open_gallery": "Open gallery",
+    "thread_hide": "Hide this thread",
+    "thread_show": "Show this thread",
+    "thread_show_full": "Show everything under this thread ({numStatus} status in total, max depth {depth}) | Show everything under this thread ({numStatus} statuses in total, max depth {depth})"
   },
   "user_card": {
     "approve": "Approve",
