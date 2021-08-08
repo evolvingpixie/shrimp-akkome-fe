@@ -130,10 +130,13 @@
 .Conversation {
   .conversation-undive-box {
     padding: $status-margin;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border, $fallback--border);
+    border-radius: 0;
   }
 
   /* HACK: we want the border width to scale with the status *below it* */
-  .conversation-undive-box,
   .conversation-status {
     border-top-width: 1px;
     border-top-style: solid;
@@ -146,11 +149,14 @@
     border-top-left-radius: var(--panelRadius, $fallback--panelRadius);
   }
 
-  /* first element in conversation body */
+  /* first element in a reply tree, the border is supplied by reply tree instead
+     for radius to display properly
+   */
   &.-expanded .conversation-body {
     .conversation-undive-box:nth-child(1),
     & > .conversation-status:nth-child(1),
-    & > .thread-body:nth-child(1) > .thread-tree:nth-child(1) > .conversation-status:nth-child(1), {
+    & > .thread-body:nth-child(1) > .thread-tree:nth-child(1) > .conversation-status:nth-child(1),
+    .thread-tree:nth-child(1) > .conversation-status:nth-child(1) {
       border-top: none;
     }
   }

@@ -111,10 +111,9 @@
 .thread-tree-replies {
   margin-left: $status-margin;
   border-left: 1px solid var(--border, $fallback--border);
+  border-top: 1px solid var(--border, $fallback--border);
   border-top-left-radius: $fallback--panelRadius;
   border-top-left-radius: var(--panelRadius, $fallback--panelRadius);
-  border-bottom-left-radius: $fallback--panelRadius;
-  border-bottom-left-radius: var(--panelRadius, $fallback--panelRadius);
 }
 
 .thread-tree-replies-hidden {
