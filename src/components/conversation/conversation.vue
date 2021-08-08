@@ -134,6 +134,10 @@
     border-bottom-style: solid;
     border-bottom-color: var(--border, $fallback--border);
     border-radius: 0;
+    /* Make the button stretch along the whole row */
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
   }
 
   /* HACK: we want the border width to scale with the status *below it* */
