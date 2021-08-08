@@ -809,6 +809,36 @@
   },
   "password_reset": {
     "password_reset": "Reinicia la contrasenya",
-    "forgot_password": "Has oblidat la contrasenya?"
+    "forgot_password": "Has oblidat la contrasenya?",
+    "too_many_requests": "Has arribat al límit d'intents. Prova de nou d'aquí una estona.",
+    "password_reset_required_but_mailer_is_disabled": "Has de reiniciar la teva contrasenya però el reinici de la contrasenya està deshabilitat. Si us plau, contacta l'administració de la teva instància.",
+    "placeholder": "El teu correu electrònic o nom d'usuària",
+    "instruction": "Introdueix la teva adreça de correu electrònic o nom d'usuària. T'enviarem un enllaç per reiniciar la teva contrasenya.",
+    "return_home": "Torna a la pàgina principal",
+    "password_reset_required": "Has de reiniciar la teva contrasenya per iniciar la sessió.",
+    "password_reset_disabled": "El reinici de la contrasenya està deshabilitat. Si us plau, contacta l'administració de la teva instància.",
+    "check_email": "Comprova que has rebut al correu electrònic un enllaç per reiniciar la teva contrasenya."
+  },
+  "file_type": {
+    "image": "Imatge",
+    "file": "Fitxer",
+    "video": "Vídeo",
+    "audio": "Àudio"
+  },
+  "chats": {
+    "chats": "Xats",
+    "new": "Nou xat",
+    "delete_confirm": "Realment vols esborrar aquest missatge?",
+    "error_sending_message": "Alguna cosa ha fallat quan s'enviava el missatge.",
+    "more": "Més",
+    "delete": "Esborra",
+    "empty_message_error": "No es pot publicar un missatge buit",
+    "you": "Tu:",
+    "message_user": "Missatge {nickname}",
+    "error_loading_chat": "Alguna cosa ha fallat quan es carregava el xat.",
+    "empty_chat_list_placeholder": "Encara no tens cap xat. Crea un nou xat!"
+  },
+  "display_date": {
+    "today": "Avui"
   }
 }
