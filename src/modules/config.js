@@ -83,7 +83,8 @@ export const defaultState = {
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default
   sensitiveByDefault: undefined, // instance default
-  conversationDisplay: undefined // instance default
+  conversationDisplay: undefined, // instance default
+  maxDepthInThread: 6
 }
 
 // caching the instance default properties

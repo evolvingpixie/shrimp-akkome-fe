@@ -74,7 +74,11 @@ const conversation = {
   },
   computed: {
     maxDepthToShowByDefault () {
-      return 4
+      // maxDepthInThread = max number of depths that is *visible*
+      // since our depth starts with 0 and "showing" means "showing children"
+      // there is a -2 here
+      const maxDepth = this.$store.getters.mergedConfig.maxDepthInThread - 2
+      return maxDepth >= 1 ? maxDepth : 1
     },
     displayStyle () {
       return this.$store.getters.mergedConfig.conversationDisplay
@@ -351,7 +355,8 @@ const conversation = {
         }
         this._diven = true
         const parentOrSelf = this.parentOrSelf(this.originalStatusId)
-        if (this.threadDisplayStatus[this.statusId] === 'hidden') {
+        // If current status is not visible
+        if (this.threadDisplayStatus[parentOrSelf] === 'hidden') {
           this.diveIntoStatus(parentOrSelf, /* preventScroll */ true)
           this.tryScrollTo(this.statusId)
         }
@@ -429,7 +434,7 @@ const conversation = {
     toggleStatusContentProperty (id, name) {
       this.setStatusContentProperty(id, name, !this.statusContentProperties[id][name])
     },
-    leastShowingAncestor (id) {
+    leastVisibleAncestor (id) {
       let cur = id
       let parent = this.parentOf(cur)
       while (cur) {
@@ -453,14 +458,14 @@ const conversation = {
       const oldHighlight = this.highlight
       this.diveHistory = [...this.diveHistory.slice(0, this.diveHistory.length - 1)]
       if (oldHighlight) {
-        this.tryScrollTo(this.leastShowingAncestor(oldHighlight))
+        this.tryScrollTo(this.leastVisibleAncestor(oldHighlight))
       }
     },
     undive () {
       const oldHighlight = this.highlight
       this.diveHistory = []
       if (oldHighlight) {
-        this.tryScrollTo(this.leastShowingAncestor(oldHighlight))
+        this.tryScrollTo(this.leastVisibleAncestor(oldHighlight))
       } else {
         this.goToCurrent()
       }
