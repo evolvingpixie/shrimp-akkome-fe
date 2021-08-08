@@ -119,7 +119,8 @@
     },
     "scope_notice": {
       "private": "Aquesta entrada serà visible només per a qui et segueixi",
-      "public": "Aquesta entrada serà visible per a tothom"
+      "public": "Aquesta entrada serà visible per a tothom",
+      "unlisted": "Aquesta entrada no es veurà ni a la Línia de temps local ni a la Línia de temps federada"
     },
     "preview_empty": "Buida",
     "preview": "Vista prèvia",
@@ -128,7 +129,8 @@
     "media_description": "Descripció multimèdia",
     "direct_warning_to_all": "Aquesta publicació serà visible per a tots els usuaris mencionats.",
     "new_status": "Publicar un nou estat",
-    "post": "Publicació"
+    "post": "Publicació",
+    "media_description_error": "Ha fallat la pujada del contingut. Prova de nou"
   },
   "registration": {
     "bio": "Presentació",
@@ -149,7 +151,10 @@
     "username_placeholder": "p. ex. lain",
     "captcha": "CAPTCHA",
     "register": "Registrar-se",
-    "reason": "Raó per a registrar-se"
+    "reason": "Raó per a registrar-se",
+    "bio_placeholder": "p.e.\nHola, sóc la Lain.\nSóc una noia anime que viu a un suburbi de Japó. Potser em coneixes per Wired.",
+    "reason_placeholder": "Aquesta instància aprova els registres manualment.\nExplica a l'administració per què vols registrar-te.",
+    "new_captcha": "Clica a la imatge per obtenir un nou captcha"
   },
   "settings": {
     "attachmentRadius": "Adjunts",
@@ -286,7 +291,8 @@
     "mfa": {
       "scan": {
         "secret_code": "Clau",
-        "title": "Escanejar"
+        "title": "Escanejar",
+        "desc": "S'està usant l'aplicació two-factor, escaneja aquest codi QR o introdueix la clau de text:"
       },
       "authentication_methods": "Mètodes d'autenticació",
       "waiting_a_recovery_codes": "Rebent còpies de seguretat dels codis…",
@@ -297,7 +303,11 @@
       "confirm_and_enable": "Confirmar i habilitar OTP",
       "recovery_codes_warning": "Anote els codis o guarda'ls en un lloc segur, o no els veuràs una altra volta. Si perds l'accés a la teua aplicació 2FA i els codis de recuperació, no podràs accedir al compte.",
       "title": "Autenticació de dos factors",
-      "setup_otp": "Configurar OTP"
+      "setup_otp": "Configurar OTP",
+      "wait_pre_setup_otp": "preconfiguració OTP",
+      "verify": {
+        "desc": "Per habilitar l'autenticació two-factor, introdueix el codi des de la teva aplicació two-factor:"
+      }
     },
     "enter_current_password_to_confirm": "Posar la contrasenya actual per confirmar la teva identitat",
     "security": "Seguretat",
@@ -359,7 +369,34 @@
     "hide_followers_count_description": "No mostrar el nombre de seguidors",
     "reset_avatar_confirm": "Realment vols restablir l'avatar?",
     "accent": "Accent",
-    "useStreamingApiWarning": "(No recomanat, experimental, pot ometre publicacions)"
+    "useStreamingApiWarning": "(No recomanat, experimental, pot ometre publicacions)",
+    "style": {
+      "fonts": {
+        "family": "Nom de la font",
+        "size": "Mida (en píxels)",
+        "custom": "Personalitza"
+      },
+      "preview": {
+        "input": "Acabo d'aterrar a Los Angeles.",
+        "button": "Botó",
+        "mono": "contingut",
+        "content": "Contingut",
+        "header": "Previsualització",
+        "header_faint": "Això està bé",
+        "error": "Exemple d'error",
+        "faint_link": "Manual d'ajuda",
+        "checkbox": "He llegit els termes i condicions"
+      },
+      "shadows": {
+        "spread": "Difon"
+      }
+    },
+    "version": {
+      "frontend_version": "Versió \"Frontend\"",
+      "backend_version": "Versió \"backend\"",
+      "title": "Versió"
+    },
+    "theme_help_v2_1": "També pots anular alguns components de color i opacitat activant la casella. Usa el botó \"Esborrar tot\" per esborrar totes les anulacions."
   },
   "time": {
     "day": "{0} dia",
@@ -403,7 +440,13 @@
     "no_retweet_hint": "L'entrada és només per a seguidores o és \"directa\", i per tant no es pot republicar",
     "repeated": "republicat",
     "show_new": "Mostra els nous",
-    "up_to_date": "Actualitzat"
+    "up_to_date": "Actualitzat",
+    "socket_reconnected": "Connexió a temps real establerta",
+    "socket_broke": "Connexió a temps real perduda: codi CloseEvent {0}",
+    "error": "Error de càrrega de la línia de temps: {0}",
+    "no_statuses": "No hi ha entrades",
+    "reload": "Recarrega",
+    "no_more_statuses": "No hi ha més entrades"
   },
   "user_card": {
     "approve": "Aprova",
@@ -419,10 +462,49 @@
     "muted": "Silenciat",
     "per_day": "per dia",
     "remote_follow": "Seguiment remot",
-    "statuses": "Estats"
+    "statuses": "Estats",
+    "unblock_progress": "Desbloquejant…",
+    "unmute": "Deixa de silenciar",
+    "follow_progress": "Sol·licitant…",
+    "admin_menu": {
+      "force_nsfw": "Marca totes les entrades amb \"No segur per a entorns laborals\"",
+      "strip_media": "Esborra els audiovisuals de les entrades",
+      "disable_any_subscription": "Deshabilita completament seguir algú",
+      "quarantine": "Deshabilita la federació a les entrades de les usuàries",
+      "moderation": "Moderació",
+      "delete_user_confirmation": "Estàs completament segur/a? Aquesta acció no es pot desfer.",
+      "revoke_admin": "Revoca l'Admin",
+      "activate_account": "Activa el compte",
+      "deactivate_account": "Desactiva el compte",
+      "revoke_moderator": "Revoca Moderació",
+      "delete_account": "Esborra el compte",
+      "disable_remote_subscription": "Deshabilita seguir algú des d'una instància remota",
+      "delete_user": "Esborra la usuària"
+    },
+    "edit_profile": "Edita el perfil",
+    "follow_again": "Envia de nou la petició?",
+    "hidden": "Amagat",
+    "follow_sent": "Petició enviada!",
+    "unmute_progress": "Deixant de silenciar…",
+    "bot": "Bot",
+    "mute_progress": "Silenciant…",
+    "favorites": "Favorits",
+    "mention": "Menció",
+    "follow_unfollow": "Deixa de seguir",
+    "subscribe": "Subscriu-te",
+    "show_repeats": "Mostra les repeticions",
+    "report": "Report",
+    "its_you": "Ets tu!",
+    "unblock": "Desbloqueja",
+    "block_progress": "Bloquejant…",
+    "message": "Missatge",
+    "unsubscribe": "Anul·la la subscripció",
+    "hide_repeats": "Amaga les repeticions"
   },
   "user_profile": {
-    "timeline_title": "Flux personal"
+    "timeline_title": "Flux personal",
+    "profile_loading_error": "Disculpes, hi ha hagut un error carregant aquest perfil.",
+    "profile_does_not_exist": "Disculpes, aquest perfil no existeix."
   },
   "who_to_follow": {
     "more": "More",
@@ -464,7 +546,8 @@
     "add_poll": "Afegeix enquesta",
     "expiry": "Temps de vida de l'enquesta",
     "people_voted_count": "{count} persona ha votat | {count} persones han votat",
-    "votes_count": "{count} vot | {count} vots"
+    "votes_count": "{count} vot | {count} vots",
+    "not_enough_options": "Massa poques opcions úniques a l'enquesta"
   },
   "media_modal": {
     "next": "Següent",
@@ -523,5 +606,74 @@
   },
   "shoutbox": {
     "title": "Gàbia de Grills"
+  },
+  "status": {
+    "delete": "Esborra l'entrada",
+    "delete_confirm": "Segur que vols esborrar aquesta entrada?",
+    "thread_muted_and_words": ", té les paraules:",
+    "show_full_subject": "Mostra tot el tema",
+    "show_content": "Mostra el contingut",
+    "repeats": "Repeticions",
+    "bookmark": "Marcadors",
+    "status_unavailable": "Entrada no disponible",
+    "expand": "Expandeix",
+    "copy_link": "Copia l'enllaç a l'entrada",
+    "hide_full_subject": "Amaga tot el tema",
+    "favorites": "Favorits",
+    "replies_list": "Contestacions:",
+    "mute_conversation": "Silencia la conversa",
+    "thread_muted": "Fil silenciat",
+    "hide_content": "Amaga el contingut",
+    "status_deleted": "S'ha esborrat aquesta entrada",
+    "nsfw": "No segur per a entorns laborals",
+    "unbookmark": "Desmarca",
+    "external_source": "Font externa",
+    "unpin": "Deixa de destacar al perfil",
+    "pinned": "Destacat",
+    "reply_to": "Contesta a",
+    "pin": "Destaca al perfil",
+    "unmute_conversation": "Deixa de silenciar la conversa"
+  },
+  "user_reporting": {
+    "additional_comments": "Comentaris addicionals",
+    "forward_description": "Aquest compte és d'un altre servidor. Vols enviar una còpia del report allà també?",
+    "forward_to": "Endavant a {0}",
+    "generic_error": "Hi ha hagut un error mentre s'estava processant la teva sol·licitud.",
+    "title": "Reportant {0}",
+    "add_comment_description": "Aquest report serà enviat a la moderació a la instància. Pots donar una explicació de per què estàs reportant aquest compte:",
+    "submit": "Envia"
+  },
+  "tool_tip": {
+    "add_reaction": "Afegeix una Reacció",
+    "accept_follow_request": "Accepta la sol·licitud de seguir",
+    "repeat": "Repeteix",
+    "reply": "Respon",
+    "favorite": "Favorit",
+    "user_settings": "Configuració d'usuària",
+    "reject_follow_request": "Rebutja la sol·licitud de seguir",
+    "bookmark": "Marcador"
+  },
+  "search": {
+    "no_results": "No hi ha resultats",
+    "people": "Persones",
+    "hashtags": "Etiquetes"
+  },
+  "upload": {
+    "file_size_units": {
+      "B": "B"
+    },
+    "error": {
+      "base": "La pujada ha fallat.",
+      "file_too_big": "Fitxer massa gran [{filesize}{filesizeunit} / {allowedsize}{allowedsizeunit}]",
+      "default": "Prova de nou d'aquí una estona",
+      "message": "La pujada ha fallat: {0}"
+    }
+  },
+  "errors": {
+    "storage_unavailable": "Pleroma no ha pogut accedir a l'emmagatzematge del navegador. El teu inici de sessió o configuració no es desaran i et pots trobar algun altre problema. Prova a habilitar les galetes."
+  },
+  "password_reset": {
+    "password_reset": "Reinicia la contrasenya",
+    "forgot_password": "Has oblidat la contrasenya?"
   }
 }
