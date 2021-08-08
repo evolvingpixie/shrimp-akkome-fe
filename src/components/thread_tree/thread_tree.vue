@@ -22,7 +22,7 @@
       :controlled-showing-tall="currentProp.showingTall"
       :controlled-expanding-subject="currentProp.expandingSubject"
       :controlled-showing-long-subject="currentProp.showingLongSubject"
-      :controlled-toggle-showing-tall="() => toggleCurrentProp('ShowingTall')"
+      :controlled-toggle-showing-tall="() => toggleCurrentProp('showingTall')"
       :controlled-toggle-expanding-subject="() => toggleCurrentProp('expandingSubject')"
       :controlled-toggle-showing-long-subject="() => toggleCurrentProp('showingLongSubject')"
       :dive="dive ? () => dive(status.id) : undefined"
