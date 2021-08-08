@@ -1,7 +1,5 @@
 @import '../../_variables.scss';
 
-$status-margin: 0.75em;
-
 .Status {
   min-width: 0;
   white-space: normal;
@@ -26,13 +24,6 @@ $status-margin: 0.75em;
     --postLink: var(--selectedPostPostLink, $fallback--faint);
     --postFaintLink: var(--selectedPostFaintPostLink, $fallback--faint);
     --icon: var(--selectedPostIcon, $fallback--icon);
-  }
-
-  &.-conversation {
-    border-left-width: 4px;
-    border-left-style: solid;
-    border-left-color: $fallback--cRed;
-    border-left-color: var(--cRed, $fallback--cRed);
   }
 
   .gravestone {

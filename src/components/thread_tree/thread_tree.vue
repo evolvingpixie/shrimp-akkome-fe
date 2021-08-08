@@ -109,14 +109,16 @@
 <style lang="scss">
 @import '../../_variables.scss';
 .thread-tree-replies {
-  margin-left: 1em;
+  margin-left: $status-margin;
+  border-left: 1px solid var(--border, $fallback--border);
+  border-top-left-radius: $fallback--panelRadius;
+  border-top-left-radius: var(--panelRadius, $fallback--panelRadius);
+  border-bottom-left-radius: $fallback--panelRadius;
+  border-bottom-left-radius: var(--panelRadius, $fallback--panelRadius);
 }
+
 .thread-tree-replies-hidden {
-  padding: 1em;
-  border-bottom: 1px solid var(--border, #222);
-}
-.conversation-status.conversation-status-treeview:last-child,
-.Conversation.-expanded .conversation-status.conversation-status-treeview:last-child {
-  border-bottom: 1px solid var(--border, #222);
+  padding: $status-margin;
+  border-top: 1px solid var(--border, $fallback--border);
 }
 </style>
