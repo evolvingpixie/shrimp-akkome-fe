@@ -488,7 +488,11 @@ const conversation = {
       return this.statusMap[id]
     },
     parentOf (id) {
-      const { in_reply_to_status_id: parentId } = this.statusById(id)
+      const status = this.statusById(id)
+      if (!status) {
+        return undefined
+      }
+      const { in_reply_to_status_id: parentId } = status
       return parentId
     },
     parentOrSelf (id) {
