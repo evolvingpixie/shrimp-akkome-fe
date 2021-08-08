@@ -393,7 +393,8 @@
         "header_faint": "Això està bé",
         "error": "Exemple d'error",
         "faint_link": "Manual d'ajuda",
-        "checkbox": "He llegit els termes i condicions"
+        "checkbox": "He llegit els termes i condicions",
+        "link": "un bonic enllaç"
       },
       "shadows": {
         "spread": "Difon",
@@ -614,7 +615,9 @@
       "revoke_moderator": "Revoca Moderació",
       "delete_account": "Esborra el compte",
       "disable_remote_subscription": "Deshabilita seguir algú des d'una instància remota",
-      "delete_user": "Esborra la usuària"
+      "delete_user": "Esborra la usuària",
+      "grant_admin": "Concedir permisos d'Administració",
+      "grant_moderator": "Concedir permisos de Moderació"
     },
     "edit_profile": "Edita el perfil",
     "follow_again": "Envia de nou la petició?",
@@ -634,7 +637,13 @@
     "block_progress": "Bloquejant…",
     "message": "Missatge",
     "unsubscribe": "Anul·la la subscripció",
-    "hide_repeats": "Amaga les repeticions"
+    "hide_repeats": "Amaga les repeticions",
+    "highlight": {
+      "disabled": "Sense ressaltat",
+      "solid": "Fons sòlid",
+      "striped": "Fons a ratlles",
+      "side": "Ratlla lateral"
+    }
   },
   "user_profile": {
     "timeline_title": "Flux personal",
@@ -682,7 +691,7 @@
     "expiry": "Temps de vida de l'enquesta",
     "people_voted_count": "{count} persona ha votat | {count} persones han votat",
     "votes_count": "{count} vot | {count} vots",
-    "not_enough_options": "Massa poques opcions úniques a l'enquesta"
+    "not_enough_options": "L'enquesta no té suficients opcions úniques"
   },
   "media_modal": {
     "next": "Següent",
@@ -786,16 +795,22 @@
     "favorite": "Favorit",
     "user_settings": "Configuració d'usuària",
     "reject_follow_request": "Rebutja la sol·licitud de seguir",
-    "bookmark": "Marcador"
+    "bookmark": "Marcador",
+    "media_upload": "Pujar multimèdia"
   },
   "search": {
     "no_results": "No hi ha resultats",
     "people": "Persones",
-    "hashtags": "Etiquetes"
+    "hashtags": "Etiquetes",
+    "people_talking": "{count} persones parlant"
   },
   "upload": {
     "file_size_units": {
-      "B": "B"
+      "B": "B",
+      "KiB": "KiB",
+      "GiB": "GiB",
+      "TiB": "TiB",
+      "MiB": "MiB"
     },
     "error": {
       "base": "La pujada ha fallat.",
