@@ -21,34 +21,88 @@
     <div class="conversation-body panel-body">
       <div
         v-if="diveMode"
-        class="conversation-undive-box"
+        class="conversation-dive-to-top-level-box"
       >
         <i18n
           path="status.show_all_conversation"
           tag="button"
           class="button-unstyled -link"
-          @click.prevent="undive"
+          @click.prevent="diveToTopLevel"
         >
           <FAIcon icon="angle-double-left" />
-        </i18n>
-      </div>
-      <div
-        v-if="diveMode"
-        class="conversation-undive-box"
-      >
-        <i18n
-          path="status.return_to_last_showing"
-          tag="button"
-          class="button-unstyled -link"
-          @click.prevent="diveBack"
-        >
-          <FAIcon icon="chevron-left" />
         </i18n>
       </div>
       <div
         v-if="isTreeView"
         class="thread-body"
       >
+        <div
+          v-if="ancestorsOf(diveRoot).length"
+          class="thread-ancestors"
+        >
+          <div
+            v-for="status in ancestorsOf(diveRoot)"
+            :key="status.id"
+            class="thread-ancestor"
+            :class="{'thread-ancestor-has-other-replies': getReplies(status.id).length > 1}"
+          >
+            <status
+              ref="statusComponent"
+              :inline-expanded="collapsable && isExpanded"
+              :statusoid="status"
+              :expandable="!isExpanded"
+              :show-pinned="pinnedStatusIdsObject && pinnedStatusIdsObject[status.id]"
+              :focused="focused(status.id)"
+              :in-conversation="isExpanded"
+              :highlight="getHighlight()"
+              :replies="getReplies(status.id)"
+              :in-profile="inProfile"
+              :profile-user-id="profileUserId"
+              class="conversation-status status-fadein panel-body"
+
+              :simple="treeViewIsSimple"
+              :toggle-thread-display="toggleThreadDisplay"
+              :thread-display-status="threadDisplayStatus"
+              :show-thread-recursively="showThreadRecursively"
+              :total-reply-count="totalReplyCount"
+              :total-reply-depth="totalReplyDepth"
+              :dive="(!treeViewIsSimple) ? () => diveIntoStatus(status.id) : null"
+
+              :controlled-showing-tall="statusContentProperties[status.id].showingTall"
+              :controlled-expanding-subject="statusContentProperties[status.id].expandingSubject"
+              :controlled-showing-long-subject="statusContentProperties[status.id].showingLongSubject"
+              :controlled-toggle-showing-tall="() => toggleStatusContentProperty(status.id, 'showingTall')"
+              :controlled-toggle-expanding-subject="() => toggleStatusContentProperty(status.id, 'expandingSubject')"
+              :controlled-toggle-showing-long-subject="() => toggleStatusContentProperty(status.id, 'showingLongSubject')"
+
+              @goto="setHighlight"
+              @toggleExpanded="toggleExpanded"
+            />
+            <div
+              v-if="getReplies(status.id).length > 1"
+              class="thread-ancestor-dive-box"
+            >
+              <div
+                class="thread-ancestor-dive-box-inner"
+              >
+                <i18n
+                  tag="button"
+                  path="status.ancestor_follow_with_icon"
+                  class="button-unstyled -link thread-tree-show-replies-button"
+                  @click.prevent="diveIntoStatus(status.id)"
+                >
+                  <FAIcon
+                    place="icon"
+                    icon="angle-double-right"
+                  />
+                  <span place="text">
+                    {{ $tc('status.ancestor_follow', getReplies(status.id).length - 1, { numReplies: getReplies(status.id).length - 1 }) }}
+                  </span>
+                </i18n>
+              </div>
+            </div>
+          </div>
+        </div>
         <thread-tree
           v-for="status in showingTopLevel"
           :key="status.id"
@@ -128,7 +182,7 @@
 @import '../../_variables.scss';
 
 .Conversation {
-  .conversation-undive-box {
+  .conversation-dive-to-top-level-box {
     padding: $status-margin;
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -140,6 +194,27 @@
     flex-direction: column;
   }
 
+  .thread-ancestor {
+    --link: var(--faintLink);
+    --text: var(--faint);
+    color: var(--text);
+  }
+  .thread-ancestor-dive-box {
+    padding-left: $status-margin;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border, $fallback--border);
+    border-radius: 0;
+    /* Make the button stretch along the whole row */
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .thread-ancestor-dive-box-inner {
+    padding: $status-margin;
+    //border-left: 2px solid var(--border, $fallback--border);
+  }
+
   /* HACK: we want the border width to scale with the status *below it* */
   .conversation-status {
     border-bottom-width: 1px;
@@ -148,6 +223,7 @@
     border-radius: 0;
   }
 
+  .thread-ancestor-has-other-replies .conversation-status,
   &.-expanded .thread-tree .conversation-status {
     border-bottom: none;
   }
@@ -162,10 +238,10 @@
     border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
     border-bottom: 1px solid var(--border, $fallback--border);
   }
-  &.-expanded {
-    .conversation-status:last-child {
-      border-bottom: none;
-    }
-  }
+  /* &.-expanded { */
+  /*   .conversation-status:last-child { */
+  /*     border-bottom: none; */
+  /*   } */
+  /* } */
 }
 </style>

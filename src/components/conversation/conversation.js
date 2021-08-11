@@ -55,7 +55,7 @@ const conversation = {
       expanded: false,
       threadDisplayStatusObject: {}, // id => 'showing' | 'hidden'
       statusContentPropertiesObject: {},
-      diveHistory: []
+      inlineDivePosition: null
     }
   },
   props: [
@@ -231,7 +231,10 @@ const conversation = {
       return this.topLevel
     },
     diveRoot () {
-      return this.diveHistory[this.diveHistory.length - 1]
+      (() => {})(this.conversation)
+      const statusId = this.inlineDivePosition || this.statusId
+      const isTopLevel = !this.parentOf(statusId)
+      return isTopLevel ? null : statusId
     },
     diveDepth () {
       return this.canDive && this.diveRoot ? this.depths[this.diveRoot] : 0
@@ -332,7 +335,6 @@ const conversation = {
         this.fetchConversation()
       } else {
         // if we collapse it, we should reset the dive
-        this._diven = false
         this.undive()
       }
     },
@@ -347,19 +349,6 @@ const conversation = {
     conversationFetched () {
       if (!this.isExpanded) {
         return
-      }
-
-      if (!this._diven) {
-        if (!this.threadDisplayStatus[this.statusId]) {
-          return
-        }
-        this._diven = true
-        const parentOrSelf = this.parentOrSelf(this.originalStatusId)
-        // If current status is not visible
-        if (this.threadDisplayStatus[parentOrSelf] === 'hidden') {
-          this.diveIntoStatus(parentOrSelf, /* preventScroll */ true)
-          this.tryScrollTo(this.statusId)
-        }
       }
     },
     fetchConversation () {
@@ -449,26 +438,15 @@ const conversation = {
       return this.topLevel[0] ? this.topLevel[0].id : undefined
     },
     diveIntoStatus (id, preventScroll) {
-      this.diveHistory = [...this.diveHistory, id]
-      if (!preventScroll) {
-        this.goToCurrent()
-      }
+      this.tryScrollTo(id)
     },
-    diveBack () {
-      const oldHighlight = this.highlight
-      this.diveHistory = [...this.diveHistory.slice(0, this.diveHistory.length - 1)]
-      if (oldHighlight) {
-        this.tryScrollTo(this.leastVisibleAncestor(oldHighlight))
-      }
+    diveToTopLevel () {
+      this.tryScrollTo(this.topLevel[0].id)
     },
+    // only used when we are not on a page
     undive () {
-      const oldHighlight = this.highlight
-      this.diveHistory = []
-      if (oldHighlight) {
-        this.tryScrollTo(this.leastVisibleAncestor(oldHighlight))
-      } else {
-        this.goToCurrent()
-      }
+      this.inlineDivePosition = null
+      this.setHighlight(this.statusId)
     },
     tryScrollTo (id) {
       if (!id) {
@@ -477,8 +455,9 @@ const conversation = {
       if (this.isPage) {
         // set statusId
         this.$router.push({ name: 'conversation', params: { id } })
+      } else {
+        this.inlineDivePosition = id
       }
-
       this.setHighlight(id)
     },
     goToCurrent () {
@@ -493,10 +472,24 @@ const conversation = {
         return undefined
       }
       const { in_reply_to_status_id: parentId } = status
+      if (!this.statusMap[parentId]) {
+        return undefined
+      }
       return parentId
     },
     parentOrSelf (id) {
       return this.parentOf(id) || id
+    },
+    // Ancestors of some status, from top to bottom
+    ancestorsOf (id) {
+      const ancestors = []
+      let cur = this.parentOf(id)
+      while (cur) {
+        ancestors.unshift(this.statusMap[cur])
+        cur = this.parentOf(cur)
+      }
+      // console.log('ancestors = ', ancestors, 'conversation = ', this.conversation.map(k => k.id), 'statusContentProperties=', this.statusContentProperties)
+      return ancestors
     }
   }
 }
