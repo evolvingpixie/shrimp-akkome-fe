@@ -194,7 +194,12 @@
     flex-direction: column;
   }
 
-  .thread-ancestor {
+  .thread-ancestors {
+    margin-left: $status-margin;
+    border-left: 2px solid var(--border, $fallback--border);
+  }
+
+  .thread-ancestor .StatusContent {
     --link: var(--faintLink);
     --text: var(--faint);
     color: var(--text);
