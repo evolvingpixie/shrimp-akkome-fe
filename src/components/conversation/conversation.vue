@@ -220,7 +220,6 @@
     //border-left: 2px solid var(--border, $fallback--border);
   }
 
-  /* HACK: we want the border width to scale with the status *below it* */
   .conversation-status {
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -229,8 +228,16 @@
   }
 
   .thread-ancestor-has-other-replies .conversation-status,
+  .thread-ancestor:last-child .conversation-status,
+  .thread-ancestor:last-child .thread-ancestor-dive-box,
   &.-expanded .thread-tree .conversation-status {
     border-bottom: none;
+  }
+
+  .thread-ancestors + .thread-tree > .conversation-status {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: var(--border, $fallback--border);
   }
 
   /* expanded conversation in timeline */
