@@ -759,8 +759,9 @@
     "thread_show_full_with_icon": "{icon} {text}",
     "thread_follow": "See the remaining part of this thread ({numStatus} status in total) | See the remaining part of this thread ({numStatus} statuses in total)",
     "thread_follow_with_icon": "{icon} {text}",
+    "ancestor_follow": "See {numReplies} other reply under this status | See {numReplies} other replies under this status",
+    "ancestor_follow_with_icon": "{icon} {text}",
     "show_all_conversation": "{0} Show full conversation",
-    "return_to_last_showing": "{0} Return to last position",
     "show_only_conversation_under_this": "Only show replies to this status"
   },
   "user_card": {
