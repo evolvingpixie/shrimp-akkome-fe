@@ -110,15 +110,12 @@
 @import '../../_variables.scss';
 .thread-tree-replies {
   margin-left: $status-margin;
-  border-left: 1px solid var(--border, $fallback--border);
-  border-top: 1px solid var(--border, $fallback--border);
-  border-top-left-radius: $fallback--panelRadius;
-  border-top-left-radius: var(--panelRadius, $fallback--panelRadius);
+  border-left: 2px solid var(--border, $fallback--border);
 }
 
 .thread-tree-replies-hidden {
   padding: $status-margin;
-  border-top: 1px solid var(--border, $fallback--border);
+  //border-top: 1px solid var(--border, $fallback--border);
   /* Make the button stretch along the whole row */
   display: flex;
   align-items: stretch;

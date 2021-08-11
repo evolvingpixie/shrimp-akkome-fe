@@ -142,36 +142,14 @@
 
   /* HACK: we want the border width to scale with the status *below it* */
   .conversation-status {
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: var(--border, $fallback--border);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border, $fallback--border);
     border-radius: 0;
   }
 
-  &.-expanded .conversation-body .thread-tree:nth-child(1) > .conversation-status {
-    border-top-left-radius: $fallback--panelRadius;
-    border-top-left-radius: var(--panelRadius, $fallback--panelRadius);
-  }
-
-  /* first element in a reply tree, the border is supplied by reply tree instead
-     for radius to display properly
-   */
-  &.-expanded .conversation-body {
-    .conversation-undive-box:nth-child(1),
-    & > .conversation-status:nth-child(1),
-    & > .thread-body:nth-child(1) > .thread-tree:nth-child(1) > .conversation-status:nth-child(1),
-    .thread-tree:nth-child(1) > .conversation-status:nth-child(1) {
-      border-top: none;
-    }
-  }
-
-  /* first unexpanded statuses in timeline */
-  &:first-child:not(.-expanded) {
-    .conversation-body {
-      .conversation-status {
-        border-top: none;
-      }
-    }
+  &.-expanded .thread-tree .conversation-status {
+    border-bottom: none;
   }
 
   /* expanded conversation in timeline */
