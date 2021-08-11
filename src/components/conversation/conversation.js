@@ -346,11 +346,6 @@ const conversation = {
     }
   },
   methods: {
-    conversationFetched () {
-      if (!this.isExpanded) {
-        return
-      }
-    },
     fetchConversation () {
       if (this.status) {
         this.$store.state.api.backendInteractor.fetchConversation({ id: this.statusId })
@@ -359,7 +354,6 @@ const conversation = {
             this.$store.dispatch('addNewStatuses', { statuses: descendants })
             this.setHighlight(this.originalStatusId)
           })
-          .then(this.conversationFetched)
       } else {
         this.$store.state.api.backendInteractor.fetchStatus({ id: this.statusId })
           .then((status) => {
@@ -488,7 +482,6 @@ const conversation = {
         ancestors.unshift(this.statusMap[cur])
         cur = this.parentOf(cur)
       }
-      // console.log('ancestors = ', ancestors, 'conversation = ', this.conversation.map(k => k.id), 'statusContentProperties=', this.statusContentProperties)
       return ancestors
     },
     topLevelAncestorOrSelfId (id) {
