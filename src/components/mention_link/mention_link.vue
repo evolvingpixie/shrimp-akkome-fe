@@ -18,8 +18,7 @@
       :class="classnames"
     >
       <button
-        class="short"
-        :class="[{ '-sublime': !highlight }, oldStyle ? 'button-unstyled' : 'button-default']"
+        class="short button-unstyled"
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->

@@ -184,10 +184,7 @@ const Status = {
       })
     },
     mentionsLine () {
-      return this.mentionsOwnLine ? this.mentions : this.alsoMentions
-    },
-    mentionsOwnLine () {
-      return this.mergedConfig.mentionsOwnLine
+      return this.alsoMentions
     },
     hasMentionsLine () {
       return this.mentionsLine.length > 0

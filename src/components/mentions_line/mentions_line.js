@@ -14,11 +14,8 @@ const MentionsLine = {
     MentionLink
   },
   computed: {
-    oldStyle () {
-      return !this.mergedConfig.mentionsNewStyle
-    },
     limit () {
-      return 6
+      return 2
     },
     mentionsComputed () {
       return this.mentions.slice(0, this.limit)
@@ -28,16 +25,6 @@ const MentionsLine = {
     },
     manyMentions () {
       return this.extraMentions.length > 0
-    },
-    buttonClasses () {
-      return [
-        this.oldStyle
-          ? 'button-unstyled'
-          : 'button-default -sublime',
-        this.oldStyle
-          ? '-oldStyle'
-          : '-newStyle'
-      ]
     },
     ...mapGetters(['mergedConfig'])
   },

@@ -306,7 +306,6 @@
             :no-heading="noHeading"
             :highlight="highlight"
             :focused="isFocused"
-            :hide-mentions="mentionsOwnLine && (isReply || true)"
             @mediaplay="addMediaPlaying($event)"
             @mediapause="removeMediaPlaying($event)"
             @parseReady="setHeadTailLinks"

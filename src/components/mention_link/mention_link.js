@@ -65,9 +65,6 @@ const MentionLink = {
     highlightClass () {
       if (this.highlight) return highlightClass(this.user)
     },
-    oldStyle () {
-      return !this.mergedConfig.mentionsNewStyle
-    },
     style () {
       if (this.highlight) {
         const {
@@ -83,8 +80,7 @@ const MentionLink = {
       return [
         {
           '-you': this.isYou,
-          '-highlighted': this.highlight,
-          '-oldStyle': this.oldStyle
+          '-highlighted': this.highlight
         },
         this.highlightType
       ]

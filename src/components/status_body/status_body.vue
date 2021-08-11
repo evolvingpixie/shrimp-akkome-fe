@@ -45,7 +45,6 @@
           :html="status.raw_html"
           :emoji="status.emojis"
           :handle-links="true"
-          :hide-mentions="hideMentions"
           :greentext="mergedConfig.greentext"
           :attentions="status.attentions"
           @parseReady="onParseReady"

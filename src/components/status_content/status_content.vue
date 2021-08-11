@@ -4,7 +4,6 @@
     <StatusBody
       :status="status"
       :single-line="singleLine"
-      :hide-mentions="hideMentions"
       @parseReady="$emit('parseReady', $event)"
     >
       <div v-if="status.poll && status.poll.options">

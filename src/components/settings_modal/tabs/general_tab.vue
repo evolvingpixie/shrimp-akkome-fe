@@ -42,16 +42,6 @@
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="mentionsOwnLine">
-            {{ $t('settings.mentions_new_place') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="mentionsNewStyle">
-            {{ $t('settings.mentions_new_style') }}
-          </BooleanSetting>
-        </li>
-        <li>
           <BooleanSetting path="streaming">
             {{ $t('settings.streaming') }}
           </BooleanSetting>
