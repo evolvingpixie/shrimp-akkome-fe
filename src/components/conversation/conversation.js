@@ -441,7 +441,7 @@ const conversation = {
       this.tryScrollTo(id)
     },
     diveToTopLevel () {
-      this.tryScrollTo(this.topLevel[0].id)
+      this.tryScrollTo(this.topLevelAncestorOrSelfId(this.diveRoot) || this.topLevel[0].id)
     },
     // only used when we are not on a page
     undive () {
@@ -490,6 +490,15 @@ const conversation = {
       }
       // console.log('ancestors = ', ancestors, 'conversation = ', this.conversation.map(k => k.id), 'statusContentProperties=', this.statusContentProperties)
       return ancestors
+    },
+    topLevelAncestorOrSelfId (id) {
+      let cur = id
+      let parent = this.parentOf(id)
+      while (parent) {
+        cur = this.parentOf(cur)
+        parent = this.parentOf(parent)
+      }
+      return cur
     }
   }
 }
