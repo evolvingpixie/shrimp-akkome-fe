@@ -334,8 +334,7 @@ const conversation = {
       if (value) {
         this.fetchConversation()
       } else {
-        // if we collapse it, we should reset the dive
-        this.undive()
+        this.resetDisplayState()
       }
     },
     virtualHidden (value) {
@@ -492,6 +491,10 @@ const conversation = {
         parent = this.parentOf(parent)
       }
       return cur
+    },
+    resetDisplayState () {
+      this.undive()
+      this.threadDisplayStatusObject = {}
     }
   }
 }
