@@ -56,7 +56,7 @@ describe('RichContent', () => {
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
 
-  it('replaces first mention with mentionsline', () => {
+  it('replaces mention with mentionsline', () => {
     const html = p(
       makeMention('John'),
       ' how are you doing today?'
@@ -234,7 +234,7 @@ describe('RichContent', () => {
     ].join('\n')
     const expected = [
       '<span class="greentext">&gt;quote</span>',
-      mentionsLine(1)
+      mentionsLine(1),
       '<span class="greentext">&gt;quote</span>',
       '<span class="greentext">&gt;quote</span>'
     ].join('\n')
@@ -267,7 +267,7 @@ describe('RichContent', () => {
     const expected = [
       'Bruh',
       'Bruh',
-      mentionsLine(3)
+      mentionsLine(3),
       'Bruh'
     ].join('<br>')
 
@@ -322,53 +322,6 @@ describe('RichContent', () => {
   })
 
   it('rich contents of a mention are handled properly', () => {
-    const html = [
-      p(
-        'Testing'
-      ),
-      p(
-        '<a href="lol" class="mention">',
-        '<span>',
-        'https://</span>',
-        '<span>',
-        'lol.tld/</span>',
-        '<span>',
-        '</span>',
-        '</a>'
-      )
-    ].join('')
-    const expected = [
-      p(
-        'Testing'
-      ),
-      p(
-        '<mentionlink-stub url="lol" content="',
-        '<span>',
-        'https://</span>',
-        '<span>',
-        'lol.tld/</span>',
-        '<span>',
-        '</span>',
-        '">',
-        '</mentionlink-stub>'
-      )
-    ].join('')
-
-    const wrapper = shallowMount(RichContent, {
-      localVue,
-      propsData: {
-        attentions,
-        handleLinks: true,
-        greentext: true,
-        emoji: [],
-        html
-      }
-    })
-
-    expect(wrapper.html()).to.eql(compwrap(expected))
-  })
-
-  it('rich contents of a mention in beginning are handled properly', () => {
     attentions.push({ statusnet_profile_url: 'lol' })
     const html = [
       p(
@@ -388,16 +341,19 @@ describe('RichContent', () => {
     const expected = [
       p(
         '<span class="MentionsLine">',
-        '<mentionlink-stub content="',
+        '<span class="MentionLink mention-link">',
+        '<a href="lol" target="_blank" class="original">',
         '<span>',
         'https://</span>',
         '<span>',
         'lol.tld/</span>',
         '<span>',
         '</span>',
-        '" url="lol" class="mention-link">',
-        '</mentionlink-stub>',
-        '<!---->', // v-if placeholder
+        '</a>',
+        ' ',
+        '<!---->', // v-if placeholder, mentionlink's "new" (i.e. rich) display
+        '</span>',
+        '<!---->', // v-if placeholder, mentionsline's extra mentions and stuff
         '</span>'
       ),
       p(
@@ -407,9 +363,6 @@ describe('RichContent', () => {
 
     const wrapper = mount(RichContent, {
       localVue,
-      stubs: {
-        MentionLink: true
-      },
       propsData: {
         attentions,
         handleLinks: true,
@@ -464,5 +417,64 @@ describe('RichContent', () => {
     })
 
     expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
+  it.skip('[INFORMATIVE] Performance testing, 10 000 simple posts', () => {
+    const amount = 20
+
+    const onePost = p(
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      makeMention('Lain'),
+      ' i just landed in l a where are you'
+    )
+
+    const TestComponent = {
+      template: `
+      <div v-if="!vhtml">
+        ${new Array(amount).fill(`<RichContent html="${onePost}" :greentext="true" :handleLinks="handeLinks" :emoji="[]" :attentions="attentions"/>`)}
+      </div>
+      <div v-else="vhtml">
+        ${new Array(amount).fill(`<div v-html="${onePost}"/>`)}
+      </div>
+      `,
+      props: ['handleLinks', 'attentions', 'vhtml']
+    }
+    console.log(1)
+
+    const ptest = (handleLinks, vhtml) => {
+      const t0 = performance.now()
+
+      const wrapper = mount(TestComponent, {
+        localVue,
+        propsData: {
+          attentions,
+          handleLinks,
+          vhtml
+        }
+      })
+
+      const t1 = performance.now()
+
+      wrapper.destroy()
+
+      const t2 = performance.now()
+
+      return `Mount: ${t1 - t0}ms, destroy: ${t2 - t1}ms, avg ${(t1 - t0) / amount}ms - ${(t2 - t1) / amount}ms per item`
+    }
+
+    console.log(`${amount} items with links handling:`)
+    console.log(ptest(true))
+    console.log(`${amount} items without links handling:`)
+    console.log(ptest(false))
+    console.log(`${amount} items plain v-html:`)
+    console.log(ptest(false, true))
   })
 })

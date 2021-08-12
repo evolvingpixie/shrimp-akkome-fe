@@ -15,7 +15,7 @@ const MentionsLine = {
   },
   computed: {
     limit () {
-      return 2
+      return 5
     },
     mentionsComputed () {
       return this.mentions.slice(0, this.limit)

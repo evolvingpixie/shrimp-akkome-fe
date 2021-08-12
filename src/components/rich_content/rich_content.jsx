@@ -159,7 +159,7 @@ export default Vue.component('RichContent', {
               return item // We'll handle it later
             }
           case 'span':
-            if (attrs['class'].includes('h-card')) {
+            if (this.handleLinks && attrs['class'] && attrs['class'].includes('h-card')) {
               return ['', children.map(processItem), '']
             }
         }

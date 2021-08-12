@@ -41,7 +41,7 @@ const MentionLink = {
   },
   computed: {
     user () {
-      return this.url && this.$store.getters.findUserByUrl(this.url)
+      return this.url && this.$store && this.$store.getters.findUserByUrl(this.url)
     },
     isYou () {
       // FIXME why user !== currentUser???
