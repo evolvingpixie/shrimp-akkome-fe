@@ -301,7 +301,7 @@ export const parseStatus = (data) => {
     if (output.poll) {
       output.poll.options = (output.poll.options || []).map(field => ({
         ...field,
-        title_html: addEmojis(escape(field.title), data.emojis)
+        title_html: escape(field.title)
       }))
     }
     output.pinned = data.pinned
