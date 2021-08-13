@@ -1,4 +1,4 @@
-import { parseStatus, parseUser, parseNotification, addEmojis, parseLinkHeaderPagination } from '../../../../../src/services/entity_normalizer/entity_normalizer.service.js'
+import { parseStatus, parseUser, parseNotification, parseLinkHeaderPagination } from '../../../../../src/services/entity_normalizer/entity_normalizer.service.js'
 import mastoapidata from '../../../../fixtures/mastoapi.json'
 import qvitterapidata from '../../../../fixtures/statuses.json'
 
@@ -335,41 +335,6 @@ describe('API Entities normalizer', () => {
       expect(parseNotification(notif)).to.have.deep.property('status.id', '4412')
       expect(parseNotification(notif)).to.have.deep.property('action.id', '444')
       expect(parseNotification(notif)).to.have.deep.property('from_profile.id', 'spurdo')
-    })
-  })
-
-  describe('MastoAPI emoji adder', () => {
-    const emojis = makeMockEmojiMasto()
-    const imageHtml = '<img src="https://example.com/image.png" alt=":image:" title=":image:" class="emoji" />'
-      .replace(/"/g, '\'')
-    const thinkHtml = '<img src="https://example.com/think.png" alt=":thinking:" title=":thinking:" class="emoji" />'
-      .replace(/"/g, '\'')
-
-    it('correctly replaces shortcodes in supplied string', () => {
-      const result = addEmojis('This post has :image: emoji and :thinking: emoji', emojis)
-      expect(result).to.include(thinkHtml)
-      expect(result).to.include(imageHtml)
-    })
-
-    it('handles consecutive emojis correctly', () => {
-      const result = addEmojis('Lelel emoji spam :thinking::thinking::thinking::thinking:', emojis)
-      expect(result).to.include(thinkHtml + thinkHtml + thinkHtml + thinkHtml)
-    })
-
-    it('Doesn\'t replace nonexistent emojis', () => {
-      const result = addEmojis('Admin add the :tenshi: emoji', emojis)
-      expect(result).to.equal('Admin add the :tenshi: emoji')
-    })
-
-    it('Doesn\'t blow up on regex special characters', () => {
-      const emojis = makeMockEmojiMasto([{
-        shortcode: 'c++'
-      }, {
-        shortcode: '[a-z] {|}*'
-      }])
-      const result = addEmojis('This post has :c++: emoji and :[a-z] {|}*: emoji', emojis)
-      expect(result).to.include('title=\':c++:\'')
-      expect(result).to.include('title=\':[a-z] {|}*:\'')
     })
   })
 

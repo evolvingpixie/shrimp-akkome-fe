@@ -65,8 +65,8 @@ export const parseUser = (data) => {
     output.fields = data.fields
     output.fields_html = data.fields.map(field => {
       return {
-        name: addEmojis(escape(field.name), data.emojis),
-        value: addEmojis(field.value, data.emojis)
+        name: escape(field.name),
+        value: field.value
       }
     })
     output.fields_text = data.fields.map(field => {
@@ -240,16 +240,6 @@ export const parseAttachment = (data) => {
   output.description = data.description
 
   return output
-}
-export const addEmojis = (string, emojis) => {
-  const matchOperatorsRegex = /[|\\{}()[\]^$+*?.-]/g
-  return emojis.reduce((acc, emoji) => {
-    const regexSafeShortCode = emoji.shortcode.replace(matchOperatorsRegex, '\\$&')
-    return acc.replace(
-      new RegExp(`:${regexSafeShortCode}:`, 'g'),
-      `<img src='${emoji.url}' alt=':${emoji.shortcode}:' title=':${emoji.shortcode}:' class='emoji' />`
-    )
-  }, string)
 }
 
 export const parseStatus = (data) => {
