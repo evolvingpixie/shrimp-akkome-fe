@@ -20,20 +20,24 @@
           :key="index"
           class="user-profile-field"
         >
-          <!-- eslint-disable vue/no-v-html -->
           <dt
             :title="user.fields_text[index].name"
             class="user-profile-field-name"
-            @click.prevent="linkClicked"
-            v-html="field.name"
-          />
+          >
+            <RichContent
+              :html="field.name"
+              :emoji="user.emoji"
+            />
+          </dt>
           <dd
             :title="user.fields_text[index].value"
             class="user-profile-field-value"
-            @click.prevent="linkClicked"
-            v-html="field.value"
-          />
-          <!-- eslint-enable vue/no-v-html -->
+          >
+            <RichContent
+              :html="field.value"
+              :emoji="user.emoji"
+            />
+          </dd>
         </dl>
       </div>
       <tab-switcher

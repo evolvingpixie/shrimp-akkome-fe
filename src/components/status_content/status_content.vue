@@ -7,7 +7,10 @@
       @parseReady="$emit('parseReady', $event)"
     >
       <div v-if="status.poll && status.poll.options">
-        <poll :base-poll="status.poll" :emoji="status.emojis" />
+        <Poll
+          :base-poll="status.poll"
+          :emoji="status.emojis"
+        />
       </div>
 
       <div

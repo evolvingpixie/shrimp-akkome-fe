@@ -56,10 +56,11 @@ export const parseUser = (data) => {
 
     output.emoji = data.emojis
     output.name = data.display_name
-    output.name_html = addEmojis(escape(data.display_name), data.emojis)
+    output.name_html = escape(data.display_name)
 
     output.description = data.note
-    output.description_html = addEmojis(data.note, data.emojis)
+    // TODO cleanup this shit, output.description is overriden with source data
+    output.description_html = data.note
 
     output.fields = data.fields
     output.fields_html = data.fields.map(field => {

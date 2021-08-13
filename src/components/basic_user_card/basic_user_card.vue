@@ -25,17 +25,11 @@
         :title="user.name"
         class="basic-user-card-user-name"
       >
-        <!-- eslint-disable vue/no-v-html -->
-        <span
-          v-if="user.name_html"
+        <RichContent
           class="basic-user-card-user-name-value"
-          v-html="user.name_html"
+          :html="user.name"
+          :emoji="user.emoji"
         />
-        <!-- eslint-enable vue/no-v-html -->
-        <span
-          v-else
-          class="basic-user-card-user-name-value"
-        >{{ user.name }}</span>
       </div>
       <div>
         <router-link

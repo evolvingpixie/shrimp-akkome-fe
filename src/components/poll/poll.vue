@@ -17,7 +17,11 @@
           <span class="result-percentage">
             {{ percentageForOption(option.votes_count) }}%
           </span>
-          <RichContent :html="option.title_html" :handle-links="false" :emoji="emoji" />
+          <RichContent
+            :html="option.title_html"
+            :handle-links="false"
+            :emoji="emoji"
+          />
         </div>
         <div
           class="result-fill"
@@ -41,7 +45,11 @@
           :value="index"
         >
         <label class="option-vote">
-          <RichContent :html="option.title_html" :handle-links="false" :emoji="emoji" />
+          <RichContent
+            :html="option.title_html"
+            :handle-links="false"
+            :emoji="emoji"
+          />
         </label>
       </div>
     </div>
