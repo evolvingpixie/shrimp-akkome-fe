@@ -33,7 +33,8 @@ const StatusContent = {
       showingLongSubject: false,
       // not as computed because it sets the initial state which will be changed later
       expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject,
-      postLength: this.status.text.length
+      postLength: this.status.text.length,
+      parseReadyDone: false
     }
   },
   computed: {
@@ -86,6 +87,8 @@ const StatusContent = {
   },
   methods: {
     onParseReady (event) {
+      if (this.parseReadyDone) return
+      this.parseReadyDone = true
       this.$emit('parseReady', event)
       const { writtenMentions, invisibleMentions } = event
       writtenMentions
