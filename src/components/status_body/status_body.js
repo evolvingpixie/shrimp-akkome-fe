@@ -32,7 +32,8 @@ const StatusContent = {
       showingTall: this.fullContent || (this.inConversation && this.focused),
       showingLongSubject: false,
       // not as computed because it sets the initial state which will be changed later
-      expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject
+      expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject,
+      postLength: this.status.text.length
     }
   },
   computed: {
@@ -47,7 +48,7 @@ const StatusContent = {
     // Using max-height + overflow: auto for status components resulted in false positives
     // very often with japanese characters, and it was very annoying.
     tallStatus () {
-      const lengthScore = this.status.raw_html.split(/<p|<br/).length + this.status.text.length / 80
+      const lengthScore = this.status.raw_html.split(/<p|<br/).length + this.postLength / 80
       return lengthScore > 20
     },
     longSubject () {
@@ -86,7 +87,7 @@ const StatusContent = {
   methods: {
     onParseReady (event) {
       this.$emit('parseReady', event)
-      const { writtenMentions } = event
+      const { writtenMentions, invisibleMentions } = event
       writtenMentions
         .filter(mention => !mention.notifying)
         .forEach(mention => {
@@ -97,6 +98,15 @@ const StatusContent = {
           const host = url.replace(/^https?:\/\//, '').replace(/\/.+?$/, '')
           this.$store.dispatch('fetchUserIfMissing', `${handle}@${host}`)
         })
+      /* This is a bit of a hack to make current tall status detector work
+       * with rich mentions. Invisible mentions are detected at RichContent level
+       * and also we generate plaintext version of mentions by stripping tags
+       * so here we subtract from post length by each mention that became invisible
+       * via MentionsLine
+       */
+      this.postLength = invisibleMentions.reduce((acc, mention) => {
+        return acc - mention.textContent.length - 1
+      }, this.postLength)
     },
     toggleShowMore () {
       if (this.mightHideBecauseTall) {

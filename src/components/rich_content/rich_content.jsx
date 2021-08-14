@@ -4,8 +4,7 @@ import { getTagName, processTextForEmoji, getAttrs } from 'src/services/html_con
 import { convertHtmlToTree } from 'src/services/html_converter/html_tree_converter.service.js'
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
 import StillImage from 'src/components/still-image/still-image.vue'
-import MentionLink from 'src/components/mention_link/mention_link.vue'
-import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
+import MentionsLine, { MENTIONS_LIMIT } from 'src/components/mentions_line/mentions_line.vue'
 
 import './rich_content.scss'
 
@@ -13,12 +12,11 @@ import './rich_content.scss'
  * RichContent, The Über-powered component for rendering Post HTML.
  *
  * This takes post HTML and does multiple things to it:
- * - Converts mention links to <MentionLink>-s
- * - Removes mentions from beginning and end (hellthread style only)
+ * - Groups all mentions into <MentionsLine>, this affects all mentions regardles
+ *   of where they are (beginning/middle/end), even single mentions are converted
+ *   to a <MentionsLine> containing single <MentionLink>.
  * - Replaces emoji shortcodes with <StillImage>'d images.
  *
- * Stuff like removing mentions from beginning and end is done so that they could
- * be either replaced by collapsible <MentionsLine>  or moved to separate place.
  * There are two problems with this component's architecture:
  * 1. Parsing HTML and rendering are inseparable. Attempts to separate the two
  *    proven to be a massive overcomplication due to amount of things done here.
@@ -61,12 +59,13 @@ export default Vue.component('RichContent', {
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render (h) {
     // Pre-process HTML
-    const { newHtml: html } = preProcessPerLine(this.html, this.greentext, this.handleLinks)
+    const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
-    // to collapse too many mentions in a row
 
     const lastTags = [] // Tags that appear at the end of post body
     const writtenMentions = [] // All mentions that appear in post body
+    const invisibleMentions = [] // All mentions that go beyond the limiter (see MentionsLine)
+    // to collapse too many mentions in a row
     const writtenTags = [] // All tags that appear in post body
     // unique index for vue "tag" property
     let mentionIndex = 0
@@ -99,6 +98,9 @@ export default Vue.component('RichContent', {
         currentMentions = []
       }
       currentMentions.push(linkData)
+      if (currentMentions.length > MENTIONS_LIMIT) {
+        invisibleMentions.push(linkData)
+      }
       if (currentMentions.length === 1) {
         return <MentionsLine mentions={ currentMentions } />
       } else {
@@ -232,7 +234,8 @@ export default Vue.component('RichContent', {
     const event = {
       lastTags,
       writtenMentions,
-      writtenTags
+      writtenTags,
+      invisibleMentions
     }
 
     // DO NOT MOVE TO UPDATE. BAD IDEA.
@@ -243,27 +246,32 @@ export default Vue.component('RichContent', {
 })
 
 const getLinkData = (attrs, children, index) => {
+  const stripTags = (item) => {
+    if (typeof item === 'string') {
+      return item
+    } else {
+      return item[1].map(stripTags).join('')
+    }
+  }
+  const textContent = children.map(stripTags).join('')
   return {
     index,
     url: attrs.href,
     hashtag: attrs['data-tag'],
-    content: flattenDeep(children).join('')
+    content: flattenDeep(children).join(''),
+    textContent
   }
 }
 
 /** Pre-processing HTML
  *
- * Currently this does two things:
+ * Currently this does one thing:
  * - add green/cyantexting
- * - wrap and mark last line containing only mentions as ".lastMentionsLine" for
- *   more compact hellthreads.
  *
  * @param {String} html - raw HTML to process
  * @param {Boolean} greentext - whether to enable greentexting or not
- * @param {Boolean} handleLinks - whether to handle links or not
  */
-export const preProcessPerLine = (html, greentext, handleLinks) => {
-  const lastMentions = []
+export const preProcessPerLine = (html, greentext) => {
   const greentextHandle = new Set(['p', 'div'])
 
   const lines = convertHtmlToLines(html)
@@ -277,7 +285,7 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
     if (
       // Only if greentext is engaged
       greentext &&
-        // Only handle p's and divs. Don't want to affect blocquotes, code etc
+        // Only handle p's and divs. Don't want to affect blockquotes, code etc
         item.level.every(l => greentextHandle.has(l)) &&
         // Only if line begins with '>' or '<'
         (string.includes('&gt;') || string.includes('&lt;'))
@@ -292,31 +300,8 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
       }
     }
 
-    // Converting that line part into tree
-    const tree = convertHtmlToTree(string)
-
-    const process = (item) => {
-      if (Array.isArray(item)) {
-        const [opener, children, closer] = item
-        const tag = getTagName(opener)
-        if (tag === 'span' || tag === 'p') {
-          // For span and p we need to go deeper
-          return [opener, [...children].map(process), closer]
-        } else {
-          return [opener, children, closer]
-        }
-      }
-
-      if (typeof item === 'string') {
-        return item
-      }
-    }
-
-    // We now processed our tree, now we need to mark line as lastMentions
-    const result = [...tree].map(process)
-
-    return flattenDeep(result).join('')
+    return string
   }).reverse().join('')
 
-  return { newHtml, lastMentions }
+  return { newHtml }
 }

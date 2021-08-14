@@ -1,6 +1,8 @@
 import MentionLink from 'src/components/mention_link/mention_link.vue'
 import { mapGetters } from 'vuex'
 
+export const MENTIONS_LIMIT = 5
+
 const MentionsLine = {
   name: 'MentionsLine',
   props: {
@@ -14,14 +16,11 @@ const MentionsLine = {
     MentionLink
   },
   computed: {
-    limit () {
-      return 5
-    },
     mentionsComputed () {
-      return this.mentions.slice(0, this.limit)
+      return this.mentions.slice(0, MENTIONS_LIMIT)
     },
     extraMentions () {
-      return this.mentions.slice(this.limit)
+      return this.mentions.slice(MENTIONS_LIMIT)
     },
     manyMentions () {
       return this.extraMentions.length > 0

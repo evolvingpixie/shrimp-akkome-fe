@@ -45,7 +45,7 @@ const MentionLink = {
     },
     isYou () {
       // FIXME why user !== currentUser???
-      return this.user && this.user.screen_name === this.currentUser.screen_name
+      return this.user && this.user.id === this.currentUser.id
     },
     userName () {
       return this.user && this.userNameFullUi.split('@')[0]
