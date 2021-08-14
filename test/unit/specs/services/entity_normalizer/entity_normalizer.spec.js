@@ -244,35 +244,6 @@ describe('API Entities normalizer', () => {
       expect(parseUser(remote)).to.have.property('is_local', false)
     })
 
-    it('adds emojis to user name', () => {
-      const user = makeMockUserMasto({ emojis: makeMockEmojiMasto(), display_name: 'The :thinking: thinker' })
-
-      const parsedUser = parseUser(user)
-
-      expect(parsedUser).to.have.property('name_html').that.contains('<img')
-    })
-
-    it('adds emojis to user bio', () => {
-      const user = makeMockUserMasto({ emojis: makeMockEmojiMasto(), note: 'Hello i like to :thinking: a lot' })
-
-      const parsedUser = parseUser(user)
-
-      expect(parsedUser).to.have.property('description_html').that.contains('<img')
-    })
-
-    it('adds emojis to user profile fields', () => {
-      const user = makeMockUserMasto({ emojis: makeMockEmojiMasto(), fields: [{ name: ':thinking:', value: ':image:' }] })
-
-      const parsedUser = parseUser(user)
-
-      expect(parsedUser).to.have.property('fields_html').to.be.an('array')
-
-      const field = parsedUser.fields_html[0]
-
-      expect(field).to.have.property('name').that.contains('<img')
-      expect(field).to.have.property('value').that.contains('<img')
-    })
-
     it('removes html tags from user profile fields', () => {
       const user = makeMockUserMasto({ emojis: makeMockEmojiMasto(), fields: [{ name: 'user', value: '<a rel="me" href="https://example.com/@user">@user</a>' }] })
 
