@@ -166,23 +166,16 @@ const Status = {
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
     },
-    mentions () {
-      return this.status.attentions.filter(attn => {
-        return attn.screen_name !== this.replyToName &&
-          attn.screen_name !== this.status.user.screen_name
-      }).map(attn => ({
-        url: attn.statusnet_profile_url,
-        content: attn.screen_name,
-        userId: attn.id
-      }))
-    },
     mentionsLine () {
-      const writtenMentions = this.headTailLinks ? this.headTailLinks.writtenMentions : []
-      const set = new Set(writtenMentions.map(_ => _.url))
+      if (!this.headTailLinks) return []
+      const writtenSet = new Set(this.headTailLinks.writtenMentions.map(_ => _.url))
       return this.status.attentions.filter(attn => {
-        return attn.screen_name !== this.replyToName &&
-          attn.screen_name !== this.status.user.screen_name &&
-          !set.has(attn.url)
+        // no reply user
+        return attn.id !== this.status.in_reply_to_user_id &&
+          // no self-replies
+          attn.statusnet_profile_url !== this.status.user.statusnet_profile_url &&
+          // don't include if mentions is written
+          !writtenSet.has(attn.statusnet_profile_url)
       }).map(attn => ({
         url: attn.statusnet_profile_url,
         content: attn.screen_name,
