@@ -19,7 +19,7 @@ import { getTagName } from './utility.service.js'
  * @param {Object} input - input data
  * @return {string} processed html
  */
-export const convertHtmlToTree = (html) => {
+export const convertHtmlToTree = (html = '') => {
   // Elements that are implicitly self-closing
   // https://developer.mozilla.org/en-US/docs/Glossary/empty_element
   const emptyElements = new Set([

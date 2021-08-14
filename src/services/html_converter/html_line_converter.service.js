@@ -18,7 +18,7 @@ import { getTagName } from './utility.service.js'
  * @param {Object} input - input data
  * @return {(string|{ text: string })[]} processed html in form of a list.
  */
-export const convertHtmlToLines = (html) => {
+export const convertHtmlToLines = (html = '') => {
   // Elements that are implicitly self-closing
   // https://developer.mozilla.org/en-US/docs/Glossary/empty_element
   const emptyElements = new Set([
