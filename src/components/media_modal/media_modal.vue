@@ -6,27 +6,26 @@
   >
     <img
       v-if="type === 'image'"
+      :class="{ loading }"
       class="modal-image"
       :src="currentMedia.url"
-      :key="currentMedia.url"
       :alt="currentMedia.description"
       :title="currentMedia.description"
       @touchstart.stop="mediaTouchStart"
       @touchmove.stop="mediaTouchMove"
       @click="hide"
+      @load="onImageLoaded"
     >
     <VideoAttachment
       v-if="type === 'video'"
       class="modal-image"
       :attachment="currentMedia"
       :controls="true"
-      :key="currentMedia.url"
     />
     <audio
       v-if="type === 'audio'"
       class="modal-image"
       :src="currentMedia.url"
-      :key="currentMedia.url"
       :alt="currentMedia.description"
       :title="currentMedia.description"
       controls
@@ -34,7 +33,6 @@
     <Flash
       v-if="type === 'flash'"
       class="modal-image"
-      :key="currentMedia.url"
       :src="currentMedia.url"
       :alt="currentMedia.description"
       :title="currentMedia.description"
@@ -67,6 +65,16 @@
     >
       {{ description }}
     </span>
+    <span
+      v-if="loading"
+      class="loading-spinner"
+    >
+      <FAIcon
+        spin
+        icon="circle-notch"
+        size="5x"
+      />
+    </span>
   </Modal>
 </template>
 
@@ -85,6 +93,7 @@
       outline: none;
       box-shadow: none;
     }
+
     &:hover {
       opacity: 1;
     }
@@ -118,6 +127,23 @@
     box-shadow: 0px 5px 15px 0 rgba(0, 0, 0, 0.5);
     image-orientation: from-image; // NOTE: only FF supports this
     animation: 0.1s cubic-bezier(0.7, 0, 1, 0.6) media-fadein;
+
+    &.loading {
+      opacity: 0.5;
+    }
+  }
+
+  .loading-spinner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      color: white;
+    }
   }
 
   .modal-view-button-arrow {
