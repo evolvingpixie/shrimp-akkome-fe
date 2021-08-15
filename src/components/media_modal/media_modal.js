@@ -29,6 +29,9 @@ const MediaModal = {
     media () {
       return this.$store.state.mediaViewer.media
     },
+    description () {
+      return this.currentMedia.description
+    },
     currentIndex () {
       return this.$store.state.mediaViewer.currentIndex
     },
