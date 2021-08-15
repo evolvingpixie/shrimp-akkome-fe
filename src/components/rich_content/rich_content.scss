@@ -49,6 +49,7 @@
   }
 
   .emoji {
+    display: inline-block;
     width: var(--emoji-size, 32px);
     height: var(--emoji-size, 32px);
   }

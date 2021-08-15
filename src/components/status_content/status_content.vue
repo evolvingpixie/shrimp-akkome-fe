@@ -8,11 +8,13 @@
       :status="status"
       :compact="compact"
       :single-line="singleLine"
-      :hide-mentions="hideMentions"
       @parseReady="$emit('parseReady', $event)"
     >
       <div v-if="status.poll && status.poll.options">
-        <poll :base-poll="status.poll" />
+        <Poll
+          :base-poll="status.poll"
+          :emoji="status.emojis"
+        />
       </div>
 
       <gallery

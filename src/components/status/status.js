@@ -166,28 +166,21 @@ const Status = {
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
     },
-    mentions () {
+    mentionsLine () {
+      if (!this.headTailLinks) return []
+      const writtenSet = new Set(this.headTailLinks.writtenMentions.map(_ => _.url))
       return this.status.attentions.filter(attn => {
-        return attn.screen_name !== this.replyToName &&
-          attn.screen_name !== this.status.user.screen_name
+        // no reply user
+        return attn.id !== this.status.in_reply_to_user_id &&
+          // no self-replies
+          attn.statusnet_profile_url !== this.status.user.statusnet_profile_url &&
+          // don't include if mentions is written
+          !writtenSet.has(attn.statusnet_profile_url)
       }).map(attn => ({
         url: attn.statusnet_profile_url,
         content: attn.screen_name,
         userId: attn.id
       }))
-    },
-    alsoMentions () {
-      if (!this.headTailLinks) return []
-      const set = new Set(this.headTailLinks.writtenMentions.map(m => m.url))
-      return this.headTailLinks.writtenMentions.filter(mention => {
-        return !set.has(mention.url)
-      })
-    },
-    mentionsLine () {
-      return this.mentionsOwnLine ? this.mentions : this.alsoMentions
-    },
-    mentionsOwnLine () {
-      return this.mergedConfig.mentionsOwnLine
     },
     hasMentionsLine () {
       return this.mentionsLine.length > 0

@@ -10,10 +10,6 @@
     border-radius: 2px;
   }
 
-  .original {
-    margin-right: 0.25em;
-  }
-
   .full {
     position: absolute;
     display: inline-block;
@@ -41,8 +37,6 @@
   }
 
   .new {
-    margin-right: 0.25em;
-
     &.-you {
       & .shortName,
       & .full {
@@ -59,41 +53,6 @@
       padding: 0 0.1em;
       vertical-align: -25%;
       margin: 0;
-    }
-
-    &:not(.-oldStyle) {
-      .short {
-        padding-left: 0.25em;
-        padding-right: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        line-height: 1.5;
-        font-size: inherit;
-
-        .at {
-          color: var(--faint);
-          opacity: 0.8;
-          padding-right: 0.25em;
-          vertical-align: -20%;
-        }
-      }
-
-      .you {
-        padding-right: 0.25em;
-      }
-
-      .userName {
-        display: inline-block;
-        color: var(--link);
-        line-height: inherit;
-        margin-left: 0;
-        padding-left: 0.125em;
-        padding-right: 0.25em;
-        padding-top: 0;
-        padding-bottom: 0;
-        border-top-right-radius: var(--btnRadius);
-        border-bottom-right-radius: var(--btnRadius);
-      }
     }
 
     &.-striped {

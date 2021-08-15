@@ -2,6 +2,8 @@
 
 // TODO Copypaste from Status, should unify it somehow
 .Notification {
+  --emoji-size: 14px;
+
   &.-muted {
     padding: 0.25em 0.6em;
     height: 1.2em;

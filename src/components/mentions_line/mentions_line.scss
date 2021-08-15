@@ -1,17 +1,10 @@
 .MentionsLine {
   .showMoreLess {
     white-space: normal;
+    color: var(--link);
+  }
 
-    &.-newStyle {
-      line-height: 1.5;
-      font-size: inherit;
-      display: inline-block;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    &.-oldStyle {
-      color: var(--link);
-    }
+  .mention-link:not(:last-child) {
+    margin-right: 0.25em;
   }
 }

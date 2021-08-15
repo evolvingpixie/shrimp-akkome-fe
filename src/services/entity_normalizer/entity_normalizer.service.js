@@ -56,16 +56,17 @@ export const parseUser = (data) => {
 
     output.emoji = data.emojis
     output.name = data.display_name
-    output.name_html = addEmojis(escape(data.display_name), data.emojis)
+    output.name_html = escape(data.display_name)
 
     output.description = data.note
-    output.description_html = addEmojis(data.note, data.emojis)
+    // TODO cleanup this shit, output.description is overriden with source data
+    output.description_html = data.note
 
     output.fields = data.fields
     output.fields_html = data.fields.map(field => {
       return {
-        name: addEmojis(escape(field.name), data.emojis),
-        value: addEmojis(field.value, data.emojis)
+        name: escape(field.name),
+        value: field.value
       }
     })
     output.fields_text = data.fields.map(field => {
@@ -240,16 +241,6 @@ export const parseAttachment = (data) => {
 
   return output
 }
-export const addEmojis = (string, emojis) => {
-  const matchOperatorsRegex = /[|\\{}()[\]^$+*?.-]/g
-  return emojis.reduce((acc, emoji) => {
-    const regexSafeShortCode = emoji.shortcode.replace(matchOperatorsRegex, '\\$&')
-    return acc.replace(
-      new RegExp(`:${regexSafeShortCode}:`, 'g'),
-      `<img src='${emoji.url}' alt=':${emoji.shortcode}:' title=':${emoji.shortcode}:' class='emoji' />`
-    )
-  }, string)
-}
 
 export const parseStatus = (data) => {
   const output = {}
@@ -301,7 +292,7 @@ export const parseStatus = (data) => {
     if (output.poll) {
       output.poll.options = (output.poll.options || []).map(field => ({
         ...field,
-        title_html: addEmojis(escape(field.title), data.emojis)
+        title_html: escape(field.title)
       }))
     }
     output.pinned = data.pinned

@@ -4,8 +4,7 @@ import { getTagName, processTextForEmoji, getAttrs } from 'src/services/html_con
 import { convertHtmlToTree } from 'src/services/html_converter/html_tree_converter.service.js'
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
 import StillImage from 'src/components/still-image/still-image.vue'
-import MentionLink from 'src/components/mention_link/mention_link.vue'
-import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
+import MentionsLine, { MENTIONS_LIMIT } from 'src/components/mentions_line/mentions_line.vue'
 
 import './rich_content.scss'
 
@@ -13,12 +12,11 @@ import './rich_content.scss'
  * RichContent, The Über-powered component for rendering Post HTML.
  *
  * This takes post HTML and does multiple things to it:
- * - Converts mention links to <MentionLink>-s
- * - Removes mentions from beginning and end (hellthread style only)
+ * - Groups all mentions into <MentionsLine>, this affects all mentions regardles
+ *   of where they are (beginning/middle/end), even single mentions are converted
+ *   to a <MentionsLine> containing single <MentionLink>.
  * - Replaces emoji shortcodes with <StillImage>'d images.
  *
- * Stuff like removing mentions from beginning and end is done so that they could
- * be either replaced by collapsible <MentionsLine>  or moved to separate place.
  * There are two problems with this component's architecture:
  * 1. Parsing HTML and rendering are inseparable. Attempts to separate the two
  *    proven to be a massive overcomplication due to amount of things done here.
@@ -56,25 +54,22 @@ export default Vue.component('RichContent', {
       required: false,
       type: Boolean,
       default: false
-    },
-    hideMentions: {
-      required: false,
-      type: Boolean,
-      default: false
     }
   },
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render (h) {
     // Pre-process HTML
-    const { newHtml: html, lastMentions } = preProcessPerLine(this.html, this.greentext, this.handleLinks)
-    const firstMentions = [] // Mentions that appear in the beginning of post body
+    const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
+    let currentMentions = null // Current chain of mentions, we group all mentions together
+
     const lastTags = [] // Tags that appear at the end of post body
     const writtenMentions = [] // All mentions that appear in post body
+    const invisibleMentions = [] // All mentions that go beyond the limiter (see MentionsLine)
+    // to collapse too many mentions in a row
     const writtenTags = [] // All tags that appear in post body
     // unique index for vue "tag" property
     let mentionIndex = 0
     let tagsIndex = 0
-    let firstMentionReplaced = false
 
     const renderImage = (tag) => {
       return <StillImage
@@ -98,41 +93,35 @@ export default Vue.component('RichContent', {
     const renderMention = (attrs, children) => {
       const linkData = getLinkData(attrs, children, mentionIndex++)
       linkData.notifying = this.attentions.some(a => a.statusnet_profile_url === linkData.url)
-      if (!linkData.notifying) {
-        encounteredText = true
-      }
       writtenMentions.push(linkData)
-      if (!encounteredText) {
-        firstMentions.push(linkData)
-        if (!firstMentionReplaced && !this.hideMentions) {
-          firstMentionReplaced = true
-          return <MentionsLine mentions={ firstMentions } />
-        } else {
-          return ''
-        }
+      if (currentMentions === null) {
+        currentMentions = []
+      }
+      currentMentions.push(linkData)
+      if (currentMentions.length > MENTIONS_LIMIT) {
+        invisibleMentions.push(linkData)
+      }
+      if (currentMentions.length === 1) {
+        return <MentionsLine mentions={ currentMentions } />
       } else {
-        return <MentionLink
-          url={attrs.href}
-          content={flattenDeep(children).join('')}
-        />
+        return ''
       }
     }
 
-    // We stop treating mentions as "first" ones when we encounter
-    // non-whitespace text
-    let encounteredText = false
     // Processor to use with html_tree_converter
     const processItem = (item, index, array, what) => {
       // Handle text nodes - just add emoji
       if (typeof item === 'string') {
         const emptyText = item.trim() === ''
+        if (item.includes('\n')) {
+          currentMentions = null
+        }
         if (emptyText) {
-          return encounteredText ? item : item.trim()
+          // don't include spaces when processing mentions - we'll include them
+          // in MentionsLine
+          return currentMentions !== null ? item.trim() : item
         }
-        if (!encounteredText) {
-          item = item.trimStart()
-          encounteredText = true
-        }
+        currentMentions = null
         if (item.includes(':')) {
           item = ['', processTextForEmoji(
             item,
@@ -156,27 +145,24 @@ export default Vue.component('RichContent', {
         const Tag = getTagName(opener)
         const attrs = getAttrs(opener)
         switch (Tag) {
-          case 'span': // Replace last mentions class with mentionsline
-            if (attrs['class'] && attrs['class'].includes('lastMentions')) {
-              if (firstMentions.length > 1 && lastMentions.length > 1) {
-                break
-              } else {
-                return !this.hideMentions ? <MentionsLine mentions={lastMentions} /> : ''
-              }
-            } else {
-              break
-            }
+          case 'br':
+            currentMentions = null
+            break
           case 'img': // replace images with StillImage
             return renderImage(opener)
           case 'a': // replace mentions with MentionLink
             if (!this.handleLinks) break
             if (attrs['class'] && attrs['class'].includes('mention')) {
               // Handling mentions here
-              return renderMention(attrs, children, encounteredText)
+              return renderMention(attrs, children)
             } else {
               // Everything else will be handled in reverse pass
-              encounteredText = true
+              currentMentions = null
               return item // We'll handle it later
+            }
+          case 'span':
+            if (this.handleLinks && attrs['class'] && attrs['class'].includes('h-card')) {
+              return ['', children.map(processItem), '']
             }
         }
 
@@ -246,11 +232,10 @@ export default Vue.component('RichContent', {
     </span>
 
     const event = {
-      firstMentions,
-      lastMentions,
       lastTags,
       writtenMentions,
-      writtenTags
+      writtenTags,
+      invisibleMentions
     }
 
     // DO NOT MOVE TO UPDATE. BAD IDEA.
@@ -261,44 +246,46 @@ export default Vue.component('RichContent', {
 })
 
 const getLinkData = (attrs, children, index) => {
+  const stripTags = (item) => {
+    if (typeof item === 'string') {
+      return item
+    } else {
+      return item[1].map(stripTags).join('')
+    }
+  }
+  const textContent = children.map(stripTags).join('')
   return {
     index,
     url: attrs.href,
     hashtag: attrs['data-tag'],
-    content: flattenDeep(children).join('')
+    content: flattenDeep(children).join(''),
+    textContent
   }
 }
 
 /** Pre-processing HTML
  *
- * Currently this does two things:
+ * Currently this does one thing:
  * - add green/cyantexting
- * - wrap and mark last line containing only mentions as ".lastMentionsLine" for
- *   more compact hellthreads.
  *
  * @param {String} html - raw HTML to process
  * @param {Boolean} greentext - whether to enable greentexting or not
- * @param {Boolean} handleLinks - whether to handle links or not
  */
-export const preProcessPerLine = (html, greentext, handleLinks) => {
-  const lastMentions = []
+export const preProcessPerLine = (html, greentext) => {
   const greentextHandle = new Set(['p', 'div'])
 
-  let nonEmptyIndex = -1
   const lines = convertHtmlToLines(html)
-  const linesNum = lines.filter(c => c.text).length
   const newHtml = lines.reverse().map((item, index, array) => {
     // Going over each line in reverse to detect last mentions,
     // keeping non-text stuff as-is
     if (!item.text) return item
     const string = item.text
-    nonEmptyIndex += 1
 
     // Greentext stuff
     if (
       // Only if greentext is engaged
       greentext &&
-        // Only handle p's and divs. Don't want to affect blocquotes, code etc
+        // Only handle p's and divs. Don't want to affect blockquotes, code etc
         item.level.every(l => greentextHandle.has(l)) &&
         // Only if line begins with '>' or '<'
         (string.includes('&gt;') || string.includes('&lt;'))
@@ -313,80 +300,8 @@ export const preProcessPerLine = (html, greentext, handleLinks) => {
       }
     }
 
-    // Converting that line part into tree
-    const tree = convertHtmlToTree(string)
-
-    // If line has loose text, i.e. text outside a mention or a tag
-    // we won't touch mentions.
-    let hasLooseText = false
-    let mentionsNum = 0
-    const process = (item) => {
-      if (Array.isArray(item)) {
-        const [opener, children, closer] = item
-        const tag = getTagName(opener)
-        // If we have a link we probably have mentions
-        if (tag === 'a') {
-          if (!handleLinks) return [opener, children, closer]
-          const attrs = getAttrs(opener)
-          if (attrs['class'] && attrs['class'].includes('mention')) {
-            // Got mentions
-            mentionsNum++
-            return [opener, children, closer]
-          } else {
-            // Not a mention? Means we have loose text or whatever
-            hasLooseText = true
-            return [opener, children, closer]
-          }
-        } else if (tag === 'span' || tag === 'p') {
-          // For span and p we need to go deeper
-          return [opener, [...children].map(process), closer]
-        } else {
-          // Everything else equals to a loose text
-          hasLooseText = true
-          return [opener, children, closer]
-        }
-      }
-
-      if (typeof item === 'string') {
-        if (item.trim() !== '') {
-          // only meaningful strings are loose text
-          hasLooseText = true
-        }
-        return item
-      }
-    }
-
-    // We now processed our tree, now we need to mark line as lastMentions
-    const result = [...tree].map(process)
-
-    if (
-      handleLinks && // Do we handle links at all?
-        mentionsNum > 1 && // Does it have more than one mention?
-        !hasLooseText && // Don't do anything if it has something besides mentions
-        nonEmptyIndex === 0 && // Only check last (first since list is reversed) line
-        nonEmptyIndex !== linesNum - 1 // Don't do anything if there's only one line
-    ) {
-      let mentionIndex = 0
-      const process = (item) => {
-        if (Array.isArray(item)) {
-          const [opener, children] = item
-          const tag = getTagName(opener)
-          if (tag === 'a') {
-            const attrs = getAttrs(opener)
-            lastMentions.push(getLinkData(attrs, children, mentionIndex++))
-          } else if (children) {
-            children.forEach(process)
-          }
-        }
-      }
-      result.forEach(process)
-      // we DO need mentions here so that we conditionally remove them if don't
-      // have first mentions
-      return ['<span class="lastMentions">', flattenDeep(result).join(''), '</span>'].join('')
-    } else {
-      return flattenDeep(result).join('')
-    }
+    return string
   }).reverse().join('')
 
-  return { newHtml, lastMentions }
+  return { newHtml }
 }

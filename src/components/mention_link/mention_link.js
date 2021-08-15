@@ -41,11 +41,11 @@ const MentionLink = {
   },
   computed: {
     user () {
-      return this.url && this.$store.getters.findUserByUrl(this.url)
+      return this.url && this.$store && this.$store.getters.findUserByUrl(this.url)
     },
     isYou () {
       // FIXME why user !== currentUser???
-      return this.user && this.user.screen_name === this.currentUser.screen_name
+      return this.user && this.user.id === this.currentUser.id
     },
     userName () {
       return this.user && this.userNameFullUi.split('@')[0]
@@ -65,9 +65,6 @@ const MentionLink = {
     highlightClass () {
       if (this.highlight) return highlightClass(this.user)
     },
-    oldStyle () {
-      return !this.mergedConfig.mentionsNewStyle
-    },
     style () {
       if (this.highlight) {
         const {
@@ -83,8 +80,7 @@ const MentionLink = {
       return [
         {
           '-you': this.isYou,
-          '-highlighted': this.highlight,
-          '-oldStyle': this.oldStyle
+          '-highlighted': this.highlight
         },
         this.highlightType
       ]
