@@ -121,6 +121,13 @@ export default Vue.component('RichContent', {
           // in MentionsLine
           return currentMentions !== null ? item.trim() : item
         }
+        // We add space with mentionsLine, otherwise non-text elements will
+        // stick to them.
+        if (currentMentions !== null) {
+          // single whitespace trim
+          item = item[0].match(/\s/) ? item.slice(1) : item
+        }
+
         currentMentions = null
         if (item.includes(':')) {
           item = ['', processTextForEmoji(

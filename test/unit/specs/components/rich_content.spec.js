@@ -59,7 +59,7 @@ describe('RichContent', () => {
   it('replaces mention with mentionsline', () => {
     const html = p(
       makeMention('John'),
-      ' how are you doing today?'
+      '  how are you doing today?' // also testing single-trimming function
     )
     const wrapper = shallowMount(RichContent, {
       localVue,
@@ -74,7 +74,7 @@ describe('RichContent', () => {
 
     expect(wrapper.html()).to.eql(compwrap(p(
       mentionsLine(1),
-      ' how are you doing today?'
+      ' how are you doing today?' // space removed to compensate for <ML> padding
     )))
   })
 
