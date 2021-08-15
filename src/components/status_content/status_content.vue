@@ -24,7 +24,6 @@
         :attachments="status.attachments"
         :limit="compact ? 1 : 0"
         :size="attachmentSize"
-        @setMedia="onMedia"
         @play="$emit('mediaplay', attachment.id)"
         @pause="$emit('mediapause', attachment.id)"
       />
