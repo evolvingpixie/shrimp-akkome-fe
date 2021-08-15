@@ -15,7 +15,8 @@ import {
   faStop,
   faSearchPlus,
   faTrashAlt,
-  faPencilAlt
+  faPencilAlt,
+  faAlignRight
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -28,7 +29,8 @@ library.add(
   faStop,
   faSearchPlus,
   faTrashAlt,
-  faPencilAlt
+  faPencilAlt,
+  faAlignRight
 )
 
 const Attachment = {
@@ -52,7 +54,8 @@ const Attachment = {
       img: fileTypeService.fileType(this.attachment.mimetype) === 'image' && document.createElement('img'),
       modalOpen: false,
       showHidden: false,
-      flashLoaded: false
+      flashLoaded: false,
+      showDescription: false
     }
   },
   components: {
@@ -156,6 +159,9 @@ const Attachment = {
     },
     setFlashLoaded (event) {
       this.flashLoaded = event
+    },
+    toggleDescription () {
+      this.showDescription = !this.showDescription
     },
     toggleHidden (event) {
       if (

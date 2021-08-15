@@ -87,6 +87,14 @@
           <FAIcon icon="stop" />
         </button>
         <button
+          v-if="attachment.description && size !== 'small' && !edit"
+          class="button-unstyled attachment-button"
+          @click.prevent="toggleDescription"
+          :title="$t('status.show_attachment_description')"
+        >
+          <FAIcon icon="align-right" />
+        </button>
+        <button
           v-if="!useModal"
           class="button-unstyled attachment-button"
           @click.prevent="openModalForce"

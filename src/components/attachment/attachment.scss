@@ -42,19 +42,10 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 0;
+      bottom: 0;
+      padding-top: 0;
       background: var(--popover);
       box-shadow: var(--popupShadow);
-      opacity: 0;
-      transition: 0.35s all;
-      transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-    }
-  }
-
-  &:hover {
-    .description-container.-static {
-      opacity: 1;
-      transform: translateY(-3em);
     }
   }
 
