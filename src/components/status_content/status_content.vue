@@ -10,10 +10,17 @@
       :single-line="singleLine"
       @parseReady="$emit('parseReady', $event)"
     >
-      <div v-if="status.poll && status.poll.options">
+      <div v-if="status.poll && status.poll.options && !compact">
         <Poll
           :base-poll="status.poll"
           :emoji="status.emojis"
+        />
+      </div>
+
+      <div v-else-if="status.poll && status.poll.options && compact">
+        <FAIcon
+          icon="poll-h"
+          size="2x"
         />
       </div>
 
