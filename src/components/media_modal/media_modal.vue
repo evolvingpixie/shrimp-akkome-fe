@@ -66,6 +66,11 @@
       {{ description }}
     </span>
     <span
+      class="counter"
+    >
+      {{ currentIndex + 1 }} / {{ media.length }}
+    </span>
+    <span
       v-if="loading"
       class="loading-spinner"
     >
@@ -110,15 +115,22 @@
     }
   }
 
-  /* Hardcoded since background is also hardcoded */
-  .description {
+  .description,
+  .counter {
+    /* Hardcoded since background is also hardcoded */
     color: white;
     margin-top: 1em;
     text-shadow: 0 0 10px black, 0 0 10px black;
+    padding: 0.2em 2em;
+  }
+
+  .description {
+    flex: 0 0 auto;
+    overflow-y: auto;
+    min-height: 1em;
     max-width: 500px;
     max-height: 9.5em;
-    overflow-y: auto;
-    padding: 0 2em;
+    word-break: break-all;
   }
 
   .modal-image {
@@ -141,6 +153,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     svg {
       color: white;
     }
