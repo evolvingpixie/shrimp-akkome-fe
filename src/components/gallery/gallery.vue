@@ -6,8 +6,8 @@
   >
     <div class="gallery-rows">
       <div
-        v-for="(row, index) in rows"
-        :key="index"
+        v-for="(row, rowIndex) in rows"
+        :key="rowIndex"
         class="gallery-row"
         :style="rowStyle(row)"
         :class="{ '-audio': row.audio, '-minimal': row.minimal, '-grid': grid }"
@@ -16,8 +16,8 @@
           class="gallery-row-inner"
           :class="{ '-grid': grid }"
         >
-          <attachment
-            v-for="attachment in row.items"
+          <Attachment
+            v-for="(attachment, attachmentIndex) in row.items"
             :key="attachment.id"
             class="gallery-item"
             :nsfw="nsfw"
@@ -26,6 +26,8 @@
             :size="size"
             :editable="editable"
             :remove="removeAttachment"
+            :shiftUp="!(attachmentIndex === 0 && rowIndex === 0) && shiftUpAttachment"
+            :shiftDn="!(attachmentIndex === row.items.length - 1 && rowIndex === rows.length - 1) && shiftDnAttachment"
             :edit="editAttachment"
             :description="descriptions && descriptions[attachment.id]"
             :hide-description="size === 'small' || tooManyAttachments && hidingLong"

@@ -30,7 +30,7 @@
       </button>
     </div>
     <div
-      v-if="size !== 'hide' && !hideDescription && (edit || localDescription)"
+      v-if="size !== 'hide' && !hideDescription && (edit || localDescription || showDescription)"
       class="description-container"
       :class="{ '-static': !edit }"
     >
@@ -83,6 +83,7 @@
           v-if="type === 'flash' && flashLoaded"
           class="button-unstyled attachment-button"
           @click.prevent="stopFlash"
+          :title="$t('status.attachment_stop_flash')"
         >
           <FAIcon icon="stop" />
         </button>
@@ -98,6 +99,7 @@
           v-if="!useModal"
           class="button-unstyled attachment-button"
           @click.prevent="openModalForce"
+          :title="$t('status.show_attachment_in_modal')"
         >
           <FAIcon icon="search-plus" />
         </button>
@@ -105,13 +107,31 @@
           v-if="nsfw && hideNsfwLocal"
           class="button-unstyled attachment-button"
           @click.prevent="toggleHidden"
+          :title="$t('status.hide_attachment')"
         >
           <FAIcon icon="times" />
+        </button>
+        <button
+          v-if="shiftUp"
+          class="button-unstyled attachment-button"
+          @click.prevent="onShiftUp"
+          :title="$t('status.move_up')"
+        >
+          <FAIcon icon="chevron-left" />
+        </button>
+        <button
+          v-if="shiftDn"
+          class="button-unstyled attachment-button"
+          @click.prevent="onShiftDn"
+          :title="$t('status.move_down')"
+        >
+          <FAIcon icon="chevron-right" />
         </button>
         <button
           v-if="remove"
           class="button-unstyled attachment-button"
           @click.prevent="onRemove"
+          :title="$t('status.remove_attachment')"
         >
           <FAIcon icon="trash-alt" />
         </button>
@@ -209,7 +229,7 @@
       </span>
     </div>
     <div
-      v-if="size !== 'hide' && !hideDescription && (edit || localDescription)"
+      v-if="size !== 'hide' && !hideDescription && (edit || (localDescription && showDescription))"
       class="description-container"
       :class="{ '-static': !edit }"
     >

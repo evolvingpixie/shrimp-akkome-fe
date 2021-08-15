@@ -298,6 +298,8 @@
         :editable="true"
         :edit-attachment="editAttachment"
         :remove-attachment="removeMediaFile"
+        :shift-up-attachment="newStatus.files.length > 1 && shiftUpMediaFile"
+        :shift-dn-attachment="newStatus.files.length > 1 && shiftDnMediaFile"
         @play="$emit('mediaplay', attachment.id)"
         @pause="$emit('mediapause', attachment.id)"
       />

@@ -391,8 +391,19 @@ const PostStatusForm = {
       this.$emit('resize')
     },
     editAttachment (fileInfo, newText) {
-      console.log(fileInfo, newText)
       this.newStatus.mediaDescriptions[fileInfo.id] = newText
+    },
+    shiftUpMediaFile (fileInfo) {
+      const { files } = this.newStatus
+      const index = this.newStatus.files.indexOf(fileInfo)
+      files.splice(index, 1)
+      files.splice(index - 1, 0, fileInfo)
+    },
+    shiftDnMediaFile (fileInfo) {
+      const { files } = this.newStatus
+      const index = this.newStatus.files.indexOf(fileInfo)
+      files.splice(index, 1)
+      files.splice(index + 1, 0, fileInfo)
     },
     uploadFailed (errString, templateArgs) {
       templateArgs = templateArgs || {}

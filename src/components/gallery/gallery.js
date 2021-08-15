@@ -12,6 +12,8 @@ const Gallery = {
     'size',
     'editable',
     'removeAttachment',
+    'shiftUpAttachment',
+    'shiftDnAttachment',
     'editAttachment',
     'grid'
   ],

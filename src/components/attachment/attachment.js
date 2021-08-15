@@ -42,6 +42,8 @@ const Attachment = {
     'size',
     'setMedia',
     'remove',
+    'shiftUp',
+    'shiftDn',
     'edit'
   ],
   data () {
@@ -153,6 +155,12 @@ const Attachment = {
     },
     onRemove () {
       this.remove && this.remove(this.attachment)
+    },
+    onShiftUp () {
+      this.shiftUp && this.shiftUp(this.attachment)
+    },
+    onShiftDn () {
+      this.shiftDn && this.shiftDn(this.attachment)
     },
     stopFlash () {
       this.$refs.flash.closePlayer()
