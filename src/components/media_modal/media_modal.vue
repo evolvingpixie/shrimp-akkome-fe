@@ -8,6 +8,7 @@
       v-if="type === 'image'"
       class="modal-image"
       :src="currentMedia.url"
+      :key="currentMedia.url"
       :alt="currentMedia.description"
       :title="currentMedia.description"
       @touchstart.stop="mediaTouchStart"
@@ -19,11 +20,13 @@
       class="modal-image"
       :attachment="currentMedia"
       :controls="true"
+      :key="currentMedia.url"
     />
     <audio
       v-if="type === 'audio'"
       class="modal-image"
       :src="currentMedia.url"
+      :key="currentMedia.url"
       :alt="currentMedia.description"
       :title="currentMedia.description"
       controls
@@ -31,6 +34,7 @@
     <Flash
       v-if="type === 'flash'"
       class="modal-image"
+      :key="currentMedia.url"
       :src="currentMedia.url"
       :alt="currentMedia.description"
       :title="currentMedia.description"
