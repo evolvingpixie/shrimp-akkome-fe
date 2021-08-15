@@ -127,9 +127,11 @@
         />
       </a>
 
-      <span
+      <component
+        :is="videoTag"
         v-if="type === 'video' && !hidden"
         class="video-container"
+        :class="{ 'button-unstyled': 'isModal' }"
         :href="attachment.url"
         @click.stop.prevent="openModal"
       >
@@ -145,7 +147,7 @@
           class="play-icon"
           icon="play-circle"
         />
-      </span>
+      </component>
 
       <span
         v-if="type === 'audio' && !hidden"

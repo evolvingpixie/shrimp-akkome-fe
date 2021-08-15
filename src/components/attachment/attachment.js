@@ -118,6 +118,9 @@ const Attachment = {
       }
       return modalTypes.includes(this.type)
     },
+    videoTag () {
+      return this.useModal ? 'button' : 'span'
+    },
     ...mapGetters(['mergedConfig'])
   },
   watch: {
