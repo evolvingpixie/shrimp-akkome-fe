@@ -2,10 +2,9 @@
   .showMoreLess {
     white-space: normal;
     color: var(--link);
-    margin-right: 0.25em;
   }
 
-  .mention-link {
+  .mention-link:not(:last-child) {
     margin-right: 0.25em;
   }
 }
