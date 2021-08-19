@@ -74,7 +74,8 @@
     "name": "Nama",
     "profile_fields": {
       "value": "Isi",
-      "name": "Label"
+      "name": "Label",
+      "label": "Metadata profil"
     },
     "limited_availability": "Tidak tersedia di browser Anda",
     "invalid_theme_imported": "Berkas yang dipilih bukan sebuah tema yang didukung Pleroma. Tidak ada perbuahan yang dibuat pada tema Anda.",
@@ -120,14 +121,47 @@
       "otp": "OTP"
     },
     "app_name": "Nama aplikasi",
-    "save": "Simpan perubahan"
+    "save": "Simpan perubahan",
+    "valid_until": "Valid hingga",
+    "follow_import_error": "Terjadi kesalahan ketika mengimpor pengikut",
+    "emoji_reactions_on_timeline": "Tampilkan reaksi emoji pada linimasa",
+    "chatMessageRadius": "Pesan obrolan",
+    "cOrange": "Jingga (Favorit)",
+    "avatarAltRadius": "Avatar (notifikasi)",
+    "hide_shoutbox": "Sembunyikan kotak suara instansi",
+    "hide_followers_count_description": "Jangan tampilkan jumlah pengikut",
+    "hide_follows_count_description": "Jangan tampilkan jumlah mengikuti",
+    "hide_followers_description": "Jangan tampilkan siapa yang mengikuti saya",
+    "hide_follows_description": "Jangan tampilkan siapa yang saya ikuti",
+    "notification_visibility_emoji_reactions": "Reaksi",
+    "notification_visibility_follows": "Diikuti",
+    "notification_visibility_moves": "Pengguna Bermigrasi",
+    "notification_visibility_repeats": "Ulangan",
+    "notification_visibility_mentions": "Sebutan",
+    "notification_visibility_likes": "Favorit",
+    "notification_visibility": "Jenis notifikasi yang perlu ditampilkan",
+    "links": "Tautan",
+    "hide_user_stats": "Sembunyikan statistik pengguna (contoh. jumlah pengikut)",
+    "hide_post_stats": "Sembunyikan statistik postingan (contoh. jumlah favorit)",
+    "use_one_click_nsfw": "Buka lampiran NSFW hanya dengan satu klik",
+    "hide_wallpaper": "Sembunyikan latar belakang instansi"
   },
   "about": {
     "mrf": {
       "keyword": {
         "reject": "Tolak"
-      }
-    }
+      },
+      "simple": {
+        "quarantine_desc": "Instansi ini hanya akan mengirim postingan publik ke instansi-instansi berikut:",
+        "quarantine": "Karantina",
+        "reject_desc": "Instansi ini tidak akan menerima pesan dari instansi-instansi berikut:",
+        "reject": "Tolak",
+        "accept_desc": "Instansi ini hanya menerima pesan dari instansi-instansi berikut:",
+        "accept": "Terima"
+      },
+      "federation": "Federasi"
+    },
+    "staff": "Staf"
   },
   "time": {
     "day": "{0} hari",
@@ -254,7 +288,9 @@
     "notifications": "Notifikasi",
     "follow_request": "ingin mengikuti Anda",
     "followed_you": "mengikuti Anda",
-    "error": "Terjadi kesalahan ketika memuat notifikasi: {0}"
+    "error": "Terjadi kesalahan ketika memuat notifikasi: {0}",
+    "migrated_to": "bermigrasi ke",
+    "load_older": "Muat notifikasi yang lebih lama"
   },
   "who_to_follow": {
     "more": "Lebih banyak"
@@ -331,7 +367,10 @@
     "token": "Token undangan",
     "password_confirm": "Konfirmasi kata sandi",
     "email": "Surel",
-    "bio": "Bio"
+    "bio": "Bio",
+    "reason_placeholder": "Instansi ini menerima pendaftaran secara manual.\nBeritahu administrasinya mengapa Anda ingin mendaftar.",
+    "reason": "Alasan mendaftar",
+    "registration": "Pendaftaran"
   },
   "post_status": {
     "preview_empty": "Kosong",
@@ -360,7 +399,10 @@
       "public": "Postingan ini akan terlihat oleh siapa saja"
     },
     "media_description_error": "Gagal memperbarui media, coba lagi",
-    "empty_status_error": "Tidak dapat memposting status kosong tanpa berkas"
+    "empty_status_error": "Tidak dapat memposting status kosong tanpa berkas",
+    "account_not_locked_warning_link": "terkunci",
+    "account_not_locked_warning": "Akun Anda tidak {0}. Siapapun dapat mengikuti Anda untuk melihat postingan hanya-pengikut Anda.",
+    "new_status": "Posting status baru"
   },
   "general": {
     "apply": "Terapkan",
@@ -424,7 +466,10 @@
     "mentions": "Sebutan",
     "back": "Kembali",
     "administration": "Administrasi",
-    "about": "Tentang"
+    "about": "Tentang",
+    "timelines": "Linimasa",
+    "chats": "Obrolan",
+    "dms": "Pesan langsung"
   },
   "media_modal": {
     "next": "Selanjutnya",
@@ -463,7 +508,8 @@
     "text_limit": "Batas teks",
     "gopher": "Gopher",
     "pleroma_chat_messages": "Pleroma Obrolan",
-    "chat": "Obrolan"
+    "chat": "Obrolan",
+    "upload_limit": "Batas unggahan"
   },
   "exporter": {
     "processing": "Memproses, Anda akan segera diminta untuk mengunduh berkas Anda",
@@ -479,5 +525,16 @@
   },
   "selectable_list": {
     "select_all": "Pilih semua"
+  },
+  "interactions": {
+    "moves": "Pengguna yang bermigrasi",
+    "follows": "Pengikut baru",
+    "favs_repeats": "Ulangan dan favorit"
+  },
+  "errors": {
+    "storage_unavailable": "Pleroma tidak dapat mengakses penyimpanan browser. Login Anda atau pengaturan lokal Anda tidak akan tersimpan dan masalah yang tidak terduga dapat terjadi. Coba mengaktifkan kuki."
+  },
+  "shoutbox": {
+    "title": "Kotak Suara"
   }
 }
