@@ -632,7 +632,8 @@
     "hide_all_muted_posts": "Ukryj wyciszone słowa",
     "reply_visibility_following_short": "Pokazuj odpowiedzi obserwującym",
     "reply_visibility_self_short": "Pokazuj odpowiedzi tylko do mnie",
-    "sensitive_by_default": "Domyślnie oznaczaj wpisy jako wrażliwe"
+    "sensitive_by_default": "Domyślnie oznaczaj wpisy jako wrażliwe",
+    "hide_shoutbox": "Ukryj shoutbox instancji"
   },
   "time": {
     "day": "{0} dzień",
