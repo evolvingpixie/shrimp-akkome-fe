@@ -495,7 +495,9 @@
       "title": "Bertsioa",
       "backend_version": "Backend bertsioa",
       "frontend_version": "Frontend bertsioa"
-    }
+    },
+    "save": "Aldaketak gorde",
+    "setting_changed": "Ezarpena lehenetsitakoaren desberdina da"
   },
   "time": {
     "day": "{0} egun",
@@ -709,5 +711,9 @@
   },
   "errors": {
     "storage_unavailable": "Pleromak ezin izan du nabigatzailearen biltegira sartu. Hasiera-saioa edo tokiko ezarpenak ez dira gordeko eta ustekabeko arazoak sor ditzake. Saiatu cookie-ak gaitzen."
+  },
+  "remote_user_resolver": {
+    "searching_for": "Bilatzen",
+    "error": "Ez da aurkitu."
   }
 }
