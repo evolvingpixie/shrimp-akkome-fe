@@ -181,9 +181,12 @@ export default Vue.component('RichContent', {
 
         if (children !== undefined) {
           return [
-            opener,
-            [mentionsLinePadding].concat(children.map(processItem)),
-            closer
+            '',
+            [
+              mentionsLinePadding,
+              [opener, children.map(processItem), closer]
+            ],
+            ''
           ]
         } else {
           return ['', [mentionsLinePadding, item], '']
