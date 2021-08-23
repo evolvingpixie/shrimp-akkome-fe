@@ -17,8 +17,9 @@
       :style="style"
       :class="classnames"
     >
-      <button
+      <a
         class="short button-unstyled"
+        :href="url"
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
@@ -35,7 +36,7 @@
           class="you"
         >{{ $t('status.you') }}</span>
         <!-- eslint-enable vue/no-v-html -->
-      </button>
+      </a>
       <span
         v-if="userName !== userNameFull"
         class="full popover-default"

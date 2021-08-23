@@ -300,10 +300,10 @@ describe('RichContent', () => {
       '<p>',
       '<a href="http://macrochan.org/images/N/H/NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg" target="_blank">',
       'NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg</a>',
-      ' <a class="hashtag" data-tag="nou" href="https://shitposter.club/tag/nou" target="_blank">',
-      '#nou</a>',
-      ' <a class="hashtag" data-tag="screencap" href="https://shitposter.club/tag/screencap" target="_blank">',
-      '#screencap</a>',
+      ' <hashtaglink-stub url="https://shitposter.club/tag/nou" content="#nou" tag="nou">',
+      '</hashtaglink-stub>',
+      ' <hashtaglink-stub url="https://shitposter.club/tag/screencap" content="#screencap" tag="screencap">',
+      '</hashtaglink-stub>',
       ' </p>'
     ].join('')
 

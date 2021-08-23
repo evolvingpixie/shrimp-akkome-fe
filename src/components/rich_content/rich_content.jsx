@@ -5,6 +5,7 @@ import { convertHtmlToTree } from 'src/services/html_converter/html_tree_convert
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
 import StillImage from 'src/components/still-image/still-image.vue'
 import MentionsLine, { MENTIONS_LIMIT } from 'src/components/mentions_line/mentions_line.vue'
+import HashtagLink from 'src/components/hashtag_link/hashtag_link.vue'
 
 import './rich_content.scss'
 
@@ -83,13 +84,10 @@ export default Vue.component('RichContent', {
     const renderHashtag = (attrs, children, encounteredTextReverse) => {
       const linkData = getLinkData(attrs, children, tagsIndex++)
       writtenTags.push(linkData)
-      attrs.target = '_blank'
       if (!encounteredTextReverse) {
         lastTags.push(linkData)
       }
-      return <a {...{ attrs }}>
-        { children.map(processItem) }
-      </a>
+      return <HashtagLink {...{ props: linkData }}/>
     }
 
     const renderMention = (attrs, children) => {
@@ -211,7 +209,10 @@ export default Vue.component('RichContent', {
             if (!this.handleLinks) break
             const attrs = getAttrs(opener)
             // should only be this
-            if (attrs['class'] && attrs['class'].includes('hashtag')) {
+            if (
+              (attrs['class'] && attrs['class'].includes('hashtag')) || // Pleroma style
+                (attrs['rel'] === 'tag') // Mastodon style
+            ) {
               return renderHashtag(attrs, children, encounteredTextReverse)
             } else {
               attrs.target = '_blank'
@@ -275,7 +276,7 @@ const getLinkData = (attrs, children, index) => {
   return {
     index,
     url: attrs.href,
-    hashtag: attrs['data-tag'],
+    tag: attrs['data-tag'],
     content: flattenDeep(children).join(''),
     textContent
   }
