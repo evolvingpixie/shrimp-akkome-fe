@@ -106,7 +106,7 @@
     "cBlue": "Biru (Balas, ikuti)",
     "btnRadius": "Tombol",
     "bot": "Ini adalah akun bot",
-    "block_export": "",
+    "block_export": "Ekspor blokiran",
     "bio": "Bio",
     "background": "Latar belakang",
     "avatarRadius": "Avatar",
@@ -144,12 +144,21 @@
     "hide_user_stats": "Sembunyikan statistik pengguna (contoh. jumlah pengikut)",
     "hide_post_stats": "Sembunyikan statistik postingan (contoh. jumlah favorit)",
     "use_one_click_nsfw": "Buka lampiran NSFW hanya dengan satu klik",
-    "hide_wallpaper": "Sembunyikan latar belakang instansi"
+    "hide_wallpaper": "Sembunyikan latar belakang instansi",
+    "blocks_imported": "Blokiran diimpor! Pemrosesannya mungkin memakan sedikit waktu.",
+    "block_import_error": "Terjadi kesalahan ketika mengimpor blokiran",
+    "block_import": "Impor blokiran",
+    "block_export_button": "Ekspor blokiran Anda menjadi berkas csv",
+    "blocks_tab": "Blokiran",
+    "delete_account_instructions": "Ketik kata sandi Anda pada input di bawah untuk mengkonfirmasi penghapusan akun.",
+    "mutes_and_blocks": "Bisuan dan Blokiran",
+    "enter_current_password_to_confirm": "Masukkan kata sandi Anda saat ini untuk mengkonfirmasi identitas Anda"
   },
   "about": {
     "mrf": {
       "keyword": {
-        "reject": "Tolak"
+        "reject": "Tolak",
+        "is_replaced_by": "→"
       },
       "simple": {
         "quarantine_desc": "Instansi ini hanya akan mengirim postingan publik ke instansi-instansi berikut:",
@@ -440,7 +449,8 @@
     "add_emoji": "Sisipkan emoji",
     "search_emoji": "Cari emoji",
     "emoji": "Emoji",
-    "stickers": "Stiker"
+    "stickers": "Stiker",
+    "keep_open": "Tetap buka pemilih"
   },
   "polls": {
     "expired": "Japat berakhir {0} yang lalu",
@@ -518,7 +528,8 @@
   "domain_mute_card": {
     "unmute": "Berhenti membisukan",
     "mute_progress": "Membisukan…",
-    "mute": "Bisukan"
+    "mute": "Bisukan",
+    "unmute_progress": "Memberhentikan pembisuan…"
   },
   "display_date": {
     "today": "Hari Ini"
