@@ -118,7 +118,13 @@
       },
       "confirm_and_enable": "Konfirmasi & aktifkan OTP",
       "setup_otp": "Siapkan OTP",
-      "otp": "OTP"
+      "otp": "OTP",
+      "recovery_codes_warning": "Tulis kode-kode nya atau simpan mereka di tempat yang aman - jika tidak Anda tidak akan melihat mereka lagi. Jika Anda tidak dapat mengakses aplikasi 2FA Anda dan kode pemulihan Anda hilang Anda tidak akan bisa mengakses akun Anda.",
+      "authentication_methods": "Metode otentikasi",
+      "recovery_codes": "Kode pemulihan.",
+      "warning_of_generate_new_codes": "Ketika Anda menghasilkan kode pemulihan baru, kode lama Anda berhenti bekerja.",
+      "generate_new_recovery_codes": "Hasilkan kode pemulihan baru",
+      "title": "Otentikasi Dua-faktor"
     },
     "app_name": "Nama aplikasi",
     "save": "Simpan perubahan",
@@ -152,7 +158,11 @@
     "blocks_tab": "Blokiran",
     "delete_account_instructions": "Ketik kata sandi Anda pada input di bawah untuk mengkonfirmasi penghapusan akun.",
     "mutes_and_blocks": "Bisuan dan Blokiran",
-    "enter_current_password_to_confirm": "Masukkan kata sandi Anda saat ini untuk mengkonfirmasi identitas Anda"
+    "enter_current_password_to_confirm": "Masukkan kata sandi Anda saat ini untuk mengkonfirmasi identitas Anda",
+    "filtering": "Penyaringan",
+    "word_filter": "Penyaring kata",
+    "avatar_size_instruction": "Ukuran minimum gambar avatar yang disarankan adalah 150x150 piksel.",
+    "attachmentRadius": "Lampiran"
   },
   "about": {
     "mrf": {
@@ -299,7 +309,8 @@
     "followed_you": "mengikuti Anda",
     "error": "Terjadi kesalahan ketika memuat notifikasi: {0}",
     "migrated_to": "bermigrasi ke",
-    "load_older": "Muat notifikasi yang lebih lama"
+    "load_older": "Muat notifikasi yang lebih lama",
+    "broken_favorite": "Status tak diketahui, mencarinya…"
   },
   "who_to_follow": {
     "more": "Lebih banyak"
@@ -450,7 +461,8 @@
     "search_emoji": "Cari emoji",
     "emoji": "Emoji",
     "stickers": "Stiker",
-    "keep_open": "Tetap buka pemilih"
+    "keep_open": "Tetap buka pemilih",
+    "custom": "Emoji kustom"
   },
   "polls": {
     "expired": "Japat berakhir {0} yang lalu",
@@ -479,7 +491,8 @@
     "about": "Tentang",
     "timelines": "Linimasa",
     "chats": "Obrolan",
-    "dms": "Pesan langsung"
+    "dms": "Pesan langsung",
+    "friend_requests": "Ingin mengikuti"
   },
   "media_modal": {
     "next": "Selanjutnya",
@@ -496,7 +509,10 @@
     "password": "Kata sandi",
     "logout": "Keluar",
     "description": "Masuk dengan OAuth",
-    "login": "Masuk"
+    "login": "Masuk",
+    "heading": {
+      "totp": "Otentikasi dua-faktor"
+    }
   },
   "importer": {
     "error": "Terjadi kesalahan ketika mnengimpor berkas ini.",
