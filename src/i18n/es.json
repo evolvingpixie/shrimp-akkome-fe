@@ -43,7 +43,10 @@
     "role": {
       "admin": "Administrador/a",
       "moderator": "Moderador/a"
-    }
+    },
+    "flash_content": "Haga clic para mostrar contenido Flash usando Ruffle (experimental, puede que no funcione).",
+    "flash_security": "Tenga en cuenta que esto puede ser potencialmente peligroso ya que el contenido Flash sigue siendo código arbitrario.",
+    "flash_fail": "No se pudo cargar el contenido flash, consulte la consola para obtener más detalles."
   },
   "image_cropper": {
     "crop_picture": "Recortar la foto",
@@ -147,7 +150,7 @@
     "favs_repeats": "Favoritos y repetidos",
     "follows": "Nuevos seguidores",
     "load_older": "Cargar interacciones más antiguas",
-    "moves": "Usuario Migrado"
+    "moves": "Usuario migrado"
   },
   "post_status": {
     "new_status": "Publicar un nuevo estado",
@@ -181,7 +184,7 @@
     "preview_empty": "Vacío",
     "preview": "Vista previa",
     "media_description": "Descripción multimedia",
-    "post": "Publicación"
+    "post": "Publicar"
   },
   "registration": {
     "bio": "Biografía",
@@ -585,13 +588,18 @@
     "save": "Guardar los cambios",
     "file_export_import": {
       "errors": {
-        "invalid_file": "El archivo seleccionado no es válido como copia de seguridad de Pleroma. No se han realizado cambios."
+        "invalid_file": "El archivo seleccionado no es válido como copia de seguridad de Pleroma. No se han realizado cambios.",
+        "file_too_new": "Versión principal incompatible: {fileMajor}, este \"FrontEnd\" de Pleroma (versión de configuración {feMajor}) es demasiado antiguo para manejarlo",
+        "file_too_old": "Versión principal incompatible: {fileMajor}, la versión del archivo es demasiado antigua y no es compatible (versión mínima {FeMajor})",
+        "file_slightly_new": "La versión secundaria del archivo es diferente, es posible que algunas configuraciones no se carguen"
       },
       "restore_settings": "Restaurar ajustes desde archivo",
-      "backup_settings_theme": "Copia de seguridad de la configuración y tema a archivo",
-      "backup_settings": "Copia de seguridad de la configuración a archivo",
+      "backup_settings_theme": "Descargar la copia de seguridad de la configuración y del tema",
+      "backup_settings": "Descargar la copia de seguridad de la configuración",
       "backup_restore": "Copia de seguridad de la configuración"
-    }
+    },
+    "hide_shoutbox": "Ocultar cuadro de diálogo de la instancia",
+    "right_sidebar": "Mostrar la barra lateral a la derecha"
   },
   "time": {
     "day": "{0} día",
@@ -735,7 +743,8 @@
       "solid": "Fondo sólido",
       "disabled": "Sin resaltado"
     },
-    "bot": "Bot"
+    "bot": "Bot",
+    "edit_profile": "Edita el perfil"
   },
   "user_profile": {
     "timeline_title": "Línea temporal del usuario",
