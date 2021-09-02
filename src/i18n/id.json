@@ -15,7 +15,18 @@
       "advanced_colors": {
         "alert_neutral": "Neutral",
         "alert_warning": "Peringatan",
-        "alert_error": "Kesalahan"
+        "alert_error": "Kesalahan",
+        "_tab_label": "Lanjutan",
+        "post": "Postingan/Bio pengguna",
+        "popover": "Tooltip, menu, popover",
+        "badge_notification": "Notifikasi",
+        "top_bar": "Bar atas",
+        "borders": "",
+        "buttons": "Tombol",
+        "wallpaper": "Latar belakang",
+        "panel_header": "Header panel",
+        "icons": "Ikon-ikon",
+        "disabled": "Dinonaktifkan"
       },
       "common_colors": {
         "main": "Warna umum",
@@ -32,7 +43,10 @@
       },
       "switcher": {
         "help": {
-          "upgraded_from_v2": "PleromaFE telah diperbarui, tema dapat terlihat sedikit berbeda dari apa yang Anda ingat."
+          "upgraded_from_v2": "PleromaFE telah diperbarui, tema dapat terlihat sedikit berbeda dari apa yang Anda ingat.",
+          "future_version_imported": "Berkas yang Anda impor dibuat pada versi FE yang lebih baru.",
+          "older_version_imported": "Berkas yang Anda impor dibuat pada versi FE yang lebih lama.",
+          "fe_upgraded": "Mesin tema PleromaFE diperbarui setelah pembaruan versi."
         },
         "use_source": "Versi baru",
         "use_snapshot": "Versi lama",
@@ -47,6 +61,12 @@
         "family": "Nama font",
         "size": "Ukuran (dalam px)",
         "weight": "Berat (ketebalan)"
+      },
+      "shadows": {
+        "components": {
+          "panel": "Panel",
+          "panelHeader": "Header panel"
+        }
       }
     },
     "notification_setting_privacy": "Privasi",
@@ -124,7 +144,11 @@
       "recovery_codes": "Kode pemulihan.",
       "warning_of_generate_new_codes": "Ketika Anda menghasilkan kode pemulihan baru, kode lama Anda berhenti bekerja.",
       "generate_new_recovery_codes": "Hasilkan kode pemulihan baru",
-      "title": "Otentikasi Dua-faktor"
+      "title": "Otentikasi Dua-faktor",
+      "waiting_a_recovery_codes": "Menerima kode cadangan…",
+      "verify": {
+        "desc": "Untuk mengaktifkan otentikasi dua-faktor, masukkan kode dari aplikasi dua-faktor Anda:"
+      }
     },
     "app_name": "Nama aplikasi",
     "save": "Simpan perubahan",
@@ -162,7 +186,29 @@
     "filtering": "Penyaringan",
     "word_filter": "Penyaring kata",
     "avatar_size_instruction": "Ukuran minimum gambar avatar yang disarankan adalah 150x150 piksel.",
-    "attachmentRadius": "Lampiran"
+    "attachmentRadius": "Lampiran",
+    "cGreen": "Hijau (Retweet)",
+    "max_thumbnails": "Jumlah thumbnail maksimum per postingan",
+    "loop_video": "Ulang-ulang video",
+    "loop_video_silent_only": "Ulang-ulang video tanpa suara (seperti \"gif\" Mastodon)",
+    "pause_on_unfocused": "Jeda aliran ketika tab di dalam fokus",
+    "reply_visibility_following": "Hanya tampilkan balasan yang ditujukan kepada saya atau orang yang saya ikuti",
+    "reply_visibility_following_short": "Tampilkan balasan ke orang yang saya ikuti",
+    "saving_err": "Terjadi kesalahan ketika menyimpan pengaturan",
+    "search_user_to_block": "Cari siapa yang Anda ingin blokir",
+    "search_user_to_mute": "Cari siapa yang ingin Anda bisukan",
+    "set_new_avatar": "Tetapkan avatar baru",
+    "set_new_profile_background": "Tetapkan latar belakang profil baru",
+    "subject_line_behavior": "Salin subyek ketika membalas",
+    "subject_line_email": "Seperti surel: \"re: subyek\"",
+    "subject_line_mastodon": "Seperti mastodon: salin saja",
+    "subject_line_noop": "Jangan salin",
+    "useStreamingApiWarning": "(Tidak disarankan, eksperimental, diketahui dapat melewati postingan-postingan)",
+    "fun": "Seru",
+    "enable_web_push_notifications": "Aktifkan notifikasi push web",
+    "more_settings": "Lebih banyak pengaturan",
+    "reply_visibility_all": "Tampilkan semua balasan",
+    "reply_visibility_self": "Hanya tampilkan balasan yang ditujukan kepada saya"
   },
   "about": {
     "mrf": {
@@ -178,7 +224,8 @@
         "accept_desc": "Instansi ini hanya menerima pesan dari instansi-instansi berikut:",
         "accept": "Terima"
       },
-      "federation": "Federasi"
+      "federation": "Federasi",
+      "mrf_policies": "Kebijakan MRF yang diaktifkan"
     },
     "staff": "Staf"
   },
@@ -349,7 +396,12 @@
     "forgot_password": "Lupa kata sandi?",
     "placeholder": "Surel atau nama pengguna Anda",
     "return_home": "Kembali ke halaman beranda",
-    "too_many_requests": "Anda telah mencapai batas percobaan, coba lagi nanti."
+    "too_many_requests": "Anda telah mencapai batas percobaan, coba lagi nanti.",
+    "instruction": "Masukkan surel atau nama pengguna Anda. Kami akan mengirimkan Anda tautan untuk mengatur ulang kata sandi.",
+    "password_reset": "Pengatur-ulangan kata sandi",
+    "password_reset_disabled": "Pengatur-ulangan kata sandi dinonaktifkan. Hubungi administrator instansi Anda.",
+    "password_reset_required": "Anda harus mengatur ulang kata sandi Anda untuk masuk.",
+    "password_reset_required_but_mailer_is_disabled": "Anda harus mengatur ulang kata sandi, tetapi pengatur-ulangan kata sandi dinonaktifkan. Silakan hubungi administrator instansi Anda."
   },
   "chats": {
     "you": "Anda:",
@@ -475,7 +527,8 @@
     "votes": "suara",
     "option": "Opsi",
     "add_option": "Tambahkan opsi",
-    "add_poll": "Tambahkan japat"
+    "add_poll": "Tambahkan japat",
+    "not_enough_options": "Terlalu sedikit opsi yang unik pada japat"
   },
   "nav": {
     "preferences": "Preferensi",
@@ -512,7 +565,8 @@
     "login": "Masuk",
     "heading": {
       "totp": "Otentikasi dua-faktor"
-    }
+    },
+    "enter_two_factor_code": "Masukkan kode dua-faktor"
   },
   "importer": {
     "error": "Terjadi kesalahan ketika mnengimpor berkas ini.",
@@ -556,7 +610,8 @@
   "interactions": {
     "moves": "Pengguna yang bermigrasi",
     "follows": "Pengikut baru",
-    "favs_repeats": "Ulangan dan favorit"
+    "favs_repeats": "Ulangan dan favorit",
+    "load_older": "Muat interaksi yang lebih tua"
   },
   "errors": {
     "storage_unavailable": "Pleroma tidak dapat mengakses penyimpanan browser. Login Anda atau pengaturan lokal Anda tidak akan tersimpan dan masalah yang tidak terduga dapat terjadi. Coba mengaktifkan kuki."
