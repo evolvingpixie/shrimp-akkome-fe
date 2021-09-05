@@ -588,7 +588,8 @@
       "backup_settings": "备份设置到文件",
       "backup_restore": "设置备份"
     },
-    "right_sidebar": "在右侧显示侧边栏"
+    "right_sidebar": "在右侧显示侧边栏",
+    "hide_shoutbox": "隐藏实例留言板"
   },
   "time": {
     "day": "{0} 天",
@@ -728,7 +729,8 @@
       "striped": "条纹背景",
       "solid": "单一颜色背景",
       "disabled": "不突出显示"
-    }
+    },
+    "edit_profile": "编辑个人资料"
   },
   "user_profile": {
     "timeline_title": "用户时间线",
