@@ -346,7 +346,20 @@
             v-if="inConversation && !isPreview && replies && replies.length"
             class="replies"
           >
-            <span class="faint">{{ $t('status.replies_list') }}</span>
+            <button
+              v-if="showOtherRepliesAsButton"
+              class="button-unstyled -link faint"
+              :title="$tc('status.ancestor_follow', replies.length - 1, { numReplies: replies.length - 1 })"
+              @click.prevent="dive"
+            >
+              {{ $t('status.replies_list') }}
+            </button>
+            <span
+              v-else
+              class="faint"
+            >
+              {{ $t('status.replies_list') }}
+            </span>
             <StatusPopover
               v-for="reply in replies"
               :key="reply.id"

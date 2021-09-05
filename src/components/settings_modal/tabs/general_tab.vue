@@ -161,19 +161,33 @@
             {{ $t('settings.conversation_display') }}
           </ChoiceSetting>
         </li>
-        <li v-if="conversationDisplay !== 'linear'">
-          <label for="maxDepthInThread">
-            {{ $t('settings.max_depth_in_thread') }}
-          </label>
-          <input
-            id="maxDepthInThread"
-            path.number="maxDepthInThread"
-            class="number-input"
-            type="number"
-            min="3"
-            step="1"
-          >
-        </li>
+        <ul
+          v-if="conversationDisplay !== 'linear'"
+          class="setting-list suboptions"
+        >
+          <li>
+            <label for="maxDepthInThread">
+              {{ $t('settings.max_depth_in_thread') }}
+            </label>
+            <input
+              id="maxDepthInThread"
+              path.number="maxDepthInThread"
+              class="number-input"
+              type="number"
+              min="3"
+              step="1"
+            >
+          </li>
+          <li>
+            <ChoiceSetting
+              id="conversationOtherRepliesButton"
+              path="conversationOtherRepliesButton"
+              :options="conversationOtherRepliesButtonOptions"
+            >
+              {{ $t('settings.conversation_other_replies_button') }}
+            </ChoiceSetting>
+          </li>
+        </ul>
         <li>
           <ChoiceSetting
             id="mentionLinkDisplay"

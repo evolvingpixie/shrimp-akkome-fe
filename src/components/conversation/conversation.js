@@ -92,6 +92,15 @@ const conversation = {
     isLinearView () {
       return this.displayStyle === 'linear'
     },
+    otherRepliesButtonPosition () {
+      return this.$store.getters.mergedConfig.conversationOtherRepliesButton
+    },
+    showOtherRepliesButtonBelowStatus () {
+      return this.otherRepliesButtonPosition === 'below'
+    },
+    showOtherRepliesButtonInsideStatus () {
+      return this.otherRepliesButtonPosition === 'inside'
+    },
     hideStatus () {
       if (this.$refs.statusComponent && this.$refs.statusComponent[0]) {
         return this.virtualHidden && this.$refs.statusComponent[0].suspendable

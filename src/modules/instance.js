@@ -54,6 +54,7 @@ const defaultState = {
   virtualScrolling: true,
   sensitiveByDefault: false,
   conversationDisplay: 'simple_tree',
+  conversationOtherRepliesButton: 'below',
   maxDepthInThread: 6,
 
   // Nasty stuff

@@ -13,6 +13,7 @@ export const multiChoiceProperties = [
   'postContentType',
   'subjectLineBehavior',
   'conversationDisplay', // tree | linear
+  'conversationOtherRepliesButton', // below | inside
   'mentionLinkDisplay' // short | full_for_remote | full
 ]
 
@@ -84,6 +85,7 @@ export const defaultState = {
   virtualScrolling: undefined, // instance default
   sensitiveByDefault: undefined, // instance default
   conversationDisplay: undefined, // instance default
+  conversationOtherRepliesButton: undefined, // instance default
   maxDepthInThread: 6
 }
 

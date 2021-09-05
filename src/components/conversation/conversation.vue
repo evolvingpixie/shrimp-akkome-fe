@@ -66,13 +66,14 @@
               :profile-user-id="profileUserId"
               class="conversation-status status-fadein panel-body"
 
-              :simple="treeViewIsSimple"
+              :simple-tree="treeViewIsSimple"
               :toggle-thread-display="toggleThreadDisplay"
               :thread-display-status="threadDisplayStatus"
               :show-thread-recursively="showThreadRecursively"
               :total-reply-count="totalReplyCount"
               :total-reply-depth="totalReplyDepth"
-              :dive="(!treeViewIsSimple) ? () => diveIntoStatus(status.id) : null"
+              :show-other-replies-as-button="showOtherRepliesButtonInsideStatus"
+              :dive="() => diveIntoStatus(status.id)"
 
               :controlled-showing-tall="statusContentProperties[status.id].showingTall"
               :controlled-expanding-subject="statusContentProperties[status.id].expandingSubject"
@@ -85,7 +86,7 @@
               @toggleExpanded="toggleExpanded"
             />
             <div
-              v-if="getReplies(status.id).length > 1"
+              v-if="showOtherRepliesButtonBelowStatus && getReplies(status.id).length > 1"
               class="thread-ancestor-dive-box"
             >
               <div

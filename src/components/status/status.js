@@ -100,6 +100,7 @@ const Status = {
     'simpleTree',
     'controlledThreadDisplayStatus',
     'controlledToggleThreadDisplay',
+    'showOtherRepliesAsButton',
 
     'controlledShowingTall',
     'controlledToggleShowingTall',
