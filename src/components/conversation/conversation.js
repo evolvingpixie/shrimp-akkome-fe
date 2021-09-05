@@ -224,6 +224,9 @@ const conversation = {
       debug('toplevel =', topLevel)
       return topLevel
     },
+    otherTopLevelCount () {
+      return this.topLevel.length - 1
+    },
     showingTopLevel () {
       if (this.canDive && this.diveRoot) {
         return [this.statusMap[this.diveRoot]]
@@ -241,6 +244,11 @@ const conversation = {
     },
     diveMode () {
       return this.canDive && !!this.diveRoot
+    },
+    shouldShowAllConversationButton () {
+      // The "show all conversation" button tells the user that there exist
+      // other toplevel statuses, so do not show it if there is only a single root
+      return this.diveMode && this.topLevel.length > 1
     },
     replies () {
       let i = 1
