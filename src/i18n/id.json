@@ -222,7 +222,9 @@
         "reject_desc": "Instansi ini tidak akan menerima pesan dari instansi-instansi berikut:",
         "reject": "Tolak",
         "accept_desc": "Instansi ini hanya menerima pesan dari instansi-instansi berikut:",
-        "accept": "Terima"
+        "accept": "Terima",
+        "media_removal": "Penghapusan Media",
+        "media_removal_desc": "Instansi ini menghapus media dari postingan yang berasal dari instansi-instansi berikut:"
       },
       "federation": "Federasi",
       "mrf_policies": "Kebijakan MRF yang diaktifkan"
