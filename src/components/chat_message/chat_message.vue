@@ -71,6 +71,7 @@
               </Popover>
             </div>
             <StatusContent
+              class="message-content"
               :status="messageForStatusContent"
               :full-content="true"
             >

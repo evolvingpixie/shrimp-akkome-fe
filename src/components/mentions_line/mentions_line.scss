@@ -1,0 +1,11 @@
+.MentionsLine {
+  .showMoreLess {
+    white-space: normal;
+    color: var(--link);
+  }
+
+  .fullExtraMentions,
+  .mention-link:not(:last-child) {
+    margin-right: 0.25em;
+  }
+}

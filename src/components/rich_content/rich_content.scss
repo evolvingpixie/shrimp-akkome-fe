@@ -1,0 +1,64 @@
+.RichContent {
+  blockquote {
+    margin: 0.2em 0 0.2em 2em;
+    font-style: italic;
+  }
+
+  pre {
+    overflow: auto;
+  }
+
+  code,
+  samp,
+  kbd,
+  var,
+  pre {
+    font-family: var(--postCodeFont, monospace);
+  }
+
+  p {
+    margin: 0 0 1em 0;
+  }
+
+  p:last-child {
+    margin: 0 0 0 0;
+  }
+
+  h1 {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    margin: 1.4em 0;
+  }
+
+  h2 {
+    font-size: 1.1em;
+    margin: 1em 0;
+  }
+
+  h3 {
+    font-size: 1em;
+    margin: 1.2em 0;
+  }
+
+  h4 {
+    margin: 1.1em 0;
+  }
+
+  .img {
+    display: inline-block;
+  }
+
+  .emoji {
+    display: inline-block;
+    width: var(--emoji-size, 32px);
+    height: var(--emoji-size, 32px);
+  }
+
+  .img,
+  video {
+    max-width: 100%;
+    max-height: 400px;
+    vertical-align: middle;
+    object-fit: contain;
+  }
+}
