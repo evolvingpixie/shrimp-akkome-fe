@@ -633,7 +633,10 @@
     "useStreamingApi": "Nhận tút và thông báo theo thời gian thực",
     "theme_help_v2_1": "Bạn cũng có thể xóa hết màu thành phần và làm theme trong suốt, chọn nút \"Xóa hết\".",
     "theme_help_v2_2": "Các biểu tượng bên dưới các mục có độ tương phản nền/văn bản, hãy rê chuột qua để biết thông tin chi tiết. Xin lưu ý rằng, khi sử dụng các độ tương phản trong suốt có thể khiến đọc chữ không ra.",
-    "enable_web_push_notifications": "Cho phép thông báo đẩy trên web"
+    "enable_web_push_notifications": "Cho phép thông báo đẩy trên web",
+    "mentions_new_style": "Lượt nhắc màu mè",
+    "mentions_new_place": "Đặt lượt nhắc ở dòng riêng",
+    "always_show_post_button": "Luôn hiện nút viết tút mới"
   },
   "errors": {
     "storage_unavailable": "Pleroma không thể truy cập lưu trữ trình duyệt. Thông tin đăng nhập và những thiết lập tạm thời sẽ bị mất. Hãy cho phép cookies."
@@ -712,7 +715,10 @@
     "expand": "Xem nguyên văn",
     "favorites": "Thích",
     "delete_confirm": "Bạn có chắc chắn muốn xóa tút này?",
-    "show_full_subject": "Hiện đầy đủ tiêu đề"
+    "show_full_subject": "Hiện đầy đủ tiêu đề",
+    "you": "(Bạn)",
+    "mentions": "Lượt nhắc",
+    "plus_more": "+{number} nhiều hơn"
   },
   "user_card": {
     "approve": "Chấp nhận",
