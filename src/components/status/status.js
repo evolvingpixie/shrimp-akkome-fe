@@ -9,9 +9,12 @@ import UserAvatar from '../user_avatar/user_avatar.vue'
 import AvatarList from '../avatar_list/avatar_list.vue'
 import Timeago from '../timeago/timeago.vue'
 import StatusContent from '../status_content/status_content.vue'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 import StatusPopover from '../status_popover/status_popover.vue'
 import UserListPopover from '../user_list_popover/user_list_popover.vue'
 import EmojiReactions from '../emoji_reactions/emoji_reactions.vue'
+import MentionsLine from 'src/components/mentions_line/mentions_line.vue'
+import MentionLink from 'src/components/mention_link/mention_link.vue'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
 import { muteWordHits } from '../../services/status_parser/status_parser.js'
@@ -68,7 +71,10 @@ const Status = {
     StatusPopover,
     UserListPopover,
     EmojiReactions,
-    StatusContent
+    StatusContent,
+    RichContent,
+    MentionLink,
+    MentionsLine
   },
   props: [
     'statusoid',
@@ -92,7 +98,8 @@ const Status = {
       userExpanded: false,
       mediaPlaying: [],
       suspendable: true,
-      error: null
+      error: null,
+      headTailLinks: null
     }
   },
   computed: {
@@ -132,12 +139,15 @@ const Status = {
     },
     replyProfileLink () {
       if (this.isReply) {
-        return this.generateUserProfileLink(this.status.in_reply_to_user_id, this.replyToName)
+        const user = this.$store.getters.findUser(this.status.in_reply_to_user_id)
+        // FIXME Why user not found sometimes???
+        return user ? user.statusnet_profile_url : 'NOT_FOUND'
       }
     },
     retweet () { return !!this.statusoid.retweeted_status },
+    retweeterUser () { return this.statusoid.user },
     retweeter () { return this.statusoid.user.name || this.statusoid.user.screen_name_ui },
-    retweeterHtml () { return this.statusoid.user.name_html },
+    retweeterHtml () { return this.statusoid.user.name },
     retweeterProfileLink () { return this.generateUserProfileLink(this.statusoid.user.id, this.statusoid.user.screen_name) },
     status () {
       if (this.retweet) {
@@ -155,6 +165,25 @@ const Status = {
     },
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
+    },
+    mentionsLine () {
+      if (!this.headTailLinks) return []
+      const writtenSet = new Set(this.headTailLinks.writtenMentions.map(_ => _.url))
+      return this.status.attentions.filter(attn => {
+        // no reply user
+        return attn.id !== this.status.in_reply_to_user_id &&
+          // no self-replies
+          attn.statusnet_profile_url !== this.status.user.statusnet_profile_url &&
+          // don't include if mentions is written
+          !writtenSet.has(attn.statusnet_profile_url)
+      }).map(attn => ({
+        url: attn.statusnet_profile_url,
+        content: attn.screen_name,
+        userId: attn.id
+      }))
+    },
+    hasMentionsLine () {
+      return this.mentionsLine.length > 0
     },
     muted () {
       if (this.statusoid.user.id === this.currentUser.id) return false
@@ -303,6 +332,9 @@ const Status = {
     },
     removeMediaPlaying (id) {
       this.mediaPlaying = this.mediaPlaying.filter(mediaId => mediaId !== id)
+    },
+    setHeadTailLinks (headTailLinks) {
+      this.headTailLinks = headTailLinks
     }
   },
   watch: {

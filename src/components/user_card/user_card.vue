@@ -38,21 +38,12 @@
           </router-link>
           <div class="user-summary">
             <div class="top-line">
-              <!-- eslint-disable vue/no-v-html -->
-              <div
-                v-if="user.name_html"
+              <RichContent
                 :title="user.name"
                 class="user-name"
-                v-html="user.name_html"
+                :html="user.name"
+                :emoji="user.emoji"
               />
-              <!-- eslint-enable vue/no-v-html -->
-              <div
-                v-else
-                :title="user.name"
-                class="user-name"
-              >
-                {{ user.name }}
-              </div>
               <button
                 v-if="!isOtherUser && user.is_local"
                 class="button-unstyled edit-profile-button"
@@ -65,7 +56,7 @@
                   :title="$t('user_card.edit_profile')"
                 />
               </button>
-              <button
+              <a
                 v-if="isOtherUser && !user.is_local"
                 :href="user.statusnet_profile_url"
                 target="_blank"
@@ -75,7 +66,7 @@
                   class="icon"
                   icon="external-link-alt"
                 />
-              </button>
+              </a>
               <AccountActions
                 v-if="isOtherUser && loggedIn"
                 :user="user"
@@ -267,20 +258,12 @@
           <span>{{ hideFollowersCount ? $t('user_card.hidden') : user.followers_count }}</span>
         </div>
       </div>
-      <!-- eslint-disable vue/no-v-html -->
-      <p
-        v-if="!hideBio && user.description_html"
+      <RichContent
+        v-if="!hideBio"
         class="user-card-bio"
-        @click.prevent="linkClicked"
-        v-html="user.description_html"
+        :html="user.description_html"
+        :emoji="user.emoji"
       />
-      <!-- eslint-enable vue/no-v-html -->
-      <p
-        v-else-if="!hideBio"
-        class="user-card-bio"
-      >
-        {{ user.description }}
-      </p>
     </div>
   </div>
 </template>
@@ -293,9 +276,10 @@
 .user-card {
   position: relative;
 
-  &:hover .Avatar {
+  &:hover {
     --_still-image-img-visibility: visible;
     --_still-image-canvas-visibility: hidden;
+    --_still-image-label-visibility: hidden;
   }
 
   .panel-heading {
@@ -339,12 +323,12 @@
     }
   }
 
-  p {
-    margin-bottom: 0;
-  }
-
   &-bio {
     text-align: center;
+    display: block;
+    line-height: 18px;
+    padding: 1em;
+    margin: 0;
 
     a {
       color: $fallback--link;
@@ -356,11 +340,6 @@
       vertical-align: middle;
       max-width: 100%;
       max-height: 400px;
-
-      &.emoji {
-        width: 32px;
-        height: 32px;
-      }
     }
   }
 
@@ -462,13 +441,6 @@
     // big one
     z-index: 1;
 
-    img {
-      width: 26px;
-      height: 26px;
-      vertical-align: middle;
-      object-fit: contain
-    }
-
     .top-line {
       display: flex;
     }
@@ -481,12 +453,7 @@
     margin-right: 1em;
     font-size: 15px;
 
-    img {
-      object-fit: contain;
-      height: 16px;
-      width: 16px;
-      vertical-align: middle;
-    }
+    --emoji-size: 14px;
   }
 
   .bottom-line {

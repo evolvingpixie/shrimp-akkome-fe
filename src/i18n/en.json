@@ -259,6 +259,8 @@
     "security": "Security",
     "setting_changed": "Setting is different from default",
     "enter_current_password_to_confirm": "Enter your current password to confirm your identity",
+    "mentions_new_style": "Fancier mention links",
+    "mentions_new_place": "Put mentions on a separate line",
     "mfa": {
       "otp": "OTP",
       "setup_otp": "Setup OTP",
@@ -350,6 +352,7 @@
     "hide_isp": "Hide instance-specific panel",
     "hide_shoutbox": "Hide instance shoutbox",
     "right_sidebar": "Show sidebar on the right side",
+    "always_show_post_button": "Always show floating New Post button",
     "hide_wallpaper": "Hide instance wallpaper",
     "preload_images": "Preload images",
     "use_one_click_nsfw": "Open NSFW attachments with just one click",
@@ -698,6 +701,7 @@
     "unbookmark": "Unbookmark",
     "delete_confirm": "Do you really want to delete this status?",
     "reply_to": "Reply to",
+    "mentions": "Mentions",
     "replies_list": "Replies:",
     "mute_conversation": "Mute conversation",
     "unmute_conversation": "Unmute conversation",
@@ -712,7 +716,9 @@
     "hide_content": "Hide content",
     "status_deleted": "This post was deleted",
     "nsfw": "NSFW",
-    "expand": "Expand"
+    "expand": "Expand",
+    "you": "(You)",
+    "plus_more": "+{number} more"
   },
   "user_card": {
     "approve": "Approve",

@@ -1,0 +1,91 @@
+.MentionLink {
+  position: relative;
+  white-space: normal;
+  display: inline-block;
+  color: var(--link);
+
+  & .new,
+  & .original {
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  .full {
+    position: absolute;
+    display: inline-block;
+    pointer-events: none;
+    opacity: 0;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    word-wrap: normal;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+    z-index: 1;
+    margin-top: 0.25em;
+    padding: 0.5em;
+    user-select: all;
+  }
+
+  .short {
+    user-select: none;
+  }
+
+  & .short,
+  & .full {
+    white-space: nowrap;
+  }
+
+  .new {
+    &.-you {
+      & .shortName,
+      & .full {
+        font-weight: 600;
+      }
+    }
+
+    .at {
+      color: var(--link);
+      opacity: 0.8;
+      display: inline-block;
+      height: 50%;
+      line-height: 1;
+      padding: 0 0.1em;
+      vertical-align: -25%;
+      margin: 0;
+    }
+
+    &.-striped {
+      & .userName,
+      & .full {
+        background-image:
+          repeating-linear-gradient(
+            135deg,
+            var(--____highlight-tintColor),
+            var(--____highlight-tintColor) 5px,
+            var(--____highlight-tintColor2) 5px,
+            var(--____highlight-tintColor2) 10px
+          );
+      }
+    }
+
+    &.-solid {
+      & .userName,
+      & .full {
+        background-image: linear-gradient(var(--____highlight-tintColor2), var(--____highlight-tintColor2));
+      }
+    }
+
+    &.-side {
+      & .userName,
+      & .userNameFull {
+        box-shadow: 0 -5px 3px -4px inset var(--____highlight-solidColor);
+      }
+    }
+  }
+
+  &:hover .new .full {
+    opacity: 1;
+    pointer-events: initial;
+  }
+}

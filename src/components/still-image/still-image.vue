@@ -30,7 +30,7 @@
   position: relative;
   line-height: 0;
   overflow: hidden;
-  display: flex;
+  display: inline-flex;
   align-items: center;
 
   canvas {
@@ -47,12 +47,13 @@
 
   img {
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     object-fit: contain;
   }
 
   &.animated {
     &::before {
+      zoom: var(--_still_image-label-scale, 1);
       content: 'gif';
       position: absolute;
       line-height: 10px;

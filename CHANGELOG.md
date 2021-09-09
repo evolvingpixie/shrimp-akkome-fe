@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.4.0] - 2021-08-08
 ### Added
 - Added a quick settings to timeline header for easier access
 - Added option to mark posts as sensitive by default
@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Implemented user option to hide floating shout panel
 - Implemented "edit profile" button if viewing own profile which opens profile settings
 - Added Apply and Reset buttons to the bottom of theme tab to minimize UI travel
+- Implemented user option to always show floating New Post button (normally mobile-only)
 
 ### Fixed
 - Fixed follow request count showing in the wrong location in mobile view
