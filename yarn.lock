@@ -916,9 +916,10 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-2.0.0.tgz#63da3e459147cebb0a8d58eed81d6071db9f5973"
   integrity sha512-N3VKw7KzRfOm8hShUVldpinlm13HpvLBQgT63QS+aCrIRLwjoEUXY5Rcmttbfb6HkzZaeqjLqd/aZCQ53UjQpg==
 
-"@kazvmoe-infra/pinch-zoom-element@https://lily.kazv.moe/infra/pinch-zoom-element.git":
-  version "1.1.1"
-  resolved "https://lily.kazv.moe/infra/pinch-zoom-element.git#b5d2e9fb41231e1bff12058bbfc55df05cfdc1eb"
+"@kazvmoe-infra/pinch-zoom-element@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@kazvmoe-infra/pinch-zoom-element/-/pinch-zoom-element-1.2.0.tgz#eb3ca34c53b4410c689d60aca02f4a497ce84aba"
+  integrity sha512-HBrhH5O/Fsp2bB7EGTXzCsBAVcMjknSagKC5pBdGpKsF8meHISR0kjDIdw4YoE0S+0oNMwJ6ZUZyIBrdywxPPw==
   dependencies:
     pointer-tracker "^2.0.3"
 
