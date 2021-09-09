@@ -103,7 +103,6 @@ const MediaModal = {
       this.$refs.pinchZoom.setTransform({ scale: 1, x: offsets[0], y: 0 })
     },
     handleSwipeEnd (sign) {
-      console.log('handleSwipeEnd:', sign)
       this.$refs.pinchZoom.setTransform({ scale: 1, x: 0, y: 0 })
       if (sign > 0) {
         this.goNext()

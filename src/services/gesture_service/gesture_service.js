@@ -25,9 +25,6 @@ const project = (v1, v2) => {
   return [scalar * v2[0], scalar * v2[1]]
 }
 
-// const debug = console.log
-const debug = () => {}
-
 // direction: either use the constants above or an arbitrary 2d vector.
 // threshold: how many Px to move from touch origin before checking if the
 //    callback should be called.
@@ -86,7 +83,7 @@ class SwipeAndClickGesture {
     swipelessClickCallback,
     threshold = 30, perpendicularTolerance = 1.0
   }) {
-    const nop = () => { debug('Warning: Not implemented') }
+    const nop = () => {}
     this.direction = direction
     this.swipePreviewCallback = swipePreviewCallback || nop
     this.swipeEndCallback = swipeEndCallback || nop
@@ -106,8 +103,6 @@ class SwipeAndClickGesture {
   }
 
   start (event) {
-    debug('start() called', event)
-
     // Only handle left click
     if (event.button !== BUTTON_LEFT) {
       return
@@ -115,7 +110,6 @@ class SwipeAndClickGesture {
 
     this._startPos = pointerEventCoord(event)
     this._pointerId = event.pointerId
-    debug('start pos:', this._startPos)
     this._swiping = true
     this._swiped = false
   }
@@ -132,7 +126,6 @@ class SwipeAndClickGesture {
   }
 
   cancel (event) {
-    debug('cancel called')
     if (!this._swiping || this._pointerId !== event.pointerId) {
       return
     }
@@ -142,29 +135,20 @@ class SwipeAndClickGesture {
 
   end (event) {
     if (!this._swiping) {
-      debug('not swiping')
       return
     }
 
     if (this._pointerId !== event.pointerId) {
-      debug('pointer id does not match')
       return
     }
 
     this._swiping = false
-
-    debug('end: is swipe event')
-
-    debug('button = ', event.button)
 
     // movement too small
     const coord = pointerEventCoord(event)
     const delta = deltaCoord(this._startPos, coord)
 
     const sign = (() => {
-      debug(
-        'threshold = ', this.threshold(),
-        'vector len =', vectorLength(delta))
       if (vectorLength(delta) < this.threshold()) {
         return 0
       }
