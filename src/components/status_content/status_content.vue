@@ -8,6 +8,12 @@
       :status="status"
       :compact="compact"
       :single-line="singleLine"
+      :showing-tall="showingTall"
+      :expanding-subject="expandingSubject"
+      :showing-long-subject="showingLongSubject"
+      :toggle-showing-tall="toggleShowingTall"
+      :toggle-expanding-subject="toggleExpandingSubject"
+      :toggle-showing-long-subject="toggleShowingLongSubject"
       @parseReady="$emit('parseReady', $event)"
     >
       <div v-if="status.poll && status.poll.options && !compact">

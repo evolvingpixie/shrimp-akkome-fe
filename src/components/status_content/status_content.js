@@ -116,12 +116,8 @@ const StatusContent = {
     toggleExpandingSubject () {
       controlledOrUncontrolledToggle(this, 'expandingSubject')
     },
-    toggleShowMore () {
-      if (this.mightHideBecauseTall) {
-        this.toggleShowingTall()
-      } else if (this.mightHideBecauseSubject) {
-        this.toggleExpandingSubject()
-      }
+    toggleShowingLongSubject () {
+      controlledOrUncontrolledToggle(this, 'showingLongSubject')
     },
     setMedia () {
       const attachments = this.attachmentSize === 'hide' ? this.status.attachments : this.galleryAttachments
