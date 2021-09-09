@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Implemented user option to change sidebar position to the right side
 - Implemented user option to hide floating shout panel
 - Implemented "edit profile" button if viewing own profile which opens profile settings
+- Implemented user option to always show floating New Post button (normally mobile-only)
 
 ### Fixed
 - Fixed follow request count showing in the wrong location in mobile view

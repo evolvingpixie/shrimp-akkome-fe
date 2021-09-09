@@ -352,6 +352,7 @@
     "hide_isp": "Hide instance-specific panel",
     "hide_shoutbox": "Hide instance shoutbox",
     "right_sidebar": "Show sidebar on the right side",
+    "always_show_post_button": "Always show floating New Post button",
     "hide_wallpaper": "Hide instance wallpaper",
     "preload_images": "Preload images",
     "use_one_click_nsfw": "Open NSFW attachments with just one click",
