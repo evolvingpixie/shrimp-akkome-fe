@@ -36,19 +36,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Attachments are truncated just like post contents
 - Media modal now also displays description and counter position in gallery (i.e. 1/5)
 - Ability to rearrange order of attachments when uploading
+- Enabled users to zoom and pan images in media viewer with mouse and touch
+
 
 ## [2.4.2] - 2022-01-09
-### Added 
+### Added
 - Added Apply and Reset buttons to the bottom of theme tab to minimize UI travel
 - Implemented user option to always show floating New Post button (normally mobile-only)
-- Display reasons for instance specific policies 
+- Display reasons for instance specific policies
 - Added functionality to cancel follow request
 
 ### Fixed
 - Fixed link to external profile not working on user profiles
-- Fixed mobile shoutbox display 
+- Fixed mobile shoutbox display
 - Fixed favicon badge not working in Chrome
-- Escape html more properly in subject/display name 
+- Escape html more properly in subject/display name
 
 
 ## [2.4.0] - 2021-08-08
