@@ -5,6 +5,7 @@
     @backdropClicked="hide"
   >
     <SwipeClick
+      v-if="type === 'image'"
       class="modal-image-container"
       :direction="swipeDirection"
       :threshold="swipeThreshold"
@@ -23,7 +24,6 @@
         :reset-to-min-scale-limit="pinchZoomScaleResetLimit"
       >
         <img
-          v-if="type === 'image'"
           :class="{ loading }"
           class="modal-image"
           :src="currentMedia.url"
