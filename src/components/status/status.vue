@@ -352,7 +352,7 @@
               :title="$tc('status.ancestor_follow', replies.length - 1, { numReplies: replies.length - 1 })"
               @click.prevent="dive"
             >
-              {{ $t('status.replies_list') }}
+              {{ $tc('status.replies_list_with_others', replies.length - 1, { numReplies: replies.length - 1 }) }}
             </button>
             <span
               v-else
