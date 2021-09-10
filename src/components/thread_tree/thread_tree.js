@@ -11,9 +11,6 @@ library.add(
   faAngleDoubleRight
 )
 
-// const debug = console.log
-const debug = () => {}
-
 const ThreadTree = {
   components: {
     Status
@@ -62,8 +59,6 @@ const ThreadTree = {
       }, {})
     },
     currentReplies () {
-      debug('status:', this.status)
-      debug('getReplies:', this.getReplies(this.status.id))
       return this.getReplies(this.status.id).map(({ id }) => this.statusById(id))
     },
     threadShowing () {

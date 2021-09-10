@@ -15,9 +15,6 @@ library.add(
   faChevronLeft
 )
 
-// const debug = console.log
-const debug = () => {}
-
 const sortById = (a, b) => {
   const idA = a.type === 'retweet' ? a.retweeted_status.id : a.id
   const idB = b.type === 'retweet' ? b.retweeted_status.id : b.id
@@ -165,8 +162,6 @@ const conversation = {
         forest: {}
       })
 
-      debug('threads = ', threads)
-
       const walk = (forest, topLevel, depth = 0, processed = {}) => topLevel.map(id => {
         if (processed[id]) {
           return []
@@ -192,7 +187,6 @@ const conversation = {
         }, {})
     },
     totalReplyCount () {
-      debug('replyIds=', this.replyIds)
       const sizes = {}
       const subTreeSizeFor = (id) => {
         if (sizes[id]) {
@@ -202,7 +196,6 @@ const conversation = {
         return sizes[id]
       }
       this.conversation.map(k => k.id).map(subTreeSizeFor)
-      debug('totalReplyCount=', sizes)
       return Object.keys(sizes).reduce((res, id) => {
         res[id] = sizes[id] - 1 // exclude itself
         return res
@@ -224,7 +217,6 @@ const conversation = {
       }, {})
     },
     depths () {
-      debug('threadTree', this.threadTree)
       return this.threadTree.reduce((a, k) => {
         a[k.id] = k.depth
         return a
@@ -233,7 +225,6 @@ const conversation = {
     topLevel () {
       const topLevel = this.conversation.reduce((tl, cur) =>
         tl.filter(k => this.getReplies(cur.id).map(v => v.id).indexOf(k.id) === -1), this.conversation)
-      debug('toplevel =', topLevel)
       return topLevel
     },
     otherTopLevelCount () {
@@ -409,14 +400,8 @@ const conversation = {
       }
     },
     toggleThreadDisplay (id) {
-      const depth = this.depths[id]
-      debug('depth = ', depth)
-      debug(
-        'threadDisplayStatus = ', this.threadDisplayStatus,
-        'threadDisplayStatusObject = ', this.threadDisplayStatusObject)
       const curStatus = this.threadDisplayStatus[id]
       const nextStatus = curStatus === 'showing' ? 'hidden' : 'showing'
-      debug('toggling', id, 'to', nextStatus)
       this.setThreadDisplay(id, nextStatus)
     },
     setThreadDisplayRecursively (id, nextStatus) {
