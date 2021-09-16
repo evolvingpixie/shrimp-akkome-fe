@@ -48,6 +48,13 @@ const ThreadTree = {
     dive: Function
   },
   computed: {
+    suspendable () {
+      const selfSuspendable = this.$refs.statusComponent ? this.$refs.statusComponent.suspendable : true
+      if (this.$refs.childComponent) {
+        return selfSuspendable && this.$refs.childComponent.every(s => s.suspendable)
+      }
+      return selfSuspendable
+    },
     reverseLookupTable () {
       return this.conversation.reduce((table, status, index) => {
         table[status.id] = index

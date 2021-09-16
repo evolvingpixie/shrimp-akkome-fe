@@ -101,12 +101,15 @@ const conversation = {
     showOtherRepliesButtonInsideStatus () {
       return this.otherRepliesButtonPosition === 'inside'
     },
-    hideStatus () {
+    suspendable () {
       if (this.$refs.statusComponent && this.$refs.statusComponent[0]) {
-        return this.virtualHidden && this.$refs.statusComponent[0].suspendable
+        return this.$refs.statusComponent.every(s => s.suspendable)
       } else {
-        return this.virtualHidden
+        return true
       }
+    },
+    hideStatus () {
+      return this.virtualHidden && this.suspendable
     },
     status () {
       return this.$store.state.statuses.allStatusesObject[this.statusId]
@@ -243,7 +246,6 @@ const conversation = {
       return this.topLevel
     },
     diveRoot () {
-      (() => {})(this.conversation)
       const statusId = this.inlineDivePosition || this.statusId
       const isTopLevel = !this.parentOf(statusId)
       return isTopLevel ? null : statusId
@@ -257,7 +259,10 @@ const conversation = {
     shouldShowAllConversationButton () {
       // The "show all conversation" button tells the user that there exist
       // other toplevel statuses, so do not show it if there is only a single root
-      return this.diveMode && this.topLevel.length > 1
+      return this.isTreeView && this.isExpanded && this.diveMode && this.topLevel.length > 1
+    },
+    shouldShowAncestors () {
+      return this.isTreeView && this.isExpanded && this.ancestorsOf(this.diveRoot).length
     },
     replies () {
       let i = 1

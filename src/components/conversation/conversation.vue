@@ -43,7 +43,7 @@
         class="thread-body"
       >
         <div
-          v-if="ancestorsOf(diveRoot).length"
+          v-if="shouldShowAncestors"
           class="thread-ancestors"
         >
           <div
