@@ -99,6 +99,10 @@ const conversation = {
       return this.otherRepliesButtonPosition === 'inside'
     },
     suspendable () {
+      if (this.isTreeView) {
+        return Object.entries(this.statusContentProperties)
+          .every(([k, prop]) => !prop.replying && prop.mediaPlaying.length === 0)
+      }
       if (this.$refs.statusComponent && this.$refs.statusComponent[0]) {
         return this.$refs.statusComponent.every(s => s.suspendable)
       } else {
@@ -303,14 +307,21 @@ const conversation = {
       return this.conversation.reduce((a, k) => {
         const id = k.id
         const props = (() => {
-          if (this.statusContentPropertiesObject[id]) {
-            return this.statusContentPropertiesObject[id]
-          }
-          return {
+          const def = {
             showingTall: false,
             expandingSubject: false,
-            showingLongSubject: false
+            showingLongSubject: false,
+            isReplying: false,
+            mediaPlaying: []
           }
+
+          if (this.statusContentPropertiesObject[id]) {
+            return {
+              ...def,
+              ...this.statusContentPropertiesObject[id]
+            }
+          }
+          return def
         })()
 
         a[id] = props

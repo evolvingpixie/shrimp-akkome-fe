@@ -78,9 +78,13 @@
               :controlled-showing-tall="statusContentProperties[status.id].showingTall"
               :controlled-expanding-subject="statusContentProperties[status.id].expandingSubject"
               :controlled-showing-long-subject="statusContentProperties[status.id].showingLongSubject"
+              :controlled-replying="statusContentProperties[status.id].replying"
+              :controlled-media-playing="statusContentProperties[status.id].mediaPlaying"
               :controlled-toggle-showing-tall="() => toggleStatusContentProperty(status.id, 'showingTall')"
               :controlled-toggle-expanding-subject="() => toggleStatusContentProperty(status.id, 'expandingSubject')"
               :controlled-toggle-showing-long-subject="() => toggleStatusContentProperty(status.id, 'showingLongSubject')"
+              :controlled-toggle-replying="() => toggleStatusContentProperty(status.id, 'replying')"
+              :controlled-set-media-playing="(newVal) => toggleStatusContentProperty(status.id, 'mediaPlaying', newVal)"
 
               @goto="setHighlight"
               @toggleExpanded="toggleExpanded"

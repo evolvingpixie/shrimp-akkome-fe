@@ -22,9 +22,13 @@
       :controlled-showing-tall="currentProp.showingTall"
       :controlled-expanding-subject="currentProp.expandingSubject"
       :controlled-showing-long-subject="currentProp.showingLongSubject"
+      :controlled-replying="currentProp.replying"
+      :controlled-media-playing="currentProp.mediaPlaying"
       :controlled-toggle-showing-tall="() => toggleCurrentProp('showingTall')"
       :controlled-toggle-expanding-subject="() => toggleCurrentProp('expandingSubject')"
       :controlled-toggle-showing-long-subject="() => toggleCurrentProp('showingLongSubject')"
+      :controlled-toggle-replying="() => toggleCurrentProp('replying')"
+      :controlled-set-media-playing="(newVal) => setCurrentProp('mediaPlaying', newVal)"
       :dive="dive ? () => dive(status.id) : undefined"
 
       @goto="setHighlight"

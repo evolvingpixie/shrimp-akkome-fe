@@ -61,6 +61,41 @@ library.add(
   faAngleDoubleRight
 )
 
+const camelCase = name => name.charAt(0).toUpperCase() + name.slice(1)
+
+const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const controlledName = `controlled${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  res[name] = function () {
+    return this[toggle] ? this[controlledName] : this[uncontrolledName]
+  }
+  return res
+}, {})
+
+const controlledOrUncontrolledToggle = (obj, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  if (obj[toggle]) {
+    obj[toggle]()
+  } else {
+    obj[uncontrolledName] = !obj[uncontrolledName]
+  }
+}
+
+const controlledOrUncontrolledSet = (obj, name, val) => {
+  const camelized = camelCase(name)
+  const set = `controlledSet${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  if (obj[set]) {
+    obj[set](val)
+  } else {
+    obj[uncontrolledName] = val
+  }
+}
+
 const Status = {
   name: 'Status',
   components: {
@@ -108,20 +143,25 @@ const Status = {
     'controlledToggleExpandingSubject',
     'controlledShowingLongSubject',
     'controlledToggleShowingLongSubject',
+    'controlledReplying',
+    'controlledToggleReplying',
+    'controlledMediaPlaying',
+    'controlledSetMediaPlaying',
     'dive'
   ],
   data () {
     return {
-      replying: false,
+      uncontrolledReplying: false,
       unmuted: false,
       userExpanded: false,
-      mediaPlaying: [],
+      uncontrolledMediaPlaying: [],
       suspendable: true,
       error: null,
       headTailLinks: null
     }
   },
   computed: {
+    ...controlledOrUncontrolledGetters(['replying', 'mediaPlaying']),
     muteWords () {
       return this.mergedConfig.muteWords
     },
@@ -351,7 +391,7 @@ const Status = {
       this.error = undefined
     },
     toggleReplying () {
-      this.replying = !this.replying
+      controlledOrUncontrolledToggle(this, 'replying')
     },
     gotoOriginal (id) {
       if (this.inConversation) {
@@ -371,10 +411,10 @@ const Status = {
       return generateProfileLink(id, name, this.$store.state.instance.restrictedNicknames)
     },
     addMediaPlaying (id) {
-      this.mediaPlaying.push(id)
+      controlledOrUncontrolledSet(this, 'mediaPlaying', this.mediaPlaying.concat(id))
     },
     removeMediaPlaying (id) {
-      this.mediaPlaying = this.mediaPlaying.filter(mediaId => mediaId !== id)
+      controlledOrUncontrolledSet(this, 'mediaPlaying', this.mediaPlaying.filter(mediaId => mediaId !== id))
     },
     setHeadTailLinks (headTailLinks) {
       this.headTailLinks = headTailLinks
