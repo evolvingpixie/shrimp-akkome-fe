@@ -439,9 +439,6 @@ const Status = {
       }
     }
   },
-  mounted () {
-    this.scrollIfHighlighted(this.highlight)
-  },
   watch: {
     'highlight': function (id) {
       this.scrollIfHighlighted(id)

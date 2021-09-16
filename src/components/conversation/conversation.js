@@ -469,7 +469,24 @@ const conversation = {
       } else {
         this.inlineDivePosition = id
       }
-      this.setHighlight(id)
+      // Because the conversation can be unmounted when out of sight
+      // and mounted again when it comes into sight,
+      // the `mounted` or `created` function in `status` should not
+      // contain scrolling calls, as we do not want the page to jump
+      // when we scroll with an expanded conversation.
+      //
+      // Now the method is to rely solely on the `highlight` watcher
+      // in `status` components.
+      // In linear views, all statuses are rendered at all times, but
+      // in tree views, it is possible that a change in active status
+      // removes and adds status components (e.g. an originally child
+      // status becomes an ancestor status, and thus they will be
+      // different).
+      // Here, let the components be rendered first, in order to trigger
+      // the `highlight` watcher.
+      this.$nextTick(() => {
+        this.setHighlight(id)
+      })
     },
     goToCurrent () {
       this.tryScrollTo(this.diveRoot || this.topLevel[0].id)
