@@ -492,7 +492,9 @@
     "votes_count": "{count} 표 | {count} 표",
     "people_voted_count": "{count} 명 투표 | {count} 명 투표",
     "option": "선택지",
-    "add_option": "선택지 추가"
+    "add_option": "선택지 추가",
+    "expired": "투표는 {0} 전에 마감되었습니다",
+    "expires_in": "투표는 {0}에 마감됩니다"
   },
   "media_modal": {
     "next": "다음",
