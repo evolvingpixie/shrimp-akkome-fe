@@ -43,7 +43,10 @@
     "role": {
       "moderator": "モデレーター",
       "admin": "管理者"
-    }
+    },
+    "flash_security": "Flashコンテンツが任意の命令を実行させることにより、コンピューターが危険にさらされることがあります。",
+    "flash_fail": "Flashコンテンツの読み込みに失敗しました。コンソールで詳細を確認できます。",
+    "flash_content": "（試験的機能）クリックしてFlashコンテンツを再生します。"
   },
   "image_cropper": {
     "crop_picture": "画像を切り抜く",
@@ -586,14 +589,18 @@
     "word_filter": "単語フィルタ",
     "file_export_import": {
       "errors": {
-        "invalid_file": "これはPleromaの設定をバックアップしたファイルではありません。"
+        "invalid_file": "これはPleromaの設定をバックアップしたファイルではありません。",
+        "file_slightly_new": "ファイルのマイナーバージョンが異なり、一部の設定が読み込まれないことがあります"
       },
       "restore_settings": "設定をファイルから復元する",
       "backup_settings_theme": "テーマを含む設定をファイルにバックアップする",
       "backup_settings": "設定をファイルにバックアップする",
       "backup_restore": "設定をバックアップ"
     },
-    "save": "変更を保存"
+    "save": "変更を保存",
+    "hide_shoutbox": "Shoutboxを表示しない",
+    "always_show_post_button": "投稿ボタンを常に表示",
+    "right_sidebar": "サイドバーを右に表示"
   },
   "time": {
     "day": "{0}日",
@@ -641,7 +648,9 @@
     "no_more_statuses": "これで終わりです",
     "no_statuses": "ステータスはありません",
     "reload": "再読み込み",
-    "error": "タイムラインの読み込みに失敗しました: {0}"
+    "error": "タイムラインの読み込みに失敗しました: {0}",
+    "socket_reconnected": "リアルタイム接続が確立されました",
+    "socket_broke": "コード{0}によりリアルタイム接続が切断されました"
   },
   "status": {
     "favorites": "お気に入り",
@@ -668,7 +677,10 @@
     "copy_link": "リンクをコピー",
     "status_unavailable": "利用できません",
     "unbookmark": "ブックマーク解除",
-    "bookmark": "ブックマーク"
+    "bookmark": "ブックマーク",
+    "mentions": "メンション",
+    "you": "（あなた）",
+    "plus_more": "ほか{number}件"
   },
   "user_card": {
     "approve": "受け入れ",
@@ -735,7 +747,8 @@
       "striped": "背景を縞模様にする",
       "side": "端に線を付ける",
       "disabled": "強調しない"
-    }
+    },
+    "edit_profile": "プロフィールを編集"
   },
   "user_profile": {
     "timeline_title": "ユーザータイムライン",
