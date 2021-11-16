@@ -55,8 +55,9 @@ export const parseUser = (data) => {
     }
 
     output.emoji = data.emojis
-    output.name = data.display_name
-    output.name_html = escape(data.display_name)
+    output.name = escape(data.display_name)
+    output.name_html = output.name
+    output.name_unescaped = data.display_name
 
     output.description = data.note
     // TODO cleanup this shit, output.description is overriden with source data
