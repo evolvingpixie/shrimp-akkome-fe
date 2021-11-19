@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <div
     v-if="!hideStatus"
     class="Status"
@@ -89,8 +88,12 @@
             <router-link
               v-if="retweeterHtml"
               :to="retweeterProfileLink"
-              v-html="retweeterHtml"
-            />
+            >
+              <RichContent
+                :html="retweeterHtml"
+                :emoji="retweeterUser.emoji"
+              />
+            </router-link>
             <router-link
               v-else
               :to="retweeterProfileLink"
@@ -145,8 +148,12 @@
                   v-if="status.user.name_html"
                   class="status-username"
                   :title="status.user.name"
-                  v-html="status.user.name_html"
-                />
+                >
+                  <RichContent
+                    :html="status.user.name"
+                    :emoji="status.user.emoji"
+                  />
+                </h4>
                 <h4
                   v-else
                   class="status-username"
@@ -214,11 +221,13 @@
                 </button>
               </span>
             </div>
-
-            <div class="heading-reply-row">
-              <div
+            <div
+              v-if="isReply || hasMentionsLine"
+              class="heading-reply-row"
+            >
+              <span
                 v-if="isReply"
-                class="reply-to-and-accountname"
+                class="glued-label"
               >
                 <StatusPopover
                   v-if="!isPreview"
@@ -238,7 +247,7 @@
                       flip="horizontal"
                     />
                     <span
-                      class="faint-link reply-to-text"
+                      class="reply-to-text"
                     >
                       {{ $t('status.reply_to') }}
                     </span>
@@ -251,49 +260,75 @@
                 >
                   <span class="reply-to-text">{{ $t('status.reply_to') }}</span>
                 </span>
-                <router-link
-                  class="reply-to-link"
-                  :title="replyToName"
-                  :to="replyProfileLink"
-                >
-                  {{ replyToName }}
-                </router-link>
-                <span
-                  v-if="replies && replies.length"
-                  class="faint replies-separator"
-                >
-                  -
-                </span>
-              </div>
-              <div
-                v-if="inConversation && !isPreview && replies && replies.length"
-                class="replies"
+                <MentionLink
+                  :content="replyToName"
+                  :url="replyProfileLink"
+                  :user-id="status.in_reply_to_user_id"
+                  :user-screen-name="status.in_reply_to_screen_name"
+                  :first-mention="false"
+                />
+              </span>
+
+              <!-- This little wrapper is made for sole purpose of "gluing" -->
+              <!-- "Mentions" label to the first mention -->
+              <span
+                v-if="hasMentionsLine"
+                class="glued-label"
               >
-                <span class="faint">{{ $t('status.replies_list') }}</span>
-                <StatusPopover
-                  v-for="reply in replies"
-                  :key="reply.id"
-                  :status-id="reply.id"
+                <span
+                  class="mentions"
+                  :aria-label="$t('tool_tip.mentions')"
+                  @click.prevent="gotoOriginal(status.in_reply_to_status_id)"
                 >
-                  <button
-                    class="button-unstyled -link reply-link"
-                    @click.prevent="gotoOriginal(reply.id)"
+                  <span
+                    class="mentions-text"
                   >
-                    {{ reply.name }}
-                  </button>
-                </StatusPopover>
-              </div>
+                    {{ $t('status.mentions') }}
+                  </span>
+                </span>
+                <MentionsLine
+                  v-if="hasMentionsLine"
+                  :mentions="mentionsLine.slice(0, 1)"
+                  class="mentions-line-first"
+                />
+              </span>
+              <MentionsLine
+                v-if="hasMentionsLine"
+                :mentions="mentionsLine.slice(1)"
+                class="mentions-line"
+              />
             </div>
           </div>
 
           <StatusContent
+            ref="content"
             :status="status"
             :no-heading="noHeading"
             :highlight="highlight"
             :focused="isFocused"
             @mediaplay="addMediaPlaying($event)"
             @mediapause="removeMediaPlaying($event)"
+            @parseReady="setHeadTailLinks"
           />
+
+          <div
+            v-if="inConversation && !isPreview && replies && replies.length"
+            class="replies"
+          >
+            <span class="faint">{{ $t('status.replies_list') }}</span>
+            <StatusPopover
+              v-for="reply in replies"
+              :key="reply.id"
+              :status-id="reply.id"
+            >
+              <button
+                class="button-unstyled -link reply-link"
+                @click.prevent="gotoOriginal(reply.id)"
+              >
+                {{ reply.name }}
+              </button>
+            </StatusPopover>
+          </div>
 
           <transition name="fade">
             <div
@@ -402,7 +437,6 @@
       </div>
     </template>
   </div>
-<!-- eslint-enable vue/no-v-html -->
 </template>
 
 <script src="./status.js" ></script>

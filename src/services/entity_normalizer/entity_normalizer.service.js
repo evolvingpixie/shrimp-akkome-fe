@@ -54,17 +54,20 @@ export const parseUser = (data) => {
       return output
     }
 
-    output.name = data.display_name
-    output.name_html = addEmojis(escape(data.display_name), data.emojis)
+    output.emoji = data.emojis
+    output.name = escape(data.display_name)
+    output.name_html = output.name
+    output.name_unescaped = data.display_name
 
     output.description = data.note
-    output.description_html = addEmojis(data.note, data.emojis)
+    // TODO cleanup this shit, output.description is overriden with source data
+    output.description_html = data.note
 
     output.fields = data.fields
     output.fields_html = data.fields.map(field => {
       return {
-        name: addEmojis(escape(field.name), data.emojis),
-        value: addEmojis(field.value, data.emojis)
+        name: escape(field.name),
+        value: field.value
       }
     })
     output.fields_text = data.fields.map(field => {
@@ -239,16 +242,6 @@ export const parseAttachment = (data) => {
 
   return output
 }
-export const addEmojis = (string, emojis) => {
-  const matchOperatorsRegex = /[|\\{}()[\]^$+*?.-]/g
-  return emojis.reduce((acc, emoji) => {
-    const regexSafeShortCode = emoji.shortcode.replace(matchOperatorsRegex, '\\$&')
-    return acc.replace(
-      new RegExp(`:${regexSafeShortCode}:`, 'g'),
-      `<img src='${emoji.url}' alt=':${emoji.shortcode}:' title=':${emoji.shortcode}:' class='emoji' />`
-    )
-  }, string)
-}
 
 export const parseStatus = (data) => {
   const output = {}
@@ -266,7 +259,8 @@ export const parseStatus = (data) => {
     output.type = data.reblog ? 'retweet' : 'status'
     output.nsfw = data.sensitive
 
-    output.statusnet_html = addEmojis(data.content, data.emojis)
+    output.raw_html = data.content
+    output.emojis = data.emojis
 
     output.tags = data.tags
 
@@ -293,13 +287,13 @@ export const parseStatus = (data) => {
       output.retweeted_status = parseStatus(data.reblog)
     }
 
-    output.summary_html = addEmojis(escape(data.spoiler_text), data.emojis)
+    output.summary_raw_html = escape(data.spoiler_text)
     output.external_url = data.url
     output.poll = data.poll
     if (output.poll) {
       output.poll.options = (output.poll.options || []).map(field => ({
         ...field,
-        title_html: addEmojis(escape(field.title), data.emojis)
+        title_html: escape(field.title)
       }))
     }
     output.pinned = data.pinned
@@ -325,7 +319,7 @@ export const parseStatus = (data) => {
       output.nsfw = data.nsfw
     }
 
-    output.statusnet_html = data.statusnet_html
+    output.raw_html = data.statusnet_html
     output.text = data.text
 
     output.in_reply_to_status_id = data.in_reply_to_status_id
@@ -444,11 +438,8 @@ export const parseChatMessage = (message) => {
   output.id = message.id
   output.created_at = new Date(message.created_at)
   output.chat_id = message.chat_id
-  if (message.content) {
-    output.content = addEmojis(message.content, message.emojis)
-  } else {
-    output.content = ''
-  }
+  output.emojis = message.emojis
+  output.content = message.content
   if (message.attachment) {
     output.attachments = [parseAttachment(message.attachment)]
   } else {

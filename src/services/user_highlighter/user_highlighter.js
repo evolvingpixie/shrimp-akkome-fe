@@ -8,6 +8,11 @@ const highlightStyle = (prefs) => {
   const solidColor = `rgb(${Math.floor(rgb.r)}, ${Math.floor(rgb.g)}, ${Math.floor(rgb.b)})`
   const tintColor = `rgba(${Math.floor(rgb.r)}, ${Math.floor(rgb.g)}, ${Math.floor(rgb.b)}, .1)`
   const tintColor2 = `rgba(${Math.floor(rgb.r)}, ${Math.floor(rgb.g)}, ${Math.floor(rgb.b)}, .2)`
+  const customProps = {
+    '--____highlight-solidColor': solidColor,
+    '--____highlight-tintColor': tintColor,
+    '--____highlight-tintColor2': tintColor2
+  }
   if (type === 'striped') {
     return {
       backgroundImage: [
@@ -17,11 +22,13 @@ const highlightStyle = (prefs) => {
         `${tintColor2} 20px,`,
         `${tintColor2} 40px`
       ].join(' '),
-      backgroundPosition: '0 0'
+      backgroundPosition: '0 0',
+      ...customProps
     }
   } else if (type === 'solid') {
     return {
-      backgroundColor: tintColor2
+      backgroundColor: tintColor2,
+      ...customProps
     }
   } else if (type === 'side') {
     return {
@@ -31,7 +38,8 @@ const highlightStyle = (prefs) => {
         `${solidColor} 2px,`,
         `transparent 6px`
       ].join(' '),
-      backgroundPosition: '0 0'
+      backgroundPosition: '0 0',
+      ...customProps
     }
   }
 }

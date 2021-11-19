@@ -29,7 +29,8 @@
         </div>
       </div>
       <div class="chat-preview">
-        <StatusContent
+        <StatusBody
+          class="chat-preview-body"
           :status="messageForStatusContent"
           :single-line="true"
         />

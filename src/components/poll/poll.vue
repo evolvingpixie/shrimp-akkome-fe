@@ -17,8 +17,11 @@
           <span class="result-percentage">
             {{ percentageForOption(option.votes_count) }}%
           </span>
-          <!-- eslint-disable-next-line vue/no-v-html -->
-          <span v-html="option.title_html" />
+          <RichContent
+            :html="option.title_html"
+            :handle-links="false"
+            :emoji="emoji"
+          />
         </div>
         <div
           class="result-fill"
@@ -42,8 +45,11 @@
           :value="index"
         >
         <label class="option-vote">
-          <!-- eslint-disable-next-line vue/no-v-html -->
-          <div v-html="option.title_html" />
+          <RichContent
+            :html="option.title_html"
+            :handle-links="false"
+            :emoji="emoji"
+          />
         </label>
       </div>
     </div>

@@ -77,18 +77,15 @@
     border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
   }
 
-  .StatusContent {
-    img.emoji {
-      width: 1.4em;
-      height: 1.4em;
-    }
+  .chat-preview-body {
+    --emoji-size: 1.4em;
   }
 
   .time-wrapper {
     line-height: 1.4em;
   }
 
-  .single-line {
+  .chat-preview-body {
     padding-right: 1em;
   }
 }

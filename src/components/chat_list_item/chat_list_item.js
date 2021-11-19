@@ -1,5 +1,5 @@
 import { mapState } from 'vuex'
-import StatusContent from '../status_content/status_content.vue'
+import StatusBody from '../status_content/status_content.vue'
 import fileType from 'src/services/file_type/file_type.service'
 import UserAvatar from '../user_avatar/user_avatar.vue'
 import AvatarList from '../avatar_list/avatar_list.vue'
@@ -16,7 +16,7 @@ const ChatListItem = {
     AvatarList,
     Timeago,
     ChatTitle,
-    StatusContent
+    StatusBody
   },
   computed: {
     ...mapState({
@@ -38,12 +38,14 @@ const ChatListItem = {
     },
     messageForStatusContent () {
       const message = this.chat.lastMessage
+      const messageEmojis = message ? message.emojis : []
       const isYou = message && message.account_id === this.currentUser.id
       const content = message ? (this.attachmentInfo || message.content) : ''
       const messagePreview = isYou ? `<i>${this.$t('chats.you')}</i> ${content}` : content
       return {
         summary: '',
-        statusnet_html: messagePreview,
+        emojis: messageEmojis,
+        raw_html: messagePreview,
         text: messagePreview,
         attachments: []
       }

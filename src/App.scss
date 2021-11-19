@@ -88,6 +88,10 @@ a {
   font-family: sans-serif;
   font-family: var(--interfaceFont, sans-serif);
 
+  &.-sublime {
+    background: transparent;
+  }
+
   i[class*=icon-],
   .svg-inline--fa {
     color: $fallback--text;
