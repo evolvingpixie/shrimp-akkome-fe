@@ -23,11 +23,7 @@
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <FAIcon
-          size="sm"
-          icon="at"
-          class="at"
-        /><span class="shortName"><span
+        <span class="shortName">@<span
           class="userName"
           v-html="userName"
         /></span>

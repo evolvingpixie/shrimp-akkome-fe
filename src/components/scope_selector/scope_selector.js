@@ -51,7 +51,7 @@ const ScopeSelector = {
         unlisted: { selected: this.currentScope === 'unlisted' },
         private: { selected: this.currentScope === 'private' },
         direct: { selected: this.currentScope === 'direct' },
-	local: { selected: this.currentScope === 'local' }
+        local: { selected: this.currentScope === 'local' }
       }
     }
   },

@@ -298,7 +298,7 @@ const Status = {
         case 'direct':
           return 'envelope'
         case 'local':
-	  return "users"
+          return 'users'
         default:
           return 'globe'
       }

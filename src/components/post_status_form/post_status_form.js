@@ -126,6 +126,7 @@ const PostStatusForm = {
       newStatus: {
         spoilerText: this.subject || '',
         status: statusText,
+        sensitiveIfSubject,
         nsfw: !!sensitiveByDefault,
         files: [],
         poll: {},
