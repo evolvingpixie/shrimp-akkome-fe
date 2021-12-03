@@ -13,6 +13,9 @@
       "mrf_policies_desc": "MRF policies manipulate the federation behaviour of the instance.  The following policies are enabled:",
       "simple": {
         "simple_policies": "Instance-specific policies",
+        "instance": "Instance",
+        "reason": "Reason",
+        "not_applicable": "N/A",
         "accept": "Accept",
         "accept_desc": "This instance only accepts messages from the following instances:",
         "reject": "Reject",

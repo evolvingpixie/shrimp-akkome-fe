@@ -670,6 +670,9 @@
       "mrf_policies": "Ingeschakelde MRF-regels",
       "simple": {
         "simple_policies": "Instantiespecifieke regels",
+        "instance": "Instantie",
+        "reason": "Reden",
+        "not_applicable": "n.v.t.",
         "accept": "Accepteren",
         "accept_desc": "Deze instantie accepteert alleen berichten van de volgende instanties:",
         "reject": "Afwijzen",
