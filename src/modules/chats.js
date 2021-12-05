@@ -47,7 +47,7 @@ const chats = {
       const fetcher = () => dispatch('fetchChats', { latest: true })
       fetcher()
       commit('setChatListFetcher', {
-        fetcher: () => promiseInterval(fetcher, 5000)
+        fetcher: () => promiseInterval(fetcher, 60000)
       })
     },
     stopFetchingChats ({ commit }) {

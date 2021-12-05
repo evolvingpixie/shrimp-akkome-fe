@@ -55,7 +55,7 @@ export const defaultState = {
   highlight: {},
   interfaceLanguage: browserLocale,
   hideScopeNotice: false,
-  useStreamingApi: false,
+  useStreamingApi: true,
   sidebarRight: undefined, // instance default
   scopeCopy: undefined, // instance default
   subjectLineBehavior: undefined, // instance default
