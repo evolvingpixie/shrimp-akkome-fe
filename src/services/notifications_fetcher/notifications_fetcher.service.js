@@ -73,7 +73,7 @@ const startFetching = ({ credentials, store }) => {
   setTimeout(() => store.dispatch('setNotificationsSilence', false), 10000)
   const boundFetchAndUpdate = () => fetchAndUpdate({ credentials, store })
   boundFetchAndUpdate()
-  return promiseInterval(boundFetchAndUpdate, 10000)
+  return promiseInterval(boundFetchAndUpdate, 20000)
 }
 
 const notificationsFetcher = {

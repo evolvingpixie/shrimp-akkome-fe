@@ -83,7 +83,7 @@ const startFetching = ({ timeline = 'friends', credentials, store, userId = fals
   fetchAndUpdate({ timeline, credentials, store, showImmediately, userId, tag })
   const boundFetchAndUpdate = () =>
     fetchAndUpdate({ timeline, credentials, store, userId, tag })
-  return promiseInterval(boundFetchAndUpdate, 10000)
+  return promiseInterval(boundFetchAndUpdate, 20000)
 }
 const timelineFetcher = {
   fetchAndUpdate,

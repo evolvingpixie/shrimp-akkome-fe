@@ -13,7 +13,7 @@ const fetchAndUpdate = ({ store, credentials }) => {
 const startFetching = ({ credentials, store }) => {
   const boundFetchAndUpdate = () => fetchAndUpdate({ credentials, store })
   boundFetchAndUpdate()
-  return promiseInterval(boundFetchAndUpdate, 10000)
+  return promiseInterval(boundFetchAndUpdate, 240000)
 }
 
 const followRequestFetcher = {
