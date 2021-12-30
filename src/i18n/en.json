@@ -473,7 +473,7 @@
     "streaming": "Enable automatic streaming of new posts when scrolled to the top",
     "user_mutes": "Users",
     "useStreamingApi": "Receive posts and notifications real-time",
-    "useStreamingApiWarning": "(Not recommended, experimental, known to skip posts)",
+    "useStreamingApiWarning": "It's cool use it. If it breaks refresh I guess?",
     "text": "Text",
     "theme": "Theme",
     "theme_help": "Use hex color codes (#rrggbb) to customize your color theme.",
