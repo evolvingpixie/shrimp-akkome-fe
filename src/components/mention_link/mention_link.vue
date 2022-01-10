@@ -23,13 +23,12 @@
         :href="url"
         @click.prevent="onClick"
       >
+        <!-- eslint-disable vue/no-v-html -->
         <UserAvatar
           v-if="shouldShowAvatar"
           class="mention-avatar"
           :user="user"
-        />
-        <!-- eslint-disable vue/no-v-html -->
-        <span
+        /><span
           class="shortName"
         ><FAIcon
           v-if="useAtIcon"
