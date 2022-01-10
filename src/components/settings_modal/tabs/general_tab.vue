@@ -176,6 +176,11 @@
             {{ $t('settings.mention_link_show_avatar') }}
           </BooleanSetting>
         </li>
+        <li>
+          <BooleanSetting path="mentionLinkFadeDomain">
+            {{ $t('settings.mention_link_fade_domain') }}
+          </BooleanSetting>
+        </li>
       </ul>
     </div>
 

@@ -115,6 +115,9 @@ const MentionLink = {
     shouldShowAvatar () {
       return this.mergedConfig.mentionLinkShowAvatar
     },
+    shouldFadeDomain () {
+      return this.mergedConfig.mentionLinkFadeDomain
+    },
     ...mapGetters(['mergedConfig']),
     ...mapState({
       currentUser: state => state.users.currentUser

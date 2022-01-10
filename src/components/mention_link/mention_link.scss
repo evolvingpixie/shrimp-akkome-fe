@@ -100,4 +100,12 @@
     opacity: 1;
     pointer-events: initial;
   }
+
+  .serverName.-faded {
+    color: var(--faintLink, $fallback--link);
+  }
+
+  .full .-faded {
+    color: var(--faint, $fallback--faint);
+  }
 }

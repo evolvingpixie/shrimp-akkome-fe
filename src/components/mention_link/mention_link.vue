@@ -41,6 +41,7 @@
         /><span
           v-if="shouldShowFullUserName"
           class="serverName"
+          :class="{ '-faded': shouldFadeDomain }"
           v-html="'@' + serverName"
         /></span>
         <span
@@ -56,8 +57,18 @@
       >
         <span
           class="userNameFull"
-          v-text="'@' + userNameFull"
-        />
+        >
+          <!-- eslint-disable vue/no-v-html -->
+          @<span
+            class="userName"
+            v-html="userName"
+          /><span
+            class="serverName"
+            :class="{ '-faded': shouldFadeDomain }"
+            v-html="'@' + serverName"
+          />
+          <!-- eslint-enable vue/no-v-html -->
+        </span>
       </span>
     </span>
   </span>
