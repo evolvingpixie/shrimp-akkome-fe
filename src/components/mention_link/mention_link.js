@@ -1,6 +1,7 @@
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { mapGetters, mapState } from 'vuex'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
+import UserAvatar from '../user_avatar/user_avatar.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faAt
@@ -12,6 +13,9 @@ library.add(
 
 const MentionLink = {
   name: 'MentionLink',
+  components: {
+    UserAvatar
+  },
   props: {
     url: {
       required: true,
@@ -107,6 +111,9 @@ const MentionLink = {
     },
     shouldShowTooltip () {
       return this.mergedConfig.mentionLinkShowTooltip && this.mergedConfig.mentionLinkDisplay === 'short' && this.isRemote
+    },
+    shouldShowAvatar () {
+      return this.mergedConfig.mentionLinkShowAvatar
     },
     ...mapGetters(['mergedConfig']),
     ...mapState({

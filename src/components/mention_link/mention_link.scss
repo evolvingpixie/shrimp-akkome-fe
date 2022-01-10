@@ -1,3 +1,5 @@
+@import '../../_variables.scss';
+
 .MentionLink {
   position: relative;
   white-space: normal;
@@ -8,6 +10,13 @@
   & .original {
     display: inline-block;
     border-radius: 2px;
+  }
+
+  .mention-avatar {
+    border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
   }
 
   .full {

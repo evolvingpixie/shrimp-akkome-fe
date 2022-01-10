@@ -171,6 +171,11 @@
             </BooleanSetting>
           </li>
         </ul>
+        <li>
+          <BooleanSetting path="mentionLinkShowAvatar">
+            {{ $t('settings.mention_link_show_avatar') }}
+          </BooleanSetting>
+        </li>
       </ul>
     </div>
 
