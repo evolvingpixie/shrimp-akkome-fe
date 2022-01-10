@@ -152,6 +152,25 @@
             {{ $t('settings.use_at_icon') }}
           </BooleanSetting>
         </li>
+        <li>
+          <ChoiceSetting
+            id="mentionLinkDisplay"
+            path="mentionLinkDisplay"
+            :options="mentionLinkDisplayOptions"
+          >
+            {{ $t('settings.mention_link_display') }}
+          </ChoiceSetting>
+        </li>
+        <ul
+          v-if="mentionLinkDisplay === 'short'"
+          class="setting-list suboptions"
+        >
+          <li>
+            <BooleanSetting path="mentionLinkShowTooltip">
+              {{ $t('settings.mention_link_show_tooltip') }}
+            </BooleanSetting>
+          </li>
+        </ul>
       </ul>
     </div>
 

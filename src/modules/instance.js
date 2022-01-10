@@ -21,6 +21,8 @@ const defaultState = {
   collapseMessageWithSubject: false,
   greentext: false,
   useAtIcon: false,
+  mentionLinkDisplay: 'short',
+  mentionLinkShowTooltip: true,
   hideFilteredStatuses: false,
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: false,
@@ -101,6 +103,9 @@ const instance = {
       return instanceDefaultProperties
         .map(key => [key, state[key]])
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+    },
+    instanceDomain (state) {
+      return new URL(state.server).hostname
     }
   },
   actions: {

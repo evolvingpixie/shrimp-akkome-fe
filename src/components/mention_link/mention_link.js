@@ -50,6 +50,10 @@ const MentionLink = {
     userName () {
       return this.user && this.userNameFullUi.split('@')[0]
     },
+    serverName () {
+      // XXX assumed that domain does not contain @
+      return this.user && (this.userNameFullUi.split('@')[1] || this.$store.getters.instanceDomain)
+    },
     userNameFull () {
       return this.user && this.user.screen_name
     },
@@ -87,6 +91,22 @@ const MentionLink = {
     },
     useAtIcon () {
       return this.mergedConfig.useAtIcon
+    },
+    isRemote () {
+      return this.userName !== this.userNameFull
+    },
+    shouldShowFullUserName () {
+      const conf = this.mergedConfig.mentionLinkDisplay
+      if (conf === 'short') {
+        return false
+      } else if (conf === 'full') {
+        return true
+      } else { // full_for_remote
+        return this.isRemote
+      }
+    },
+    shouldShowTooltip () {
+      return this.mergedConfig.mentionLinkShowTooltip && this.mergedConfig.mentionLinkDisplay === 'short' && this.isRemote
     },
     ...mapGetters(['mergedConfig']),
     ...mapState({

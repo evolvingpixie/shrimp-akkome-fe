@@ -11,7 +11,8 @@ const browserLocale = (window.navigator.language || 'en').split('-')[0]
  */
 export const multiChoiceProperties = [
   'postContentType',
-  'subjectLineBehavior'
+  'subjectLineBehavior',
+  'mentionLinkDisplay' // short | full_for_remote | full
 ]
 
 export const defaultState = {
@@ -71,6 +72,8 @@ export const defaultState = {
   useContainFit: false,
   greentext: undefined, // instance default
   useAtIcon: undefined, // instance default
+  mentionLinkDisplay: undefined, // instance default
+  mentionLinkShowTooltip: undefined, // instance default
   hidePostStats: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default

@@ -28,10 +28,16 @@
           size="sm"
           icon="at"
           class="at"
-        /><span class="shortName">{{ !useAtIcon ? '@' : '' }}<span
-            class="userName"
-            v-html="userName"
-          /></span>
+        /><span
+          class="shortName"
+        >{{ !useAtIcon ? '@' : '' }}<span
+          class="userName"
+          v-html="userName"
+        /><span
+          v-if="shouldShowFullUserName"
+          class="serverName"
+          v-html="'@' + serverName"
+        /></span>
         <span
           v-if="isYou"
           class="you"
@@ -39,7 +45,7 @@
         <!-- eslint-enable vue/no-v-html -->
       </a>
       <span
-        v-if="userName !== userNameFull"
+        v-if="shouldShowTooltip"
         class="full popover-default"
         :class="[highlightType]"
       >
