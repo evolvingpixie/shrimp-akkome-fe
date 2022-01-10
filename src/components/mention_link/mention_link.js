@@ -85,6 +85,9 @@ const MentionLink = {
         this.highlightType
       ]
     },
+    useAtIcon () {
+      return this.mergedConfig.useAtIcon
+    },
     ...mapGetters(['mergedConfig']),
     ...mapState({
       currentUser: state => state.users.currentUser

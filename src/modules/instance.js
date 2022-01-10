@@ -20,6 +20,7 @@ const defaultState = {
   background: '/static/aurora_borealis.jpg',
   collapseMessageWithSubject: false,
   greentext: false,
+  useAtIcon: false,
   hideFilteredStatuses: false,
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: false,

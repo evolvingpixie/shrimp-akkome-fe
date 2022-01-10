@@ -24,13 +24,14 @@
       >
         <!-- eslint-disable vue/no-v-html -->
         <FAIcon
+          v-if="useAtIcon"
           size="sm"
           icon="at"
           class="at"
-        /><span class="shortName"><span
-          class="userName"
-          v-html="userName"
-        /></span>
+        /><span class="shortName">{{ !useAtIcon ? '@' : '' }}<span
+            class="userName"
+            v-html="userName"
+          /></span>
         <span
           v-if="isYou"
           class="you"

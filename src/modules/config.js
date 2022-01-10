@@ -70,6 +70,7 @@ export const defaultState = {
   useOneClickNsfw: false,
   useContainFit: false,
   greentext: undefined, // instance default
+  useAtIcon: undefined, // instance default
   hidePostStats: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default

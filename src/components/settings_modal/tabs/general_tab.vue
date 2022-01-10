@@ -147,6 +147,11 @@
             {{ $t('settings.greentext') }}
           </BooleanSetting>
         </li>
+        <li>
+          <BooleanSetting path="useAtIcon">
+            {{ $t('settings.use_at_icon') }}
+          </BooleanSetting>
+        </li>
       </ul>
     </div>
 
