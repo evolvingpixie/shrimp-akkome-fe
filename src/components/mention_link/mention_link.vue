@@ -19,18 +19,19 @@
     >
       <a
         class="short button-unstyled"
+        :class="{ '-with-tooltip': shouldShowTooltip }"
         :href="url"
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <FAIcon
+        <span
+          class="shortName"
+        ><FAIcon
           v-if="useAtIcon"
           size="sm"
           icon="at"
           class="at"
-        /><span
-          class="shortName"
-        >{{ !useAtIcon ? '@' : '' }}<span
+        />{{ !useAtIcon ? '@' : '' }}<span
           class="userName"
           v-html="userName"
         /><span

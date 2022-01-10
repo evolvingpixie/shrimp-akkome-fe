@@ -27,7 +27,7 @@
     user-select: all;
   }
 
-  .short {
+  .short.-with-tooltip {
     user-select: none;
   }
 
@@ -56,7 +56,7 @@
     }
 
     &.-striped {
-      & .userName,
+      & .shortName,
       & .full {
         background-image:
           repeating-linear-gradient(
@@ -70,14 +70,14 @@
     }
 
     &.-solid {
-      & .userName,
+      & .shortName,
       & .full {
         background-image: linear-gradient(var(--____highlight-tintColor2), var(--____highlight-tintColor2));
       }
     }
 
     &.-side {
-      & .userName,
+      & .shortName,
       & .userNameFull {
         box-shadow: 0 -5px 3px -4px inset var(--____highlight-solidColor);
       }
