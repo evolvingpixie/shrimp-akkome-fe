@@ -393,7 +393,7 @@ const users = {
     toggleActivationStatus ({ rootState, commit }, { user }) {
       const api = user.deactivated ? rootState.api.backendInteractor.activateUser : rootState.api.backendInteractor.deactivateUser
       api({ user })
-        .then(({ deactivated }) => commit('updateActivationStatus', { user, deactivated }))
+        .then((user) => { let deactivated = !user.is_active; commit('updateActivationStatus', { user, deactivated }) })
     },
     registerPushNotifications (store) {
       const token = store.state.currentUser.credentials
