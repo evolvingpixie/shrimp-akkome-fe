@@ -208,7 +208,13 @@
     "enable_web_push_notifications": "Aktifkan notifikasi push web",
     "more_settings": "Lebih banyak pengaturan",
     "reply_visibility_all": "Tampilkan semua balasan",
-    "reply_visibility_self": "Hanya tampilkan balasan yang ditujukan kepada saya"
+    "reply_visibility_self": "Hanya tampilkan balasan yang ditujukan kepada saya",
+    "hide_muted_posts": "Sembunyikan postingan-postingan dari pengguna yang dibisukan",
+    "import_blocks_from_a_csv_file": "Impor blokiran dari berkas csv",
+    "domain_mutes": "Domain",
+    "composing": "Menulis",
+    "no_blocks": "Tidak ada yang diblokir",
+    "no_mutes": "Tidak ada yang dibisukan"
   },
   "about": {
     "mrf": {
@@ -222,7 +228,9 @@
         "reject_desc": "Instansi ini tidak akan menerima pesan dari instansi-instansi berikut:",
         "reject": "Tolak",
         "accept_desc": "Instansi ini hanya menerima pesan dari instansi-instansi berikut:",
-        "accept": "Terima"
+        "accept": "Terima",
+        "media_removal": "Penghapusan Media",
+        "media_removal_desc": "Instansi ini menghapus media dari postingan yang berasal dari instansi-instansi berikut:"
       },
       "federation": "Federasi",
       "mrf_policies": "Kebijakan MRF yang diaktifkan"
@@ -334,7 +342,9 @@
     "message": "Kirimkan pesan"
   },
   "user_profile": {
-    "timeline_title": "Linimasa pengguna"
+    "timeline_title": "Linimasa pengguna",
+    "profile_does_not_exist": "Maaf, profil ini tidak ada.",
+    "profile_loading_error": "Maaf, terjadi kesalahan ketika memuat profil ini."
   },
   "user_reporting": {
     "title": "Melaporkan {0}",

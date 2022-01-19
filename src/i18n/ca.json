@@ -323,7 +323,10 @@
     "play_videos_in_modal": "Reproduir vídeos en un marc emergent",
     "file_export_import": {
       "errors": {
-        "invalid_file": "El fitxer seleccionat no és vàlid com a còpia de seguretat de la configuració. No s'ha realitzat cap canvi."
+        "invalid_file": "El fitxer seleccionat no és vàlid com a còpia de seguretat de la configuració. No s'ha realitzat cap canvi.",
+        "file_too_new": "Versió important incompatible: {fileMajor}, aquest PleromaFE (configuració versió {feMajor}) és massa antiga per gestionar-lo",
+        "file_too_old": "Versió important incompatible: {fileMajor}, la versió del fitxer és massa antiga i no està implementada (s'ha establert un mínim ver. {feMajor})",
+        "file_slightly_new": "La versió menor del fitxer és diferent, alguns paràmetres podrien no carregar-se"
       },
       "backup_settings": "Còpia de seguretat de la configuració a un fitxer",
       "backup_settings_theme": "Còpia de seguretat de la configuració i tema a un fitxer",
@@ -382,7 +385,8 @@
           "postCode": "Text monoespai en publicació (text enriquit)",
           "input": "Camps d'entrada",
           "interface": "Interfície"
-        }
+        },
+        "weight": "Pes (negreta)"
       },
       "preview": {
         "input": "Acabo d'aterrar a Los Angeles.",
@@ -394,7 +398,9 @@
         "error": "Exemple d'error",
         "faint_link": "Manual d'ajuda",
         "checkbox": "He llegit els termes i condicions",
-        "link": "un bonic enllaç"
+        "link": "un bonic enllaç",
+        "fine_print": "Llegiu el nostre {0} per no aprendre res útil!",
+        "text": "Un grapat més de {0} i {1}"
       },
       "shadows": {
         "spread": "Difon",
@@ -438,7 +444,8 @@
           "snapshot_missing": "No hi havia cap instantània del tema al fitxer, per tant podria veure's diferent del previst originalment.",
           "upgraded_from_v2": "PleromaFE s'ha actualitzat, el tema pot veure's un poc diferent de com recordes.",
           "fe_downgraded": "Versió de PleromaFE revertida.",
-          "older_version_imported": "El fitxer que has importat va ser creat en una versió del front-end més antiga."
+          "older_version_imported": "El fitxer que has importat va ser creat en una versió del front-end més antiga.",
+          "snapshot_present": "S'ha carregat la instantània del tema, de manera que tots els valors estan sobreescrits. En canvi, podeu carregar les dades reals del tema."
         },
         "keep_as_is": "Mantindre com està",
         "save_load_hint": "Les opcions \"Mantindre\" conserven les opcions configurades actualment al seleccionar o carregar temes, també emmagatzema aquestes opcions quan s'exporta un tema. Quan es desactiven totes les caselles de verificació, el tema exportat ho guardarà tot.",
@@ -532,7 +539,13 @@
     "notification_setting_hide_notification_contents": "Amagar el remitent i els continguts de les notificacions push",
     "notifications": "Notificacions",
     "notification_mutes": "Per a deixar de rebre notificacions d'un usuari en concret, silencia'l-ho.",
-    "theme_help_v2_2": "Les icones per baix d'algunes entrades són indicadors del contrast del fons/text, desplaça el ratolí per a més informació. Tingues en compte que quan s'utilitzen indicadors de contrast de transparència es mostra el pitjor cas possible."
+    "theme_help_v2_2": "Les icones per baix d'algunes entrades són indicadors del contrast del fons/text, desplaça el ratolí per a més informació. Tingues en compte que quan s'utilitzen indicadors de contrast de transparència es mostra el pitjor cas possible.",
+    "hide_shoutbox": "Oculta la casella de gàbia de grills",
+    "always_show_post_button": "Mostra sempre el botó flotant de publicació nova",
+    "pad_emoji": "Acompanya els emojis amb espais en afegir des del selector",
+    "mentions_new_style": "Enllaços d'esment més elegants",
+    "mentions_new_place": "Posa les mencions en una línia separada",
+    "post_status_content_type": "Format de publicació"
   },
   "time": {
     "day": "{0} dia",
@@ -617,7 +630,9 @@
       "disable_remote_subscription": "Deshabilita seguir algú des d'una instància remota",
       "delete_user": "Esborra la usuària",
       "grant_admin": "Concedir permisos d'Administració",
-      "grant_moderator": "Concedir permisos de Moderació"
+      "grant_moderator": "Concedir permisos de Moderació",
+      "force_unlisted": "Força que les publicacions no estiguin llistades",
+      "sandbox": "Força que els missatges siguin només seguidors"
     },
     "edit_profile": "Edita el perfil",
     "hidden": "Amagat",
@@ -642,7 +657,8 @@
       "solid": "Fons sòlid",
       "striped": "Fons a ratlles",
       "side": "Ratlla lateral"
-    }
+    },
+    "media": "Media"
   },
   "user_profile": {
     "timeline_title": "Flux personal",
@@ -658,12 +674,14 @@
   },
   "remote_user_resolver": {
     "error": "No trobat.",
-    "searching_for": "Cercant per"
+    "searching_for": "Cercant per",
+    "remote_user_resolver": "Resolució d'usuari remot"
   },
   "interactions": {
     "load_older": "Carrega antigues interaccions",
     "favs_repeats": "Repeticions i favorits",
-    "follows": "Nous seguidors"
+    "follows": "Nous seguidors",
+    "moves": "Migració d'usuaris"
   },
   "emoji": {
     "stickers": "Adhesius",
@@ -775,7 +793,10 @@
     "pinned": "Destacat",
     "reply_to": "Contesta a",
     "pin": "Destaca al perfil",
-    "unmute_conversation": "Deixa de silenciar la conversa"
+    "unmute_conversation": "Deixa de silenciar la conversa",
+    "mentions": "Mencions",
+    "you": "(Tu)",
+    "plus_more": "+{number} més"
   },
   "user_reporting": {
     "additional_comments": "Comentaris addicionals",
@@ -801,7 +822,8 @@
     "no_results": "No hi ha resultats",
     "people": "Persones",
     "hashtags": "Etiquetes",
-    "people_talking": "{count} persones parlant"
+    "people_talking": "{count} persones parlant",
+    "person_talking": "{count} persones parlant"
   },
   "upload": {
     "file_size_units": {

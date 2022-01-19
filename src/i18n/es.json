@@ -599,7 +599,10 @@
       "backup_restore": "Copia de seguridad de la configuración"
     },
     "hide_shoutbox": "Ocultar cuadro de diálogo de la instancia",
-    "right_sidebar": "Mostrar la barra lateral a la derecha"
+    "right_sidebar": "Mostrar la barra lateral a la derecha",
+    "always_show_post_button": "Muestra siempre el botón flotante de Nueva Plubicación",
+    "mentions_new_style": "Enlaces de menciones más elegantes",
+    "mentions_new_place": "Situa las menciones en una línea separada"
   },
   "time": {
     "day": "{0} día",
@@ -676,7 +679,10 @@
     "status_deleted": "Esta publicación ha sido eliminada",
     "nsfw": "NSFW (No apropiado para el trabajo)",
     "expand": "Expandir",
-    "external_source": "Fuente externa"
+    "external_source": "Fuente externa",
+    "mentions": "Menciones",
+    "you": "(Tú)",
+    "plus_more": "+{number} más"
   },
   "user_card": {
     "approve": "Aprobar",

@@ -448,7 +448,10 @@
       "backup_restore": "Archiviazione impostazioni"
     },
     "right_sidebar": "Mostra barra laterale a destra",
-    "hide_shoutbox": "Nascondi muro dei graffiti"
+    "hide_shoutbox": "Nascondi muro dei graffiti",
+    "mentions_new_style": "Menzioni abbreviate",
+    "mentions_new_place": "Segrega le menzioni",
+    "always_show_post_button": "Non nascondere il pulsante di composizione"
   },
   "timeline": {
     "error_fetching": "Errore nell'aggiornamento",
@@ -757,7 +760,10 @@
     "status_deleted": "Questo messagio è stato cancellato",
     "nsfw": "DISDICEVOLE",
     "external_source": "Vai all'origine",
-    "expand": "Espandi"
+    "expand": "Espandi",
+    "mentions": "Menzioni",
+    "you": "(Tu)",
+    "plus_more": "+{number} altri"
   },
   "time": {
     "years_short": "{0} a",
@@ -774,8 +780,8 @@
     "second": "{0} secondo",
     "now_short": "adesso",
     "now": "adesso",
-    "months_short": "{0} ms",
-    "month_short": "{0} ms",
+    "months_short": "{0} mes",
+    "month_short": "{0} mes",
     "months": "{0} mesi",
     "month": "{0} mese",
     "minutes_short": "{0} min",

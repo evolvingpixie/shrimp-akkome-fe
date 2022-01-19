@@ -553,7 +553,10 @@
     },
     "right_sidebar": "Montri flankan breton dekstre",
     "save": "Konservi ŝanĝojn",
-    "hide_shoutbox": "Kaŝi kriujon de nodo"
+    "hide_shoutbox": "Kaŝi kriujon de nodo",
+    "always_show_post_button": "Ĉiam montri ŝvebantan butonon por nova afiŝo",
+    "mentions_new_style": "Pli mojosaj menciligiloj",
+    "mentions_new_place": "Meti menciojn sur apartan linion"
   },
   "timeline": {
     "collapse": "Maletendi",
@@ -631,7 +634,8 @@
       "striped": "Stria fono",
       "solid": "Unueca fono",
       "disabled": "Senemfaze"
-    }
+    },
+    "edit_profile": "Redakti profilon"
   },
   "user_profile": {
     "timeline_title": "Historio de uzanto",
@@ -782,7 +786,10 @@
     "status_deleted": "Ĉi tiu afiŝo foriĝis",
     "nsfw": "Konsterna",
     "expand": "Etendi",
-    "external_source": "Ekstera fonto"
+    "external_source": "Ekstera fonto",
+    "mentions": "Mencioj",
+    "you": "(Vi)",
+    "plus_more": "+{number} pli"
   },
   "time": {
     "years_short": "{0}j",
