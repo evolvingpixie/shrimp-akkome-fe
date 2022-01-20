@@ -23,7 +23,7 @@ const defaultState = {
   useAtIcon: false,
   mentionLinkDisplay: 'short',
   mentionLinkShowTooltip: true,
-  mentionLinkShowAvatar: true,
+  mentionLinkShowAvatar: false,
   mentionLinkFadeDomain: true,
   hideFilteredStatuses: false,
   // bad name: actually hides posts of muted USERS
