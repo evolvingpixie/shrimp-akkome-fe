@@ -48,12 +48,12 @@ const StatusContent = {
       return true
     },
     attachmentSize () {
-      if ((this.mergedConfig.hideAttachments && !this.inConversation) ||
+      if (this.compact) {
+        return 'small'
+      } else if ((this.mergedConfig.hideAttachments && !this.inConversation) ||
         (this.mergedConfig.hideAttachmentsInConv && this.inConversation) ||
         (this.status.attachments.length > this.maxThumbnails)) {
         return 'hide'
-      } else if (this.compact) {
-        return 'small'
       }
       return 'normal'
     },
