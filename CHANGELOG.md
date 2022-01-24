@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## Unreleased
+### Fixed
+- Completely hidden posts still had 1px border
+
+### Changed
+- Settings window has been throughly rearranged to make make more sense and make navication settings easier.
+
+### Added
+- Option to completely hide muted threads
+
 ## [2.4.2] - 2022-01-09
 ### Added 
 - Added Apply and Reset buttons to the bottom of theme tab to minimize UI travel
