@@ -187,25 +187,31 @@ const Status = {
     },
     muted () {
       if (this.statusoid.user.id === this.currentUser.id) return false
+      const reasonsToMute = this.userIsMuted ||
+        // Thread is muted
+        status.thread_muted ||
+        // Wordfiltered
+        this.muteWordHits.length > 0
+      return !this.unmuted && !this.shouldNotMute && reasonsToMute
+    },
+    userIsMuted () {
+      if (this.statusoid.user.id === this.currentUser.id) return false
       const { status } = this
       const { reblog } = status
       const relationship = this.$store.getters.relationship(status.user.id)
       const relationshipReblog = reblog && this.$store.getters.relationship(reblog.user.id)
-      const reasonsToMute = (
-        // Post is muted according to BE
-        status.muted ||
+      return status.muted ||
         // Reprööt of a muted post according to BE
         (reblog && reblog.muted) ||
         // Muted user
         relationship.muting ||
         // Muted user of a reprööt
-        (relationshipReblog && relationshipReblog.muting) ||
-        // Thread is muted
-        status.thread_muted ||
-        // Wordfiltered
-        this.muteWordHits.length > 0
-      )
-      const excusesNotToMute = (
+        (relationshipReblog && relationshipReblog.muting)
+    },
+    shouldNotMute () {
+      const { status } = this
+      const { reblog } = status
+      return (
         (
           this.inProfile && (
             // Don't mute user's posts on user timeline (except reblogs)
@@ -218,14 +224,26 @@ const Status = {
         (this.inConversation && status.thread_muted)
         // No excuses if post has muted words
       ) && !this.muteWordHits.length > 0
-
-      return !this.unmuted && !excusesNotToMute && reasonsToMute
+    },
+    hideMutedUsers () {
+      return this.mergedConfig.hideMutedPosts
+    },
+    hideMutedThreads () {
+      return this.mergedConfig.hideMutedThreads
     },
     hideFilteredStatuses () {
       return this.mergedConfig.hideFilteredStatuses
     },
+    hideWordFilteredPosts () {
+      return this.mergedConfig.hideWordFilteredPosts
+    },
     hideStatus () {
-      return (this.muted && this.hideFilteredStatuses) || this.virtualHidden
+      return (this.virtualHidden || !this.shouldNotMute) && (
+        (this.muted && this.hideFilteredStatuses) ||
+        (this.userIsMuted && this.hideMutedUsers) ||
+        (this.status.thread_muted && this.hideMutedThreads) ||
+        (this.muteWordHits.length > 0 && this.hideWordFilteredPosts)
+      )
     },
     isFocused () {
       // retweet or root of an expanded conversation
