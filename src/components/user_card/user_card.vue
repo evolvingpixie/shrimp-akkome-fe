@@ -38,22 +38,25 @@
           </router-link>
           <div class="user-summary">
             <div class="top-line">
-              <!-- eslint-disable vue/no-v-html -->
-              <div
-                v-if="user.name_html"
+              <RichContent
                 :title="user.name"
                 class="user-name"
-                v-html="user.name_html"
+                :html="user.name"
+                :emoji="user.emoji"
               />
-              <!-- eslint-enable vue/no-v-html -->
-              <div
-                v-else
-                :title="user.name"
-                class="user-name"
-              >
-                {{ user.name }}
-              </div>
               <button
+                v-if="!isOtherUser && user.is_local"
+                class="button-unstyled edit-profile-button"
+                @click.stop="openProfileTab"
+              >
+                <FAIcon
+                  fixed-width
+                  class="icon"
+                  icon="edit"
+                  :title="$t('user_card.edit_profile')"
+                />
+              </button>
+              <a
                 v-if="isOtherUser && !user.is_local"
                 :href="user.statusnet_profile_url"
                 target="_blank"
@@ -63,7 +66,7 @@
                   class="icon"
                   icon="external-link-alt"
                 />
-              </button>
+              </a>
               <AccountActions
                 v-if="isOtherUser && loggedIn"
                 :user="user"
@@ -79,6 +82,12 @@
                 @{{ user.screen_name_ui }}
               </router-link>
               <template v-if="!hideBio">
+                <span
+                  v-if="user.deactivated"
+                  class="alert user-role"
+                >
+                  {{ $t('user_card.deactivated') }}
+                </span>
                 <span
                   v-if="!!visibleRole"
                   class="alert user-role"
@@ -157,7 +166,10 @@
           class="user-interactions"
         >
           <div class="btn-group">
-            <FollowButton :relationship="relationship" />
+            <FollowButton
+              :relationship="relationship"
+              :user="user"
+            />
             <template v-if="relationship.following">
               <ProgressButton
                 v-if="!relationship.subscribing"
@@ -192,6 +204,7 @@
             <button
               v-if="relationship.muting"
               class="btn button-default btn-block toggled"
+              :disabled="user.deactivated"
               @click="unmuteUser"
             >
               {{ $t('user_card.muted') }}
@@ -199,6 +212,7 @@
             <button
               v-else
               class="btn button-default btn-block"
+              :disabled="user.deactivated"
               @click="muteUser"
             >
               {{ $t('user_card.mute') }}
@@ -207,6 +221,7 @@
           <div>
             <button
               class="btn button-default btn-block"
+              :disabled="user.deactivated"
               @click="mentionUser"
             >
               {{ $t('user_card.mention') }}
@@ -255,20 +270,12 @@
           <span>{{ hideFollowersCount ? $t('user_card.hidden') : user.followers_count }}</span>
         </div>
       </div>
-      <!-- eslint-disable vue/no-v-html -->
-      <p
-        v-if="!hideBio && user.description_html"
+      <RichContent
+        v-if="!hideBio"
         class="user-card-bio"
-        @click.prevent="linkClicked"
-        v-html="user.description_html"
+        :html="user.description_html"
+        :emoji="user.emoji"
       />
-      <!-- eslint-enable vue/no-v-html -->
-      <p
-        v-else-if="!hideBio"
-        class="user-card-bio"
-      >
-        {{ user.description }}
-      </p>
     </div>
   </div>
 </template>
@@ -281,9 +288,10 @@
 .user-card {
   position: relative;
 
-  &:hover .Avatar {
+  &:hover {
     --_still-image-img-visibility: visible;
     --_still-image-canvas-visibility: hidden;
+    --_still-image-label-visibility: hidden;
   }
 
   .panel-heading {
@@ -327,12 +335,12 @@
     }
   }
 
-  p {
-    margin-bottom: 0;
-  }
-
   &-bio {
     text-align: center;
+    display: block;
+    line-height: 18px;
+    padding: 1em;
+    margin: 0;
 
     a {
       color: $fallback--link;
@@ -344,11 +352,6 @@
       vertical-align: middle;
       max-width: 100%;
       max-height: 400px;
-
-      &.emoji {
-        width: 32px;
-        height: 32px;
-      }
     }
   }
 
@@ -426,7 +429,7 @@
     }
   }
 
-  .external-link-button {
+  .external-link-button, .edit-profile-button {
     cursor: pointer;
     width: 2.5em;
     text-align: center;
@@ -450,13 +453,6 @@
     // big one
     z-index: 1;
 
-    img {
-      width: 26px;
-      height: 26px;
-      vertical-align: middle;
-      object-fit: contain
-    }
-
     .top-line {
       display: flex;
     }
@@ -469,12 +465,7 @@
     margin-right: 1em;
     font-size: 15px;
 
-    img {
-      object-fit: contain;
-      height: 16px;
-      width: 16px;
-      vertical-align: middle;
-    }
+    --emoji-size: 14px;
   }
 
   .bottom-line {
@@ -576,6 +567,10 @@
       margin: 0;
     }
   }
+}
+
+.sidebar .edit-profile-button {
+  display: none;
 }
 
 .user-counts {

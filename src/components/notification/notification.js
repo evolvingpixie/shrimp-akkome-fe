@@ -4,6 +4,7 @@ import Status from '../status/status.vue'
 import UserAvatar from '../user_avatar/user_avatar.vue'
 import UserCard from '../user_card/user_card.vue'
 import Timeago from '../timeago/timeago.vue'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 import { isStatusNotification } from '../../services/notification_utils/notification_utils.js'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
@@ -44,7 +45,8 @@ const Notification = {
     UserAvatar,
     UserCard,
     Timeago,
-    Status
+    Status,
+    RichContent
   },
   methods: {
     toggleUserExpanded () {

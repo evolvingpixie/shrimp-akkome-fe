@@ -43,7 +43,10 @@
     "role": {
       "moderator": "监察员",
       "admin": "管理员"
-    }
+    },
+    "flash_content": "点击以使用 Ruffle 显示 Flash 内容（实验性，可能无效）。",
+    "flash_security": "注意这可能有潜在的危险，因为 Flash 内容仍然是任意的代码。",
+    "flash_fail": "Flash 内容加载失败，请在控制台查看详情。"
   },
   "image_cropper": {
     "crop_picture": "裁剪图片",
@@ -584,7 +587,9 @@
       "backup_settings_theme": "备份设置和主题到文件",
       "backup_settings": "备份设置到文件",
       "backup_restore": "设置备份"
-    }
+    },
+    "right_sidebar": "在右侧显示侧边栏",
+    "hide_shoutbox": "隐藏实例留言板"
   },
   "time": {
     "day": "{0} 天",
@@ -672,7 +677,6 @@
     "follow": "关注",
     "follow_sent": "请求已发送！",
     "follow_progress": "请求中…",
-    "follow_again": "再次发送请求？",
     "follow_unfollow": "取消关注",
     "followees": "正在关注",
     "followers": "关注者",
@@ -724,7 +728,8 @@
       "striped": "条纹背景",
       "solid": "单一颜色背景",
       "disabled": "不突出显示"
-    }
+    },
+    "edit_profile": "编辑个人资料"
   },
   "user_profile": {
     "timeline_title": "用户时间线",

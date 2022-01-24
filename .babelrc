@@ -1,5 +1,5 @@
 {
-  "presets": ["@babel/preset-env"],
-  "plugins": ["@babel/plugin-transform-runtime", "lodash", "@vue/babel-plugin-transform-vue-jsx"],
+  "presets": ["@babel/preset-env", "@vue/babel-preset-jsx"],
+  "plugins": ["@babel/plugin-transform-runtime", "lodash"],
   "comments": false
 }

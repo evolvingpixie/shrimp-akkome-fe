@@ -73,6 +73,9 @@ export default {
         this.$store.state.instance.instanceSpecificPanelContent
     },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
+    shoutboxPosition () {
+      return this.$store.getters.mergedConfig.showNewPostButton || false
+    },
     hideShoutbox () {
       return this.$store.getters.mergedConfig.hideShoutbox
     },

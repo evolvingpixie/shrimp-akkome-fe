@@ -37,6 +37,7 @@ export const defaultState = {
   loopVideoSilentOnly: true,
   streaming: false,
   emojiReactionsOnTimeline: true,
+  alwaysShowNewPostButton: false,
   autohideFloatingPostButton: false,
   pauseOnUnfocused: true,
   stopGifs: false,
@@ -96,7 +97,8 @@ const config = {
       const { defaultConfig } = rootGetters
       return {
         ...defaultConfig,
-        ...state
+        // Do not override with undefined
+        ...Object.fromEntries(Object.entries(state).filter(([k, v]) => v !== undefined))
       }
     }
   },

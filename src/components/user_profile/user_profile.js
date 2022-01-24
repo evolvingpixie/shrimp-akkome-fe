@@ -4,6 +4,7 @@ import FollowCard from '../follow_card/follow_card.vue'
 import Timeline from '../timeline/timeline.vue'
 import Conversation from '../conversation/conversation.vue'
 import TabSwitcher from 'src/components/tab_switcher/tab_switcher.js'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 import List from '../list/list.vue'
 import withLoadMore from '../../hocs/with_load_more/with_load_more'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -164,7 +165,8 @@ const UserProfile = {
     FriendList,
     FollowCard,
     TabSwitcher,
-    Conversation
+    Conversation,
+    RichContent
   }
 }
 

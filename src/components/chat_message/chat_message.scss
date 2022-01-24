@@ -89,8 +89,9 @@
   }
 
   .without-attachment {
-    .status-content {
-      &::after {
+    .message-content {
+      // TODO figure out how to do it properly
+      .RichContent::after {
         margin-right: 5.4em;
         content: " ";
         display: inline-block;
@@ -162,6 +163,7 @@
   .visible {
     opacity: 1;
   }
+
 }
 
 .chat-message-date-separator {

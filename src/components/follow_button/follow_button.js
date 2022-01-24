@@ -1,6 +1,6 @@
 import { requestFollow, requestUnfollow } from '../../services/follow_manipulate/follow_manipulate'
 export default {
-  props: ['relationship', 'labelFollowing', 'buttonClass'],
+  props: ['relationship', 'user', 'labelFollowing', 'buttonClass'],
   data () {
     return {
       inProgress: false
@@ -14,7 +14,7 @@ export default {
       if (this.inProgress || this.relationship.following) {
         return this.$t('user_card.follow_unfollow')
       } else if (this.relationship.requested) {
-        return this.$t('user_card.follow_again')
+        return this.$t('user_card.follow_cancel')
       } else {
         return this.$t('user_card.follow')
       }
@@ -29,11 +29,14 @@ export default {
       } else {
         return this.$t('user_card.follow')
       }
+    },
+    disabled () {
+      return this.inProgress || this.user.deactivated
     }
   },
   methods: {
     onClick () {
-      this.relationship.following ? this.unfollow() : this.follow()
+      this.relationship.following || this.relationship.requested ? this.unfollow() : this.follow()
     },
     follow () {
       this.inProgress = true
