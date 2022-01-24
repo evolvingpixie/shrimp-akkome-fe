@@ -13,14 +13,16 @@ import {
   faBell,
   faRss,
   faSearchPlus,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faEdit
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faRss,
   faBell,
   faSearchPlus,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faEdit
 )
 
 export default {
@@ -154,6 +156,9 @@ export default {
         user.id, user.screen_name,
         this.$store.state.instance.restrictedNicknames
       )
+    },
+    openProfileTab () {
+      this.$store.dispatch('openSettingsModalTab', 'profile')
     },
     zoomAvatar () {
       const attachment = {

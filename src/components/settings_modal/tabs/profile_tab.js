@@ -24,7 +24,7 @@ library.add(
 const ProfileTab = {
   data () {
     return {
-      newName: this.$store.state.users.currentUser.name,
+      newName: this.$store.state.users.currentUser.name_unescaped,
       newBio: unescape(this.$store.state.users.currentUser.description),
       newLocked: this.$store.state.users.currentUser.locked,
       newNoRichText: this.$store.state.users.currentUser.no_rich_text,

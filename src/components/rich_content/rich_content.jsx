@@ -5,6 +5,7 @@ import { convertHtmlToTree } from 'src/services/html_converter/html_tree_convert
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
 import StillImage from 'src/components/still-image/still-image.vue'
 import MentionsLine, { MENTIONS_LIMIT } from 'src/components/mentions_line/mentions_line.vue'
+import HashtagLink from 'src/components/hashtag_link/hashtag_link.vue'
 
 import './rich_content.scss'
 
@@ -61,6 +62,8 @@ export default Vue.component('RichContent', {
     // Pre-process HTML
     const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
+    // This is used to recover spacing removed when parsing mentions
+    let lastSpacing = ''
 
     const lastTags = [] // Tags that appear at the end of post body
     const writtenMentions = [] // All mentions that appear in post body
@@ -81,13 +84,10 @@ export default Vue.component('RichContent', {
     const renderHashtag = (attrs, children, encounteredTextReverse) => {
       const linkData = getLinkData(attrs, children, tagsIndex++)
       writtenTags.push(linkData)
-      attrs.target = '_blank'
       if (!encounteredTextReverse) {
         lastTags.push(linkData)
       }
-      return <a {...{ attrs }}>
-        { children.map(processItem) }
-      </a>
+      return <HashtagLink {...{ props: linkData }}/>
     }
 
     const renderMention = (attrs, children) => {
@@ -119,13 +119,8 @@ export default Vue.component('RichContent', {
         if (emptyText) {
           // don't include spaces when processing mentions - we'll include them
           // in MentionsLine
+          lastSpacing = item
           return currentMentions !== null ? item.trim() : item
-        }
-        // We add space with mentionsLine, otherwise non-text elements will
-        // stick to them.
-        if (currentMentions !== null) {
-          // single whitespace trim
-          item = item[0].match(/\s/) ? item.slice(1) : item
         }
 
         currentMentions = null
@@ -151,21 +146,32 @@ export default Vue.component('RichContent', {
         const [opener, children, closer] = item
         const Tag = getTagName(opener)
         const attrs = getAttrs(opener)
+        const previouslyMentions = currentMentions !== null
+        /* During grouping of mentions we trim all the empty text elements
+         * This padding is added to recover last space removed in case
+         * we have a tag right next to mentions
+         */
+        const mentionsLinePadding =
+              // Padding is only needed if we just finished parsing mentions
+              previouslyMentions &&
+              // Don't add padding if content is string and has padding already
+              !(children && typeof children[0] === 'string' && children[0].match(/^\s/))
+                ? lastSpacing
+                : ''
         switch (Tag) {
           case 'br':
             currentMentions = null
             break
           case 'img': // replace images with StillImage
-            return renderImage(opener)
+            return ['', [mentionsLinePadding, renderImage(opener)], '']
           case 'a': // replace mentions with MentionLink
             if (!this.handleLinks) break
             if (attrs['class'] && attrs['class'].includes('mention')) {
               // Handling mentions here
               return renderMention(attrs, children)
             } else {
-              // Everything else will be handled in reverse pass
               currentMentions = null
-              return item // We'll handle it later
+              break
             }
           case 'span':
             if (this.handleLinks && attrs['class'] && attrs['class'].includes('h-card')) {
@@ -174,9 +180,16 @@ export default Vue.component('RichContent', {
         }
 
         if (children !== undefined) {
-          return [opener, children.map(processItem), closer]
+          return [
+            '',
+            [
+              mentionsLinePadding,
+              [opener, children.map(processItem), closer]
+            ],
+            ''
+          ]
         } else {
-          return item
+          return ['', [mentionsLinePadding, item], '']
         }
       }
     }
@@ -199,7 +212,10 @@ export default Vue.component('RichContent', {
             if (!this.handleLinks) break
             const attrs = getAttrs(opener)
             // should only be this
-            if (attrs['class'] && attrs['class'].includes('hashtag')) {
+            if (
+              (attrs['class'] && attrs['class'].includes('hashtag')) || // Pleroma style
+                (attrs['rel'] === 'tag') // Mastodon style
+            ) {
               return renderHashtag(attrs, children, encounteredTextReverse)
             } else {
               attrs.target = '_blank'
@@ -215,7 +231,6 @@ export default Vue.component('RichContent', {
 
         // Render tag as is
         if (children !== undefined) {
-          html.includes('freenode') && console.log('PASS2', children)
           const newChildren = Array.isArray(children)
             ? [...children].reverse().map(processItemReverse).reverse()
             : children
@@ -264,7 +279,7 @@ const getLinkData = (attrs, children, index) => {
   return {
     index,
     url: attrs.href,
-    hashtag: attrs['data-tag'],
+    tag: attrs['data-tag'],
     content: flattenDeep(children).join(''),
     textContent
   }
@@ -283,8 +298,6 @@ export const preProcessPerLine = (html, greentext) => {
 
   const lines = convertHtmlToLines(html)
   const newHtml = lines.reverse().map((item, index, array) => {
-    // Going over each line in reverse to detect last mentions,
-    // keeping non-text stuff as-is
     if (!item.text) return item
     const string = item.text
 

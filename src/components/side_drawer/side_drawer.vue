@@ -106,10 +106,10 @@
           </router-link>
         </li>
         <li
-          v-if="chat"
+          v-if="shout"
           @click="toggleDrawer"
         >
-          <router-link :to="{ name: 'chat-panel' }">
+          <router-link :to="{ name: 'shout-panel' }">
             <FAIcon
               fixed-width
               class="fa-scale-110 fa-old-padding"
@@ -273,9 +273,7 @@
   --icon: var(--popoverIcon, $fallback--icon);
 
   .badge {
-    position: absolute;
-    right: 0.7rem;
-    top: 1em;
+    margin-left: 10px;
   }
 }
 

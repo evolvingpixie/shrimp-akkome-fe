@@ -31,13 +31,24 @@
 
             <p>{{ $t("about.mrf.simple.accept_desc") }}</p>
 
-            <ul>
-              <li
-                v-for="instance in acceptInstances"
-                :key="instance"
-                v-text="instance"
-              />
-            </ul>
+            <table>
+              <tr>
+                <th>{{ $t("about.mrf.simple.instance") }}</th>
+                <th>{{ $t("about.mrf.simple.reason") }}</th>
+              </tr>
+              <tr
+                v-for="entry in acceptInstances"
+                :key="entry.instance + '_accept'"
+              >
+                <td>{{ entry.instance }}</td>
+                <td v-if="entry.reason === ''">
+                  {{ $t("about.mrf.simple.not_applicable") }}
+                </td>
+                <td v-else>
+                  {{ entry.reason }}
+                </td>
+              </tr>
+            </table>
           </div>
 
           <div v-if="rejectInstances.length">
@@ -45,13 +56,24 @@
 
             <p>{{ $t("about.mrf.simple.reject_desc") }}</p>
 
-            <ul>
-              <li
-                v-for="instance in rejectInstances"
-                :key="instance"
-                v-text="instance"
-              />
-            </ul>
+            <table>
+              <tr>
+                <th>{{ $t("about.mrf.simple.instance") }}</th>
+                <th>{{ $t("about.mrf.simple.reason") }}</th>
+              </tr>
+              <tr
+                v-for="entry in rejectInstances"
+                :key="entry.instance + '_reject'"
+              >
+                <td>{{ entry.instance }}</td>
+                <td v-if="entry.reason === ''">
+                  {{ $t("about.mrf.simple.not_applicable") }}
+                </td>
+                <td v-else>
+                  {{ entry.reason }}
+                </td>
+              </tr>
+            </table>
           </div>
 
           <div v-if="quarantineInstances.length">
@@ -59,13 +81,24 @@
 
             <p>{{ $t("about.mrf.simple.quarantine_desc") }}</p>
 
-            <ul>
-              <li
-                v-for="instance in quarantineInstances"
-                :key="instance"
-                v-text="instance"
-              />
-            </ul>
+            <table>
+              <tr>
+                <th>{{ $t("about.mrf.simple.instance") }}</th>
+                <th>{{ $t("about.mrf.simple.reason") }}</th>
+              </tr>
+              <tr
+                v-for="entry in quarantineInstances"
+                :key="entry.instance + '_quarantine'"
+              >
+                <td>{{ entry.instance }}</td>
+                <td v-if="entry.reason === ''">
+                  {{ $t("about.mrf.simple.not_applicable") }}
+                </td>
+                <td v-else>
+                  {{ entry.reason }}
+                </td>
+              </tr>
+            </table>
           </div>
 
           <div v-if="ftlRemovalInstances.length">
@@ -73,13 +106,24 @@
 
             <p>{{ $t("about.mrf.simple.ftl_removal_desc") }}</p>
 
-            <ul>
-              <li
-                v-for="instance in ftlRemovalInstances"
-                :key="instance"
-                v-text="instance"
-              />
-            </ul>
+            <table>
+              <tr>
+                <th>{{ $t("about.mrf.simple.instance") }}</th>
+                <th>{{ $t("about.mrf.simple.reason") }}</th>
+              </tr>
+              <tr
+                v-for="entry in ftlRemovalInstances"
+                :key="entry.instance + '_ftl_removal'"
+              >
+                <td>{{ entry.instance }}</td>
+                <td v-if="entry.reason === ''">
+                  {{ $t("about.mrf.simple.not_applicable") }}
+                </td>
+                <td v-else>
+                  {{ entry.reason }}
+                </td>
+              </tr>
+            </table>
           </div>
 
           <div v-if="mediaNsfwInstances.length">
@@ -87,13 +131,24 @@
 
             <p>{{ $t("about.mrf.simple.media_nsfw_desc") }}</p>
 
-            <ul>
-              <li
-                v-for="instance in mediaNsfwInstances"
-                :key="instance"
-                v-text="instance"
-              />
-            </ul>
+            <table>
+              <tr>
+                <th>{{ $t("about.mrf.simple.instance") }}</th>
+                <th>{{ $t("about.mrf.simple.reason") }}</th>
+              </tr>
+              <tr
+                v-for="entry in mediaNsfwInstances"
+                :key="entry.instance + '_media_nsfw'"
+              >
+                <td>{{ entry.instance }}</td>
+                <td v-if="entry.reason === ''">
+                  {{ $t("about.mrf.simple.not_applicable") }}
+                </td>
+                <td v-else>
+                  {{ entry.reason }}
+                </td>
+              </tr>
+            </table>
           </div>
 
           <div v-if="mediaRemovalInstances.length">
@@ -101,13 +156,24 @@
 
             <p>{{ $t("about.mrf.simple.media_removal_desc") }}</p>
 
-            <ul>
-              <li
-                v-for="instance in mediaRemovalInstances"
-                :key="instance"
-                v-text="instance"
-              />
-            </ul>
+            <table>
+              <tr>
+                <th>{{ $t("about.mrf.simple.instance") }}</th>
+                <th>{{ $t("about.mrf.simple.reason") }}</th>
+              </tr>
+              <tr
+                v-for="entry in mediaRemovalInstances"
+                :key="entry.instance + '_media_removal'"
+              >
+                <td>{{ entry.instance }}</td>
+                <td v-if="entry.reason === ''">
+                  {{ $t("about.mrf.simple.not_applicable") }}
+                </td>
+                <td v-else>
+                  {{ entry.reason }}
+                </td>
+              </tr>
+            </table>
           </div>
 
           <h2 v-if="hasKeywordPolicies">
@@ -161,7 +227,6 @@
 <script src="./mrf_transparency_panel.js"></script>
 
 <style lang="scss">
-.mrf-section {
-  margin: 1em;
-}
+@import '../../_variables.scss';
+@import './mrf_transparency_panel.scss';
 </style>

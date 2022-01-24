@@ -79,10 +79,17 @@
 
 .floating-shout {
   position: fixed;
-  right: 0px;
   bottom: 0px;
   z-index: 1000;
   max-width: 25em;
+}
+
+.floating-shout.left {
+  left: 0px;
+}
+
+.floating-shout:not(.left) {
+  right: 0px;
 }
 
 .shout-panel {

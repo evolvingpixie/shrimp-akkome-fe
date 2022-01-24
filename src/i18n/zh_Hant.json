@@ -115,7 +115,10 @@
     "role": {
       "moderator": "主持人",
       "admin": "管理員"
-    }
+    },
+    "flash_content": "點擊以使用 Ruffle 顯示 Flash 內容（實驗性，可能無效）。",
+    "flash_security": "請注意，這可能有潜在的危險，因為Flash內容仍然是武斷的程式碼。",
+    "flash_fail": "無法加載flash內容，請參閱控制台瞭解詳細資訊。"
   },
   "finder": {
     "find_user": "尋找用戶",
@@ -556,7 +559,9 @@
       "backup_settings": "備份設置到文件",
       "backup_restore": "設定備份"
     },
-    "sensitive_by_default": "默認標記發文為敏感內容"
+    "sensitive_by_default": "默認標記發文為敏感內容",
+    "right_sidebar": "在右側顯示側邊欄",
+    "hide_shoutbox": "隱藏實例留言框"
   },
   "chats": {
     "more": "更多",
@@ -766,7 +771,6 @@
     "follow": "關注",
     "follow_sent": "請求已發送！",
     "follow_progress": "請求中…",
-    "follow_again": "再次發送請求？",
     "follow_unfollow": "取消關注",
     "followees": "正在關注",
     "followers": "關注者",
@@ -797,7 +801,8 @@
       "striped": "條紋背景",
       "side": "彩條"
     },
-    "bot": "機器人"
+    "bot": "機器人",
+    "edit_profile": "編輯個人資料"
   },
   "user_profile": {
     "timeline_title": "用戶時間線",

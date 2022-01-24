@@ -9,7 +9,7 @@
     "scope_options": "Reichweitenoptionen",
     "text_limit": "Zeichenlimit",
     "title": "Funktionen",
-    "who_to_follow": "Wem folgen?",
+    "who_to_follow": "Vorschläge",
     "upload_limit": "Maximale Upload Größe",
     "pleroma_chat_messages": "Pleroma Chat"
   },
@@ -39,7 +39,10 @@
     "close": "Schliessen",
     "retry": "Versuche es erneut",
     "error_retry": "Bitte versuche es erneut",
-    "loading": "Lade…"
+    "loading": "Lade…",
+    "flash_content": "Klicken, um den Flash-Inhalt mit Ruffle anzuzeigen (Die Funktion ist experimentell und funktioniert daher möglicherweise nicht).",
+    "flash_security": "Diese Funktion stellt möglicherweise eine Risiko dar, weil Flash-Inhalte weiterhin potentiell gefährlich sind.",
+    "flash_fail": "Falsh-Inhalt konnte nicht geladen werden, Details werden in der Konsole angezeigt."
   },
   "login": {
     "login": "Anmelden",
@@ -538,7 +541,9 @@
     "reset_background_confirm": "Hintergrund wirklich zurücksetzen?",
     "reset_banner_confirm": "Banner wirklich zurücksetzen?",
     "reset_avatar_confirm": "Avatar wirklich zurücksetzen?",
-    "reset_profile_banner": "Profilbanner zurücksetzen"
+    "reset_profile_banner": "Profilbanner zurücksetzen",
+    "hide_shoutbox": "Shoutbox der Instanz verbergen",
+    "right_sidebar": "Seitenleiste rechts anzeigen"
   },
   "timeline": {
     "collapse": "Einklappen",
@@ -564,7 +569,6 @@
     "follow": "Folgen",
     "follow_sent": "Anfrage gesendet!",
     "follow_progress": "Anfragen…",
-    "follow_again": "Anfrage erneut senden?",
     "follow_unfollow": "Folgen beenden",
     "followees": "Folgt",
     "followers": "Folgende",
@@ -779,7 +783,7 @@
     "error_sending_message": "Beim Senden der Nachricht ist ein Fehler aufgetreten.",
     "error_loading_chat": "Beim Laden des Chats ist ein Fehler aufgetreten.",
     "delete_confirm": "Soll diese Nachricht wirklich gelöscht werden?",
-    "empty_message_error": "Die Nachricht darf nicht leer sein.",
+    "empty_message_error": "Die Nachricht darf nicht leer sein",
     "delete": "Löschen",
     "message_user": "Nachricht an {nickname} senden",
     "empty_chat_list_placeholder": "Es sind noch keine Chats vorhanden. Jetzt einen Chat starten!",

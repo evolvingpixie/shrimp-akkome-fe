@@ -45,6 +45,18 @@
                 :emoji="user.emoji"
               />
               <button
+                v-if="!isOtherUser && user.is_local"
+                class="button-unstyled edit-profile-button"
+                @click.stop="openProfileTab"
+              >
+                <FAIcon
+                  fixed-width
+                  class="icon"
+                  icon="edit"
+                  :title="$t('user_card.edit_profile')"
+                />
+              </button>
+              <a
                 v-if="isOtherUser && !user.is_local"
                 :href="user.statusnet_profile_url"
                 target="_blank"
@@ -54,7 +66,7 @@
                   class="icon"
                   icon="external-link-alt"
                 />
-              </button>
+              </a>
               <AccountActions
                 v-if="isOtherUser && loggedIn"
                 :user="user"
@@ -70,6 +82,12 @@
                 @{{ user.screen_name_ui }}
               </router-link>
               <template v-if="!hideBio">
+                <span
+                  v-if="user.deactivated"
+                  class="alert user-role"
+                >
+                  {{ $t('user_card.deactivated') }}
+                </span>
                 <span
                   v-if="!!visibleRole"
                   class="alert user-role"
@@ -148,7 +166,10 @@
           class="user-interactions"
         >
           <div class="btn-group">
-            <FollowButton :relationship="relationship" />
+            <FollowButton
+              :relationship="relationship"
+              :user="user"
+            />
             <template v-if="relationship.following">
               <ProgressButton
                 v-if="!relationship.subscribing"
@@ -183,6 +204,7 @@
             <button
               v-if="relationship.muting"
               class="btn button-default btn-block toggled"
+              :disabled="user.deactivated"
               @click="unmuteUser"
             >
               {{ $t('user_card.muted') }}
@@ -190,6 +212,7 @@
             <button
               v-else
               class="btn button-default btn-block"
+              :disabled="user.deactivated"
               @click="muteUser"
             >
               {{ $t('user_card.mute') }}
@@ -198,6 +221,7 @@
           <div>
             <button
               class="btn button-default btn-block"
+              :disabled="user.deactivated"
               @click="mentionUser"
             >
               {{ $t('user_card.mention') }}
@@ -405,7 +429,7 @@
     }
   }
 
-  .external-link-button {
+  .external-link-button, .edit-profile-button {
     cursor: pointer;
     width: 2.5em;
     text-align: center;
@@ -543,6 +567,10 @@
       margin: 0;
     }
   }
+}
+
+.sidebar .edit-profile-button {
+  display: none;
 }
 
 .user-counts {

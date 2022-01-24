@@ -43,7 +43,10 @@
     "role": {
       "moderator": "Modo'",
       "admin": "Admin"
-    }
+    },
+    "flash_content": "Clique pour afficher le contenu Flash avec Ruffle (Expérimental, peut ne pas fonctionner).",
+    "flash_security": "Cela reste potentiellement dangereux, Flash restant du code arbitraire.",
+    "flash_fail": "Échec de chargement du contenu Flash, voir la console pour les détails."
   },
   "image_cropper": {
     "crop_picture": "Rogner l'image",
@@ -282,7 +285,7 @@
     "new_password": "Nouveau mot de passe",
     "notification_visibility": "Types de notifications à afficher",
     "notification_visibility_follows": "Suivis",
-    "notification_visibility_likes": "J'aime",
+    "notification_visibility_likes": "Favoris",
     "notification_visibility_mentions": "Mentionnés",
     "notification_visibility_repeats": "Partages",
     "no_rich_text_description": "Ne formatez pas le texte",
@@ -553,7 +556,21 @@
     "hide_wallpaper": "Cacher le fond d'écran",
     "hide_all_muted_posts": "Cacher les messages masqués",
     "word_filter": "Filtrage par mots",
-    "save": "Enregistrer les changements"
+    "save": "Enregistrer les changements",
+    "file_export_import": {
+      "backup_settings_theme": "Sauvegarder les paramètres et le thème dans un fichier",
+      "errors": {
+        "invalid_file": "Le fichier sélectionné n'est pas un format supporté pour les sauvegarde Pleroma. Aucun changement n'a été fait.",
+        "file_too_new": "Version majeure incompatible. {fileMajor}, ce PleromaFE ({feMajor}) est trop ancien",
+        "file_too_old": "Version majeure incompatible : {fileMajor}, la version du fichier est trop vielle et n'est plus supportée (vers. min. {feMajor})",
+        "file_slightly_new": "La version mineure du fichier est différente, quelques paramètres on pût ne pas chargés"
+      },
+      "backup_restore": "Sauvegarde des Paramètres",
+      "backup_settings": "Sauvegarder les paramètres dans un fichier",
+      "restore_settings": "Restaurer les paramètres depuis un fichier"
+    },
+    "hide_shoutbox": "Cacher la shoutbox de l'instance",
+    "right_sidebar": "Afficher le paneau latéral à droite"
   },
   "timeline": {
     "collapse": "Fermer",
@@ -607,7 +624,6 @@
     "follow": "Suivre",
     "follow_sent": "Demande envoyée !",
     "follow_progress": "Demande en cours…",
-    "follow_again": "Renvoyer la demande ?",
     "follow_unfollow": "Désabonner",
     "followees": "Suivis",
     "followers": "Vous suivent",
@@ -663,7 +679,8 @@
       "side": "Coté rayé",
       "striped": "Fond rayé"
     },
-    "bot": "Robot"
+    "bot": "Robot",
+    "edit_profile": "Éditer le profil"
   },
   "user_profile": {
     "timeline_title": "Flux du compte",
