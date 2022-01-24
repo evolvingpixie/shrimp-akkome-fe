@@ -21,7 +21,10 @@ const defaultState = {
   collapseMessageWithSubject: false,
   greentext: false,
   hideFilteredStatuses: false,
+  // bad name: actually hides posts of muted USERS
   hideMutedPosts: false,
+  hideMutedThreads: true,
+  hideWordFilteredPosts: false,
   hidePostStats: false,
   hideSitename: false,
   hideUserStats: false,

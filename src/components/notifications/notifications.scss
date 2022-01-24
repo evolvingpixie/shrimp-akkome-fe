@@ -37,11 +37,6 @@
 
 .notification {
   box-sizing: border-box;
-  border-bottom: 1px solid;
-  border-color: $fallback--border;
-  border-color: var(--border, $fallback--border);
-  word-wrap: break-word;
-  word-break: break-word;
 
   &:hover .animated.Avatar {
     canvas {
