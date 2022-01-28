@@ -171,6 +171,12 @@ export default Vue.component('RichContent', {
               return renderMention(attrs, children)
             } else {
               currentMentions = null
+              if (attrs['href']) {
+                attrs['href'] = attrs['href'].replace(/&amp;/g, '&')
+                return <a {...{ attrs }}>
+                  { children }
+                </a>
+              }
               break
             }
           case 'span':
