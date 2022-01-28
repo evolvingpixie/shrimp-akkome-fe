@@ -108,6 +108,13 @@ export default Vue.component('RichContent', {
       }
     }
 
+    const renderLink = (attrs, children) => {
+      const updatedLink = attrs['href'].replace(/&amp;/g, '&')
+      const updatedChildren = children.map(child => child.replace(attrs['href'], updatedLink))
+      return <a {...{ attrs }} href={updatedLink}>
+        { updatedChildren }
+      </a>
+    }
     // Processor to use with html_tree_converter
     const processItem = (item, index, array, what) => {
       // Handle text nodes - just add emoji
@@ -171,6 +178,9 @@ export default Vue.component('RichContent', {
               return renderMention(attrs, children)
             } else {
               currentMentions = null
+              if (attrs['href']) {
+                return renderLink(attrs, children)
+              }
               break
             }
           case 'span':

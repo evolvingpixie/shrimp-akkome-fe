@@ -36,11 +36,13 @@ describe('RichContent', () => {
   it('unescapes everything as needed', () => {
     const html = [
       p('Testing &#39;em all'),
-      'Testing &#39;em all'
+      'Testing &#39;em all',
+      '<a href="http://example.com?a=1&amp;b=2">http://example.com?a=1&b=2</a>'
     ].join('')
     const expected = [
       p('Testing \'em all'),
-      'Testing \'em all'
+      'Testing \'em all',
+      '<a href="http://example.com?a=1&b=2">http://example.com?a=1&b=2</a>'
     ].join('')
     const wrapper = shallowMount(RichContent, {
       localVue,
