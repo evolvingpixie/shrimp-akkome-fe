@@ -164,10 +164,8 @@ $status-margin: 0.75em;
     position: relative;
     align-content: baseline;
     font-size: 12px;
-    line-height: 160%;
     margin-top: 0.2em;
     line-height: 130%;
-
     max-width: 100%;
     align-items: stretch;
   }
@@ -179,6 +177,7 @@ $status-margin: 0.75em;
     margin-right: 0.4em;
     flex-shrink: 0;
   }
+
   .reply-glued-label {
     margin-right: 0.5em;
   }
