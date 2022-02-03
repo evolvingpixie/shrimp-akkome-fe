@@ -5,7 +5,9 @@ const StillImage = {
     'mimetype',
     'imageLoadError',
     'imageLoadHandler',
-    'alt'
+    'alt',
+    'height',
+    'width'
   ],
   data () {
     return {
@@ -15,6 +17,13 @@ const StillImage = {
   computed: {
     animated () {
       return this.stopGifs && (this.mimetype === 'image/gif' || this.src.endsWith('.gif'))
+    },
+    style () {
+      const appendPx = (str) => /\d$/.test(str) ? str + 'px' : str
+      return {
+        height: this.height ? appendPx(this.height) : null,
+        width: this.width ? appendPx(this.width) : null
+      }
     }
   },
   methods: {
