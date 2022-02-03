@@ -3,7 +3,7 @@
 .MentionLink {
   position: relative;
   white-space: normal;
-  display: inline-block;
+  display: inline-flex;
   color: var(--link);
 
   & .new,
