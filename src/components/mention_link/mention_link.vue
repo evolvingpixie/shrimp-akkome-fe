@@ -45,8 +45,8 @@
           v-html="'@' + serverName"
         /></span>
         <span
-          v-if="isYou"
-          class="you"
+          v-if="isYou && shouldShowYous"
+          :class="{ '-you': shouldBoldenYou }"
         >{{ $t('status.you') }}</span>
         <!-- eslint-enable vue/no-v-html -->
       </a>
