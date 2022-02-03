@@ -31,7 +31,7 @@
               <BooleanSetting
                 :disabled="hideFilteredStatuses"
                 path="hideMutedPosts"
-                >
+              >
                 {{ $t('settings.hide_muted_posts') }}
               </BooleanSetting>
             </li>
