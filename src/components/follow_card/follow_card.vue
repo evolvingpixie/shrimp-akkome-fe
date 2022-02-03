@@ -20,6 +20,7 @@
           :relationship="relationship"
           :label-following="$t('user_card.follow_unfollow')"
           class="follow-card-follow-button"
+          :user="user"
         />
       </template>
     </div>
