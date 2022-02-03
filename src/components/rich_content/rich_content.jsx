@@ -60,7 +60,7 @@ export default Vue.component('RichContent', {
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render (h) {
     // Pre-process HTML
-    const { newHtml: html } = preProcessPerLine(unescape(this.html), this.greentext)
+    const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
     // This is used to recover spacing removed when parsing mentions
     let lastSpacing = ''
