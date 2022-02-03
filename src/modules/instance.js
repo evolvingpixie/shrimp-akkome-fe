@@ -20,6 +20,11 @@ const defaultState = {
   background: '/static/aurora_borealis.jpg',
   collapseMessageWithSubject: false,
   greentext: false,
+  useAtIcon: false,
+  mentionLinkDisplay: 'short',
+  mentionLinkShowTooltip: true,
+  mentionLinkShowAvatar: false,
+  mentionLinkFadeDomain: true,
   hideFilteredStatuses: false,
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: false,
@@ -100,6 +105,9 @@ const instance = {
       return instanceDefaultProperties
         .map(key => [key, state[key]])
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+    },
+    instanceDomain (state) {
+      return new URL(state.server).hostname
     }
   },
   actions: {

@@ -20,6 +20,11 @@ const GeneralTab = {
         value: mode,
         label: this.$t(`settings.subject_line_${mode === 'masto' ? 'mastodon' : mode}`)
       })),
+      mentionLinkDisplayOptions: ['short', 'full_for_remote', 'full'].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.mention_link_display_${mode}`)
+      })),
       loopSilentAvailable:
       // Firefox
       Object.getOwnPropertyDescriptor(HTMLVideoElement.prototype, 'mozHasAudio') ||

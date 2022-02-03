@@ -147,6 +147,41 @@
             {{ $t('settings.greentext') }}
           </BooleanSetting>
         </li>
+        <li>
+          <ChoiceSetting
+            id="mentionLinkDisplay"
+            path="mentionLinkDisplay"
+            :options="mentionLinkDisplayOptions"
+          >
+            {{ $t('settings.mention_link_display') }}
+          </ChoiceSetting>
+        </li>
+        <ul
+          class="setting-list suboptions"
+        >
+          <li
+            v-if="mentionLinkDisplay === 'short'"
+          >
+            <BooleanSetting path="mentionLinkShowTooltip">
+              {{ $t('settings.mention_link_show_tooltip') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting path="useAtIcon">
+              {{ $t('settings.use_at_icon') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting path="mentionLinkShowAvatar">
+              {{ $t('settings.mention_link_show_avatar') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting path="mentionLinkFadeDomain">
+              {{ $t('settings.mention_link_fade_domain') }}
+            </BooleanSetting>
+          </li>
+        </ul>
       </ul>
     </div>
 

@@ -1,6 +1,7 @@
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { mapGetters, mapState } from 'vuex'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
+import UserAvatar from '../user_avatar/user_avatar.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faAt
@@ -12,6 +13,9 @@ library.add(
 
 const MentionLink = {
   name: 'MentionLink',
+  components: {
+    UserAvatar
+  },
   props: {
     url: {
       required: true,
@@ -50,6 +54,10 @@ const MentionLink = {
     userName () {
       return this.user && this.userNameFullUi.split('@')[0]
     },
+    serverName () {
+      // XXX assumed that domain does not contain @
+      return this.user && (this.userNameFullUi.split('@')[1] || this.$store.getters.instanceDomain)
+    },
     userNameFull () {
       return this.user && this.user.screen_name
     },
@@ -84,6 +92,31 @@ const MentionLink = {
         },
         this.highlightType
       ]
+    },
+    useAtIcon () {
+      return this.mergedConfig.useAtIcon
+    },
+    isRemote () {
+      return this.userName !== this.userNameFull
+    },
+    shouldShowFullUserName () {
+      const conf = this.mergedConfig.mentionLinkDisplay
+      if (conf === 'short') {
+        return false
+      } else if (conf === 'full') {
+        return true
+      } else { // full_for_remote
+        return this.isRemote
+      }
+    },
+    shouldShowTooltip () {
+      return this.mergedConfig.mentionLinkShowTooltip && this.mergedConfig.mentionLinkDisplay === 'short' && this.isRemote
+    },
+    shouldShowAvatar () {
+      return this.mergedConfig.mentionLinkShowAvatar
+    },
+    shouldFadeDomain () {
+      return this.mergedConfig.mentionLinkFadeDomain
     },
     ...mapGetters(['mergedConfig']),
     ...mapState({

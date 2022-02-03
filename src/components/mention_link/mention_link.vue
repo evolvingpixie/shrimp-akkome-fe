@@ -19,17 +19,30 @@
     >
       <a
         class="short button-unstyled"
+        :class="{ '-with-tooltip': shouldShowTooltip }"
         :href="url"
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <FAIcon
+        <UserAvatar
+          v-if="shouldShowAvatar"
+          class="mention-avatar"
+          :user="user"
+        /><span
+          class="shortName"
+        ><FAIcon
+          v-if="useAtIcon"
           size="sm"
           icon="at"
           class="at"
-        /><span class="shortName"><span
+        />{{ !useAtIcon ? '@' : '' }}<span
           class="userName"
           v-html="userName"
+        /><span
+          v-if="shouldShowFullUserName"
+          class="serverName"
+          :class="{ '-faded': shouldFadeDomain }"
+          v-html="'@' + serverName"
         /></span>
         <span
           v-if="isYou"
@@ -38,14 +51,24 @@
         <!-- eslint-enable vue/no-v-html -->
       </a>
       <span
-        v-if="userName !== userNameFull"
+        v-if="shouldShowTooltip"
         class="full popover-default"
         :class="[highlightType]"
       >
         <span
           class="userNameFull"
-          v-text="'@' + userNameFull"
-        />
+        >
+          <!-- eslint-disable vue/no-v-html -->
+          @<span
+            class="userName"
+            v-html="userName"
+          /><span
+            class="serverName"
+            :class="{ '-faded': shouldFadeDomain }"
+            v-html="'@' + serverName"
+          />
+          <!-- eslint-enable vue/no-v-html -->
+        </span>
       </span>
     </span>
   </span>
