@@ -5,6 +5,8 @@ $status-margin: 0.75em;
 .Status {
   min-width: 0;
   white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
 
   &:hover {
     --_still-image-img-visibility: visible;
