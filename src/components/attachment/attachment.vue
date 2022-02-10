@@ -12,7 +12,6 @@
       :href="attachment.url"
       :alt="attachment.description"
       :title="attachment.description"
-      @click.prevent=""
     >
       <FAIcon :icon="placeholderIconClass" />
       <b>{{ nsfw ? "NSFW / " : "" }}</b>{{ edit ? '' : placeholderName }}
@@ -88,7 +87,7 @@
           <FAIcon icon="stop" />
         </button>
         <button
-          v-if="attachment.description && size !== 'small' && !edit"
+          v-if="attachment.description && size !== 'small' && !edit && type !== 'unknown'"
           class="button-unstyled attachment-button"
           @click.prevent="toggleDescription"
           :title="$t('status.show_attachment_description')"
@@ -96,7 +95,7 @@
           <FAIcon icon="align-right" />
         </button>
         <button
-          v-if="!useModal"
+          v-if="!useModal && type !== 'unknown'"
           class="button-unstyled attachment-button"
           @click.prevent="openModalForce"
           :title="$t('status.show_attachment_in_modal')"
@@ -153,6 +152,18 @@
           :image-load-handler="onImageLoad"
           :alt="attachment.description"
         />
+      </a>
+
+      <a
+        v-if="type === 'unknown' && !hidden"
+        class="placeholder-container"
+        :href="attachment.url"
+        target="_blank"
+      >
+        <FAIcon size="5x" :icon="placeholderIconClass" />
+        <p>
+          {{ localDescription }}
+        </p>
       </a>
 
       <component

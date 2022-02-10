@@ -79,7 +79,7 @@ const Attachment = {
       ]
     },
     usePlaceholder () {
-      return this.size === 'hide' || this.type === 'unknown'
+      return this.size === 'hide'
     },
     useContainFit () {
       return this.$store.getters.mergedConfig.useContainFit
@@ -106,7 +106,7 @@ const Attachment = {
       return this.nsfw && this.hideNsfwLocal && !this.showHidden
     },
     isEmpty () {
-      return (this.type === 'html' && !this.attachment.oembed) || this.type === 'unknown'
+      return (this.type === 'html' && !this.attachment.oembed)
     },
     useModal () {
       let modalTypes = []
@@ -143,6 +143,8 @@ const Attachment = {
       if (this.useModal) {
         this.$emit('setMedia')
         this.$store.dispatch('setCurrentMedia', this.attachment)
+      } else if (this.type === 'unknown') {
+        window.open(this.attachment.url)
       }
     },
     openModalForce (event) {
@@ -150,7 +152,6 @@ const Attachment = {
       this.$store.dispatch('setCurrentMedia', this.attachment)
     },
     onEdit (event) {
-      console.log('ONEDIT', event)
       this.edit && this.edit(this.attachment, event)
     },
     onRemove () {
