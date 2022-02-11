@@ -9,9 +9,7 @@
       class="original"
       target="_blank"
       v-html="content"
-    />
-    <!-- eslint-enable vue/no-v-html -->
-    <span
+    /><!-- eslint-enable vue/no-v-html --><span
       v-if="user"
       class="new"
       :style="style"
