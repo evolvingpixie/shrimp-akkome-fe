@@ -37,7 +37,7 @@
         </template>
         <template v-for="status in timeline.visibleStatuses">
           <conversation
-            v-if="!excludedStatusIdsObject[status.id]"
+            v-if="status._meta.fetchedFromPinned <= 0"
             :key="status.id"
             class="status-fadein"
             :status-id="status.id"
