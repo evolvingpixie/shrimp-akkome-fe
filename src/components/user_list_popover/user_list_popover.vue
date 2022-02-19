@@ -22,7 +22,12 @@
             />
             <div class="user-list-names">
               <!-- eslint-disable vue/no-v-html -->
-              <span v-html="user.name_html" />
+              <RichContent
+                class="username"
+                :title="'@'+user.screen_name_ui"
+                :html="user.name_html"
+                :emoji="user.emoji"
+              />
               <!-- eslint-enable vue/no-v-html -->
               <span class="user-list-screen-name">{{ user.screen_name_ui }}</span>
             </div>
@@ -47,6 +52,7 @@
 
 .user-list-popover {
   padding: 0.5em;
+  --emoji-size: 16px;
 
   .user-list-row {
     padding: 0.25em;
