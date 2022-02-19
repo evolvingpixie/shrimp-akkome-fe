@@ -37,7 +37,7 @@
         </template>
         <template v-for="status in timeline.visibleStatuses">
           <conversation
-            v-if="timelineName === 'bookmarks' || (status.id >= timeline.minId && status.id <= timeline.maxId)"
+            v-if="timelineName !== 'user' || (status.id >= timeline.minId && status.id <= timeline.maxId)"
             :key="status.id"
             class="status-fadein"
             :status-id="status.id"
