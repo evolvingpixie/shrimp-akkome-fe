@@ -84,7 +84,7 @@ const mergeOrAdd = (arr, obj, item) => {
     // We already have this, so only merge the new info.
     // We ignore null values to avoid overwriting existing properties with missing data
     // we also skip 'user' because that is handled by users module
-    merge(oldItem, omitBy(item, (v, k) => v === null || k === 'user' || k === '_meta'))
+    merge(oldItem, omitBy(item, (v, k) => v === null || k === 'user'))
     // Reactivity fix.
     oldItem.attachments.splice(oldItem.attachments.length)
     return { item: oldItem, new: false }
@@ -122,22 +122,6 @@ const sortTimeline = (timeline) => {
 
 // Add status to the global storages (arrays and objects maintaining statuses) except timelines
 const addStatusToGlobalStorage = (state, data) => {
-  // POST METADATA PROCESSING.
-  // In this context "metadata" means all the sidechannel information about the post that we have
-  // i.e. where post was obtained from (which endpoint), what timestamp was etc. anything that isn't
-  // directly attached into it by server.
-  //
-  // @@_meta.fetchedFromPinned: number
-  // -1 = fetched from elsewhere
-  // +1 = fetched from pinned posts
-  // 0 = fetched from elsewhere and from pinned posts
-  //
-  // The logic is mainly for user profile page - don't show post in timeline context
-  // if post was ONLY fetched from pinned posts, show it if it was obtained from
-  // elsewhere (i.e. user posts fetching)
-  data._meta = data._meta || {}
-  data._meta.fetchedFromPinned = data._meta.fetchedFromPinned || -1
-
   const result = mergeOrAdd(state.allStatuses, state.allStatusesObject, data)
   if (result.new) {
     // Add to conversation
@@ -148,18 +132,6 @@ const addStatusToGlobalStorage = (state, data) => {
       conversationsObject[conversationId].push(status)
     } else {
       set(conversationsObject, conversationId, [status])
-    }
-  } else {
-    // If post was fetched from elsewhere AND from pinned (=0 we don't care anymore)
-    // otherwise we sum the old data and new data and clamp it to [-1; 1]
-    if (result.item._meta.fetchedFromPinned !== 0) {
-      result.item._meta.fetchedFromPinned = Math.min(
-        1,
-        Math.max(
-          -1,
-          result.item._meta.fetchedFromPinned + data._meta.fetchedFromPinned
-        )
-      )
     }
   }
   return result
@@ -654,7 +626,7 @@ const statuses = {
     },
     fetchPinnedStatuses ({ rootState, dispatch }, userId) {
       rootState.api.backendInteractor.fetchPinnedStatuses({ id: userId })
-        .then(statuses => dispatch('addNewStatuses', { statuses: statuses.map(status => ({ ...status, _meta: { fetchedFromPinned: 1 } })), timeline: 'user', userId, showImmediately: true, noIdUpdate: true }))
+        .then(statuses => dispatch('addNewStatuses', { statuses, timeline: 'user', userId, showImmediately: true, noIdUpdate: true }))
     },
     pinStatus ({ rootState, dispatch }, statusId) {
       return rootState.api.backendInteractor.pinOwnStatus({ id: statusId })
