@@ -52,6 +52,7 @@
 
 .user-list-popover {
   padding: 0.5em;
+
   --emoji-size: 16px;
 
   .user-list-row {
