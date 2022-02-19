@@ -350,7 +350,6 @@ describe('RichContent', () => {
         '<span>',
         '</span>',
         '</a>',
-        ' ',
         '<!---->', // v-if placeholder, mentionlink's "new" (i.e. rich) display
         '</span>',
         '<!---->', // v-if placeholder, mentionsline's extra mentions and stuff
