@@ -374,6 +374,84 @@ describe('RichContent', () => {
     expect(wrapper.html()).to.eql(compwrap(expected))
   })
 
+  it('rich contents of nested mentions are handled properly', () => {
+    attentions.push({ statusnet_profile_url: 'lol' })
+    const html = [
+      p(
+        '<span class="poast-style">',
+        '<a href="lol" class="mention">',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '</a>',
+        ' ',
+        '<a href="lol" class="mention">',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '</a>',
+        '</span>'
+      ),
+      p(
+        'Testing'
+      )
+    ].join('')
+    const expected = [
+      p(
+        '<span class="poast-style">',
+        '<span class="MentionsLine">',
+        '<span class="MentionLink mention-link">',
+        '<a href="lol" target="_blank" class="original">',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '</a>',
+        '<!---->', // v-if placeholder, mentionlink's "new" (i.e. rich) display
+        '</span>',
+        '<span class="MentionLink mention-link">',
+        '<a href="lol" target="_blank" class="original">',
+        '<span>',
+        'https://</span>',
+        '<span>',
+        'lol.tld/</span>',
+        '<span>',
+        '</span>',
+        '</a>',
+        '<!---->', // v-if placeholder, mentionlink's "new" (i.e. rich) display
+        '</span>',
+        '<!---->', // v-if placeholder, mentionsline's extra mentions and stuff
+        '</span>',
+        '</span>'
+      ),
+      ' ',
+      p(
+        'Testing'
+      )
+    ].join('')
+
+    const wrapper = mount(RichContent, {
+      localVue,
+      propsData: {
+        attentions,
+        handleLinks: true,
+        greentext: true,
+        emoji: [],
+        html
+      }
+    })
+
+    expect(wrapper.html()).to.eql(compwrap(expected))
+  })
+
   it('rich contents of a link are handled properly', () => {
     const html = [
       '<p>',
