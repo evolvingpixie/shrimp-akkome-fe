@@ -9,6 +9,12 @@
    word-break: break-word;
    --emoji-size: 14px;
 
+  &:hover {
+    --_still-image-img-visibility: visible;
+    --_still-image-canvas-visibility: hidden;
+    --_still-image-label-visibility: hidden;
+  }
+
   &.-muted {
     padding: 0.25em 0.6em;
     height: 1.2em;

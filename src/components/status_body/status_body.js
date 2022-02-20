@@ -21,6 +21,7 @@ library.add(
 const StatusContent = {
   name: 'StatusContent',
   props: [
+    'compact',
     'status',
     'focused',
     'noHeading',
@@ -49,6 +50,7 @@ const StatusContent = {
     // Using max-height + overflow: auto for status components resulted in false positives
     // very often with japanese characters, and it was very annoying.
     tallStatus () {
+      if (this.singleLine || this.compact) return false
       const lengthScore = this.status.raw_html.split(/<p|<br/).length + this.postLength / 80
       return lengthScore > 20
     },

@@ -184,8 +184,9 @@
           </router-link>
         </div>
         <template v-else>
-          <status-content
+          <StatusContent
             class="faint"
+            :compact="true"
             :status="notification.action"
           />
         </template>

@@ -1,0 +1,268 @@
+@import '../../_variables.scss';
+
+.Attachment {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  align-self: flex-start;
+  line-height: 0;
+  height: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: $fallback--attachmentRadius;
+  border-radius: var(--attachmentRadius, $fallback--attachmentRadius);
+  border-color: $fallback--border;
+  border-color: var(--border, $fallback--border);
+
+  .attachment-wrapper {
+    flex: 1 1 auto;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .description-container {
+    flex: 0 1 0;
+    display: flex;
+    padding-top: 0.5em;
+    z-index: 1;
+
+    p {
+      flex: 1;
+      text-align: center;
+      line-height: 1.5;
+      padding: 0.5em;
+      margin: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    &.-static {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding-top: 0;
+      background: var(--popover);
+      box-shadow: var(--popupShadow);
+    }
+  }
+
+  .description-field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  & .placeholder-container,
+  & .image-container,
+  & .audio-container,
+  & .video-container,
+  & .flash-container,
+  & .oembed-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container {
+    .image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  & .flash-container,
+  & .video-container {
+    & .flash,
+    & video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      align-self: center;
+    }
+  }
+
+  .audio-container {
+    display: flex;
+    align-items: flex-end;
+
+    audio {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .placeholder-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.5em;
+  }
+
+
+  .play-icon {
+    position: absolute;
+    font-size: 64px;
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+
+    &::before {
+      margin: 0;
+    }
+  }
+
+  .attachment-buttons {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    z-index: 1;
+
+    .attachment-button {
+      padding: 0;
+      border-radius: $fallback--tooltipRadius;
+      border-radius: var(--tooltipRadius, $fallback--tooltipRadius);
+      text-align: center;
+      width: 2em;
+      height: 2em;
+      margin-left: 0.5em;
+      font-size: 1.25em;
+      // TODO: theming? hard to theme with unknown background image color
+      background: rgba(230, 230, 230, 0.7);
+
+      .svg-inline--fa {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      &:hover .svg-inline--fa {
+        color: rgba(0, 0, 0, 0.9);
+      }
+    }
+  }
+
+  .oembed-container {
+    line-height: 1.2em;
+    flex: 1 0 100%;
+    width: 100%;
+    margin-right: 15px;
+    display: flex;
+
+    img {
+      width: 100%;
+    }
+
+    .image {
+      flex: 1;
+      img {
+        border: 0px;
+        border-radius: 5px;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .text {
+      flex: 2;
+      margin: 8px;
+      word-break: break-all;
+      h1 {
+        font-size: 14px;
+        margin: 0px;
+      }
+    }
+  }
+
+  &.-size-small {
+    .play-icon {
+      zoom: 0.5;
+      opacity: 0.7;
+    }
+
+    .attachment-buttons {
+      zoom: 0.7;
+      opacity: 0.5;
+    }
+  }
+
+  &.-editable {
+    padding: 0.5em;
+
+    & .description-container,
+    & .attachment-buttons {
+      margin: 0;
+    }
+  }
+
+  &.-placeholder {
+    display: inline-block;
+    color: $fallback--link;
+    color: var(--postLink, $fallback--link);
+    overflow: hidden;
+    white-space: nowrap;
+    height: auto;
+    line-height: 1.5;
+
+    &:not(.-editable) {
+      border: none;
+    }
+
+    &.-editable {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      & .description-container,
+      & .attachment-buttons {
+        margin: 0;
+        padding: 0;
+        position: relative;
+      }
+
+      .description-container {
+        flex: 1;
+        padding-left: 0.5em;
+      }
+
+      .attachment-buttons {
+        order: 99;
+        align-self: center;
+      }
+    }
+
+    a {
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    svg {
+      color: inherit;
+    }
+  }
+
+  &.-loading {
+    cursor: progress;
+  }
+
+  &.-contain-fit {
+    img,
+    canvas {
+      object-fit: contain;
+    }
+  }
+
+  &.-cover-fit {
+    img,
+    canvas {
+      object-fit: cover;
+    }
+  }
+}

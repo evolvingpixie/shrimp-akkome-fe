@@ -3,22 +3,31 @@ import VideoAttachment from '../video_attachment/video_attachment.vue'
 import Modal from '../modal/modal.vue'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import GestureService from '../../services/gesture_service/gesture_service'
+import Flash from 'src/components/flash/flash.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faCircleNotch
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faCircleNotch
 )
 
 const MediaModal = {
   components: {
     StillImage,
     VideoAttachment,
-    Modal
+    Modal,
+    Flash
+  },
+  data () {
+    return {
+      loading: false
+    }
   },
   computed: {
     showing () {
@@ -26,6 +35,9 @@ const MediaModal = {
     },
     media () {
       return this.$store.state.mediaViewer.media
+    },
+    description () {
+      return this.currentMedia.description
     },
     currentIndex () {
       return this.$store.state.mediaViewer.currentIndex
@@ -37,7 +49,7 @@ const MediaModal = {
       return this.media.length > 1
     },
     type () {
-      return this.currentMedia ? fileTypeService.fileType(this.currentMedia.mimetype) : null
+      return this.currentMedia ? this.getType(this.currentMedia) : null
     }
   },
   created () {
@@ -53,6 +65,9 @@ const MediaModal = {
     )
   },
   methods: {
+    getType (media) {
+      return fileTypeService.fileType(media.mimetype)
+    },
     mediaTouchStart (e) {
       GestureService.beginSwipe(e, this.mediaSwipeGestureRight)
       GestureService.beginSwipe(e, this.mediaSwipeGestureLeft)
@@ -67,14 +82,25 @@ const MediaModal = {
     goPrev () {
       if (this.canNavigate) {
         const prevIndex = this.currentIndex === 0 ? this.media.length - 1 : (this.currentIndex - 1)
-        this.$store.dispatch('setCurrent', this.media[prevIndex])
+        const newMedia = this.media[prevIndex]
+        if (this.getType(newMedia) === 'image') {
+          this.loading = true
+        }
+        this.$store.dispatch('setCurrentMedia', newMedia)
       }
     },
     goNext () {
       if (this.canNavigate) {
         const nextIndex = this.currentIndex === this.media.length - 1 ? 0 : (this.currentIndex + 1)
-        this.$store.dispatch('setCurrent', this.media[nextIndex])
+        const newMedia = this.media[nextIndex]
+        if (this.getType(newMedia) === 'image') {
+          this.loading = true
+        }
+        this.$store.dispatch('setCurrentMedia', newMedia)
       }
+    },
+    onImageLoaded () {
+      this.loading = false
     },
     handleKeyupEvent (e) {
       if (this.showing && e.keyCode === 27) { // escape

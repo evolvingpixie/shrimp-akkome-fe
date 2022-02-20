@@ -6,12 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Unreleased
 ### Fixed
 - Completely hidden posts still had 1px border
+- Attachments are ALWAYS in same order as user uploaded, no more "videos first"
+- Attachment description is prefilled with backend-provided default when uploading
+- Proper visual feedback that next image is loading when browsing
 
 ### Changed
 - Settings window has been throughly rearranged to make make more sense and make navication settings easier.
+- Uploaded attachments are uniform with displayed attachments
+- Flash is watchable in media-modal (takes up nearly full screen though due to sizing issues)
+- Notifications about likes/repeats/emoji reacts are now minimized so they always take up same amount of space irrelevant to size of post.
 
 ### Added
 - Option to completely hide muted threads
+- Ability to open videos in modal even if you disabled that feature, via an icon button
+- New button on attachment that indicates that attachment has a description and shows a bar filled with description
+- Attachments are truncated just like post contents
+- Media modal now also displays description and counter position in gallery (i.e. 1/5)
+- Ability to rearrange order of attachments when uploading
 
 ## [2.4.2] - 2022-01-09
 ### Added 

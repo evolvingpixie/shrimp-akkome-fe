@@ -166,7 +166,7 @@ export default {
         mimetype: 'image'
       }
       this.$store.dispatch('setMedia', [attachment])
-      this.$store.dispatch('setCurrent', attachment)
+      this.$store.dispatch('setCurrentMedia', attachment)
     },
     mentionUser () {
       this.$store.dispatch('openPostStatusModal', { replyTo: true, repliedUser: this.user })

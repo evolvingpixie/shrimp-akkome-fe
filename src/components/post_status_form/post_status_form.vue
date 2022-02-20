@@ -287,32 +287,22 @@
           @click="clearError"
         />
       </div>
-      <div class="attachments">
-        <div
-          v-for="file in newStatus.files"
-          :key="file.url"
-          class="media-upload-wrapper"
-        >
-          <button
-            class="button-unstyled hider"
-            @click="removeMediaFile(file)"
-          >
-            <FAIcon icon="times" />
-          </button>
-          <attachment
-            :attachment="file"
-            :set-media="() => $store.dispatch('setMedia', newStatus.files)"
-            size="small"
-            allow-play="false"
-          />
-          <input
-            v-model="newStatus.mediaDescriptions[file.id]"
-            type="text"
-            :placeholder="$t('post_status.media_description')"
-            @keydown.enter.prevent=""
-          >
-        </div>
-      </div>
+      <gallery
+        v-if="newStatus.files && newStatus.files.length > 0"
+        class="attachments"
+        :grid="true"
+        :nsfw="false"
+        :attachments="newStatus.files"
+        :descriptions="newStatus.mediaDescriptions"
+        :set-media="() => $store.dispatch('setMedia', newStatus.files)"
+        :editable="true"
+        :edit-attachment="editAttachment"
+        :remove-attachment="removeMediaFile"
+        :shift-up-attachment="newStatus.files.length > 1 && shiftUpMediaFile"
+        :shift-dn-attachment="newStatus.files.length > 1 && shiftDnMediaFile"
+        @play="$emit('mediaplay', attachment.id)"
+        @pause="$emit('mediapause', attachment.id)"
+      />
       <div
         v-if="newStatus.files.length > 0 && !disableSensitivityCheckbox"
         class="upload_settings"
@@ -330,25 +320,12 @@
 <style lang="scss">
 @import '../../_variables.scss';
 
-.tribute-container {
-  ul {
-    padding: 0px;
-    li {
-      display: flex;
-      align-items: center;
-    }
-  }
-  img {
-    padding: 3px;
-    width: 16px;
-    height: 16px;
-    border-radius: $fallback--avatarAltRadius;
-    border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
-  }
-}
-
 .post-status-form {
   position: relative;
+
+  .attachments {
+    margin-bottom: 0.5em;
+  }
 
   .form-bottom {
     display: flex;
@@ -507,15 +484,6 @@
     flex-direction: column;
   }
 
-   .attachments .media-upload-wrapper {
-    position: relative;
-
-    .attachment {
-      margin: 0;
-      padding: 0;
-    }
-  }
-
   .btn {
     cursor: pointer;
   }
@@ -615,12 +583,5 @@
     border: 2px dashed $fallback--text;
     border: 2px dashed var(--text, $fallback--text);
   }
-}
-
-// todo: unify with attachment.vue (otherwise the uploaded images are not minified unless a status with an attachment was displayed before)
-img.media-upload, .media-upload-container > video {
-  line-height: 0;
-  max-height: 200px;
-  max-width: 100%;
 }
 </style>
