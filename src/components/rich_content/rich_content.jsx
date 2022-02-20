@@ -120,7 +120,8 @@ export default Vue.component('RichContent', {
           // don't include spaces when processing mentions - we'll include them
           // in MentionsLine
           lastSpacing = item
-          return currentMentions !== null ? item.trim() : item
+          // Don't remove last space in a container (fixes poast mentions)
+          return (index !== array.length - 1) && (currentMentions !== null) ? item.trim() : item
         }
 
         currentMentions = null

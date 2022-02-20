@@ -87,7 +87,7 @@ const MentionLink = {
     classnames () {
       return [
         {
-          '-you': this.isYou,
+          '-you': this.isYou && this.shouldBoldenYou,
           '-highlighted': this.highlight
         },
         this.highlightType
@@ -114,6 +114,12 @@ const MentionLink = {
     },
     shouldShowAvatar () {
       return this.mergedConfig.mentionLinkShowAvatar
+    },
+    shouldShowYous () {
+      return this.mergedConfig.mentionLinkShowYous
+    },
+    shouldBoldenYou () {
+      return this.mergedConfig.mentionLinkBoldenYou
     },
     shouldFadeDomain () {
       return this.mergedConfig.mentionLinkFadeDomain

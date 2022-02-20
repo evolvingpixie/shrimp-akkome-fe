@@ -1,11 +1,13 @@
 .MentionsLine {
-  .showMoreLess {
-    white-space: normal;
-    color: var(--link);
+  word-break: break-all;
+
+  .mention-link:not(:first-child)::before {
+    content: ' ';
   }
 
-  .fullExtraMentions,
-  .mention-link:not(:last-child) {
-    margin-right: 0.25em;
+  .showMoreLess {
+    margin-left: 0.5em;
+    white-space: normal;
+    color: var(--link);
   }
 }

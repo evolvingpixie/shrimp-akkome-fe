@@ -76,6 +76,8 @@ export const defaultState = {
   mentionLinkShowTooltip: undefined, // instance default
   mentionLinkShowAvatar: undefined, // instance default
   mentionLinkFadeDomain: undefined, // instance default
+  mentionLinkShowYous: undefined, // instance default
+  mentionLinkBoldenYou: undefined, // instance default
   hidePostStats: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default

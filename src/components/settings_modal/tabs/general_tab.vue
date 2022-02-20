@@ -148,6 +148,11 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="mentionLinkShowYous">
+            {{ $t('settings.show_yous') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <ChoiceSetting
             id="mentionLinkDisplay"
             path="mentionLinkDisplay"
@@ -179,6 +184,11 @@
           <li>
             <BooleanSetting path="mentionLinkFadeDomain">
               {{ $t('settings.mention_link_fade_domain') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting path="mentionLinkBoldenYou">
+              {{ $t('settings.mention_link_bolden_you') }}
             </BooleanSetting>
           </li>
         </ul>

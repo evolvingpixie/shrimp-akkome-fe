@@ -3,12 +3,13 @@
 .MentionLink {
   position: relative;
   white-space: normal;
-  display: inline-block;
+  display: inline;
   color: var(--link);
+  word-break: normal;
 
   & .new,
   & .original {
-    display: inline-block;
+    display: inline;
     border-radius: 2px;
   }
 
@@ -38,14 +39,18 @@
     user-select: all;
   }
 
-  .short.-with-tooltip,
-  .you {
+  & .short.-with-tooltip,
+  & .you {
     user-select: none;
   }
 
   & .short,
   & .full {
     white-space: nowrap;
+  }
+
+  .shortName {
+    white-space: normal;
   }
 
   .new {

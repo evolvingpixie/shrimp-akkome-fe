@@ -25,6 +25,8 @@ const defaultState = {
   mentionLinkShowTooltip: true,
   mentionLinkShowAvatar: false,
   mentionLinkFadeDomain: true,
+  mentionLinkShowYous: false,
+  mentionLinkBoldenYou: true,
   hideFilteredStatuses: false,
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: false,

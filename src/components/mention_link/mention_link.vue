@@ -9,9 +9,7 @@
       class="original"
       target="_blank"
       v-html="content"
-    />
-    <!-- eslint-enable vue/no-v-html -->
-    <span
+    /><!-- eslint-enable vue/no-v-html --><span
       v-if="user"
       class="new"
       :style="style"
@@ -43,14 +41,12 @@
           class="serverName"
           :class="{ '-faded': shouldFadeDomain }"
           v-html="'@' + serverName"
-        /></span>
-        <span
-          v-if="isYou"
-          class="you"
-        >{{ $t('status.you') }}</span>
+        /></span><span
+          v-if="isYou && shouldShowYous"
+          :class="{ '-you': shouldBoldenYou }"
+        > {{ $t('status.you') }}</span>
         <!-- eslint-enable vue/no-v-html -->
-      </a>
-      <span
+      </a><span
         v-if="shouldShowTooltip"
         class="full popover-default"
         :class="[highlightType]"

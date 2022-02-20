@@ -275,6 +275,7 @@
         class="user-card-bio"
         :html="user.description_html"
         :emoji="user.emoji"
+        :handle-links="true"
       />
     </div>
   </div>

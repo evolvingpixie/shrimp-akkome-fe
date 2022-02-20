@@ -1,4 +1,5 @@
 import { getTagName } from './utility.service.js'
+import { unescape } from 'lodash'
 
 /**
  * This is a not-so-tiny purpose-built HTML parser/processor. This parses html
@@ -49,7 +50,7 @@ export const convertHtmlToTree = (html = '') => {
 
   const handleOpen = (tag) => {
     const curBuf = getCurrentBuffer()
-    const newLevel = [tag, []]
+    const newLevel = [unescape(tag), []]
     levels.push(newLevel)
     curBuf.push(newLevel)
   }

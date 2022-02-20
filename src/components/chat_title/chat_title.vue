@@ -1,5 +1,4 @@
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <div
     class="chat-title"
     :title="title"
@@ -14,12 +13,13 @@
         height="23px"
       />
     </router-link>
-    <span
+    <RichContent
       class="username"
-      v-html="htmlTitle"
+      :title="'@'+user.screen_name_ui"
+      :html="htmlTitle"
+      :emoji="user.emoji"
     />
   </div>
-  <!-- eslint-enable vue/no-v-html -->
 </template>
 
 <script src="./chat_title.js"></script>
@@ -34,6 +34,8 @@
   white-space: nowrap;
   align-items: center;
 
+  --emoji-size: 14px;
+
   .username {
     max-width: 100%;
     text-overflow: ellipsis;
@@ -41,14 +43,6 @@
     display: inline;
     word-wrap: break-word;
     overflow: hidden;
-    text-overflow: ellipsis;
-
-    .emoji {
-      width: 14px;
-      height: 14px;
-      vertical-align: middle;
-      object-fit: contain
-    }
   }
 
   .Avatar {

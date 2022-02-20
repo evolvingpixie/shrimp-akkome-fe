@@ -5,6 +5,8 @@ $status-margin: 0.75em;
 .Status {
   min-width: 0;
   white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
 
   &:hover {
     --_still-image-img-visibility: visible;
@@ -164,16 +166,22 @@ $status-margin: 0.75em;
     position: relative;
     align-content: baseline;
     font-size: 12px;
-    line-height: 160%;
+    margin-top: 0.2em;
+    line-height: 130%;
     max-width: 100%;
     align-items: stretch;
   }
 
   & .reply-to-popover,
-  & .reply-to-no-popover {
+  & .reply-to-no-popover,
+  & .mentions {
     min-width: 0;
     margin-right: 0.4em;
     flex-shrink: 0;
+  }
+
+  .reply-glued-label {
+    margin-right: 0.5em;
   }
 
   .reply-to-popover {
@@ -209,7 +217,6 @@ $status-margin: 0.75em;
   & .reply-to {
     white-space: nowrap;
     position: relative;
-    padding-right: 0.25em;
   }
 
   & .mentions-text,

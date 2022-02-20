@@ -2,6 +2,7 @@
   <div
     class="still-image"
     :class="{ animated: animated }"
+    :style="style"
   >
     <canvas
       v-if="animated"

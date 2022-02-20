@@ -227,7 +227,7 @@
             >
               <span
                 v-if="isReply"
-                class="glued-label"
+                class="glued-label reply-glued-label"
               >
                 <StatusPopover
                   v-if="!isPreview"
