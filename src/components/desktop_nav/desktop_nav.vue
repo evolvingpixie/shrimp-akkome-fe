@@ -52,6 +52,7 @@
           href="/pleroma/admin/#/login-pleroma"
           class="nav-icon"
           target="_blank"
+          @click.stop
         >
           <FAIcon
             fixed-width
