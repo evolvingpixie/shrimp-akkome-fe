@@ -133,42 +133,28 @@
     }
   }
 
-.modal-image-container {
-  display: flex;
-  overflow: hidden;
-  align-items: center;
-  flex-direction: column;
-  max-width: 90%;
-  max-height: 95%;
-  width: 100%;
-  height: 100%;
-  flex-grow: 1;
-  justify-content: center;
-
-  &-inner {
+  .modal-image-container {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    flex-direction: column;
+    max-width: 90%;
+    max-height: 95%;
     width: 100%;
     height: 100%;
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+
+    &-inner {
+      width: 100%;
+      height: 100%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
   }
-}
-
-.modal-image {
-  max-width: 100%;
-  max-height: 100%;
-  min-width: 0;
-  min-height: 0;
-  image-orientation: from-image; // NOTE: only FF supports this
-  animation: 0.1s cubic-bezier(0.7, 0, 1, 0.6) media-fadein;
-}
-
-//.modal-image {
-//  height: 90vh;
-//  width: 100%;
-//}
 
   .description,
   .counter {
@@ -189,9 +175,8 @@
   }
 
   .modal-image {
-    max-width: 90%;
-    max-height: 90%;
-    box-shadow: 0px 5px 15px 0 rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+    max-height: 100%;
     image-orientation: from-image; // NOTE: only FF supports this
     animation: 0.1s cubic-bezier(0.7, 0, 1, 0.6) media-fadein;
 
