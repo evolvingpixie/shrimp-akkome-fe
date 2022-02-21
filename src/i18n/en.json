@@ -118,7 +118,8 @@
   },
   "media_modal": {
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "counter": "{current} / {total}"
   },
   "nav": {
     "about": "About",
