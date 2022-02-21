@@ -29,8 +29,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Options to show domains in mentions
 - Option to show user avatars in mention links (opt-in)
-- Option to completely hide muted threads
 - Option to disable the tooltip for mentions
+- Option to completely hide muted threads
 - Ability to open videos in modal even if you disabled that feature, via an icon button
 - New button on attachment that indicates that attachment has a description and shows a bar filled with description
 - Attachments are truncated just like post contents
