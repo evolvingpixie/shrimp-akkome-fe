@@ -68,7 +68,7 @@
     <span
       class="counter"
     >
-      {{ currentIndex + 1 }} / {{ media.length }}
+      {{ $tc('media_modal.counter', currentIndex + 1, { current: currentIndex + 1, total: media.length }) }}
     </span>
     <span
       v-if="loading"
