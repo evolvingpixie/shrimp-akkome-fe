@@ -5,7 +5,6 @@ import PinchZoom from '../pinch_zoom/pinch_zoom.vue'
 import SwipeClick from '../swipe_click/swipe_click.vue'
 import GestureService from '../../services/gesture_service/gesture_service'
 import Flash from 'src/components/flash/flash.vue'
-import Vuex from 'vuex'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -62,7 +61,7 @@ const MediaModal = {
     },
     type () {
       return this.currentMedia ? this.getType(this.currentMedia) : null
-    },
+    }
   },
   methods: {
     getType (media) {
