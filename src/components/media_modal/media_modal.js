@@ -76,6 +76,15 @@ const MediaModal = {
         this.$store.dispatch('closeMediaViewer')
       }, transitionTime)
     },
+    hideIfNotSwiped (event) {
+      // If we have swiped over SwipeClick, do not trigger hide
+      const comp = this.$refs.swipeClick
+      if (!comp) {
+        this.hide()
+      } else {
+        comp.$gesture.click(event)
+      }
+    },
     goPrev () {
       if (this.canNavigate) {
         const prevIndex = this.currentIndex === 0 ? this.media.length - 1 : (this.currentIndex - 1)

@@ -81,7 +81,9 @@ class SwipeAndClickGesture {
     swipeEndCallback,
     swipeCancelCallback,
     swipelessClickCallback,
-    threshold = 30, perpendicularTolerance = 1.0
+    threshold = 30,
+    perpendicularTolerance = 1.0,
+    disableClickThreshold = 1
   }) {
     const nop = () => {}
     this.direction = direction
@@ -90,6 +92,7 @@ class SwipeAndClickGesture {
     this.swipeCancelCallback = swipeCancelCallback || nop
     this.swipelessClickCallback = swipelessClickCallback || nop
     this.threshold = typeof threshold === 'function' ? threshold : () => threshold
+    this.disableClickThreshold = typeof disableClickThreshold === 'function' ? disableClickThreshold : () => disableClickThreshold
     this.perpendicularTolerance = perpendicularTolerance
     this._reset()
   }
@@ -169,7 +172,6 @@ class SwipeAndClickGesture {
       return isPositive ? 1 : -1
     })()
 
-    const swiped = this._swiped
     if (this._swiped) {
       this.swipeEndCallback(sign)
     }
@@ -178,7 +180,7 @@ class SwipeAndClickGesture {
     // the end point is far from the starting point
     // so for other kinds of pointers do not check
     // whether we have swiped
-    if (swiped && event.pointerType === 'mouse') {
+    if (vectorLength(delta) >= this.disableClickThreshold() && event.pointerType === 'mouse') {
       this._preventNextClick = true
     }
   }

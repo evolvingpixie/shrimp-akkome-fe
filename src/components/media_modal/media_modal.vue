@@ -2,10 +2,11 @@
   <Modal
     v-if="showing"
     class="media-modal-view"
-    @backdropClicked="hide"
+    @backdropClicked="hideIfNotSwiped"
   >
     <SwipeClick
       v-if="type === 'image'"
+      ref="swipeClick"
       class="modal-image-container"
       :direction="swipeDirection"
       :threshold="swipeThreshold"
