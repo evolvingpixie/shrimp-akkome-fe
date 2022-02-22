@@ -37,12 +37,12 @@ export const defaultState = {
   preloadImage: true,
   loopVideo: true,
   loopVideoSilentOnly: true,
-  streaming: false,
+  streaming: true,
   emojiReactionsOnTimeline: true,
   alwaysShowNewPostButton: false,
   autohideFloatingPostButton: false,
   pauseOnUnfocused: true,
-  stopGifs: false,
+  stopGifs: true,
   replyVisibility: 'all',
   notificationVisibility: {
     follows: true,
@@ -70,7 +70,7 @@ export const defaultState = {
   hideFilteredStatuses: undefined, // instance default
   playVideosInModal: false,
   useOneClickNsfw: false,
-  useContainFit: false,
+  useContainFit: true,
   greentext: undefined, // instance default
   useAtIcon: undefined, // instance default
   mentionLinkDisplay: undefined, // instance default
