@@ -1,8 +1,10 @@
 import BooleanSetting from '../helpers/boolean_setting.vue'
 import ChoiceSetting from '../helpers/choice_setting.vue'
+import ScopeSelector from 'src/components/scope_selector/scope_selector.vue'
 import InterfaceLanguageSwitcher from 'src/components/interface_language_switcher/interface_language_switcher.vue'
 
 import SharedComputedObject from '../helpers/shared_computed_object.js'
+import ServerSideIndicator from '../helpers/server_side_indicator.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faGlobe
@@ -37,7 +39,9 @@ const GeneralTab = {
   components: {
     BooleanSetting,
     ChoiceSetting,
-    InterfaceLanguageSwitcher
+    InterfaceLanguageSwitcher,
+    ScopeSelector,
+    ServerSideIndicator,
   },
   computed: {
     postFormats () {
@@ -57,6 +61,11 @@ const GeneralTab = {
     },
     instanceShoutboxPresent () { return this.$store.state.instance.shoutAvailable },
     ...SharedComputedObject()
+  },
+  methods: {
+    changeDefaultScope (value) {
+      this.$store.dispatch('setServerSideOption', { name: 'defaultScope', value })
+    }
   }
 }
 

@@ -259,11 +259,14 @@
   },
   "settings": {
     "app_name": "App name",
+    "expert_mode": "Expert mode",
     "save": "Save changes",
     "security": "Security",
     "setting_changed": "Setting is different from default",
+    "setting_server_side": "This setting is tied to your profile and affects all sessions and clients",
     "enter_current_password_to_confirm": "Enter your current password to confirm your identity",
     "post_look_feel": "Posts Look & Feel",
+    "mention_links": "Mention links",
     "mfa": {
       "otp": "OTP",
       "setup_otp": "Setup OTP",
@@ -400,6 +403,7 @@
       "name": "Label",
       "value": "Content"
     },
+    "account_privacy": "Privacy",
     "use_contain_fit": "Don't crop the attachment in thumbnails",
     "name": "Name",
     "name_bio": "Name & bio",
@@ -417,6 +421,7 @@
     "no_rich_text_description": "Strip rich text formatting from all posts",
     "no_blocks": "No blocks",
     "no_mutes": "No mutes",
+    "hide_favorites_description": "Don't show list of my favorites (people still get notified)",
     "hide_follows_description": "Don't show who I'm following",
     "hide_followers_description": "Don't show who's following me",
     "hide_follows_count_description": "Don't show follow count",

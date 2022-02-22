@@ -9,7 +9,8 @@ export default {
   props: [
     'path',
     'disabled',
-    'options'
+    'options',
+    'expert'
   ],
   computed: {
     pathDefault () {
@@ -28,7 +29,10 @@ export default {
       return get(this.$parent, this.pathDefault)
     },
     isChanged () {
-      return this.state !== this.defaultState
+      return !this.path.startsWith('serverSide_') && this.state !== this.defaultState
+    },
+    matchesExpertLevel () {
+      return (this.expert || 0) <= this.$parent.expertLevel
     }
   },
   methods: {

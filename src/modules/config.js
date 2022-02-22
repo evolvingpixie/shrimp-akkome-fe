@@ -16,6 +16,7 @@ export const multiChoiceProperties = [
 ]
 
 export const defaultState = {
+  expertLevel: 0, // used to track which settings to show and hide
   colors: {},
   theme: undefined,
   customTheme: undefined,

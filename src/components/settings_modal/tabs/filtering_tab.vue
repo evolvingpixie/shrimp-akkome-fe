@@ -38,7 +38,7 @@
           </ul>
         </li>
         <li>
-          <BooleanSetting path="hidePostStats">
+          <BooleanSetting path="hidePostStats" expert="1">
             {{ $t('settings.hide_post_stats') }}
           </BooleanSetting>
         </li>
@@ -59,7 +59,7 @@
           <div>{{ $t('settings.filtering_explanation') }}</div>
         </li>
         <h3>{{ $t('settings.attachments') }}</h3>
-        <li>
+        <li v-if="expertLevel > 0">
           <label for="maxThumbnails">
             {{ $t('settings.max_thumbnails') }}
           </label>
@@ -84,53 +84,13 @@
         </li>
       </ul>
     </div>
-    <div class="setting-item">
+    <div class="setting-item" v-if="expertLevel > 0">
       <h2>{{ $t('settings.user_profiles') }}</h2>
       <ul class="setting-list">
         <li>
           <BooleanSetting path="hideUserStats">
             {{ $t('settings.hide_user_stats') }}
           </BooleanSetting>
-        </li>
-      </ul>
-    </div>
-    <div class="setting-item">
-      <h2>{{ $t('settings.notifications') }}</h2>
-      <ul class="setting-list">
-        <li class="select-multiple">
-          <span class="label">{{ $t('settings.notification_visibility') }}</span>
-          <ul class="option-list">
-            <li>
-              <BooleanSetting path="notificationVisibility.likes">
-                {{ $t('settings.notification_visibility_likes') }}
-              </BooleanSetting>
-            </li>
-            <li>
-              <BooleanSetting path="notificationVisibility.repeats">
-                {{ $t('settings.notification_visibility_repeats') }}
-              </BooleanSetting>
-            </li>
-            <li>
-              <BooleanSetting path="notificationVisibility.follows">
-                {{ $t('settings.notification_visibility_follows') }}
-              </BooleanSetting>
-            </li>
-            <li>
-              <BooleanSetting path="notificationVisibility.mentions">
-                {{ $t('settings.notification_visibility_mentions') }}
-              </BooleanSetting>
-            </li>
-            <li>
-              <BooleanSetting path="notificationVisibility.moves">
-                {{ $t('settings.notification_visibility_moves') }}
-              </BooleanSetting>
-            </li>
-            <li>
-              <BooleanSetting path="notificationVisibility.emojiReactions">
-                {{ $t('settings.notification_visibility_emoji_reactions') }}
-              </BooleanSetting>
-            </li>
-          </ul>
         </li>
       </ul>
     </div>

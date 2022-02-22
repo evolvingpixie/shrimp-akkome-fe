@@ -48,4 +48,11 @@
       }
     }
   }
+
+  .settings-footer {
+    display: flex;
+    >* {
+      margin-right: 0.5em;
+    }
+  }
 }
