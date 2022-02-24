@@ -117,6 +117,7 @@ const PostStatusForm = {
       ? this.copyMessageScope
       : this.$store.state.users.currentUser.default_scope
 
+    // const { defaultNSFW: sensitiveByDefault } = this.$store.state.serverSideConfig
     const { postContentType: contentType, sensitiveByDefault } = this.$store.getters.mergedConfig
 
     return {

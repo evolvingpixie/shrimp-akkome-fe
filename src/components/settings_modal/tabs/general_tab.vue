@@ -221,7 +221,8 @@
           </label>
         </li>
         <li>
-          <BooleanSetting path="serverSide_defaultNSFW">
+          <!-- <BooleanSetting path="serverSide_defaultNSFW"> -->
+          <BooleanSetting path="sensitiveByDefault">
             {{ $t('settings.sensitive_by_default') }}
           </BooleanSetting>
         </li>

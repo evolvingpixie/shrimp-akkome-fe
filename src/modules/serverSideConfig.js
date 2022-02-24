@@ -2,7 +2,7 @@ import { get, set } from 'lodash'
 
 export const settingsMapGet = {
   'defaultScope': 'source.privacy',
-  'defaultNSFW': 'source.sensitive',
+  'defaultNSFW': 'source.sensitive', // BROKEN: pleroma/pleroma#2837
   'stripRichContent': 'source.pleroma.no_rich_content',
   // Privacy
   'locked': 'locked',
