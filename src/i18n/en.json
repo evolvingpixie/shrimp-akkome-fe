@@ -259,7 +259,7 @@
   },
   "settings": {
     "app_name": "App name",
-    "expert_mode": "Expert mode",
+    "expert_mode": "Show advanced",
     "save": "Save changes",
     "security": "Security",
     "setting_changed": "Setting is different from default",
