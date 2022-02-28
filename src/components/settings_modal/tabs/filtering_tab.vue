@@ -47,6 +47,11 @@
             {{ $t('settings.hide_post_stats') }}
           </BooleanSetting>
         </li>
+        <li>
+          <BooleanSetting path="hideBotIndication">
+            {{ $t('settings.hide_bot_indication') }}
+          </BooleanSetting>
+        </li>
         <ChoiceSetting
           id="replyVisibility"
           path="replyVisibility"

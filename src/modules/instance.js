@@ -33,6 +33,7 @@ const defaultState = {
   hideMutedThreads: true,
   hideWordFilteredPosts: false,
   hidePostStats: false,
+  hideBotIndication: false,
   hideSitename: false,
   hideUserStats: false,
   muteBotStatuses: false,

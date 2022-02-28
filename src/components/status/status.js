@@ -169,6 +169,9 @@ const Status = {
     botStatus () {
       return this.status.user.bot
     },
+    botIndicator () {
+      return this.botStatus && !this.hideBotIndication
+    },
     mentionsLine () {
       if (!this.headTailLinks) return []
       const writtenSet = new Set(this.headTailLinks.writtenMentions.map(_ => _.url))
@@ -300,6 +303,9 @@ const Status = {
     },
     muteBotStatuses () {
       return this.mergedConfig.muteBotStatuses
+    },
+    hideBotIndication () {
+      return this.mergedConfig.hideBotIndication
     },
     currentUser () {
       return this.$store.state.users.currentUser

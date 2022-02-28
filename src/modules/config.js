@@ -80,6 +80,7 @@ export const defaultState = {
   mentionLinkShowYous: undefined, // instance default
   mentionLinkBoldenYou: undefined, // instance default
   hidePostStats: undefined, // instance default
+  hideBotIndication: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default
   sensitiveByDefault: undefined // instance default
