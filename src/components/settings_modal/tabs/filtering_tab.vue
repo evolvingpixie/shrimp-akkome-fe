@@ -38,6 +38,11 @@
           </ul>
         </li>
         <li>
+          <BooleanSetting path="muteBotStatuses">
+            {{ $t('settings.mute_bot_posts') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting path="hidePostStats">
             {{ $t('settings.hide_post_stats') }}
           </BooleanSetting>

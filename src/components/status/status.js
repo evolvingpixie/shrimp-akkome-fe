@@ -166,6 +166,9 @@ const Status = {
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
     },
+    botStatus () {
+      return this.status.user.bot
+    },
     mentionsLine () {
       if (!this.headTailLinks) return []
       const writtenSet = new Set(this.headTailLinks.writtenMentions.map(_ => _.url))
@@ -191,7 +194,9 @@ const Status = {
         // Thread is muted
         status.thread_muted ||
         // Wordfiltered
-        this.muteWordHits.length > 0
+        this.muteWordHits.length > 0 ||
+        // bot status
+        (this.muteBotStatuses && this.botStatus)
       return !this.unmuted && !this.shouldNotMute && reasonsToMute
     },
     userIsMuted () {
@@ -292,6 +297,9 @@ const Status = {
     },
     hidePostStats () {
       return this.mergedConfig.hidePostStats
+    },
+    muteBotStatuses () {
+      return this.mergedConfig.muteBotStatuses
     },
     currentUser () {
       return this.$store.state.users.currentUser

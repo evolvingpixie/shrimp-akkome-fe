@@ -53,6 +53,13 @@ const TimelineQuickSettings = {
         const value = !this.hideMutedPosts
         this.$store.dispatch('setOption', { name: 'hideFilteredStatuses', value })
       }
+    },
+    muteBotStatuses: {
+      get () { return this.mergedConfig.muteBotStatuses },
+      set () {
+        const value = !this.muteBotStatuses
+        this.$store.dispatch('setOption', { name: 'muteBotStatuses', value })
+      }
     }
   }
 }
