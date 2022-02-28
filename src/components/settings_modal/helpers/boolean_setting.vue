@@ -14,9 +14,7 @@
       >
         <slot />
       </span>
-      <ModifiedIndicator :changed="isChanged" />
-      <ServerSideIndicator :serverSide="isServerSide" />
-    </Checkbox>
+      <ModifiedIndicator :changed="isChanged" /><ServerSideIndicator :serverSide="isServerSide" /> </Checkbox>
   </label>
 </template>
 
