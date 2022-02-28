@@ -27,7 +27,7 @@
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="streaming" expert="1">
+          <BooleanSetting path="streaming" >
             {{ $t('settings.streaming') }}
           </BooleanSetting>
           <ul
@@ -38,7 +38,6 @@
               <BooleanSetting
                 path="pauseOnUnfocused"
                 :disabled="!streaming"
-                expert="1"
               >
                 {{ $t('settings.pause_on_unfocused') }}
               </BooleanSetting>

@@ -37,7 +37,7 @@ export const defaultState = {
   preloadImage: true,
   loopVideo: true,
   loopVideoSilentOnly: true,
-  streaming: true,
+  streaming: false,
   emojiReactionsOnTimeline: true,
   alwaysShowNewPostButton: false,
   autohideFloatingPostButton: false,
