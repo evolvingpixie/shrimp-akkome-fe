@@ -44,7 +44,7 @@ export const customAPIs = {
   'blockNotificationsFromStrangers': 'updateNotificationSettings'
 }
 
-export const defaultState = Object.fromEntries(Object.keys(settingsMapGet).map(key => [key, undefined]))
+export const defaultState = Object.fromEntries(Object.keys(settingsMapGet).map(key => [key, null]))
 
 const serverSideConfig = {
   state: { ...defaultState },
@@ -53,7 +53,7 @@ const serverSideConfig = {
       set(state, name, value)
     },
     wipeServerSideOption (state, { name }) {
-      set(state, name, undefined)
+      set(state, name, null)
     },
     // Set the settings based on their path location
     setCurrentUser (state, user) {
