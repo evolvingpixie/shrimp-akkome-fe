@@ -55,6 +55,11 @@ const serverSideConfig = {
     wipeServerSideOption (state, { name }) {
       set(state, name, null)
     },
+    wipeAllServerSideOptions (state) {
+      Object.keys(settingsMapGet).forEach(key => {
+        set(state, key, null)
+      })
+    },
     // Set the settings based on their path location
     setCurrentUser (state, user) {
       Object.entries(settingsMapGet).forEach(([name, path]) => {
@@ -104,6 +109,9 @@ const serverSideConfig = {
           console.warn('Error setting server-side option:', e)
           commit('confirmServerSideOption', { name, value: oldValue })
         })
+    },
+    logout ({ commit }) {
+      commit('wipeAllServerSideOptions')
     }
   }
 }
