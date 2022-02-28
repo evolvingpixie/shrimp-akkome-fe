@@ -22,6 +22,7 @@
             <li>
               <BooleanSetting
                 :disabled="hideFilteredStatuses"
+                v-if="user"
                 path="hideMutedThreads"
               >
                 {{ $t('settings.hide_muted_threads') }}
@@ -30,6 +31,7 @@
             <li>
               <BooleanSetting
                 :disabled="hideFilteredStatuses"
+                v-if="user"
                 path="hideMutedPosts"
               >
                 {{ $t('settings.hide_muted_posts') }}
@@ -46,6 +48,7 @@
           id="replyVisibility"
           path="replyVisibility"
           :options="replyVisibilityOptions"
+          v-if="user"
         >
           {{ $t('settings.replies_in_timeline') }}
         </ChoiceSetting>
