@@ -3,7 +3,7 @@ import { get, set } from 'lodash'
 export const settingsMapGet = {
   'defaultScope': 'source.privacy',
   'defaultNSFW': 'source.sensitive', // BROKEN: pleroma/pleroma#2837
-  'stripRichContent': 'source.pleroma.no_rich_content',
+  'stripRichContent': 'source.pleroma.no_rich_text',
   // Privacy
   'locked': 'locked',
   'acceptChatMessages': 'pleroma.accepts_chat_messages',
@@ -22,7 +22,7 @@ export const settingsMapGet = {
 export const settingsMapSet = {
   'defaultScope': 'source.privacy',
   'defaultNSFW': 'source.sensitive',
-  'stripRichContent': 'source.pleroma.no_rich_content',
+  'stripRichContent': 'no_rich_text',
   // Privacy
   'locked': 'locked',
   'acceptChatMessages': 'accepts_chat_messages',
