@@ -242,7 +242,7 @@
             <li>
               <BooleanSetting
                 path="serverSide_hideFollowersCount"
-                :disabled="!severSide_hideFollowers"
+                :disabled="!serverSide_hideFollowers"
                 >
                 {{ $t('settings.hide_followers_count_description') }}
               </BooleanSetting>
@@ -260,7 +260,7 @@
             <li>
               <BooleanSetting
                 path="serverSide_hideFollowsCount"
-                :disabled="!severSide_hideFollows"
+                :disabled="!serverSide_hideFollows"
                 >
                 {{ $t('settings.hide_follows_count_description') }}
               </BooleanSetting>
