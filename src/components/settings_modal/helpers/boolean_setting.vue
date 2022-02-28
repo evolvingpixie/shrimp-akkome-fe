@@ -1,7 +1,7 @@
 <template>
   <label
-    class="BooleanSetting"
     v-if="matchesExpertLevel"
+    class="BooleanSetting"
   >
     <Checkbox
       :checked="state"
@@ -14,7 +14,7 @@
       >
         <slot />
       </span>
-      <ModifiedIndicator :changed="isChanged" /><ServerSideIndicator :serverSide="isServerSide" /> </Checkbox>
+      <ModifiedIndicator :changed="isChanged" /><ServerSideIndicator :server-side="isServerSide" /> </Checkbox>
   </label>
 </template>
 

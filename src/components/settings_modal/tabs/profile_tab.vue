@@ -101,7 +101,8 @@
       <p class="visibility-notice">
         {{ $t('settings.avatar_size_instruction') }}
       </p>
-      <div class="current-avatar-container"> <img
+      <div class="current-avatar-container">
+        <img
           :src="user.profile_image_url_original"
           class="current-avatar"
         >
@@ -243,7 +244,7 @@
               <BooleanSetting
                 path="serverSide_hideFollowersCount"
                 :disabled="!serverSide_hideFollowers"
-                >
+              >
                 {{ $t('settings.hide_followers_count_description') }}
               </BooleanSetting>
             </li>
@@ -261,7 +262,7 @@
               <BooleanSetting
                 path="serverSide_hideFollowsCount"
                 :disabled="!serverSide_hideFollows"
-                >
+              >
                 {{ $t('settings.hide_follows_count_description') }}
               </BooleanSetting>
             </li>

@@ -81,56 +81,56 @@
         <button
           v-if="type === 'flash' && flashLoaded"
           class="button-unstyled attachment-button"
-          @click.prevent="stopFlash"
           :title="$t('status.attachment_stop_flash')"
+          @click.prevent="stopFlash"
         >
           <FAIcon icon="stop" />
         </button>
         <button
           v-if="attachment.description && size !== 'small' && !edit && type !== 'unknown'"
           class="button-unstyled attachment-button"
-          @click.prevent="toggleDescription"
           :title="$t('status.show_attachment_description')"
+          @click.prevent="toggleDescription"
         >
           <FAIcon icon="align-right" />
         </button>
         <button
           v-if="!useModal && type !== 'unknown'"
           class="button-unstyled attachment-button"
-          @click.prevent="openModalForce"
           :title="$t('status.show_attachment_in_modal')"
+          @click.prevent="openModalForce"
         >
           <FAIcon icon="search-plus" />
         </button>
         <button
           v-if="nsfw && hideNsfwLocal"
           class="button-unstyled attachment-button"
-          @click.prevent="toggleHidden"
           :title="$t('status.hide_attachment')"
+          @click.prevent="toggleHidden"
         >
           <FAIcon icon="times" />
         </button>
         <button
           v-if="shiftUp"
           class="button-unstyled attachment-button"
-          @click.prevent="onShiftUp"
           :title="$t('status.move_up')"
+          @click.prevent="onShiftUp"
         >
           <FAIcon icon="chevron-left" />
         </button>
         <button
           v-if="shiftDn"
           class="button-unstyled attachment-button"
-          @click.prevent="onShiftDn"
           :title="$t('status.move_down')"
+          @click.prevent="onShiftDn"
         >
           <FAIcon icon="chevron-right" />
         </button>
         <button
           v-if="remove"
           class="button-unstyled attachment-button"
-          @click.prevent="onRemove"
           :title="$t('status.remove_attachment')"
+          @click.prevent="onRemove"
         >
           <FAIcon icon="trash-alt" />
         </button>
@@ -160,7 +160,10 @@
         :href="attachment.url"
         target="_blank"
       >
-        <FAIcon size="5x" :icon="placeholderIconClass" />
+        <FAIcon
+          size="5x"
+          :icon="placeholderIconClass"
+        />
         <p>
           {{ localDescription }}
         </p>

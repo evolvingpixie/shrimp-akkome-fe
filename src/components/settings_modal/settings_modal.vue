@@ -109,8 +109,8 @@
           </template>
         </Popover>
 
-        <Checkbox v-model="expertLevel" >
-          {{ $t("settings.expert_mode")}}
+        <Checkbox v-model="expertLevel">
+          {{ $t("settings.expert_mode") }}
         </Checkbox>
       </div>
     </div>

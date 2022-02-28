@@ -1,7 +1,7 @@
 <template>
   <label
-    class="ChoiceSetting"
     v-if="matchesExpertLevel"
+    class="ChoiceSetting"
   >
     <slot />
     <Select
@@ -19,7 +19,7 @@
       </option>
     </Select>
     <ModifiedIndicator :changed="isChanged" />
-    <ServerSideIndicator :serverSide="isServerSide" />
+    <ServerSideIndicator :server-side="isServerSide" />
   </label>
 </template>
 

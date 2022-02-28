@@ -41,7 +41,7 @@ const GeneralTab = {
     ChoiceSetting,
     InterfaceLanguageSwitcher,
     ScopeSelector,
-    ServerSideIndicator,
+    ServerSideIndicator
   },
   computed: {
     postFormats () {

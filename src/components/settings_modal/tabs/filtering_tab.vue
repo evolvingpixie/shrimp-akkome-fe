@@ -21,8 +21,8 @@
             </li>
             <li>
               <BooleanSetting
-                :disabled="hideFilteredStatuses"
                 v-if="user"
+                :disabled="hideFilteredStatuses"
                 path="hideMutedThreads"
               >
                 {{ $t('settings.hide_muted_threads') }}
@@ -30,8 +30,8 @@
             </li>
             <li>
               <BooleanSetting
-                :disabled="hideFilteredStatuses"
                 v-if="user"
+                :disabled="hideFilteredStatuses"
                 path="hideMutedPosts"
               >
                 {{ $t('settings.hide_muted_posts') }}
@@ -40,15 +40,18 @@
           </ul>
         </li>
         <li>
-          <BooleanSetting path="hidePostStats" expert="1">
+          <BooleanSetting
+            path="hidePostStats"
+            expert="1"
+          >
             {{ $t('settings.hide_post_stats') }}
           </BooleanSetting>
         </li>
         <ChoiceSetting
+          v-if="user"
           id="replyVisibility"
           path="replyVisibility"
           :options="replyVisibilityOptions"
-          v-if="user"
         >
           {{ $t('settings.replies_in_timeline') }}
         </ChoiceSetting>
@@ -87,7 +90,10 @@
         </li>
       </ul>
     </div>
-    <div class="setting-item" v-if="expertLevel > 0">
+    <div
+      v-if="expertLevel > 0"
+      class="setting-item"
+    >
       <h2>{{ $t('settings.user_profiles') }}</h2>
       <ul class="setting-list">
         <li>

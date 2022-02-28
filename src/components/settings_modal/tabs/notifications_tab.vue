@@ -46,16 +46,25 @@
       </ul>
     </div>
 
-    <div class="setting-item" v-if="expertLevel > 0">
+    <div
+      v-if="expertLevel > 0"
+      class="setting-item"
+    >
       <h2>{{ $t('settings.notification_setting_privacy') }}</h2>
       <ul class="setting-list">
         <li>
-          <BooleanSetting path="webPushNotifications" expert="1">
+          <BooleanSetting
+            path="webPushNotifications"
+            expert="1"
+          >
             {{ $t('settings.enable_web_push_notifications') }}
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="serverSide_webPushHideContents" expert="1">
+          <BooleanSetting
+            path="serverSide_webPushHideContents"
+            expert="1"
+          >
             {{ $t('settings.notification_setting_hide_notification_contents') }}
           </BooleanSetting>
         </li>
