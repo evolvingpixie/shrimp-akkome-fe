@@ -10,13 +10,15 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faChevronLeft,
   faChevronRight,
-  faCircleNotch
+  faCircleNotch,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faChevronLeft,
   faChevronRight,
-  faCircleNotch
+  faCircleNotch,
+  faTimes
 )
 
 const MediaModal = {

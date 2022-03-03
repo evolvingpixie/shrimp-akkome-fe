@@ -58,25 +58,36 @@
     <button
       v-if="canNavigate"
       :title="$t('media_modal.previous')"
-      class="modal-view-button-arrow modal-view-button-arrow--prev"
+      class="modal-view-button modal-view-button-arrow modal-view-button-arrow--prev"
       @click.stop.prevent="goPrev"
     >
       <FAIcon
-        class="arrow-icon"
+        class="button-icon arrow-icon"
         icon="chevron-left"
       />
     </button>
     <button
       v-if="canNavigate"
       :title="$t('media_modal.next')"
-      class="modal-view-button-arrow modal-view-button-arrow--next"
+      class="modal-view-button modal-view-button-arrow modal-view-button-arrow--next"
       @click.stop.prevent="goNext"
     >
       <FAIcon
-        class="arrow-icon"
+        class="button-icon arrow-icon"
         icon="chevron-right"
       />
     </button>
+    <button
+      class="modal-view-button modal-view-button-hide"
+      :title="$t('media_modal.hide')"
+      @click.stop.prevent="hide"
+    >
+      <FAIcon
+        class="button-icon"
+        icon="times"
+      />
+    </button>
+
     <span
       v-if="description"
       class="description"
@@ -104,11 +115,16 @@
 <script src="./media_modal.js"></script>
 
 <style lang="scss">
+$modal-view-button-icon-height: 30px;
+$modal-view-button-icon-width: 32px;
+$modal-view-button-icon-margin: 6px;
+
 .modal-view.media-modal-view {
   z-index: 1001;
   flex-direction: column;
 
-  .modal-view-button-arrow {
+  .modal-view-button-arrow,
+  .modal-view-button-hide {
     opacity: 0.75;
 
     &:focus,
@@ -139,8 +155,8 @@
     overflow: hidden;
     align-items: center;
     flex-direction: column;
-    max-width: 90%;
-    max-height: 95%;
+    max-width: 100%;
+    max-height: 100%;
     width: 100%;
     height: 100%;
     flex-grow: 1;
@@ -200,13 +216,7 @@
     }
   }
 
-  .modal-view-button-arrow {
-    position: absolute;
-    display: block;
-    top: 50%;
-    margin-top: -50px;
-    width: 70px;
-    height: 100px;
+  .modal-view-button {
     border: 0;
     padding: 0;
     opacity: 0;
@@ -217,11 +227,29 @@
     cursor: pointer;
     transition: opacity 333ms cubic-bezier(.4,0,.22,1);
 
+    .button-icon {
+      position: absolute;
+      height: $modal-view-button-icon-height;
+      width: $modal-view-button-icon-width;
+      font-size: 14px;
+      line-height: $modal-view-button-icon-height;
+      color: #FFF;
+      text-align: center;
+      background-color: rgba(0,0,0,.3);
+    }
+  }
+
+  .modal-view-button-arrow {
+    position: absolute;
+    display: block;
+    top: 50%;
+    margin-top: -50px;
+    width: 70px;
+    height: 100px;
+
     .arrow-icon {
       position: absolute;
       top: 35px;
-      height: 30px;
-      width: 32px;
       font-size: 14px;
       line-height: 30px;
       color: #FFF;
@@ -232,15 +260,25 @@
     &--prev {
       left: 0;
       .arrow-icon {
-        left: 6px;
+        left: $modal-view-button-icon-margin;
       }
     }
 
     &--next {
       right: 0;
       .arrow-icon {
-        right: 6px;
+        right: $modal-view-button-icon-margin;
       }
+    }
+  }
+
+  .modal-view-button-hide {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .button-icon {
+      top: $modal-view-button-icon-margin;
+      right: $modal-view-button-icon-margin;
     }
   }
 }
