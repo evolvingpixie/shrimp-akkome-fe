@@ -20,28 +20,28 @@
     </div>
     <div class="conversation-body panel-body">
       <div
-        v-if="shouldShowAllConversationButton"
-        class="conversation-dive-to-top-level-box"
-      >
-        <i18n
-          path="status.show_all_conversation_with_icon"
-          tag="button"
-          class="button-unstyled -link"
-          @click.prevent="diveToTopLevel"
-        >
-          <FAIcon
-            place="icon"
-            icon="angle-double-left"
-          />
-          <span place="text">
-            {{ $tc('status.show_all_conversation', otherTopLevelCount, { numStatus: otherTopLevelCount }) }}
-          </span>
-        </i18n>
-      </div>
-      <div
         v-if="isTreeView"
         class="thread-body"
       >
+        <div
+          v-if="shouldShowAllConversationButton"
+          class="conversation-dive-to-top-level-box"
+        >
+          <i18n
+            path="status.show_all_conversation_with_icon"
+            tag="button"
+            class="button-unstyled -link"
+            @click.prevent="diveToTopLevel"
+          >
+            <FAIcon
+              place="icon"
+              icon="angle-double-left"
+            />
+            <span place="text">
+              {{ $tc('status.show_all_conversation', otherTopLevelCount, { numStatus: otherTopLevelCount }) }}
+            </span>
+          </i18n>
+        </div>
         <div
           v-if="shouldShowAncestors"
           class="thread-ancestors"
