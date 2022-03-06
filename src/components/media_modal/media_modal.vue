@@ -115,9 +115,10 @@
 <script src="./media_modal.js"></script>
 
 <style lang="scss">
-$modal-view-button-icon-height: 30px;
-$modal-view-button-icon-width: 32px;
-$modal-view-button-icon-margin: 6px;
+$modal-view-button-icon-height: 3em;
+$modal-view-button-icon-half-height: calc(#{$modal-view-button-icon-height} / 2);
+$modal-view-button-icon-width: 3em;
+$modal-view-button-icon-margin: 0.5em;
 
 .modal-view.media-modal-view {
   z-index: 1001;
@@ -226,6 +227,8 @@ $modal-view-button-icon-margin: 6px;
     overflow: visible;
     cursor: pointer;
     transition: opacity 333ms cubic-bezier(.4,0,.22,1);
+    height: $modal-view-button-icon-height;
+    width: $modal-view-button-icon-width;
 
     .button-icon {
       position: absolute;
@@ -243,15 +246,14 @@ $modal-view-button-icon-margin: 6px;
     position: absolute;
     display: block;
     top: 50%;
-    margin-top: -50px;
-    width: 70px;
-    height: 100px;
+    margin-top: $modal-view-button-icon-half-height;
+    width: $modal-view-button-icon-width;
+    height: $modal-view-button-icon-height;
 
     .arrow-icon {
       position: absolute;
-      top: 35px;
-      font-size: 14px;
-      line-height: 30px;
+      top: 0;
+      line-height: $modal-view-button-icon-height;
       color: #FFF;
       text-align: center;
       background-color: rgba(0,0,0,.3);
