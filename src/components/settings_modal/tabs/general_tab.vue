@@ -166,6 +166,11 @@
           class="setting-list suboptions"
         >
           <li>
+            <BooleanSetting path="conversationTreeAdvanced">
+              {{ $t('settings.tree_advanced') }}
+            </BooleanSetting>
+          </li>
+          <li>
             <label for="maxDepthInThread">
               {{ $t('settings.max_depth_in_thread') }}
             </label>

@@ -85,6 +85,7 @@ export const defaultState = {
   virtualScrolling: undefined, // instance default
   sensitiveByDefault: undefined, // instance default
   conversationDisplay: undefined, // instance default
+  conversationTreeAdvanced: undefined, // instance default
   conversationOtherRepliesButton: undefined, // instance default
   maxDepthInThread: 6
 }

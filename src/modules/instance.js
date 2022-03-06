@@ -53,7 +53,8 @@ const defaultState = {
   theme: 'pleroma-dark',
   virtualScrolling: true,
   sensitiveByDefault: false,
-  conversationDisplay: 'simple_tree',
+  conversationDisplay: 'linear',
+  conversationTreeAdvanced: false,
   conversationOtherRepliesButton: 'below',
   maxDepthInThread: 6,
 

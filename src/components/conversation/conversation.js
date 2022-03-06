@@ -81,10 +81,10 @@ const conversation = {
       return this.$store.getters.mergedConfig.conversationDisplay
     },
     isTreeView () {
-      return this.displayStyle === 'tree' || this.displayStyle === 'simple_tree'
+      return !this.isLinearView
     },
     treeViewIsSimple () {
-      return this.displayStyle === 'simple_tree'
+      return !this.$store.getters.mergedConfig.conversationTreeAdvanced
     },
     isLinearView () {
       return this.displayStyle === 'linear'
