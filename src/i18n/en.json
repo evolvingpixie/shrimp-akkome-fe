@@ -467,7 +467,7 @@
     "subject_line_noop": "Do not copy",
     "conversation_display": "Conversation display style",
     "conversation_display_tree": "Tree-style",
-    "conversation_display_simple_tree": "Simplified tree-style",
+    "tree_advanced": "Allow more flexible navigation in tree view",
     "conversation_display_linear": "Linear-style",
     "conversation_other_replies_button": "Show the \"other replies\" button",
     "conversation_other_replies_button_below": "Below statuses",
