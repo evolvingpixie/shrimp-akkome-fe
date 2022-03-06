@@ -56,6 +56,7 @@ const defaultState = {
   conversationDisplay: 'linear',
   conversationTreeAdvanced: false,
   conversationOtherRepliesButton: 'below',
+  conversationTreeFadeAncestors: false,
   maxDepthInThread: 6,
 
   // Nasty stuff

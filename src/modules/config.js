@@ -87,6 +87,7 @@ export const defaultState = {
   conversationDisplay: undefined, // instance default
   conversationTreeAdvanced: undefined, // instance default
   conversationOtherRepliesButton: undefined, // instance default
+  conversationTreeFadeAncestors: undefined, // instance default
   maxDepthInThread: 6
 }
 

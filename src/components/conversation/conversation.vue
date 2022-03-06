@@ -50,7 +50,7 @@
             v-for="status in ancestorsOf(diveRoot)"
             :key="status.id"
             class="thread-ancestor"
-            :class="{'thread-ancestor-has-other-replies': getReplies(status.id).length > 1}"
+            :class="{'thread-ancestor-has-other-replies': getReplies(status.id).length > 1, '-faded': shouldFadeAncestors}"
           >
             <status
               ref="statusComponent"
@@ -210,7 +210,7 @@
     border-left: 2px solid var(--border, $fallback--border);
   }
 
-  .thread-ancestor .StatusContent {
+  .thread-ancestor.-faded .StatusContent {
     --link: var(--faintLink);
     --text: var(--faint);
     color: var(--text);

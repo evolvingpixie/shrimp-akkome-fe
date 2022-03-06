@@ -171,6 +171,11 @@
             </BooleanSetting>
           </li>
           <li>
+            <BooleanSetting path="conversationTreeFadeAncestors">
+              {{ $t('settings.tree_fade_ancestors') }}
+            </BooleanSetting>
+          </li>
+          <li>
             <label for="maxDepthInThread">
               {{ $t('settings.max_depth_in_thread') }}
             </label>

@@ -89,6 +89,9 @@ const conversation = {
     isLinearView () {
       return this.displayStyle === 'linear'
     },
+    shouldFadeAncestors () {
+      return this.$store.getters.mergedConfig.conversationTreeFadeAncestors
+    },
     otherRepliesButtonPosition () {
       return this.$store.getters.mergedConfig.conversationOtherRepliesButton
     },
