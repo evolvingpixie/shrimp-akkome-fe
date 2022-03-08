@@ -194,7 +194,7 @@
 
 .Conversation {
   .conversation-dive-to-top-level-box {
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: var(--border, $fallback--border);
@@ -206,7 +206,7 @@
   }
 
   .thread-ancestors {
-    margin-left: $status-margin;
+    margin-left: var(--status-margin, $status-margin);
     border-left: 2px solid var(--border, $fallback--border);
   }
 
@@ -216,7 +216,7 @@
     color: var(--text);
   }
   .thread-ancestor-dive-box {
-    padding-left: $status-margin;
+    padding-left: var(--status-margin, $status-margin);
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: var(--border, $fallback--border);
@@ -229,7 +229,7 @@
     }
   }
   .thread-ancestor-dive-box-inner {
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
   }
 
   .conversation-status {

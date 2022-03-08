@@ -113,12 +113,12 @@
 <style lang="scss">
 @import '../../_variables.scss';
 .thread-tree-replies {
-  margin-left: $status-margin;
+  margin-left: var(--status-margin, $status-margin);
   border-left: 2px solid var(--border, $fallback--border);
 }
 
 .thread-tree-replies-hidden {
-  padding: $status-margin;
+  padding: var(--status-margin, $status-margin);
   /* Make the button stretch along the whole row */
   display: flex;
   align-items: stretch;

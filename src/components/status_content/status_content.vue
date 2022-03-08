@@ -58,10 +58,6 @@
 
 <script src="./status_content.js" ></script>
 <style lang="scss">
-@import '../../_variables.scss';
-
-$status-margin: 0.75em;
-
 .StatusContent {
   flex: 1;
   min-width: 0;
