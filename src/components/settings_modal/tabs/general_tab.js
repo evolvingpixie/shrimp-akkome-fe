@@ -1,5 +1,6 @@
 import BooleanSetting from '../helpers/boolean_setting.vue'
 import ChoiceSetting from '../helpers/choice_setting.vue'
+import IntegerSetting from '../helpers/integer_setting.vue'
 import InterfaceLanguageSwitcher from 'src/components/interface_language_switcher/interface_language_switcher.vue'
 
 import SharedComputedObject from '../helpers/shared_computed_object.js'
@@ -47,6 +48,7 @@ const GeneralTab = {
   components: {
     BooleanSetting,
     ChoiceSetting,
+    IntegerSetting,
     InterfaceLanguageSwitcher
   },
   computed: {

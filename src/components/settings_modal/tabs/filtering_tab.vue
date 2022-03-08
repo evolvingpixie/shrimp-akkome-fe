@@ -60,17 +60,12 @@
         </li>
         <h3>{{ $t('settings.attachments') }}</h3>
         <li>
-          <label for="maxThumbnails">
-            {{ $t('settings.max_thumbnails') }}
-          </label>
-          <input
-            id="maxThumbnails"
-            path.number="maxThumbnails"
-            class="number-input"
-            type="number"
-            min="0"
-            step="1"
+          <IntegerSetting
+            path="maxThumbnails"
+            :min="0"
           >
+            {{ $t('settings.max_thumbnails') }}
+          </IntegerSetting>
         </li>
         <li>
           <BooleanSetting path="hideAttachments">

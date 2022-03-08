@@ -176,17 +176,12 @@
             </BooleanSetting>
           </li>
           <li>
-            <label for="maxDepthInThread">
-              {{ $t('settings.max_depth_in_thread') }}
-            </label>
-            <input
-              id="maxDepthInThread"
-              path.number="maxDepthInThread"
-              class="number-input"
-              type="number"
-              min="3"
-              step="1"
+            <IntegerSetting
+              path="maxDepthInThread"
+              :min="3"
             >
+              {{ $t('settings.max_depth_in_thread') }}
+            </IntegerSetting>
           </li>
           <li>
             <ChoiceSetting
