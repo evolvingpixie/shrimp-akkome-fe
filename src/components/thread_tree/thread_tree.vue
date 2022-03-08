@@ -119,7 +119,6 @@
 
 .thread-tree-replies-hidden {
   padding: $status-margin;
-  //border-top: 1px solid var(--border, $fallback--border);
   /* Make the button stretch along the whole row */
   display: flex;
   align-items: stretch;

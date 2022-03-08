@@ -145,8 +145,6 @@ const conversation = {
 
       return sortAndFilterConversation(conversation, this.status)
     },
-    conversationDive () {
-    },
     statusMap () {
       return this.conversation.reduce((res, s) => {
         res[s.id] = s

@@ -230,7 +230,6 @@
   }
   .thread-ancestor-dive-box-inner {
     padding: $status-margin;
-    //border-left: 2px solid var(--border, $fallback--border);
   }
 
   .conversation-status {
@@ -263,10 +262,5 @@
     border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
     border-bottom: 1px solid var(--border, $fallback--border);
   }
-  /* &.-expanded { */
-  /*   .conversation-status:last-child { */
-  /*     border-bottom: none; */
-  /*   } */
-  /* } */
 }
 </style>
