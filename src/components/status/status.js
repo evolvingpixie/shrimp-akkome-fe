@@ -199,7 +199,7 @@ const Status = {
         // Wordfiltered
         this.muteWordHits.length > 0 ||
         // bot status
-        (this.muteBotStatuses && this.botStatus)
+        (this.muteBotStatuses && this.botStatus && !this.compact)
       return !this.unmuted && !this.shouldNotMute && reasonsToMute
     },
     userIsMuted () {
