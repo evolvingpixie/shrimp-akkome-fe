@@ -12,6 +12,7 @@
       :href="attachment.url"
       :alt="attachment.description"
       :title="attachment.description"
+      @click.prevent
     >
       <FAIcon :icon="placeholderIconClass" />
       <b>{{ nsfw ? "NSFW / " : "" }}</b>{{ edit ? '' : placeholderName }}

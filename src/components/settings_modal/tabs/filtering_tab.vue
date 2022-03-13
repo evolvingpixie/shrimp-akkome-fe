@@ -44,7 +44,20 @@
             path="hidePostStats"
             expert="1"
           >
+        </li>
+        <li>
+          <BooleanSetting path="muteBotStatuses">
+            {{ $t('settings.mute_bot_posts') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="hidePostStats">
             {{ $t('settings.hide_post_stats') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="hideBotIndication">
+            {{ $t('settings.hide_bot_indication') }}
           </BooleanSetting>
         </li>
         <ChoiceSetting

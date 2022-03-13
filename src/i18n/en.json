@@ -354,6 +354,8 @@
     "hide_attachments_in_tl": "Hide attachments in timeline",
     "hide_media_previews": "Hide media previews",
     "hide_muted_posts": "Hide posts of muted users",
+    "mute_bot_posts": "Mute bot posts",
+    "hide_bot_indication": "Hide bot indication in posts",
     "hide_all_muted_posts": "Hide muted posts",
     "max_thumbnails": "Maximum amount of thumbnails per post (empty = no limit)",
     "hide_isp": "Hide instance-specific panel",
