@@ -119,7 +119,8 @@
   "media_modal": {
     "previous": "Previous",
     "next": "Next",
-    "counter": "{current} / {total}"
+    "counter": "{current} / {total}",
+    "hide": "Close media viewer"
   },
   "nav": {
     "about": "About",
