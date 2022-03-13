@@ -104,7 +104,7 @@
     "selenium-server": "2.53.1",
     "semver": "5.6.0",
     "serviceworker-webpack-plugin": "1.0.1",
-    "shelljs": "0.8.4",
+    "shelljs": "0.8.5",
     "sinon": "2.4.1",
     "sinon-chai": "2.14.0",
     "stylelint": "13.6.1",
