@@ -19,6 +19,7 @@
       @load="onLoad"
       @error="onError"
     >
+    <slot/>
   </div>
 </template>
 

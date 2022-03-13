@@ -27,6 +27,7 @@ export const defaultState = {
   hideMutedPosts: undefined, // instance default
   hideMutedThreads: undefined, // instance default
   hideWordFilteredPosts: undefined, // instance default
+  muteBotStatuses: undefined, // instance default
   collapseMessageWithSubject: undefined, // instance default
   padEmoji: true,
   hideAttachments: false,
@@ -79,6 +80,7 @@ export const defaultState = {
   mentionLinkShowYous: undefined, // instance default
   mentionLinkBoldenYou: undefined, // instance default
   hidePostStats: undefined, // instance default
+  hideBotIndication: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default
   sensitiveByDefault: undefined // instance default

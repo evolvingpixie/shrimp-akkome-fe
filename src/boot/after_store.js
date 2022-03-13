@@ -115,6 +115,7 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('nsfwCensorImage')
   copyInstanceOption('background')
   copyInstanceOption('hidePostStats')
+  copyInstanceOption('hideBotIndication')
   copyInstanceOption('hideUserStats')
   copyInstanceOption('hideFilteredStatuses')
   copyInstanceOption('logo')

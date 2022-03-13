@@ -77,6 +77,7 @@
         <UserAvatar
           v-if="retweet"
           class="left-side repeater-avatar"
+          :bot="botIndicator"
           :better-shadow="betterShadow"
           :user="statusoid.user"
         />
@@ -124,6 +125,7 @@
             @click.stop.prevent.capture.native="toggleUserExpanded"
           >
             <UserAvatar
+              :bot="botIndicator"
               :compact="compact"
               :better-shadow="betterShadow"
               :user="status.user"
@@ -407,7 +409,10 @@
         class="gravestone"
       >
         <div class="left-side">
-          <UserAvatar :compact="compact" />
+          <UserAvatar
+            :compact="compact"
+            :bot="botIndicator"
+          />
         </div>
         <div class="right-side">
           <div class="deleted-text">
