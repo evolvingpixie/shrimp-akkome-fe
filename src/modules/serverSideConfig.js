@@ -1,50 +1,95 @@
 import { get, set } from 'lodash'
 
-export const settingsMapGet = {
+const defaultApi = ({ rootState, commit }, { path, value }) => {
+  const params = {}
+  set(params, path, value)
+  return rootState
+    .api
+    .backendInteractor
+    .updateProfile({ params })
+    .then(result => {
+      commit('addNewUsers', [result])
+      commit('setCurrentUser', result)
+    })
+}
+
+const notificationsApi = ({ rootState, commit }, { path, value, oldValue }) => {
+  const settings = {}
+  set(settings, path, value)
+  return rootState
+    .api
+    .backendInteractor
+    .updateNotificationSettings({ settings })
+    .then(result => {
+      if (result.status === 'success') {
+        commit('confirmServerSideOption', { name, value })
+      } else {
+        commit('confirmServerSideOption', { name, value: oldValue })
+      }
+    })
+}
+
+/**
+ * Map that stores relation between path for reading (from user profile),
+ * for writing (into API) an what API to use.
+ *
+ * Shorthand - instead of { get, set, api? } object it's possible to use string
+ * in case default api is used and get = set
+ *
+ * If no api is specified, defaultApi is used (see above)
+ */
+export const settingsMap = {
   'defaultScope': 'source.privacy',
   'defaultNSFW': 'source.sensitive', // BROKEN: pleroma/pleroma#2837
-  'stripRichContent': 'source.pleroma.no_rich_text',
+  'stripRichContent': {
+    get: 'source.pleroma.no_rich_text',
+    set: 'no_rich_text'
+  },
   // Privacy
   'locked': 'locked',
-  'acceptChatMessages': 'pleroma.accepts_chat_messages',
-  'allowFollowingMove': 'pleroma.allow_following_move',
+  'acceptChatMessages': {
+    get: 'pleroma.accepts_chat_messages',
+    set: 'accepts_chat_messages'
+  },
+  'allowFollowingMove': {
+    get: 'pleroma.allow_following_move',
+    set: 'allow_following_move'
+  },
   'discoverable': 'source.discoverable',
-  'hideFavorites': 'pleroma.hide_favorites',
-  'hideFollowers': 'pleroma.hide_followers',
-  'hideFollows': 'pleroma.hide_follows',
-  'hideFollowersCount': 'pleroma.hide_followers_count',
-  'hideFollowsCount': 'pleroma.hide_follows_count',
+  'hideFavorites': {
+    get: 'pleroma.hide_favorites',
+    set: 'hide_favorites'
+  },
+  'hideFollowers': {
+    get: 'pleroma.hide_followers',
+    set: 'hide_followers'
+  },
+  'hideFollows': {
+    get: 'pleroma.hide_follows',
+    set: 'hide_follows'
+  },
+  'hideFollowersCount': {
+    get: 'pleroma.hide_followers_count',
+    set: 'hide_followers_count'
+  },
+  'hideFollowsCount': {
+    get: 'pleroma.hide_follows_count',
+    set: 'hide_follows_count'
+  },
   // NotificationSettingsAPIs
-  'webPushHideContents': 'pleroma.notification_settings.hide_notification_contents',
-  'blockNotificationsFromStrangers': 'pleroma.notification_settings.block_from_strangers'
+  'webPushHideContents': {
+    get: 'pleroma.notification_settings.hide_notification_contents',
+    set: 'hide_notification_contents',
+    api: notificationsApi
+  },
+  'blockNotificationsFromStrangers': {
+    get: 'pleroma.notification_settings.block_from_strangers',
+    set: 'block_from_strangers',
+    api: notificationsApi
+  }
 }
 
-export const settingsMapSet = {
-  'defaultScope': 'source.privacy',
-  'defaultNSFW': 'source.sensitive',
-  'stripRichContent': 'no_rich_text',
-  // Privacy
-  'locked': 'locked',
-  'acceptChatMessages': 'accepts_chat_messages',
-  'allowFollowingMove': 'allow_following_move',
-  'discoverable': 'source.discoverable',
-  'hideFavorites': 'hide_favorites',
-  'hideFollowers': 'hide_followers',
-  'hideFollows': 'hide_follows',
-  'hideFollowersCount': 'hide_followers_count',
-  'hideFollowsCount': 'hide_follows_count',
-  // NotificationSettingsAPIs
-  'webPushHideContents': 'hide_notification_contents',
-  'blockNotificationsFromStrangers': 'block_from_strangers'
-}
-
-export const customAPIs = {
-  __defaultApi: 'updateProfile',
-  'webPushHideContents': 'updateNotificationSettings',
-  'blockNotificationsFromStrangers': 'updateNotificationSettings'
-}
-
-export const defaultState = Object.fromEntries(Object.keys(settingsMapGet).map(key => [key, null]))
+export const defaultState = Object.fromEntries(Object.keys(settingsMap).map(key => [key, null]))
 
 const serverSideConfig = {
   state: { ...defaultState },
@@ -56,13 +101,15 @@ const serverSideConfig = {
       set(state, name, null)
     },
     wipeAllServerSideOptions (state) {
-      Object.keys(settingsMapGet).forEach(key => {
+      Object.keys(settingsMap).forEach(key => {
         set(state, key, null)
       })
     },
     // Set the settings based on their path location
     setCurrentUser (state, user) {
-      Object.entries(settingsMapGet).forEach(([name, path]) => {
+      Object.entries(settingsMap).forEach((map) => {
+        const [name, value] = map
+        const { get: path = value } = value
         set(state, name, get(user._original, path))
       })
     }
@@ -70,41 +117,12 @@ const serverSideConfig = {
   actions: {
     setServerSideOption ({ rootState, state, commit, dispatch }, { name, value }) {
       const oldValue = get(state, name)
-      const params = {}
-      const path = settingsMapSet[name]
-      if (!path) throw new Error('Invalid server-side setting')
+      const map = settingsMap[name]
+      if (!map) throw new Error('Invalid server-side setting')
+      const { set: path = map, api = defaultApi } = map
       commit('wipeServerSideOption', { name })
-      const customAPIName = customAPIs[name] || customAPIs.__defaultApi
-      const api = rootState.api.backendInteractor[customAPIName]
-      let prefix = ''
-      switch (customAPIName) {
-        case 'updateNotificationSettings':
-          prefix = 'settings.'
-          break
-        default:
-          prefix = 'params.'
-          break
-      }
 
-      set(params, prefix + path, value)
-      api(params)
-        .then((result) => {
-          switch (customAPIName) {
-            case 'updateNotificationSettings':
-              console.log(result)
-              if (result.status === 'success') {
-                commit('confirmServerSideOption', { name, value })
-              } else {
-                commit('confirmServerSideOption', { name, value: oldValue })
-              }
-              break
-            default:
-              commit('addNewUsers', [result])
-              commit('setCurrentUser', result)
-              break
-          }
-          console.log(state)
-        })
+      api({ rootState, commit }, { path, value, oldValue })
         .catch((e) => {
           console.warn('Error setting server-side option:', e)
           commit('confirmServerSideOption', { name, value: oldValue })
