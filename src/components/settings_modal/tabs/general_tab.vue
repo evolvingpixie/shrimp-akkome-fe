@@ -50,10 +50,6 @@
             expert="1"
           >
             {{ $t('settings.useStreamingApi') }}
-            <br>
-            <small>
-              {{ $t('settings.useStreamingApiWarning') }}
-            </small>
           </BooleanSetting>
         </li>
         <li>
