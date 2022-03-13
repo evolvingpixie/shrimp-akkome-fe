@@ -8,6 +8,12 @@
       :status="status"
       :compact="compact"
       :single-line="singleLine"
+      :showing-tall="showingTall"
+      :expanding-subject="expandingSubject"
+      :showing-long-subject="showingLongSubject"
+      :toggle-showing-tall="toggleShowingTall"
+      :toggle-expanding-subject="toggleExpandingSubject"
+      :toggle-showing-long-subject="toggleShowingLongSubject"
       @parseReady="$emit('parseReady', $event)"
     >
       <div v-if="status.poll && status.poll.options && !compact">
@@ -52,10 +58,6 @@
 
 <script src="./status_content.js" ></script>
 <style lang="scss">
-@import '../../_variables.scss';
-
-$status-margin: 0.75em;
-
 .StatusContent {
   flex: 1;
   min-width: 0;

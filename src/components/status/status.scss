@@ -1,7 +1,5 @@
 @import '../../_variables.scss';
 
-$status-margin: 0.75em;
-
 .Status {
   min-width: 0;
   white-space: normal;
@@ -28,15 +26,8 @@ $status-margin: 0.75em;
     --icon: var(--selectedPostIcon, $fallback--icon);
   }
 
-  &.-conversation {
-    border-left-width: 4px;
-    border-left-style: solid;
-    border-left-color: $fallback--cRed;
-    border-left-color: var(--cRed, $fallback--cRed);
-  }
-
   .gravestone {
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
     color: $fallback--faint;
     color: var(--faint, $fallback--faint);
     display: flex;
@@ -49,7 +40,7 @@ $status-margin: 0.75em;
 
   .status-container {
     display: flex;
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
 
     &.-repeat {
       padding-top: 0;
@@ -57,7 +48,7 @@ $status-margin: 0.75em;
   }
 
   .pin {
-    padding: $status-margin $status-margin 0;
+    padding: var(--status-margin, $status-margin) var(--status-margin, $status-margin) 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -73,7 +64,7 @@ $status-margin: 0.75em;
   }
 
   .left-side {
-    margin-right: $status-margin;
+    margin-right: var(--status-margin, $status-margin);
   }
 
   .right-side {
@@ -82,7 +73,7 @@ $status-margin: 0.75em;
   }
 
   .usercard {
-    margin-bottom: $status-margin;
+    margin-bottom: var(--status-margin, $status-margin);
   }
 
   .status-username {
@@ -248,7 +239,7 @@ $status-margin: 0.75em;
   }
 
   .repeat-info {
-    padding: 0.4em $status-margin;
+    padding: 0.4em var(--status-margin, $status-margin);
 
     .repeat-icon {
       color: $fallback--cGreen;
@@ -294,7 +285,7 @@ $status-margin: 0.75em;
     position: relative;
     width: 100%;
     display: flex;
-    margin-top: $status-margin;
+    margin-top: var(--status-margin, $status-margin);
 
     > * {
       max-width: 4em;
@@ -362,7 +353,7 @@ $status-margin: 0.75em;
   }
 
   .favs-repeated-users {
-    margin-top: $status-margin;
+    margin-top: var(--status-margin, $status-margin);
   }
 
   .stats {
@@ -389,7 +380,7 @@ $status-margin: 0.75em;
   }
 
   .stat-count {
-    margin-right: $status-margin;
+    margin-right: var(--status-margin, $status-margin);
     user-select: none;
 
     .stat-title {

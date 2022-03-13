@@ -221,6 +221,31 @@
                     class="fa-scale-110"
                   />
                 </button>
+                <button
+                  v-if="inThreadForest && replies && replies.length && !simpleTree"
+                  class="button-unstyled"
+                  :title="threadShowing ? $t('status.thread_hide') : $t('status.thread_show')"
+                  :aria-expanded="threadShowing ? 'true' : 'false'"
+                  @click.prevent="toggleThreadDisplay"
+                >
+                  <FAIcon
+                    fixed-width
+                    class="fa-scale-110"
+                    :icon="threadShowing ? 'chevron-up' : 'chevron-down'"
+                  />
+                </button>
+                <button
+                  v-if="dive && !simpleTree"
+                  class="button-unstyled"
+                  :title="$t('status.show_only_conversation_under_this')"
+                  @click.prevent="dive"
+                >
+                  <FAIcon
+                    fixed-width
+                    class="fa-scale-110"
+                    :icon="'angle-double-right'"
+                  />
+                </button>
               </span>
             </div>
             <div
@@ -308,6 +333,12 @@
             :no-heading="noHeading"
             :highlight="highlight"
             :focused="isFocused"
+            :controlled-showing-tall="controlledShowingTall"
+            :controlled-expanding-subject="controlledExpandingSubject"
+            :controlled-showing-long-subject="controlledShowingLongSubject"
+            :controlled-toggle-showing-tall="controlledToggleShowingTall"
+            :controlled-toggle-expanding-subject="controlledToggleExpandingSubject"
+            :controlled-toggle-showing-long-subject="controlledToggleShowingLongSubject"
             @mediaplay="addMediaPlaying($event)"
             @mediapause="removeMediaPlaying($event)"
             @parseReady="setHeadTailLinks"
@@ -317,7 +348,20 @@
             v-if="inConversation && !isPreview && replies && replies.length"
             class="replies"
           >
-            <span class="faint">{{ $t('status.replies_list') }}</span>
+            <button
+              v-if="showOtherRepliesAsButton && replies.length > 1"
+              class="button-unstyled -link faint"
+              :title="$tc('status.ancestor_follow', replies.length - 1, { numReplies: replies.length - 1 })"
+              @click.prevent="dive"
+            >
+              {{ $tc('status.replies_list_with_others', replies.length - 1, { numReplies: replies.length - 1 }) }}
+            </button>
+            <span
+              v-else
+              class="faint"
+            >
+              {{ $t('status.replies_list') }}
+            </span>
             <StatusPopover
               v-for="reply in replies"
               :key="reply.id"

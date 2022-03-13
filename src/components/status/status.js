@@ -35,7 +35,10 @@ import {
   faStar,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faChevronUp,
+  faChevronDown,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -52,8 +55,46 @@ library.add(
   faEllipsisH,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faChevronUp,
+  faChevronDown,
+  faAngleDoubleRight
 )
+
+const camelCase = name => name.charAt(0).toUpperCase() + name.slice(1)
+
+const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const controlledName = `controlled${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  res[name] = function () {
+    return this[toggle] ? this[controlledName] : this[uncontrolledName]
+  }
+  return res
+}, {})
+
+const controlledOrUncontrolledToggle = (obj, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  if (obj[toggle]) {
+    obj[toggle]()
+  } else {
+    obj[uncontrolledName] = !obj[uncontrolledName]
+  }
+}
+
+const controlledOrUncontrolledSet = (obj, name, val) => {
+  const camelized = camelCase(name)
+  const set = `controlledSet${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  if (obj[set]) {
+    obj[set](val)
+  } else {
+    obj[uncontrolledName] = val
+  }
+}
 
 const Status = {
   name: 'Status',
@@ -89,20 +130,38 @@ const Status = {
     'inlineExpanded',
     'showPinned',
     'inProfile',
-    'profileUserId'
+    'profileUserId',
+
+    'simpleTree',
+    'controlledThreadDisplayStatus',
+    'controlledToggleThreadDisplay',
+    'showOtherRepliesAsButton',
+
+    'controlledShowingTall',
+    'controlledToggleShowingTall',
+    'controlledExpandingSubject',
+    'controlledToggleExpandingSubject',
+    'controlledShowingLongSubject',
+    'controlledToggleShowingLongSubject',
+    'controlledReplying',
+    'controlledToggleReplying',
+    'controlledMediaPlaying',
+    'controlledSetMediaPlaying',
+    'dive'
   ],
   data () {
     return {
-      replying: false,
+      uncontrolledReplying: false,
       unmuted: false,
       userExpanded: false,
-      mediaPlaying: [],
+      uncontrolledMediaPlaying: [],
       suspendable: true,
       error: null,
       headTailLinks: null
     }
   },
   computed: {
+    ...controlledOrUncontrolledGetters(['replying', 'mediaPlaying']),
     muteWords () {
       return this.mergedConfig.muteWords
     },
@@ -318,6 +377,12 @@ const Status = {
     },
     isSuspendable () {
       return !this.replying && this.mediaPlaying.length === 0
+    },
+    inThreadForest () {
+      return !!this.controlledThreadDisplayStatus
+    },
+    threadShowing () {
+      return this.controlledThreadDisplayStatus === 'showing'
     }
   },
   methods: {
@@ -340,7 +405,7 @@ const Status = {
       this.error = undefined
     },
     toggleReplying () {
-      this.replying = !this.replying
+      controlledOrUncontrolledToggle(this, 'replying')
     },
     gotoOriginal (id) {
       if (this.inConversation) {
@@ -360,17 +425,19 @@ const Status = {
       return generateProfileLink(id, name, this.$store.state.instance.restrictedNicknames)
     },
     addMediaPlaying (id) {
-      this.mediaPlaying.push(id)
+      controlledOrUncontrolledSet(this, 'mediaPlaying', this.mediaPlaying.concat(id))
     },
     removeMediaPlaying (id) {
-      this.mediaPlaying = this.mediaPlaying.filter(mediaId => mediaId !== id)
+      controlledOrUncontrolledSet(this, 'mediaPlaying', this.mediaPlaying.filter(mediaId => mediaId !== id))
     },
     setHeadTailLinks (headTailLinks) {
       this.headTailLinks = headTailLinks
-    }
-  },
-  watch: {
-    'highlight': function (id) {
+    },
+    toggleThreadDisplay () {
+      this.controlledToggleThreadDisplay()
+    },
+    scrollIfHighlighted (highlightId) {
+      const id = highlightId
       if (this.status.id === id) {
         let rect = this.$el.getBoundingClientRect()
         if (rect.top < 100) {
@@ -384,6 +451,11 @@ const Status = {
           window.scrollBy(0, rect.bottom - window.innerHeight + 50)
         }
       }
+    }
+  },
+  watch: {
+    'highlight': function (id) {
+      this.scrollIfHighlighted(id)
     },
     'status.repeat_num': function (num) {
       // refetch repeats when repeat_num is changed in any way

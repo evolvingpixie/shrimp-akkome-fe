@@ -154,6 +154,47 @@
         </li>
         <li>
           <ChoiceSetting
+            id="conversationDisplay"
+            path="conversationDisplay"
+            :options="conversationDisplayOptions"
+          >
+            {{ $t('settings.conversation_display') }}
+          </ChoiceSetting>
+        </li>
+        <ul
+          v-if="conversationDisplay !== 'linear'"
+          class="setting-list suboptions"
+        >
+          <li>
+            <BooleanSetting path="conversationTreeAdvanced">
+              {{ $t('settings.tree_advanced') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting path="conversationTreeFadeAncestors">
+              {{ $t('settings.tree_fade_ancestors') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <IntegerSetting
+              path="maxDepthInThread"
+              :min="3"
+            >
+              {{ $t('settings.max_depth_in_thread') }}
+            </IntegerSetting>
+          </li>
+          <li>
+            <ChoiceSetting
+              id="conversationOtherRepliesButton"
+              path="conversationOtherRepliesButton"
+              :options="conversationOtherRepliesButtonOptions"
+            >
+              {{ $t('settings.conversation_other_replies_button') }}
+            </ChoiceSetting>
+          </li>
+        </ul>
+        <li>
+          <ChoiceSetting
             id="mentionLinkDisplay"
             path="mentionLinkDisplay"
             :options="mentionLinkDisplayOptions"
