@@ -8,7 +8,11 @@
     :class="{ 'avatar-compact': compact, 'better-shadow': betterShadow }"
     :image-load-error="imageLoadError"
   >
-    <FAIcon v-if="bot" icon="robot" class="bot-indicator" />
+    <FAIcon
+      v-if="bot"
+      icon="robot"
+      class="bot-indicator"
+    />
   </StillImage>
   <div
     v-else
