@@ -46,6 +46,8 @@ Vue.use(VueClickOutside)
 Vue.use(PortalVue)
 Vue.use(VBodyScrollLock)
 
+Vue.config.ignoredElements = ['pinch-zoom']
+
 Vue.component('FAIcon', FontAwesomeIcon)
 Vue.component('FALayers', FontAwesomeLayers)
 

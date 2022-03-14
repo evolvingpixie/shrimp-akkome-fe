@@ -90,6 +90,52 @@
       <h2>{{ $t('settings.post_look_feel') }}</h2>
       <ul class="setting-list">
         <li>
+          <ChoiceSetting
+            id="conversationDisplay"
+            path="conversationDisplay"
+            :options="conversationDisplayOptions"
+          >
+            {{ $t('settings.conversation_display') }}
+          </ChoiceSetting>
+        </li>
+        <ul
+          v-if="conversationDisplay !== 'linear'"
+          class="setting-list suboptions"
+        >
+          <li>
+            <BooleanSetting path="conversationTreeAdvanced">
+              {{ $t('settings.tree_advanced') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting
+              path="conversationTreeFadeAncestors"
+              :expert="1"
+            >
+              {{ $t('settings.tree_fade_ancestors') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <IntegerSetting
+              path="maxDepthInThread"
+              :min="3"
+              :expert="1"
+            >
+              {{ $t('settings.max_depth_in_thread') }}
+            </IntegerSetting>
+          </li>
+          <li>
+            <ChoiceSetting
+              id="conversationOtherRepliesButton"
+              path="conversationOtherRepliesButton"
+              :options="conversationOtherRepliesButtonOptions"
+              :expert="1"
+            >
+              {{ $t('settings.conversation_other_replies_button') }}
+            </ChoiceSetting>
+          </li>
+        </ul>
+        <li>
           <BooleanSetting path="collapseMessageWithSubject">
             {{ $t('settings.collapse_subject') }}
           </BooleanSetting>

@@ -40,12 +40,6 @@
           </ul>
         </li>
         <li>
-          <BooleanSetting
-            path="hidePostStats"
-            expert="1"
-          >
-        </li>
-        <li>
           <BooleanSetting path="muteBotStatuses">
             {{ $t('settings.mute_bot_posts') }}
           </BooleanSetting>
@@ -89,7 +83,15 @@
             type="number"
             min="0"
             step="1"
+            />
+        </li>
+        <li>
+          <IntegerSetting
+            path="maxThumbnails"
+            :min="0"
           >
+            {{ $t('settings.max_thumbnails') }}
+          </IntegerSetting>
         </li>
         <li>
           <BooleanSetting path="hideAttachments">

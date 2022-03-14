@@ -23,6 +23,30 @@ library.add(
   faPollH
 )
 
+const camelCase = name => name.charAt(0).toUpperCase() + name.slice(1)
+
+const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const controlledName = `controlled${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  res[name] = function () {
+    return this[toggle] ? this[controlledName] : this[uncontrolledName]
+  }
+  return res
+}, {})
+
+const controlledOrUncontrolledToggle = (obj, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  if (obj[toggle]) {
+    obj[toggle]()
+  } else {
+    obj[uncontrolledName] = !obj[uncontrolledName]
+  }
+}
+
 const StatusContent = {
   name: 'StatusContent',
   props: [
@@ -31,9 +55,22 @@ const StatusContent = {
     'focused',
     'noHeading',
     'fullContent',
-    'singleLine'
+    'singleLine',
+    'controlledShowingTall',
+    'controlledExpandingSubject',
+    'controlledToggleShowingTall',
+    'controlledToggleExpandingSubject'
   ],
+  data () {
+    return {
+      uncontrolledShowingTall: this.fullContent || (this.inConversation && this.focused),
+      uncontrolledShowingLongSubject: false,
+      // not as computed because it sets the initial state which will be changed later
+      uncontrolledExpandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject
+    }
+  },
   computed: {
+    ...controlledOrUncontrolledGetters(['showingTall', 'expandingSubject', 'showingLongSubject']),
     hideAttachments () {
       return (this.mergedConfig.hideAttachments && !this.inConversation) ||
         (this.mergedConfig.hideAttachmentsInConv && this.inConversation)
@@ -71,6 +108,21 @@ const StatusContent = {
     Gallery,
     LinkPreview,
     StatusBody
+  },
+  methods: {
+    toggleShowingTall () {
+      controlledOrUncontrolledToggle(this, 'showingTall')
+    },
+    toggleExpandingSubject () {
+      controlledOrUncontrolledToggle(this, 'expandingSubject')
+    },
+    toggleShowingLongSubject () {
+      controlledOrUncontrolledToggle(this, 'showingLongSubject')
+    },
+    setMedia () {
+      const attachments = this.attachmentSize === 'hide' ? this.status.attachments : this.galleryAttachments
+      return () => this.$store.dispatch('setMedia', attachments)
+    }
   }
 }
 

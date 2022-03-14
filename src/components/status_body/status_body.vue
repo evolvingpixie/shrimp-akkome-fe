@@ -17,14 +17,14 @@
         <button
           v-if="longSubject && showingLongSubject"
           class="button-unstyled -link tall-subject-hider"
-          @click.prevent="showingLongSubject=false"
+          @click.prevent="toggleShowingLongSubject"
         >
           {{ $t("status.hide_full_subject") }}
         </button>
         <button
           v-else-if="longSubject"
           class="button-unstyled -link tall-subject-hider"
-          @click.prevent="showingLongSubject=true"
+          @click.prevent="toggleShowingLongSubject"
         >
           {{ $t("status.show_full_subject") }}
         </button>

@@ -12,6 +12,8 @@ const browserLocale = (window.navigator.language || 'en').split('-')[0]
 export const multiChoiceProperties = [
   'postContentType',
   'subjectLineBehavior',
+  'conversationDisplay', // tree | linear
+  'conversationOtherRepliesButton', // below | inside
   'mentionLinkDisplay' // short | full_for_remote | full
 ]
 
@@ -84,7 +86,12 @@ export const defaultState = {
   hideBotIndication: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default
-  sensitiveByDefault: undefined // instance default
+  sensitiveByDefault: undefined, // instance default
+  conversationDisplay: undefined, // instance default
+  conversationTreeAdvanced: undefined, // instance default
+  conversationOtherRepliesButton: undefined, // instance default
+  conversationTreeFadeAncestors: undefined, // instance default
+  maxDepthInThread: undefined // instance default
 }
 
 // caching the instance default properties
