@@ -51,6 +51,7 @@
     bottom: 0;
     right: 5px;
     height: 100%;
+    width: 0.875em;
     color: $fallback--text;
     color: var(--inputText, $fallback--text);
     line-height: 28px;
