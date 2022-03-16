@@ -3,8 +3,8 @@ var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
-var { VueLoaderPlugin } = require('vue-loader')
 var CopyPlugin = require('copy-webpack-plugin');
+var { VueLoaderPlugin } = require('vue-loader')
 
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
@@ -30,12 +30,12 @@ module.exports = {
     }
   },
   resolve: {
-    extensions: ['.js', '.vue', '.jsx'],
+    extensions: ['.js', '.jsx', '.vue'],
     modules: [
       path.join(__dirname, '../node_modules')
     ],
     alias: {
-      vue: "@vue/runtime-dom",
+      'vue': '@vue/compat',
       'static': path.resolve(__dirname, '../static'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
@@ -61,7 +61,14 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        use: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 2
+            }
+          }
+        }
       },
       {
         test: /\.jsx?$/,

@@ -66,7 +66,7 @@
                   class="icon"
                   icon="external-link-alt"
                 />
-              </button>
+              </a>
               <AccountActions
                 v-if="isOtherUser && loggedIn"
                 :user="user"

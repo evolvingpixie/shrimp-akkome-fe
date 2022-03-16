@@ -1,9 +1,9 @@
-import { validationMixin } from 'vuelidate'
-import { required, requiredIf, sameAs } from 'vuelidate/lib/validators'
+import useVuelidate from '@vuelidate/core'
+import { required, requiredIf, sameAs } from '@vuelidate/validators'
 import { mapActions, mapState } from 'vuex'
 
 const registration = {
-  mixins: [validationMixin],
+  setup () { return { v$: useVuelidate() } },
   data: () => ({
     user: {
       email: '',

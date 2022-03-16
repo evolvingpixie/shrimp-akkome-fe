@@ -31,19 +31,7 @@ import afterStoreSetup from './boot/after_store.js'
 
 const currentLocale = (window.navigator.language || 'en').split('-')[0]
 
-Vue.use(Vuex)
-Vue.use(VueRouter)
-Vue.use(VueI18n)
-Vue.use(VueClickOutside)
-Vue.use(PortalVue)
-Vue.use(VBodyScrollLock)
-
-Vue.config.ignoredElements = ['pinch-zoom']
-
-Vue.component('FAIcon', FontAwesomeIcon)
-Vue.component('FALayers', FontAwesomeLayers)
-
-const i18n = new VueI18n({
+const i18n = createI18n({
   // By default, use the browser locale, we will update it if neccessary
   locale: 'en',
   fallbackLocale: 'en',
