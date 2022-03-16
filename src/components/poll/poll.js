@@ -1,10 +1,14 @@
-import Timeago from '../timeago/timeago.vue'
+import Timeago from 'components/timeago/timeago.vue'
+import RichContent from 'components/rich_content/rich_content.jsx'
 import { forEach, map } from 'lodash'
 
 export default {
   name: 'Poll',
-  props: ['basePoll'],
-  components: { Timeago },
+  props: ['basePoll', 'emoji'],
+  components: {
+    Timeago,
+    RichContent
+  },
   data () {
     return {
       loading: false,

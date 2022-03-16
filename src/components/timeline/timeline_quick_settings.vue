@@ -41,6 +41,15 @@
         </div>
         <button
           class="button-default dropdown-item"
+          @click="muteBotStatuses = !muteBotStatuses"
+        >
+          <span
+            class="menu-checkbox"
+            :class="{ 'menu-checkbox-checked': muteBotStatuses }"
+          />{{ $t('settings.mute_bot_posts') }}
+        </button>
+        <button
+          class="button-default dropdown-item"
           @click="hideMedia = !hideMedia"
         >
           <span

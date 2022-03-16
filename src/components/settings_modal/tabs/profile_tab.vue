@@ -25,61 +25,6 @@
           class="bio resize-height"
         />
       </EmojiInput>
-      <p>
-        <Checkbox v-model="newLocked">
-          {{ $t('settings.lock_account_description') }}
-        </Checkbox>
-      </p>
-      <div>
-        <label for="default-vis">{{ $t('settings.default_vis') }}</label>
-        <div
-          id="default-vis"
-          class="visibility-tray"
-        >
-          <scope-selector
-            :show-all="true"
-            :user-default="newDefaultScope"
-            :initial-scope="newDefaultScope"
-            :on-scope-change="changeVis"
-          />
-        </div>
-      </div>
-      <p>
-        <Checkbox v-model="newNoRichText">
-          {{ $t('settings.no_rich_text_description') }}
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="hideFollows">
-          {{ $t('settings.hide_follows_description') }}
-        </Checkbox>
-      </p>
-      <p class="setting-subitem">
-        <Checkbox
-          v-model="hideFollowsCount"
-          :disabled="!hideFollows"
-        >
-          {{ $t('settings.hide_follows_count_description') }}
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="hideFollowers">
-          {{ $t('settings.hide_followers_description') }}
-        </Checkbox>
-      </p>
-      <p class="setting-subitem">
-        <Checkbox
-          v-model="hideFollowersCount"
-          :disabled="!hideFollowers"
-        >
-          {{ $t('settings.hide_followers_count_description') }}
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="allowFollowingMove">
-          {{ $t('settings.allow_following_move') }}
-        </Checkbox>
-      </p>
       <p v-if="role === 'admin' || role === 'moderator'">
         <Checkbox v-model="showRole">
           <template v-if="role === 'admin'">
@@ -88,11 +33,6 @@
           <template v-if="role === 'moderator'">
             {{ $t('settings.show_moderator_badge') }}
           </template>
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="discoverable">
-          {{ $t('settings.discoverable') }}
         </Checkbox>
       </p>
       <div v-if="maxFields > 0">
@@ -268,6 +208,67 @@
       >
         {{ $t('settings.save') }}
       </button>
+    </div>
+    <div class="setting-item">
+      <h2>{{ $t('settings.account_privacy') }}</h2>
+      <ul class="setting-list">
+        <li>
+          <BooleanSetting path="serverSide_locked">
+            {{ $t('settings.lock_account_description') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_discoverable">
+            {{ $t('settings.discoverable') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_allowFollowingMove">
+            {{ $t('settings.allow_following_move') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_hideFavorites">
+            {{ $t('settings.hide_favorites_description') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_hideFollowers">
+            {{ $t('settings.hide_followers_description') }}
+          </BooleanSetting>
+          <ul
+            class="setting-list suboptions"
+            :class="[{disabled: !serverSide_hideFollowers}]"
+          >
+            <li>
+              <BooleanSetting
+                path="serverSide_hideFollowersCount"
+                :disabled="!serverSide_hideFollowers"
+              >
+                {{ $t('settings.hide_followers_count_description') }}
+              </BooleanSetting>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_hideFollows">
+            {{ $t('settings.hide_follows_description') }}
+          </BooleanSetting>
+          <ul
+            class="setting-list suboptions"
+            :class="[{disabled: !serverSide_hideFollows}]"
+          >
+            <li>
+              <BooleanSetting
+                path="serverSide_hideFollowsCount"
+                :disabled="!serverSide_hideFollows"
+              >
+                {{ $t('settings.hide_follows_count_description') }}
+              </BooleanSetting>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

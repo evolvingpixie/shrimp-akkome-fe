@@ -1,6 +1,7 @@
 <template>
   <Status
     v-if="notification.type === 'mention'"
+    class="Notification"
     :compact="true"
     :statusoid="notification.status"
   />
@@ -51,12 +52,14 @@
         <span class="notification-details">
           <div class="name-and-action">
             <!-- eslint-disable vue/no-v-html -->
-            <bdi
-              v-if="!!notification.from_profile.name_html"
-              class="username"
-              :title="'@'+notification.from_profile.screen_name_ui"
-              v-html="notification.from_profile.name_html"
-            />
+            <bdi v-if="!!notification.from_profile.name_html">
+              <RichContent
+                class="username"
+                :title="'@'+notification.from_profile.screen_name_ui"
+                :html="notification.from_profile.name_html"
+                :emoji="notification.from_profile.emoji"
+              />
+            </bdi>
             <!-- eslint-enable vue/no-v-html -->
             <span
               v-else
@@ -181,8 +184,9 @@
           </router-link>
         </div>
         <template v-else>
-          <status-content
+          <StatusContent
             class="faint"
+            :compact="true"
             :status="notification.action"
           />
         </template>

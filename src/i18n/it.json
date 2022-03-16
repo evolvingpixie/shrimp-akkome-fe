@@ -21,7 +21,10 @@
     "role": {
       "moderator": "Moderatore",
       "admin": "Amministratore"
-    }
+    },
+    "flash_fail": "Contenuto Flash non caricato, vedi console del browser.",
+    "flash_content": "Mostra contenuto Flash tramite Ruffle (funzione in prova).",
+    "flash_security": "Può essere pericoloso perché i contenuti in Flash sono eseguibili."
   },
   "nav": {
     "mentions": "Menzioni",
@@ -65,13 +68,13 @@
     "current_avatar": "La tua icona attuale",
     "current_profile_banner": "Il tuo stendardo attuale",
     "filtering": "Filtri",
-    "filtering_explanation": "Tutti i post contenenti queste parole saranno silenziati, una per riga",
+    "filtering_explanation": "Tutti i messaggi contenenti queste parole saranno silenziati, una per riga",
     "hide_attachments_in_convo": "Nascondi gli allegati presenti nelle conversazioni",
     "hide_attachments_in_tl": "Nascondi gli allegati presenti nelle sequenze",
     "name": "Nome",
     "name_bio": "Nome ed introduzione",
     "nsfw_clickthrough": "Fai click per visualizzare gli allegati offuscati",
-    "profile_background": "Sfondo della tua pagina",
+    "profile_background": "Sfondo del tuo profilo",
     "profile_banner": "Gonfalone del tuo profilo",
     "set_new_avatar": "Scegli una nuova icona",
     "set_new_profile_background": "Scegli un nuovo sfondo",
@@ -341,14 +344,14 @@
     },
     "enable_web_push_notifications": "Abilita notifiche web push",
     "fun": "Divertimento",
-    "notification_mutes": "Per non ricevere notifiche da uno specifico utente, zittiscilo.",
+    "notification_mutes": "Per non ricevere notifiche da uno specifico utente, silenzialo.",
     "notification_setting_privacy_option": "Nascondi mittente e contenuti delle notifiche push",
     "notification_setting_privacy": "Privacy",
     "notification_setting_filters": "Filtri",
     "notifications": "Notifiche",
     "greentext": "Frecce da meme",
     "upload_a_photo": "Carica un'immagine",
-    "type_domains_to_mute": "Cerca domini da zittire",
+    "type_domains_to_mute": "Cerca domini da silenziare",
     "theme_help_v2_2": "Le icone vicino alcuni elementi sono indicatori del contrasto fra testo e sfondo, passaci sopra col puntatore per ulteriori informazioni. Se usani trasparenze, questi indicatori mostrano il peggior caso possibile.",
     "theme_help_v2_1": "Puoi anche forzare colore ed opacità di alcuni elementi selezionando la casella. Usa il pulsante \"Azzera\" per azzerare tutte le forzature.",
     "useStreamingApiWarning": "(Sconsigliato, sperimentale, può saltare messaggi)",
@@ -362,23 +365,23 @@
     "subject_input_always_show": "Mostra sempre il campo Oggetto",
     "minimal_scopes_mode": "Riduci opzioni di visibilità",
     "scope_copy": "Risposte ereditano la visibilità (messaggi privati lo fanno sempre)",
-    "search_user_to_mute": "Cerca utente da zittire",
+    "search_user_to_mute": "Cerca utente da silenziare",
     "search_user_to_block": "Cerca utente da bloccare",
     "autohide_floating_post_button": "Nascondi automaticamente il pulsante di composizione (mobile)",
-    "show_moderator_badge": "Mostra l'insegna di moderatore sulla mia pagina",
-    "show_admin_badge": "Mostra l'insegna di amministratore sulla mia pagina",
+    "show_moderator_badge": "Mostra l'insegna di moderatore sul mio profilo",
+    "show_admin_badge": "Mostra l'insegna di amministratore sul mio profilo",
     "hide_followers_count_description": "Non mostrare quanti seguaci ho",
     "hide_follows_count_description": "Non mostrare quanti utenti seguo",
     "hide_followers_description": "Non mostrare i miei seguaci",
     "hide_follows_description": "Non mostrare chi seguo",
-    "no_mutes": "Nessun utente zittito",
+    "no_mutes": "Nessun utente silenziato",
     "no_blocks": "Nessun utente bloccato",
     "notification_visibility_emoji_reactions": "Reazioni",
     "notification_visibility_moves": "Migrazioni utenti",
     "new_email": "Nuova email",
     "use_contain_fit": "Non ritagliare le anteprime degli allegati",
     "play_videos_in_modal": "Riproduci video in un riquadro a sbalzo",
-    "mutes_tab": "Zittiti",
+    "mutes_tab": "Silenziati",
     "interface": "Interfaccia",
     "instance_default_simple": "(predefinito)",
     "checkboxRadius": "Caselle di selezione",
@@ -431,11 +434,28 @@
     "hide_all_muted_posts": "Nascondi messaggi silenziati",
     "hide_media_previews": "Nascondi anteprime",
     "word_filter": "Parole filtrate",
-    "save": "Salva modifiche"
+    "save": "Salva modifiche",
+    "file_export_import": {
+      "errors": {
+        "file_slightly_new": "Versione minore diversa, qualcosa potrebbe non combaciare.",
+        "file_too_old": "Versione troppo vecchia: {fileMajor}. Questa versione dell'interfaccia ({feMajor}) non supporta il file.",
+        "file_too_new": "Versione troppo recente: {fileMajor}. Questa versione dell'interfaccia ({feMajor}) non supporta il file.",
+        "invalid_file": "Il file selezionato non è un archivio supportato. Nessuna modifica è stata apportata."
+      },
+      "restore_settings": "Carica impostazioni sul server",
+      "backup_settings_theme": "Archivia impostazioni e tema localmente",
+      "backup_settings": "Archivia impostazioni localmente",
+      "backup_restore": "Archiviazione impostazioni"
+    },
+    "right_sidebar": "Mostra barra laterale a destra",
+    "hide_shoutbox": "Nascondi muro dei graffiti",
+    "mentions_new_style": "Menzioni abbreviate",
+    "mentions_new_place": "Segrega le menzioni",
+    "always_show_post_button": "Non nascondere il pulsante di composizione"
   },
   "timeline": {
     "error_fetching": "Errore nell'aggiornamento",
-    "load_older": "Carica messaggi più vecchi",
+    "load_older": "Carica messaggi precedenti",
     "show_new": "Mostra nuovi",
     "up_to_date": "Aggiornato",
     "collapse": "Ripiega",
@@ -499,7 +519,6 @@
     "its_you": "Sei tu!",
     "hidden": "Nascosto",
     "follow_unfollow": "Disconosci",
-    "follow_again": "Reinvio richiesta?",
     "follow_progress": "Richiedo…",
     "follow_sent": "Richiesta inviata!",
     "favorites": "Preferiti",
@@ -510,7 +529,8 @@
       "striped": "A righe",
       "solid": "Un colore",
       "disabled": "Nessun risalto"
-    }
+    },
+    "edit_profile": "Modifica profilo"
   },
   "chat": {
     "title": "Chat"
@@ -647,8 +667,8 @@
     "staff": "Responsabili"
   },
   "domain_mute_card": {
-    "mute": "Zittisci",
-    "mute_progress": "Zittisco…",
+    "mute": "Silenzia",
+    "mute_progress": "Procedo…",
     "unmute": "Ascolta",
     "unmute_progress": "Procedo…"
   },
@@ -689,7 +709,7 @@
   },
   "interactions": {
     "favs_repeats": "Condivisi e Graditi",
-    "load_older": "Carica vecchie interazioni",
+    "load_older": "Carica interazioni precedenti",
     "moves": "Utenti migrati",
     "follows": "Nuovi seguìti"
   },
@@ -739,16 +759,19 @@
     "bookmark": "Aggiungi segnalibro",
     "status_deleted": "Questo messagio è stato cancellato",
     "nsfw": "DISDICEVOLE",
-    "external_source": "Vai al sito",
-    "expand": "Espandi"
+    "external_source": "Vai all'origine",
+    "expand": "Espandi",
+    "mentions": "Menzioni",
+    "you": "(Tu)",
+    "plus_more": "+{number} altri"
   },
   "time": {
     "years_short": "{0} a",
     "year_short": "{0} a",
     "years": "{0} anni",
     "year": "{0} anno",
-    "weeks_short": "{0} set",
-    "week_short": "{0} set",
+    "weeks_short": "{0} stm",
+    "week_short": "{0} stm",
     "seconds_short": "{0} sec",
     "second_short": "{0} sec",
     "weeks": "{0} settimane",
@@ -757,8 +780,8 @@
     "second": "{0} secondo",
     "now_short": "adesso",
     "now": "adesso",
-    "months_short": "{0} ms",
-    "month_short": "{0} ms",
+    "months_short": "{0} mes",
+    "month_short": "{0} mes",
     "months": "{0} mesi",
     "month": "{0} mese",
     "minutes_short": "{0} min",

@@ -4,6 +4,7 @@ import ScopeSelector from '../scope_selector/scope_selector.vue'
 import EmojiInput from '../emoji_input/emoji_input.vue'
 import PollForm from '../poll/poll_form.vue'
 import Attachment from '../attachment/attachment.vue'
+import Gallery from 'src/components/gallery/gallery.vue'
 import StatusContent from '../status_content/status_content.vue'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import { findOffset } from '../../services/offset_finder/offset_finder.service.js'
@@ -11,10 +12,10 @@ import { reject, map, uniqBy, debounce } from 'lodash'
 import suggestor from '../emoji_input/suggestor.js'
 import { mapGetters, mapState } from 'vuex'
 import Checkbox from '../checkbox/checkbox.vue'
+import Select from '../select/select.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faChevronDown,
   faSmileBeam,
   faPollH,
   faUpload,
@@ -24,7 +25,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
-  faChevronDown,
   faSmileBeam,
   faPollH,
   faUpload,
@@ -84,8 +84,10 @@ const PostStatusForm = {
     PollForm,
     ScopeSelector,
     Checkbox,
+    Select,
     Attachment,
-    StatusContent
+    StatusContent,
+    Gallery
   },
   mounted () {
     this.updateIdempotencyKey()
@@ -387,6 +389,21 @@ const PostStatusForm = {
       let index = this.newStatus.files.indexOf(fileInfo)
       this.newStatus.files.splice(index, 1)
       this.$emit('resize')
+    },
+    editAttachment (fileInfo, newText) {
+      this.newStatus.mediaDescriptions[fileInfo.id] = newText
+    },
+    shiftUpMediaFile (fileInfo) {
+      const { files } = this.newStatus
+      const index = this.newStatus.files.indexOf(fileInfo)
+      files.splice(index, 1)
+      files.splice(index - 1, 0, fileInfo)
+    },
+    shiftDnMediaFile (fileInfo) {
+      const { files } = this.newStatus
+      const index = this.newStatus.files.indexOf(fileInfo)
+      files.splice(index, 1)
+      files.splice(index + 1, 0, fileInfo)
     },
     uploadFailed (errString, templateArgs) {
       templateArgs = templateArgs || {}

@@ -1,4 +1,5 @@
-import Checkbox from 'src/components/checkbox/checkbox.vue'
+import BooleanSetting from '../helpers/boolean_setting.vue'
+import SharedComputedObject from '../helpers/shared_computed_object.js'
 
 const NotificationsTab = {
   data () {
@@ -9,12 +10,13 @@ const NotificationsTab = {
     }
   },
   components: {
-    Checkbox
+    BooleanSetting
   },
   computed: {
     user () {
       return this.$store.state.users.currentUser
-    }
+    },
+    ...SharedComputedObject()
   },
   methods: {
     updateNotificationSettings () {

@@ -19,8 +19,8 @@
         "reject_desc": "Ta instancja odrzuca posty z wymienionych instancji:",
         "quarantine": "Kwarantanna",
         "quarantine_desc": "Ta instancja wysyła tylko publiczne posty do wymienionych instancji:",
-        "ftl_removal": "Usunięcie z \"Całej znanej sieci\"",
-        "ftl_removal_desc": "Ta instancja usuwa wymienionych instancje z \"Całej znanej sieci\":",
+        "ftl_removal": "Usunięcie z „Całej znanej sieci”",
+        "ftl_removal_desc": "Ta instancja usuwa wymienionych instancje z „Całej znanej sieci”:",
         "media_removal": "Usuwanie multimediów",
         "media_removal_desc": "Ta instancja usuwa multimedia z postów od wymienionych instancji:",
         "media_nsfw": "Multimedia ustawione jako wrażliwe",
@@ -75,7 +75,13 @@
     "loading": "Ładowanie…",
     "retry": "Spróbuj ponownie",
     "peek": "Spójrz",
-    "error_retry": "Spróbuj ponownie"
+    "error_retry": "Spróbuj ponownie",
+    "flash_content": "Naciśnij, aby wyświetlić zawartości Flash z użyciem Ruffle (eksperymentalnie, może nie działać).",
+    "flash_fail": "Nie udało się załadować treści flash, zajrzyj do konsoli, aby odnaleźć szczegóły.",
+    "role": {
+      "moderator": "Moderator",
+      "admin": "Administrator"
+    }
   },
   "image_cropper": {
     "crop_picture": "Przytnij obrazek",
@@ -118,7 +124,7 @@
     "friend_requests": "Prośby o możliwość obserwacji",
     "mentions": "Wzmianki",
     "interactions": "Interakcje",
-    "dms": "Wiadomości prywatne",
+    "dms": "Wiadomości bezpośrednie",
     "public_tl": "Publiczna oś czasu",
     "timeline": "Oś czasu",
     "twkn": "Znana sieć",
@@ -128,7 +134,8 @@
     "preferences": "Preferencje",
     "bookmarks": "Zakładki",
     "chats": "Czaty",
-    "timelines": "Osie czasu"
+    "timelines": "Osie czasu",
+    "home_timeline": "Główna oś czasu"
   },
   "notifications": {
     "broken_favorite": "Nieznany status, szukam go…",
@@ -156,7 +163,9 @@
     "expiry": "Czas trwania ankiety",
     "expires_in": "Ankieta kończy się za {0}",
     "expired": "Ankieta skończyła się {0} temu",
-    "not_enough_options": "Zbyt mało unikalnych opcji w ankiecie"
+    "not_enough_options": "Zbyt mało unikalnych opcji w ankiecie",
+    "people_voted_count": "{count} osoba zagłosowała | {count} osoby zagłosowały | {count} osób zagłosowało",
+    "votes_count": "{count} głos | {count} głosy | {count} głosów"
   },
   "emoji": {
     "stickers": "Naklejki",
@@ -197,16 +206,17 @@
       "unlisted": "Ten post nie będzie widoczny na publicznej osi czasu i całej znanej sieci"
     },
     "scope": {
-      "direct": "Bezpośredni – Tylko dla wspomnianych użytkowników",
-      "private": "Tylko dla obserwujących – Umieść dla osób, które cię obserwują",
-      "public": "Publiczny – Umieść na publicznych osiach czasu",
-      "unlisted": "Niewidoczny – Nie umieszczaj na publicznych osiach czasu"
+      "direct": "Bezpośredni – tylko dla wspomnianych użytkowników",
+      "private": "Tylko dla obserwujących – umieść dla osób, które cię obserwują",
+      "public": "Publiczny – umieść na publicznych osiach czasu",
+      "unlisted": "Niewidoczny – nie umieszczaj na publicznych osiach czasu"
     },
     "preview_empty": "Pusty",
     "preview": "Podgląd",
     "empty_status_error": "Nie można wysłać pustego wpisu bez plików",
     "media_description_error": "Nie udało się zaktualizować mediów, spróbuj ponownie",
-    "media_description": "Opis mediów"
+    "media_description": "Opis mediów",
+    "post": "Opublikuj"
   },
   "registration": {
     "bio": "Bio",
@@ -227,7 +237,10 @@
       "password_required": "nie może być puste",
       "password_confirmation_required": "nie może być puste",
       "password_confirmation_match": "musi być takie jak hasło"
-    }
+    },
+    "reason": "Powód rejestracji",
+    "reason_placeholder": "Ta instancja ręcznie zatwierdza rejestracje.\nPoinformuj administratora, dlaczego chcesz się zarejestrować.",
+    "register": "Zarejestruj się"
   },
   "remote_user_resolver": {
     "remote_user_resolver": "Wyszukiwarka użytkowników nietutejszych",
@@ -281,7 +294,7 @@
     "cGreen": "Zielony (powtórzenia)",
     "cOrange": "Pomarańczowy (ulubione)",
     "cRed": "Czerwony (anuluj)",
-    "change_email": "Zmień email",
+    "change_email": "Zmień e-mail",
     "change_email_error": "Wystąpił problem podczas zmiany emaila.",
     "changed_email": "Pomyślnie zmieniono email!",
     "change_password": "Zmień hasło",
@@ -345,7 +358,7 @@
     "use_contain_fit": "Nie przycinaj załączników na miniaturach",
     "name": "Imię",
     "name_bio": "Imię i bio",
-    "new_email": "Nowy email",
+    "new_email": "Nowy e-mail",
     "new_password": "Nowe hasło",
     "notification_visibility": "Rodzaje powiadomień do wyświetlania",
     "notification_visibility_follows": "Obserwacje",
@@ -361,8 +374,8 @@
     "hide_followers_description": "Nie pokazuj kto mnie obserwuje",
     "hide_follows_count_description": "Nie pokazuj licznika obserwowanych",
     "hide_followers_count_description": "Nie pokazuj licznika obserwujących",
-    "show_admin_badge": "Pokazuj odznakę Administrator na moim profilu",
-    "show_moderator_badge": "Pokazuj odznakę Moderator na moim profilu",
+    "show_admin_badge": "Pokazuj odznakę „Administrator” na moim profilu",
+    "show_moderator_badge": "Pokazuj odznakę „Moderator” na moim profilu",
     "nsfw_clickthrough": "Włącz domyślne ukrywanie załączników o treści nieprzyzwoitej (NSFW)",
     "oauth_tokens": "Tokeny OAuth",
     "token": "Token",
@@ -600,7 +613,27 @@
     "mute_import": "Import wyciszeń",
     "mute_export_button": "Wyeksportuj swoje wyciszenia do pliku .csv",
     "mute_export": "Eksport wyciszeń",
-    "hide_wallpaper": "Ukryj tło instancji"
+    "hide_wallpaper": "Ukryj tło instancji",
+    "save": "Zapisz zmiany",
+    "setting_changed": "Opcja różni się od domyślnej",
+    "right_sidebar": "Pokaż pasek boczny po prawej",
+    "file_export_import": {
+      "errors": {
+        "invalid_file": "Wybrany plik nie jest obsługiwaną kopią zapasową ustawień Pleromy. Nie dokonano żadnych zmian."
+      },
+      "backup_restore": "Kopia zapasowa ustawień",
+      "backup_settings": "Kopia zapasowa ustawień do pliku",
+      "backup_settings_theme": "Kopia zapasowa ustawień i motywu do pliku",
+      "restore_settings": "Przywróć ustawienia z pliku"
+    },
+    "more_settings": "Więcej ustawień",
+    "word_filter": "Filtr słów",
+    "hide_media_previews": "Ukryj podgląd mediów",
+    "hide_all_muted_posts": "Ukryj wyciszone słowa",
+    "reply_visibility_following_short": "Pokazuj odpowiedzi obserwującym",
+    "reply_visibility_self_short": "Pokazuj odpowiedzi tylko do mnie",
+    "sensitive_by_default": "Domyślnie oznaczaj wpisy jako wrażliwe",
+    "hide_shoutbox": "Ukryj shoutbox instancji"
   },
   "time": {
     "day": "{0} dzień",
@@ -648,7 +681,9 @@
     "no_more_statuses": "Brak kolejnych statusów",
     "no_statuses": "Brak statusów",
     "reload": "Odśwież",
-    "error": "Błąd pobierania osi czasu: {0}"
+    "error": "Błąd pobierania osi czasu: {0}",
+    "socket_broke": "Utracono połączenie w czasie rzeczywistym: kod CloseEvent {0}",
+    "socket_reconnected": "Osiągnięto połączenie w czasie rzeczywistym"
   },
   "status": {
     "favorites": "Ulubione",
@@ -686,7 +721,6 @@
     "follow": "Obserwuj",
     "follow_sent": "Wysłano prośbę!",
     "follow_progress": "Wysyłam prośbę…",
-    "follow_again": "Wysłać prośbę ponownie?",
     "follow_unfollow": "Przestań obserwować",
     "followees": "Obserwowani",
     "followers": "Obserwujący",
@@ -731,7 +765,12 @@
       "delete_user": "Usuń użytkownika",
       "delete_user_confirmation": "Czy jesteś absolutnie pewny(-a)? Ta operacja nie może być cofnięta."
     },
-    "message": "Napisz"
+    "message": "Napisz",
+    "edit_profile": "Edytuj profil",
+    "highlight": {
+      "disabled": "Bez wyróżnienia"
+    },
+    "bot": "Bot"
   },
   "user_profile": {
     "timeline_title": "Oś czasu użytkownika",

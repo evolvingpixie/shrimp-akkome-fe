@@ -11,24 +11,22 @@
           {{ $t('settings.settings') }}
         </span>
         <transition name="fade">
-          <template>
-            <template v-if="currentSaveStateNotice">
-              <div
-                v-if="currentSaveStateNotice.error"
-                class="alert error"
-                @click.prevent
-              >
-                {{ $t('settings.saving_err') }}
-              </div>
+          <template v-if="currentSaveStateNotice">
+            <div
+              v-if="currentSaveStateNotice.error"
+              class="alert error"
+              @click.prevent
+            >
+              {{ $t('settings.saving_err') }}
+            </div>
 
-              <div
-                v-if="!currentSaveStateNotice.error"
-                class="alert transparent"
-                @click.prevent
-              >
-                {{ $t('settings.saving_ok') }}
-              </div>
-            </template>
+            <div
+              v-if="!currentSaveStateNotice.error"
+              class="alert transparent"
+              @click.prevent
+            >
+              {{ $t('settings.saving_ok') }}
+            </div>
           </template>
         </transition>
         <button
@@ -55,7 +53,7 @@
       <div class="panel-body">
         <SettingsModalContent v-if="modalOpenedOnce" />
       </div>
-      <div class="panel-footer">
+      <div class="panel-footer settings-footer">
         <Popover
           class="export"
           trigger="click"
@@ -75,7 +73,7 @@
               />
             </button>
           </template>
-          <template v-slot:content ="{close}">
+          <template v-slot:content="{close}">
             <div class="dropdown-menu">
               <button
                 class="button-default dropdown-item dropdown-item-icon"
@@ -110,6 +108,10 @@
             </div>
           </template>
         </Popover>
+
+        <Checkbox v-model="expertLevel">
+          {{ $t("settings.expert_mode") }}
+        </Checkbox>
       </div>
     </div>
   </Modal>

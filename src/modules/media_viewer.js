@@ -1,4 +1,5 @@
 import fileTypeService from '../services/file_type/file_type.service.js'
+const supportedTypes = new Set(['image', 'video', 'audio', 'flash'])
 
 const mediaViewer = {
   state: {
@@ -10,7 +11,7 @@ const mediaViewer = {
     setMedia (state, media) {
       state.media = media
     },
-    setCurrent (state, index) {
+    setCurrentMedia (state, index) {
       state.activated = true
       state.currentIndex = index
     },
@@ -22,13 +23,13 @@ const mediaViewer = {
     setMedia ({ commit }, attachments) {
       const media = attachments.filter(attachment => {
         const type = fileTypeService.fileType(attachment.mimetype)
-        return type === 'image' || type === 'video' || type === 'audio'
+        return supportedTypes.has(type)
       })
       commit('setMedia', media)
     },
-    setCurrent ({ commit, state }, current) {
+    setCurrentMedia ({ commit, state }, current) {
       const index = state.media.indexOf(current)
-      commit('setCurrent', index || 0)
+      commit('setCurrentMedia', index || 0)
     },
     closeMediaViewer ({ commit }) {
       commit('close')

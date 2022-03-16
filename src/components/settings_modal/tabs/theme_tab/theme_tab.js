@@ -35,16 +35,9 @@ import FontControl from 'src/components/font_control/font_control.vue'
 import ContrastRatio from 'src/components/contrast_ratio/contrast_ratio.vue'
 import TabSwitcher from 'src/components/tab_switcher/tab_switcher.jsx'
 import Checkbox from 'src/components/checkbox/checkbox.vue'
+import Select from 'src/components/select/select.vue'
 
 import Preview from './preview.vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faChevronDown
-} from '@fortawesome/free-solid-svg-icons'
-
-library.add(
-  faChevronDown
-)
 
 // List of color values used in v1
 const v1OnlyNames = [
@@ -79,7 +72,8 @@ export default {
         getExportedObject: () => this.exportedTheme
       }),
       availableStyles: [],
-      selected: this.$store.getters.mergedConfig.theme,
+      selected: '',
+      selectedTheme: this.$store.getters.mergedConfig.theme,
       themeWarning: undefined,
       tempImportFile: undefined,
       engineVersion: 0,
@@ -213,7 +207,7 @@ export default {
       }
     },
     selectedVersion () {
-      return Array.isArray(this.selected) ? 1 : 2
+      return Array.isArray(this.selectedTheme) ? 1 : 2
     },
     currentColors () {
       return Object.keys(SLOT_INHERITANCE)
@@ -394,7 +388,8 @@ export default {
     FontControl,
     TabSwitcher,
     Preview,
-    Checkbox
+    Checkbox,
+    Select
   },
   methods: {
     loadTheme (
@@ -479,7 +474,7 @@ export default {
           this.loadThemeFromLocalStorage(false, true)
           break
         case 'file':
-          console.err('Forcing snapshout from file is not supported yet')
+          console.error('Forcing snapshot from file is not supported yet')
           break
       }
       this.dismissWarning()
@@ -750,6 +745,16 @@ export default {
       }
     },
     selected () {
+      this.selectedTheme = Object.entries(this.availableStyles).find(([k, s]) => {
+        if (Array.isArray(s)) {
+          console.log(s[0] === this.selected, this.selected)
+          return s[0] === this.selected
+        } else {
+          return s.name === this.selected
+        }
+      })[1]
+    },
+    selectedTheme () {
       this.dismissWarning()
       if (this.selectedVersion === 1) {
         if (!this.keepRoundness) {
@@ -767,17 +772,17 @@ export default {
         if (!this.keepColor) {
           this.clearV1()
 
-          this.bgColorLocal = this.selected[1]
-          this.fgColorLocal = this.selected[2]
-          this.textColorLocal = this.selected[3]
-          this.linkColorLocal = this.selected[4]
-          this.cRedColorLocal = this.selected[5]
-          this.cGreenColorLocal = this.selected[6]
-          this.cBlueColorLocal = this.selected[7]
-          this.cOrangeColorLocal = this.selected[8]
+          this.bgColorLocal = this.selectedTheme[1]
+          this.fgColorLocal = this.selectedTheme[2]
+          this.textColorLocal = this.selectedTheme[3]
+          this.linkColorLocal = this.selectedTheme[4]
+          this.cRedColorLocal = this.selectedTheme[5]
+          this.cGreenColorLocal = this.selectedTheme[6]
+          this.cBlueColorLocal = this.selectedTheme[7]
+          this.cOrangeColorLocal = this.selectedTheme[8]
         }
       } else if (this.selectedVersion >= 2) {
-        this.normalizeLocalState(this.selected.theme, 2, this.selected.source)
+        this.normalizeLocalState(this.selectedTheme.theme, 2, this.selectedTheme.source)
       }
     }
   }

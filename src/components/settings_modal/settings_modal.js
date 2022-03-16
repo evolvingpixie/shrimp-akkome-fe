@@ -1,8 +1,9 @@
-import { defineAsyncComponent } from 'vue'
 import Modal from 'src/components/modal/modal.vue'
 import PanelLoading from 'src/components/panel_loading/panel_loading.vue'
 import AsyncComponentError from 'src/components/async_component_error/async_component_error.vue'
+import getResettableAsyncComponent from 'src/services/resettable_async_component.js'
 import Popover from '../popover/popover.vue'
+import Checkbox from 'src/components/checkbox/checkbox.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { cloneDeep } from 'lodash'
 import {
@@ -51,12 +52,15 @@ const SettingsModal = {
   components: {
     Modal,
     Popover,
-    SettingsModalContent: defineAsyncComponent({
-      loader: () => import('./settings_modal_content.vue'),
-      loadingComponent: PanelLoading,
-      errorComponent: AsyncComponentError,
-      delay: 0
-    })
+    Checkbox,
+    SettingsModalContent: getResettableAsyncComponent(
+      () => import('./settings_modal_content.vue'),
+      {
+        loading: PanelLoading,
+        error: AsyncComponentError,
+        delay: 0
+      }
+    )
   },
   methods: {
     closeModal () {
@@ -157,6 +161,15 @@ const SettingsModal = {
     },
     modalPeeked () {
       return this.$store.state.interface.settingsModalState === 'minimized'
+    },
+    expertLevel: {
+      get () {
+        return this.$store.state.config.expertLevel > 0
+      },
+      set (value) {
+        console.log(value)
+        this.$store.dispatch('setOption', { name: 'expertLevel', value: value ? 1 : 0 })
+      }
     }
   }
 }

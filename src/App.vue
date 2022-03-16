@@ -49,10 +49,11 @@
       </div>
       <media-modal />
     </div>
-    <chat-panel
-      v-if="currentUser && chat"
+    <shout-panel
+      v-if="currentUser && shout && !hideShoutbox"
       :floating="true"
-      class="floating-chat mobile-hidden"
+      class="floating-shout mobile-hidden"
+      :class="{ 'left': shoutboxPosition }"
     />
     <MobilePostStatusButton />
     <UserReportingModal />

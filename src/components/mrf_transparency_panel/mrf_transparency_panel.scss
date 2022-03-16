@@ -1,0 +1,21 @@
+.mrf-section {
+  margin: 1em;
+
+  table {
+    width:100%;
+    text-align: left;
+    padding-left:10px;
+    padding-bottom:20px;
+
+    th, td {
+      width: 180px;
+      max-width: 360px;
+      overflow:  hidden;
+      vertical-align: text-top;
+    }
+
+    th+th, td+td {
+      width: auto;
+    }
+  }
+}

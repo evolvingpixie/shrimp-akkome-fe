@@ -57,8 +57,9 @@ const ChatMessage = {
     messageForStatusContent () {
       return {
         summary: '',
-        statusnet_html: this.message.content,
-        text: this.message.content,
+        emojis: this.message.emojis,
+        raw_html: this.message.content || '',
+        text: this.message.content || '',
         attachments: this.message.attachments
       }
     },

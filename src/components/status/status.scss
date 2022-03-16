@@ -1,10 +1,10 @@
-
 @import '../../_variables.scss';
-
-$status-margin: 0.75em;
 
 .Status {
   min-width: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
 
   &:hover {
     --_still-image-img-visibility: visible;
@@ -26,15 +26,8 @@ $status-margin: 0.75em;
     --icon: var(--selectedPostIcon, $fallback--icon);
   }
 
-  &.-conversation {
-    border-left-width: 4px;
-    border-left-style: solid;
-    border-left-color: $fallback--cRed;
-    border-left-color: var(--cRed, $fallback--cRed);
-  }
-
   .gravestone {
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
     color: $fallback--faint;
     color: var(--faint, $fallback--faint);
     display: flex;
@@ -47,7 +40,7 @@ $status-margin: 0.75em;
 
   .status-container {
     display: flex;
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
 
     &.-repeat {
       padding-top: 0;
@@ -55,7 +48,7 @@ $status-margin: 0.75em;
   }
 
   .pin {
-    padding: $status-margin $status-margin 0;
+    padding: var(--status-margin, $status-margin) var(--status-margin, $status-margin) 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -71,7 +64,7 @@ $status-margin: 0.75em;
   }
 
   .left-side {
-    margin-right: $status-margin;
+    margin-right: var(--status-margin, $status-margin);
   }
 
   .right-side {
@@ -80,7 +73,7 @@ $status-margin: 0.75em;
   }
 
   .usercard {
-    margin-bottom: $status-margin;
+    margin-bottom: var(--status-margin, $status-margin);
   }
 
   .status-username {
@@ -93,12 +86,8 @@ $status-margin: 0.75em;
     margin-right: 0.4em;
     text-overflow: ellipsis;
 
-    .emoji {
-      width: 14px;
-      height: 14px;
-      vertical-align: middle;
-      object-fit: contain;
-    }
+    --_still_image-label-scale: 0.25;
+    --emoji-size: 14px;
   }
 
   .status-favicon {
@@ -155,40 +144,35 @@ $status-margin: 0.75em;
     }
   }
 
+  .glued-label {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+
   .timeago {
     margin-right: 0.2em;
   }
 
-  .heading-reply-row {
+  & .heading-reply-row {
     position: relative;
     align-content: baseline;
     font-size: 12px;
-    line-height: 18px;
+    margin-top: 0.2em;
+    line-height: 130%;
     max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
     align-items: stretch;
   }
 
-  .reply-to-and-accountname {
-    display: flex;
-    height: 18px;
-    margin-right: 0.5em;
-    max-width: 100%;
-
-    .reply-to-link {
-      white-space: nowrap;
-      word-break: break-word;
-      text-overflow: ellipsis;
-      overflow-x: hidden;
-    }
-  }
-
   & .reply-to-popover,
-  & .reply-to-no-popover {
+  & .reply-to-no-popover,
+  & .mentions {
     min-width: 0;
     margin-right: 0.4em;
     flex-shrink: 0;
+  }
+
+  .reply-glued-label {
+    margin-right: 0.5em;
   }
 
   .reply-to-popover {
@@ -220,21 +204,26 @@ $status-margin: 0.75em;
     }
   }
 
-  .reply-to {
+  & .mentions,
+  & .reply-to {
+    white-space: nowrap;
     position: relative;
   }
 
-  .reply-to-text {
+  & .mentions-text,
+  & .reply-to-text {
+    color: var(--faint);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .replies-separator {
-    margin-left: 0.4em;
+  .mentions-line {
+    display: inline;
   }
 
   .replies {
+    margin-top: 0.25em;
     line-height: 18px;
     font-size: 12px;
     display: flex;
@@ -250,7 +239,7 @@ $status-margin: 0.75em;
   }
 
   .repeat-info {
-    padding: 0.4em $status-margin;
+    padding: 0.4em var(--status-margin, $status-margin);
 
     .repeat-icon {
       color: $fallback--cGreen;
@@ -296,7 +285,7 @@ $status-margin: 0.75em;
     position: relative;
     width: 100%;
     display: flex;
-    margin-top: $status-margin;
+    margin-top: var(--status-margin, $status-margin);
 
     > * {
       max-width: 4em;
@@ -364,7 +353,7 @@ $status-margin: 0.75em;
   }
 
   .favs-repeated-users {
-    margin-top: $status-margin;
+    margin-top: var(--status-margin, $status-margin);
   }
 
   .stats {
@@ -391,7 +380,7 @@ $status-margin: 0.75em;
   }
 
   .stat-count {
-    margin-right: $status-margin;
+    margin-right: var(--status-margin, $status-margin);
     user-select: none;
 
     .stat-title {

@@ -10,18 +10,26 @@ const browserLocale = (window.navigator.language || 'en').split('-')[0]
  */
 export const multiChoiceProperties = [
   'postContentType',
-  'subjectLineBehavior'
+  'subjectLineBehavior',
+  'conversationDisplay', // tree | linear
+  'conversationOtherRepliesButton', // below | inside
+  'mentionLinkDisplay' // short | full_for_remote | full
 ]
 
 export const defaultState = {
+  expertLevel: 0, // used to track which settings to show and hide
   colors: {},
   theme: undefined,
   customTheme: undefined,
   customThemeSource: undefined,
   hideISP: false,
   hideInstanceWallpaper: false,
+  hideShoutbox: false,
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: undefined, // instance default
+  hideMutedThreads: undefined, // instance default
+  hideWordFilteredPosts: undefined, // instance default
+  muteBotStatuses: undefined, // instance default
   collapseMessageWithSubject: undefined, // instance default
   padEmoji: true,
   hideAttachments: false,
@@ -33,9 +41,10 @@ export const defaultState = {
   loopVideoSilentOnly: true,
   streaming: false,
   emojiReactionsOnTimeline: true,
+  alwaysShowNewPostButton: false,
   autohideFloatingPostButton: false,
   pauseOnUnfocused: true,
-  stopGifs: false,
+  stopGifs: true,
   replyVisibility: 'all',
   notificationVisibility: {
     follows: true,
@@ -53,6 +62,7 @@ export const defaultState = {
   interfaceLanguage: browserLocale,
   hideScopeNotice: false,
   useStreamingApi: false,
+  sidebarRight: undefined, // instance default
   scopeCopy: undefined, // instance default
   subjectLineBehavior: undefined, // instance default
   alwaysShowSubjectInput: undefined, // instance default
@@ -62,12 +72,25 @@ export const defaultState = {
   hideFilteredStatuses: undefined, // instance default
   playVideosInModal: false,
   useOneClickNsfw: false,
-  useContainFit: false,
+  useContainFit: true,
   greentext: undefined, // instance default
+  useAtIcon: undefined, // instance default
+  mentionLinkDisplay: undefined, // instance default
+  mentionLinkShowTooltip: undefined, // instance default
+  mentionLinkShowAvatar: undefined, // instance default
+  mentionLinkFadeDomain: undefined, // instance default
+  mentionLinkShowYous: undefined, // instance default
+  mentionLinkBoldenYou: undefined, // instance default
   hidePostStats: undefined, // instance default
+  hideBotIndication: undefined, // instance default
   hideUserStats: undefined, // instance default
   virtualScrolling: undefined, // instance default
-  sensitiveByDefault: undefined // instance default
+  sensitiveByDefault: undefined, // instance default
+  conversationDisplay: undefined, // instance default
+  conversationTreeAdvanced: undefined, // instance default
+  conversationOtherRepliesButton: undefined, // instance default
+  conversationTreeFadeAncestors: undefined, // instance default
+  maxDepthInThread: undefined // instance default
 }
 
 // caching the instance default properties
@@ -91,7 +114,8 @@ const config = {
       const { defaultConfig } = rootGetters
       return {
         ...defaultConfig,
-        ...state
+        // Do not override with undefined
+        ...Object.fromEntries(Object.entries(state).filter(([k, v]) => v !== undefined))
       }
     }
   },

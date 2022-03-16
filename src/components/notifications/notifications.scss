@@ -37,11 +37,6 @@
 
 .notification {
   box-sizing: border-box;
-  border-bottom: 1px solid;
-  border-color: $fallback--border;
-  border-color: var(--border, $fallback--border);
-  word-wrap: break-word;
-  word-break: break-word;
 
   &:hover .animated.Avatar {
     canvas {
@@ -148,13 +143,6 @@
       max-width: 100%;
       text-overflow: ellipsis;
       white-space: nowrap;
-
-      img {
-        width: 14px;
-        height: 14px;
-        vertical-align: middle;
-        object-fit: contain
-      }
     }
 
     .timeago {

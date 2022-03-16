@@ -1,0 +1,174 @@
+@import '../../_variables.scss';
+
+.StatusBody {
+  display: flex;
+  flex-direction: column;
+
+  .emoji {
+    --_still_image-label-scale: 0.5;
+  }
+
+  .attachments {
+    margin-top: 0.5em;
+  }
+
+  & .text,
+  & .summary {
+    font-family: var(--postFont, sans-serif);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.4em;
+  }
+
+  .summary {
+    display: block;
+    font-style: italic;
+    padding-bottom: 0.5em;
+  }
+
+  .text {
+    &.-single-line {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      height: 1.4em;
+    }
+  }
+
+  .summary-wrapper {
+    margin-bottom: 0.5em;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: var(--border, $fallback--border);
+    flex-grow: 0;
+
+    &.-tall {
+      position: relative;
+
+      .summary {
+        max-height: 2em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    &.-tall-status {
+      position: relative;
+      height: 220px;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      z-index: 1;
+
+      .media-body {
+        min-height: 0;
+        mask:
+          linear-gradient(to top, white, transparent) bottom/100% 70px no-repeat,
+          linear-gradient(to top, white, white);
+
+        /* Autoprefixed seem to ignore this one, and also syntax is different */
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+      }
+    }
+  }
+
+  & .tall-status-hider,
+  & .tall-subject-hider,
+  & .status-unhider,
+  & .cw-status-hider {
+    display: inline-block;
+    word-break: break-all;
+    width: 100%;
+    text-align: center;
+  }
+
+  .tall-status-hider {
+    position: absolute;
+    height: 70px;
+    margin-top: 150px;
+    line-height: 110px;
+    z-index: 2;
+  }
+
+  .tall-subject-hider {
+    // position: absolute;
+    padding-bottom: 0.5em;
+  }
+
+  & .status-unhider,
+  & .cw-status-hider {
+    word-break: break-all;
+
+    svg {
+      color: inherit;
+    }
+  }
+
+  .greentext {
+    color: $fallback--cGreen;
+    color: var(--postGreentext, $fallback--cGreen);
+  }
+
+  .cyantext {
+    color: var(--postCyantext, $fallback--cBlue);
+  }
+
+  &.-compact {
+    align-items: top;
+    flex-direction: row;
+
+    --emoji-size: 16px;
+
+    & .body,
+    & .attachments {
+      max-height: 3.25em;
+    }
+
+    .body {
+      overflow: hidden;
+      white-space: normal;
+      min-width: 5em;
+      flex: 5 1 auto;
+      mask-size: auto 3.5em, auto auto;
+      mask-position: 0 0, 0 0;
+      mask-repeat: repeat-x, repeat;
+      mask-image: linear-gradient(to bottom, white 2em, transparent 3em);
+
+      /* Autoprefixed seem to ignore this one, and also syntax is different */
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .attachments {
+      margin-top: 0;
+      flex: 1 1 0;
+      min-width: 5em;
+      height: 100%;
+      margin-left: 0.5em;
+    }
+
+    .summary-wrapper {
+      .summary::after {
+        content: ': ';
+      }
+
+      line-height: inherit;
+      margin: 0;
+      border: none;
+      display: inline-block;
+    }
+
+    .text-wrapper {
+      display: inline-block;
+    }
+  }
+}

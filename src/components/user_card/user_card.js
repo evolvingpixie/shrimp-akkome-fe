@@ -4,23 +4,25 @@ import ProgressButton from '../progress_button/progress_button.vue'
 import FollowButton from '../follow_button/follow_button.vue'
 import ModerationTools from '../moderation_tools/moderation_tools.vue'
 import AccountActions from '../account_actions/account_actions.vue'
+import Select from '../select/select.vue'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faBell,
   faRss,
-  faChevronDown,
   faSearchPlus,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faEdit
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faRss,
   faBell,
-  faChevronDown,
   faSearchPlus,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faEdit
 )
 
 export default {
@@ -118,7 +120,9 @@ export default {
     ModerationTools,
     AccountActions,
     ProgressButton,
-    FollowButton
+    FollowButton,
+    Select,
+    RichContent
   },
   methods: {
     muteUser () {
@@ -153,13 +157,16 @@ export default {
         this.$store.state.instance.restrictedNicknames
       )
     },
+    openProfileTab () {
+      this.$store.dispatch('openSettingsModalTab', 'profile')
+    },
     zoomAvatar () {
       const attachment = {
         url: this.user.profile_image_url_original,
         mimetype: 'image'
       }
       this.$store.dispatch('setMedia', [attachment])
-      this.$store.dispatch('setCurrent', attachment)
+      this.$store.dispatch('setCurrentMedia', attachment)
     },
     mentionUser () {
       this.$store.dispatch('openPostStatusModal', { replyTo: true, repliedUser: this.user })

@@ -1,21 +1,43 @@
 import BooleanSetting from '../helpers/boolean_setting.vue'
+import ChoiceSetting from '../helpers/choice_setting.vue'
+import ScopeSelector from 'src/components/scope_selector/scope_selector.vue'
+import IntegerSetting from '../helpers/integer_setting.vue'
 import InterfaceLanguageSwitcher from 'src/components/interface_language_switcher/interface_language_switcher.vue'
 
 import SharedComputedObject from '../helpers/shared_computed_object.js'
+import ServerSideIndicator from '../helpers/server_side_indicator.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faChevronDown,
   faGlobe
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
-  faChevronDown,
   faGlobe
 )
 
 const GeneralTab = {
   data () {
     return {
+      subjectLineOptions: ['email', 'noop', 'masto'].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.subject_line_${mode === 'masto' ? 'mastodon' : mode}`)
+      })),
+      conversationDisplayOptions: ['tree', 'linear'].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.conversation_display_${mode}`)
+      })),
+      conversationOtherRepliesButtonOptions: ['below', 'inside'].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.conversation_other_replies_button_${mode}`)
+      })),
+      mentionLinkDisplayOptions: ['short', 'full_for_remote', 'full'].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.mention_link_display_${mode}`)
+      })),
       loopSilentAvailable:
       // Firefox
       Object.getOwnPropertyDescriptor(HTMLVideoElement.prototype, 'mozHasAudio') ||
@@ -27,18 +49,35 @@ const GeneralTab = {
   },
   components: {
     BooleanSetting,
-    InterfaceLanguageSwitcher
+    ChoiceSetting,
+    IntegerSetting,
+    InterfaceLanguageSwitcher,
+    ScopeSelector,
+    ServerSideIndicator
   },
   computed: {
     postFormats () {
       return this.$store.state.instance.postFormats || []
+    },
+    postContentOptions () {
+      return this.postFormats.map(format => ({
+        key: format,
+        value: format,
+        label: this.$t(`post_status.content_type["${format}"]`)
+      }))
     },
     instanceSpecificPanelPresent () { return this.$store.state.instance.showInstanceSpecificPanel },
     instanceWallpaperUsed () {
       return this.$store.state.instance.background &&
         !this.$store.state.users.currentUser.background_image
     },
+    instanceShoutboxPresent () { return this.$store.state.instance.shoutAvailable },
     ...SharedComputedObject()
+  },
+  methods: {
+    changeDefaultScope (value) {
+      this.$store.dispatch('setServerSideOption', { name: 'defaultScope', value })
+    }
   }
 }
 

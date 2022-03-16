@@ -33,7 +33,7 @@
 @import '../../_variables.scss';
 
 .popover-trigger-button {
-  display: block;
+  display: inline-block;
 }
 
 .popover {

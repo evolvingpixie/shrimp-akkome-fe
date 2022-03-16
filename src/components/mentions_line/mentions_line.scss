@@ -1,0 +1,13 @@
+.MentionsLine {
+  word-break: break-all;
+
+  .mention-link:not(:first-child)::before {
+    content: ' ';
+  }
+
+  .showMoreLess {
+    margin-left: 0.5em;
+    white-space: normal;
+    color: var(--link);
+  }
+}

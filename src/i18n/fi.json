@@ -579,7 +579,8 @@
     "hide_full_subject": "Piilota koko otsikko",
     "show_content": "Näytä sisältö",
     "hide_content": "Piilota sisältö",
-    "status_deleted": "Poistettu viesti"
+    "status_deleted": "Poistettu viesti",
+    "you": "(sinä)"
   },
   "user_card": {
     "approve": "Hyväksy",
@@ -589,7 +590,6 @@
     "follow": "Seuraa",
     "follow_sent": "Pyyntö lähetetty!",
     "follow_progress": "Pyydetään…",
-    "follow_again": "Lähetä pyyntö uudestaan?",
     "follow_unfollow": "Älä seuraa",
     "followees": "Seuraa",
     "followers": "Seuraajat",

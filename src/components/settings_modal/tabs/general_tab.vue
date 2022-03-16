@@ -11,24 +11,19 @@
             {{ $t('settings.hide_isp') }}
           </BooleanSetting>
         </li>
+        <li>
+          <BooleanSetting path="sidebarRight">
+            {{ $t('settings.right_sidebar') }}
+          </BooleanSetting>
+        </li>
         <li v-if="instanceWallpaperUsed">
           <BooleanSetting path="hideInstanceWallpaper">
             {{ $t('settings.hide_wallpaper') }}
           </BooleanSetting>
         </li>
-      </ul>
-    </div>
-    <div class="setting-item">
-      <h2>{{ $t('nav.timeline') }}</h2>
-      <ul class="setting-list">
         <li>
-          <BooleanSetting path="hideMutedPosts">
-            {{ $t('settings.hide_muted_posts') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="collapseMessageWithSubject">
-            {{ $t('settings.collapse_subject') }}
+          <BooleanSetting path="stopGifs">
+            {{ $t('settings.stop_gifs') }}
           </BooleanSetting>
         </li>
         <li>
@@ -50,146 +45,126 @@
           </ul>
         </li>
         <li>
-          <BooleanSetting path="useStreamingApi">
+          <BooleanSetting
+            path="useStreamingApi"
+            expert="1"
+          >
             {{ $t('settings.useStreamingApi') }}
-            <br>
-            <small>
-              {{ $t('settings.useStreamingApiWarning') }}
-            </small>
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="emojiReactionsOnTimeline">
+          <BooleanSetting
+            path="virtualScrolling"
+            expert="1"
+          >
+            {{ $t('settings.virtual_scrolling') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="alwaysShowNewPostButton"
+            expert="1"
+          >
+            {{ $t('settings.always_show_post_button') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="autohideFloatingPostButton"
+            expert="1"
+          >
+            {{ $t('settings.autohide_floating_post_button') }}
+          </BooleanSetting>
+        </li>
+        <li v-if="instanceShoutboxPresent">
+          <BooleanSetting
+            path="hideShoutbox"
+            expert="1"
+          >
+            {{ $t('settings.hide_shoutbox') }}
+          </BooleanSetting>
+        </li>
+      </ul>
+    </div>
+    <div class="setting-item">
+      <h2>{{ $t('settings.post_look_feel') }}</h2>
+      <ul class="setting-list">
+        <li>
+          <ChoiceSetting
+            id="conversationDisplay"
+            path="conversationDisplay"
+            :options="conversationDisplayOptions"
+          >
+            {{ $t('settings.conversation_display') }}
+          </ChoiceSetting>
+        </li>
+        <ul
+          v-if="conversationDisplay !== 'linear'"
+          class="setting-list suboptions"
+        >
+          <li>
+            <BooleanSetting path="conversationTreeAdvanced">
+              {{ $t('settings.tree_advanced') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting
+              path="conversationTreeFadeAncestors"
+              :expert="1"
+            >
+              {{ $t('settings.tree_fade_ancestors') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <IntegerSetting
+              path="maxDepthInThread"
+              :min="3"
+              :expert="1"
+            >
+              {{ $t('settings.max_depth_in_thread') }}
+            </IntegerSetting>
+          </li>
+          <li>
+            <ChoiceSetting
+              id="conversationOtherRepliesButton"
+              path="conversationOtherRepliesButton"
+              :options="conversationOtherRepliesButtonOptions"
+              :expert="1"
+            >
+              {{ $t('settings.conversation_other_replies_button') }}
+            </ChoiceSetting>
+          </li>
+        </ul>
+        <li>
+          <BooleanSetting path="collapseMessageWithSubject">
+            {{ $t('settings.collapse_subject') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="emojiReactionsOnTimeline"
+            expert="1"
+          >
             {{ $t('settings.emoji_reactions_on_timeline') }}
           </BooleanSetting>
         </li>
         <li>
-          <BooleanSetting path="virtualScrolling">
-            {{ $t('settings.virtual_scrolling') }}
-          </BooleanSetting>
-        </li>
-      </ul>
-    </div>
-
-    <div class="setting-item">
-      <h2>{{ $t('settings.composing') }}</h2>
-      <ul class="setting-list">
-        <li>
-          <BooleanSetting path="scopeCopy">
-            {{ $t('settings.scope_copy') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="alwaysShowSubjectInput">
-            {{ $t('settings.subject_input_always_show') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <div>
-            {{ $t('settings.subject_line_behavior') }}
-            <label
-              for="subjectLineBehavior"
-              class="select"
-            >
-              <select
-                id="subjectLineBehavior"
-                v-model="subjectLineBehavior"
-              >
-                <option value="email">
-                  {{ $t('settings.subject_line_email') }}
-                  {{ subjectLineBehaviorDefaultValue == 'email' ? $t('settings.instance_default_simple') : '' }}
-                </option>
-                <option value="masto">
-                  {{ $t('settings.subject_line_mastodon') }}
-                  {{ subjectLineBehaviorDefaultValue == 'mastodon' ? $t('settings.instance_default_simple') : '' }}
-                </option>
-                <option value="noop">
-                  {{ $t('settings.subject_line_noop') }}
-                  {{ subjectLineBehaviorDefaultValue == 'noop' ? $t('settings.instance_default_simple') : '' }}
-                </option>
-              </select>
-              <FAIcon
-                class="select-down-icon"
-                icon="chevron-down"
-              />
-            </label>
-          </div>
-        </li>
-        <li v-if="postFormats.length > 0">
-          <div>
-            {{ $t('settings.post_status_content_type') }}
-            <label
-              for="postContentType"
-              class="select"
-            >
-              <select
-                id="postContentType"
-                v-model="postContentType"
-              >
-                <option
-                  v-for="postFormat in postFormats"
-                  :key="postFormat"
-                  :value="postFormat"
-                >
-                  {{ $t(`post_status.content_type["${postFormat}"]`) }}
-                  {{ postContentTypeDefaultValue === postFormat ? $t('settings.instance_default_simple') : '' }}
-                </option>
-              </select>
-              <FAIcon
-                class="select-down-icon"
-                icon="chevron-down"
-              />
-            </label>
-          </div>
-        </li>
-        <li>
-          <BooleanSetting path="minimalScopesMode">
-            {{ $t('settings.minimal_scopes_mode') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="sensitiveByDefault">
-            {{ $t('settings.sensitive_by_default') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="autohideFloatingPostButton">
-            {{ $t('settings.autohide_floating_post_button') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="padEmoji">
-            {{ $t('settings.pad_emoji') }}
-          </BooleanSetting>
-        </li>
-      </ul>
-    </div>
-
-    <div class="setting-item">
-      <h2>{{ $t('settings.attachments') }}</h2>
-      <ul class="setting-list">
-        <li>
-          <BooleanSetting path="hideAttachments">
-            {{ $t('settings.hide_attachments_in_tl') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="hideAttachmentsInConv">
-            {{ $t('settings.hide_attachments_in_convo') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <label for="maxThumbnails">
-            {{ $t('settings.max_thumbnails') }}
-          </label>
-          <input
-            id="maxThumbnails"
-            path.number="maxThumbnails"
-            class="number-input"
-            type="number"
-            min="0"
-            step="1"
+          <BooleanSetting
+            v-if="user"
+            path="serverSide_stripRichContent"
+            expert="1"
           >
+            {{ $t('settings.no_rich_text_description') }}
+          </BooleanSetting>
+        </li>
+        <h3>{{ $t('settings.attachments') }}</h3>
+        <li>
+          <BooleanSetting
+            path="useContainFit"
+            expert="1"
+          >
+            {{ $t('settings.use_contain_fit') }}
+          </BooleanSetting>
         </li>
         <li>
           <BooleanSetting path="hideNsfw">
@@ -200,6 +175,7 @@
           <li>
             <BooleanSetting
               path="preloadImage"
+              expert="1"
               :disabled="!hideNsfw"
             >
               {{ $t('settings.preload_images') }}
@@ -208,6 +184,7 @@
           <li>
             <BooleanSetting
               path="useOneClickNsfw"
+              expert="1"
               :disabled="!hideNsfw"
             >
               {{ $t('settings.use_one_click_nsfw') }}
@@ -215,12 +192,10 @@
           </li>
         </ul>
         <li>
-          <BooleanSetting path="stopGifs">
-            {{ $t('settings.stop_gifs') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="loopVideo">
+          <BooleanSetting
+            path="loopVideo"
+            expert="1"
+          >
             {{ $t('settings.loop_video') }}
           </BooleanSetting>
           <ul
@@ -230,6 +205,7 @@
             <li>
               <BooleanSetting
                 path="loopVideoSilentOnly"
+                expert="1"
                 :disabled="!loopVideo || !loopSilentAvailable"
               >
                 {{ $t('settings.loop_video_silent_only') }}
@@ -244,35 +220,175 @@
           </ul>
         </li>
         <li>
-          <BooleanSetting path="playVideosInModal">
+          <BooleanSetting
+            path="playVideosInModal"
+            expert="1"
+          >
             {{ $t('settings.play_videos_in_modal') }}
           </BooleanSetting>
         </li>
+        <h3>{{ $t('settings.mention_links') }}</h3>
         <li>
-          <BooleanSetting path="useContainFit">
-            {{ $t('settings.use_contain_fit') }}
+          <ChoiceSetting
+            id="mentionLinkDisplay"
+            path="mentionLinkDisplay"
+            :options="mentionLinkDisplayOptions"
+          >
+            {{ $t('settings.mention_link_display') }}
+          </ChoiceSetting>
+        </li>
+        <ul
+          class="setting-list suboptions"
+        >
+          <li v-if="mentionLinkDisplay === 'short'">
+            <BooleanSetting
+              path="mentionLinkShowTooltip"
+              expert="1"
+            >
+              {{ $t('settings.mention_link_show_tooltip') }}
+            </BooleanSetting>
+          </li>
+        </ul>
+        <li>
+          <BooleanSetting
+            path="useAtIcon"
+            expert="1"
+          >
+            {{ $t('settings.use_at_icon') }}
           </BooleanSetting>
         </li>
-      </ul>
-    </div>
-
-    <div class="setting-item">
-      <h2>{{ $t('settings.notifications') }}</h2>
-      <ul class="setting-list">
         <li>
-          <BooleanSetting path="webPushNotifications">
-            {{ $t('settings.enable_web_push_notifications') }}
+          <BooleanSetting path="mentionLinkShowAvatar">
+            {{ $t('settings.mention_link_show_avatar') }}
           </BooleanSetting>
         </li>
-      </ul>
-    </div>
-
-    <div class="setting-item">
-      <h2>{{ $t('settings.fun') }}</h2>
-      <ul class="setting-list">
         <li>
-          <BooleanSetting path="greentext">
+          <BooleanSetting
+            path="mentionLinkFadeDomain"
+            expert="1"
+          >
+            {{ $t('settings.mention_link_fade_domain') }}
+          </BooleanSetting>
+        </li>
+        <li v-if="user">
+          <BooleanSetting
+            path="mentionLinkBoldenYou"
+            expert="1"
+          >
+            {{ $t('settings.mention_link_bolden_you') }}
+          </BooleanSetting>
+        </li>
+        <h3 v-if="expertLevel > 0">
+          {{ $t('settings.fun') }}
+        </h3>
+        <li>
+          <BooleanSetting
+            path="greentext"
+            expert="1"
+          >
             {{ $t('settings.greentext') }}
+          </BooleanSetting>
+        </li>
+        <li v-if="user">
+          <BooleanSetting
+            path="mentionLinkShowYous"
+            expert="1"
+          >
+            {{ $t('settings.show_yous') }}
+          </BooleanSetting>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      v-if="user"
+      class="setting-item"
+    >
+      <h2>{{ $t('settings.composing') }}</h2>
+      <ul class="setting-list">
+        <li>
+          <label for="default-vis">
+            {{ $t('settings.default_vis') }} <ServerSideIndicator :server-side="true" />
+            <ScopeSelector
+              class="scope-selector"
+              :show-all="true"
+              :user-default="serverSide_defaultScope"
+              :initial-scope="serverSide_defaultScope"
+              :on-scope-change="changeDefaultScope"
+            />
+          </label>
+        </li>
+        <li>
+          <!-- <BooleanSetting path="serverSide_defaultNSFW"> -->
+          <BooleanSetting path="sensitiveByDefault">
+            {{ $t('settings.sensitive_by_default') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="scopeCopy"
+            expert="1"
+          >
+            {{ $t('settings.scope_copy') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="alwaysShowSubjectInput"
+            expert="1"
+          >
+            {{ $t('settings.subject_input_always_show') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <ChoiceSetting
+            id="subjectLineBehavior"
+            path="subjectLineBehavior"
+            :options="subjectLineOptions"
+            expert="1"
+          >
+            {{ $t('settings.subject_line_behavior') }}
+          </ChoiceSetting>
+        </li>
+        <li v-if="postFormats.length > 0">
+          <ChoiceSetting
+            id="postContentType"
+            path="postContentType"
+            :options="postContentOptions"
+          >
+            {{ $t('settings.post_status_content_type') }}
+          </ChoiceSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="minimalScopesMode"
+            expert="1"
+          >
+            {{ $t('settings.minimal_scopes_mode') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="alwaysShowNewPostButton"
+            expert="1"
+          >
+            {{ $t('settings.always_show_post_button') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="autohideFloatingPostButton"
+            expert="1"
+          >
+            {{ $t('settings.autohide_floating_post_button') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="padEmoji"
+            expert="1"
+          >
+            {{ $t('settings.pad_emoji') }}
           </BooleanSetting>
         </li>
       </ul>

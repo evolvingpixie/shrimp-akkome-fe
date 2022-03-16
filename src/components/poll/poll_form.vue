@@ -46,23 +46,19 @@
         class="poll-type"
         :title="$t('polls.type')"
       >
-        <label
-          for="poll-type-selector"
-          class="select"
+        <Select
+          v-model="pollType"
+          class="poll-type-select"
+          unstyled="true"
+          @change="updatePollToParent"
         >
-          <select
-            v-model="pollType"
-            class="select"
-            @change="updatePollToParent"
-          >
-            <option value="single">{{ $t('polls.single_choice') }}</option>
-            <option value="multiple">{{ $t('polls.multiple_choices') }}</option>
-          </select>
-          <FAIcon
-            class="select-down-icon"
-            icon="chevron-down"
-          />
-        </label>
+          <option value="single">
+            {{ $t('polls.single_choice') }}
+          </option>
+          <option value="multiple">
+            {{ $t('polls.multiple_choices') }}
+          </option>
+        </Select>
       </div>
       <div
         class="poll-expiry"
@@ -76,24 +72,20 @@
           :max="maxExpirationInCurrentUnit"
           @change="expiryAmountChange"
         >
-        <label class="expiry-unit select">
-          <select
-            v-model="expiryUnit"
-            @change="expiryAmountChange"
+        <Select
+          v-model="expiryUnit"
+          unstyled="true"
+          class="expiry-unit"
+          @change="expiryAmountChange"
+        >
+          <option
+            v-for="unit in expiryUnits"
+            :key="unit"
+            :value="unit"
           >
-            <option
-              v-for="unit in expiryUnits"
-              :key="unit"
-              :value="unit"
-            >
-              {{ $t(`time.${unit}_short`, ['']) }}
-            </option>
-          </select>
-          <FAIcon
-            class="select-down-icon"
-            icon="chevron-down"
-          />
-        </label>
+            {{ $t(`time.${unit}_short`, ['']) }}
+          </option>
+        </Select>
       </div>
     </div>
   </div>
@@ -147,10 +139,8 @@
   .poll-type {
     margin-right: 0.75em;
     flex: 1 1 60%;
-    .select {
-      border: none;
-      box-shadow: none;
-      background-color: transparent;
+
+    .poll-type-select {
       padding-right: 0.75em;
     }
   }
@@ -161,12 +151,6 @@
     .expiry-amount {
       width: 3em;
       text-align: right;
-    }
-
-    .expiry-unit {
-      border: none;
-      box-shadow: none;
-      background-color: transparent;
     }
   }
 }

@@ -43,7 +43,10 @@
     "role": {
       "moderator": "Moderatzailea",
       "admin": "Administratzailea"
-    }
+    },
+    "flash_content": "Klik egin Flash edukia erakusteko Ruffle erabilita (esperimentala, baliteke ez ibiltzea).",
+    "flash_security": "Kontuan izan arriskutsua izan daitekeela, Flash edukia kode arbitrarioa baita.",
+    "flash_fail": "Ezin izan da Flash edukia kargatu. Ikusi kontsola xehetasunetarako."
   },
   "image_cropper": {
     "crop_picture": "Moztu argazkia",
@@ -96,7 +99,8 @@
     "preferences": "Hobespenak",
     "chats": "Txatak",
     "timelines": "Denbora-lerroak",
-    "bookmarks": "Laster-markak"
+    "bookmarks": "Laster-markak",
+    "home_timeline": "Denbora-lerro pertsonala"
   },
   "notifications": {
     "broken_favorite": "Egoera ezezaguna, bilatzen…",
@@ -136,7 +140,8 @@
     "add_emoji": "Emoji bat gehitu",
     "custom": "Ohiko emojiak",
     "unicode": "Unicode emojiak",
-    "load_all": "{emojiAmount} emoji guztiak kargatzen"
+    "load_all": "{emojiAmount} emoji guztiak kargatzen",
+    "load_all_hint": "Lehenengo {saneAmount} emojia kargatuta, emoji guztiak kargatzeak errendimendu arazoak sor ditzake."
   },
   "stickers": {
     "add_sticker": "Pegatina gehitu"
@@ -144,7 +149,8 @@
   "interactions": {
     "favs_repeats": "Errepikapen eta gogokoak",
     "follows": "Jarraitzaile berriak",
-    "load_older": "Kargatu elkarrekintza zaharragoak"
+    "load_older": "Kargatu elkarrekintza zaharragoak",
+    "moves": "Erabiltzailea migratuta"
   },
   "post_status": {
     "new_status": "Mezu berri bat idatzi",
@@ -172,14 +178,20 @@
       "private": "Jarraitzaileentzako bakarrik: bidali jarraitzaileentzat bakarrik",
       "public": "Publikoa: bistaratu denbora-lerro publikoetan",
       "unlisted": "Zerrendatu gabea: ez bidali denbora-lerro publikoetara"
-    }
+    },
+    "media_description_error": "Ezin izan da artxiboa eguneratu, saiatu berriro",
+    "preview": "Aurrebista",
+    "media_description": "Media deskribapena",
+    "preview_empty": "Hutsik",
+    "post": "Bidali",
+    "empty_status_error": "Ezin da argitaratu ezer idatzi gabe edo eranskinik gabe"
   },
   "registration": {
     "bio": "Biografia",
     "email": "E-posta",
     "fullname": "Erakutsi izena",
     "password_confirm": "Pasahitza berretsi",
-    "registration": "Izena ematea",
+    "registration": "Sortu kontua",
     "token": "Gonbidapen txartela",
     "captcha": "CAPTCHA",
     "new_captcha": "Klikatu irudia captcha berri bat lortzeko",
@@ -193,7 +205,10 @@
       "password_required": "Ezin da hutsik utzi",
       "password_confirmation_required": "Ezin da hutsik utzi",
       "password_confirmation_match": "Pasahitzaren berdina izan behar du"
-    }
+    },
+    "reason": "Kontua sortzeko arrazoia",
+    "reason_placeholder": "Instantzia honek kontu berriak eskuz onartzen ditu.\nJakinarazi administrazioari zergatik erregistratu nahi duzun.",
+    "register": "Erregistratu"
   },
   "selectable_list": {
     "select_all": "Hautatu denak"
@@ -210,7 +225,7 @@
       "title": "Bi-faktore autentifikazioa",
       "generate_new_recovery_codes": "Sortu berreskuratze kode berriak",
       "warning_of_generate_new_codes": "Berreskuratze kode berriak sortzean, zure berreskuratze kode zaharrak ez dute balioko.",
-      "recovery_codes": "Berreskuratze kodea",
+      "recovery_codes": "Berreskuratze kodea.",
       "waiting_a_recovery_codes": "Babes-kopia kodeak jasotzen…",
       "recovery_codes_warning": "Idatzi edo gorde kodeak leku seguruan - bestela ez dituzu berriro ikusiko. Zure 2FA aplikaziorako sarbidea eta berreskuratze kodeak galduz gero, zure kontutik blokeatuta egongo zara.",
       "authentication_methods": "Autentifikazio metodoa",
@@ -468,7 +483,7 @@
         "button": "Botoia",
         "text": "Hamaika {0} eta {1}",
         "mono": "edukia",
-        "input": "Jadanik Los Angeles-en",
+        "input": "Jadanik Los Angeles-en.",
         "faint_link": "laguntza",
         "fine_print": "Irakurri gure {0} ezer erabilgarria ikasteko!",
         "header_faint": "Ondo dago",
@@ -480,7 +495,11 @@
       "title": "Bertsioa",
       "backend_version": "Backend bertsioa",
       "frontend_version": "Frontend bertsioa"
-    }
+    },
+    "save": "Aldaketak gorde",
+    "setting_changed": "Ezarpena lehenetsitakoaren desberdina da",
+    "allow_following_move": "Baimendu jarraipen automatikoa, jarraitzen duzun kontua beste instantzia batera eramaten denean",
+    "new_email": "E-posta berria"
   },
   "time": {
     "day": "{0} egun",
@@ -550,7 +569,6 @@
     "follow": "Jarraitu",
     "follow_sent": "Eskaera bidalita!",
     "follow_progress": "Eskatzen…",
-    "follow_again": "Eskaera berriro bidali?",
     "follow_unfollow": "Jarraitzeari utzi",
     "followees": "Jarraitzen",
     "followers": "Jarraitzaileak",
@@ -691,5 +709,12 @@
   },
   "shoutbox": {
     "title": "Oihu-kutxa"
+  },
+  "errors": {
+    "storage_unavailable": "Pleromak ezin izan du nabigatzailearen biltegira sartu. Hasiera-saioa edo tokiko ezarpenak ez dira gordeko eta ustekabeko arazoak sor ditzake. Saiatu cookie-ak gaitzen."
+  },
+  "remote_user_resolver": {
+    "searching_for": "Bilatzen",
+    "error": "Ez da aurkitu."
   }
 }

@@ -1,13 +1,10 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faChevronDown
-} from '@fortawesome/free-solid-svg-icons'
-
-library.add(
-  faChevronDown
-)
+import { set } from 'vue'
+import Select from '../select/select.vue'
 
 export default {
+  components: {
+    Select
+  },
   props: [
     'name', 'label', 'value', 'fallback', 'options', 'no-inherit'
   ],
@@ -39,8 +36,8 @@ export default {
         return this.dValue.family
       },
       set (v) {
-        this.lValue.family = v
-        this.$emit('update:modelValue', this.lValue)
+        set(this.lValue, 'family', v)
+        this.$emit('input', this.lValue)
       }
     },
     isCustom () {

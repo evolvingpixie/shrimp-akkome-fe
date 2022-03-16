@@ -7,7 +7,13 @@
     :src="imgSrc(user.profile_image_url_original)"
     :class="{ 'avatar-compact': compact, 'better-shadow': betterShadow }"
     :image-load-error="imageLoadError"
-  />
+  >
+    <FAIcon
+      v-if="bot"
+      icon="robot"
+      class="bot-indicator"
+    />
+  </StillImage>
   <div
     v-else
     class="Avatar -placeholder"
@@ -34,6 +40,12 @@
   img {
     width: 100%;
     height: 100%;
+  }
+
+  & > .bot-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 
   &.better-shadow {

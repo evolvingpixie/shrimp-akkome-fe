@@ -9,7 +9,8 @@ import statusesModule from './modules/statuses.js'
 import usersModule from './modules/users.js'
 import apiModule from './modules/api.js'
 import configModule from './modules/config.js'
-import chatModule from './modules/chat.js'
+import serverSideConfigModule from './modules/serverSideConfig.js'
+import shoutModule from './modules/shout.js'
 import oauthModule from './modules/oauth.js'
 import authFlowModule from './modules/auth_flow.js'
 import mediaViewerModule from './modules/media_viewer.js'
@@ -30,7 +31,19 @@ import afterStoreSetup from './boot/after_store.js'
 
 const currentLocale = (window.navigator.language || 'en').split('-')[0]
 
-const i18n = createI18n({
+Vue.use(Vuex)
+Vue.use(VueRouter)
+Vue.use(VueI18n)
+Vue.use(VueClickOutside)
+Vue.use(PortalVue)
+Vue.use(VBodyScrollLock)
+
+Vue.config.ignoredElements = ['pinch-zoom']
+
+Vue.component('FAIcon', FontAwesomeIcon)
+Vue.component('FALayers', FontAwesomeLayers)
+
+const i18n = new VueI18n({
   // By default, use the browser locale, we will update it if neccessary
   locale: 'en',
   fallbackLocale: 'en',
@@ -71,7 +84,8 @@ const persistedStateOptions = {
       statuses: statusesModule,
       api: apiModule,
       config: configModule,
-      chat: chatModule,
+      serverSideConfig: serverSideConfigModule,
+      shout: shoutModule,
       oauth: oauthModule,
       authFlow: authFlowModule,
       mediaViewer: mediaViewerModule,

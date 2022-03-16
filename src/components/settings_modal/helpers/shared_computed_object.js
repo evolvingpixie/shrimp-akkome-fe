@@ -1,4 +1,5 @@
 import { defaultState as configDefaultState } from 'src/modules/config.js'
+import { defaultState as serverSideConfigDefaultState } from 'src/modules/serverSideConfig.js'
 
 const SharedComputedObject = () => ({
   user () {
@@ -19,6 +20,14 @@ const SharedComputedObject = () => ({
       get () { return this.$store.getters.mergedConfig[key] },
       set (value) {
         this.$store.dispatch('setOption', { name: key, value })
+      }
+    }])
+    .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
+  ...Object.keys(serverSideConfigDefaultState)
+    .map(key => ['serverSide_' + key, {
+      get () { return this.$store.state.serverSideConfig[key] },
+      set (value) {
+        this.$store.dispatch('setServerSideOption', { name: key, value })
       }
     }])
     .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
