@@ -7,7 +7,8 @@ export default {
   props: {
     path: String,
     disabled: Boolean,
-    min: Number
+    min: Number,
+    expert: Number
   },
   computed: {
     pathDefault () {
@@ -27,6 +28,9 @@ export default {
     },
     isChanged () {
       return this.state !== this.defaultState
+    },
+    matchesExpertLevel () {
+      return (this.expert || 0) <= this.$parent.expertLevel
     }
   },
   methods: {

@@ -18,6 +18,7 @@ export const multiChoiceProperties = [
 ]
 
 export const defaultState = {
+  expertLevel: 0, // used to track which settings to show and hide
   colors: {},
   theme: undefined,
   customTheme: undefined,
@@ -44,7 +45,7 @@ export const defaultState = {
   alwaysShowNewPostButton: false,
   autohideFloatingPostButton: false,
   pauseOnUnfocused: true,
-  stopGifs: false,
+  stopGifs: true,
   replyVisibility: 'all',
   notificationVisibility: {
     follows: true,
@@ -72,7 +73,7 @@ export const defaultState = {
   hideFilteredStatuses: undefined, // instance default
   playVideosInModal: false,
   useOneClickNsfw: false,
-  useContainFit: false,
+  useContainFit: true,
   greentext: undefined, // instance default
   useAtIcon: undefined, // instance default
   mentionLinkDisplay: undefined, // instance default

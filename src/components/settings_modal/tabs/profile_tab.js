@@ -8,6 +8,9 @@ import EmojiInput from 'src/components/emoji_input/emoji_input.vue'
 import suggestor from 'src/components/emoji_input/suggestor.js'
 import Autosuggest from 'src/components/autosuggest/autosuggest.vue'
 import Checkbox from 'src/components/checkbox/checkbox.vue'
+import BooleanSetting from '../helpers/boolean_setting.vue'
+import SharedComputedObject from '../helpers/shared_computed_object.js'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faTimes,
@@ -27,18 +30,10 @@ const ProfileTab = {
       newName: this.$store.state.users.currentUser.name_unescaped,
       newBio: unescape(this.$store.state.users.currentUser.description),
       newLocked: this.$store.state.users.currentUser.locked,
-      newNoRichText: this.$store.state.users.currentUser.no_rich_text,
-      newDefaultScope: this.$store.state.users.currentUser.default_scope,
       newFields: this.$store.state.users.currentUser.fields.map(field => ({ name: field.name, value: field.value })),
-      hideFollows: this.$store.state.users.currentUser.hide_follows,
-      hideFollowers: this.$store.state.users.currentUser.hide_followers,
-      hideFollowsCount: this.$store.state.users.currentUser.hide_follows_count,
-      hideFollowersCount: this.$store.state.users.currentUser.hide_followers_count,
       showRole: this.$store.state.users.currentUser.show_role,
       role: this.$store.state.users.currentUser.role,
-      discoverable: this.$store.state.users.currentUser.discoverable,
       bot: this.$store.state.users.currentUser.bot,
-      allowFollowingMove: this.$store.state.users.currentUser.allow_following_move,
       pickAvatarBtnVisible: true,
       bannerUploading: false,
       backgroundUploading: false,
@@ -54,12 +49,14 @@ const ProfileTab = {
     EmojiInput,
     Autosuggest,
     ProgressButton,
-    Checkbox
+    Checkbox,
+    BooleanSetting
   },
   computed: {
     user () {
       return this.$store.state.users.currentUser
     },
+    ...SharedComputedObject(),
     emojiUserSuggestor () {
       return suggestor({
         emoji: [
@@ -123,15 +120,7 @@ const ProfileTab = {
             /* eslint-disable camelcase */
             display_name: this.newName,
             fields_attributes: this.newFields.filter(el => el != null),
-            default_scope: this.newDefaultScope,
-            no_rich_text: this.newNoRichText,
-            hide_follows: this.hideFollows,
-            hide_followers: this.hideFollowers,
-            discoverable: this.discoverable,
             bot: this.bot,
-            allow_following_move: this.allowFollowingMove,
-            hide_follows_count: this.hideFollowsCount,
-            hide_followers_count: this.hideFollowersCount,
             show_role: this.showRole
             /* eslint-enable camelcase */
           } }).then((user) => {

@@ -1,5 +1,8 @@
 <template>
-  <span class="IntegerSetting">
+  <span
+    v-if="matchesExpertLevel"
+    class="IntegerSetting"
+  >
     <label :for="path">
       <slot />
     </label>
