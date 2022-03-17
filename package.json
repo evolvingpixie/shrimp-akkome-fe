@@ -25,7 +25,7 @@
     "@kazvmoe-infra/pinch-zoom-element": "1.2.0",
     "body-scroll-lock": "2.6.4",
     "chromatism": "3.0.0",
-    "cropperjs": "1.4.3",
+    "cropperjs": "1.5.12",
     "diff": "3.5.0",
     "escape-html": "1.0.3",
     "localforage": "1.7.3",
