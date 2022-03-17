@@ -23,7 +23,8 @@
 <style lang="scss">
 @import '../../_variables.scss';
 
-.Select {
+/* TODO fix order of styles */
+label.Select {
   padding: 0;
 
   select {
