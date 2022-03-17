@@ -76,7 +76,7 @@ export default {
 
     const renderImage = (tag) => {
       return <StillImage
-        {...{ attrs: getAttrs(tag) }}
+        {...getAttrs(tag)}
         class="img"
       />
     }
@@ -222,7 +222,7 @@ export default {
               attrs.target = '_blank'
               const newChildren = [...children].reverse().map(processItemReverse).reverse()
 
-              return <a {...{ attrs }}>
+              return <a {...attrs}>
                 { newChildren }
               </a>
             }
