@@ -31,6 +31,7 @@ library.add(
  */
 
 const EmojiInput = {
+  emits: ['update:modelValue'],
   props: {
     suggest: {
       /**

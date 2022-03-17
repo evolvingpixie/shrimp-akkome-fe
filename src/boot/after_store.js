@@ -1,6 +1,6 @@
-import { createApp } from 'vue'
+import { createApp, configureCompat } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import VueClickOutside from 'v-click-outside'
+import vClickOutside from 'click-outside-vue3'
 
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 
@@ -14,6 +14,11 @@ import backendInteractorService from '../services/backend_interactor_service/bac
 import { CURRENT_VERSION } from '../services/theme_data/theme_data.service.js'
 import { applyTheme } from '../services/style_setter/style_setter.js'
 import FaviconService from '../services/favicon_service/favicon_service.js'
+
+// disable compat for certain features
+configureCompat({
+  COMPONENT_V_MODEL: false
+})
 
 let staticInitialResults = null
 
@@ -390,7 +395,7 @@ const afterStoreSetup = async ({ store, i18n }) => {
   app.use(store)
   app.use(i18n)
 
-  app.use(VueClickOutside)
+  app.use(vClickOutside)
   app.use(VBodyScrollLock)
 
   app.component('FAIcon', FontAwesomeIcon)
