@@ -7,7 +7,7 @@
       type="checkbox"
       :disabled="disabled"
       :checked="checked"
-      :indeterminate.prop="indeterminate"
+      :indeterminate="indeterminate"
       @change="$emit('change', $event.target.checked)"
     >
     <i class="checkbox-indicator" />

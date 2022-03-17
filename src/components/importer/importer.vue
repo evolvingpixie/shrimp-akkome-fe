@@ -25,14 +25,14 @@
         icon="times"
         @click="dismiss"
       />
-      <p>{{ successMessage || $t('importer.success')}}</p>
+      <p>{{ successMessage || $t('importer.success') }}</p>
     </div>
     <div v-else-if="error">
       <FAIcon
         icon="times"
         @click="dismiss"
       />
-      <p>{{ errorMessage || $t('importer.error')}}</p>
+      <p>{{ errorMessage || $t('importer.error') }}</p>
     </div>
   </div>
 </template>

@@ -1,4 +1,4 @@
-import { set } from 'vue'
+import { set } from 'lodash'
 import Select from '../select/select.vue'
 
 export default {

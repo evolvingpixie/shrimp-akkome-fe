@@ -123,7 +123,7 @@
         >
           <router-link
             :to="userProfileLink"
-            @click.stop.prevent.capture.native="toggleUserExpanded"
+            @click.stop.prevent.capture="toggleUserExpanded"
           >
             <UserAvatar
               :bot="botIndicator"
