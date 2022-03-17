@@ -43,14 +43,14 @@ export default {
   },
   data () {
     return {
-      active: findFirstUsable(this.$slots.default())
+      active: findFirstUsable(this.$slots.default)
     }
   },
   computed: {
     activeIndex () {
       // In case of controlled component
       if (this.activeTab) {
-        return this.$slots.default().findIndex(slot => this.activeTab === slot.key)
+        return this.$slots.default.findIndex(slot => this.activeTab === slot.key)
       } else {
         return this.active
       }
@@ -74,7 +74,7 @@ export default {
     },
     // DO NOT put it to computed, it doesn't work (caching?)
     slots () {
-      return this.$slots.default()
+      return this.$slots.default
     },
     setTab (index) {
       if (typeof this.onSwitch === 'function') {

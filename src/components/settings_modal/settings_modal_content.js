@@ -63,7 +63,7 @@ const SettingsModalContent = {
       const targetTab = this.$store.state.interface.settingsModalTargetTab
       // We're being told to open in specific tab
       if (targetTab) {
-        const tabIndex = this.$refs.tabSwitcher.$slots.default().findIndex(elm => {
+        const tabIndex = this.$refs.tabSwitcher.$slots.default.findIndex(elm => {
           return elm.data && elm.data.attrs['data-tab-name'] === targetTab
         })
         if (tabIndex >= 0) {
