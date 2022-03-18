@@ -63,14 +63,11 @@ const withSubscription = ({
     render () {
       if (!this.error && !this.loading) {
         const props = {
-          props: {
-            ...this.$props,
-            [childPropName]: this.fetchedData
-          },
-          on: this.$listeners,
-          scopedSlots: this.$scopedSlots
+          ...this.$props,
+          [childPropName]: this.fetchedData
+          // on: this.$listeners // TODO
         }
-        const children = Object.entries(this.$slots).map(([key, value]) => h('template', { slot: key }, value))
+        const children = this.$slots
         return (
           <div class="with-subscription">
             <WrappedComponent {...props}>
