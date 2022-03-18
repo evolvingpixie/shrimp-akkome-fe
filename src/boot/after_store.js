@@ -17,7 +17,9 @@ import FaviconService from '../services/favicon_service/favicon_service.js'
 
 // disable compat for certain features
 configureCompat({
-  COMPONENT_V_MODEL: false
+  COMPONENT_V_MODEL: false,
+  INSTANCE_SET: false,
+  RENDER_FUNCTION: false
 })
 
 let staticInitialResults = null
