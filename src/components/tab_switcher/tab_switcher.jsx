@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused
-import { h } from 'vue'
+import { h, Fragment } from 'vue'
 import { mapState } from 'vuex'
 import { FontAwesomeIcon as FAIcon } from '@fortawesome/vue-fontawesome'
 
@@ -43,14 +43,14 @@ export default {
   },
   data () {
     return {
-      active: findFirstUsable(this.$slots.default())
+      active: findFirstUsable(this.slots())
     }
   },
   computed: {
     activeIndex () {
       // In case of controlled component
       if (this.activeTab) {
-        return this.$slots.default().findIndex(slot => this.activeTab === slot.key)
+        return this.slots().findIndex(slot => this.activeTab === slot.key)
       } else {
         return this.active
       }
@@ -74,6 +74,9 @@ export default {
     },
     // DO NOT put it to computed, it doesn't work (caching?)
     slots () {
+      if (this.$slots.default()[0].type === Fragment) {
+        return this.$slots.default()[0].children
+      }
       return this.$slots.default()
     },
     setTab (index) {
