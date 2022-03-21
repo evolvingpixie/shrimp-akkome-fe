@@ -28,7 +28,7 @@
     "cropperjs": "1.5.12",
     "diff": "3.5.0",
     "escape-html": "1.0.3",
-    "localforage": "1.7.3",
+    "localforage": "1.10.0",
     "parse-link-header": "1.0.1",
     "phoenix": "1.4.0",
     "portal-vue": "2.1.7",
