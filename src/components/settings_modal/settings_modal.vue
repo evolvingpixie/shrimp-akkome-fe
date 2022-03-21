@@ -111,7 +111,7 @@
           </template>
         </Popover>
 
-        <Checkbox v-model="expertLevel">
+        <Checkbox :checked="!!expertLevel" @change="expertLevel = Number($event)">
           {{ $t("settings.expert_mode") }}
         </Checkbox>
       </div>
