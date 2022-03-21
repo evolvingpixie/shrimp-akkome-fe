@@ -8,12 +8,9 @@ library.add(
 )
 
 export default {
-  model: {
-    prop: 'value',
-    event: 'change'
-  },
+  emits: ['update:modelValue'],
   props: [
-    'value',
+    'modelValue',
     'disabled',
     'unstyled',
     'kind'

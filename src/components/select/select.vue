@@ -1,4 +1,3 @@
-
 <template>
   <label
     class="Select input"
@@ -6,8 +5,8 @@
   >
     <select
       :disabled="disabled"
-      :value="value"
-      @change="$emit('change', $event.target.value)"
+      :value="modelValue"
+      @change="$emit('update:modelValue', $event.target.value)"
     >
       <slot />
     </select>
