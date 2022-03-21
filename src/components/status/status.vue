@@ -78,7 +78,7 @@
         <UserAvatar
           v-if="retweet"
           class="left-side repeater-avatar"
-          :bot="botIndicator"
+          :bot="rtBotIndicator"
           :better-shadow="betterShadow"
           :user="statusoid.user"
         />
