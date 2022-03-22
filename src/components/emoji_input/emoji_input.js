@@ -189,8 +189,11 @@ const EmojiInput = {
           img: imageUrl || ''
         }))
     },
-    suggestions (newValue) {
-      this.$nextTick(this.resize)
+    suggestions: {
+      handler (newValue) {
+        this.$nextTick(this.resize)
+      },
+      deep: true
     }
   },
   methods: {
