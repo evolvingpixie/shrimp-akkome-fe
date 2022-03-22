@@ -389,6 +389,9 @@ const Status = {
     },
     threadShowing () {
       return this.controlledThreadDisplayStatus === 'showing'
+    },
+    visibilityLocalized () {
+      return this.$i18n.t('general.scope_in_timeline.' + this.status.visibility)
     }
   },
   methods: {
@@ -477,11 +480,6 @@ const Status = {
     },
     'isSuspendable': function (val) {
       this.suspendable = val
-    }
-  },
-  filters: {
-    capitalize: function (str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
     }
   }
 }

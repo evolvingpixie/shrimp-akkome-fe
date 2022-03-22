@@ -192,7 +192,7 @@
                 <span
                   v-if="status.visibility"
                   class="visibility-icon"
-                  :title="status.visibility"
+                  :title="visibilityLocalized"
                 >
                   <FAIcon
                     fixed-width

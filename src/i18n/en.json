@@ -85,7 +85,13 @@
     },
     "flash_content": "Click to show Flash content using Ruffle (Experimental, may not work).",
     "flash_security": "Note that this can be potentially dangerous since Flash content is still arbitrary code.",
-    "flash_fail": "Failed to load flash content, see console for details."
+    "flash_fail": "Failed to load flash content, see console for details.",
+    "scope_in_timeline": {
+      "direct": "Direct",
+      "private": "Followers-only",
+      "public": "Public",
+      "unlisted": "Unlisted"
+    }
   },
   "image_cropper": {
     "crop_picture": "Crop picture",
