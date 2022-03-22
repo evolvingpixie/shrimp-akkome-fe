@@ -1,4 +1,3 @@
-import { h } from 'vue'
 import { unescape, flattenDeep } from 'lodash'
 import { getTagName, processTextForEmoji, getAttrs } from 'src/services/html_converter/utility.service.js'
 import { convertHtmlToTree } from 'src/services/html_converter/html_tree_converter.service.js'
@@ -82,12 +81,12 @@ export default {
     }
 
     const renderHashtag = (attrs, children, encounteredTextReverse) => {
-      const linkData = getLinkData(attrs, children, tagsIndex++)
+      const { index, ...linkData } = getLinkData(attrs, children, tagsIndex++)
       writtenTags.push(linkData)
       if (!encounteredTextReverse) {
         lastTags.push(linkData)
       }
-      return <HashtagLink {...{ props: linkData }}/>
+      return <HashtagLink { ...linkData }/>
     }
 
     const renderMention = (attrs, children) => {
@@ -235,7 +234,7 @@ export default {
           const newChildren = Array.isArray(children)
             ? [...children].reverse().map(processItemReverse).reverse()
             : children
-          return <Tag {...{ attrs: getAttrs(opener) }}>
+          return <Tag {...getAttrs(opener)}>
             { newChildren }
           </Tag>
         } else {
