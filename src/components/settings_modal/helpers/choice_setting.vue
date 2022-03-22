@@ -5,9 +5,9 @@
   >
     <slot />
     <Select
-      :value="state"
+      :modelValue="state"
       :disabled="disabled"
-      @change="update"
+      @update:modelValue="update"
     >
       <option
         v-for="option in options"
