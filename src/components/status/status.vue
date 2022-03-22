@@ -126,6 +126,7 @@
             @click.stop.prevent.capture="toggleUserExpanded"
           >
             <UserAvatar
+              class="post-avatar"
               :bot="botIndicator"
               :compact="compact"
               :better-shadow="betterShadow"
@@ -455,6 +456,7 @@
       >
         <div class="left-side">
           <UserAvatar
+            class="post-avatar"
             :compact="compact"
             :bot="botIndicator"
           />
