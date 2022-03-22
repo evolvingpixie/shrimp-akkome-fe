@@ -81,10 +81,10 @@ const withLoadMore = ({
       }
     },
     render () {
+      console.log(this.$listeners)
       const props = {
         ...this.$props,
         [childPropName]: this.entries
-        // on: this.$listeners // TODO fix listeners
       }
       const children = this.$slots
       return (

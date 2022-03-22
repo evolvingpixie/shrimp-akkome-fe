@@ -61,11 +61,11 @@ const withSubscription = ({
       }
     },
     render () {
+      console.log(this.$listeners)
       if (!this.error && !this.loading) {
         const props = {
           ...this.$props,
           [childPropName]: this.fetchedData
-          // on: this.$listeners // TODO
         }
         const children = this.$slots
         return (
