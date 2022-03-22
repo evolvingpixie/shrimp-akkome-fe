@@ -402,17 +402,17 @@
   }
 
   @media all and (max-width: 800px) {
-    .repeater-avatar {
+    > .repeater-avatar {
       margin-left: 20px;
     }
 
-    .avatar:not(.repeater-avatar) {
+    > .avatar:not(.repeater-avatar) {
       width: 40px;
       height: 40px;
 
       // TODO define those other way somehow?
       // stylelint-disable rscss/class-format
-      &.avatar-compact {
+      &.-compact {
         width: 32px;
         height: 32px;
       }
