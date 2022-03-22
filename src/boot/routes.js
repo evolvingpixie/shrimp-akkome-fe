@@ -46,7 +46,7 @@ export default (store) => {
     { name: 'bookmarks', path: '/bookmarks', component: BookmarkTimeline },
     { name: 'conversation', path: '/notice/:id', component: ConversationPage, meta: { dontScroll: true } },
     { name: 'remote-user-profile-acct',
-      path: '/remote-users/(@?):username([^/@]+)@:hostname([^/@]+)',
+      path: '/remote-users/:_(@)?:username([^/@]+)@:hostname([^/@]+)',
       component: RemoteUserResolver,
       beforeEnter: validateAuthenticatedRoute
     },
