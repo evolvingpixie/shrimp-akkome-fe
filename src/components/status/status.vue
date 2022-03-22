@@ -121,8 +121,8 @@
           v-if="!noHeading"
           class="left-side"
         >
-          <router-link
-            :to="userProfileLink"
+          <a
+            :href="$router.resolve(userProfileLink).href"
             @click.stop.prevent.capture="toggleUserExpanded"
           >
             <UserAvatar
@@ -132,7 +132,7 @@
               :better-shadow="betterShadow"
               :user="status.user"
             />
-          </router-link>
+          </a>
         </div>
         <div class="right-side">
           <UserCard

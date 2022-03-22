@@ -33,7 +33,7 @@
     >
       <a
         class="avatar-container"
-        :href="notification.from_profile.statusnet_profile_url"
+        :href="$router.resolve(userProfileLink).href"
         @click.stop.prevent.capture="toggleUserExpanded"
       >
         <UserAvatar
