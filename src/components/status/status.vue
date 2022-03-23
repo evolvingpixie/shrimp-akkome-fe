@@ -275,6 +275,7 @@
                       icon="reply"
                       flip="horizontal"
                     />
+                    {{ ' ' }}
                     <span
                       class="reply-to-text"
                     >

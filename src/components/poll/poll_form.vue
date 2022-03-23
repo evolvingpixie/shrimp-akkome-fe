@@ -72,6 +72,7 @@
           :max="maxExpirationInCurrentUnit"
           @change="expiryAmountChange"
         >
+        {{ ' ' }}
         <Select
           v-model="expiryUnit"
           unstyled="true"

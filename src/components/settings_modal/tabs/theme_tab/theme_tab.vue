@@ -903,6 +903,7 @@
           <div class="tab-header shadow-selector">
             <div class="select-container">
               {{ $t('settings.style.shadows.component') }}
+              {{ ' ' }}
               <Select
                 id="shadow-switcher"
                 v-model="shadowSelected"

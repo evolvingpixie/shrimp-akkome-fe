@@ -68,6 +68,7 @@
               :title="$t('general.close')"
             >
               <span>{{ $t("settings.file_export_import.backup_restore") }}</span>
+              {{ ' ' }}
               <FAIcon
                 icon="chevron-down"
               />

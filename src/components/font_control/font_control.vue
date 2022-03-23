@@ -22,6 +22,7 @@
       class="opt-l"
       :for="name + '-o'"
     />
+    {{ ' ' }}
     <Select
       :id="name + '-font-switcher'"
       v-model="preset"

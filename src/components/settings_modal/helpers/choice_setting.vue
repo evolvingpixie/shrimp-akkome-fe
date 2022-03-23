@@ -4,6 +4,7 @@
     class="ChoiceSetting"
   >
     <slot />
+    {{ ' ' }}
     <Select
       :modelValue="state"
       :disabled="disabled"

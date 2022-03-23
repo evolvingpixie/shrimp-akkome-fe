@@ -10,6 +10,7 @@
     >
       <slot />
     </select>
+    {{ ' ' }}
     <FAIcon
       class="select-down-icon"
       icon="chevron-down"
