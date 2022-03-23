@@ -61,7 +61,6 @@ const withSubscription = ({
       }
     },
     render () {
-      console.log(this.$listeners)
       if (!this.error && !this.loading) {
         const props = {
           ...this.$props,
