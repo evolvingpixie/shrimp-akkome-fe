@@ -925,6 +925,7 @@
               >
                 {{ $t('settings.style.shadows.override') }}
               </label>
+              {{ ' ' }}
               <input
                 id="override"
                 v-model="currentShadowOverriden"
@@ -950,27 +951,27 @@
             :fallback="currentShadowFallback"
           />
           <div v-if="shadowSelected === 'avatar' || shadowSelected === 'avatarStatus'">
-            <i18n
-              path="settings.style.shadows.filter_hint.always_drop_shadow"
+            <i18n-t
+              keypath="settings.style.shadows.filter_hint.always_drop_shadow"
               tag="p"
             >
               <code>filter: drop-shadow()</code>
-            </i18n>
+            </i18n-t>
             <p>{{ $t('settings.style.shadows.filter_hint.avatar_inset') }}</p>
-            <i18n
-              path="settings.style.shadows.filter_hint.drop_shadow_syntax"
+            <i18n-t
+              keypath="settings.style.shadows.filter_hint.drop_shadow_syntax"
               tag="p"
             >
               <code>drop-shadow</code>
               <code>spread-radius</code>
               <code>inset</code>
-            </i18n>
-            <i18n
-              path="settings.style.shadows.filter_hint.inset_classic"
+            </i18n-t>
+            <i18n-t
+              keypath="settings.style.shadows.filter_hint.inset_classic"
               tag="p"
             >
               <code>box-shadow</code>
-            </i18n>
+            </i18n-t>
             <p>{{ $t('settings.style.shadows.filter_hint.spread_zero') }}</p>
           </div>
         </div>
