@@ -1,11 +1,11 @@
 <template>
   <div
-    id="app"
-    :style="bgStyle"
+    id="app-loaded"
   >
     <div
       id="app_bg_wrapper"
       class="app-bg-wrapper"
+      :style="bgStyle"
     />
     <MobileNav v-if="isMobileLayout" />
     <DesktopNav v-else />
