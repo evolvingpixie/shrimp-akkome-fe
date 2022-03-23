@@ -572,7 +572,7 @@ nav {
 .fade-enter-active, .fade-leave-active {
   transition: opacity .2s
 }
-.fade-enter, .fade-leave-active {
+.fade-enter-from, .fade-leave-active {
   opacity: 0
 }
 
