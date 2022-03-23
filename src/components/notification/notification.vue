@@ -65,12 +65,16 @@
               v-else
               class="username"
               :title="'@'+notification.from_profile.screen_name_ui"
-            >{{ notification.from_profile.name }}</span>
+            >
+              {{ notification.from_profile.name }}
+            </span>
+            {{ ' ' }}
             <span v-if="notification.type === 'like'">
               <FAIcon
                 class="type-icon"
                 icon="star"
               />
+              {{ ' ' }}
               <small>{{ $t('notifications.favorited_you') }}</small>
             </span>
             <span v-if="notification.type === 'repeat'">
@@ -79,6 +83,7 @@
                 icon="retweet"
                 :title="$t('tool_tip.repeat')"
               />
+              {{ ' ' }}
               <small>{{ $t('notifications.repeated_you') }}</small>
             </span>
             <span v-if="notification.type === 'follow'">
@@ -86,6 +91,7 @@
                 class="type-icon"
                 icon="user-plus"
               />
+              {{ ' ' }}
               <small>{{ $t('notifications.followed_you') }}</small>
             </span>
             <span v-if="notification.type === 'follow_request'">
@@ -93,6 +99,7 @@
                 class="type-icon"
                 icon="user"
               />
+              {{ ' ' }}
               <small>{{ $t('notifications.follow_request') }}</small>
             </span>
             <span v-if="notification.type === 'move'">
@@ -100,6 +107,7 @@
                 class="type-icon"
                 icon="suitcase-rolling"
               />
+              {{ ' ' }}
               <small>{{ $t('notifications.migrated_to') }}</small>
             </span>
             <span v-if="notification.type === 'pleroma:emoji_reaction'">
