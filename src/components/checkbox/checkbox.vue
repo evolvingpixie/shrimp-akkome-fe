@@ -6,7 +6,7 @@
     <input
       type="checkbox"
       :disabled="disabled"
-      :modelValue="modelValue"
+      :checked="modelValue"
       :indeterminate="indeterminate"
       @change="$emit('update:modelValue', $event.target.checked)"
     >
