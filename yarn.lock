@@ -8523,10 +8523,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-ruffle-mirror@2021.4.11:
-  version "2021.4.11"
-  resolved "https://registry.yarnpkg.com/ruffle-mirror/-/ruffle-mirror-2021.4.11.tgz#039940e0a68e6849259dbef6b54fb877ac4373e7"
-  integrity sha512-a3N2OkPCJauiHBloHoZgCn/mSUlybyb9Ps4ikPGgHUy8iXPy6qMqh62imvNDU07tBJc5Y0c5mRHBFJRgpMgEpA==
+ruffle-mirror@2021.12.31:
+  version "2021.12.31"
+  resolved "https://registry.yarnpkg.com/ruffle-mirror/-/ruffle-mirror-2021.12.31.tgz#d5ece0ff164d98468d84eb7cba3e69abff4c0687"
+  integrity sha512-kilyYstBQ+ZQY44IvUHhMt8Uh1yQJ8B+6GdzA1FzErgJy+5mnaLUBtU8JEG7cSrW3QLdFQLhRSeh8lLDINXgSA==
 
 run-async@^2.2.0:
   version "2.3.0"
