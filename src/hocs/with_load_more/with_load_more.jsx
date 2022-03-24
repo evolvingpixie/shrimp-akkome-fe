@@ -17,7 +17,7 @@ library.add(
 const withLoadMore = ({
   fetch, // function to fetch entries and return a promise
   select, // function to select data from store
-  destroy, // function called at "destroyed" lifecycle
+  unmounted, // function called at "destroyed" lifecycle
   childPropName = 'entries', // name of the prop to be passed into the wrapped component
   additionalPropNames = [] // additional prop name list of the wrapper component
 }) => (WrappedComponent) => {
@@ -42,7 +42,7 @@ const withLoadMore = ({
     },
     unmounted () {
       window.removeEventListener('scroll', this.scrollLoad)
-      destroy && destroy(this.$props, this.$store)
+      unmounted && unmounted(this.$props, this.$store)
     },
     methods: {
       // Entries is not a computed because computed can't track the dynamic
