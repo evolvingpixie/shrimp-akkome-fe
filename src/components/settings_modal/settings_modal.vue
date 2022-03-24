@@ -110,7 +110,7 @@
           </template>
         </Popover>
 
-        <Checkbox :checked="!!expertLevel" @change="expertLevel = Number($event)">
+        <Checkbox :modelValue="!!expertLevel" @update:modelValue="expertLevel = Number($event)">
           {{ $t("settings.expert_mode") }}
         </Checkbox>
       </div>

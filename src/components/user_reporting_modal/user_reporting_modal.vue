@@ -53,7 +53,7 @@
                   :statusoid="item"
                 />
                 <Checkbox
-                  :checked="isChecked(item.id)"
+                  :modelValue="isChecked(item.id)"
                   @change="checked => toggleStatus(checked, item.id)"
                 />
               </div>

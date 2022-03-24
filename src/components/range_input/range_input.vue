@@ -14,7 +14,7 @@
       :id="name + '-o'"
       class="opt"
       type="checkbox"
-      :checked="present"
+      :modelValue="present"
       @input="$emit('update:modelValue', !present ? fallback : undefined)"
     >
     <label

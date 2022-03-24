@@ -4,9 +4,9 @@
     class="BooleanSetting"
   >
     <Checkbox
-      :checked="state"
+      :modelValue="state"
       :disabled="disabled"
-      @change="update"
+      @update:modelValue="update"
     >
       <span
         v-if="!!$slots.default"
