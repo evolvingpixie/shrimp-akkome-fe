@@ -112,6 +112,10 @@
         <Checkbox v-model="expertLevel">
           {{ $t("settings.expert_mode") }}
         </Checkbox>
+        <portal-target
+          class="extra-content"
+          name="unscrolled-content"
+        />
       </div>
     </div>
   </Modal>
