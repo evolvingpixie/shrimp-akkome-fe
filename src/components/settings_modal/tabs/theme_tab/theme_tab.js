@@ -381,7 +381,6 @@ export default {
     },
     isActive () {
       const tabSwitcher = this.$parent
-      console.log(this.$parent)
       return tabSwitcher ? tabSwitcher.isActive('theme') : false
     }
   },
