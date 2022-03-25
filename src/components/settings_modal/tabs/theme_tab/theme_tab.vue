@@ -1016,21 +1016,26 @@
       </tab-switcher>
     </keep-alive>
 
-    <div class="apply-container">
-      <button
-        class="btn button-default submit"
-        :disabled="!themeValid"
-        @click="setCustomTheme"
-      >
-        {{ $t('general.apply') }}
-      </button>
-      <button
-        class="btn button-default"
-        @click="clearAll"
-      >
-        {{ $t('settings.style.switcher.reset') }}
-      </button>
-    </div>
+    <portal
+      v-if="isActive"
+      to="unscrolled-content"
+    >
+      <div class="apply-container">
+        <button
+          class="btn button-default submit"
+          :disabled="!themeValid"
+          @click="setCustomTheme"
+        >
+          {{ $t('general.apply') }}
+        </button>
+        <button
+          class="btn button-default"
+          @click="clearAll"
+        >
+          {{ $t('settings.style.switcher.reset') }}
+        </button>
+      </div>
+    </portal>
   </div>
 </template>
 

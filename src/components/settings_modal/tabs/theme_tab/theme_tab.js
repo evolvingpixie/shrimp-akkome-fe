@@ -378,6 +378,10 @@ export default {
         // To separate from other random JSON files and possible future source formats
         _pleroma_theme_version: 2, theme, source
       }
+    },
+    isActive () {
+      const tabSwitcher = this.$parent
+      return tabSwitcher ? tabSwitcher.isActive('theme') : false
     }
   },
   components: {

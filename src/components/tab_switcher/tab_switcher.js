@@ -47,6 +47,12 @@ export default Vue.component('tab-switcher', {
         return this.active
       }
     },
+    isActive () {
+      return tabName => {
+        const isWanted = slot => slot.data && slot.data.attrs['data-tab-name'] === tabName
+        return this.$slots.default.findIndex(isWanted) === this.activeIndex
+      }
+    },
     settingsModalVisible () {
       return this.settingsModalState === 'visible'
     },
