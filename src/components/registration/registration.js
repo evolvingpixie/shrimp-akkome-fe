@@ -14,7 +14,7 @@ const registration = {
       password: '',
       confirm: '',
       reason: '',
-      language: '',
+      language: ''
     },
     captcha: {}
   }),

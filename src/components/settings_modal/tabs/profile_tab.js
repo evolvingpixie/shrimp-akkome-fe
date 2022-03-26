@@ -43,7 +43,7 @@ const ProfileTab = {
       bannerPreview: null,
       background: null,
       backgroundPreview: null,
-      emailLanguage: this.$store.state.users.currentUser.language
+      emailLanguage: this.$store.state.users.currentUser.language || ''
     }
   },
   components: {
@@ -123,7 +123,7 @@ const ProfileTab = {
         display_name: this.newName,
         fields_attributes: this.newFields.filter(el => el != null),
         bot: this.bot,
-        show_role: this.showRole,
+        show_role: this.showRole
         /* eslint-enable camelcase */
       }
 
