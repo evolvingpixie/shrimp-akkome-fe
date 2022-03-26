@@ -191,6 +191,7 @@ const updateProfile = ({ credentials, params }) => {
 // homepage
 // location
 // token
+// language
 const register = ({ params, credentials }) => {
   const { nickname, ...rest } = params
   return fetch(MASTODON_REGISTRATION_URL, {

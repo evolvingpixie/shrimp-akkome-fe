@@ -5,6 +5,7 @@
       <ul class="setting-list">
         <li>
           <interface-language-switcher
+            :prompt-text="$t('settings.interfaceLanguage')"
             :language="language"
             :set-language="val => language = val"
           />

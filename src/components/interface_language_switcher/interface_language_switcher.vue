@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="interface-language-switcher">
-      {{ $t('settings.interfaceLanguage') }}
+      {{ promptText }}
     </label>
     {{ ' ' }}
     <Select
@@ -28,8 +28,18 @@ export default {
     Select
   },
   props: {
-    language: String,
-    setLanguage: Function
+    promptText: {
+      type: String,
+      required: true
+    },
+    language: {
+      type: String,
+      required: true
+    },
+    setLanguage: {
+      type: String,
+      required: true
+    }
   },
   computed: {
     languages () {
