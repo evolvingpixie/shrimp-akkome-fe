@@ -37,7 +37,7 @@ export default {
       required: true
     },
     setLanguage: {
-      type: String,
+      type: Function,
       required: true
     }
   },
