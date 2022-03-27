@@ -113,6 +113,10 @@
         <Checkbox :modelValue="!!expertLevel" @update:modelValue="expertLevel = Number($event)">
           {{ $t("settings.expert_mode") }}
         </Checkbox>
+        <portal-target
+          class="extra-content"
+          name="unscrolled-content"
+        />
       </div>
     </div>
   </Modal>

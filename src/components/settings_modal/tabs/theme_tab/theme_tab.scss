@@ -268,13 +268,6 @@
     }
   }
 
-  .apply-container {
-    justify-content: center;
-    position: absolute;
-    bottom: 8px;
-    right: 5px;
-  }
-
   .radius-item,
   .color-item {
     min-width: 20em;
@@ -334,16 +327,25 @@
     padding: 20px;
   }
 
-  .apply-container {
-    .btn {
-      min-height: 28px;
-      min-width: 10em;
-      padding: 0 2em;
-    }
-  }
-
   .btn {
     margin-left: .25em;
     margin-right: .25em;
+  }
+}
+
+.extra-content {
+  .apply-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-grow: 1;
+
+    .btn {
+      flex-grow: 1;
+      min-height: 28px;
+      min-width: 0;
+      max-width: 10em;
+      padding: 0;
+    }
   }
 }

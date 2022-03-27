@@ -55,6 +55,15 @@ export default {
         return this.active
       }
     },
+    isActive () {
+      return tabName => {
+        const isWanted = slot => slot.props && slot.props['data-tab-name'] === tabName
+        return this.$slots.default.findIndex(isWanted) === this.activeIndex
+      }
+    },
+    settingsModalVisible () {
+      return this.settingsModalState === 'visible'
+    },
     ...mapState({
       settingsModalState: state => state.interface.settingsModalState
     })
