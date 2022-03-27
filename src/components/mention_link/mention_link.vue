@@ -41,10 +41,12 @@
           class="serverName"
           :class="{ '-faded': shouldFadeDomain }"
           v-html="'@' + serverName"
-        /></span><span
+        />
+        </span>
+        <span
           v-if="isYou && shouldShowYous"
           :class="{ '-you': shouldBoldenYou }"
-        > {{ $t('status.you') }}</span>
+        > {{ ' ' + $t('status.you') }}</span>
         <!-- eslint-enable vue/no-v-html -->
       </a><span
         v-if="shouldShowTooltip"
