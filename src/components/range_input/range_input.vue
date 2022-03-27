@@ -14,8 +14,8 @@
       :id="name + '-o'"
       class="opt"
       type="checkbox"
-      :modelValue="present"
-      @input="$emit('update:modelValue', !present ? fallback : undefined)"
+      :checked="present"
+      @change="$emit('update:modelValue', !present ? fallback : undefined)"
     >
     <label
       v-if="typeof fallback !== 'undefined'"
@@ -26,7 +26,7 @@
       :id="name"
       class="input-number"
       type="range"
-      :value="value || fallback"
+      :value="modelValue || fallback"
       :disabled="!present || disabled"
       :max="max || hardMax || 100"
       :min="min || hardMin || 0"
@@ -37,7 +37,7 @@
       :id="name"
       class="input-number"
       type="number"
-      :value="value || fallback"
+      :value="modelValue || fallback"
       :disabled="!present || disabled"
       :max="hardMax"
       :min="hardMin"
@@ -50,11 +50,12 @@
 <script>
 export default {
   props: [
-    'name', 'value', 'fallback', 'disabled', 'label', 'max', 'min', 'step', 'hardMin', 'hardMax'
+    'name', 'modelValue', 'fallback', 'disabled', 'label', 'max', 'min', 'step', 'hardMin', 'hardMax'
   ],
+  emits: ['update:modelValue'],
   computed: {
     present () {
-      return typeof this.value !== 'undefined'
+      return typeof this.modelValue !== 'undefined'
     }
   }
 }
