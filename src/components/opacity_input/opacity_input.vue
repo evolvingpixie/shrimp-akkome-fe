@@ -14,7 +14,7 @@
       :modelValue="present"
       :disabled="disabled"
       class="opt"
-      @change="$emit('update:modelValue', !present ? fallback : undefined)"
+      @update:modelValue="$emit('update:modelValue', !present ? fallback : undefined)"
     />
     <input
       :id="name"
@@ -37,11 +37,12 @@ export default {
     Checkbox
   },
   props: [
-    'name', 'value', 'fallback', 'disabled'
+    'name', 'modelValue', 'fallback', 'disabled'
   ],
+  emits: ['update:modelValue'],
   computed: {
     present () {
-      return typeof this.value !== 'undefined'
+      return typeof this.modelValue !== 'undefined'
     }
   }
 }
