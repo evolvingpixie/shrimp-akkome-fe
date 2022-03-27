@@ -1,4 +1,5 @@
 import { defineAsyncComponent } from 'vue'
+import RichContent from 'src/components/rich_content/rich_content.jsx'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
@@ -13,6 +14,7 @@ const UserListPopover = {
     'users'
   ],
   components: {
+    RichContent,
     Popover: defineAsyncComponent(() => import('../popover/popover.vue')),
     UserAvatar: defineAsyncComponent(() => import('../user_avatar/user_avatar.vue'))
   },
