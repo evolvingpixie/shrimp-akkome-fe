@@ -1018,9 +1018,9 @@
       </tab-switcher>
     </keep-alive>
 
-    <portal
+    <teleport
       v-if="isActive"
-      to="unscrolled-content"
+      to="#unscrolled-content"
     >
       <div class="apply-container">
         <button
@@ -1037,7 +1037,7 @@
           {{ $t('settings.style.switcher.reset') }}
         </button>
       </div>
-    </portal>
+    </teleport>
   </div>
 </template>
 

@@ -50,7 +50,7 @@ export default {
     activeIndex () {
       // In case of controlled component
       if (this.activeTab) {
-        return this.slots().findIndex(slot => this.activeTab === slot.key)
+        return this.slots().findIndex(slot => this.activeTab === slot.props.key)
       } else {
         return this.active
       }
@@ -58,7 +58,7 @@ export default {
     isActive () {
       return tabName => {
         const isWanted = slot => slot.props && slot.props['data-tab-name'] === tabName
-        return this.$slots.default.findIndex(isWanted) === this.activeIndex
+        return this.$slots.default().findIndex(isWanted) === this.activeIndex
       }
     },
     settingsModalVisible () {
