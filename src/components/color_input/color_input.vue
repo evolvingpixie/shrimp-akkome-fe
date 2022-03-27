@@ -14,7 +14,7 @@
       :modelValue="present"
       :disabled="disabled"
       class="opt"
-      @change="$emit('update:modelValue', typeof value === 'undefined' ? fallback : undefined)"
+      @update:modelValue="$emit('update:modelValue', typeof modelValue === 'undefined' ? fallback : undefined)"
     />
     <div class="input color-input-field">
       <input
@@ -91,6 +91,7 @@ export default {
       default: true
     }
   },
+  emits: ['update:modelValue'],
   computed: {
     present () {
       return typeof this.modelValue !== 'undefined'
