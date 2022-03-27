@@ -106,7 +106,7 @@ const interfaceMod = {
       commit('openSettingsModal')
     },
     pushGlobalNotice (
-      { commit, dispatch },
+      { commit, dispatch, state },
       {
         messageKey,
         messageArgs = {},
@@ -118,11 +118,14 @@ const interfaceMod = {
         messageArgs,
         level
       }
-      if (timeout) {
-        setTimeout(() => dispatch('removeGlobalNotice', notice), timeout)
-      }
       commit('pushGlobalNotice', notice)
-      return notice
+      // Adding a new element to array wraps it in a Proxy, which breaks the comparison
+      // TODO: Generate UUID or something instead or relying on !== operator?
+      const newNotice = state.globalNotices[state.globalNotices.length - 1]
+      if (timeout) {
+        setTimeout(() => dispatch('removeGlobalNotice', newNotice), timeout)
+      }
+      return newNotice
     },
     removeGlobalNotice ({ commit }, notice) {
       commit('removeGlobalNotice', notice)
