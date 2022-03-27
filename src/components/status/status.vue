@@ -101,6 +101,7 @@
               :to="retweeterProfileLink"
             >{{ retweeter }}</router-link>
           </span>
+          {{ ' ' }}
           <FAIcon
             icon="retweet"
             class="repeat-icon"
