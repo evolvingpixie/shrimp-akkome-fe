@@ -14,8 +14,8 @@
       :id="name + '-o'"
       class="opt exlcude-disabled"
       type="checkbox"
-      :modelValue="present"
-      @input="$emit('update:modelValue', typeof value === 'undefined' ? fallback : undefined)"
+      :checked="present"
+      @change="$emit('update:modelValue', typeof modelValue === 'undefined' ? fallback : undefined)"
     >
     <label
       v-if="typeof fallback !== 'undefined'"
