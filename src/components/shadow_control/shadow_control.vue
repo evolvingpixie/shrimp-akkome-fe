@@ -204,7 +204,8 @@
         v-model="selected.alpha"
         :disabled="!present"
       />
-      <i18n-t scope="global"
+      <i18n-t
+        scope="global"
         keypath="settings.style.shadows.hintV3"
         tag="p"
       >

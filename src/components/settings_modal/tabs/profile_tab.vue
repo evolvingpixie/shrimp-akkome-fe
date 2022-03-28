@@ -184,8 +184,8 @@
         <button
           v-if="!isDefaultBackground"
           class="button-unstyled"
-          @click="resetBackground"
           :title="$t('settings.reset_profile_background')"
+          @click="resetBackground"
         >
           <FAIcon
             class="reset-button"
