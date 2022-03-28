@@ -20,7 +20,7 @@
       :id="name"
       class="input-number"
       type="number"
-      :value="value || fallback"
+      :value="modelValue || fallback"
       :disabled="!present || disabled"
       max="1"
       min="0"
