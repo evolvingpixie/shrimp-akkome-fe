@@ -43,8 +43,8 @@ const Timeline = {
     filteredVisibleStatuses () {
       return this.timeline.visibleStatuses.filter(status => this.timelineName !== 'user' || (status.id >= this.timeline.minId && status.id <= this.timeline.maxId))
     },
-    filteredPinnedStatusesId () {
-      return this.pinnedStatusIds.filter(statusId => this.timeline.statusesObject[statusId])
+    filteredPinnedStatusIds () {
+      return (this.pinnedStatusIds || []).filter(statusId => this.timeline.statusesObject[statusId])
     },
     newStatusCount () {
       return this.timeline.newStatusCount
