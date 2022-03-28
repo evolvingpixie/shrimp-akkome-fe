@@ -1,4 +1,4 @@
-import { createApp, configureCompat } from 'vue'
+import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import vClickOutside from 'click-outside-vue3'
 
@@ -14,14 +14,6 @@ import backendInteractorService from '../services/backend_interactor_service/bac
 import { CURRENT_VERSION } from '../services/theme_data/theme_data.service.js'
 import { applyTheme } from '../services/style_setter/style_setter.js'
 import FaviconService from '../services/favicon_service/favicon_service.js'
-
-// disable compat for certain features
-configureCompat({
-  ATTR_FALSE_VALUE: false,
-  COMPONENT_V_MODEL: false,
-  INSTANCE_SET: false,
-  RENDER_FUNCTION: false
-})
 
 let staticInitialResults = null
 
