@@ -74,7 +74,7 @@
       v-if="currentReplies.length && !threadShowing"
       class="thread-tree-replies thread-tree-replies-hidden"
     >
-      <i18n-t
+      <i18n-t scope="global"
         v-if="simple"
         tag="button"
         keypath="status.thread_follow_with_icon"
@@ -92,7 +92,7 @@
           </span>
         </template>
       </i18n-t>
-      <i18n-t
+      <i18n-t scope="global"
         v-else
         tag="button"
         keypath="status.thread_show_full_with_icon"

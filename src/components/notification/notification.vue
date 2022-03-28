@@ -112,7 +112,7 @@
             </span>
             <span v-if="notification.type === 'pleroma:emoji_reaction'">
               <small>
-                <i18n-t keypath="notifications.reacted_with">
+                <i18n-t scope="global" keypath="notifications.reacted_with">
                   <span class="emoji-reaction-emoji">{{ notification.emoji }}</span>
                 </i18n-t>
               </small>
