@@ -69,7 +69,7 @@ const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
   const controlledName = `controlled${camelized}`
   const uncontrolledName = `uncontrolled${camelized}`
   res[name] = function () {
-    return this[toggle] ? this[controlledName] : this[uncontrolledName]
+    return (Object.getOwnPropertyDescriptor(this, toggle) && this[toggle]) ? this[controlledName] : this[uncontrolledName]
   }
   return res
 }, {})
@@ -311,7 +311,7 @@ const Status = {
       return this.mergedConfig.hideWordFilteredPosts
     },
     hideStatus () {
-      return (this.virtualHidden || !this.shouldNotMute) && (
+      return (!this.shouldNotMute) && (
         (this.muted && this.hideFilteredStatuses) ||
         (this.userIsMuted && this.hideMutedUsers) ||
         (this.status.thread_muted && this.hideMutedThreads) ||

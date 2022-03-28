@@ -31,7 +31,7 @@ const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
   const controlledName = `controlled${camelized}`
   const uncontrolledName = `uncontrolled${camelized}`
   res[name] = function () {
-    return this[toggle] ? this[controlledName] : this[uncontrolledName]
+    return (Object.getOwnPropertyDescriptor(this, toggle) && this[toggle]) ? this[controlledName] : this[uncontrolledName]
   }
   return res
 }, {})
