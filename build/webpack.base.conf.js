@@ -64,6 +64,12 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           compilerOptions: {
+            isCustomElement(tag) {
+              if (tag === 'pinch-zoom') {
+                return true
+              }
+              return false
+            },
             compatConfig: {
               MODE: 2
             }
