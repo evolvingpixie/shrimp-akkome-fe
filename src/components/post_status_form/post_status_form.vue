@@ -23,6 +23,7 @@
           keypath="post_status.account_not_locked_warning"
           tag="p"
           class="visibility-notice"
+          scope="global"
         >
           <button
             class="button-unstyled -link"

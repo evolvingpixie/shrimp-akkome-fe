@@ -29,7 +29,7 @@
               {{ $t('settings.style.preview.content') }}
             </h4>
 
-            <i18n-t keypath="settings.style.preview.text">
+            <i18n-t scope="global" keypath="settings.style.preview.text">
               <code style="font-family: var(--postCodeFont)">
                 {{ $t('settings.style.preview.mono') }}
               </code>
@@ -76,6 +76,7 @@
               keypath="settings.style.preview.fine_print"
               tag="span"
               class="faint"
+              scope="global"
             >
               <a style="color: var(--faintLink)">
                 {{ $t('settings.style.preview.faint_link') }}
