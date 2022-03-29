@@ -59,7 +59,9 @@ const StatusContent = {
     'controlledShowingTall',
     'controlledExpandingSubject',
     'controlledToggleShowingTall',
-    'controlledToggleExpandingSubject'
+    'controlledToggleExpandingSubject',
+    'controlledShowingLongSubject',
+    'controlledToggleShowingLongSubject'
   ],
   data () {
     return {
