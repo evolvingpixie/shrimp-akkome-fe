@@ -61,6 +61,16 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            isCustomElement(tag) {
+              if (tag === 'pinch-zoom') {
+                return true
+              }
+              return false
+            }
+          }
+        }
       },
       {
         test: /\.jsx?$/,

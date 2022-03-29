@@ -111,9 +111,9 @@
           v-if="!isDefaultAvatar && pickAvatarBtnVisible"
           :title="$t('settings.reset_avatar')"
           @click="resetAvatar"
+          class="button-unstyled reset-button"
         >
           <FAIcon
-            class="reset-button"
             icon="times"
             type="button"
           />
@@ -141,11 +141,11 @@
         <img :src="user.cover_photo">
         <button
           v-if="!isDefaultBanner"
+          class="button-unstyled reset-button"
           :title="$t('settings.reset_profile_banner')"
           @click="resetBanner"
         >
           <FAIcon
-            class="reset-button"
             icon="times"
             type="button"
           />
@@ -183,12 +183,11 @@
         <img :src="user.background_image">
         <button
           v-if="!isDefaultBackground"
-          class="button-unstyled"
+          class="button-unstyled reset-button"
           :title="$t('settings.reset_profile_background')"
           @click="resetBackground"
         >
           <FAIcon
-            class="reset-button"
             icon="times"
             type="button"
           />
