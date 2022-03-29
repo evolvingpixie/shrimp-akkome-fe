@@ -24,7 +24,7 @@ const registration = {
         password: { required },
         confirm: {
           required,
-          sameAs: sameAs(this.password)
+          sameAs: sameAs(this.user.password)
         },
         reason: { required: requiredIf(() => this.accountApprovalRequired) }
       }
@@ -65,9 +65,9 @@ const registration = {
       this.user.captcha_token = this.captcha.token
       this.user.captcha_answer_data = this.captcha.answer_data
 
-      this.$v.$touch()
+      this.v$.$touch()
 
-      if (!this.$v.$invalid) {
+      if (!this.v$.$invalid) {
         try {
           await this.signUp(this.user)
           this.$router.push({ name: 'friends' })
