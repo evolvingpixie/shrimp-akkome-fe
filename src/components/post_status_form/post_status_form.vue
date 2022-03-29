@@ -282,11 +282,15 @@
         class="alert error"
       >
         Error: {{ error }}
-        <FAIcon
-          class="fa-scale-110 fa-old-padding"
-          icon="times"
+        <button
+          class="button-unstyled"
           @click="clearError"
-        />
+        >
+          <FAIcon
+            class="fa-scale-110 fa-old-padding"
+            icon="times"
+          />
+        </button>
       </div>
       <gallery
         v-if="newStatus.files && newStatus.files.length > 0"
