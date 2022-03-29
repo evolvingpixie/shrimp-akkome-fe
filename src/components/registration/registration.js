@@ -24,7 +24,7 @@ const registration = {
         password: { required },
         confirm: {
           required,
-          sameAsPassword: sameAs('password')
+          sameAs: sameAs(this.password)
         },
         reason: { required: requiredIf(() => this.accountApprovalRequired) }
       }

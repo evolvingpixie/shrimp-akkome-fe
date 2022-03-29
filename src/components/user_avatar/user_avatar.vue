@@ -2,7 +2,7 @@
   <span
     class="Avatar"
     :class="{ '-compact': compact }"
-    >
+  >
     <StillImage
       v-if="user"
       class="avatar"
