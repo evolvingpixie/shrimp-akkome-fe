@@ -6,7 +6,7 @@
     >
       <div class="selectable-list-checkbox-wrapper">
         <Checkbox
-          :modelValue="allSelected"
+          :model-value="allSelected"
           :indeterminate="someSelected"
           @change="toggleAll"
         >
@@ -31,7 +31,7 @@
         >
           <div class="selectable-list-checkbox-wrapper">
             <Checkbox
-              :modelValue="isSelected(item)"
+              :model-value="isSelected(item)"
               @change="checked => toggle(checked, item)"
             />
           </div>

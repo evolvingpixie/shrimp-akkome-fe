@@ -4,7 +4,7 @@
     class="BooleanSetting"
   >
     <Checkbox
-      :modelValue="state"
+      :model-value="state"
       :disabled="disabled"
       @update:modelValue="update"
     >

@@ -75,8 +75,8 @@
       class="thread-tree-replies thread-tree-replies-hidden"
     >
       <i18n-t
-        scope="global"
         v-if="simple"
+        scope="global"
         tag="button"
         keypath="status.thread_follow_with_icon"
         class="button-unstyled -link thread-tree-show-replies-button"

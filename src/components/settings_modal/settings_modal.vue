@@ -110,12 +110,15 @@
           </template>
         </Popover>
 
-        <Checkbox :modelValue="!!expertLevel" @update:modelValue="expertLevel = Number($event)">
+        <Checkbox
+          :model-value="!!expertLevel"
+          @update:modelValue="expertLevel = Number($event)"
+        >
           {{ $t("settings.expert_mode") }}
         </Checkbox>
         <span
-          class="extra-content"
           id="unscrolled-content"
+          class="extra-content"
         />
       </div>
     </div>
