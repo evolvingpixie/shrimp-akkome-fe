@@ -296,7 +296,6 @@
                   :url="replyProfileLink"
                   :user-id="status.in_reply_to_user_id"
                   :user-screen-name="status.in_reply_to_screen_name"
-                  :first-mention="false"
                 />
               </span>
 
