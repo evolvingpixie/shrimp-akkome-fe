@@ -11,7 +11,7 @@
     </label>
     <Checkbox
       v-if="typeof fallback !== 'undefined' && showOptionalTickbox"
-      :model-value="present"
+      :modelValue="present"
       :disabled="disabled"
       class="opt"
       @update:modelValue="$emit('update:modelValue', typeof modelValue === 'undefined' ? fallback : undefined)"

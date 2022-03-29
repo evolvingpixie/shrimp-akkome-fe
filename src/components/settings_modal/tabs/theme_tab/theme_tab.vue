@@ -951,16 +951,14 @@
             :fallback="currentShadowFallback"
           />
           <div v-if="shadowSelected === 'avatar' || shadowSelected === 'avatarStatus'">
-            <i18n-t
-              scope="global"
+            <i18n-t scope="global"
               keypath="settings.style.shadows.filter_hint.always_drop_shadow"
               tag="p"
             >
               <code>filter: drop-shadow()</code>
             </i18n-t>
             <p>{{ $t('settings.style.shadows.filter_hint.avatar_inset') }}</p>
-            <i18n-t
-              scope="global"
+            <i18n-t scope="global"
               keypath="settings.style.shadows.filter_hint.drop_shadow_syntax"
               tag="p"
             >
@@ -968,8 +966,7 @@
               <code>spread-radius</code>
               <code>inset</code>
             </i18n-t>
-            <i18n-t
-              scope="global"
+            <i18n-t scope="global"
               keypath="settings.style.shadows.filter_hint.inset_classic"
               tag="p"
             >

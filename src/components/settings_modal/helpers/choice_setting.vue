@@ -6,7 +6,7 @@
     <slot />
     {{ ' ' }}
     <Select
-      :model-value="state"
+      :modelValue="state"
       :disabled="disabled"
       @update:modelValue="update"
     >
