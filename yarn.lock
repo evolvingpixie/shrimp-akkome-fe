@@ -1160,12 +1160,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@chenfengyuan/vue-qrcode@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@chenfengyuan/vue-qrcode/-/vue-qrcode-1.0.2.tgz#37d71902e166e1ae58176bd6cb9c40905c1b0949"
-  integrity sha512-hwy1d4YMJAyEh+V7dLPG8eAKACRvugzSB4ylwb6QNqo84KHTF50/5EJcBYdUhTRPfAqrxG0i6jDAXONWOGyQbQ==
-  dependencies:
-    qrcode "^1.4.4"
+"@chenfengyuan/vue-qrcode@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@chenfengyuan/vue-qrcode/-/vue-qrcode-2.0.0.tgz#8cd01f6fc528d471680ebe812ec47c830aea7e63"
+  integrity sha512-33Cfr0zjbc3Dd8d5b1IgzXRAgXH0c2Gv19VI4snS25V/x9Z41eg769tC+Us1x+vqgQQhgD5YUjLnkpkrQfeMSw==
 
 "@colors/colors@1.5.0":
   version "1.5.0"
@@ -3571,8 +3569,9 @@ diffie-hellman@^5.0.0:
     randombytes "^2.0.0"
 
 dijkstrajs@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/dijkstrajs/-/dijkstrajs-1.0.1.tgz#d3cd81221e3ea40742cfcde556d4e99e98ddc71b"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/dijkstrajs/-/dijkstrajs-1.0.2.tgz#2e48c0d3b825462afe75ab4ad5e829c8ece36257"
+  integrity sha512-QV6PMaHTCNmKSeP6QoXhVTw9snc9VD8MulTT0Bd99Pacp4SS1cjcrYPgBPmibqKVtMJJfqC6XvOXgPMEEPH/fg==
 
 dir-glob@^3.0.1:
   version "3.0.1"
@@ -8002,7 +8001,7 @@ qjobs@^1.2.0:
   resolved "https://registry.yarnpkg.com/qjobs/-/qjobs-1.2.0.tgz#c45e9c61800bd087ef88d7e256423bdd49e5d071"
   integrity sha512-8YOJEHtxpySA3fFDyCRxA+UUV+fA+rTWnuWvylOK/NCjhY+b4ocCtmu8TtsWb+mYeU+GCHf/S66KZF/AsteKHg==
 
-qrcode@^1.4.4:
+qrcode@1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/qrcode/-/qrcode-1.5.0.tgz#95abb8a91fdafd86f8190f2836abbfc500c72d1b"
   integrity sha512-9MgRpgVc+/+47dFvQeD6U2s0Z92EsKzcHogtum4QB+UNd025WOJSHvn/hjk9xmzj7Stj95CyUAs31mrjxliEsQ==
@@ -10098,6 +10097,7 @@ which-boxed-primitive@^1.0.2:
 which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
+  integrity sha1-2e8H3Od7mQK4o6j6SzHD4/fm6Ho=
 
 which@^1.0.9, which@^1.1.1, which@^1.2.9, which@^1.3.1:
   version "1.3.1"

@@ -32,6 +32,7 @@
             tag="button"
             class="button-unstyled -link"
             @click.prevent="diveToTopLevel"
+            scope="global"
           >
             <template #icon>
               <FAIcon
@@ -101,6 +102,7 @@
               >
                 <i18n-t
                   tag="button"
+                  scope="global"
                   keypath="status.ancestor_follow_with_icon"
                   class="button-unstyled -link thread-tree-show-replies-button"
                   @click.prevent="diveIntoStatus(status.id)"
