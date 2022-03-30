@@ -46,7 +46,7 @@
     "processing": "Processing, you'll soon be asked to download your file"
   },
   "features_panel": {
-    "chat": "Chat",
+    "shout": "Shoutbox",
     "pleroma_chat_messages": "Pleroma Chat",
     "gopher": "Gopher",
     "media_proxy": "Media proxy",
