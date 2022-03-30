@@ -64,8 +64,6 @@
   }
 
   .follow-request-accept {
-    cursor: pointer;
-
     &:hover {
       color: $fallback--text;
       color: var(--text, $fallback--text);
@@ -73,8 +71,6 @@
   }
 
   .follow-request-reject {
-    cursor: pointer;
-
     &:hover {
       color: $fallback--cRed;
       color: var(--cRed, $fallback--cRed);

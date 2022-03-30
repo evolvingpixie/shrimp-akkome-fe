@@ -58,12 +58,16 @@
     >
       <div class="alert error">
         {{ error }}
-        <FAIcon
-          size="lg"
-          class="fa-scale-110 fa-old-padding"
-          icon="times"
+        <button
+          class="button-unstyled"
           @click="clearError"
-        />
+        >
+          <FAIcon
+            size="lg"
+            class="fa-scale-110 fa-old-padding"
+            icon="times"
+          />
+        </button>
       </div>
     </div>
   </div>
