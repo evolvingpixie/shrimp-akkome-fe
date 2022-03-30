@@ -172,18 +172,26 @@
             v-if="notification.type === 'follow_request'"
             style="white-space: nowrap;"
           >
-            <FAIcon
-              icon="check"
-              class="fa-scale-110 fa-old-padding follow-request-accept"
+            <button
+              class="button-unstyled"
               :title="$t('tool_tip.accept_follow_request')"
               @click="approveUser()"
-            />
-            <FAIcon
-              icon="times"
-              class="fa-scale-110 fa-old-padding follow-request-reject"
+            >
+              <FAIcon
+                icon="check"
+                class="fa-scale-110 fa-old-padding follow-request-accept"
+              />
+            </button>
+            <button
+              class="button-unstyled"
               :title="$t('tool_tip.reject_follow_request')"
               @click="denyUser()"
-            />
+            >
+              <FAIcon
+                icon="times"
+                class="fa-scale-110 fa-old-padding follow-request-reject"
+              />
+            </button>
           </div>
         </div>
         <div
