@@ -20,26 +20,30 @@
     >
       {{ submitButtonLabel || $t('importer.submit') }}
     </button>
-    <button
-      v-if="success"
-      class="button-unstyled"
-      @click="dismiss"
-    >
-      <FAIcon
-        icon="times"
-      />
-      <p>{{ successMessage || $t('importer.success') }}</p>
-    </button>
-    <button
-      v-else-if="error"
-      class="button-unstyled"
-      @click="dismiss"
-    >
-      <FAIcon
-        icon="times"
-      />
-      <p>{{ errorMessage || $t('importer.error') }}</p>
-    </button>
+    <div v-if="success">
+      <button
+        class="button-unstyled"
+        @click="dismiss"
+      >
+        <FAIcon
+          icon="times"
+        />
+      </button>
+      {{ ' ' }}
+      <span>{{ successMessage || $t('importer.success') }}</span>
+    </div>
+    <div v-else-if="error">
+      <button
+        class="button-unstyled"
+        @click="dismiss"
+      >
+        <FAIcon
+          icon="times"
+        />
+      </button>
+      {{ ' ' }}
+      <span>{{ errorMessage || $t('importer.error') }}</span>
+    </div>
   </div>
 </template>
 
