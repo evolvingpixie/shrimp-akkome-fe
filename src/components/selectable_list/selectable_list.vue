@@ -8,7 +8,7 @@
         <Checkbox
           :model-value="allSelected"
           :indeterminate="someSelected"
-          @change="toggleAll"
+          @update:model-value="toggleAll"
         >
           {{ $t('selectable_list.select_all') }}
         </Checkbox>
@@ -32,7 +32,7 @@
           <div class="selectable-list-checkbox-wrapper">
             <Checkbox
               :model-value="isSelected(item)"
-              @change="checked => toggle(checked, item)"
+              @update:model-value="checked => toggle(checked, item)"
             />
           </div>
           <slot

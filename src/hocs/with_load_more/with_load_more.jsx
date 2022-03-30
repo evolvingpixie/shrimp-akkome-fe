@@ -81,7 +81,6 @@ const withLoadMore = ({
       }
     },
     render () {
-      console.log(this.$listeners)
       const props = {
         ...this.$props,
         [childPropName]: this.entries
