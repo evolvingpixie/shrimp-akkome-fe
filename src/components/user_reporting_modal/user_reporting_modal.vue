@@ -54,7 +54,7 @@
                 />
                 <Checkbox
                   :model-value="isChecked(item.id)"
-                  @change="checked => toggleStatus(checked, item.id)"
+                  @update:model-value="checked => toggleStatus(checked, item.id)"
                 />
               </div>
             </template>
