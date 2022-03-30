@@ -81,7 +81,7 @@ const PostStatusForm = {
   emits: [
     'posted',
     'resize',
-    'mediaplay'
+    'mediaplay',
     'mediapause'
   ],
   components: {
