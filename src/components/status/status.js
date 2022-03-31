@@ -69,7 +69,7 @@ const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
   const controlledName = `controlled${camelized}`
   const uncontrolledName = `uncontrolled${camelized}`
   res[name] = function () {
-    return this[toggle] ? this[controlledName] : this[uncontrolledName]
+    return ((this.$data[toggle] !== undefined || this.$props[toggle] !== undefined) && this[toggle]) ? this[controlledName] : this[uncontrolledName]
   }
   return res
 }, {})
@@ -311,7 +311,7 @@ const Status = {
       return this.mergedConfig.hideWordFilteredPosts
     },
     hideStatus () {
-      return (this.virtualHidden || !this.shouldNotMute) && (
+      return (!this.shouldNotMute) && (
         (this.muted && this.hideFilteredStatuses) ||
         (this.userIsMuted && this.hideMutedUsers) ||
         (this.status.thread_muted && this.hideMutedThreads) ||
@@ -389,6 +389,9 @@ const Status = {
     },
     threadShowing () {
       return this.controlledThreadDisplayStatus === 'showing'
+    },
+    visibilityLocalized () {
+      return this.$i18n.t('general.scope_in_timeline.' + this.status.visibility)
     }
   },
   methods: {
@@ -477,11 +480,6 @@ const Status = {
     },
     'isSuspendable': function (val) {
       this.suspendable = val
-    }
-  },
-  filters: {
-    capitalize: function (str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
     }
   }
 }

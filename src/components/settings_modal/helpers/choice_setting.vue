@@ -4,10 +4,11 @@
     class="ChoiceSetting"
   >
     <slot />
+    {{ ' ' }}
     <Select
-      :value="state"
+      :model-value="state"
       :disabled="disabled"
-      @change="update"
+      @update:modelValue="update"
     >
       <option
         v-for="option in options"

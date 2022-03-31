@@ -40,6 +40,12 @@ const Timeline = {
     TimelineQuickSettings
   },
   computed: {
+    filteredVisibleStatuses () {
+      return this.timeline.visibleStatuses.filter(status => this.timelineName !== 'user' || (status.id >= this.timeline.minId && status.id <= this.timeline.maxId))
+    },
+    filteredPinnedStatusIds () {
+      return (this.pinnedStatusIds || []).filter(statusId => this.timeline.statusesObject[statusId])
+    },
     newStatusCount () {
       return this.timeline.newStatusCount
     },
@@ -104,7 +110,7 @@ const Timeline = {
     window.addEventListener('keydown', this.handleShortKey)
     setTimeout(this.determineVisibleStatuses, 250)
   },
-  destroyed () {
+  unmounted () {
     window.removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('keydown', this.handleShortKey)
     if (typeof document.hidden !== 'undefined') document.removeEventListener('visibilitychange', this.handleVisibilityChange, false)

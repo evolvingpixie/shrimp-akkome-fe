@@ -15,7 +15,7 @@
       class="opt"
       type="checkbox"
       :checked="present"
-      @input="$emit('input', !present ? fallback : undefined)"
+      @change="$emit('update:modelValue', !present ? fallback : undefined)"
     >
     <label
       v-if="typeof fallback !== 'undefined'"
@@ -26,23 +26,23 @@
       :id="name"
       class="input-number"
       type="range"
-      :value="value || fallback"
+      :value="modelValue || fallback"
       :disabled="!present || disabled"
       :max="max || hardMax || 100"
       :min="min || hardMin || 0"
       :step="step || 1"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
     <input
       :id="name"
       class="input-number"
       type="number"
-      :value="value || fallback"
+      :value="modelValue || fallback"
       :disabled="!present || disabled"
       :max="hardMax"
       :min="hardMin"
       :step="step || 1"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
   </div>
 </template>
@@ -50,11 +50,12 @@
 <script>
 export default {
   props: [
-    'name', 'value', 'fallback', 'disabled', 'label', 'max', 'min', 'step', 'hardMin', 'hardMax'
+    'name', 'modelValue', 'fallback', 'disabled', 'label', 'max', 'min', 'step', 'hardMin', 'hardMax'
   ],
+  emits: ['update:modelValue'],
   computed: {
     present () {
-      return typeof this.value !== 'undefined'
+      return typeof this.modelValue !== 'undefined'
     }
   }
 }

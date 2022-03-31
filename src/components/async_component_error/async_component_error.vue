@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  emits: ['resetAsyncComponent'],
   methods: {
     retry () {
       this.$emit('resetAsyncComponent')

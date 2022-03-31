@@ -23,30 +23,26 @@
         ref="timeline"
         class="timeline"
       >
-        <template v-for="statusId in pinnedStatusIds">
-          <conversation
-            v-if="timeline.statusesObject[statusId]"
-            :key="statusId + '-pinned'"
-            class="status-fadein"
-            :status-id="statusId"
-            :collapsable="true"
-            :pinned-status-ids-object="pinnedStatusIdsObject"
-            :in-profile="inProfile"
-            :profile-user-id="userId"
-          />
-        </template>
-        <template v-for="status in timeline.visibleStatuses">
-          <conversation
-            v-if="timelineName !== 'user' || (status.id >= timeline.minId && status.id <= timeline.maxId)"
-            :key="status.id"
-            class="status-fadein"
-            :status-id="status.id"
-            :collapsable="true"
-            :in-profile="inProfile"
-            :profile-user-id="userId"
-            :virtual-hidden="virtualScrollingEnabled && !statusesToDisplay.includes(status.id)"
-          />
-        </template>
+        <conversation
+          v-for="statusId in filteredPinnedStatusIds"
+          :key="statusId + '-pinned'"
+          class="status-fadein"
+          :status-id="statusId"
+          :collapsable="true"
+          :pinned-status-ids-object="pinnedStatusIdsObject"
+          :in-profile="inProfile"
+          :profile-user-id="userId"
+        />
+        <conversation
+          v-for="status in filteredVisibleStatuses"
+          :key="status.id"
+          class="status-fadein"
+          :status-id="status.id"
+          :collapsable="true"
+          :in-profile="inProfile"
+          :profile-user-id="userId"
+          :virtual-hidden="virtualScrollingEnabled && !statusesToDisplay.includes(status.id)"
+        />
       </div>
     </div>
     <div :class="classes.footer">

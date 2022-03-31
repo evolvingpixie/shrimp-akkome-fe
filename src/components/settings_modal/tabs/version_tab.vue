@@ -28,4 +28,4 @@
     </div>
   </div>
 </template>
-<script src="./version_tab.js">
+<script src="./version_tab.js" />

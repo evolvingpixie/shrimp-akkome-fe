@@ -29,7 +29,7 @@ const MobilePostStatusButton = {
     }
     window.addEventListener('resize', this.handleOSK)
   },
-  destroyed () {
+  unmounted () {
     if (this.autohideFloatingPostButton) {
       this.deactivateFloatingPostButtonAutohide()
     }

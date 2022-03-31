@@ -1,3 +1,4 @@
+import { h, resolveComponent } from 'vue'
 import LoginForm from '../login_form/login_form.vue'
 import MFARecoveryForm from '../mfa_form/recovery_form.vue'
 import MFATOTPForm from '../mfa_form/totp_form.vue'
@@ -5,8 +6,8 @@ import { mapGetters } from 'vuex'
 
 const AuthForm = {
   name: 'AuthForm',
-  render (createElement) {
-    return createElement('component', { is: this.authForm })
+  render () {
+    return h(resolveComponent(this.authForm))
   },
   computed: {
     authForm () {

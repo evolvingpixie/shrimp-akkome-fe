@@ -56,8 +56,8 @@ const SettingsModal = {
     SettingsModalContent: getResettableAsyncComponent(
       () => import('./settings_modal_content.vue'),
       {
-        loading: PanelLoading,
-        error: AsyncComponentError,
+        loadingComponent: PanelLoading,
+        errorComponent: AsyncComponentError,
         delay: 0
       }
     )

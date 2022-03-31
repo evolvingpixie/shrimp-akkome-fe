@@ -1,5 +1,5 @@
 import Attachment from '../attachment/attachment.vue'
-import { sumBy } from 'lodash'
+import { sumBy, set } from 'lodash'
 
 const Gallery = {
   props: [
@@ -85,7 +85,7 @@ const Gallery = {
   },
   methods: {
     onNaturalSizeLoad ({ id, width, height }) {
-      this.$set(this.sizes, id, { width, height })
+      set(this.sizes, id, { width, height })
     },
     rowStyle (row) {
       if (row.audio) {

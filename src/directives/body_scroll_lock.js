@@ -50,12 +50,12 @@ const enableBodyScroll = (el) => {
 }
 
 const directive = {
-  inserted: (el, binding) => {
+  mounted: (el, binding) => {
     if (binding.value) {
       disableBodyScroll(el)
     }
   },
-  componentUpdated: (el, binding) => {
+  updated: (el, binding) => {
     if (binding.oldValue === binding.value) {
       return
     }
@@ -66,7 +66,7 @@ const directive = {
       enableBodyScroll(el)
     }
   },
-  unbind: (el) => {
+  unmounted: (el) => {
     enableBodyScroll(el)
   }
 }

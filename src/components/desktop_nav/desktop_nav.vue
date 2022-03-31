@@ -34,7 +34,7 @@
         <search-bar
           v-if="currentUser || !privateMode"
           @toggled="onSearchBarToggled"
-          @click.stop.native
+          @click.stop
         />
         <button
           class="button-unstyled nav-icon"

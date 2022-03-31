@@ -16,6 +16,7 @@
       :value="state"
       @change="update"
     >
+    {{ ' ' }}
     <ModifiedIndicator :changed="isChanged" />
   </span>
 </template>

@@ -1,4 +1,3 @@
-import { set, delete as del } from 'vue'
 import {
   rgb2hex,
   hex2rgb,
@@ -34,7 +33,7 @@ import OpacityInput from 'src/components/opacity_input/opacity_input.vue'
 import ShadowControl from 'src/components/shadow_control/shadow_control.vue'
 import FontControl from 'src/components/font_control/font_control.vue'
 import ContrastRatio from 'src/components/contrast_ratio/contrast_ratio.vue'
-import TabSwitcher from 'src/components/tab_switcher/tab_switcher.js'
+import TabSwitcher from 'src/components/tab_switcher/tab_switcher.jsx'
 import Checkbox from 'src/components/checkbox/checkbox.vue'
 import Select from 'src/components/select/select.vue'
 
@@ -320,9 +319,9 @@ export default {
       },
       set (val) {
         if (val) {
-          set(this.shadowsLocal, this.shadowSelected, this.currentShadowFallback.map(_ => Object.assign({}, _)))
+          this.shadowsLocal[this.shadowSelected] = this.currentShadowFallback.map(_ => Object.assign({}, _))
         } else {
-          del(this.shadowsLocal, this.shadowSelected)
+          delete this.shadowsLocal[this.shadowSelected]
         }
       }
     },
@@ -334,7 +333,7 @@ export default {
         return this.shadowsLocal[this.shadowSelected]
       },
       set (v) {
-        set(this.shadowsLocal, this.shadowSelected, v)
+        this.shadowsLocal[this.shadowSelected] = v
       }
     },
     themeValid () {
@@ -561,7 +560,7 @@ export default {
         .filter(_ => _.endsWith('ColorLocal') || _.endsWith('OpacityLocal'))
         .filter(_ => !v1OnlyNames.includes(_))
         .forEach(key => {
-          set(this.$data, key, undefined)
+          this.$data[key] = undefined
         })
     },
 
@@ -569,7 +568,7 @@ export default {
       Object.keys(this.$data)
         .filter(_ => _.endsWith('RadiusLocal'))
         .forEach(key => {
-          set(this.$data, key, undefined)
+          this.$data[key] = undefined
         })
     },
 
@@ -577,7 +576,7 @@ export default {
       Object.keys(this.$data)
         .filter(_ => _.endsWith('OpacityLocal'))
         .forEach(key => {
-          set(this.$data, key, undefined)
+          this.$data[key] = undefined
         })
     },
 

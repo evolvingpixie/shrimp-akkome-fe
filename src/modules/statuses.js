@@ -12,7 +12,6 @@ import {
   isArray,
   omitBy
 } from 'lodash'
-import { set } from 'vue'
 import {
   isStatusNotification,
   isValidNotification,
@@ -92,7 +91,7 @@ const mergeOrAdd = (arr, obj, item) => {
     // This is a new item, prepare it
     prepareStatus(item)
     arr.push(item)
-    set(obj, item.id, item)
+    obj[item.id] = item
     return { item, new: true }
   }
 }
@@ -131,7 +130,7 @@ const addStatusToGlobalStorage = (state, data) => {
     if (conversationsObject[conversationId]) {
       conversationsObject[conversationId].push(status)
     } else {
-      set(conversationsObject, conversationId, [status])
+      conversationsObject[conversationId] = [status]
     }
   }
   return result
@@ -523,7 +522,7 @@ export const mutations = {
   },
   addEmojiReactionsBy (state, { id, emojiReactions, currentUser }) {
     const status = state.allStatusesObject[id]
-    set(status, 'emoji_reactions', emojiReactions)
+    status['emoji_reactions'] = emojiReactions
   },
   addOwnReaction (state, { id, emoji, currentUser }) {
     const status = state.allStatusesObject[id]
@@ -542,9 +541,9 @@ export const mutations = {
 
     // Update count of existing reaction if it exists, otherwise append at the end
     if (reactionIndex >= 0) {
-      set(status.emoji_reactions, reactionIndex, newReaction)
+      status.emoji_reactions[reactionIndex] = newReaction
     } else {
-      set(status, 'emoji_reactions', [...status.emoji_reactions, newReaction])
+      status['emoji_reactions'] = [...status.emoji_reactions, newReaction]
     }
   },
   removeOwnReaction (state, { id, emoji, currentUser }) {
@@ -563,9 +562,9 @@ export const mutations = {
     }
 
     if (newReaction.count > 0) {
-      set(status.emoji_reactions, reactionIndex, newReaction)
+      status.emoji_reactions[reactionIndex] = newReaction
     } else {
-      set(status, 'emoji_reactions', status.emoji_reactions.filter(r => r.name !== emoji))
+      status['emoji_reactions'] = status.emoji_reactions.filter(r => r.name !== emoji)
     }
   },
   updateStatusWithPoll (state, { id, poll }) {

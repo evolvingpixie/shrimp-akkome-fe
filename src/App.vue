@@ -1,6 +1,6 @@
 <template>
   <div
-    id="app"
+    id="app-loaded"
     :style="bgStyle"
   >
     <div
@@ -59,7 +59,7 @@
     <UserReportingModal />
     <PostStatusModal />
     <SettingsModal />
-    <portal-target name="modal" />
+    <div id="modal" />
     <GlobalNoticeList />
   </div>
 </template>

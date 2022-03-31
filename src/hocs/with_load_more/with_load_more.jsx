@@ -1,4 +1,5 @@
-import Vue from 'vue'
+// eslint-disable-next-line no-unused
+import { h } from 'vue'
 import isEmpty from 'lodash/isEmpty'
 import { getComponentProps } from '../../services/component_utils/component_utils'
 import './with_load_more.scss'
@@ -16,14 +17,14 @@ library.add(
 const withLoadMore = ({
   fetch, // function to fetch entries and return a promise
   select, // function to select data from store
-  destroy, // function called at "destroyed" lifecycle
+  unmounted, // function called at "destroyed" lifecycle
   childPropName = 'entries', // name of the prop to be passed into the wrapped component
   additionalPropNames = [] // additional prop name list of the wrapper component
 }) => (WrappedComponent) => {
   const originalProps = Object.keys(getComponentProps(WrappedComponent))
   const props = originalProps.filter(v => v !== childPropName).concat(additionalPropNames)
 
-  return Vue.component('withLoadMore', {
+  return {
     props,
     data () {
       return {
@@ -39,9 +40,9 @@ const withLoadMore = ({
         this.fetchEntries()
       }
     },
-    destroyed () {
+    unmounted () {
       window.removeEventListener('scroll', this.scrollLoad)
-      destroy && destroy(this.$props, this.$store)
+      unmounted && unmounted(this.$props, this.$store)
     },
     methods: {
       // Entries is not a computed because computed can't track the dynamic
@@ -79,16 +80,12 @@ const withLoadMore = ({
         }
       }
     },
-    render (h) {
+    render () {
       const props = {
-        props: {
-          ...this.$props,
-          [childPropName]: this.entries
-        },
-        on: this.$listeners,
-        scopedSlots: this.$scopedSlots
+        ...this.$props,
+        [childPropName]: this.entries
       }
-      const children = Object.entries(this.$slots).map(([key, value]) => h('template', { slot: key }, value))
+      const children = this.$slots
       return (
         <div class="with-load-more">
           <WrappedComponent {...props}>
@@ -106,7 +103,7 @@ const withLoadMore = ({
         </div>
       )
     }
-  })
+  }
 }
 
 export default withLoadMore

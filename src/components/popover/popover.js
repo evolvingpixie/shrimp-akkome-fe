@@ -178,7 +178,7 @@ const Popover = {
   created () {
     document.addEventListener('click', this.onClickOutside)
   },
-  destroyed () {
+  unmounted () {
     document.removeEventListener('click', this.onClickOutside)
     this.hidePopover()
   }

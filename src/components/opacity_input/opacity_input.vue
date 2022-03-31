@@ -11,21 +11,21 @@
     </label>
     <Checkbox
       v-if="typeof fallback !== 'undefined'"
-      :checked="present"
+      :model-value="present"
       :disabled="disabled"
       class="opt"
-      @change="$emit('input', !present ? fallback : undefined)"
+      @update:modelValue="$emit('update:modelValue', !present ? fallback : undefined)"
     />
     <input
       :id="name"
       class="input-number"
       type="number"
-      :value="value || fallback"
+      :value="modelValue || fallback"
       :disabled="!present || disabled"
       max="1"
       min="0"
       step=".05"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
   </div>
 </template>
@@ -37,11 +37,12 @@ export default {
     Checkbox
   },
   props: [
-    'name', 'value', 'fallback', 'disabled'
+    'name', 'modelValue', 'fallback', 'disabled'
   ],
+  emits: ['update:modelValue'],
   computed: {
     present () {
-      return typeof this.value !== 'undefined'
+      return typeof this.modelValue !== 'undefined'
     }
   }
 }

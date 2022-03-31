@@ -1,4 +1,3 @@
-
 <template>
   <label
     class="Select input"
@@ -6,11 +5,12 @@
   >
     <select
       :disabled="disabled"
-      :value="value"
-      @change="$emit('change', $event.target.value)"
+      :value="modelValue"
+      @change="$emit('update:modelValue', $event.target.value)"
     >
       <slot />
     </select>
+    {{ ' ' }}
     <FAIcon
       class="select-down-icon"
       icon="chevron-down"
@@ -23,7 +23,8 @@
 <style lang="scss">
 @import '../../_variables.scss';
 
-.Select {
+/* TODO fix order of styles */
+label.Select {
   padding: 0;
 
   select {

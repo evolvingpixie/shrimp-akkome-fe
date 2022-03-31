@@ -1,4 +1,4 @@
-import { set } from 'vue'
+import { set } from 'lodash'
 import Select from '../select/select.vue'
 
 export default {
@@ -6,11 +6,12 @@ export default {
     Select
   },
   props: [
-    'name', 'label', 'value', 'fallback', 'options', 'no-inherit'
+    'name', 'label', 'modelValue', 'fallback', 'options', 'no-inherit'
   ],
+  emits: ['update:modelValue'],
   data () {
     return {
-      lValue: this.value,
+      lValue: this.modelValue,
       availableOptions: [
         this.noInherit ? '' : 'inherit',
         'custom',
@@ -22,7 +23,7 @@ export default {
     }
   },
   beforeUpdate () {
-    this.lValue = this.value
+    this.lValue = this.modelValue
   },
   computed: {
     present () {
@@ -37,7 +38,7 @@ export default {
       },
       set (v) {
         set(this.lValue, 'family', v)
-        this.$emit('input', this.lValue)
+        this.$emit('update:modelValue', this.lValue)
       }
     },
     isCustom () {

@@ -1,6 +1,4 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 
 import 'custom-event-polyfill'
 import './lib/event_target_polyfill.js'
@@ -22,36 +20,18 @@ import pollsModule from './modules/polls.js'
 import postStatusModule from './modules/postStatus.js'
 import chatsModule from './modules/chats.js'
 
-import VueI18n from 'vue-i18n'
+import { createI18n } from 'vue-i18n'
 
 import createPersistedState from './lib/persisted_state.js'
 import pushNotifications from './lib/push_notifications_plugin.js'
 
 import messages from './i18n/messages.js'
 
-import VueClickOutside from 'v-click-outside'
-import PortalVue from 'portal-vue'
-import VBodyScrollLock from './directives/body_scroll_lock'
-
-import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
-
 import afterStoreSetup from './boot/after_store.js'
 
 const currentLocale = (window.navigator.language || 'en').split('-')[0]
 
-Vue.use(Vuex)
-Vue.use(VueRouter)
-Vue.use(VueI18n)
-Vue.use(VueClickOutside)
-Vue.use(PortalVue)
-Vue.use(VBodyScrollLock)
-
-Vue.config.ignoredElements = ['pinch-zoom']
-
-Vue.component('FAIcon', FontAwesomeIcon)
-Vue.component('FALayers', FontAwesomeLayers)
-
-const i18n = new VueI18n({
+const i18n = createI18n({
   // By default, use the browser locale, we will update it if neccessary
   locale: 'en',
   fallbackLocale: 'en',
@@ -78,17 +58,18 @@ const persistedStateOptions = {
     console.error(e)
     storageError = true
   }
-  const store = new Vuex.Store({
+  const store = createStore({
     modules: {
       i18n: {
         getters: {
-          i18n: () => i18n
+          i18n: () => i18n.global
         }
       },
       interface: interfaceModule,
       instance: instanceModule,
-      statuses: statusesModule,
+      // TODO refactor users/statuses modules, they depend on each other
       users: usersModule,
+      statuses: statusesModule,
       api: apiModule,
       config: configModule,
       serverSideConfig: serverSideConfigModule,

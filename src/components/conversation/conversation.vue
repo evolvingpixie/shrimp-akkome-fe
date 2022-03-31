@@ -27,20 +27,24 @@
           v-if="shouldShowAllConversationButton"
           class="conversation-dive-to-top-level-box"
         >
-          <i18n
-            path="status.show_all_conversation_with_icon"
+          <i18n-t
+            keypath="status.show_all_conversation_with_icon"
             tag="button"
             class="button-unstyled -link"
             @click.prevent="diveToTopLevel"
+            scope="global"
           >
-            <FAIcon
-              place="icon"
-              icon="angle-double-left"
-            />
-            <span place="text">
-              {{ $tc('status.show_all_conversation', otherTopLevelCount, { numStatus: otherTopLevelCount }) }}
-            </span>
-          </i18n>
+            <template #icon>
+              <FAIcon
+                icon="angle-double-left"
+              />
+            </template>
+            <template #text>
+              <span>
+                {{ $tc('status.show_all_conversation', otherTopLevelCount, { numStatus: otherTopLevelCount }) }}
+              </span>
+            </template>
+          </i18n-t>
         </div>
         <div
           v-if="shouldShowAncestors"
@@ -96,20 +100,24 @@
               <div
                 class="thread-ancestor-dive-box-inner"
               >
-                <i18n
+                <i18n-t
                   tag="button"
-                  path="status.ancestor_follow_with_icon"
+                  scope="global"
+                  keypath="status.ancestor_follow_with_icon"
                   class="button-unstyled -link thread-tree-show-replies-button"
                   @click.prevent="diveIntoStatus(status.id)"
                 >
-                  <FAIcon
-                    place="icon"
-                    icon="angle-double-right"
-                  />
-                  <span place="text">
-                    {{ $tc('status.ancestor_follow', getReplies(status.id).length - 1, { numReplies: getReplies(status.id).length - 1 }) }}
-                  </span>
-                </i18n>
+                  <template #icon>
+                    <FAIcon
+                      icon="angle-double-right"
+                    />
+                  </template>
+                  <template #text>
+                    <span>
+                      {{ $tc('status.ancestor_follow', getReplies(status.id).length - 1, { numReplies: getReplies(status.id).length - 1 }) }}
+                    </span>
+                  </template>
+                </i18n-t>
               </div>
             </div>
           </div>

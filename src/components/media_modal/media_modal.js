@@ -142,7 +142,7 @@ const MediaModal = {
     document.addEventListener('keyup', this.handleKeyupEvent)
     document.addEventListener('keydown', this.handleKeydownEvent)
   },
-  destroyed () {
+  unmounted () {
     window.removeEventListener('popstate', this.hide)
     document.removeEventListener('keyup', this.handleKeyupEvent)
     document.removeEventListener('keydown', this.handleKeydownEvent)

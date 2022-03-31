@@ -15,18 +15,8 @@ const Exporter = {
       type: String,
       default: 'export.csv'
     },
-    exportButtonLabel: {
-      type: String,
-      default () {
-        return this.$t('exporter.export')
-      }
-    },
-    processingMessage: {
-      type: String,
-      default () {
-        return this.$t('exporter.processing')
-      }
-    }
+    exportButtonLabel: { type: String },
+    processingMessage: { type: String }
   },
   data () {
     return {

@@ -1,4 +1,3 @@
-import { set } from 'vue'
 import { getPreset, applyTheme } from '../services/style_setter/style_setter.js'
 import { CURRENT_VERSION } from '../services/theme_data/theme_data.service.js'
 import apiService from '../services/api/api.service.js'
@@ -102,7 +101,7 @@ const instance = {
   mutations: {
     setInstanceOption (state, { name, value }) {
       if (typeof value !== 'undefined') {
-        set(state, name, value)
+        state[name] = value
       }
     },
     setKnownDomains (state, domains) {

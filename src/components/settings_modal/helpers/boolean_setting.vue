@@ -4,9 +4,9 @@
     class="BooleanSetting"
   >
     <Checkbox
-      :checked="state"
+      :model-value="state"
       :disabled="disabled"
-      @change="update"
+      @update:modelValue="update"
     >
       <span
         v-if="!!$slots.default"
@@ -14,6 +14,7 @@
       >
         <slot />
       </span>
+      {{ ' ' }}
       <ModifiedIndicator :changed="isChanged" /><ServerSideIndicator :server-side="isServerSide" /> </Checkbox>
   </label>
 </template>

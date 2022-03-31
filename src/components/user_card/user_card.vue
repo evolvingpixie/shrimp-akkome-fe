@@ -141,6 +141,7 @@
               class="userHighlightCl"
               type="color"
             >
+            {{ ' ' }}
             <Select
               :id="'userHighlightSel'+user.id"
               v-model="userHighlightType"

@@ -1,4 +1,5 @@
-import Vue from 'vue'
+// eslint-disable-next-line no-unused
+import { h } from 'vue'
 import isEmpty from 'lodash/isEmpty'
 import { getComponentProps } from '../../services/component_utils/component_utils'
 import './with_subscription.scss'
@@ -22,7 +23,7 @@ const withSubscription = ({
   const originalProps = Object.keys(getComponentProps(WrappedComponent))
   const props = originalProps.filter(v => v !== childPropName).concat(additionalPropNames)
 
-  return Vue.component('withSubscription', {
+  return {
     props: [
       ...props,
       'refresh' // boolean saying to force-fetch data whenever created
@@ -59,17 +60,13 @@ const withSubscription = ({
         }
       }
     },
-    render (h) {
+    render () {
       if (!this.error && !this.loading) {
         const props = {
-          props: {
-            ...this.$props,
-            [childPropName]: this.fetchedData
-          },
-          on: this.$listeners,
-          scopedSlots: this.$scopedSlots
+          ...this.$props,
+          [childPropName]: this.fetchedData
         }
-        const children = Object.entries(this.$slots).map(([key, value]) => h('template', { slot: key }, value))
+        const children = this.$slots
         return (
           <div class="with-subscription">
             <WrappedComponent {...props}>
@@ -88,7 +85,7 @@ const withSubscription = ({
         )
       }
     }
-  })
+  }
 }
 
 export default withSubscription

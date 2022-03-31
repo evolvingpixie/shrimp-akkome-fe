@@ -3,6 +3,7 @@
     <label for="interface-language-switcher">
       {{ $t('settings.interfaceLanguage') }}
     </label>
+    {{ ' ' }}
     <Select
       id="interface-language-switcher"
       v-model="language"

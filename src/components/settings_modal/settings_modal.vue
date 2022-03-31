@@ -11,7 +11,7 @@
           {{ $t('settings.settings') }}
         </span>
         <transition name="fade">
-          <template v-if="currentSaveStateNotice">
+          <div v-if="currentSaveStateNotice">
             <div
               v-if="currentSaveStateNotice.error"
               class="alert error"
@@ -27,7 +27,7 @@
             >
               {{ $t('settings.saving_ok') }}
             </div>
-          </template>
+          </div>
         </transition>
         <button
           class="btn button-default"
@@ -68,6 +68,7 @@
               :title="$t('general.close')"
             >
               <span>{{ $t("settings.file_export_import.backup_restore") }}</span>
+              {{ ' ' }}
               <FAIcon
                 icon="chevron-down"
               />
@@ -109,12 +110,15 @@
           </template>
         </Popover>
 
-        <Checkbox v-model="expertLevel">
+        <Checkbox
+          :model-value="!!expertLevel"
+          @update:modelValue="expertLevel = Number($event)"
+        >
           {{ $t("settings.expert_mode") }}
         </Checkbox>
-        <portal-target
+        <span
+          id="unscrolled-content"
           class="extra-content"
-          name="unscrolled-content"
         />
       </div>
     </div>

@@ -72,22 +72,10 @@
           <div>{{ $t('settings.filtering_explanation') }}</div>
         </li>
         <h3>{{ $t('settings.attachments') }}</h3>
-        <li v-if="expertLevel > 0">
-          <label for="maxThumbnails">
-            {{ $t('settings.max_thumbnails') }}
-          </label>
-          <input
-            id="maxThumbnails"
-            path.number="maxThumbnails"
-            class="number-input"
-            type="number"
-            min="0"
-            step="1"
-          >
-        </li>
         <li>
           <IntegerSetting
             path="maxThumbnails"
+            expert="1"
             :min="0"
           >
             {{ $t('settings.max_thumbnails') }}

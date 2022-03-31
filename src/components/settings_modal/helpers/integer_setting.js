@@ -8,7 +8,7 @@ export default {
     path: String,
     disabled: Boolean,
     min: Number,
-    expert: Number
+    expert: [Number, String]
   },
   computed: {
     pathDefault () {

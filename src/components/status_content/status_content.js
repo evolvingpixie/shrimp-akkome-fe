@@ -31,7 +31,7 @@ const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
   const controlledName = `controlled${camelized}`
   const uncontrolledName = `uncontrolled${camelized}`
   res[name] = function () {
-    return this[toggle] ? this[controlledName] : this[uncontrolledName]
+    return ((this.$data[toggle] !== undefined || this.$props[toggle] !== undefined) && this[toggle]) ? this[controlledName] : this[uncontrolledName]
   }
   return res
 }, {})
@@ -59,7 +59,9 @@ const StatusContent = {
     'controlledShowingTall',
     'controlledExpandingSubject',
     'controlledToggleShowingTall',
-    'controlledToggleExpandingSubject'
+    'controlledToggleExpandingSubject',
+    'controlledShowingLongSubject',
+    'controlledToggleShowingLongSubject'
   ],
   data () {
     return {

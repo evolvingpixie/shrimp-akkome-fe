@@ -46,7 +46,7 @@ export default (store) => {
     { name: 'bookmarks', path: '/bookmarks', component: BookmarkTimeline },
     { name: 'conversation', path: '/notice/:id', component: ConversationPage, meta: { dontScroll: true } },
     { name: 'remote-user-profile-acct',
-      path: '/remote-users/(@?):username([^/@]+)@:hostname([^/@]+)',
+      path: '/remote-users/:_(@)?:username([^/@]+)@:hostname([^/@]+)',
       component: RemoteUserResolver,
       beforeEnter: validateAuthenticatedRoute
     },
@@ -69,7 +69,7 @@ export default (store) => {
     { name: 'search', path: '/search', component: Search, props: (route) => ({ query: route.query.query }) },
     { name: 'who-to-follow', path: '/who-to-follow', component: WhoToFollow, beforeEnter: validateAuthenticatedRoute },
     { name: 'about', path: '/about', component: About },
-    { name: 'user-profile', path: '/(users/)?:name', component: UserProfile }
+    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile }
   ]
 
   if (store.state.instance.pleromaChatMessagesAvailable) {

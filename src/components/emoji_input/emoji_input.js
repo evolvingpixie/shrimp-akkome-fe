@@ -31,6 +31,7 @@ library.add(
  */
 
 const EmojiInput = {
+  emits: ['update:modelValue', 'shown'],
   props: {
     suggest: {
       /**
@@ -57,8 +58,7 @@ const EmojiInput = {
       required: true,
       type: Function
     },
-    // TODO VUE3: change to modelValue, change 'input' event to 'input'
-    value: {
+    modelValue: {
       /**
        * Used for v-model
        */
@@ -137,8 +137,8 @@ const EmojiInput = {
       return (this.wordAtCaret || {}).word || ''
     },
     wordAtCaret () {
-      if (this.value && this.caret) {
-        const word = Completion.wordAtPosition(this.value, this.caret - 1) || {}
+      if (this.modelValue && this.caret) {
+        const word = Completion.wordAtPosition(this.modelValue, this.caret - 1) || {}
         return word
       }
     }
@@ -189,8 +189,11 @@ const EmojiInput = {
           img: imageUrl || ''
         }))
     },
-    suggestions (newValue) {
-      this.$nextTick(this.resize)
+    suggestions: {
+      handler (newValue) {
+        this.$nextTick(this.resize)
+      },
+      deep: true
     }
   },
   methods: {
@@ -225,13 +228,13 @@ const EmojiInput = {
       }
     },
     replace (replacement) {
-      const newValue = Completion.replaceWord(this.value, this.wordAtCaret, replacement)
-      this.$emit('input', newValue)
+      const newValue = Completion.replaceWord(this.modelValue, this.wordAtCaret, replacement)
+      this.$emit('update:modelValue', newValue)
       this.caret = 0
     },
     insert ({ insertion, keepOpen, surroundingSpace = true }) {
-      const before = this.value.substring(0, this.caret) || ''
-      const after = this.value.substring(this.caret) || ''
+      const before = this.modelValue.substring(0, this.caret) || ''
+      const after = this.modelValue.substring(this.caret) || ''
 
       /* Using a bit more smart approach to padding emojis with spaces:
        * - put a space before cursor if there isn't one already, unless we
@@ -259,7 +262,7 @@ const EmojiInput = {
         after
       ].join('')
       this.keepOpen = keepOpen
-      this.$emit('input', newValue)
+      this.$emit('update:modelValue', newValue)
       const position = this.caret + (insertion + spaceAfter + spaceBefore).length
       if (!keepOpen) {
         this.input.focus()
@@ -278,8 +281,8 @@ const EmojiInput = {
       if (len > 0 || suggestion) {
         const chosenSuggestion = suggestion || this.suggestions[this.highlighted]
         const replacement = chosenSuggestion.replacement
-        const newValue = Completion.replaceWord(this.value, this.wordAtCaret, replacement)
-        this.$emit('input', newValue)
+        const newValue = Completion.replaceWord(this.modelValue, this.wordAtCaret, replacement)
+        this.$emit('update:modelValue', newValue)
         this.highlighted = 0
         const position = this.wordAtCaret.start + replacement.length
 
@@ -455,7 +458,7 @@ const EmojiInput = {
       this.showPicker = false
       this.setCaret(e)
       this.resize()
-      this.$emit('input', e.target.value)
+      this.$emit('update:modelValue', e.target.value)
     },
     onClickInput (e) {
       this.showPicker = false

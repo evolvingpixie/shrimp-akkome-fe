@@ -71,13 +71,18 @@
           {{ $tc("polls.votes_count", poll.votes_count, { count: poll.votes_count }) }}&nbsp;·&nbsp;
         </template>
       </div>
-      <i18n :path="expired ? 'polls.expired' : 'polls.expires_in'">
-        <Timeago
-          :time="expiresAt"
-          :auto-update="60"
-          :now-threshold="0"
-        />
-      </i18n>
+      <span>
+        <i18n-t
+          scope="global"
+          :keypath="expired ? 'polls.expired' : 'polls.expires_in'"
+        >
+          <Timeago
+            :time="expiresAt"
+            :auto-update="60"
+            :now-threshold="0"
+          />
+        </i18n-t>
+      </span>
     </div>
   </div>
 </template>

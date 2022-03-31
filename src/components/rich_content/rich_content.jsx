@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { unescape, flattenDeep } from 'lodash'
 import { getTagName, processTextForEmoji, getAttrs } from 'src/services/html_converter/utility.service.js'
 import { convertHtmlToTree } from 'src/services/html_converter/html_tree_converter.service.js'
@@ -27,7 +26,7 @@ import './rich_content.scss'
  *
  * Apart from that one small hiccup with emit in render this _should_ be vue3-ready
  */
-export default Vue.component('RichContent', {
+export default {
   name: 'RichContent',
   props: {
     // Original html content
@@ -58,7 +57,7 @@ export default Vue.component('RichContent', {
     }
   },
   // NEVER EVER TOUCH DATA INSIDE RENDER
-  render (h) {
+  render () {
     // Pre-process HTML
     const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
@@ -76,18 +75,18 @@ export default Vue.component('RichContent', {
 
     const renderImage = (tag) => {
       return <StillImage
-        {...{ attrs: getAttrs(tag) }}
+        {...getAttrs(tag)}
         class="img"
       />
     }
 
     const renderHashtag = (attrs, children, encounteredTextReverse) => {
-      const linkData = getLinkData(attrs, children, tagsIndex++)
+      const { index, ...linkData } = getLinkData(attrs, children, tagsIndex++)
       writtenTags.push(linkData)
       if (!encounteredTextReverse) {
         lastTags.push(linkData)
       }
-      return <HashtagLink {...{ props: linkData }}/>
+      return <HashtagLink { ...linkData }/>
     }
 
     const renderMention = (attrs, children) => {
@@ -222,7 +221,7 @@ export default Vue.component('RichContent', {
               attrs.target = '_blank'
               const newChildren = [...children].reverse().map(processItemReverse).reverse()
 
-              return <a {...{ attrs }}>
+              return <a {...attrs}>
                 { newChildren }
               </a>
             }
@@ -235,7 +234,7 @@ export default Vue.component('RichContent', {
           const newChildren = Array.isArray(children)
             ? [...children].reverse().map(processItemReverse).reverse()
             : children
-          return <Tag {...{ attrs: getAttrs(opener) }}>
+          return <Tag {...getAttrs(opener)}>
             { newChildren }
           </Tag>
         } else {
@@ -266,7 +265,7 @@ export default Vue.component('RichContent', {
 
     return result
   }
-})
+}
 
 const getLinkData = (attrs, children, index) => {
   const stripTags = (item) => {

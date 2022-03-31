@@ -68,8 +68,9 @@
             class="delete-field button-unstyled -hover-highlight"
             @click="deleteField(i)"
           >
+            <!-- TODO something is wrong with v-show here -->
             <FAIcon
-              v-show="newFields.length > 1"
+              v-if="newFields.length > 1"
               icon="times"
             />
           </button>
@@ -106,14 +107,17 @@
           :src="user.profile_image_url_original"
           class="current-avatar"
         >
-        <FAIcon
+        <button
           v-if="!isDefaultAvatar && pickAvatarBtnVisible"
           :title="$t('settings.reset_avatar')"
-          class="reset-button"
-          icon="times"
-          type="button"
           @click="resetAvatar"
-        />
+          class="button-unstyled reset-button"
+        >
+          <FAIcon
+            icon="times"
+            type="button"
+          />
+        </button>
       </div>
       <p>{{ $t('settings.set_new_avatar') }}</p>
       <button
@@ -135,14 +139,17 @@
       <h2>{{ $t('settings.profile_banner') }}</h2>
       <div class="banner-background-preview">
         <img :src="user.cover_photo">
-        <FAIcon
+        <button
           v-if="!isDefaultBanner"
+          class="button-unstyled reset-button"
           :title="$t('settings.reset_profile_banner')"
-          class="reset-button"
-          icon="times"
-          type="button"
           @click="resetBanner"
-        />
+        >
+          <FAIcon
+            icon="times"
+            type="button"
+          />
+        </button>
       </div>
       <p>{{ $t('settings.set_new_profile_banner') }}</p>
       <img
@@ -174,14 +181,17 @@
       <h2>{{ $t('settings.profile_background') }}</h2>
       <div class="banner-background-preview">
         <img :src="user.background_image">
-        <FAIcon
+        <button
           v-if="!isDefaultBackground"
+          class="button-unstyled reset-button"
           :title="$t('settings.reset_profile_background')"
-          class="reset-button"
-          icon="times"
-          type="button"
           @click="resetBackground"
-        />
+        >
+          <FAIcon
+            icon="times"
+            type="button"
+          />
+        </button>
       </div>
       <p>{{ $t('settings.set_new_profile_background') }}</p>
       <img

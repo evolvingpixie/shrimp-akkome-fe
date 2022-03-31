@@ -22,7 +22,6 @@
             class="gallery-item"
             :nsfw="nsfw"
             :attachment="attachment"
-            :allow-play="false"
             :size="size"
             :editable="editable"
             :remove="removeAttachment"

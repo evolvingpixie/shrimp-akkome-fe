@@ -74,36 +74,44 @@
       v-if="currentReplies.length && !threadShowing"
       class="thread-tree-replies thread-tree-replies-hidden"
     >
-      <i18n
+      <i18n-t
         v-if="simple"
+        scope="global"
         tag="button"
-        path="status.thread_follow_with_icon"
+        keypath="status.thread_follow_with_icon"
         class="button-unstyled -link thread-tree-show-replies-button"
         @click.prevent="dive(status.id)"
       >
-        <FAIcon
-          place="icon"
-          icon="angle-double-right"
-        />
-        <span place="text">
-          {{ $tc('status.thread_follow', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id] }) }}
-        </span>
-      </i18n>
-      <i18n
+        <template #icon>
+          <FAIcon
+            icon="angle-double-right"
+          />
+        </template>
+        <template #text>
+          <span>
+            {{ $tc('status.thread_follow', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id] }) }}
+          </span>
+        </template>
+      </i18n-t>
+      <i18n-t
         v-else
+        scope="global"
         tag="button"
-        path="status.thread_show_full_with_icon"
+        keypath="status.thread_show_full_with_icon"
         class="button-unstyled -link thread-tree-show-replies-button"
         @click.prevent="showThreadRecursively(status.id)"
       >
-        <FAIcon
-          place="icon"
-          icon="angle-double-down"
-        />
-        <span place="text">
-          {{ $tc('status.thread_show_full', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
-        </span>
-      </i18n>
+        <template #icon>
+          <FAIcon
+            icon="angle-double-down"
+          />
+        </template>
+        <template #text>
+          <span>
+            {{ $tc('status.thread_show_full', totalReplyCount[status.id], { numStatus: totalReplyCount[status.id], depth: totalReplyDepth[status.id] }) }}
+          </span>
+        </template>
+      </i18n-t>
     </div>
   </div>
 </template>

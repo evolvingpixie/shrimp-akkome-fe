@@ -57,7 +57,7 @@ const Chat = {
     })
     this.setChatLayout()
   },
-  destroyed () {
+  unmounted () {
     window.removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('resize', this.handleLayoutChange)
     this.unsetChatLayout()

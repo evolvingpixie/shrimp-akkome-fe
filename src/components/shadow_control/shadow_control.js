@@ -30,18 +30,19 @@ const toModel = (object = {}) => ({
 })
 
 export default {
-  // 'Value' and 'Fallback' can be undefined, but if they are
+  // 'modelValue' and 'Fallback' can be undefined, but if they are
   // initially vue won't detect it when they become something else
   // therefore i'm using "ready" which should be passed as true when
   // data becomes available
   props: [
-    'value', 'fallback', 'ready'
+    'modelValue', 'fallback', 'ready'
   ],
+  emits: ['update:modelValue'],
   data () {
     return {
       selectedId: 0,
       // TODO there are some bugs regarding display of array (it's not getting updated when deleting for some reason)
-      cValue: (this.value || this.fallback || []).map(toModel)
+      cValue: (this.modelValue || this.fallback || []).map(toModel)
     }
   },
   components: {
@@ -70,7 +71,7 @@ export default {
     }
   },
   beforeUpdate () {
-    this.cValue = this.value || this.fallback
+    this.cValue = this.modelValue || this.fallback
   },
   computed: {
     anyShadows () {
@@ -105,7 +106,7 @@ export default {
         !this.usingFallback
     },
     usingFallback () {
-      return typeof this.value === 'undefined'
+      return typeof this.modelValue === 'undefined'
     },
     rgb () {
       return hex2rgb(this.selected.color)

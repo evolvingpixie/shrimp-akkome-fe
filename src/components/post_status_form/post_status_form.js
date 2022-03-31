@@ -78,6 +78,12 @@ const PostStatusForm = {
     'emojiPickerPlacement',
     'optimisticPosting'
   ],
+  emits: [
+    'posted',
+    'resize',
+    'mediaplay',
+    'mediapause'
+  ],
   components: {
     MediaUpload,
     EmojiInput,
