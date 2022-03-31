@@ -21,7 +21,9 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env,
       'COMMIT_HASH': JSON.stringify('DEV'),
-      'DEV_OVERRIDES': JSON.stringify(config.dev.settings)
+      'DEV_OVERRIDES': JSON.stringify(config.dev.settings),
+      '__VUE_OPTIONS_API__': true,
+      '__VUE_PROD_DEVTOOLS__': false
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),

@@ -1,10 +1,3 @@
-import { configureCompat } from 'vue'
-// disable compat for certain features
-configureCompat({
-  COMPONENT_V_MODEL: false,
-  INSTANCE_SET: false,
-  RENDER_FUNCTION: false
-})
 // require all test files (files that ends with .spec.js)
 const testsContext = require.context('./specs', true, /\.spec$/)
 testsContext.keys().forEach(testsContext)

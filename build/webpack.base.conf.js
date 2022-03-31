@@ -35,7 +35,6 @@ module.exports = {
       path.join(__dirname, '../node_modules')
     ],
     alias: {
-      'vue': '@vue/compat',
       'static': path.resolve(__dirname, '../static'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
@@ -69,9 +68,6 @@ module.exports = {
                 return true
               }
               return false
-            },
-            compatConfig: {
-              MODE: 2
             }
           }
         }
