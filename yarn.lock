@@ -7423,10 +7423,10 @@ pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
 
-phoenix@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.4.0.tgz#9cec8dbd8cbc59ecd2147bc09ca8ceb56b860d75"
-  integrity sha512-+M7erjPRtrHM53Bc9sT/WSyNFOEhsAc48PBsex0R87hu0GhBRMNE2uAb8MT2gKtJmAYxv5Quaozh/PBuhO8tdQ==
+phoenix@1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.6.2.tgz#8d1d9f06e51cb893d08059e80488cd0de328e01a"
+  integrity sha512-VjR27NETvrLSj8rI6DlpVAfo7pCYth/9+1OCoTof4LKEbq0141ze/tdxFHHZzVQSok3gqJUo2h/tqbxR3r8eyw==
 
 picocolors@^1.0.0:
   version "1.0.0"
