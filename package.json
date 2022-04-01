@@ -34,6 +34,7 @@
     "localforage": "1.10.0",
     "parse-link-header": "1.0.1",
     "phoenix": "1.4.0",
+    "phoenix": "1.6.2",
     "punycode.js": "2.1.0",
     "qrcode": "1",
     "ruffle-mirror": "2021.12.31",
