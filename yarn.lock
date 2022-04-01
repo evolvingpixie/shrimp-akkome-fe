@@ -6155,6 +6155,11 @@ lodash.isequal@^4.2.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
 
+lodash.isfunction@^3.0.8:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
+  integrity sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
+
 lodash.isplainobject@^3.0.0, lodash.isplainobject@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-3.2.0.tgz#9a8238ae16b200432960cd7346512d0123fbf4c5"
@@ -10025,13 +10030,14 @@ webpack-log@^2.0.0:
     ansi-colors "^3.0.0"
     uuid "^3.3.2"
 
-webpack-merge@0.14.1:
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.14.1.tgz#d6bfe6d9360a024e1e7f8e6383ae735f1737cd23"
-  integrity sha1-1r/m2TYKAk4ef45jg65zXxc3zSM=
+webpack-merge@0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-0.20.0.tgz#e4b73429517181a287c59c8cafef5fc9eb1d9705"
+  integrity sha1-5Lc0KVFxgaKHxZyMr+9fyesdlwU=
   dependencies:
     lodash.find "^3.2.1"
     lodash.isequal "^4.2.0"
+    lodash.isfunction "^3.0.8"
     lodash.isplainobject "^3.2.0"
     lodash.merge "^3.3.2"
 
