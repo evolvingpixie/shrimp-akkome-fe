@@ -7,28 +7,28 @@
       id="app_bg_wrapper"
       class="app-bg-wrapper"
     />
-    <MobileNav class="navbar" v-if="isMobileLayout" />
-    <DesktopNav class="navbar" v-else />
-    <div class="app-bg-wrapper app-container-wrapper" />
+    <MobileNav v-if="isMobileLayout" />
+    <DesktopNav v-else />
     <div
       id="content"
       class="app-layout container"
+      :class="{ '-reverse': reverseLayout }"
     >
       <div class="underlay"/>
       <div
+        id="sidebar"
         class="column -scrollable -mini mobile-hidden"
-        :style="sidebarAlign"
       >
         <user-panel />
-        <div v-if="!isMobileLayout">
+        <template v-if="!isMobileLayout">
           <nav-panel />
           <instance-specific-panel v-if="showInstanceSpecificPanel" />
           <features-panel v-if="!currentUser && showFeaturesPanel" />
           <who-to-follow-panel v-if="currentUser && suggestionsEnabled" />
           <notifications v-if="currentUser" />
-        </div>
+        </template>
       </div>
-      <div class="column main">
+      <div id="main-scroller" class="column main">
         <div
           v-if="!currentUser"
           class="login-hint panel panel-default"

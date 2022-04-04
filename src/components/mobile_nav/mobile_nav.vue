@@ -181,7 +181,7 @@
   .mobile-notifications {
     margin-top: 50px;
     width: 100vw;
-    height: calc(100vh - 50px);
+    height: calc(100vh - var(--navbar-height));
     overflow-x: hidden;
     overflow-y: scroll;
 

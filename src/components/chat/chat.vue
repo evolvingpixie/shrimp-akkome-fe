@@ -8,7 +8,7 @@
       >
         <div
           ref="header"
-          class="panel-heading chat-view-heading mobile-hidden"
+          class="panel-heading -sticky chat-view-heading mobile-hidden"
         >
           <a
             class="go-back-button"
@@ -27,10 +27,8 @@
           </div>
         </div>
         <div
-          ref="scrollable"
-          class="scrollable-message-list"
+          class="message-list"
           :style="{ height: scrollableContainerHeight }"
-          @scroll="handleScroll"
         >
           <template v-if="!errorLoadingChat">
             <ChatMessage

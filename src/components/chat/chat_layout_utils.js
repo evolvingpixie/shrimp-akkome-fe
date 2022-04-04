@@ -1,5 +1,6 @@
 // Captures a scroll position
 export const getScrollPosition = (el) => {
+  console.log(el)
   return {
     scrollTop: el.scrollTop,
     scrollHeight: el.scrollHeight,

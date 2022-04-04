@@ -6,7 +6,7 @@ import PostStatusForm from '../post_status_form/post_status_form.vue'
 import ChatTitle from '../chat_title/chat_title.vue'
 import chatService from '../../services/chat_service/chat_service.js'
 import { promiseInterval } from '../../services/promise_interval/promise_interval.js'
-import { getScrollPosition, getNewTopPosition, isBottomedOut, scrollableContainerHeight, isScrollable } from './chat_layout_utils.js'
+import { getScrollPosition, getNewTopPosition, isBottomedOut } from './chat_layout_utils.js'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faChevronDown,
@@ -20,7 +20,7 @@ library.add(
 )
 
 const BOTTOMED_OUT_OFFSET = 10
-const JUMP_TO_BOTTOM_BUTTON_VISIBILITY_OFFSET = 150
+const JUMP_TO_BOTTOM_BUTTON_VISIBILITY_OFFSET = 10
 const SAFE_RESIZE_TIME_OFFSET = 100
 const MARK_AS_READ_DELAY = 1500
 const MAX_RETRIES = 10
@@ -52,7 +52,6 @@ const Chat = {
     }
 
     this.$nextTick(() => {
-      this.updateScrollableContainerHeight()
       this.handleResize()
     })
     this.setChatLayout()
@@ -132,7 +131,6 @@ const Chat = {
     onFilesDropped () {
       this.$nextTick(() => {
         this.handleResize()
-        this.updateScrollableContainerHeight()
       })
     },
     handleVisibilityChange () {
@@ -154,10 +152,6 @@ const Chat = {
       if (html) {
         html.classList.add('chat-layout')
       }
-
-      this.$nextTick(() => {
-        this.updateScrollableContainerHeight()
-      })
     },
     unsetChatLayout () {
       let html = document.querySelector('html')
@@ -167,16 +161,8 @@ const Chat = {
     },
     handleLayoutChange () {
       this.$nextTick(() => {
-        this.updateScrollableContainerHeight()
         this.scrollDown()
       })
-    },
-    // Ensures the proper position of the posting form in the mobile layout (the mobile browser panel does not overlap or hide it)
-    updateScrollableContainerHeight () {
-      const header = this.$refs.header
-      const footer = this.$refs.footer
-      const inner = this.mobileLayout ? window.document.body : this.$refs.inner
-      this.scrollableContainerHeight = scrollableContainerHeight(inner, header, footer) + 'px'
     },
     // Preserves the scroll position when OSK appears or the posting form changes its height.
     handleResize (opts = {}) {
@@ -190,17 +176,14 @@ const Chat = {
       }
 
       this.$nextTick(() => {
-        this.updateScrollableContainerHeight()
-
         const { offsetHeight = undefined } = this.lastScrollPosition
-        this.lastScrollPosition = getScrollPosition(this.$refs.scrollable)
+        this.lastScrollPosition = getScrollPosition(document.getElementById('content'))
 
         const diff = this.lastScrollPosition.offsetHeight - offsetHeight
         if (diff < 0 || (!this.bottomedOut() && expand)) {
           this.$nextTick(() => {
-            this.updateScrollableContainerHeight()
-            this.$refs.scrollable.scrollTo({
-              top: this.$refs.scrollable.scrollTop - diff,
+            document.getElementById('content').scrollTo({
+              top: document.getElementById('content').scrollTop - diff,
               left: 0
             })
           })
@@ -209,7 +192,7 @@ const Chat = {
     },
     scrollDown (options = {}) {
       const { behavior = 'auto', forceRead = false } = options
-      const scrollable = this.$refs.scrollable
+      const scrollable = document.getElementById('content')
       if (!scrollable) { return }
       this.$nextTick(() => {
         scrollable.scrollTo({ top: scrollable.scrollHeight, left: 0, behavior })
@@ -228,10 +211,10 @@ const Chat = {
       })
     },
     bottomedOut (offset) {
-      return isBottomedOut(this.$refs.scrollable, offset)
+      return isBottomedOut(document.getElementById('content'), offset)
     },
     reachedTop () {
-      const scrollable = this.$refs.scrollable
+      const scrollable = document.getElementById('content')
       return scrollable && scrollable.scrollTop <= 0
     },
     cullOlderCheck () {
@@ -263,7 +246,7 @@ const Chat = {
       }
     }, 200),
     handleScrollUp (positionBeforeLoading) {
-      const positionAfterLoading = getScrollPosition(this.$refs.scrollable)
+      const positionAfterLoading = getScrollPosition(document.getElementById('content'))
       this.$refs.scrollable.scrollTo({
         top: getNewTopPosition(positionBeforeLoading, positionAfterLoading),
         left: 0
@@ -285,22 +268,18 @@ const Chat = {
             chatService.clear(chatMessageService)
           }
 
-          const positionBeforeUpdate = getScrollPosition(this.$refs.scrollable)
+          const positionBeforeUpdate = getScrollPosition(document.getElementById('content'))
           this.$store.dispatch('addChatMessages', { chatId, messages }).then(() => {
             this.$nextTick(() => {
               if (fetchOlderMessages) {
                 this.handleScrollUp(positionBeforeUpdate)
               }
 
-              if (isFirstFetch) {
-                this.updateScrollableContainerHeight()
-              }
-
               // In vertical screens, the first batch of fetched messages may not always take the
               // full height of the scrollable container.
               // If this is the case, we want to fetch the messages until the scrollable container
               // is fully populated so that the user has the ability to scroll up and load the history.
-              if (!isScrollable(this.$refs.scrollable) && messages.length > 0) {
+              if (messages.length > 0) {
                 this.fetchChat({ maxId: this.currentChatMessageService.minId })
               }
             })
@@ -336,9 +315,6 @@ const Chat = {
         this.handleResize()
         // When the posting form size changes because of a media attachment, we need an extra resize
         // to account for the potential delay in the DOM update.
-        setTimeout(() => {
-          this.updateScrollableContainerHeight()
-        }, SAFE_RESIZE_TIME_OFFSET)
         this.scrollDown({ forceRead: true })
       })
     },

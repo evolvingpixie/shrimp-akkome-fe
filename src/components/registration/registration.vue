@@ -271,7 +271,10 @@ $validations-cRed: #f04124;
   .container {
     display: flex;
     flex-direction: row;
-    //margin-bottom: 1em;
+
+    > * {
+      min-width: 0;
+    }
   }
 
   .terms-of-service {

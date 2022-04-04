@@ -8,7 +8,7 @@
       :style="style"
       class="background-image"
     />
-    <div class="panel-heading">
+    <div class="panel-heading -flexible-height">
       <div class="user-info">
         <div class="container">
           <a
@@ -331,6 +331,7 @@
     border-top-left-radius: calc(var(--panelRadius) - 1px);
     border-top-right-radius: calc(var(--panelRadius) - 1px);
     background-color: var(--profileBg);
+    z-index: -2;
 
     &.hide-bio {
       mask-size: 100% 40px;
@@ -385,10 +386,15 @@
   padding: 0 26px;
 
   .container {
+    min-width: 0;
     padding: 16px 0 6px;
     display: flex;
     align-items: flex-start;
     max-height: 56px;
+
+    > * {
+      min-width: 0;
+    }
 
     .Avatar {
       --_avatarShadowBox: var(--avatarShadow);

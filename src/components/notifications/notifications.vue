@@ -6,7 +6,7 @@
     <div :class="mainClass">
       <div
         v-if="!noHeading"
-        class="panel-heading"
+        class="notifications-heading panel-heading -sticky"
       >
         <div class="title">
           {{ $t('notifications.notifications') }}

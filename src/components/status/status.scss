@@ -42,6 +42,10 @@
     display: flex;
     padding: var(--status-margin, $status-margin);
 
+    > * {
+      min-width: 0;
+    }
+
     &.-repeat {
       padding-top: 0;
     }

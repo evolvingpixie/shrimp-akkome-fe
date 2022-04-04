@@ -91,6 +91,9 @@
     flex-direction: column;
     margin-top: 0.6em;
     max-width: 18rem;
+    > * {
+      min-width: 0;
+    }
   }
 
   .form-group {

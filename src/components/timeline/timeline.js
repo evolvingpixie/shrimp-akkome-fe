@@ -64,7 +64,7 @@ const Timeline = {
       if (this.blockingClicks) rootClasses = rootClasses.concat(['-blocked', '_misclick-prevention'])
       return {
         root: rootClasses,
-        header: ['timeline-heading'].concat(!this.embedded ? ['panel-heading'] : []),
+        header: ['timeline-heading'].concat(!this.embedded ? ['panel-heading', '-sticky'] : []),
         body: ['timeline-body'].concat(!this.embedded ? ['panel-body'] : []),
         footer: ['timeline-footer'].concat(!this.embedded ? ['panel-footer'] : [])
       }
@@ -89,7 +89,7 @@ const Timeline = {
     const credentials = store.state.users.currentUser.credentials
     const showImmediately = this.timeline.visibleStatuses.length === 0
 
-    window.addEventListener('scroll', this.handleScroll)
+    document.getElementById('content').addEventListener('scroll', this.handleScroll)
 
     if (store.state.api.fetchers[this.timelineName]) { return false }
 
@@ -111,7 +111,7 @@ const Timeline = {
     setTimeout(this.determineVisibleStatuses, 250)
   },
   unmounted () {
-    window.removeEventListener('scroll', this.handleScroll)
+    document.getElementById('content').removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('keydown', this.handleShortKey)
     if (typeof document.hidden !== 'undefined') document.removeEventListener('visibilitychange', this.handleVisibilityChange, false)
     this.$store.commit('setLoading', { timeline: this.timelineName, value: false })

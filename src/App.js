@@ -81,11 +81,7 @@ export default {
     },
     isMobileLayout () { return this.$store.state.interface.mobileLayout },
     privateMode () { return this.$store.state.instance.private },
-    sidebarAlign () {
-      return {
-        'order': this.$store.getters.mergedConfig.sidebarRight ? 99 : 0
-      }
-    },
+    reverseLayout () { return this.$store.getters.mergedConfig.sidebarRight },
     ...mapGetters(['mergedConfig'])
   },
   methods: {
