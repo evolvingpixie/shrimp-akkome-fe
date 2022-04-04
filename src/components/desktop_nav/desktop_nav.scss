@@ -1,9 +1,7 @@
 @import '../../_variables.scss';
 
 .DesktopNav {
-  height: 50px;
   width: 100%;
-  position: fixed;
 
   a {
     color: var(--topBarLink, $fallback--link);

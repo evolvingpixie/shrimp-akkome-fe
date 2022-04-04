@@ -7,33 +7,28 @@
       id="app_bg_wrapper"
       class="app-bg-wrapper"
     />
-    <MobileNav v-if="isMobileLayout" />
-    <DesktopNav v-else />
+    <MobileNav class="navbar" v-if="isMobileLayout" />
+    <DesktopNav class="navbar" v-else />
     <div class="app-bg-wrapper app-container-wrapper" />
     <div
       id="content"
-      class="container underlay"
+      class="app-layout container"
     >
+      <div class="underlay"/>
       <div
-        class="sidebar-flexer mobile-hidden"
+        class="column -scrollable -mini mobile-hidden"
         :style="sidebarAlign"
       >
-        <div class="sidebar-bounds">
-          <div class="sidebar-scroller">
-            <div class="sidebar">
-              <user-panel />
-              <div v-if="!isMobileLayout">
-                <nav-panel />
-                <instance-specific-panel v-if="showInstanceSpecificPanel" />
-                <features-panel v-if="!currentUser && showFeaturesPanel" />
-                <who-to-follow-panel v-if="currentUser && suggestionsEnabled" />
-                <notifications v-if="currentUser" />
-              </div>
-            </div>
-          </div>
+        <user-panel />
+        <div v-if="!isMobileLayout">
+          <nav-panel />
+          <instance-specific-panel v-if="showInstanceSpecificPanel" />
+          <features-panel v-if="!currentUser && showFeaturesPanel" />
+          <who-to-follow-panel v-if="currentUser && suggestionsEnabled" />
+          <notifications v-if="currentUser" />
         </div>
       </div>
-      <div class="main">
+      <div class="column main">
         <div
           v-if="!currentUser"
           class="login-hint panel panel-default"

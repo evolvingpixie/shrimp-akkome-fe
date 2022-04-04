@@ -1,9 +1,19 @@
 @import './_variables.scss';
 
-#app {
-  min-height: 100vh;
-  max-width: 100%;
+body {
   overflow: hidden;
+}
+
+#app-loaded {
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+
+  --navbar-height: 50px;
+}
+
+.navbar {
+  height: var(--navbar-height);
 }
 
 .app-bg-wrapper {
@@ -16,11 +26,7 @@
   background-repeat: no-repeat;
   background-color: var(--wallpaper);
   background-image: var(--body-background-image);
-  background-position: 50% 50px;
-}
-
-i[class^='icon-'] {
-  user-select: none;
+  background-position: 50%;
 }
 
 h4 {
@@ -28,12 +34,69 @@ h4 {
 }
 
 #content {
+  overflow-y: auto;
+  position: sticky;
+}
+
+.app-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr;
   box-sizing: border-box;
-  padding-top: 60px;
-  margin: auto;
-  min-height: 100vh;
-  max-width: 980px;
+  margin: 0 auto;
+  height: 100vh;
   align-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 10px 0 10px;
+  grid-template-columns: auto auto;
+  justify-content: center;
+}
+
+.underlay {
+  height: 100%;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  margin: -0.5em;
+  padding: 0.5em;
+}
+
+.column {
+  max-width: 615px;
+  padding-top: 10px;
+  grid-row-start: 1;
+  grid-row-end: 1;
+
+  &:nth-child(2) {
+    grid-column: 1;
+  }
+
+  &:nth-child(3) {
+    grid-column: 2;
+  }
+
+  &.-mini {
+    max-width: 345px;
+  }
+
+  &.-scrollable {
+    position: sticky;
+    top: 0;
+    margin-top: calc(-1 * var(--navbar-padding));
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+body,
+.column.-scrollable {
+  &::-webkit-scrollbar {
+    display: block;
+    width: 0;
+  }
 }
 
 .underlay {
@@ -362,13 +425,6 @@ i[class*=icon-], .svg-inline--fa  {
   }
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0 10px 0 10px;
-}
-
 .auto-size {
   flex: 1
 }
@@ -598,10 +654,6 @@ nav {
 }
 
 @media all and (min-width: 800px) {
-  body {
-    overflow-y: scroll;
-  }
-
   .sidebar-bounds {
     overflow: hidden;
     max-height: 100vh;
@@ -856,10 +908,6 @@ nav {
   height: 100%;
 
   // Get rid of scrollbar on body as scrolling happens on different element
-  body {
-    overflow: hidden;
-  }
-
   // Ensures the fixed position of the mobile browser bars on scroll up / down events.
   // Prevents the mobile browser bars from overlapping or hiding the message posting form.
   @media all and (max-width: 800px) {

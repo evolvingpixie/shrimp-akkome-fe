@@ -92,8 +92,7 @@
 .MobileNav {
   .mobile-nav {
     display: grid;
-    line-height: 50px;
-    height: 50px;
+    line-height: var(--navbar-height);
     grid-template-rows: 50px;
     grid-template-columns: 2fr auto;
     width: 100%;
