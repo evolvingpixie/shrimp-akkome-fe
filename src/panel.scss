@@ -1,0 +1,204 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+  background-color: $fallback--bg;
+  background-color: var(--bg, $fallback--bg);
+
+  &::after,
+  & {
+    border-radius: $fallback--panelRadius;
+    border-radius: var(--panelRadius, $fallback--panelRadius);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--panelShadow);
+    pointer-events: none;
+  }
+}
+
+.panel-body:empty::before {
+  content: "¯\\_(ツ)_/¯"; // Could use words but it'd require translations
+  display: block;
+  margin: 1em;
+  text-align: center;
+}
+
+.panel-heading {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
+  border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
+  background-size: cover;
+  padding: 0.6em 0.6em;
+  text-align: left;
+  line-height: 28px;
+  color: var(--panelText);
+  background-color: $fallback--bg;
+  background-color: var(--bg, $fallback--bg);
+  align-items: baseline;
+  height: var(--panelHeadingHeight);
+  z-index: -2;
+
+  --panelHeadingHeight: 45px;
+
+  &.-flexible-height {
+    --panelHeadingHeight: auto;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+
+  &.-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  &::after {
+    background-color: $fallback--fg;
+    background-color: var(--panel, $fallback--fg);
+    z-index: -2;
+    border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
+    border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
+    box-shadow: var(--panelHeaderShadow);
+  }
+
+  &::before {
+    bottom: -20px;
+    z-index: -1;
+    border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
+    border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
+    mask: linear-gradient(to bottom, white var(--panelHeadingHeight), transparent var(--panelHeadingHeight));
+  }
+
+  .title {
+    flex: 1 0 auto;
+    font-size: 1.3em;
+  }
+
+  .faint {
+    background-color: transparent;
+    color: $fallback--faint;
+    color: var(--panelFaint, $fallback--faint);
+  }
+
+  .faint-link {
+    color: $fallback--faint;
+    color: var(--faintLink, $fallback--faint);
+  }
+
+  .alert {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
+
+  .button-default,
+  .alert {
+    // height: 100%;
+    line-height: 21px;
+    min-height: 0;
+    box-sizing: border-box;
+    margin: 0;
+    margin-left: 0.5em;
+    min-width: 1px;
+    align-self: stretch;
+  }
+
+  .button-default {
+    flex-shrink: 0;
+
+    &,
+    i[class*=icon-] {
+      color: $fallback--text;
+      color: var(--btnPanelText, $fallback--text);
+    }
+
+    &:active {
+      background-color: $fallback--fg;
+      background-color: var(--btnPressedPanel, $fallback--fg);
+      color: $fallback--text;
+      color: var(--btnPressedPanelText, $fallback--text);
+    }
+
+    &:disabled {
+      color: $fallback--text;
+      color: var(--btnDisabledPanelText, $fallback--text);
+    }
+
+    &.toggled {
+      color: $fallback--text;
+      color: var(--btnToggledPanelText, $fallback--text);
+    }
+  }
+
+  a,
+  .-link {
+    color: $fallback--link;
+    color: var(--panelLink, $fallback--link);
+  }
+}
+
+.panel-heading.stub {
+  border-radius: $fallback--panelRadius;
+  border-radius: var(--panelRadius, $fallback--panelRadius);
+}
+
+/* TODO Should remove timeline-footer from here when we refactor panels into
+ * separate component and utilize slots
+ */
+.panel-footer {
+  display: flex;
+  border-radius: 0 0 $fallback--panelRadius $fallback--panelRadius;
+  border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
+  flex: none;
+  padding: 0.6em 0.6em;
+  text-align: left;
+  line-height: 28px;
+  align-items: baseline;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: var(--border, $fallback--border);
+
+  .faint {
+    color: $fallback--faint;
+    color: var(--panelFaint, $fallback--faint);
+  }
+
+  a,
+  .-link {
+    color: $fallback--link;
+    color: var(--panelLink, $fallback--link);
+  }
+}
+
+.panel-body > p {
+  line-height: 18px;
+  padding: 1em;
+  margin: 0;
+}
