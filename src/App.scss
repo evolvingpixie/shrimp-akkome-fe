@@ -91,7 +91,7 @@ nav {
 .app-layout {
   position: relative;
   display: grid;
-  grid-template-columns: auto minmax(auto, 1fr);
+  grid-template-columns: var(--miniColumn) var(--maxiColumn);
   grid-template-areas: "sidebar content";
   grid-template-rows: 1fr;
   box-sizing: border-box;
@@ -102,8 +102,11 @@ nav {
   padding: 0 10px 0 10px;
   justify-content: center;
 
+  --miniColumn: 345px;
+  --maxiColumn: minmax(auto, 615px);
+
   &.-reverse {
-    grid-template-columns: minmax(auto, 1fr) auto;
+    grid-template-columns: var(--maxiColumn) var(--miniColumn);
     grid-template-areas: "content sidebar";
   }
 }
@@ -123,15 +126,10 @@ nav {
 
 .column {
   box-sizing: border-box;
-  max-width: 615px;
   padding-top: 10px;
   grid-row-start: 1;
   grid-row-end: 1;
   margin: 0 0.5em;
-
-  &.-mini {
-    max-width: 345px;
-  }
 
   &.-scrollable {
     padding-top: 10px;
