@@ -15,7 +15,7 @@
     </router-link>
     <RichContent
       class="username"
-      :title="'@'+user.screen_name_ui"
+      :title="'@'+(user && user.screen_name_ui)"
       :html="htmlTitle"
       :emoji="user.emoji"
     />
