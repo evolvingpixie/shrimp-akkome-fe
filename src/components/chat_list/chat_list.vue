@@ -6,7 +6,7 @@
     v-else
     class="chat-list panel panel-default"
   >
-    <div class="panel-heading">
+    <div class="panel-heading -sticky">
       <span class="title">
         {{ $t("chats.chats") }}
       </span>
