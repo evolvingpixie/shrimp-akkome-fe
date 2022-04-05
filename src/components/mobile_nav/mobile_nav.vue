@@ -96,7 +96,6 @@
     grid-template-rows: 50px;
     grid-template-columns: 2fr auto;
     width: 100%;
-    position: fixed;
     box-sizing: border-box;
   }
 

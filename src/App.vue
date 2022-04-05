@@ -7,12 +7,12 @@
       id="app_bg_wrapper"
       class="app-bg-wrapper"
     />
-    <MobileNav v-if="isMobileLayout" />
+    <MobileNav v-if="layoutType === 'mobile'" />
     <DesktopNav v-else />
     <div
       id="content"
       class="app-layout container"
-      :class="{ '-reverse': reverseLayout }"
+      :class="[{ '-reverse': reverseLayout }, '-' + layoutType]"
     >
       <div class="underlay"/>
       <div
@@ -20,7 +20,7 @@
         class="column -scrollable -mini mobile-hidden"
       >
         <user-panel />
-        <template v-if="!isMobileLayout">
+        <template v-if="layoutType !== 'mobile'">
           <nav-panel />
           <instance-specific-panel v-if="showInstanceSpecificPanel" />
           <features-panel v-if="!currentUser && showFeaturesPanel" />

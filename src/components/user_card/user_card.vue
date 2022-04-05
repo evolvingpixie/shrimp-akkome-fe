@@ -289,6 +289,7 @@
 
 .user-card {
   position: relative;
+  z-index: 1;
 
   &:hover {
     --_still-image-img-visibility: visible;

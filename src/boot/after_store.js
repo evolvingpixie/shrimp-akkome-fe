@@ -332,8 +332,11 @@ const checkOAuthToken = async ({ store }) => {
 }
 
 const afterStoreSetup = async ({ store, i18n }) => {
-  const width = windowWidth()
-  store.dispatch('setMobileLayout', width <= 800)
+  // TODO cleanup copypasta
+  const mobileLayout = windowWidth() <= 800
+  const wideLayout = windowWidth() >= 1300
+  const layoutType = wideLayout ? 'wide' : (mobileLayout ? 'mobile' : 'normal')
+  store.dispatch('setLayoutType', layoutType)
 
   FaviconService.initFaviconService()
 

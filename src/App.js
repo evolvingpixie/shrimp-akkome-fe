@@ -79,7 +79,7 @@ export default {
     hideShoutbox () {
       return this.$store.getters.mergedConfig.hideShoutbox
     },
-    isMobileLayout () { return this.$store.state.interface.mobileLayout },
+    layoutType () { return this.$store.state.interface.layoutType },
     privateMode () { return this.$store.state.instance.private },
     reverseLayout () { return this.$store.getters.mergedConfig.sidebarRight },
     ...mapGetters(['mergedConfig'])
@@ -87,10 +87,12 @@ export default {
   methods: {
     updateMobileState () {
       const mobileLayout = windowWidth() <= 800
+      const wideLayout = windowWidth() >= 1300
       const layoutHeight = windowHeight()
-      const changed = mobileLayout !== this.isMobileLayout
+      const layoutType = wideLayout ? 'wide' : (mobileLayout ? 'mobile' : 'normal')
+      const changed = layoutType !== this.layoutType
       if (changed) {
-        this.$store.dispatch('setMobileLayout', mobileLayout)
+        this.$store.dispatch('setLayoutType', layoutType)
       }
       this.$store.dispatch('setLayoutHeight', layoutHeight)
     }
