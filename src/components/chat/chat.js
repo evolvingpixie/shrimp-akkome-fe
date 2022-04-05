@@ -19,6 +19,8 @@ library.add(
   faChevronLeft
 )
 
+const scroller = () => document.getElementById('content')
+
 const BOTTOMED_OUT_OFFSET = 10
 const JUMP_TO_BOTTOM_BUTTON_VISIBILITY_OFFSET = 10
 const SAFE_RESIZE_TIME_OFFSET = 100
@@ -46,7 +48,7 @@ const Chat = {
     window.addEventListener('resize', this.handleLayoutChange)
   },
   mounted () {
-    window.addEventListener('scroll', this.handleScroll)
+    scroller().addEventListener('scroll', this.handleScroll)
     if (typeof document.hidden !== 'undefined') {
       document.addEventListener('visibilitychange', this.handleVisibilityChange, false)
     }
@@ -57,7 +59,7 @@ const Chat = {
     this.setChatLayout()
   },
   unmounted () {
-    window.removeEventListener('scroll', this.handleScroll)
+    scroller().removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('resize', this.handleLayoutChange)
     this.unsetChatLayout()
     if (typeof document.hidden !== 'undefined') document.removeEventListener('visibilitychange', this.handleVisibilityChange, false)
@@ -177,13 +179,13 @@ const Chat = {
 
       this.$nextTick(() => {
         const { offsetHeight = undefined } = this.lastScrollPosition
-        this.lastScrollPosition = getScrollPosition(document.getElementById('content'))
+        this.lastScrollPosition = getScrollPosition(scroller())
 
         const diff = this.lastScrollPosition.offsetHeight - offsetHeight
         if (diff < 0 || (!this.bottomedOut() && expand)) {
           this.$nextTick(() => {
-            document.getElementById('content').scrollTo({
-              top: document.getElementById('content').scrollTop - diff,
+            scroller().scrollTo({
+              top: scroller().scrollTop - diff,
               left: 0
             })
           })
@@ -192,7 +194,7 @@ const Chat = {
     },
     scrollDown (options = {}) {
       const { behavior = 'auto', forceRead = false } = options
-      const scrollable = document.getElementById('content')
+      const scrollable = scroller()
       if (!scrollable) { return }
       this.$nextTick(() => {
         scrollable.scrollTo({ top: scrollable.scrollHeight, left: 0, behavior })
@@ -211,10 +213,10 @@ const Chat = {
       })
     },
     bottomedOut (offset) {
-      return isBottomedOut(document.getElementById('content'), offset)
+      return isBottomedOut(scroller(), offset)
     },
     reachedTop () {
-      const scrollable = document.getElementById('content')
+      const scrollable = scroller()
       return scrollable && scrollable.scrollTop <= 0
     },
     cullOlderCheck () {
@@ -246,8 +248,8 @@ const Chat = {
       }
     }, 200),
     handleScrollUp (positionBeforeLoading) {
-      const positionAfterLoading = getScrollPosition(document.getElementById('content'))
-      this.$refs.scrollable.scrollTo({
+      const positionAfterLoading = getScrollPosition(scroller())
+      scroller().scrollTo({
         top: getNewTopPosition(positionBeforeLoading, positionAfterLoading),
         left: 0
       })
@@ -268,7 +270,7 @@ const Chat = {
             chatService.clear(chatMessageService)
           }
 
-          const positionBeforeUpdate = getScrollPosition(document.getElementById('content'))
+          const positionBeforeUpdate = getScrollPosition(scroller())
           this.$store.dispatch('addChatMessages', { chatId, messages }).then(() => {
             this.$nextTick(() => {
               if (fetchOlderMessages) {

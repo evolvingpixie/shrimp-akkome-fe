@@ -494,7 +494,7 @@ i[class*=icon-],
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 2;
+    z-index: 100;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
     box-shadow: var(--panelShadow);
     pointer-events: none;

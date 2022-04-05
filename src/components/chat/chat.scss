@@ -37,6 +37,7 @@
     bottom: 0;
     background-color: $fallback--bg;
     background-color: var(--bg, $fallback--bg);
+    z-index: 10;
   }
 
   .chat-view-heading {
