@@ -9,23 +9,21 @@
     />
     <MobileNav v-if="layoutType === 'mobile'" />
     <DesktopNav v-else />
+    <notifications v-if="currentUser" />
     <div
       id="content"
       class="app-layout container"
       :class="[{ '-reverse': reverseLayout }, '-' + layoutType]"
     >
       <div class="underlay"/>
-      <div
-        id="sidebar"
-        class="column -scrollable -mini mobile-hidden"
-      >
+      <div id="sidebar" class="column -scrollable">
         <user-panel />
         <template v-if="layoutType !== 'mobile'">
           <nav-panel />
           <instance-specific-panel v-if="showInstanceSpecificPanel" />
           <features-panel v-if="!currentUser && showFeaturesPanel" />
           <who-to-follow-panel v-if="currentUser && suggestionsEnabled" />
-          <notifications v-if="currentUser" />
+          <div id="notifs-sidebar" />
         </template>
       </div>
       <div id="main-scroller" class="column main">
@@ -42,6 +40,7 @@
         </div>
         <router-view />
       </div>
+      <div id="notifs-column" class="column -scrollable"/>
       <media-modal />
     </div>
     <shout-panel

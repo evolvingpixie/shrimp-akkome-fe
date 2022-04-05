@@ -64,10 +64,10 @@ nav {
 
 #sidebar {
   grid-area: sidebar;
+}
 
-  @media all and (max-width: 800px) {
-    display: none;
-  }
+#notifs-column {
+  grid-area: notifs;
 }
 
 #main-scroller {
@@ -175,6 +175,10 @@ nav {
     }
 
     .underlay {
+      display: none;
+    }
+
+    #sidebar {
       display: none;
     }
   }

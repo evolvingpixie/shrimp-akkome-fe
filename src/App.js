@@ -1,6 +1,5 @@
 import UserPanel from './components/user_panel/user_panel.vue'
 import NavPanel from './components/nav_panel/nav_panel.vue'
-import Notifications from './components/notifications/notifications.vue'
 import InstanceSpecificPanel from './components/instance_specific_panel/instance_specific_panel.vue'
 import FeaturesPanel from './components/features_panel/features_panel.vue'
 import WhoToFollowPanel from './components/who_to_follow_panel/who_to_follow_panel.vue'
@@ -16,13 +15,14 @@ import PostStatusModal from './components/post_status_modal/post_status_modal.vu
 import GlobalNoticeList from './components/global_notice_list/global_notice_list.vue'
 import { windowWidth, windowHeight } from './services/window_utils/window_utils'
 import { mapGetters } from 'vuex'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'app',
   components: {
     UserPanel,
     NavPanel,
-    Notifications,
+    Notifications: defineAsyncComponent(() => import('./components/notifications/notifications.vue')),
     InstanceSpecificPanel,
     FeaturesPanel,
     WhoToFollowPanel,

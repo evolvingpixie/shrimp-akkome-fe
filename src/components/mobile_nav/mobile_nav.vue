@@ -69,12 +69,9 @@
       </div>
       <div
         class="mobile-notifications"
+        id="mobile-notifications"
         @scroll="onScroll"
       >
-        <Notifications
-          ref="notifications"
-          :no-heading="true"
-        />
       </div>
     </div>
     <SideDrawer

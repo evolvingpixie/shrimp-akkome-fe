@@ -78,7 +78,8 @@ const MobileNav = {
       this.$store.dispatch('logout')
     },
     markNotificationsAsSeen () {
-      this.$refs.notifications.markAsSeen()
+      // this.$refs.notifications.markAsSeen()
+      this.$store.dispatch('markNotificationsAsSeen')
     },
     onScroll ({ target: { scrollTop, clientHeight, scrollHeight } }) {
       if (scrollTop + clientHeight >= scrollHeight) {
