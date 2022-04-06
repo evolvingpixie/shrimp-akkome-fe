@@ -60,6 +60,15 @@ module.exports = {
         }
       },
       {
+        enforce: 'post',
+        test: /\.(json5?|ya?ml)$/, // target json, json5, yaml and yml files
+        type: 'javascript/auto',
+        loader: '@intlify/vue-i18n-loader',
+        include: [ // Use `Rule.include` to specify the files of locale messages to be pre-compiled
+          path.resolve(__dirname, '../src/i18n')
+        ]
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -98,14 +107,6 @@ module.exports = {
             name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
           }
         }
-      },
-      {
-        test: /\.(json5?|ya?ml)$/, // target json, json5, yaml and yml files
-        type: 'javascript/auto',
-        loader: '@intlify/vue-i18n-loader',
-        include: [ // Use `Rule.include` to specify the files of locale messages to be pre-compiled
-          path.resolve(__dirname, 'src/i18n')
-        ]
       },
     ]
   },
