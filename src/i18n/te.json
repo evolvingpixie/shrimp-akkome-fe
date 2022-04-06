@@ -49,7 +49,7 @@
   "notifications.repeated_you": "మీ స్థితిని పునరావృతం చేసారు",
   "notifications.no_more_notifications": "ఇక నోటిఫికేషన్లు లేవు",
   "post_status.new_status": "క్రొత్త స్థితిని పోస్ట్ చేయండి",
-  "post_status.account_not_locked_warning": "మీ ఖాతా {౦} కాదు. ఎవరైనా మిమ్మల్ని అనుసరించి అనుచరులకు మాత్రమే ఉద్దేశించిన పోస్టులను చూడవచ్చు.",
+  "post_status.account_not_locked_warning": "మీ ఖాతా {0} కాదు. ఎవరైనా మిమ్మల్ని అనుసరించి అనుచరులకు మాత్రమే ఉద్దేశించిన పోస్టులను చూడవచ్చు.",
   "post_status.account_not_locked_warning_link": "తాళం వేయబడినది",
   "post_status.attachments_sensitive": "జోడింపులను సున్నితమైనవిగా గుర్తించండి",
   "post_status.content_type.text/plain": "సాధారణ అక్షరాలు",

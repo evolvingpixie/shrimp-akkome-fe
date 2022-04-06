@@ -38,7 +38,8 @@ module.exports = {
       'static': path.resolve(__dirname, '../static'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js'
     }
   },
   module: {
@@ -57,6 +58,15 @@ module.exports = {
             extract: true
           }
         }
+      },
+      {
+        enforce: 'post',
+        test: /\.(json5?|ya?ml)$/, // target json, json5, yaml and yml files
+        type: 'javascript/auto',
+        loader: '@intlify/vue-i18n-loader',
+        include: [ // Use `Rule.include` to specify the files of locale messages to be pre-compiled
+          path.resolve(__dirname, '../src/i18n')
+        ]
       },
       {
         test: /\.vue$/,
