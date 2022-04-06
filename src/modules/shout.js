@@ -1,7 +1,8 @@
 const shout = {
   state: {
     messages: [],
-    channel: { state: '' }
+    channel: { state: '' },
+    joined: false
   },
   mutations: {
     setChannel (state, channel) {
@@ -13,11 +14,23 @@ const shout = {
     },
     setMessages (state, messages) {
       state.messages = messages.slice(-19, 20)
+    },
+    setJoined (state, joined) {
+      state.joined = joined
     }
   },
   actions: {
     initializeShout (store, socket) {
       const channel = socket.channel('chat:public')
+      channel.joinPush.receive('ok', () => {
+        store.commit('setJoined', true)
+      })
+      channel.onClose(() => {
+        store.commit('setJoined', false)
+      })
+      channel.onError(() => {
+        store.commit('setJoined', false)
+      })
       channel.on('new_msg', (msg) => {
         store.commit('addMessage', msg)
       })

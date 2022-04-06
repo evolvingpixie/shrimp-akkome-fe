@@ -65,7 +65,7 @@ export default {
         }
       }
     },
-    shout () { return this.$store.state.shout.channel.state === 'joined' },
+    shout () { return this.$store.state.shout.joined },
     suggestionsEnabled () { return this.$store.state.instance.suggestionsEnabled },
     showInstanceSpecificPanel () {
       return this.$store.state.instance.showInstanceSpecificPanel &&
