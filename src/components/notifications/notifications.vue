@@ -1,5 +1,5 @@
 <template>
-  <teleport :to="teleportTarget">
+  <teleport :disabled="minimalMode" :to="teleportTarget">
     <div
       :class="{ minimal: minimalMode }"
       class="Notifications"

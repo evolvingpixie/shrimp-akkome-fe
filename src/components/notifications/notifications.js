@@ -65,8 +65,7 @@ const Notifications = {
     },
     noHeading () {
       const { layoutType } = this.$store.state.interface
-      console.log(layoutType)
-      return layoutType === 'mobile'
+      return this.minimalMode || layoutType === 'mobile'
     },
     teleportTarget () {
       const { layoutType } = this.$store.state.interface
