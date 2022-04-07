@@ -99,6 +99,9 @@
     width: 100%;
     position: fixed;
     box-sizing: border-box;
+    a {
+      color: var(--topBarLink, $fallback--link);
+    }
   }
 
   .mobile-inner-nav {
