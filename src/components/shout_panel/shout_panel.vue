@@ -98,7 +98,7 @@
 
     .icon {
       color: $fallback--text;
-      color: var(--text, $fallback--text);
+      color: var(--panelText, $fallback--text);
       margin-right: 0.5em;
     }
 
