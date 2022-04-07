@@ -158,10 +158,10 @@
     }
 
     &:active {
-      background-color: $fallback--fg;
-      background-color: var(--btnPressed, $fallback--fg);
-      color: $fallback--text;
-      color: var(--btnPressedText, $fallback--text);
+      background-color: $fallback--lightBg;
+      background-color: var(--selectedMenuPopover, $fallback--lightBg);
+      color: $fallback--link;
+      color: var(--selectedMenuPopoverText, $fallback--link);
     }
 
     &:disabled {
