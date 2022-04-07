@@ -12,6 +12,8 @@ library.add(
   faCog
 )
 
+const scroller = () => document.getElementById('content')
+
 const Timeline = {
   props: [
     'timeline',
@@ -89,7 +91,7 @@ const Timeline = {
     const credentials = store.state.users.currentUser.credentials
     const showImmediately = this.timeline.visibleStatuses.length === 0
 
-    document.getElementById('content').addEventListener('scroll', this.handleScroll)
+    scroller().addEventListener('scroll', this.handleScroll)
 
     if (store.state.api.fetchers[this.timelineName]) { return false }
 
@@ -111,7 +113,7 @@ const Timeline = {
     setTimeout(this.determineVisibleStatuses, 250)
   },
   unmounted () {
-    document.getElementById('content').removeEventListener('scroll', this.handleScroll)
+    scroller().removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('keydown', this.handleShortKey)
     if (typeof document.hidden !== 'undefined') document.removeEventListener('visibilitychange', this.handleVisibilityChange, false)
     this.$store.commit('setLoading', { timeline: this.timelineName, value: false })
@@ -141,6 +143,7 @@ const Timeline = {
         this.$store.commit('showNewStatuses', { timeline: this.timelineName })
         this.paused = false
       }
+      scroller().scrollTop = 0
     },
     fetchOlderStatuses: throttle(function () {
       const store = this.$store
@@ -228,8 +231,8 @@ const Timeline = {
       }
       if (count > 0) {
         // only 'stream' them when you're scrolled to the top
-        const doc = document.documentElement
-        const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+        const doc = document.getElementById('content')
+        const top = (doc.scrollTop) - (doc.clientTop || 0)
         if (top < 15 &&
             !this.paused &&
             !(this.unfocused && this.$store.getters.mergedConfig.pauseOnUnfocused)
