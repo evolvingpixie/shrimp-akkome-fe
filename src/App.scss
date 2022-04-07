@@ -43,6 +43,7 @@ body {
 
     color: var(--btnText);
     background-repeat: no-repeat, no-repeat;
+    border-radius: var(--btnRadius);
 
     &:horizontal {
       background-size: 50% calc(50% - var(--___bgPadding)), 50% calc(50% - var(--___bgPadding));
