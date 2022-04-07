@@ -25,6 +25,63 @@ body {
   }
 }
 
+* {
+  scrollbar-color: var(--btn) transparent;
+
+  &::-webkit-scrollbar {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-button,
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--btn);
+    box-shadow: var(--buttonShadow);
+  }
+
+  &::-webkit-scrollbar-button {
+    --___bgPadding: 2px;
+
+    color: var(--btnText);
+    background-repeat: no-repeat, no-repeat;
+
+    &:horizontal {
+      background-size: 50% calc(50% - var(--___bgPadding)), 50% calc(50% - var(--___bgPadding));
+
+      &:increment {
+        background-image:
+          linear-gradient(45deg, var(--btnText) 50%, transparent 51%),
+          linear-gradient(-45deg, transparent 50%, var(--btnText) 51%);
+        background-position: top var(--___bgPadding) left 50%, right 50% bottom var(--___bgPadding);
+      }
+
+      &:decrement {
+        background-image:
+          linear-gradient(45deg, transparent 50%, var(--btnText) 51%),
+          linear-gradient(-45deg, var(--btnText) 50%, transparent 51%);
+        background-position: bottom var(--___bgPadding) right 50%, left 50% top var(--___bgPadding);
+      }
+    }
+
+    &:vertical {
+      background-size: calc(50% - var(--___bgPadding)) 50%, calc(50% - var(--___bgPadding)) 50%;
+
+      &:increment {
+        background-image:
+          linear-gradient(-45deg, transparent 50%, var(--btnText) 51%),
+          linear-gradient(45deg, transparent 50%, var(--btnText) 51%);
+        background-position: right var(--___bgPadding) top 50%, left var(--___bgPadding) top 50%;
+      }
+
+      &:decrement {
+        background-image:
+          linear-gradient(-45deg, var(--btnText) 50%, transparent 51%),
+          linear-gradient(45deg, var(--btnText) 50%, transparent 51%);
+        background-position: left var(--___bgPadding) top 50%, right var(--___bgPadding) top 50%;
+      }
+    }
+  }
+}
+
 a {
   text-decoration: none;
   color: $fallback--link;
@@ -205,10 +262,6 @@ nav {
       display: none;
     }
   }
-}
-
-#content,
-.column.-scrollable {
 }
 
 .text-center {
