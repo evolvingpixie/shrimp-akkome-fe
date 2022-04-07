@@ -149,5 +149,30 @@
     }
 
   }
+
+  .button-default.dropdown-item {
+    &,
+    i[class*=icon-] {
+      color: $fallback--text;
+      color: var(--btnText, $fallback--text);
+    }
+
+    &:active {
+      background-color: $fallback--fg;
+      background-color: var(--btnPressed, $fallback--fg);
+      color: $fallback--text;
+      color: var(--btnPressedText, $fallback--text);
+    }
+
+    &:disabled {
+      color: $fallback--text;
+      color: var(--btnDisabledText, $fallback--text);
+    }
+
+    &.toggled {
+      color: $fallback--text;
+      color: var(--btnToggledText, $fallback--text);
+    }
+  }
 }
 </style>
