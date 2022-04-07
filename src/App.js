@@ -82,6 +82,8 @@ export default {
     layoutType () { return this.$store.state.interface.layoutType },
     privateMode () { return this.$store.state.instance.private },
     reverseLayout () { return this.$store.getters.mergedConfig.sidebarRight },
+    noSticky () { return this.$store.getters.mergedConfig.disableStickyHeaders },
+    showScrollbars () { return this.$store.getters.mergedConfig.showScrollbars },
     ...mapGetters(['mergedConfig'])
   },
   methods: {

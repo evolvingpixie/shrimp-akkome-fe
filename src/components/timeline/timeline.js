@@ -91,7 +91,7 @@ const Timeline = {
     const credentials = store.state.users.currentUser.credentials
     const showImmediately = this.timeline.visibleStatuses.length === 0
 
-    scroller().addEventListener('scroll', this.handleScroll)
+    scroller() && scroller().addEventListener('scroll', this.handleScroll)
 
     if (store.state.api.fetchers[this.timelineName]) { return false }
 

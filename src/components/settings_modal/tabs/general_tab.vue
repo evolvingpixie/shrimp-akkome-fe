@@ -61,6 +61,16 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="disableStickyHeaders">
+            {{ $t('settings.disable_sticky_headers') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="showScrollbars">
+            {{ $t('settings.show_scrollbars') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting
             path="alwaysShowNewPostButton"
             expert="1"

@@ -13,10 +13,10 @@
     <div
       id="content"
       class="app-layout container"
-      :class="[{ '-reverse': reverseLayout }, '-' + layoutType]"
+      :class="[{ '-reverse': reverseLayout, '-no-sticky-headers': noSticky }, '-' + layoutType]"
     >
       <div class="underlay"/>
-      <div id="sidebar" class="column -scrollable">
+      <div id="sidebar" class="column -scrollable" :class="{ '-show-scrollbar': showScrollbars }">
         <user-panel />
         <template v-if="layoutType !== 'mobile'">
           <nav-panel />
@@ -40,7 +40,7 @@
         </div>
         <router-view />
       </div>
-      <div id="notifs-column" class="column -scrollable"/>
+      <div id="notifs-column" class="column -scrollable" :class="{ '-show-scrollbar': showScrollbars }"/>
       <media-modal />
     </div>
     <shout-panel

@@ -59,6 +59,7 @@ nav {
 #content {
   overscroll-behavior-y: none;
   overflow-y: auto;
+  overflow-x: hidden;
   position: sticky;
 }
 
@@ -136,9 +137,31 @@ nav {
       max-height: calc(100vh - var(--navbar-height));
       overflow-y: auto;
       overflow-x: hidden;
+      margin-left: -2em;
+      padding-left: 2.5em;
+
+      &:not(.-show-scrollbar) {
+        scrollbar-width: none;
+        margin-right: -2em;
+        padding-right: 2.5em;
+
+        &::-webkit-scrollbar {
+          display: block;
+          width: 0;
+        }
+      }
 
       .panel-heading.-sticky {
         top: -10px;
+      }
+    }
+  }
+
+  &.-no-sticky-headers {
+    .column {
+      .panel-heading.-sticky {
+        position: relative;
+        top: 0;
       }
     }
   }
@@ -186,10 +209,6 @@ nav {
 
 #content,
 .column.-scrollable {
-  &::-webkit-scrollbar {
-    display: block;
-    width: 0;
-  }
 }
 
 .text-center {

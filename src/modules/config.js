@@ -73,6 +73,8 @@ export const defaultState = {
   playVideosInModal: false,
   useOneClickNsfw: false,
   useContainFit: true,
+  disableStickyHeaders: false,
+  showScrollbars: false,
   greentext: undefined, // instance default
   useAtIcon: undefined, // instance default
   mentionLinkDisplay: undefined, // instance default

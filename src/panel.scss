@@ -28,8 +28,7 @@
 
 .panel-body:empty::before {
   content: "¯\\_(ツ)_/¯"; // Could use words but it'd require translations
-  display: block;
-  margin: 1em;
+  display: block; margin: 1em;
   text-align: center;
 }
 
