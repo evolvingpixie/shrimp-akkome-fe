@@ -52,7 +52,10 @@ module.exports = {
         target,
         changeOrigin: true,
         cookieDomainRewrite: 'localhost',
-        ws: true
+        ws: true,
+        headers: {
+          'Origin': target
+        }
       },
       '/oauth/revoke': {
         target,
