@@ -255,11 +255,9 @@ nav {
       margin: 0;
     }
 
-    .underlay {
-      display: none;
-    }
-
-    #sidebar {
+    .underlay,
+    #sidebar,
+    #notifs-column {
       display: none;
     }
   }
