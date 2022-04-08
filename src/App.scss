@@ -25,59 +25,61 @@ body {
   }
 }
 
-* {
-  scrollbar-color: var(--btn) transparent;
+@media (any-pointer: fine) {
+  * {
+    scrollbar-color: var(--btn) transparent;
 
-  &::-webkit-scrollbar {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-button,
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--btn);
-    box-shadow: var(--buttonShadow);
-    border-radius: var(--btnRadius);
-  }
-
-  &::-webkit-scrollbar-button {
-    --___bgPadding: 2px;
-
-    color: var(--btnText);
-    background-repeat: no-repeat, no-repeat;
-
-    &:horizontal {
-      background-size: 50% calc(50% - var(--___bgPadding)), 50% calc(50% - var(--___bgPadding));
-
-      &:increment {
-        background-image:
-          linear-gradient(45deg, var(--btnText) 50%, transparent 51%),
-          linear-gradient(-45deg, transparent 50%, var(--btnText) 51%);
-        background-position: top var(--___bgPadding) left 50%, right 50% bottom var(--___bgPadding);
-      }
-
-      &:decrement {
-        background-image:
-          linear-gradient(45deg, transparent 50%, var(--btnText) 51%),
-          linear-gradient(-45deg, var(--btnText) 50%, transparent 51%);
-        background-position: bottom var(--___bgPadding) right 50%, left 50% top var(--___bgPadding);
-      }
+    &::-webkit-scrollbar {
+      background: transparent;
     }
 
-    &:vertical {
-      background-size: calc(50% - var(--___bgPadding)) 50%, calc(50% - var(--___bgPadding)) 50%;
+    &::-webkit-scrollbar-button,
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--btn);
+      box-shadow: var(--buttonShadow);
+      border-radius: var(--btnRadius);
+    }
 
-      &:increment {
-        background-image:
-          linear-gradient(-45deg, transparent 50%, var(--btnText) 51%),
-          linear-gradient(45deg, transparent 50%, var(--btnText) 51%);
-        background-position: right var(--___bgPadding) top 50%, left var(--___bgPadding) top 50%;
+    &::-webkit-scrollbar-button {
+      --___bgPadding: 2px;
+
+      color: var(--btnText);
+      background-repeat: no-repeat, no-repeat;
+
+      &:horizontal {
+        background-size: 50% calc(50% - var(--___bgPadding)), 50% calc(50% - var(--___bgPadding));
+
+        &:increment {
+          background-image:
+            linear-gradient(45deg, var(--btnText) 50%, transparent 51%),
+            linear-gradient(-45deg, transparent 50%, var(--btnText) 51%);
+          background-position: top var(--___bgPadding) left 50%, right 50% bottom var(--___bgPadding);
+        }
+
+        &:decrement {
+          background-image:
+            linear-gradient(45deg, transparent 50%, var(--btnText) 51%),
+            linear-gradient(-45deg, var(--btnText) 50%, transparent 51%);
+          background-position: bottom var(--___bgPadding) right 50%, left 50% top var(--___bgPadding);
+        }
       }
 
-      &:decrement {
-        background-image:
-          linear-gradient(-45deg, var(--btnText) 50%, transparent 51%),
-          linear-gradient(45deg, var(--btnText) 50%, transparent 51%);
-        background-position: left var(--___bgPadding) top 50%, right var(--___bgPadding) top 50%;
+      &:vertical {
+        background-size: calc(50% - var(--___bgPadding)) 50%, calc(50% - var(--___bgPadding)) 50%;
+
+        &:increment {
+          background-image:
+            linear-gradient(-45deg, transparent 50%, var(--btnText) 51%),
+            linear-gradient(45deg, transparent 50%, var(--btnText) 51%);
+          background-position: right var(--___bgPadding) top 50%, left var(--___bgPadding) top 50%;
+        }
+
+        &:decrement {
+          background-image:
+            linear-gradient(-45deg, var(--btnText) 50%, transparent 51%),
+            linear-gradient(45deg, var(--btnText) 50%, transparent 51%);
+          background-position: left var(--___bgPadding) top 50%, right var(--___bgPadding) top 50%;
+        }
       }
     }
   }
@@ -200,21 +202,19 @@ nav {
 
       // Only show custom scrollbars on devices which
       // have a cursor/pointer to operate them
-      @media (pointer: fine) {
-        &:not(.-show-scrollbar) {
-          scrollbar-width: none;
-          margin-right: -2em;
-          padding-right: 2.5em;
+      &:not(.-show-scrollbar) {
+        scrollbar-width: none;
+        margin-right: -2em;
+        padding-right: 2.5em;
 
-          &::-webkit-scrollbar {
-            display: block;
-            width: 0;
-          }
+        &::-webkit-scrollbar {
+          display: block;
+          width: 0;
         }
+      }
 
-        .panel-heading.-sticky {
-          top: -10px;
-        }
+      .panel-heading.-sticky {
+        top: -10px;
       }
     }
   }
