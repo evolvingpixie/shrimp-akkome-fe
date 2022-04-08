@@ -37,7 +37,7 @@
 }
 
 .popover {
-  z-index: 90;
+  z-index: 500;
   position: absolute;
   min-width: 0;
 }
