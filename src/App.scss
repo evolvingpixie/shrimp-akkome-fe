@@ -116,7 +116,7 @@ nav {
 
 #content {
   overscroll-behavior-y: none;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   position: sticky;
 }
@@ -198,19 +198,23 @@ nav {
       margin-left: -2em;
       padding-left: 2.5em;
 
-      &:not(.-show-scrollbar) {
-        scrollbar-width: none;
-        margin-right: -2em;
-        padding-right: 2.5em;
+      // Only show custom scrollbars on devices which
+      // have a cursor/pointer to operate them
+      @media (pointer: fine) {
+        &:not(.-show-scrollbar) {
+          scrollbar-width: none;
+          margin-right: -2em;
+          padding-right: 2.5em;
 
-        &::-webkit-scrollbar {
-          display: block;
-          width: 0;
+          &::-webkit-scrollbar {
+            display: block;
+            width: 0;
+          }
         }
-      }
 
-      .panel-heading.-sticky {
-        top: -10px;
+        .panel-heading.-sticky {
+          top: -10px;
+        }
       }
     }
   }

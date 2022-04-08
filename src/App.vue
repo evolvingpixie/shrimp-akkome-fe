@@ -41,8 +41,8 @@
         <router-view />
       </div>
       <div id="notifs-column" class="column -scrollable" :class="{ '-show-scrollbar': showScrollbars }"/>
-      <media-modal />
     </div>
+    <media-modal />
     <shout-panel
       v-if="currentUser && shout && !hideShoutbox"
       :floating="true"
