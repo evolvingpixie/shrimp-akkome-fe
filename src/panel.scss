@@ -63,7 +63,7 @@
 
   &.-sticky {
     position: sticky;
-    top: 0;
+    top: var(--navbar-height);
     z-index: 2;
   }
 
