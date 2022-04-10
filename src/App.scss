@@ -115,6 +115,9 @@ nav {
 
 #sidebar {
   grid-area: sidebar;
+}
+
+.column.-scrollable {
   top: var(--navbar-height);
   position: sticky;
 }
@@ -192,7 +195,7 @@ nav {
 
       padding-top: 10px;
       position: sticky;
-      top: 0;
+      top: var(--navbar-height);
       max-height: calc(100vh - var(--navbar-height));
       overflow-y: auto;
       overflow-x: hidden;
