@@ -94,6 +94,9 @@
     grid-template-columns: 2fr auto;
     width: 100%;
     box-sizing: border-box;
+    a {
+      color: var(--topBarLink, $fallback--link);
+    }
   }
 
   .mobile-inner-nav {

@@ -1,5 +1,5 @@
 <template>
-  <div class="thread-tree panel-body">
+  <div class="thread-tree">
     <status
       :key="status.id"
       ref="statusComponent"
