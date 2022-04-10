@@ -13,7 +13,7 @@
     <div
       id="content"
       class="app-layout container"
-      :class="[{ '-reverse': reverseLayout, '-no-sticky-headers': noSticky }, '-' + layoutType]"
+      :class="classes"
     >
       <div class="underlay"/>
       <div id="sidebar" class="column -scrollable" :class="{ '-show-scrollbar': showScrollbars }">

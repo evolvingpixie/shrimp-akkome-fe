@@ -222,6 +222,12 @@ nav {
     }
   }
 
+  &.-has-new-post-button {
+    .column {
+      padding-bottom: 20em;
+    }
+  }
+
   &.-no-sticky-headers {
     .column {
       .panel-heading.-sticky {

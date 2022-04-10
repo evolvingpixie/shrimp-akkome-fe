@@ -1,6 +1,9 @@
 .chat-view {
   display: flex;
   height: 100%;
+  // Stick the form to the top/bottom of screen
+  margin-bottom: calc(var(--___columnMargin) / -2);
+  margin-top: calc(var(--___columnMargin) / -2);
 
   .chat-view-inner {
     height: auto;

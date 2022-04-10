@@ -91,6 +91,7 @@ const Chat = {
     ...mapState({
       backendInteractor: state => state.api.backendInteractor,
       mastoUserSocketStatus: state => state.api.mastoUserSocketStatus,
+      mobileLayout: state => state.interface.layoutType === 'mobile',
       currentUser: state => state.users.currentUser
     })
   },

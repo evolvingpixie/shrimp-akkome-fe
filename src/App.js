@@ -50,6 +50,16 @@ export default {
     window.removeEventListener('resize', this.updateMobileState)
   },
   computed: {
+    classes () {
+      return [
+        {
+          '-reverse': this.reverseLayout,
+          '-no-sticky-headers': this.noSticky,
+          '-has-new-post-button': this.newPostButtonShown
+        },
+        '-' + this.layoutType
+      ]
+    },
     currentUser () { return this.$store.state.users.currentUser },
     userBackground () { return this.currentUser.background_image },
     instanceBackground () {
@@ -71,6 +81,10 @@ export default {
       return this.$store.state.instance.showInstanceSpecificPanel &&
         !this.$store.getters.mergedConfig.hideISP &&
         this.$store.state.instance.instanceSpecificPanelContent
+    },
+    newPostButtonShown () {
+      if (this.$route.name === 'chat' || this.$route.name === 'chats') return false
+      return this.$store.getters.mergedConfig.alwaysShowNewPostButton || this.layoutType === 'mobile'
     },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
     shoutboxPosition () {
