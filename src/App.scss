@@ -154,8 +154,8 @@ nav {
   grid-column-end: span 3;
   grid-row-start: 1;
   grid-row-end: 1;
-  margin: 0 -0.5em;
-  padding: 0 0.5em;
+  margin: 0 calc(var(--columnGap) * -2);
+  padding: 0 calc(var(--columnGap) * 2);
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.15);
   background-color: var(--underlay, rgba(0, 0, 0, 0.15));
@@ -163,6 +163,10 @@ nav {
 }
 
 .app-layout {
+  --miniColumn: 25em;
+  --maxiColumn: minmax(var(--miniColumn), 45em);
+  --columnGap: 1em;
+
   position: relative;
   display: grid;
   grid-template-columns: var(--miniColumn) var(--maxiColumn);
@@ -173,39 +177,40 @@ nav {
   height: calc(100vh - var(--navbar-height));
   align-content: flex-start;
   flex-wrap: wrap;
-  padding: 0 10px 0 10px;
+  padding: 0 10px;
   justify-content: center;
 
-  --miniColumn: 345px;
-  --maxiColumn: minmax(345px, 615px);
-
   .column {
+    --___columnMargin: var(--columnGap);
+
     display: grid;
     grid-template-columns: 100%;
     box-sizing: border-box;
     padding-top: 10px;
     grid-row-start: 1;
     grid-row-end: 1;
-    margin: 0 0.5em;
-    row-gap: 1em;
+    margin: 0 calc(var(--___columnMargin) / 2);
+    row-gap: var(--___columnMargin);
     align-content: start;
 
     &.-scrollable {
+      --___paddingIncrease: calc(var(--columnGap) / 2);
+
       padding-top: 10px;
       position: sticky;
       top: 0;
       max-height: calc(100vh - var(--navbar-height));
       overflow-y: auto;
       overflow-x: hidden;
-      margin-left: -2em;
-      padding-left: 2.5em;
+      margin-left: calc(var(--___paddingIncrease) * -1);
+      padding-left: calc(var(--___paddingIncrease) + var(--___columnMargin) / 2);
 
       // Only show custom scrollbars on devices which
       // have a cursor/pointer to operate them
       &:not(.-show-scrollbar) {
         scrollbar-width: none;
-        margin-right: -2em;
-        padding-right: 2.5em;
+        margin-right: calc(var(--___paddingIncrease) * -1);
+        padding-right: calc(var(--___paddingIncrease) + var(--___columnMargin) / 2);
 
         &::-webkit-scrollbar {
           display: block;
