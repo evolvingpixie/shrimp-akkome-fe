@@ -51,7 +51,7 @@
     <div
       v-if="currentUser"
       class="mobile-notifications-drawer"
-      :class="{ 'closed': !notificationsOpen }"
+      :class="{ '-closed': !notificationsOpen }"
       @touchstart.stop="notificationsTouchStart"
       @touchmove.stop="notificationsTouchMove"
     >
@@ -148,8 +148,9 @@
     z-index: 1001;
     -webkit-overflow-scrolling: touch;
 
-    &.closed {
+    &.-closed {
       transform: translateX(100%);
+      box-shadow: none;
     }
   }
 
