@@ -34,6 +34,10 @@
 }
 
 .panel-heading {
+  --panel-heading-height: 3.2em;
+  --panel-heading-height-padding: 0.6em;
+  --__panel-heading-height-inner: calc(var(--panel-heading-height) - 2 * var(--panel-heading-height-padding));
+
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -43,15 +47,13 @@
   background-size: cover;
   padding: 0.6em 0.6em;
   text-align: left;
-  line-height: calc(var(--panel-heading-height) / 2);
+  line-height: var(--__panel-heading-height-inner);
   color: var(--panelText);
   background-color: $fallback--bg;
   background-color: var(--bg, $fallback--bg);
   align-items: baseline;
   height: var(--panel-heading-height);
   z-index: -2;
-
-  --panel-heading-height: 3.2em;
 
   &.-flexible-height {
     --panel-heading-height: auto;
@@ -120,14 +122,12 @@
 
   .button-default,
   .alert {
-    // height: 100%;
-    line-height: 21px;
+    height: var(--__panel-heading-height-inner);
     min-height: 0;
     box-sizing: border-box;
     margin: 0;
     margin-left: 0.5em;
     min-width: 1px;
-    align-self: stretch;
   }
 
   .button-default {
