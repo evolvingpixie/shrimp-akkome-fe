@@ -509,6 +509,7 @@
     flex-direction: column;
     padding: 0.25em 0.5em 0.5em;
     line-height:24px;
+    z-index: 50;
   }
 
   form textarea.form-cw {

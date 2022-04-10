@@ -24,5 +24,6 @@
 <style lang="scss">
 .user-panel .signed-in {
   overflow: visible;
+  z-index: 10;
 }
 </style>

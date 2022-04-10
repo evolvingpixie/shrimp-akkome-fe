@@ -2,7 +2,7 @@
 @import './_variables.scss';
 
 :root {
-  --navbar-height: 50px;
+  --navbar-height: 3.5em;
 }
 
 html {
@@ -159,8 +159,8 @@ nav {
 }
 
 .app-layout {
-  --miniColumn: 25em;
-  --maxiColumn: minmax(var(--miniColumn), 45em);
+  --miniColumn: 25rem;
+  --maxiColumn: minmax(var(--miniColumn), 45rem);
   --columnGap: 1em;
   --status-margin: 0.75em;
 
@@ -227,7 +227,7 @@ nav {
 
   &.-has-new-post-button {
     .column {
-      padding-bottom: 20em;
+      padding-bottom: 10rem;
     }
   }
 
@@ -301,7 +301,7 @@ nav {
   cursor: pointer;
   box-shadow: $fallback--buttonShadow;
   box-shadow: var(--buttonShadow);
-  font-size: 14px;
+  font-size: 1rem;
   font-family: sans-serif;
   font-family: var(--interfaceFont, sans-serif);
 
@@ -429,7 +429,7 @@ textarea,
   color: var(--inputText, $fallback--lightText);
   font-family: sans-serif;
   font-family: var(--inputFont, sans-serif);
-  font-size: 14px;
+  font-size: 1rem;
   margin: 0;
   box-sizing: border-box;
   display: inline-block;

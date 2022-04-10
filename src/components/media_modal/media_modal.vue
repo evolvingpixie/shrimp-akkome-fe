@@ -234,7 +234,7 @@ $modal-view-button-icon-margin: 0.5em;
       position: absolute;
       height: $modal-view-button-icon-height;
       width: $modal-view-button-icon-width;
-      font-size: 14px;
+      font-size: 1rem;
       line-height: $modal-view-button-icon-height;
       color: #FFF;
       text-align: center;

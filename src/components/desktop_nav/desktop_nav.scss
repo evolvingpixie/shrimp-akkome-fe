@@ -9,7 +9,7 @@
 
   .inner-nav {
     display: grid;
-    grid-template-rows: 50px;
+    grid-template-rows: var(--navbar-height);
     grid-template-columns: 2fr auto 2fr;
     grid-template-areas: "sitename logo actions";
     box-sizing: border-box;
@@ -75,7 +75,7 @@
 
     img {
       display: inline-block;
-      height: 50px;
+      height: var(--navbar-height);
     }
   }
 
@@ -101,8 +101,8 @@
 
   .item {
     flex: 1;
-    line-height: 50px;
-    height: 50px;
+    line-height: var(--navbar-height);
+    height: var(--navbar-height);
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
