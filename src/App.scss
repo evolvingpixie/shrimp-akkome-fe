@@ -151,7 +151,6 @@ nav {
   grid-column-end: span 3;
   grid-row-start: 1;
   grid-row-end: 1;
-  margin: 0 calc(var(--columnGap) / -2);
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.15);
   background-color: var(--underlay, rgba(0, 0, 0, 0.15));
