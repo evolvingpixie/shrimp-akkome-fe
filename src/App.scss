@@ -1,16 +1,15 @@
 // stylelint-disable rscss/class-format
 @import './_variables.scss';
 
+:root {
+  --navbar-height: 50px;
+}
+
 html {
   font-size: 14px;
-  overflow: hidden;
-  max-height: 100vh;
 }
 
 body {
-  overflow: hidden;
-  max-height: 100vh;
-  max-width: 100vw;
   font-family: sans-serif;
   font-family: var(--interfaceFont, sans-serif);
   margin: 0;
@@ -19,6 +18,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 
   &.hidden {
     display: none;
@@ -26,6 +26,10 @@ body {
 }
 
 @media (any-pointer: fine) {
+  body {
+    background: var(--bg);
+  }
+
   * {
     scrollbar-color: var(--btn) transparent;
 
@@ -106,33 +110,23 @@ nav {
   box-shadow: var(--topBarShadow);
   box-sizing: border-box;
   height: var(--navbar-height);
-}
-
-#app-loaded {
-  min-height: 100vh;
-  min-width: 100vw;
-  overflow: hidden;
-
-  --navbar-height: 50px;
-}
-
-#content {
-  overscroll-behavior-y: none;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  position: sticky;
+  position: fixed;
 }
 
 #sidebar {
   grid-area: sidebar;
+  top: var(--navbar-height);
+  position: sticky;
+}
+
+#main-scroller {
+  top: var(--navbar-height);
+  grid-area: content;
+  position: relative;
 }
 
 #notifs-column {
   grid-area: notifs;
-}
-
-#main-scroller {
-  grid-area: content;
 }
 
 .app-bg-wrapper {
@@ -175,7 +169,6 @@ nav {
   grid-template-rows: 1fr;
   box-sizing: border-box;
   margin: 0 auto;
-  height: calc(100vh - var(--navbar-height));
   align-content: flex-start;
   flex-wrap: wrap;
   padding: 0 10px;
