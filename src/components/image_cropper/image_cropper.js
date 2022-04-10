@@ -66,7 +66,7 @@ const ImageCropper = {
     }
   },
   methods: {
-    unmounted () {
+    destroy () {
       if (this.cropper) {
         this.cropper.destroy()
       }
