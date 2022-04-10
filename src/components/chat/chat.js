@@ -19,8 +19,6 @@ library.add(
   faChevronLeft
 )
 
-const scroller = () => document.getElementById('content')
-
 const BOTTOMED_OUT_OFFSET = 10
 const JUMP_TO_BOTTOM_BUTTON_VISIBILITY_OFFSET = 10
 const SAFE_RESIZE_TIME_OFFSET = 100
@@ -45,10 +43,9 @@ const Chat = {
   },
   created () {
     this.startFetching()
-    window.addEventListener('resize', this.handleLayoutChange)
   },
   mounted () {
-    scroller().addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll)
     if (typeof document.hidden !== 'undefined') {
       document.addEventListener('visibilitychange', this.handleVisibilityChange, false)
     }
@@ -56,12 +53,9 @@ const Chat = {
     this.$nextTick(() => {
       this.handleResize()
     })
-    this.setChatLayout()
   },
   unmounted () {
-    scroller().removeEventListener('scroll', this.handleScroll)
-    window.removeEventListener('resize', this.handleLayoutChange)
-    this.unsetChatLayout()
+    window.removeEventListener('scroll', this.handleScroll)
     if (typeof document.hidden !== 'undefined') document.removeEventListener('visibilitychange', this.handleVisibilityChange, false)
     this.$store.dispatch('clearCurrentChat')
   },
@@ -97,8 +91,6 @@ const Chat = {
     ...mapState({
       backendInteractor: state => state.api.backendInteractor,
       mastoUserSocketStatus: state => state.api.mastoUserSocketStatus,
-      mobileLayout: state => state.interface.mobileLayout,
-      layoutHeight: state => state.interface.layoutHeight,
       currentUser: state => state.users.currentUser
     })
   },
@@ -115,9 +107,6 @@ const Chat = {
     },
     '$route': function () {
       this.startFetching()
-    },
-    layoutHeight () {
-      this.handleResize({ expand: true })
     },
     mastoUserSocketStatus (newValue) {
       if (newValue === WSConnectionStatus.JOINED) {
@@ -142,30 +131,6 @@ const Chat = {
         }
       })
     },
-    setChatLayout () {
-      //   This is a hacky way to adjust the global layout to the mobile chat (without modifying the rest of the app).
-      //   This layout prevents empty spaces from being visible at the bottom
-      //   of the chat on iOS Safari (`safe-area-inset`) when
-      //   - the on-screen keyboard appears and the user starts typing
-      //   - the user selects the text inside the input area
-      //   - the user selects and deletes the text that is multiple lines long
-      //   TODO: unify the chat layout with the global layout.
-      let html = document.querySelector('html')
-      if (html) {
-        html.classList.add('chat-layout')
-      }
-    },
-    unsetChatLayout () {
-      let html = document.querySelector('html')
-      if (html) {
-        html.classList.remove('chat-layout')
-      }
-    },
-    handleLayoutChange () {
-      this.$nextTick(() => {
-        this.scrollDown()
-      })
-    },
     // Preserves the scroll position when OSK appears or the posting form changes its height.
     handleResize (opts = {}) {
       const { expand = false, delayed = false } = opts
@@ -179,25 +144,20 @@ const Chat = {
 
       this.$nextTick(() => {
         const { offsetHeight = undefined } = this.lastScrollPosition
-        this.lastScrollPosition = getScrollPosition(scroller())
+        this.lastScrollPosition = getScrollPosition()
 
         const diff = this.lastScrollPosition.offsetHeight - offsetHeight
         if (diff < 0 || (!this.bottomedOut() && expand)) {
           this.$nextTick(() => {
-            scroller().scrollTo({
-              top: scroller().scrollTop - diff,
-              left: 0
-            })
+            window.scrollTo({ top: window.scrollY - diff })
           })
         }
       })
     },
     scrollDown (options = {}) {
       const { behavior = 'auto', forceRead = false } = options
-      const scrollable = scroller()
-      if (!scrollable) { return }
       this.$nextTick(() => {
-        scrollable.scrollTo({ top: scrollable.scrollHeight, left: 0, behavior })
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior })
       })
       if (forceRead) {
         this.readChat()
@@ -213,11 +173,10 @@ const Chat = {
       })
     },
     bottomedOut (offset) {
-      return isBottomedOut(scroller(), offset)
+      return isBottomedOut(offset)
     },
     reachedTop () {
-      const scrollable = scroller()
-      return scrollable && scrollable.scrollTop <= 0
+      return window.scrollY <= 0
     },
     cullOlderCheck () {
       window.setTimeout(() => {
@@ -248,10 +207,9 @@ const Chat = {
       }
     }, 200),
     handleScrollUp (positionBeforeLoading) {
-      const positionAfterLoading = getScrollPosition(scroller())
-      scroller().scrollTo({
-        top: getNewTopPosition(positionBeforeLoading, positionAfterLoading),
-        left: 0
+      const positionAfterLoading = getScrollPosition()
+      window.scrollTo({
+        top: getNewTopPosition(positionBeforeLoading, positionAfterLoading)
       })
     },
     fetchChat ({ isFirstFetch = false, fetchLatest = false, maxId }) {
@@ -270,7 +228,7 @@ const Chat = {
             chatService.clear(chatMessageService)
           }
 
-          const positionBeforeUpdate = getScrollPosition(scroller())
+          const positionBeforeUpdate = getScrollPosition()
           this.$store.dispatch('addChatMessages', { chatId, messages }).then(() => {
             this.$nextTick(() => {
               if (fetchOlderMessages) {
@@ -281,7 +239,7 @@ const Chat = {
               // full height of the scrollable container.
               // If this is the case, we want to fetch the messages until the scrollable container
               // is fully populated so that the user has the ability to scroll up and load the history.
-              if (!isScrollable(scroller()) && messages.length > 0) {
+              if (!isScrollable() && messages.length > 0) {
                 this.fetchChat({ maxId: this.currentChatMessageService.minId })
               }
             })

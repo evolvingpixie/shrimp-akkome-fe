@@ -2,7 +2,6 @@
   <div class="chat-view">
     <div class="chat-view-inner">
       <div
-        id="nav"
         ref="inner"
         class="panel-default panel chat-view-body"
       >

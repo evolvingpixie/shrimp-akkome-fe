@@ -1,6 +1,5 @@
 <template>
   <div
-    id="nav"
     class="panel-default panel chat-new"
   >
     <div
