@@ -65,7 +65,7 @@
 .dropdown-menu {
   display: block;
   padding: .5rem 0;
-  font-size: 1rem;
+  font-size: 1em;
   text-align: left;
   list-style: none;
   max-width: 100vw;

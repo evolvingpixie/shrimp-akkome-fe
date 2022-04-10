@@ -28,7 +28,8 @@
 
 .panel-body:empty::before {
   content: "¯\\_(ツ)_/¯"; // Could use words but it'd require translations
-  display: block; margin: 1em;
+  display: block;
+  margin: 1em;
   text-align: center;
 }
 
@@ -42,18 +43,18 @@
   background-size: cover;
   padding: 0.6em 0.6em;
   text-align: left;
-  line-height: 28px;
+  line-height: calc(var(--panel-heading-height) / 2);
   color: var(--panelText);
   background-color: $fallback--bg;
   background-color: var(--bg, $fallback--bg);
   align-items: baseline;
-  height: var(--panelHeadingHeight);
+  height: var(--panel-heading-height);
   z-index: -2;
 
-  --panelHeadingHeight: 45px;
+  --panel-heading-height: 3.2em;
 
   &.-flexible-height {
-    --panelHeadingHeight: auto;
+    --panel-heading-height: auto;
 
     &::after,
     &::before {
@@ -92,7 +93,7 @@
     z-index: -1;
     border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
     border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
-    mask: linear-gradient(to bottom, white var(--panelHeadingHeight), transparent var(--panelHeadingHeight));
+    mask: linear-gradient(to bottom, white var(--panel-heading-height), transparent var(--panel-heading-height));
   }
 
   .title {
