@@ -7,6 +7,7 @@
 
 html {
   font-size: 14px;
+  overflow-x: clip;
 }
 
 body {
@@ -15,10 +16,10 @@ body {
   margin: 0;
   color: $fallback--text;
   color: var(--text, $fallback--text);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: none;
+  overflow-x: clip;
 
   &.hidden {
     display: none;
@@ -174,6 +175,7 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   min-height: 100vh;
+  overflow-x: clip;
 
   .column {
     --___columnMargin: var(--columnGap);
@@ -187,6 +189,10 @@ nav {
     padding: calc(var(--___columnMargin) / 2) 0;
     row-gap: var(--___columnMargin);
     align-content: start;
+
+    &:hover {
+      z-index: 2;
+    }
 
     &.-scrollable {
       --___paddingIncrease: calc(var(--columnGap) / 2);
