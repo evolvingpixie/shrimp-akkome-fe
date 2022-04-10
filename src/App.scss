@@ -166,6 +166,7 @@ nav {
   --miniColumn: 25em;
   --maxiColumn: minmax(var(--miniColumn), 45em);
   --columnGap: 1em;
+  --status-margin: 0.75em;
 
   position: relative;
   display: grid;
