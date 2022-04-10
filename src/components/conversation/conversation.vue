@@ -270,7 +270,8 @@
     border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
     border-bottom: 1px solid var(--border, $fallback--border);
   }
-  &.-expanded {
+
+  &.-expanded.status-fadein {
     margin: calc(var(--status-margin, $status-margin) / 2);
   }
 }
