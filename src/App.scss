@@ -7,6 +7,7 @@
 
 html {
   font-size: 14px;
+  // overflow-x: clip causes my browser's tab to crash with SIGILL lul
 }
 
 body {
@@ -25,9 +26,12 @@ body {
   }
 }
 
+// Apply Custom scrollbars
 @media (any-pointer: fine) {
+  // Body should have background to scrollbar otherwise it will use white (body color?)
   body {
     background: var(--bg);
+    scrollbar-color: var(--btn) var(--bg);
   }
 
   * {
@@ -44,6 +48,9 @@ body {
       border-radius: var(--btnRadius);
     }
 
+    // horizontal/vertical/increment/decrement are webkit-specific stuff
+    // that indicates whether we're affecting vertical scrollbar, increase button etc
+    // stylelint-disable selector-pseudo-class-no-unknown
     &::-webkit-scrollbar-button {
       --___bgPadding: 2px;
 
@@ -86,6 +93,7 @@ body {
         }
       }
     }
+    // stylelint-enable selector-pseudo-class-no-unknown
   }
 }
 
@@ -97,6 +105,12 @@ a {
 
 h4 {
   margin: 0;
+}
+
+i[class*=icon-],
+.svg-inline--fa {
+  color: $fallback--icon;
+  color: var(--icon, $fallback--icon);
 }
 
 nav {
@@ -490,7 +504,6 @@ textarea,
       box-sizing: border-box;
       color: transparent;
       overflow: hidden;
-      box-sizing: border-box;
     }
   }
 
@@ -531,7 +544,6 @@ textarea,
       box-sizing: border-box;
       color: transparent;
       overflow: hidden;
-      box-sizing: border-box;
     }
   }
 
@@ -555,12 +567,6 @@ option {
     opacity: 0;
     display: none;
   }
-}
-
-i[class*=icon-],
-.svg-inline--fa {
-  color: $fallback--icon;
-  color: var(--icon, $fallback--icon);
 }
 
 .btn-block {
