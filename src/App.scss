@@ -27,14 +27,10 @@ body {
   }
 }
 
-// Apply Custom scrollbars
+// ## Custom scrollbars
+// Only show custom scrollbars on devices which
+// have a cursor/pointer to operate them
 @media (any-pointer: fine) {
-  // Body should have background to scrollbar otherwise it will use white (body color?)
-  body {
-    background: var(--bg);
-    scrollbar-color: var(--btn) var(--bg);
-  }
-
   * {
     scrollbar-color: var(--btn) transparent;
 
@@ -95,6 +91,10 @@ body {
       }
     }
     // stylelint-enable selector-pseudo-class-no-unknown
+  }
+  // Body should have background to scrollbar otherwise it will use white (body color?)
+  html {
+    scrollbar-color: var(--selectedMenu) var(--wallpaper);
   }
 }
 
@@ -225,16 +225,18 @@ nav {
       margin-left: calc(var(--___paddingIncrease) * -1);
       padding-left: calc(var(--___paddingIncrease) + var(--___columnMargin) / 2);
 
-      // Only show custom scrollbars on devices which
-      // have a cursor/pointer to operate them
-      &:not(.-show-scrollbar) {
-        scrollbar-width: none;
-        margin-right: calc(var(--___paddingIncrease) * -1);
-        padding-right: calc(var(--___paddingIncrease) + var(--___columnMargin) / 2);
+      // On browsers that don't support hiding scrollbars we enforce "show scrolbars" mode
+      // might implement old style of hiding scrollbars later if there's demand
+      @supports (scrollbar-width: none) or (-webkit-text-fill-color: initial) {
+        &:not(.-show-scrollbar) {
+          scrollbar-width: none;
+          margin-right: calc(var(--___paddingIncrease) * -1);
+          padding-right: calc(var(--___paddingIncrease) + var(--___columnMargin) / 2);
 
-        &::-webkit-scrollbar {
-          display: block;
-          width: 0;
+          &::-webkit-scrollbar {
+            display: block;
+            width: 0;
+          }
         }
       }
 
