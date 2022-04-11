@@ -45,8 +45,19 @@
 .popover-default {
   transition: opacity 0.3s;
 
-  box-shadow: 1px 1px 4px rgba(0,0,0,.6);
-  box-shadow: var(--panelShadow);
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--panelShadow);
+    pointer-events: none;
+  }
+
   border-radius: $fallback--btnRadius;
   border-radius: var(--btnRadius, $fallback--btnRadius);
 
@@ -110,14 +121,15 @@
     &:active, &:hover {
       background-color: $fallback--lightBg;
       background-color: var(--selectedMenuPopover, $fallback--lightBg);
-      color: $fallback--link;
-      color: var(--selectedMenuPopoverText, $fallback--link);
+      box-shadow: none;
+      --btnText: var(--selectedMenuPopoverText, $fallback--link);
       --faint: var(--selectedMenuPopoverFaintText, $fallback--faint);
       --faintLink: var(--selectedMenuPopoverFaintLink, $fallback--faint);
       --lightText: var(--selectedMenuPopoverLightText, $fallback--lightText);
       --icon: var(--selectedMenuPopoverIcon, $fallback--icon);
       svg {
         color: var(--selectedMenuPopoverIcon, $fallback--icon);
+        --icon: var(--selectedMenuPopoverIcon, $fallback--icon);
       }
     }
 
