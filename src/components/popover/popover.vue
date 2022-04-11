@@ -69,7 +69,7 @@
   text-align: left;
   list-style: none;
   max-width: 100vw;
-  z-index: 10;
+  z-index: 200;
   white-space: nowrap;
 
   .dropdown-divider {

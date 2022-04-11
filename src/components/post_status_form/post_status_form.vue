@@ -509,7 +509,7 @@
     flex-direction: column;
     padding: 0.25em 0.5em 0.5em;
     line-height:24px;
-    z-index: 50;
+    z-index: 10;
   }
 
   form textarea.form-cw {
@@ -572,7 +572,7 @@
 
   .drop-indicator {
     position: absolute;
-    z-index: 100;
+    z-index: 11;
     width: 100%;
     height: 100%;
     font-size: 5em;

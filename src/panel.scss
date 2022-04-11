@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  z-index: 0;
   background-color: $fallback--bg;
   background-color: var(--bg, $fallback--bg);
 
@@ -19,7 +18,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 3;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
     box-shadow: var(--panelShadow);
     pointer-events: none;
@@ -53,7 +52,6 @@
   background-color: var(--bg, $fallback--bg);
   align-items: baseline;
   height: var(--panel-heading-height);
-  z-index: -2;
 
   &.-flexible-height {
     --panel-heading-height: auto;
@@ -88,14 +86,6 @@
     border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
     border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
     box-shadow: var(--panelHeaderShadow);
-  }
-
-  &::before {
-    bottom: -20px;
-    z-index: -1;
-    border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
-    border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
-    mask: linear-gradient(to bottom, white var(--panel-heading-height), transparent var(--panel-heading-height));
   }
 
   .title {
@@ -201,4 +191,8 @@
   line-height: 18px;
   padding: 1em;
   margin: 0;
+}
+
+.panel-body {
+  padding: var(--panel-body-padding, 0);
 }
