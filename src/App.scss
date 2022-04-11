@@ -20,6 +20,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: none;
   overflow-x: clip;
+  overflow-y: scroll;
 
   &.hidden {
     display: none;
