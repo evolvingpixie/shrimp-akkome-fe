@@ -26,7 +26,7 @@
           <div id="notifs-sidebar" />
         </template>
       </div>
-      <div id="main-scroller" class="column main">
+      <div id="main-scroller" class="column main" :class="{ '-full-height': isChats }">
         <div
           v-if="!currentUser"
           class="login-hint panel panel-default"

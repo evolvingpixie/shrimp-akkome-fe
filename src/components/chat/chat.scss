@@ -22,6 +22,8 @@
     margin: 0 0 0 0;
     border-radius: 10px 10px 0 0;
     border-radius: var(--panelRadius, 10px) var(--panelRadius, 10px) 0 0;
+    margin-bottom: calc(var(--___columnMargin) * -1);
+    padding-bottom: var(--___columnMargin);
 
     &::after {
       border-radius: 0;
@@ -40,7 +42,7 @@
     bottom: 0;
     background-color: $fallback--bg;
     background-color: var(--bg, $fallback--bg);
-    z-index: 10;
+    z-index: 1;
   }
 
   .chat-view-heading {

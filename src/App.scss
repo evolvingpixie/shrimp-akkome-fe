@@ -207,6 +207,11 @@ nav {
       z-index: 2;
     }
 
+    &.-full-height {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
     &.-scrollable {
       --___paddingIncrease: calc(var(--columnGap) / 2);
 

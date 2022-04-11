@@ -82,8 +82,11 @@ export default {
         !this.$store.getters.mergedConfig.hideISP &&
         this.$store.state.instance.instanceSpecificPanelContent
     },
+    isChats () {
+      return this.$route.name === 'chat' || this.$route.name === 'chats'
+    },
     newPostButtonShown () {
-      if (this.$route.name === 'chat' || this.$route.name === 'chats') return false
+      if (this.isChats) return false
       return this.$store.getters.mergedConfig.alwaysShowNewPostButton || this.layoutType === 'mobile'
     },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
