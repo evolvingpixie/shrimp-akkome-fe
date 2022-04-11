@@ -8,15 +8,6 @@
       @submit.prevent
       @dragover.prevent="fileDrag"
     >
-      <div
-        v-show="showDropIcon !== 'hide'"
-        :style="{ animation: showDropIcon === 'show' ? 'fade-in 0.25s' : 'fade-out 0.5s' }"
-        class="drop-indicator"
-        @dragleave="fileDragStop"
-        @drop.stop="fileDrop"
-      >
-        <FAIcon :icon="uploadFileLimitReached ? 'ban' : 'upload'" />
-      </div>
       <div class="form-group">
         <i18n-t
           v-if="!$store.state.users.currentUser.locked && newStatus.visibility == 'private' && !disableLockWarning"
@@ -278,6 +269,15 @@
         </button>
       </div>
       <div
+        v-show="showDropIcon !== 'hide'"
+        :style="{ animation: showDropIcon === 'show' ? 'fade-in 0.25s' : 'fade-out 0.5s' }"
+        class="drop-indicator"
+        @dragleave="fileDragStop"
+        @drop.stop="fileDrop"
+      >
+        <FAIcon :icon="uploadFileLimitReached ? 'ban' : 'upload'" />
+      </div>
+      <div
         v-if="error"
         class="alert error"
       >
@@ -509,7 +509,6 @@
     flex-direction: column;
     padding: 0.25em 0.5em 0.5em;
     line-height:24px;
-    z-index: 10;
   }
 
   form textarea.form-cw {
@@ -572,7 +571,6 @@
 
   .drop-indicator {
     position: absolute;
-    z-index: 11;
     width: 100%;
     height: 100%;
     font-size: 5em;
