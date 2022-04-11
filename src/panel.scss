@@ -52,6 +52,7 @@
   background-color: var(--bg, $fallback--bg);
   align-items: baseline;
   height: var(--panel-heading-height);
+  z-index: 2;
 
   &.-flexible-height {
     --panel-heading-height: auto;
@@ -65,7 +66,6 @@
   &.-sticky {
     position: sticky;
     top: var(--navbar-height);
-    z-index: 2;
   }
 
   &::after,
