@@ -41,7 +41,7 @@ const GeneralTab = {
       thirdColumnModeOptions: ['none', 'notifications', 'postform'].map(mode => ({
         key: mode,
         value: mode,
-        label: this.$t(`settings.conversation_display_${mode}`)
+        label: this.$t(`settings.third_column_mode_${mode}`)
       })),
       loopSilentAvailable:
       // Firefox
