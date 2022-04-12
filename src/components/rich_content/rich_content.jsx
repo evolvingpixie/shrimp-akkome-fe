@@ -28,6 +28,10 @@ import './rich_content.scss'
  */
 export default {
   name: 'RichContent',
+  components: {
+    MentionsLine,
+    HashtagLink
+  },
   props: {
     // Original html content
     html: {
@@ -86,7 +90,8 @@ export default {
       if (!encounteredTextReverse) {
         lastTags.push(linkData)
       }
-      return <HashtagLink { ...linkData }/>
+      const { url, tag, content } = linkData
+      return <HashtagLink url={url} tag={tag} content={content}/>
     }
 
     const renderMention = (attrs, children) => {
