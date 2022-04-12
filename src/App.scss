@@ -95,6 +95,7 @@ body {
   // Body should have background to scrollbar otherwise it will use white (body color?)
   html {
     scrollbar-color: var(--selectedMenu) var(--wallpaper);
+    background: var(--wallpaper);
   }
 }
 
