@@ -46,6 +46,7 @@ export const defaultState = {
   pauseOnUnfocused: true,
   stopGifs: true,
   replyVisibility: 'all',
+  thirdColumnMode: 'notifications',
   notificationVisibility: {
     follows: true,
     mentions: true,
@@ -164,6 +165,9 @@ const config = {
           break
         case 'interfaceLanguage':
           messages.setLanguage(this.getters.i18n, value)
+          break
+        case 'thirdColumnMode':
+          dispatch('setLayoutWidth', undefined)
           break
       }
     }

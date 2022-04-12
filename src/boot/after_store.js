@@ -8,7 +8,7 @@ import App from '../App.vue'
 import routes from './routes'
 import VBodyScrollLock from 'src/directives/body_scroll_lock'
 
-import { windowWidth } from '../services/window_utils/window_utils'
+import { windowWidth, windowHeight } from '../services/window_utils/window_utils'
 import { getOrCreateApp, getClientToken } from '../services/new_api/oauth.js'
 import backendInteractorService from '../services/backend_interactor_service/backend_interactor_service.js'
 import { CURRENT_VERSION } from '../services/theme_data/theme_data.service.js'
@@ -332,11 +332,8 @@ const checkOAuthToken = async ({ store }) => {
 }
 
 const afterStoreSetup = async ({ store, i18n }) => {
-  // TODO cleanup copypasta
-  const mobileLayout = windowWidth() <= 800
-  const wideLayout = windowWidth() >= 1300
-  const layoutType = wideLayout ? 'wide' : (mobileLayout ? 'mobile' : 'normal')
-  store.dispatch('setLayoutType', layoutType)
+  store.dispatch('setLayoutWidth', windowWidth())
+  store.dispatch('setLayoutHeight', windowHeight())
 
   FaviconService.initFaviconService()
 

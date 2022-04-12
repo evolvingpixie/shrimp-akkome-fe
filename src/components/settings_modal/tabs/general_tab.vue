@@ -71,6 +71,15 @@
           </BooleanSetting>
         </li>
         <li>
+          <ChoiceSetting
+            id="thirdColumnMode"
+            path="thirdColumnMode"
+            :options="thirdColumnModeOptions"
+          >
+            {{ $t('settings.third_column_mode') }}
+          </ChoiceSetting>
+        </li>
+        <li>
           <BooleanSetting
             path="alwaysShowNewPostButton"
             expert="1"

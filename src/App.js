@@ -98,22 +98,22 @@ export default {
     },
     layoutType () { return this.$store.state.interface.layoutType },
     privateMode () { return this.$store.state.instance.private },
-    reverseLayout () { return this.$store.getters.mergedConfig.sidebarRight },
+    reverseLayout () {
+      const { thirdColumnMode, sidebarRight: reverseSetting } = this.$store.getters.mergedConfig
+      if (this.layoutType !== 'wide') {
+        return reverseSetting
+      } else {
+        return thirdColumnMode === 'notifications' ? reverseSetting : !reverseSetting
+      }
+    },
     noSticky () { return this.$store.getters.mergedConfig.disableStickyHeaders },
     showScrollbars () { return this.$store.getters.mergedConfig.showScrollbars },
     ...mapGetters(['mergedConfig'])
   },
   methods: {
     updateMobileState () {
-      const mobileLayout = windowWidth() <= 800
-      const wideLayout = windowWidth() >= 1300
-      const layoutHeight = windowHeight()
-      const layoutType = wideLayout ? 'wide' : (mobileLayout ? 'mobile' : 'normal')
-      const changed = layoutType !== this.layoutType
-      if (changed) {
-        this.$store.dispatch('setLayoutType', layoutType)
-      }
-      this.$store.dispatch('setLayoutHeight', layoutHeight)
+      this.$store.dispatch('setLayoutWidth', windowWidth())
+      this.$store.dispatch('setLayoutHeight', windowHeight())
     }
   }
 }

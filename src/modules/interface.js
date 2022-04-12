@@ -72,6 +72,9 @@ const interfaceMod = {
     setLayoutHeight (state, value) {
       state.layoutHeight = value
     },
+    setLayoutWidth (state, value) {
+      state.layoutWidth = value
+    },
     setLastTimeline (state, value) {
       state.lastTimeline = value
     }
@@ -85,9 +88,6 @@ const interfaceMod = {
     },
     setNotificationPermission ({ commit }, permission) {
       commit('setNotificationPermission', permission)
-    },
-    setLayoutType ({ commit }, value) {
-      commit('setLayoutType', value)
     },
     closeSettingsModal ({ commit }) {
       commit('closeSettingsModal')
@@ -132,6 +132,24 @@ const interfaceMod = {
     },
     setLayoutHeight ({ commit }, value) {
       commit('setLayoutHeight', value)
+    },
+    // value is optional, assuming it was cached prior
+    setLayoutWidth ({ commit, state, rootGetters }, value) {
+      let width = value
+      if (value !== undefined) {
+        commit('setLayoutWidth', value)
+      } else {
+        width = state.layoutWidth
+      }
+      const mobileLayout = width <= 800
+      const normalOrMobile = mobileLayout ? 'mobile' : 'normal'
+      const { thirdColumnMode } = rootGetters.mergedConfig
+      if (thirdColumnMode === 'none') {
+        commit('setLayoutType', normalOrMobile)
+      } else {
+        const wideLayout = width >= 1300
+        commit('setLayoutType', wideLayout ? 'wide' : normalOrMobile)
+      }
     },
     setLastTimeline ({ commit }, value) {
       commit('setLastTimeline', value)
