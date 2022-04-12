@@ -308,10 +308,8 @@ describe('RichContent', () => {
       '<a href="http://macrochan.org/images/N/H/NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg" target="_blank">',
       'NHCMDUXJPPZ6M3Z2CQ6D2EBRSWGE7MZY.jpg</a>',
       ' <hashtag-link-stub url="https://shitposter.club/tag/nou" content="#nou" tag="nou">',
-      '#nou',
       '</hashtag-link-stub>',
       ' <hashtag-link-stub url="https://shitposter.club/tag/screencap" content="#screencap" tag="screencap">',
-      '#screencap',
       '</hashtag-link-stub>',
       ' </p>'
     ].join('')
