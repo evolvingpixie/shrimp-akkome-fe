@@ -9,15 +9,15 @@
           ref="header"
           class="panel-heading -sticky chat-view-heading mobile-hidden"
         >
-          <a
-            class="go-back-button"
+          <button
+            class="button-unstyled go-back-button"
             @click="goBack"
           >
             <FAIcon
               size="lg"
               icon="chevron-left"
             />
-          </a>
+          </button>
           <div class="title text-center">
             <ChatTitle
               :user="recipient"
