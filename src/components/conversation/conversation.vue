@@ -7,7 +7,7 @@
   >
     <div
       v-if="isExpanded"
-      class="panel-heading conversation-heading"
+      class="panel-heading conversation-heading -sticky"
     >
       <span class="title"> {{ $t('timeline.conversation') }} </span>
       <button

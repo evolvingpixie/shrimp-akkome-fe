@@ -27,4 +27,8 @@
   .timeline-footer {
     border: none;
   }
+
+  .conversation-heading {
+    top: calc(var(--panel-heading-height) * 2);
+  }
 }
