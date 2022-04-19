@@ -19,7 +19,7 @@
       v-if="uploadReady"
       :disabled="disabled"
       type="file"
-      style="position: fixed; top: -100em"
+      style="position: fixed; top: -100em; max-width: 0; max-height: 0"
       multiple="true"
       @change="change"
     >
