@@ -18,7 +18,7 @@
     max-width: 980px;
   }
 
-  &.-logoLeft {
+  &.-logoLeft .inner-nav {
     grid-template-columns: auto 2fr 2fr;
     grid-template-areas: "logo sitename actions";
   }
