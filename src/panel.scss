@@ -110,8 +110,8 @@
     overflow-x: hidden;
   }
 
-  .button-default,
-  .alert {
+  > .button-default,
+  > .alert {
     height: var(--__panel-heading-height-inner);
     min-height: 0;
     box-sizing: border-box;
@@ -122,7 +122,7 @@
     padding-bottom: 0;
   }
 
-  .button-default {
+  > .button-default {
     flex-shrink: 0;
 
     &,

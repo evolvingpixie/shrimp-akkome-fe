@@ -64,7 +64,7 @@
       </div>
     </template>
     <template v-slot:trigger>
-      <button class="button-unstyled">
+      <button class="filter-trigger-button button-unstyled">
         <FAIcon icon="filter" />
       </button>
     </template>
@@ -106,16 +106,12 @@ export default {
 .NotificationFilters {
   align-self: stretch;
 
-  > button {
+  .filter-trigger-button {
     font-size: 1.2em;
     padding-left: 0.7em;
     padding-right: 0.2em;
     line-height: 100%;
     height: 100%;
-  }
-
-  .dropdown-item {
-    margin: 0;
   }
 }
 
