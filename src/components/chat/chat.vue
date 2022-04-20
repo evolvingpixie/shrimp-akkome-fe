@@ -7,7 +7,7 @@
       >
         <div
           ref="header"
-          class="panel-heading -sticky chat-view-heading mobile-hidden"
+          class="panel-heading -sticky chat-view-heading"
         >
           <button
             class="button-unstyled go-back-button"

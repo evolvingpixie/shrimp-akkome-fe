@@ -5,7 +5,6 @@
     <nav
       id="nav"
       class="mobile-nav"
-      :class="{ 'mobile-hidden': isChat }"
       @click="scrollToTop()"
     >
       <div class="item">
