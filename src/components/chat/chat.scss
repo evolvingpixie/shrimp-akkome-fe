@@ -47,7 +47,7 @@
   }
 
   .chat-view-heading {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto minmax(50%, 1fr);
   }
 
   .go-back-button {
