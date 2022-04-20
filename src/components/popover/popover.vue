@@ -95,7 +95,7 @@
     line-height: 21px;
     overflow: hidden;
     display: block;
-    padding: 0.25em 0.75em;
+    padding: 0.5em 0.75em;
     clear: both;
     font-weight: 400;
     text-align: inherit;
