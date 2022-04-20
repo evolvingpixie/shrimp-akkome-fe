@@ -144,13 +144,13 @@ const Chat = {
       }
 
       this.$nextTick(() => {
-        const { offsetHeight = undefined } = this.lastScrollPosition
+        const { scrollHeight = undefined } = this.lastScrollPosition
         this.lastScrollPosition = getScrollPosition()
 
-        const diff = this.lastScrollPosition.offsetHeight - offsetHeight
-        if (diff < 0 || (!this.bottomedOut() && expand)) {
+        const diff = this.lastScrollPosition.scrollHeight - scrollHeight
+        if (diff > 0 || (!this.bottomedOut() && expand)) {
           this.$nextTick(() => {
-            window.scrollTo({ top: window.scrollY - diff })
+            window.scrollTo({ top: window.scrollY + diff })
           })
         }
       })
