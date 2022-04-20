@@ -32,7 +32,7 @@
 
   .remote-button {
     width: 100%;
-    min-height: 28px;
+    min-height: 2em;
   }
 }
 </style>

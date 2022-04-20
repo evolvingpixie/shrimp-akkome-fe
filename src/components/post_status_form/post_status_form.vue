@@ -336,7 +336,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5em;
-    height: 32px;
+    height: 2.5em;
 
     button {
       width: 10em;
@@ -411,10 +411,12 @@
   }
 
   .media-upload-icon, .poll-icon, .emoji-icon {
-    font-size: 26px;
+    font-size: 1.85em;
     line-height: 1.1;
     flex: 1;
     padding: 0 0.1em;
+    display: flex;
+    align-items: center;
 
     &.selected, &:hover {
       // needs to be specific to override icon default color
@@ -441,21 +443,17 @@
   // Order is not necessary but a good indicator
   .media-upload-icon {
     order: 1;
-    text-align: left;
+    justify-content: left;
   }
 
   .emoji-icon {
     order: 2;
-    text-align: center;
+    justify-content: center;
   }
 
   .poll-icon {
     order: 3;
-    text-align: right;
-  }
-
-  .poll-icon {
-    cursor: pointer;
+    justify-content: right;
   }
 
   .error {
@@ -487,10 +485,6 @@
     position: relative;
     width: 100%;
     flex-direction: column;
-  }
-
-  .btn {
-    cursor: pointer;
   }
 
   .btn[disabled] {
@@ -549,10 +543,6 @@
       color: $fallback--cRed;
       color: var(--cRed, $fallback--cRed);
     }
-  }
-
-  .btn {
-    cursor: pointer;
   }
 
   .btn[disabled] {

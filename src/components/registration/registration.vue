@@ -297,8 +297,8 @@ $validations-cRed: #f04124;
   .form-group {
     display: flex;
     flex-direction: column;
-    padding: 0.3em 0.0em 0.3em;
-    line-height:24px;
+    padding: 0.3em 0;
+    line-height: 2;
     margin-bottom: 1em;
   }
 
@@ -344,7 +344,7 @@ $validations-cRed: #f04124;
 
   .btn {
     margin-top: 0.6em;
-    height: 28px;
+    height: 2em;
   }
 
   .error {

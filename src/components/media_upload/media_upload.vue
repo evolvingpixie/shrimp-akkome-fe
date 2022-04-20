@@ -32,6 +32,6 @@
 @import '../../_variables.scss';
 
 .media-upload {
-  cursor: pointer;
+  cursor: pointer; // We use <label> for interactivity... i wonder if it's fine
 }
  </style>
