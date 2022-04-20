@@ -46,6 +46,7 @@
 
   .avatar-container {
     align-self: center;
+    line-height: 1;
   }
 
   .titlebar-avatar {
