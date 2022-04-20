@@ -318,7 +318,7 @@ $validations-cRed: #f04124;
     text-align: left;
 
     span {
-      font-size: 12px;
+      font-size: 0.85em;
     }
   }
 

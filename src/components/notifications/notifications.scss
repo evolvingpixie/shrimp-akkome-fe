@@ -113,13 +113,13 @@
   }
 
   .emoji-reaction-emoji {
-    font-size: 16px;
+    font-size: 1.3em;
   }
 
   .notification-details {
-    min-width: 0px;
+    min-width: 0;
     word-wrap: break-word;
-    line-height:18px;
+    line-height: 1.4;
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -142,7 +142,7 @@
     }
 
     .timeago {
-      margin-right: .2em;
+      margin-right: 0.2em;
     }
 
     .status-content {

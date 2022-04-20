@@ -73,7 +73,7 @@
     }
 
     .user-list-screen-name {
-      font-size: 9px;
+      font-size: 0.65em;
     }
   }
 }
