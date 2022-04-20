@@ -96,11 +96,14 @@
   align-self: stretch;
 
   > button {
-    font-size: 1.2em;
-    padding-left: 0.7em;
-    padding-right: 0.2em;
     line-height: 100%;
     height: 100%;
+    width: var(--__panel-heading-height-inner);
+    text-align: center;
+
+    svg {
+      font-size: 1.2em;
+    }
   }
 }
 

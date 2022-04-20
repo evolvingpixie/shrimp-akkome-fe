@@ -5,7 +5,7 @@
   >
     <button
       ref="trigger"
-      class="button-unstyled -fullwidth popover-trigger-button"
+      class="button-unstyled popover-trigger-button"
       type="button"
       @click="onClick"
     >

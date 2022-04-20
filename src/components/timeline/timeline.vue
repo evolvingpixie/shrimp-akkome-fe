@@ -60,7 +60,7 @@
       </div>
       <button
         v-else-if="!timeline.loading"
-        class="button-unstyled -link -fullwidth"
+        class="button-unstyled -link"
         @click.prevent="fetchOlderStatuses()"
       >
         <div class="new-status-notification text-center">
