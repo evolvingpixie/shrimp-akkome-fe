@@ -176,7 +176,7 @@
       }
 
       .user-profile-field-name, .user-profile-field-value {
-        line-height: 18px;
+        line-height: 1.3;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;

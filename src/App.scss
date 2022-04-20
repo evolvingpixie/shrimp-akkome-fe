@@ -457,7 +457,7 @@ textarea,
   display: inline-block;
   position: relative;
   height: 2em;
-  line-height: 16px;
+  line-height: 1.2;
   hyphens: none;
   padding: 8px 0.5em;
 
@@ -508,7 +508,7 @@ textarea,
       background-color: var(--input, $fallback--fg);
       vertical-align: top;
       text-align: center;
-      line-height: 1.1em;
+      line-height: 1.1;
       font-size: 1.1em;
       box-sizing: border-box;
       color: transparent;
@@ -548,7 +548,7 @@ textarea,
       background-color: var(--input, $fallback--fg);
       vertical-align: top;
       text-align: center;
-      line-height: 1.1em;
+      line-height: 1.1;
       font-size: 1.1em;
       box-sizing: border-box;
       color: transparent;
