@@ -93,7 +93,7 @@
 
   .dropdown-item {
     line-height: 21px;
-    overflow: auto;
+    overflow: hidden;
     display: block;
     padding: 0.25em 0.75em;
     clear: both;
@@ -154,9 +154,13 @@
         content: '✓';
       }
 
-      &.menu-checkbox-radio::after {
-        font-size: 2em;
-        content: '•';
+      &.-radio {
+        border-radius: 9999px;
+
+        &.menu-checkbox-checked::after {
+          font-size: 2em;
+          content: '•';
+        }
       }
     }
 

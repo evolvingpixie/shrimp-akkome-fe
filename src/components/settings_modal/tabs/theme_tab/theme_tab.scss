@@ -245,25 +245,8 @@
         border-color: var(--border, $fallback--border);
       }
 
-      .panel-heading {
-        .badge, .alert, .btn, .faint {
-          margin-left: 1em;
-          white-space: nowrap;
-        }
-        .faint {
-          text-overflow: ellipsis;
-          min-width: 2em;
-          overflow-x: hidden;
-        }
-        .flex-spacer {
-          flex: 1;
-        }
-      }
       .btn {
-        margin-left: 0;
-        padding: 0 1em;
         min-width: 3em;
-        min-height: 30px;
       }
     }
   }

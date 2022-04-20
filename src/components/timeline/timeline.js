@@ -60,7 +60,7 @@ const Timeline = {
       }
     },
     classes () {
-      let rootClasses = !this.embedded ? ['panel', 'panel-default'] : []
+      let rootClasses = !this.embedded ? ['panel', 'panel-default'] : ['-nonpanel']
       if (this.blockingClicks) rootClasses = rootClasses.concat(['-blocked', '_misclick-prevention'])
       return {
         root: rootClasses,

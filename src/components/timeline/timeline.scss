@@ -13,15 +13,6 @@
     max-width: 100%;
     flex-wrap: nowrap;
     align-items: center;
-
-    .loadmore-button {
-      flex-shrink: 0;
-    }
-
-    .loadmore-text {
-      flex-shrink: 0;
-      line-height: 1em;
-    }
   }
 
   .timeline-footer {
@@ -30,5 +21,18 @@
 
   .conversation-heading {
     top: calc(var(--panel-heading-height) * 2);
+  }
+
+  &.-nonpanel {
+    .timeline-heading {
+      text-align: center;
+      line-height: 2.75em;
+      padding: 0 0.5em;
+    }
+
+    .button-default, .alert {
+      line-height: 2em;
+      width: 100%;
+    }
   }
 }

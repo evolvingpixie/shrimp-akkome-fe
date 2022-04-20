@@ -39,7 +39,11 @@
 
   position: relative;
   box-sizing: border-box;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
+  grid-auto-columns: auto;
+  grid-column-gap: 0.5em;
   flex: none;
   border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
   border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
@@ -89,7 +93,6 @@
   }
 
   .title {
-    flex: 1 0 auto;
     font-size: 1.3em;
   }
 
@@ -110,42 +113,44 @@
     overflow-x: hidden;
   }
 
-  > .button-default,
-  > .alert {
-    height: var(--__panel-heading-height-inner);
-    min-height: 0;
-    box-sizing: border-box;
-    margin: 0;
-    margin-left: 0.5em;
-    min-width: 1px;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  > .button-default {
-    flex-shrink: 0;
-
-    &,
-    i[class*=icon-] {
-      color: $fallback--text;
-      color: var(--btnPanelText, $fallback--text);
+  &:not(.-flexible-height) {
+    > .button-default,
+    > .alert {
+      height: var(--__panel-heading-height-inner);
+      min-height: 0;
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 1px;
+      padding-top: 0;
+      padding-bottom: 0;
+      align-self: stretch;
     }
 
-    &:active {
-      background-color: $fallback--fg;
-      background-color: var(--btnPressedPanel, $fallback--fg);
-      color: $fallback--text;
-      color: var(--btnPressedPanelText, $fallback--text);
-    }
+    > .button-default {
+      flex-shrink: 0;
 
-    &:disabled {
-      color: $fallback--text;
-      color: var(--btnDisabledPanelText, $fallback--text);
-    }
+      &,
+      i[class*=icon-] {
+        color: $fallback--text;
+        color: var(--btnPanelText, $fallback--text);
+      }
 
-    &.toggled {
-      color: $fallback--text;
-      color: var(--btnToggledPanelText, $fallback--text);
+      &:active {
+        background-color: $fallback--fg;
+        background-color: var(--btnPressedPanel, $fallback--fg);
+        color: $fallback--text;
+        color: var(--btnPressedPanelText, $fallback--text);
+      }
+
+      &:disabled {
+        color: $fallback--text;
+        color: var(--btnDisabledPanelText, $fallback--text);
+      }
+
+      &.toggled {
+        color: $fallback--text;
+        color: var(--btnToggledPanelText, $fallback--text);
+      }
     }
   }
 

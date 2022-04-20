@@ -1,5 +1,5 @@
 <template>
-  <div :class="[classes.root, 'Timeline']">
+  <div :class="['Timeline', classes.root]">
     <div :class="classes.header">
       <TimelineMenu v-if="!embedded" />
       <button

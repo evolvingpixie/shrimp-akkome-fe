@@ -192,24 +192,6 @@
     align-items: middle;
     padding: 2em;
   }
-
-  .timeline-heading {
-    display: flex;
-    justify-content: center;
-
-    .loadmore-button, .alert {
-      flex: 1;
-    }
-
-    .loadmore-button {
-      height: 28px;
-      margin: 10px .6em;
-    }
-
-    .title, .loadmore-text {
-      display: none
-    }
-  }
 }
 .user-profile-placeholder {
   .panel-body {
