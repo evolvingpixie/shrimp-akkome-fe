@@ -408,6 +408,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: 5px;
+    align-items: baseline;
   }
 
   .media-upload-icon, .poll-icon, .emoji-icon {
@@ -502,25 +503,15 @@
     display: flex;
     flex-direction: column;
     padding: 0.25em 0.5em 0.5em;
-    line-height:24px;
-  }
-
-  form textarea.form-cw {
-    line-height:16px;
-    resize: none;
-    overflow: hidden;
-    transition: min-height 200ms 100ms;
-    min-height: 1px;
+    line-height: 1.85em;
   }
 
   .form-post-body {
-    height: 16px; // Only affects the empty-height
-    line-height: 16px;
     resize: none;
     overflow: hidden;
     transition: min-height 200ms 100ms;
     padding-bottom: 1.75em;
-    min-height: 1px;
+    min-height: 2em;
     box-sizing: content-box;
 
     &.scrollable-form {
