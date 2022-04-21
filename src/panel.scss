@@ -54,7 +54,7 @@
   color: var(--panelText);
   background-color: $fallback--bg;
   background-color: var(--bg, $fallback--bg);
-  align-items: baseline;
+  align-items: center;
   height: var(--panel-heading-height);
   z-index: 2;
 
@@ -177,7 +177,7 @@
   padding: 0.6em 0.6em;
   text-align: left;
   line-height: 2;
-  align-items: baseline;
+  align-items: center;
   border-width: 1px 0 0 0;
   border-style: solid;
   border-color: var(--border, $fallback--border);
