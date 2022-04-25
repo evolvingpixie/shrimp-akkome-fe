@@ -33,9 +33,9 @@
 }
 
 .panel-heading {
-  --panel-heading-height: 3.2em;
   --panel-heading-height-padding: 0.6em;
-  --__panel-heading-height-inner: calc(var(--panel-heading-height) - 2 * var(--panel-heading-height-padding));
+  --__panel-heading-height: 3.2em;
+  --__panel-heading-height-inner: calc(var(--__panel-heading-height) - 2 * var(--panel-heading-height-padding));
 
   position: relative;
   box-sizing: border-box;
@@ -55,7 +55,7 @@
   background-color: $fallback--bg;
   background-color: var(--bg, $fallback--bg);
   align-items: center;
-  height: var(--panel-heading-height);
+  height: var(--__panel-heading-height);
   z-index: 2;
 
   &.-flexible-height {
