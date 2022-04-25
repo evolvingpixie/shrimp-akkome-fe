@@ -507,12 +507,14 @@
   }
 
   .form-post-body {
-    resize: none;
+    box-sizing: content-box;
     overflow: hidden;
     transition: min-height 200ms 100ms;
-    padding-bottom: 1.75em;
-    min-height: 2em;
-    box-sizing: content-box;
+    padding-bottom: calc(var(--padding) + 1.2em);
+    // Because we changed box-sizing original height values are no longer correct
+    height: 1.2em;
+    min-height: 1.2em;
+    resize: none;
 
     &.scrollable-form {
       overflow-y: auto;

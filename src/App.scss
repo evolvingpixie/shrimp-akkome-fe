@@ -440,6 +440,8 @@ textarea,
     height: unset;
   }
 
+  --padding: 0.5em;
+
   border: none;
   border-radius: $fallback--inputRadius;
   border-radius: var(--inputRadius, $fallback--inputRadius);
@@ -456,10 +458,10 @@ textarea,
   box-sizing: border-box;
   display: inline-block;
   position: relative;
-  height: 2em;
+  height: 2.4em;
   line-height: 1.2;
   hyphens: none;
-  padding: 8px 0.5em;
+  padding: var(--padding);
 
   &:disabled,
   &[disabled=disabled],
