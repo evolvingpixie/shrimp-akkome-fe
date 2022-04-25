@@ -251,11 +251,8 @@
   .thread-ancestor-has-other-replies .conversation-status,
   .thread-ancestor:last-child .conversation-status,
   .thread-ancestor:last-child .thread-ancestor-dive-box,
+  &:last-child .conversation-status,
   &.-expanded .thread-tree .conversation-status {
-    border-bottom: none;
-  }
-
-  &:last-child .conversation-status {
     border-bottom: none;
   }
 
