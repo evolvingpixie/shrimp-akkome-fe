@@ -223,6 +223,7 @@
     --text: var(--faint);
     color: var(--text);
   }
+
   .thread-ancestor-dive-box {
     padding-left: var(--status-margin, $status-margin);
     border-bottom-width: 1px;
@@ -251,6 +252,10 @@
   .thread-ancestor:last-child .conversation-status,
   .thread-ancestor:last-child .thread-ancestor-dive-box,
   &.-expanded .thread-tree .conversation-status {
+    border-bottom: none;
+  }
+
+  &:last-child .conversation-status {
     border-bottom: none;
   }
 

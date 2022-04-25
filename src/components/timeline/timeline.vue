@@ -46,37 +46,39 @@
       </div>
     </div>
     <div :class="classes.footer">
-      <div
-        v-if="count===0"
-        class="new-status-notification text-center faint"
-      >
-        {{ $t('timeline.no_statuses') }}
-      </div>
-      <div
-        v-else-if="bottomedOut"
-        class="new-status-notification text-center faint"
-      >
-        {{ $t('timeline.no_more_statuses') }}
-      </div>
-      <button
-        v-else-if="!timeline.loading"
-        class="button-unstyled -link"
-        @click.prevent="fetchOlderStatuses()"
-      >
-        <div class="new-status-notification text-center">
-          {{ $t('timeline.load_older') }}
+      <teleport :to="footerSlipgate" :disabled="!embedded || !footerSlipgate">
+        <div
+          v-if="count===0"
+          class="new-status-notification text-center faint"
+        >
+          {{ $t('timeline.no_statuses') }}
         </div>
-      </button>
-      <div
-        v-else
-        class="new-status-notification text-center"
-      >
-        <FAIcon
-          icon="circle-notch"
-          spin
-          size="lg"
-        />
-      </div>
+        <div
+          v-else-if="bottomedOut"
+          class="new-status-notification text-center faint"
+        >
+          {{ $t('timeline.no_more_statuses') }}
+        </div>
+        <button
+          v-else-if="!timeline.loading"
+          class="button-unstyled -link"
+          @click.prevent="fetchOlderStatuses()"
+        >
+          <div class="new-status-notification text-center">
+            {{ $t('timeline.load_older') }}
+          </div>
+        </button>
+        <div
+          v-else
+          class="new-status-notification text-center"
+        >
+          <FAIcon
+            icon="circle-notch"
+            spin
+            size="lg"
+          />
+        </div>
+      </teleport>
     </div>
   </div>
 </template>

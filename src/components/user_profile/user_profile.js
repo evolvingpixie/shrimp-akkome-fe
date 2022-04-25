@@ -39,7 +39,8 @@ const UserProfile = {
     return {
       error: false,
       userId: null,
-      tab: defaultTabKey
+      tab: defaultTabKey,
+      footerRef: null
     }
   },
   created () {
@@ -78,6 +79,9 @@ const UserProfile = {
     }
   },
   methods: {
+    setFooterRef (el) {
+      this.footerRef = el
+    },
     load (userNameOrId) {
       const startFetchingTimeline = (timeline, userId) => {
         // Clear timeline only if load another user's profile

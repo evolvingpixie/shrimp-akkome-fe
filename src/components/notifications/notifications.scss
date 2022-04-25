@@ -11,10 +11,6 @@
     color: var(--text, $fallback--text);
   }
 
-  .notifications-footer {
-    border: none;
-  }
-
   .notification {
     position: relative;
 
@@ -45,6 +41,10 @@
     img {
       visibility: visible;
     }
+  }
+
+  &:last-child .Notification {
+    border-bottom: none;
   }
 
   .non-mention {

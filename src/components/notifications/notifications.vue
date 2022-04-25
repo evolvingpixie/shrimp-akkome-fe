@@ -36,7 +36,7 @@
             <notification :notification="notification" />
           </div>
         </div>
-        <div class="panel-footer notifications-footer">
+        <div class="panel-footer">
           <div
             v-if="bottomedOut"
             class="new-status-notification text-center faint"

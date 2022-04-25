@@ -22,7 +22,8 @@ const Timeline = {
     'embedded',
     'count',
     'pinnedStatusIds',
-    'inProfile'
+    'inProfile',
+    'footerSlipgate' // reference to an element where we should put our footer
   ],
   data () {
     return {
