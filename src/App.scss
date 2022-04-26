@@ -140,7 +140,6 @@ nav {
 }
 
 #main-scroller {
-  margin-top: var(--navbar-height);
   grid-area: content;
   position: relative;
 }
@@ -206,13 +205,18 @@ nav {
     row-gap: var(--___columnMargin);
     align-content: start;
 
+    &:not(.-scrollable) {
+      margin-top: var(--navbar-height);
+    }
+
     &:hover {
       z-index: 2;
     }
 
     &.-full-height {
-      margin-top: 0;
       margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
     }
 
     &.-scrollable {
