@@ -91,7 +91,7 @@ export default {
     },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
     shoutboxPosition () {
-      return this.$store.getters.mergedConfig.showNewPostButton || false
+      return this.$store.getters.mergedConfig.alwaysShowNewPostButton || false
     },
     hideShoutbox () {
       return this.$store.getters.mergedConfig.hideShoutbox

@@ -47,7 +47,7 @@
       v-if="currentUser && shout && !hideShoutbox"
       :floating="true"
       class="floating-shout mobile-hidden"
-      :class="{ 'left': shoutboxPosition }"
+      :class="{ '-left': shoutboxPosition }"
     />
     <MobilePostStatusButton />
     <UserReportingModal />
