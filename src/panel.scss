@@ -32,7 +32,8 @@
   text-align: center;
 }
 
-.panel-heading {
+.panel-heading,
+.panel-footer {
   --panel-heading-height-padding: 0.6em;
   --__panel-heading-height: 3.2em;
   --__panel-heading-height-inner: calc(var(--__panel-heading-height) - 2 * var(--panel-heading-height-padding));
@@ -45,17 +46,10 @@
   grid-auto-columns: auto;
   grid-column-gap: 0.5em;
   flex: none;
-  border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
-  border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
   background-size: cover;
-  padding: 0.6em 0.6em;
-  text-align: left;
-  line-height: var(--__panel-heading-height-inner);
-  color: var(--panelText);
-  background-color: $fallback--bg;
-  background-color: var(--bg, $fallback--bg);
-  align-items: center;
+  padding: 0.6em;
   height: var(--__panel-heading-height);
+  line-height: var(--__panel-heading-height-inner);
   z-index: 2;
 
   &.-flexible-height {
@@ -64,6 +58,14 @@
     &::after,
     &::before {
       display: none;
+    }
+  }
+
+  &.-stub {
+    &,
+    &::after {
+      border-radius: $fallback--panelRadius;
+      border-radius: var(--panelRadius, $fallback--panelRadius);
     }
   }
 
@@ -81,15 +83,6 @@
     right: 0;
     left: 0;
     pointer-events: none;
-  }
-
-  &::after {
-    background-color: $fallback--fg;
-    background-color: var(--panel, $fallback--fg);
-    z-index: -2;
-    border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
-    border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
-    box-shadow: var(--panelHeaderShadow);
   }
 
   .title {
@@ -125,7 +118,37 @@
       padding-bottom: 0;
       align-self: stretch;
     }
+  }
+}
 
+// TODO Should refactor panels into separate component and utilize slots
+
+.panel-heading {
+  border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
+  border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
+  border-width: 0 0 1px 0;
+  align-items: left;
+  // panel theme
+  color: var(--panelText);
+  background-color: $fallback--bg;
+  background-color: var(--bg, $fallback--bg);
+
+  &::after {
+    background-color: $fallback--fg;
+    background-color: var(--panel, $fallback--fg);
+    z-index: -2;
+    border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
+    border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
+    box-shadow: var(--panelHeaderShadow);
+  }
+
+  a,
+  .-link {
+    color: $fallback--link;
+    color: var(--panelLink, $fallback--link);
+  }
+
+  &:not(.-flexible-height) {
     > .button-default {
       flex-shrink: 0;
 
@@ -153,30 +176,11 @@
       }
     }
   }
-
-  a,
-  .-link {
-    color: $fallback--link;
-    color: var(--panelLink, $fallback--link);
-  }
 }
 
-.panel-heading.stub {
-  border-radius: $fallback--panelRadius;
-  border-radius: var(--panelRadius, $fallback--panelRadius);
-}
-
-/* TODO Should remove timeline-footer from here when we refactor panels into
- * separate component and utilize slots
- */
 .panel-footer {
-  display: flex;
   border-radius: 0 0 $fallback--panelRadius $fallback--panelRadius;
   border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
-  flex: none;
-  padding: 0.6em 0.6em;
-  text-align: left;
-  line-height: 2;
   align-items: center;
   border-width: 1px 0 0 0;
   border-style: solid;

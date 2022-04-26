@@ -202,7 +202,7 @@ nav {
     grid-row-start: 1;
     grid-row-end: 1;
     margin: 0 calc(var(--___columnMargin) / 2);
-    padding: calc(var(--___columnMargin) / 2) 0;
+    padding: calc(var(--___columnMargin)) 0;
     row-gap: var(--___columnMargin);
     align-content: start;
 
@@ -218,7 +218,6 @@ nav {
     &.-scrollable {
       --___paddingIncrease: calc(var(--columnGap) / 2);
 
-      padding-top: calc(var(--columnGap) / 2);
       position: sticky;
       top: var(--navbar-height);
       max-height: calc(100vh - var(--navbar-height));
@@ -243,7 +242,7 @@ nav {
       }
 
       .panel-heading.-sticky {
-        top: calc(var(--columnGap) / -2);
+        top: calc(var(--columnGap) / -1);
       }
     }
   }
