@@ -43,7 +43,7 @@
     white-space: nowrap;
     overflow: hidden;
     flex-shrink: 1;
-    line-height: 1.4em;
+    line-height: var(--post-line-height);
   }
 
   .chat-preview {
@@ -82,7 +82,7 @@
   }
 
   .time-wrapper {
-    line-height: 1.4em;
+    line-height: var(--post-line-height);
   }
 
   .chat-preview-body {

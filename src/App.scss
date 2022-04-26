@@ -3,6 +3,7 @@
 
 :root {
   --navbar-height: 3.5rem;
+  --post-line-height: 1.4;
 }
 
 html {
@@ -440,7 +441,7 @@ textarea,
     height: unset;
   }
 
-  --padding: 0.5em;
+  --_padding: 0.5em;
 
   border: none;
   border-radius: $fallback--inputRadius;
@@ -458,10 +459,9 @@ textarea,
   box-sizing: border-box;
   display: inline-block;
   position: relative;
-  height: 2.4em;
-  line-height: 1.2;
+  line-height: 2;
   hyphens: none;
-  padding: var(--padding);
+  padding: 0 var(--_padding);
 
   &:disabled,
   &[disabled=disabled],
@@ -561,6 +561,12 @@ textarea,
   &.resize-height {
     resize: vertical;
   }
+}
+
+// Textareas should have stock line-height + vertical padding instead of huge line-height
+textarea {
+  padding: var(--_padding);
+  line-height: var(--post-line-height);
 }
 
 option {

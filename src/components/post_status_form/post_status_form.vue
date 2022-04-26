@@ -394,7 +394,6 @@
     border-radius: var(--tooltipRadius, $fallback--tooltipRadius);
     padding: 0.5em;
     margin: 0;
-    line-height: 1.4em;
   }
 
   .text-format {
@@ -503,17 +502,19 @@
     display: flex;
     flex-direction: column;
     padding: 0.25em 0.5em 0.5em;
-    line-height: 1.85em;
+    line-height: 1.85;
   }
 
   .form-post-body {
-    box-sizing: content-box;
+    // TODO: make a resizable textarea component?
+    box-sizing: content-box; // needed for easier computation of dynamic size
     overflow: hidden;
     transition: min-height 200ms 100ms;
-    padding-bottom: calc(var(--padding) + 1.2em);
-    // Because we changed box-sizing original height values are no longer correct
-    height: 1.2em;
-    min-height: 1.2em;
+    // stock padding + 1 line of text (for counter)
+    padding-bottom: calc(var(--_padding) + var(--post-line-height) * 1em);
+    // two lines of text
+    height: calc(var(--post-line-height) * 1em);
+    min-height: calc(var(--post-line-height) * 1em);
     resize: none;
 
     &.scrollable-form {

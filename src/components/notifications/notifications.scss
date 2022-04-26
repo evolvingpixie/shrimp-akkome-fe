@@ -119,7 +119,7 @@
   .notification-details {
     min-width: 0;
     word-wrap: break-word;
-    line-height: 1.4;
+    line-height: var(--post-line-height);
     position: relative;
     overflow: hidden;
     width: 100%;

@@ -87,7 +87,7 @@
 
   &-left {
     padding: 1.1em 0.7em 0.7em;
-    line-height: 1.4em;
+    line-height: var(--post-line-height);
     box-sizing: border-box;
 
     > div {
