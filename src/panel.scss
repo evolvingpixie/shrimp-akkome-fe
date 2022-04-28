@@ -126,7 +126,7 @@
   border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
   border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
   border-width: 0 0 1px 0;
-  align-items: left;
+  align-items: start;
   // panel theme
   color: var(--panelText);
   background-color: $fallback--bg;

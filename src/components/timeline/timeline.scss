@@ -20,9 +20,11 @@
       padding: 0 0.5em;
     }
 
-    .button-default, .alert {
-      line-height: 2em;
-      width: 100%;
+    .timeline-heading {
+      .button-default, .alert {
+        line-height: 2em;
+        width: 100%;
+      }
     }
   }
 }
