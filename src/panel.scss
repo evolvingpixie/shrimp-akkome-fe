@@ -25,11 +25,21 @@
   }
 }
 
-.panel-body:empty::before {
-  content: "¯\\_(ツ)_/¯"; // Could use words but it'd require translations
-  display: block;
-  margin: 1em;
-  text-align: center;
+.panel-body {
+  padding: var(--panel-body-padding, 0);
+
+  &:empty::before {
+    content: "¯\\_(ツ)_/¯"; // Could use words but it'd require translations
+    display: block;
+    margin: 1em;
+    text-align: center;
+  }
+
+  > p {
+    line-height: 1.3;
+    padding: 1em;
+    margin: 0;
+  }
 }
 
 .panel-heading,
@@ -185,14 +195,4 @@
   border-width: 1px 0 0 0;
   border-style: solid;
   border-color: var(--border, $fallback--border);
-}
-
-.panel-body > p {
-  line-height: 1.3;
-  padding: 1em;
-  margin: 0;
-}
-
-.panel-body {
-  padding: var(--panel-body-padding, 0);
 }
