@@ -89,17 +89,6 @@
     font-size: 1.3em;
   }
 
-  .faint {
-    background-color: transparent;
-    color: $fallback--faint;
-    color: var(--panelFaint, $fallback--faint);
-  }
-
-  .faint-link {
-    color: $fallback--faint;
-    color: var(--faintLink, $fallback--faint);
-  }
-
   .alert {
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -148,6 +137,17 @@
     color: var(--panelLink, $fallback--link);
   }
 
+  .faint {
+    background-color: transparent;
+    color: $fallback--faint;
+    color: var(--panelFaint, $fallback--faint);
+  }
+
+  .faint-link {
+    color: $fallback--faint;
+    color: var(--faintLink, $fallback--faint);
+  }
+
   &:not(.-flexible-height) {
     > .button-default {
       flex-shrink: 0;
@@ -185,17 +185,6 @@
   border-width: 1px 0 0 0;
   border-style: solid;
   border-color: var(--border, $fallback--border);
-
-  .faint {
-    color: $fallback--faint;
-    color: var(--panelFaint, $fallback--faint);
-  }
-
-  a,
-  .-link {
-    color: $fallback--link;
-    color: var(--panelLink, $fallback--link);
-  }
 }
 
 .panel-body > p {
