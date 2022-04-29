@@ -55,7 +55,10 @@ export const settingsMap = {
     get: 'pleroma.allow_following_move',
     set: 'allow_following_move'
   },
-  'discoverable': 'source.discoverable',
+  'discoverable': {
+    get: 'source.pleroma.discoverable',
+    set: 'discoverable'
+  },
   'hideFavorites': {
     get: 'pleroma.hide_favorites',
     set: 'hide_favorites'
