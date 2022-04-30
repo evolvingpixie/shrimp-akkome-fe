@@ -1,4 +1,3 @@
-import { set, delete as del } from 'vue'
 import Cookies from 'js-cookie'
 import { setPreset, applyTheme } from '../services/style_setter/style_setter.js'
 import messages from '../i18n/messages'
