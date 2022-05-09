@@ -134,7 +134,7 @@ const interfaceMod = {
       commit('setLayoutHeight', value)
     },
     // value is optional, assuming it was cached prior
-    setLayoutWidth ({ commit, state, rootGetters }, value) {
+    setLayoutWidth ({ commit, state, rootGetters, rootState }, value) {
       let width = value
       if (value !== undefined) {
         commit('setLayoutWidth', value)
@@ -144,7 +144,7 @@ const interfaceMod = {
       const mobileLayout = width <= 800
       const normalOrMobile = mobileLayout ? 'mobile' : 'normal'
       const { thirdColumnMode } = rootGetters.mergedConfig
-      if (thirdColumnMode === 'none') {
+      if (thirdColumnMode === 'none' || !rootState.users.currentUser) {
         commit('setLayoutType', normalOrMobile)
       } else {
         const wideLayout = width >= 1300

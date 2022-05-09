@@ -72,6 +72,7 @@
         </li>
         <li>
           <ChoiceSetting
+            v-if="user"
             id="thirdColumnMode"
             path="thirdColumnMode"
             :options="thirdColumnModeOptions"
