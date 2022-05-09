@@ -10,7 +10,7 @@
         {{ loadButtonString }}
       </button>
       <div
-        v-else
+        v-else-if="!embedded"
         class="loadmore-text faint"
         @click.prevent
       >
