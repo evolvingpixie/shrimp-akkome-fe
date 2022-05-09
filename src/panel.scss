@@ -60,7 +60,7 @@
   padding: 0.6em;
   height: var(--__panel-heading-height);
   line-height: var(--__panel-heading-height-inner);
-  z-index: 2;
+  z-index: 3;
 
   &.-flexible-height {
     --__panel-heading-height: auto;
