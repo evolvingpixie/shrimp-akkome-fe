@@ -201,6 +201,8 @@
 @import '../../_variables.scss';
 
 .Conversation {
+  z-index: 1;
+
   .conversation-dive-to-top-level-box {
     padding: var(--status-margin, $status-margin);
     border-bottom-width: 1px;
