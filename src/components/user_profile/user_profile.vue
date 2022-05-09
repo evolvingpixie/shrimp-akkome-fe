@@ -142,6 +142,9 @@
   flex: 2;
   flex-basis: 500px;
 
+  // No sticky header on user profile
+  --currentPanelStack: 1;
+
   .user-profile-fields {
     margin: 0 0.5em;
 

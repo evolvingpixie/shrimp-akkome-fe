@@ -10,7 +10,7 @@
   }
 
   .conversation-heading {
-    top: calc(var(--__panel-heading-height) * 2);
+    top: calc(var(--__panel-heading-height) * var(--currentPanelStack, 2));
     z-index: 1;
   }
 
