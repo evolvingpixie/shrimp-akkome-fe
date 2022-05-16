@@ -35,10 +35,7 @@
   cursor: pointer; // We use <label> for interactivity... i wonder if it's fine
 
   .hidden-input-file {
-    max-width: 0;
-    max-height: 0;
-    pointer-events: none;
-    opacity: 0;
+    display: none;
   }
 }
  </style>
