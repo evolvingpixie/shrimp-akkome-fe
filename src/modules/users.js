@@ -1,4 +1,5 @@
 import backendInteractorService from '../services/backend_interactor_service/backend_interactor_service.js'
+import { windowWidth, windowHeight } from '../services/window_utils/window_utils'
 import oauthApi from '../services/new_api/oauth.js'
 import { compact, map, each, mergeWith, last, concat, uniq, isArray } from 'lodash'
 import { registerPushNotifications, unregisterPushNotifications } from '../services/push/push.js'
@@ -506,6 +507,8 @@ const users = {
           store.commit('resetStatuses')
           store.dispatch('resetChats')
           store.dispatch('setLastTimeline', 'public-timeline')
+          store.dispatch('setLayoutWidth', windowWidth())
+          store.dispatch('setLayoutHeight', windowHeight())
         })
     },
     loginUser (store, accessToken) {
@@ -565,6 +568,9 @@ const users = {
 
               // Get user mutes
               store.dispatch('fetchMutes')
+
+              store.dispatch('setLayoutWidth', windowWidth())
+              store.dispatch('setLayoutHeight', windowHeight())
 
               // Fetch our friends
               store.rootState.api.backendInteractor.fetchFriends({ id: user.id })
