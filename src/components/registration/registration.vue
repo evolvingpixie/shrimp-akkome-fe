@@ -164,13 +164,13 @@
 
             <div
               class="form-group"
-              :class="{ 'form-group--error': $v.user.language.$error }"
+              :class="{ 'form-group--error': v$.user.language.$error }"
             >
               <interface-language-switcher
                 for="email-language"
                 :prompt-text="$t('registration.email_language')"
-                :language="$v.user.language.$model"
-                :set-language="val => $v.user.language.$model = val"
+                :language="v$.user.language.$model"
+                :set-language="val => v$.user.language.$model = val"
               />
             </div>
 
