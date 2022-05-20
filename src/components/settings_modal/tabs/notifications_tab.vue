@@ -41,6 +41,11 @@
                 {{ $t('settings.notification_visibility_emoji_reactions') }}
               </BooleanSetting>
             </li>
+            <li>
+              <BooleanSetting path="notificationVisibility.polls">
+                {{ $t('settings.notification_visibility_polls') }}
+              </BooleanSetting>
+            </li>
           </ul>
         </li>
       </ul>

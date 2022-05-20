@@ -15,7 +15,7 @@ export const visibleTypes = store => {
     rootState.config.notificationVisibility.followRequest && 'follow_request',
     rootState.config.notificationVisibility.moves && 'move',
     rootState.config.notificationVisibility.emojiReactions && 'pleroma:emoji_reaction',
-    'poll'
+    rootState.config.notificationVisibility.polls && 'poll'
   ].filter(_ => _))
 }
 

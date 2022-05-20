@@ -61,6 +61,15 @@
             :class="{ 'menu-checkbox-checked': filters.moves }"
           />{{ $t('settings.notification_visibility_moves') }}
         </button>
+        <button
+          class="button-default dropdown-item"
+          @click="toggleNotificationFilter('polls')"
+        >
+          <span
+            class="menu-checkbox"
+            :class="{ 'menu-checkbox-checked': filters.polls }"
+          />{{ $t('settings.notification_visibility_polls') }}
+        </button>
       </div>
     </template>
     <template v-slot:trigger>
