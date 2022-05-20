@@ -77,8 +77,9 @@ const Timeline = {
     statusesToDisplay () {
       const amount = this.timeline.visibleStatuses.length
       const statusesPerSide = Math.ceil(Math.max(3, window.innerHeight / 80))
-      const min = Math.max(0, this.virtualScrollIndex - statusesPerSide)
-      const max = Math.min(amount, this.virtualScrollIndex + statusesPerSide)
+      const nonPinnedIndex = this.virtualScrollIndex - this.filteredPinnedStatusIds.length
+      const min = Math.max(0, nonPinnedIndex - statusesPerSide)
+      const max = Math.min(amount, nonPinnedIndex + statusesPerSide)
       return this.timeline.visibleStatuses.slice(min, max).map(_ => _.id)
     },
     virtualScrollingEnabled () {
