@@ -160,7 +160,8 @@
     "repeated_you": "repeated your status",
     "no_more_notifications": "No more notifications",
     "migrated_to": "migrated to",
-    "reacted_with": "reacted with {0}"
+    "reacted_with": "reacted with {0}",
+    "poll_ended": "poll has ended"
   },
   "polls": {
     "add_poll": "Add poll",
