@@ -30,7 +30,7 @@
             v-for="notification in notificationsToDisplay"
             :key="notification.id"
             class="notification"
-            :class="{&quot;unseen&quot;: !minimalMode && !notification.seen}"
+            :class="{unseen: !minimalMode && !notification.seen}"
           >
             <div class="notification-overlay" />
             <notification :notification="notification" />
