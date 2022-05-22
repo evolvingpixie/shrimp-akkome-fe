@@ -43,6 +43,7 @@ const Chat = {
   },
   created () {
     this.startFetching()
+    window.addEventListener('resize', this.handleResize)
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
@@ -132,7 +133,7 @@ const Chat = {
         }
       })
     },
-    // Preserves the scroll position when OSK appears or the posting form changes its height.
+    // "Sticks" scroll to bottom instead of top, helps with OSK resizing the viewport
     handleResize (opts = {}) {
       const { expand = false, delayed = false } = opts
 
@@ -144,15 +145,14 @@ const Chat = {
       }
 
       this.$nextTick(() => {
-        const { scrollHeight = undefined } = this.lastScrollPosition
-        this.lastScrollPosition = getScrollPosition()
-
-        const diff = this.lastScrollPosition.scrollHeight - scrollHeight
-        if (diff > 0 || (!this.bottomedOut() && expand)) {
+        const { offsetHeight = undefined } = getScrollPosition()
+        const diff = this.lastScrollPosition.offsetHeight - offsetHeight
+        if (diff !== 0 || (!this.bottomedOut() && expand)) {
           this.$nextTick(() => {
             window.scrollTo({ top: window.scrollY + diff })
           })
         }
+        this.lastScrollPosition = getScrollPosition()
       })
     },
     scrollDown (options = {}) {
