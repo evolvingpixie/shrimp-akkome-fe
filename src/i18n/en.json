@@ -160,7 +160,8 @@
     "repeated_you": "repeated your status",
     "no_more_notifications": "No more notifications",
     "migrated_to": "migrated to",
-    "reacted_with": "reacted with {0}"
+    "reacted_with": "reacted with {0}",
+    "poll_ended": "poll has ended"
   },
   "polls": {
     "add_poll": "Add poll",
@@ -427,6 +428,7 @@
     "notification_visibility_repeats": "Repeats",
     "notification_visibility_moves": "User Migrates",
     "notification_visibility_emoji_reactions": "Reactions",
+    "notification_visibility_polls": "Ends of polls you voted in",
     "no_rich_text_description": "Strip rich text formatting from all posts",
     "no_blocks": "No blocks",
     "no_mutes": "No mutes",

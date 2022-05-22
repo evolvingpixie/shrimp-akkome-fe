@@ -120,6 +120,14 @@
                 </i18n-t>
               </small>
             </span>
+            <span v-if="notification.type === 'poll'">
+              <FAIcon
+                class="type-icon"
+                icon="poll-h"
+              />
+              {{ ' ' }}
+              <small>{{ $t('notifications.poll_ended') }}</small>
+            </span>
           </div>
           <div
             v-if="isStatusNotification"
