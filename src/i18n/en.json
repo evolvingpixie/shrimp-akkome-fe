@@ -255,7 +255,8 @@
       "password_required": "cannot be left blank",
       "password_confirmation_required": "cannot be left blank",
       "password_confirmation_match": "should be the same as password"
-    }
+    },
+    "email_language": "In which language do you want to receive emails from the server?"
   },
   "remote_user_resolver": {
     "remote_user_resolver": "Remote user resolver",
@@ -304,6 +305,7 @@
     "avatarRadius": "Avatars",
     "background": "Background",
     "bio": "Bio",
+    "email_language": "Language for receiving emails from the server",
     "block_export": "Block export",
     "block_export_button": "Export your blocks to a csv file",
     "block_import": "Block import",
