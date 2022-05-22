@@ -193,8 +193,8 @@ const ProfileTab = {
     submitAvatar (cropper, file) {
       const that = this
       return new Promise((resolve, reject) => {
-        function updateAvatar (avatar) {
-          that.$store.state.api.backendInteractor.updateProfileImages({ avatar })
+        function updateAvatar (avatar, avatarName) {
+          that.$store.state.api.backendInteractor.updateProfileImages({ avatar, avatarName })
             .then((user) => {
               that.$store.commit('addNewUsers', [user])
               that.$store.commit('setCurrentUser', user)
@@ -207,9 +207,9 @@ const ProfileTab = {
         }
 
         if (cropper) {
-          cropper.getCroppedCanvas().toBlob(updateAvatar, file.type)
+          cropper.getCroppedCanvas().toBlob((data) => updateAvatar(data, file.name), file.type)
         } else {
-          updateAvatar(file)
+          updateAvatar(file, file.name)
         }
       })
     },

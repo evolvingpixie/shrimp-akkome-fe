@@ -151,9 +151,15 @@ const updateNotificationSettings = ({ credentials, settings }) => {
   }).then((data) => data.json())
 }
 
-const updateProfileImages = ({ credentials, avatar = null, banner = null, background = null }) => {
+const updateProfileImages = ({ credentials, avatar = null, avatarName = null, banner = null, background = null }) => {
   const form = new FormData()
-  if (avatar !== null) form.append('avatar', avatar)
+  if (avatar !== null) {
+    if (avatarName !== null) {
+      form.append('avatar', avatar, avatarName)
+    } else {
+      form.append('avatar', avatar)
+    }
+  }
   if (banner !== null) form.append('header', banner)
   if (background !== null) form.append('pleroma_background_image', background)
   return fetch(MASTODON_PROFILE_UPDATE_URL, {
