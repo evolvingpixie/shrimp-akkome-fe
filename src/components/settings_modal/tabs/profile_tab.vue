@@ -89,13 +89,6 @@
           {{ $t('settings.bot') }}
         </Checkbox>
       </p>
-      <p>
-        <interface-language-switcher
-          :prompt-text="$t('settings.email_language')"
-          :language="emailLanguage"
-          :set-language="val => emailLanguage = val"
-        />
-      </p>
       <button
         :disabled="newName && newName.length === 0"
         class="btn button-default"
