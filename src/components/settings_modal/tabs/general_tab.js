@@ -72,12 +72,6 @@ const GeneralTab = {
         !this.$store.state.users.currentUser.background_image
     },
     instanceShoutboxPresent () { return this.$store.state.instance.shoutAvailable },
-    language: {
-      get: function () { return this.$store.getters.mergedConfig.interfaceLanguage },
-      set: function (val) {
-        this.$store.dispatch('setOption', { name: 'interfaceLanguage', value: val })
-      }
-    },
     ...SharedComputedObject()
   },
   methods: {

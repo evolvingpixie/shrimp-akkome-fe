@@ -4,11 +4,7 @@
       <h2>{{ $t('settings.interface') }}</h2>
       <ul class="setting-list">
         <li>
-          <interface-language-switcher
-            :prompt-text="$t('settings.interfaceLanguage')"
-            :language="language"
-            :set-language="val => language = val"
-          />
+          <interface-language-switcher />
         </li>
         <li v-if="instanceSpecificPanelPresent">
           <BooleanSetting path="hideISP">

@@ -8,10 +8,8 @@ import EmojiInput from 'src/components/emoji_input/emoji_input.vue'
 import suggestor from 'src/components/emoji_input/suggestor.js'
 import Autosuggest from 'src/components/autosuggest/autosuggest.vue'
 import Checkbox from 'src/components/checkbox/checkbox.vue'
-import InterfaceLanguageSwitcher from 'src/components/interface_language_switcher/interface_language_switcher.vue'
 import BooleanSetting from '../helpers/boolean_setting.vue'
 import SharedComputedObject from '../helpers/shared_computed_object.js'
-import localeService from 'src/services/locale/locale.service.js'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -42,8 +40,7 @@ const ProfileTab = {
       banner: null,
       bannerPreview: null,
       background: null,
-      backgroundPreview: null,
-      emailLanguage: this.$store.state.users.currentUser.language || ''
+      backgroundPreview: null
     }
   },
   components: {
@@ -53,8 +50,7 @@ const ProfileTab = {
     Autosuggest,
     ProgressButton,
     Checkbox,
-    BooleanSetting,
-    InterfaceLanguageSwitcher
+    BooleanSetting
   },
   computed: {
     user () {
@@ -115,25 +111,19 @@ const ProfileTab = {
   },
   methods: {
     updateProfile () {
-      const params = {
-        note: this.newBio,
-        locked: this.newLocked,
-        // Backend notation.
-        /* eslint-disable camelcase */
-        display_name: this.newName,
-        fields_attributes: this.newFields.filter(el => el != null),
-        bot: this.bot,
-        show_role: this.showRole
-        /* eslint-enable camelcase */
-      }
-
-      if (this.emailLanguage) {
-        params.language = localeService.internalToBackendLocale(this.emailLanguage)
-      }
-
       this.$store.state.api.backendInteractor
-        .updateProfile({ params })
-        .then((user) => {
+        .updateProfile({
+          params: {
+            note: this.newBio,
+            locked: this.newLocked,
+            // Backend notation.
+            /* eslint-disable camelcase */
+            display_name: this.newName,
+            fields_attributes: this.newFields.filter(el => el != null),
+            bot: this.bot,
+            show_role: this.showRole
+            /* eslint-enable camelcase */
+          } }).then((user) => {
           this.newFields.splice(user.fields.length)
           merge(this.newFields, user.fields)
           this.$store.commit('addNewUsers', [user])
