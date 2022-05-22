@@ -106,7 +106,7 @@
     "sass": "1.20.1",
     "sass-loader": "7.2.0",
     "selenium-server": "2.53.1",
-    "semver": "5.6.0",
+    "semver": "5.7.1",
     "serviceworker-webpack-plugin": "1.0.1",
     "shelljs": "0.8.5",
     "sinon": "2.4.1",
