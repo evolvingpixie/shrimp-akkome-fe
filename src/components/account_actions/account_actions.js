@@ -40,7 +40,7 @@ const AccountActions = {
     openChat () {
       this.$router.push({
         name: 'chat',
-        params: { recipient_id: this.user.id }
+        params: { username: this.$store.state.users.currentUser.screen_name, recipient_id: this.user.id }
       })
     }
   },
