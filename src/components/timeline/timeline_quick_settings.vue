@@ -93,7 +93,6 @@
 <style lang="scss">
 
 .TimelineQuickSettings {
-  align-self: stretch;
 
   > button {
     line-height: 100%;
