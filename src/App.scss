@@ -301,6 +301,15 @@ nav {
       margin-bottom: 0;
     }
 
+    .panel-heading,
+    .panel-heading::after,
+    .panel-heading::before,
+    .panel,
+    .panel::after {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
     .underlay,
     #sidebar,
     #notifs-column {
