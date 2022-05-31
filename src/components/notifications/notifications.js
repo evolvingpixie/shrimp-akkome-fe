@@ -23,8 +23,6 @@ const Notifications = {
     NotificationFilters
   },
   props: {
-    // Disables display of panel header
-    noHeading: Boolean,
     // Disables panel styles, unread mark, potentially other notification-related actions
     // meant for "Interactions" timeline
     minimalMode: Boolean,
@@ -64,6 +62,18 @@ const Notifications = {
     },
     loading () {
       return this.$store.state.statuses.notifications.loading
+    },
+    noHeading () {
+      const { layoutType } = this.$store.state.interface
+      return this.minimalMode || layoutType === 'mobile'
+    },
+    teleportTarget () {
+      const { layoutType } = this.$store.state.interface
+      const map = {
+        wide: '#notifs-column',
+        mobile: '#mobile-notifications'
+      }
+      return map[layoutType] || '#notifs-sidebar'
     },
     notificationsToDisplay () {
       return this.filteredNotifications.slice(0, this.unseenCount + this.seenToDisplayCount)

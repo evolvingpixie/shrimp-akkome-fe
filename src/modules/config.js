@@ -50,6 +50,7 @@ export const defaultState = {
   pauseOnUnfocused: true,
   stopGifs: true,
   replyVisibility: 'all',
+  thirdColumnMode: 'notifications',
   notificationVisibility: {
     follows: true,
     mentions: true,
@@ -78,6 +79,8 @@ export const defaultState = {
   playVideosInModal: false,
   useOneClickNsfw: false,
   useContainFit: true,
+  disableStickyHeaders: false,
+  showScrollbars: false,
   greentext: undefined, // instance default
   useAtIcon: undefined, // instance default
   mentionLinkDisplay: undefined, // instance default
@@ -168,6 +171,9 @@ const config = {
         case 'interfaceLanguage':
           messages.setLanguage(this.getters.i18n, value)
           Cookies.set(BACKEND_LANGUAGE_COOKIE_NAME, localeService.internalToBackendLocale(value))
+          break
+        case 'thirdColumnMode':
+          dispatch('setLayoutWidth', undefined)
           break
       }
     }

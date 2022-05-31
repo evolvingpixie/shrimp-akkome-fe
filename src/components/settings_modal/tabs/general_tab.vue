@@ -65,6 +65,26 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="disableStickyHeaders">
+            {{ $t('settings.disable_sticky_headers') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="showScrollbars">
+            {{ $t('settings.show_scrollbars') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <ChoiceSetting
+            v-if="user"
+            id="thirdColumnMode"
+            path="thirdColumnMode"
+            :options="thirdColumnModeOptions"
+          >
+            {{ $t('settings.third_column_mode') }}
+          </ChoiceSetting>
+        </li>
+        <li>
           <BooleanSetting
             path="alwaysShowNewPostButton"
             expert="1"

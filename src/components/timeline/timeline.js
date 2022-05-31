@@ -22,7 +22,8 @@ const Timeline = {
     'embedded',
     'count',
     'pinnedStatusIds',
-    'inProfile'
+    'inProfile',
+    'footerSlipgate' // reference to an element where we should put our footer
   ],
   data () {
     return {
@@ -60,11 +61,11 @@ const Timeline = {
       }
     },
     classes () {
-      let rootClasses = !this.embedded ? ['panel', 'panel-default'] : []
+      let rootClasses = !this.embedded ? ['panel', 'panel-default'] : ['-nonpanel']
       if (this.blockingClicks) rootClasses = rootClasses.concat(['-blocked', '_misclick-prevention'])
       return {
         root: rootClasses,
-        header: ['timeline-heading'].concat(!this.embedded ? ['panel-heading'] : []),
+        header: ['timeline-heading'].concat(!this.embedded ? ['panel-heading', '-sticky'] : []),
         body: ['timeline-body'].concat(!this.embedded ? ['panel-body'] : []),
         footer: ['timeline-footer'].concat(!this.embedded ? ['panel-footer'] : [])
       }
@@ -142,6 +143,7 @@ const Timeline = {
         this.$store.commit('showNewStatuses', { timeline: this.timelineName })
         this.paused = false
       }
+      window.scrollTo({ top: 0 })
     },
     fetchOlderStatuses: throttle(function () {
       const store = this.$store

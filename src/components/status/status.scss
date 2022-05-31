@@ -42,6 +42,10 @@
     display: flex;
     padding: var(--status-margin, $status-margin);
 
+    > * {
+      min-width: 0;
+    }
+
     &.-repeat {
       padding-top: 0;
     }
@@ -78,7 +82,6 @@
 
   .status-username {
     white-space: nowrap;
-    font-size: 14px;
     overflow: hidden;
     max-width: 85%;
     font-weight: bold;
@@ -103,7 +106,7 @@
   .heading-name-row {
     display: flex;
     justify-content: space-between;
-    line-height: 18px;
+    line-height: 1.3;
 
     a {
       display: inline-block;
@@ -156,7 +159,7 @@
   & .heading-reply-row {
     position: relative;
     align-content: baseline;
-    font-size: 12px;
+    font-size: 0.85em;
     margin-top: 0.2em;
     line-height: 130%;
     max-width: 100%;
@@ -224,8 +227,8 @@
 
   .replies {
     margin-top: 0.25em;
-    line-height: 18px;
-    font-size: 12px;
+    line-height: 1.3;
+    font-size: 0.85em;
     display: flex;
     flex-wrap: wrap;
 
@@ -385,14 +388,14 @@
 
     .stat-title {
       color: var(--faint, $fallback--faint);
-      font-size: 12px;
+      font-size: 0.85em;
       text-transform: uppercase;
       position: relative;
     }
 
     .stat-number {
       font-weight: bolder;
-      font-size: 16px;
+      font-size: 1.1em;
       line-height: 1em;
     }
 

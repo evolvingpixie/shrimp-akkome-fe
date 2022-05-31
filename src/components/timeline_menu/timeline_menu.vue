@@ -43,6 +43,10 @@
   min-width: 0;
   width: 24rem;
 
+  .popover-trigger-button {
+    vertical-align: bottom;
+  }
+
   .timeline-menu-popover-wrap {
     overflow: hidden;
     // Match panel heading padding to line up menu with bottom of heading

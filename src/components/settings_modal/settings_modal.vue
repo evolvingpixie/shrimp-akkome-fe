@@ -11,22 +11,13 @@
           {{ $t('settings.settings') }}
         </span>
         <transition name="fade">
-          <div v-if="currentSaveStateNotice">
-            <div
-              v-if="currentSaveStateNotice.error"
-              class="alert error"
-              @click.prevent
-            >
-              {{ $t('settings.saving_err') }}
-            </div>
-
-            <div
-              v-if="!currentSaveStateNotice.error"
-              class="alert transparent"
-              @click.prevent
-            >
-              {{ $t('settings.saving_ok') }}
-            </div>
+          <div
+            v-if="currentSaveStateNotice"
+            class="alert"
+            :class="{ transparent: !currentSaveStateNotice.error, error: currentSaveStateNotice.error}"
+            @click.prevent
+          >
+            {{ currentSaveStateNotice.error ? $t('settings.saving_err') : $t('settings.saving_ok') }}
           </div>
         </transition>
         <button

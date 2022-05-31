@@ -19,7 +19,7 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
-    line-height: 1.4em;
+    line-height: var(--post-line-height);
   }
 
   .summary {

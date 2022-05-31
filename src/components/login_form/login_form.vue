@@ -101,7 +101,7 @@
   padding: 0.6em;
 
   .btn {
-    min-height: 28px;
+    min-height: 2em;
     width: 10em;
   }
 

@@ -5,7 +5,7 @@
   >
     <button
       ref="trigger"
-      class="button-unstyled -fullwidth popover-trigger-button"
+      class="button-unstyled popover-trigger-button"
       type="button"
       @click="onClick"
     >
@@ -37,7 +37,7 @@
 }
 
 .popover {
-  z-index: 8;
+  z-index: 500;
   position: absolute;
   min-width: 0;
 }
@@ -45,8 +45,19 @@
 .popover-default {
   transition: opacity 0.3s;
 
-  box-shadow: 1px 1px 4px rgba(0,0,0,.6);
-  box-shadow: var(--panelShadow);
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--panelShadow);
+    pointer-events: none;
+  }
+
   border-radius: $fallback--btnRadius;
   border-radius: var(--btnRadius, $fallback--btnRadius);
 
@@ -65,11 +76,11 @@
 .dropdown-menu {
   display: block;
   padding: .5rem 0;
-  font-size: 1rem;
+  font-size: 1em;
   text-align: left;
   list-style: none;
   max-width: 100vw;
-  z-index: 10;
+  z-index: 200;
   white-space: nowrap;
 
   .dropdown-divider {
@@ -82,9 +93,9 @@
 
   .dropdown-item {
     line-height: 21px;
-    overflow: auto;
+    overflow: hidden;
     display: block;
-    padding: .5em 0.75em;
+    padding: 0.5em 0.75em;
     clear: both;
     font-weight: 400;
     text-align: inherit;
@@ -110,14 +121,15 @@
     &:active, &:hover {
       background-color: $fallback--lightBg;
       background-color: var(--selectedMenuPopover, $fallback--lightBg);
-      color: $fallback--link;
-      color: var(--selectedMenuPopoverText, $fallback--link);
+      box-shadow: none;
+      --btnText: var(--selectedMenuPopoverText, $fallback--link);
       --faint: var(--selectedMenuPopoverFaintText, $fallback--faint);
       --faintLink: var(--selectedMenuPopoverFaintLink, $fallback--faint);
       --lightText: var(--selectedMenuPopoverLightText, $fallback--lightText);
       --icon: var(--selectedMenuPopoverIcon, $fallback--icon);
       svg {
         color: var(--selectedMenuPopoverIcon, $fallback--icon);
+        --icon: var(--selectedMenuPopoverIcon, $fallback--icon);
       }
     }
 
@@ -142,9 +154,13 @@
         content: '✓';
       }
 
-      &.menu-checkbox-radio::after {
-        font-size: 2em;
-        content: '•';
+      &.-radio {
+        border-radius: 9999px;
+
+        &.menu-checkbox-checked::after {
+          font-size: 2em;
+          content: '•';
+        }
       }
     }
 

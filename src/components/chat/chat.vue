@@ -2,23 +2,22 @@
   <div class="chat-view">
     <div class="chat-view-inner">
       <div
-        id="nav"
         ref="inner"
         class="panel-default panel chat-view-body"
       >
         <div
           ref="header"
-          class="panel-heading chat-view-heading mobile-hidden"
+          class="panel-heading -sticky chat-view-heading"
         >
-          <a
-            class="go-back-button"
+          <button
+            class="button-unstyled go-back-button"
             @click="goBack"
           >
             <FAIcon
               size="lg"
               icon="chevron-left"
             />
-          </a>
+          </button>
           <div class="title text-center">
             <ChatTitle
               :user="recipient"
@@ -27,10 +26,8 @@
           </div>
         </div>
         <div
-          ref="scrollable"
-          class="scrollable-message-list"
+          class="message-list"
           :style="{ height: scrollableContainerHeight }"
-          @scroll="handleScroll"
         >
           <template v-if="!errorLoadingChat">
             <ChatMessage

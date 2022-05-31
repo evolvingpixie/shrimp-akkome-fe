@@ -73,7 +73,7 @@
       </div>
     </template>
     <template v-slot:trigger>
-      <button class="button-unstyled">
+      <button class="filter-trigger-button button-unstyled">
         <FAIcon icon="filter" />
       </button>
     </template>
@@ -116,15 +116,14 @@ export default {
   align-self: stretch;
 
   > button {
-    font-size: 1.2em;
-    padding-left: 0.7em;
-    padding-right: 0.2em;
     line-height: 100%;
     height: 100%;
-  }
+    width: var(--__panel-heading-height-inner);
+    text-align: center;
 
-  .dropdown-item {
-    margin: 0;
+    svg {
+      font-size: 1.2em;
+    }
   }
 }
 

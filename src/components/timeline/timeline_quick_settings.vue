@@ -12,8 +12,8 @@
             @click="replyVisibilityAll = true"
           >
             <span
-              class="menu-checkbox"
-              :class="{ 'menu-checkbox-radio': replyVisibilityAll }"
+              class="menu-checkbox -radio"
+              :class="{ 'menu-checkbox-checked': replyVisibilityAll }"
             />{{ $t('settings.reply_visibility_all') }}
           </button>
           <button
@@ -21,8 +21,8 @@
             @click="replyVisibilityFollowing = true"
           >
             <span
-              class="menu-checkbox"
-              :class="{ 'menu-checkbox-radio': replyVisibilityFollowing }"
+              class="menu-checkbox -radio"
+              :class="{ 'menu-checkbox-checked': replyVisibilityFollowing }"
             />{{ $t('settings.reply_visibility_following_short') }}
           </button>
           <button
@@ -30,8 +30,8 @@
             @click="replyVisibilitySelf = true"
           >
             <span
-              class="menu-checkbox"
-              :class="{ 'menu-checkbox-radio': replyVisibilitySelf }"
+              class="menu-checkbox -radio"
+              :class="{ 'menu-checkbox-checked': replyVisibilitySelf }"
             />{{ $t('settings.reply_visibility_self_short') }}
           </button>
           <div
@@ -93,18 +93,16 @@
 <style lang="scss">
 
 .TimelineQuickSettings {
-  align-self: stretch;
 
   > button {
-    font-size: 1.2em;
-    padding-left: 0.7em;
-    padding-right: 0.2em;
     line-height: 100%;
     height: 100%;
-  }
+    width: var(--__panel-heading-height-inner);
+    text-align: center;
 
-  .dropdown-item {
-    margin: 0;
+    svg {
+      font-size: 1.2em;
+    }
   }
 }
 

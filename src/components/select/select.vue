@@ -39,10 +39,10 @@ label.Select {
     padding: 0 2em 0 .2em;
     font-family: sans-serif;
     font-family: var(--inputFont, sans-serif);
-    font-size: 14px;
+    font-size: 1em;
     width: 100%;
     z-index: 1;
-    height: 28px;
+    height: 2em;
     line-height: 16px;
   }
 
@@ -55,7 +55,7 @@ label.Select {
     width: 0.875em;
     color: $fallback--text;
     color: var(--inputText, $fallback--text);
-    line-height: 28px;
+    line-height: 2;
     z-index: 0;
     pointer-events: none;
   }

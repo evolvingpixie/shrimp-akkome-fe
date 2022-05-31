@@ -4,19 +4,19 @@
     :title="title"
   >
     <router-link
+      class="avatar-container"
       v-if="withAvatar && user"
       :to="getUserProfileLink(user)"
     >
       <UserAvatar
+        class="titlebar-avatar"
         :user="user"
-        width="23px"
-        height="23px"
       />
     </router-link>
     <RichContent
       v-if="user"
       class="username"
-      :title="'@'+user.screen_name_ui"
+      :title="'@'+(user && user.screen_name_ui)"
       :html="htmlTitle"
       :emoji="user.emoji || []"
     />
@@ -33,7 +33,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  align-items: center;
 
   --emoji-size: 14px;
 
@@ -46,11 +45,15 @@
     overflow: hidden;
   }
 
-  .Avatar {
-    width: 23px;
-    height: 23px;
-    margin-right: 0.5em;
+  .avatar-container {
+    align-self: center;
+    line-height: 1;
+  }
 
+  .titlebar-avatar {
+    margin-right: 0.5em;
+    height: 1.5em;
+    width: 1.5em;
     border-radius: $fallback--avatarAltRadius;
     border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
 

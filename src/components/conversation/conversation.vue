@@ -7,7 +7,7 @@
   >
     <div
       v-if="isExpanded"
-      class="panel-heading conversation-heading"
+      class="panel-heading conversation-heading -sticky"
     >
       <span class="title"> {{ $t('timeline.conversation') }} </span>
       <button
@@ -201,6 +201,8 @@
 @import '../../_variables.scss';
 
 .Conversation {
+  z-index: 1;
+
   .conversation-dive-to-top-level-box {
     padding: var(--status-margin, $status-margin);
     border-bottom-width: 1px;
@@ -223,6 +225,7 @@
     --text: var(--faint);
     color: var(--text);
   }
+
   .thread-ancestor-dive-box {
     padding-left: var(--status-margin, $status-margin);
     border-bottom-width: 1px;
@@ -250,6 +253,7 @@
   .thread-ancestor-has-other-replies .conversation-status,
   .thread-ancestor:last-child .conversation-status,
   .thread-ancestor:last-child .thread-ancestor-dive-box,
+  &:last-child .conversation-status,
   &.-expanded .thread-tree .conversation-status {
     border-bottom: none;
   }
@@ -269,6 +273,10 @@
     border-radius: 0 0 $fallback--panelRadius $fallback--panelRadius;
     border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
     border-bottom: 1px solid var(--border, $fallback--border);
+  }
+
+  &.-expanded.status-fadein {
+    margin: calc(var(--status-margin, $status-margin) / 2);
   }
 }
 </style>

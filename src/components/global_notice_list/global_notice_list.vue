@@ -44,20 +44,18 @@
     max-width: calc(100% - 3em);
     display: flex;
     padding-left: 1.5em;
-    line-height: 2em;
+    line-height: 2;
+    margin-bottom: 0.5em;
+
     .notice-message {
       flex: 1 1 100%;
-    }
-    i {
-      flex: 0 0;
-      width: 1.5em;
-      cursor: pointer;
     }
   }
 
   .global-error {
     background-color: var(--alertPopupError, $fallback--cRed);
     color: var(--alertPopupErrorText, $fallback--text);
+
     .svg-inline--fa {
       color: var(--alertPopupErrorText, $fallback--text);
     }
@@ -66,6 +64,7 @@
   .global-warning {
     background-color: var(--alertPopupWarning, $fallback--cOrange);
     color: var(--alertPopupWarningText, $fallback--text);
+
     .svg-inline--fa {
       color: var(--alertPopupWarningText, $fallback--text);
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="column-inner">
     <instance-specific-panel v-if="showInstanceSpecificPanel" />
     <staff-panel />
     <terms-of-service-panel />

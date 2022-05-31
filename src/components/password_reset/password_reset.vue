@@ -91,14 +91,18 @@
     flex-direction: column;
     margin-top: 0.6em;
     max-width: 18rem;
+
+    > * {
+      min-width: 0;
+    }
   }
 
   .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
-    padding: 0.3em 0.0em 0.3em;
-    line-height: 24px;
+    padding: 0.3em 0;
+    line-height: 1.85em;
   }
 
   .error {
@@ -110,7 +114,7 @@
 
   .alert {
     padding: 0.5em;
-    margin: 0.3em 0.0em 1em;
+    margin: 0.3em 0 1em;
   }
 
   .password-reset-required {

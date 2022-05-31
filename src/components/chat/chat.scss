@@ -1,28 +1,22 @@
 .chat-view {
   display: flex;
-  height: calc(100vh - 60px);
-  width: 100%;
-
-  .chat-title {
-    // prevents chat header jumping on when the user avatar loads
-    height: 28px;
-  }
+  height: 100%;
 
   .chat-view-inner {
     height: auto;
     width: 100%;
     overflow: visible;
     display: flex;
-    margin: 0.5em 0.5em 0 0.5em;
   }
 
   .chat-view-body {
+    box-sizing: border-box;
     background-color: var(--chatBg, $fallback--bg);
     display: flex;
     flex-direction: column;
     width: 100%;
     overflow: visible;
-    min-height: 100%;
+    min-height: calc(100vh - var(--navbar-height));
     margin: 0 0 0 0;
     border-radius: 10px 10px 0 0;
     border-radius: var(--panelRadius, 10px) var(--panelRadius, 10px) 0 0;
@@ -32,36 +26,32 @@
     }
   }
 
-  .scrollable-message-list {
+  .message-list {
     padding: 0 0.8em;
     height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: end;
   }
 
   .footer {
     position: sticky;
     bottom: 0;
+    background-color: $fallback--bg;
+    background-color: var(--bg, $fallback--bg);
+    z-index: 1;
   }
 
   .chat-view-heading {
-    align-items: center;
-    justify-content: space-between;
-    top: 50px;
-    display: flex;
-    z-index: 2;
-    position: sticky;
-    overflow: hidden;
+    grid-template-columns: auto minmax(50%, 1fr);
   }
 
   .go-back-button {
-    cursor: pointer;
-    width: 28px;
     text-align: center;
-    padding: 0.6em;
-    margin: -0.6em 0.6em -0.6em -0.6em;
+    line-height: 1;
+    height: 100%;
+    align-self: start;
+    width: var(--__panel-heading-height-inner);
   }
 
   .jump-to-bottom-button {
@@ -113,58 +103,6 @@
       .error {
         width: 100%;
       }
-    }
-  }
-
-  @media all and (max-width: 800px) {
-    height: 100%;
-    overflow: hidden;
-
-    .chat-view-inner {
-      overflow: hidden;
-      height: 100%;
-      margin-top: 0;
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .chat-view-body {
-      display: flex;
-      min-height: auto;
-      overflow: hidden;
-      height: 100%;
-      margin: 0;
-      border-radius: 0;
-    }
-
-    .chat-view-heading {
-      box-sizing: border-box;
-      position: static;
-      z-index: 9999;
-      top: 0;
-      margin-top: 0;
-      border-radius: 0;
-
-      /* This practically overlays the panel heading color over panel background
-       * color. This is needed because we allow transparent panel background and
-       * it doesn't work well in this "disjointed panel header" case
-       */
-      background:
-        linear-gradient(to top, var(--panel), var(--panel)),
-        linear-gradient(to top, var(--bg), var(--bg));
-      height: 50px;
-    }
-
-    .scrollable-message-list {
-      display: unset;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .footer {
-      position: sticky;
-      bottom: auto;
     }
   }
 }

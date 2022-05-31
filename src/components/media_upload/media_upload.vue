@@ -17,9 +17,9 @@
     />
     <input
       v-if="uploadReady"
+      class="hidden-input-file"
       :disabled="disabled"
       type="file"
-      style="position: fixed; top: -100em"
       multiple="true"
       @change="change"
     >
@@ -32,6 +32,10 @@
 @import '../../_variables.scss';
 
 .media-upload {
-  cursor: pointer;
+  cursor: pointer; // We use <label> for interactivity... i wonder if it's fine
+
+  .hidden-input-file {
+    display: none;
+  }
 }
  </style>

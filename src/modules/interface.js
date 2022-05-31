@@ -13,7 +13,7 @@ const defaultState = {
       window.CSS.supports('-webkit-filter', 'drop-shadow(0 0)')
     )
   },
-  mobileLayout: false,
+  layoutType: 'normal',
   globalNotices: [],
   layoutHeight: 0,
   lastTimeline: null
@@ -36,8 +36,8 @@ const interfaceMod = {
     setNotificationPermission (state, permission) {
       state.notificationPermission = permission
     },
-    setMobileLayout (state, value) {
-      state.mobileLayout = value
+    setLayoutType (state, value) {
+      state.layoutType = value
     },
     closeSettingsModal (state) {
       state.settingsModalState = 'hidden'
@@ -72,6 +72,9 @@ const interfaceMod = {
     setLayoutHeight (state, value) {
       state.layoutHeight = value
     },
+    setLayoutWidth (state, value) {
+      state.layoutWidth = value
+    },
     setLastTimeline (state, value) {
       state.lastTimeline = value
     }
@@ -85,9 +88,6 @@ const interfaceMod = {
     },
     setNotificationPermission ({ commit }, permission) {
       commit('setNotificationPermission', permission)
-    },
-    setMobileLayout ({ commit }, value) {
-      commit('setMobileLayout', value)
     },
     closeSettingsModal ({ commit }) {
       commit('closeSettingsModal')
@@ -132,6 +132,24 @@ const interfaceMod = {
     },
     setLayoutHeight ({ commit }, value) {
       commit('setLayoutHeight', value)
+    },
+    // value is optional, assuming it was cached prior
+    setLayoutWidth ({ commit, state, rootGetters, rootState }, value) {
+      let width = value
+      if (value !== undefined) {
+        commit('setLayoutWidth', value)
+      } else {
+        width = state.layoutWidth
+      }
+      const mobileLayout = width <= 800
+      const normalOrMobile = mobileLayout ? 'mobile' : 'normal'
+      const { thirdColumnMode } = rootGetters.mergedConfig
+      if (thirdColumnMode === 'none' || !rootState.users.currentUser) {
+        commit('setLayoutType', normalOrMobile)
+      } else {
+        const wideLayout = width >= 1300
+        commit('setLayoutType', wideLayout ? 'wide' : normalOrMobile)
+      }
     },
     setLastTimeline ({ commit }, value) {
       commit('setLastTimeline', value)
