@@ -62,7 +62,7 @@ export default (store) => {
     { name: 'password-reset', path: '/password-reset', component: PasswordReset, props: true },
     { name: 'registration-token', path: '/registration/:token', component: Registration },
     { name: 'friend-requests', path: '/friend-requests', component: FollowRequests, beforeEnter: validateAuthenticatedRoute },
-    { name: 'notifications', path: '/:username/notifications', component: Notifications, beforeEnter: validateAuthenticatedRoute },
+    { name: 'notifications', path: '/:username/notifications', component: Notifications, props: () => ({ disableTeleport: true }), beforeEnter: validateAuthenticatedRoute },
     { name: 'login', path: '/login', component: AuthForm },
     { name: 'shout-panel', path: '/shout-panel', component: ShoutPanel, props: () => ({ floating: false }) },
     { name: 'oauth-callback', path: '/oauth-callback', component: OAuthCallback, props: (route) => ({ code: route.query.code }) },

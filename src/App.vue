@@ -9,7 +9,7 @@
     />
     <MobileNav v-if="layoutType === 'mobile'" />
     <DesktopNav v-else />
-    <notifications v-if="currentUser" />
+    <Notifications v-if="currentUser" />
     <div
       id="content"
       class="app-layout container"
