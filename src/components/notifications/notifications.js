@@ -27,7 +27,9 @@ const Notifications = {
     // meant for "Interactions" timeline
     minimalMode: Boolean,
     // Custom filter mode, an array of strings, possible values 'mention', 'repeat', 'like', 'follow', used to override global filter for use in "Interactions" timeline
-    filterMode: Array
+    filterMode: Array,
+    // Disable teleporting (i.e. for /users/user/notifications)
+    disableTeleport: Boolean
   },
   data () {
     return {
