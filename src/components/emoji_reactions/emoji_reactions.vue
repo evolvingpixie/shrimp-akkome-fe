@@ -16,6 +16,7 @@
         >
           <img
             :src="reaction.url"
+            :title="reaction.name"
             class="reaction-emoji"
             width="2.55em"
           >
