@@ -34,7 +34,14 @@
           :title="emoji.displayText"
           @click="addReaction($event, emoji.replacement, close)"
         >
-          {{ emoji.replacement }}
+          <img
+            v-if="emoji.imageUrl !== false"
+            :src="emoji.imageUrl"
+            width="30px"
+          >
+          <span v-else>
+            {{ emoji.replacement }}
+          </span>
         </span>
         <div class="reaction-bottom-fader" />
       </div>

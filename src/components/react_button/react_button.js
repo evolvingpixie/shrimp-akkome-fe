@@ -45,7 +45,10 @@ const ReactButton = {
       if (this.filterWord !== '') {
         const filterWordLowercase = this.filterWord.toLowerCase()
         let orderedEmojiList = []
-        for (const emoji of this.$store.state.instance.emoji) {
+        for (const emoji of [
+          ...this.$store.state.instance.emoji,
+          ...this.$store.state.instance.customEmoji
+        ]) {
           if (emoji.replacement === this.filterWord) return [emoji]
 
           const indexOfFilterWord = emoji.displayText.toLowerCase().indexOf(filterWordLowercase)
@@ -58,7 +61,10 @@ const ReactButton = {
         }
         return orderedEmojiList.flat()
       }
-      return this.$store.state.instance.emoji || []
+      return [
+        ...this.$store.state.instance.emoji,
+        ...this.$store.state.instance.customEmoji
+      ] || []
     },
     mergedConfig () {
       return this.$store.getters.mergedConfig
