@@ -17,6 +17,7 @@
           <img
             :src="reaction.url"
             class="reaction-emoji"
+            width="2.55em"
           >
           {{ reaction.count }}
         </span>
@@ -58,7 +59,7 @@
   justify-content: center;
   box-sizing: border-box;
   .reaction-emoji {
-    width: 2.55em;
+    width: 2.55em !important;
     margin-right: 0.25em;
   }
   &:focus {
