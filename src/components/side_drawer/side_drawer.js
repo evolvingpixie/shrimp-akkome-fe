@@ -49,7 +49,7 @@ const SideDrawer = {
     currentUser () {
       return this.$store.state.users.currentUser
     },
-    shout () { return this.$store.state.shout.channel.state === 'joined' },
+    shout () { return this.$store.state.shout.joined },
     unseenNotifications () {
       return unseenNotificationsFromStore(this.$store)
     },

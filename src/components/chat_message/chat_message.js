@@ -27,6 +27,7 @@ const ChatMessage = {
     'chatViewItem',
     'hoveredMessageChain'
   ],
+  emits: ['hover'],
   components: {
     Popover,
     Attachment,

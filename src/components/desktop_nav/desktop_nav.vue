@@ -34,7 +34,7 @@
         <search-bar
           v-if="currentUser || !privateMode"
           @toggled="onSearchBarToggled"
-          @click.stop.native
+          @click.stop
         />
         <button
           class="button-unstyled nav-icon"
@@ -52,6 +52,7 @@
           href="/pleroma/admin/#/login-pleroma"
           class="nav-icon"
           target="_blank"
+          @click.stop
         >
           <FAIcon
             fixed-width

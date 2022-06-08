@@ -2,7 +2,7 @@
   <button
     class="btn button-default follow-button"
     :class="{ toggled: isPressed }"
-    :disabled="inProgress"
+    :disabled="disabled"
     :title="title"
     @click="onClick"
   >

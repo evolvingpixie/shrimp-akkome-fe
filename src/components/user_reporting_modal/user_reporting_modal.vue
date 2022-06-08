@@ -53,8 +53,8 @@
                   :statusoid="item"
                 />
                 <Checkbox
-                  :checked="isChecked(item.id)"
-                  @change="checked => toggleStatus(checked, item.id)"
+                  :model-value="isChecked(item.id)"
+                  @update:model-value="checked => toggleStatus(checked, item.id)"
                 />
               </div>
             </template>
@@ -76,17 +76,6 @@
   min-height: 20vh;
   max-height: 80vh;
 
-  .panel-heading {
-    .title {
-      text-align: center;
-      // TODO: Consider making these as default of panel
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-
   .panel-body {
     display: flex;
     flex-direction: column-reverse;
@@ -98,7 +87,7 @@
 
   &-left {
     padding: 1.1em 0.7em 0.7em;
-    line-height: 1.4em;
+    line-height: var(--post-line-height);
     box-sizing: border-box;
 
     > div {

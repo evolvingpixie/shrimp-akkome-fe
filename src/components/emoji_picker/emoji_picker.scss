@@ -7,7 +7,7 @@
   right: 0;
   left: 0;
   margin: 0 !important;
-  z-index: 1;
+  z-index: 100;
   background-color: $fallback--bg;
   background-color: var(--popover, $fallback--bg);
   color: $fallback--link;
@@ -73,12 +73,13 @@
     &-item {
       padding: 0 7px;
       cursor: pointer;
-      font-size: 24px;
+      font-size: 1.85em;
 
       &.disabled {
         opacity: 0.5;
         pointer-events: none;
       }
+
       &.active {
         border-bottom: 4px solid;
 
@@ -151,9 +152,10 @@
       justify-content: left;
 
       &-title {
-        font-size: 12px;
+        font-size: 0.85em;
         width: 100%;
         margin: 0;
+
         &.disabled {
           display: none;
         }

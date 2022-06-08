@@ -9,7 +9,7 @@ const Bookmarks = {
   components: {
     Timeline
   },
-  destroyed () {
+  unmounted () {
     this.$store.commit('clearTimeline', { timeline: 'bookmarks' })
   }
 }

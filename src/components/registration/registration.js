@@ -1,9 +1,11 @@
-import { validationMixin } from 'vuelidate'
-import { required, requiredIf, sameAs } from 'vuelidate/lib/validators'
+import useVuelidate from '@vuelidate/core'
+import { required, requiredIf, sameAs } from '@vuelidate/validators'
 import { mapActions, mapState } from 'vuex'
+import InterfaceLanguageSwitcher from '../interface_language_switcher/interface_language_switcher.vue'
+import localeService from '../../services/locale/locale.service.js'
 
 const registration = {
-  mixins: [validationMixin],
+  setup () { return { v$: useVuelidate() } },
   data: () => ({
     user: {
       email: '',
@@ -11,10 +13,14 @@ const registration = {
       username: '',
       password: '',
       confirm: '',
-      reason: ''
+      reason: '',
+      language: ''
     },
     captcha: {}
   }),
+  components: {
+    InterfaceLanguageSwitcher
+  },
   validations () {
     return {
       user: {
@@ -24,9 +30,10 @@ const registration = {
         password: { required },
         confirm: {
           required,
-          sameAsPassword: sameAs('password')
+          sameAs: sameAs(this.user.password)
         },
-        reason: { required: requiredIf(() => this.accountApprovalRequired) }
+        reason: { required: requiredIf(() => this.accountApprovalRequired) },
+        language: {}
       }
     }
   },
@@ -64,10 +71,13 @@ const registration = {
       this.user.captcha_solution = this.captcha.solution
       this.user.captcha_token = this.captcha.token
       this.user.captcha_answer_data = this.captcha.answer_data
+      if (this.user.language) {
+        this.user.language = localeService.internalToBackendLocale(this.user.language)
+      }
 
-      this.$v.$touch()
+      this.v$.$touch()
 
-      if (!this.$v.$invalid) {
+      if (!this.v$.$invalid) {
         try {
           await this.signUp(this.user)
           this.$router.push({ name: 'friends' })

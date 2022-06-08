@@ -204,12 +204,13 @@
         v-model="selected.alpha"
         :disabled="!present"
       />
-      <i18n
-        path="settings.style.shadows.hintV3"
+      <i18n-t
+        scope="global"
+        keypath="settings.style.shadows.hintV3"
         tag="p"
       >
         <code>--variable,mod</code>
-      </i18n>
+      </i18n-t>
     </div>
   </div>
 </template>

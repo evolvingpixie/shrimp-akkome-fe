@@ -6,7 +6,6 @@
       class="mention-link"
       :content="mention.content"
       :url="mention.url"
-      :first-mention="false"
     /><span
       v-if="manyMentions"
       class="extraMentions"
@@ -21,7 +20,6 @@
           class="mention-link"
           :content="mention.content"
           :url="mention.url"
-          :first-mention="false"
         />
       </span><button
         v-if="!expanded"

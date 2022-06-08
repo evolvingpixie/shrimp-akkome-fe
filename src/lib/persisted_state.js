@@ -1,6 +1,6 @@
 import merge from 'lodash.merge'
 import localforage from 'localforage'
-import { each, get, set } from 'lodash'
+import { each, get, set, cloneDeep } from 'lodash'
 
 let loaded = false
 
@@ -69,7 +69,7 @@ export default function createPersistedState ({
       subscriber(store)((mutation, state) => {
         try {
           if (saveImmedeatelyActions.includes(mutation.type)) {
-            setState(key, reducer(state, paths), storage)
+            setState(key, reducer(cloneDeep(state), paths), storage)
               .then(success => {
                 if (typeof success !== 'undefined') {
                   if (mutation.type === 'setOption' || mutation.type === 'setCurrentUser') {

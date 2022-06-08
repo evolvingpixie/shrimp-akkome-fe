@@ -21,7 +21,7 @@ export default {
     }
     this.$store.dispatch('trackPoll', this.pollId)
   },
-  destroyed () {
+  unmounted () {
     this.$store.dispatch('untrackPoll', this.pollId)
   },
   computed: {

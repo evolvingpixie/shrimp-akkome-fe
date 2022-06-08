@@ -117,7 +117,7 @@ const ImageCropper = {
     const fileInput = this.$refs.input
     fileInput.addEventListener('change', this.readFile)
   },
-  beforeDestroy: function () {
+  beforeUnmount: function () {
     // remove the event listeners
     const trigger = this.getTriggerDOM()
     if (trigger) {

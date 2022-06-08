@@ -57,7 +57,7 @@
   >
     <div class="panel panel-default">
       <div
-        class="panel-heading stub timeline-heading shout-heading"
+        class="panel-heading -stub timeline-heading shout-heading"
         @click.stop.prevent="togglePanel"
       >
         <div class="title">
@@ -79,17 +79,17 @@
 
 .floating-shout {
   position: fixed;
-  bottom: 0px;
+  bottom: 0.5em;
   z-index: 1000;
   max-width: 25em;
-}
 
-.floating-shout.left {
-  left: 0px;
-}
+  &.-left {
+    left: 0.5em;
+  }
 
-.floating-shout:not(.left) {
-  right: 0px;
+  &:not(.-left) {
+    right: 0.5em;
+  }
 }
 
 .shout-panel {
@@ -98,7 +98,7 @@
 
     .icon {
       color: $fallback--text;
-      color: var(--text, $fallback--text);
+      color: var(--panelText, $fallback--text);
       margin-right: 0.5em;
     }
 
@@ -121,7 +121,7 @@
 
   .shout-message {
     display: flex;
-    padding: 0.2em 0.5em
+    padding: 0.2em 0.5em;
   }
 
   .shout-avatar {
@@ -137,6 +137,7 @@
 
   .shout-input {
     display: flex;
+
     textarea {
       flex: 1;
       margin: 0.6em;

@@ -1,25 +1,26 @@
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <div
     class="chat-title"
     :title="title"
   >
     <router-link
+      class="avatar-container"
       v-if="withAvatar && user"
       :to="getUserProfileLink(user)"
     >
       <UserAvatar
+        class="titlebar-avatar"
         :user="user"
-        width="23px"
-        height="23px"
       />
     </router-link>
-    <span
+    <RichContent
+      v-if="user"
       class="username"
-      v-html="htmlTitle"
+      :title="'@'+(user && user.screen_name_ui)"
+      :html="htmlTitle"
+      :emoji="user.emoji || []"
     />
   </div>
-  <!-- eslint-enable vue/no-v-html -->
 </template>
 
 <script src="./chat_title.js"></script>
@@ -32,7 +33,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  align-items: center;
+
+  --emoji-size: 14px;
 
   .username {
     max-width: 100%;
@@ -41,21 +43,17 @@
     display: inline;
     word-wrap: break-word;
     overflow: hidden;
-    text-overflow: ellipsis;
-
-    .emoji {
-      width: 14px;
-      height: 14px;
-      vertical-align: middle;
-      object-fit: contain
-    }
   }
 
-  .Avatar {
-    width: 23px;
-    height: 23px;
-    margin-right: 0.5em;
+  .avatar-container {
+    align-self: center;
+    line-height: 1;
+  }
 
+  .titlebar-avatar {
+    margin-right: 0.5em;
+    height: 1.5em;
+    width: 1.5em;
     border-radius: $fallback--avatarAltRadius;
     border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
 

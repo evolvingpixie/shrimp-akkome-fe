@@ -1,4 +1,3 @@
-import { set } from 'vue'
 import { getPreset, applyTheme } from '../services/style_setter/style_setter.js'
 import { CURRENT_VERSION } from '../services/theme_data/theme_data.service.js'
 import apiService from '../services/api/api.service.js'
@@ -20,11 +19,23 @@ const defaultState = {
   background: '/static/aurora_borealis.jpg',
   collapseMessageWithSubject: false,
   greentext: false,
+  useAtIcon: false,
+  mentionLinkDisplay: 'short',
+  mentionLinkShowTooltip: true,
+  mentionLinkShowAvatar: false,
+  mentionLinkFadeDomain: true,
+  mentionLinkShowYous: false,
+  mentionLinkBoldenYou: true,
   hideFilteredStatuses: false,
+  // bad name: actually hides posts of muted USERS
   hideMutedPosts: false,
+  hideMutedThreads: true,
+  hideWordFilteredPosts: false,
   hidePostStats: false,
+  hideBotIndication: false,
   hideSitename: false,
   hideUserStats: false,
+  muteBotStatuses: false,
   loginMethod: 'password',
   logo: '/static/logo.svg',
   logoMargin: '.2em',
@@ -44,6 +55,11 @@ const defaultState = {
   virtualScrolling: true,
   sensitiveByDefault: false,
   sensitiveIfSubject: false,
+  conversationDisplay: 'linear',
+  conversationTreeAdvanced: false,
+  conversationOtherRepliesButton: 'below',
+  conversationTreeFadeAncestors: false,
+  maxDepthInThread: 6,
 
   // Nasty stuff
   customEmoji: [],
@@ -86,7 +102,7 @@ const instance = {
   mutations: {
     setInstanceOption (state, { name, value }) {
       if (typeof value !== 'undefined') {
-        set(state, name, value)
+        state[name] = value
       }
     },
     setKnownDomains (state, domains) {
@@ -98,6 +114,9 @@ const instance = {
       return instanceDefaultProperties
         .map(key => [key, state[key]])
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+    },
+    instanceDomain (state) {
+      return new URL(state.server).hostname
     }
   },
   actions: {

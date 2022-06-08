@@ -1,10 +1,13 @@
-import Vue from 'vue'
+// eslint-disable-next-line no-unused
+import { h, Fragment } from 'vue'
 import { mapState } from 'vuex'
 import { FontAwesomeIcon as FAIcon } from '@fortawesome/vue-fontawesome'
 
 import './tab_switcher.scss'
 
-export default Vue.component('tab-switcher', {
+const findFirstUsable = (slots) => slots.findIndex(_ => _.props)
+
+export default {
   name: 'TabSwitcher',
   props: {
     renderOnlyFocused: {
@@ -31,20 +34,31 @@ export default Vue.component('tab-switcher', {
       required: false,
       type: Boolean,
       default: false
+    },
+    bodyScrollLock: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      active: this.$slots.default.findIndex(_ => _.tag)
+      active: findFirstUsable(this.slots())
     }
   },
   computed: {
     activeIndex () {
       // In case of controlled component
       if (this.activeTab) {
-        return this.$slots.default.findIndex(slot => this.activeTab === slot.key)
+        return this.slots().findIndex(slot => slot && slot.props && this.activeTab === slot.props.key)
       } else {
         return this.active
+      }
+    },
+    isActive () {
+      return tabName => {
+        const isWanted = slot => slot.props && slot.props['data-tab-name'] === tabName
+        return this.$slots.default().findIndex(isWanted) === this.activeIndex
       }
     },
     settingsModalVisible () {
@@ -55,9 +69,9 @@ export default Vue.component('tab-switcher', {
     })
   },
   beforeUpdate () {
-    const currentSlot = this.$slots.default[this.active]
-    if (!currentSlot.tag) {
-      this.active = this.$slots.default.findIndex(_ => _.tag)
+    const currentSlot = this.slots()[this.active]
+    if (!currentSlot.props) {
+      this.active = findFirstUsable(this.slots())
     }
   },
   methods: {
@@ -67,9 +81,16 @@ export default Vue.component('tab-switcher', {
         this.setTab(index)
       }
     },
+    // DO NOT put it to computed, it doesn't work (caching?)
+    slots () {
+      if (this.$slots.default()[0].type === Fragment) {
+        return this.$slots.default()[0].children
+      }
+      return this.$slots.default()
+    },
     setTab (index) {
       if (typeof this.onSwitch === 'function') {
-        this.onSwitch.call(null, this.$slots.default[index].key)
+        this.onSwitch.call(null, this.slots()[index].key)
       }
       this.active = index
       if (this.scrollableTabs) {
@@ -77,27 +98,28 @@ export default Vue.component('tab-switcher', {
       }
     }
   },
-  render (h) {
-    const tabs = this.$slots.default
+  render () {
+    const tabs = this.slots()
       .map((slot, index) => {
-        if (!slot.tag) return
+        const props = slot.props
+        if (!props) return
         const classesTab = ['tab', 'button-default']
         const classesWrapper = ['tab-wrapper']
         if (this.activeIndex === index) {
           classesTab.push('active')
           classesWrapper.push('active')
         }
-        if (slot.data.attrs.image) {
+        if (props.image) {
           return (
             <div class={classesWrapper.join(' ')}>
               <button
-                disabled={slot.data.attrs.disabled}
+                disabled={props.disabled}
                 onClick={this.clickTab(index)}
                 class={classesTab.join(' ')}
                 type="button"
               >
-                <img src={slot.data.attrs.image} title={slot.data.attrs['image-tooltip']}/>
-                {slot.data.attrs.label ? '' : slot.data.attrs.label}
+                <img src={props.image} title={props['image-tooltip']}/>
+                {props.label ? '' : props.label}
               </button>
             </div>
           )
@@ -105,25 +127,26 @@ export default Vue.component('tab-switcher', {
         return (
           <div class={classesWrapper.join(' ')}>
             <button
-              disabled={slot.data.attrs.disabled}
+              disabled={props.disabled}
               onClick={this.clickTab(index)}
               class={classesTab.join(' ')}
               type="button"
             >
-              {!slot.data.attrs.icon ? '' : (<FAIcon class="tab-icon" size="2x" fixed-width icon={slot.data.attrs.icon}/>)}
+              {!props.icon ? '' : (<FAIcon class="tab-icon" size="2x" fixed-width icon={props.icon}/>)}
               <span class="text">
-                {slot.data.attrs.label}
+                {props.label}
               </span>
             </button>
           </div>
         )
       })
 
-    const contents = this.$slots.default.map((slot, index) => {
-      if (!slot.tag) return
+    const contents = this.slots().map((slot, index) => {
+      const props = slot.props
+      if (!props) return
       const active = this.activeIndex === index
       const classes = [ active ? 'active' : 'hidden' ]
-      if (slot.data.attrs.fullHeight) {
+      if (props.fullHeight) {
         classes.push('full-height')
       }
       const renderSlot = (!this.renderOnlyFocused || active)
@@ -134,7 +157,7 @@ export default Vue.component('tab-switcher', {
         <div class={classes}>
           {
             this.sideTabBar
-              ? <h1 class="mobile-label">{slot.data.attrs.label}</h1>
+              ? <h1 class="mobile-label">{props.label}</h1>
               : ''
           }
           {renderSlot}
@@ -147,10 +170,14 @@ export default Vue.component('tab-switcher', {
         <div class="tabs">
           {tabs}
         </div>
-        <div ref="contents" class={'contents' + (this.scrollableTabs ? ' scrollable-tabs' : '')} v-body-scroll-lock={this.settingsModalVisible}>
+        <div
+          ref="contents"
+          class={'contents' + (this.scrollableTabs ? ' scrollable-tabs' : '')}
+          v-body-scroll-lock={this.bodyScrollLock}
+        >
           {contents}
         </div>
       </div>
     )
   }
-})
+}

@@ -7,14 +7,14 @@
         spin
       />
 
-      <span>{{ processingMessage }}</span>
+      <span>{{ processingMessage || $t('exporter.processing') }}</span>
     </div>
     <button
       v-else
       class="btn button-default"
       @click="process"
     >
-      {{ exportButtonLabel }}
+      {{ exportButtonLabel || $t('exporter.export') }}
     </button>
   </div>
 </template>

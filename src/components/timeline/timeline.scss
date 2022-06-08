@@ -9,23 +9,23 @@
     cursor: progress;
   }
 
-  .timeline-heading {
-    max-width: 100%;
-    flex-wrap: nowrap;
-    align-items: center;
-    position: relative;
-
-    .loadmore-button {
-      flex-shrink: 0;
-    }
-
-    .loadmore-text {
-      flex-shrink: 0;
-      line-height: 1em;
-    }
+  .conversation-heading {
+    top: calc(var(--__panel-heading-height) * var(--currentPanelStack, 2));
+    z-index: 2;
   }
 
-  .timeline-footer {
-    border: none;
+  &.-nonpanel {
+    .timeline-heading {
+      text-align: center;
+      line-height: 2.75em;
+      padding: 0 0.5em;
+    }
+
+    .timeline-heading {
+      .button-default, .alert {
+        line-height: 2em;
+        width: 100%;
+      }
+    }
   }
 }

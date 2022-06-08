@@ -29,14 +29,14 @@
               {{ $t('settings.style.preview.content') }}
             </h4>
 
-            <i18n path="settings.style.preview.text">
+            <i18n-t scope="global" keypath="settings.style.preview.text">
               <code style="font-family: var(--postCodeFont)">
                 {{ $t('settings.style.preview.mono') }}
               </code>
               <a style="color: var(--link)">
                 {{ $t('settings.style.preview.link') }}
               </a>
-            </i18n>
+            </i18n-t>
 
             <div class="icons">
               <FAIcon
@@ -72,15 +72,16 @@
             :^)
           </div>
           <div class="content">
-            <i18n
-              path="settings.style.preview.fine_print"
+            <i18n-t
+              keypath="settings.style.preview.fine_print"
               tag="span"
               class="faint"
+              scope="global"
             >
               <a style="color: var(--faintLink)">
                 {{ $t('settings.style.preview.faint_link') }}
               </a>
-            </i18n>
+            </i18n-t>
           </div>
         </div>
         <div class="separator" />

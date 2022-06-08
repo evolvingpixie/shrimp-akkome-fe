@@ -4,6 +4,7 @@ import ScopeSelector from '../scope_selector/scope_selector.vue'
 import EmojiInput from '../emoji_input/emoji_input.vue'
 import PollForm from '../poll/poll_form.vue'
 import Attachment from '../attachment/attachment.vue'
+import Gallery from 'src/components/gallery/gallery.vue'
 import StatusContent from '../status_content/status_content.vue'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import { findOffset } from '../../services/offset_finder/offset_finder.service.js'
@@ -77,6 +78,12 @@ const PostStatusForm = {
     'emojiPickerPlacement',
     'optimisticPosting'
   ],
+  emits: [
+    'posted',
+    'resize',
+    'mediaplay',
+    'mediapause'
+  ],
   components: {
     MediaUpload,
     EmojiInput,
@@ -85,7 +92,8 @@ const PostStatusForm = {
     Checkbox,
     Select,
     Attachment,
-    StatusContent
+    StatusContent,
+    Gallery
   },
   mounted () {
     this.updateIdempotencyKey()
@@ -391,6 +399,21 @@ const PostStatusForm = {
       this.newStatus.files.splice(index, 1)
       this.$emit('resize')
     },
+    editAttachment (fileInfo, newText) {
+      this.newStatus.mediaDescriptions[fileInfo.id] = newText
+    },
+    shiftUpMediaFile (fileInfo) {
+      const { files } = this.newStatus
+      const index = this.newStatus.files.indexOf(fileInfo)
+      files.splice(index, 1)
+      files.splice(index - 1, 0, fileInfo)
+    },
+    shiftDnMediaFile (fileInfo) {
+      const { files } = this.newStatus
+      const index = this.newStatus.files.indexOf(fileInfo)
+      files.splice(index, 1)
+      files.splice(index + 1, 0, fileInfo)
+    },
     uploadFailed (errString, templateArgs) {
       templateArgs = templateArgs || {}
       this.error = this.$t('upload.error.base') + ' ' + this.$t('upload.error.' + errString, templateArgs)
@@ -466,7 +489,7 @@ const PostStatusForm = {
       const bottomBottomPaddingStr = window.getComputedStyle(bottomRef)['padding-bottom']
       const bottomBottomPadding = pxStringToNumber(bottomBottomPaddingStr)
 
-      const scrollerRef = this.$el.closest('.sidebar-scroller') ||
+      const scrollerRef = this.$el.closest('.column.-scrollable') ||
             this.$el.closest('.post-form-modal-view') ||
             window
 

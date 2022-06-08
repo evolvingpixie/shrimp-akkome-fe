@@ -1,7 +1,7 @@
 import backendInteractorService from '../services/backend_interactor_service/backend_interactor_service.js'
+import { windowWidth, windowHeight } from '../services/window_utils/window_utils'
 import oauthApi from '../services/new_api/oauth.js'
 import { compact, map, each, mergeWith, last, concat, uniq, isArray } from 'lodash'
-import { set } from 'vue'
 import { registerPushNotifications, unregisterPushNotifications } from '../services/push/push.js'
 
 // TODO: Unify with mergeOrAdd in statuses.js
@@ -15,9 +15,9 @@ export const mergeOrAdd = (arr, obj, item) => {
   } else {
     // This is a new item, prepare it
     arr.push(item)
-    set(obj, item.id, item)
+    obj[item.id] = item
     if (item.screen_name && !item.screen_name.includes('@')) {
-      set(obj, item.screen_name.toLowerCase(), item)
+      obj[item.screen_name.toLowerCase()] = item
     }
     return { item, new: true }
   }
@@ -107,23 +107,23 @@ export const mutations = {
     const user = state.usersObject[id]
     const tags = user.tags || []
     const newTags = tags.concat([tag])
-    set(user, 'tags', newTags)
+    user['tags'] = newTags
   },
   untagUser (state, { user: { id }, tag }) {
     const user = state.usersObject[id]
     const tags = user.tags || []
     const newTags = tags.filter(t => t !== tag)
-    set(user, 'tags', newTags)
+    user['tags'] = newTags
   },
   updateRight (state, { user: { id }, right, value }) {
     const user = state.usersObject[id]
     let newRights = user.rights
     newRights[right] = value
-    set(user, 'rights', newRights)
+    user['rights'] = newRights
   },
   updateActivationStatus (state, { user: { id }, deactivated }) {
     const user = state.usersObject[id]
-    set(user, 'deactivated', deactivated)
+    user['deactivated'] = deactivated
   },
   setCurrentUser (state, user) {
     state.lastLoginName = user.screen_name
@@ -152,26 +152,26 @@ export const mutations = {
   clearFriends (state, userId) {
     const user = state.usersObject[userId]
     if (user) {
-      set(user, 'friendIds', [])
+      user['friendIds'] = []
     }
   },
   clearFollowers (state, userId) {
     const user = state.usersObject[userId]
     if (user) {
-      set(user, 'followerIds', [])
+      user['followerIds'] = []
     }
   },
   addNewUsers (state, users) {
     each(users, (user) => {
       if (user.relationship) {
-        set(state.relationships, user.relationship.id, user.relationship)
+        state.relationships[user.relationship.id] = user.relationship
       }
       mergeOrAdd(state.users, state.usersObject, user)
     })
   },
   updateUserRelationship (state, relationships) {
     relationships.forEach((relationship) => {
-      set(state.relationships, relationship.id, relationship)
+      state.relationships[relationship.id] = relationship
     })
   },
   saveBlockIds (state, blockIds) {
@@ -229,7 +229,7 @@ export const mutations = {
   },
   setColor (state, { user: { id }, highlighted }) {
     const user = state.usersObject[id]
-    set(user, 'highlight', highlighted)
+    user['highlight'] = highlighted
   },
   signUpPending (state) {
     state.signUpPending = true
@@ -403,7 +403,7 @@ const users = {
     toggleActivationStatus ({ rootState, commit }, { user }) {
       const api = user.deactivated ? rootState.api.backendInteractor.activateUser : rootState.api.backendInteractor.deactivateUser
       api({ user })
-        .then(({ deactivated }) => commit('updateActivationStatus', { user, deactivated }))
+        .then((user) => { let deactivated = !user.is_active; commit('updateActivationStatus', { user, deactivated }) })
     },
     registerPushNotifications (store) {
       const token = store.state.currentUser.credentials
@@ -517,6 +517,8 @@ const users = {
           store.commit('resetStatuses')
           store.dispatch('resetChats')
           store.dispatch('setLastTimeline', 'public-timeline')
+          store.dispatch('setLayoutWidth', windowWidth())
+          store.dispatch('setLayoutHeight', windowHeight())
         })
     },
     loginUser (store, accessToken) {
@@ -576,6 +578,9 @@ const users = {
 
               // Get user mutes
               store.dispatch('fetchMutes')
+
+              store.dispatch('setLayoutWidth', windowWidth())
+              store.dispatch('setLayoutHeight', windowHeight())
 
               // Fetch our friends
               store.rootState.api.backendInteractor.fetchFriends({ id: user.id })

@@ -2,6 +2,7 @@
   <div
     class="still-image"
     :class="{ animated: animated }"
+    :style="style"
   >
     <canvas
       v-if="animated"
@@ -18,6 +19,7 @@
       @load="onLoad"
       @error="onError"
     >
+    <slot />
   </div>
 </template>
 
@@ -56,10 +58,10 @@
       zoom: var(--_still_image-label-scale, 1);
       content: 'gif';
       position: absolute;
-      line-height: 10px;
-      font-size: 10px;
-      top: 5px;
-      left: 5px;
+      line-height: 1;
+      font-size: 0.7em;
+      top: 0.5em;
+      left: 0.5em;
       background: rgba(127, 127, 127, 0.5);
       color: #fff;
       display: block;

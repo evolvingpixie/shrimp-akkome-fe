@@ -46,7 +46,7 @@ export default (store) => {
     { name: 'bookmarks', path: '/bookmarks', component: BookmarkTimeline },
     { name: 'conversation', path: '/notice/:id', component: ConversationPage, meta: { dontScroll: true } },
     { name: 'remote-user-profile-acct',
-      path: '/remote-users/(@?):username([^/@]+)@:hostname([^/@]+)',
+      path: '/remote-users/:_(@)?:username([^/@]+)@:hostname([^/@]+)',
       component: RemoteUserResolver,
       beforeEnter: validateAuthenticatedRoute
     },
@@ -62,14 +62,14 @@ export default (store) => {
     { name: 'password-reset', path: '/password-reset', component: PasswordReset, props: true },
     { name: 'registration-token', path: '/registration/:token', component: Registration },
     { name: 'friend-requests', path: '/friend-requests', component: FollowRequests, beforeEnter: validateAuthenticatedRoute },
-    { name: 'notifications', path: '/:username/notifications', component: Notifications, beforeEnter: validateAuthenticatedRoute },
+    { name: 'notifications', path: '/:username/notifications', component: Notifications, props: () => ({ disableTeleport: true }), beforeEnter: validateAuthenticatedRoute },
     { name: 'login', path: '/login', component: AuthForm },
     { name: 'shout-panel', path: '/shout-panel', component: ShoutPanel, props: () => ({ floating: false }) },
     { name: 'oauth-callback', path: '/oauth-callback', component: OAuthCallback, props: (route) => ({ code: route.query.code }) },
     { name: 'search', path: '/search', component: Search, props: (route) => ({ query: route.query.query }) },
     { name: 'who-to-follow', path: '/who-to-follow', component: WhoToFollow, beforeEnter: validateAuthenticatedRoute },
     { name: 'about', path: '/about', component: About },
-    { name: 'user-profile', path: '/(users/)?:name', component: UserProfile }
+    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile }
   ]
 
   if (store.state.instance.pleromaChatMessagesAvailable) {

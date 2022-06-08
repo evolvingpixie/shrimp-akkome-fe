@@ -25,61 +25,6 @@
           class="bio resize-height"
         />
       </EmojiInput>
-      <p>
-        <Checkbox v-model="newLocked">
-          {{ $t('settings.lock_account_description') }}
-        </Checkbox>
-      </p>
-      <div>
-        <label for="default-vis">{{ $t('settings.default_vis') }}</label>
-        <div
-          id="default-vis"
-          class="visibility-tray"
-        >
-          <scope-selector
-            :show-all="true"
-            :user-default="newDefaultScope"
-            :initial-scope="newDefaultScope"
-            :on-scope-change="changeVis"
-          />
-        </div>
-      </div>
-      <p>
-        <Checkbox v-model="newNoRichText">
-          {{ $t('settings.no_rich_text_description') }}
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="hideFollows">
-          {{ $t('settings.hide_follows_description') }}
-        </Checkbox>
-      </p>
-      <p class="setting-subitem">
-        <Checkbox
-          v-model="hideFollowsCount"
-          :disabled="!hideFollows"
-        >
-          {{ $t('settings.hide_follows_count_description') }}
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="hideFollowers">
-          {{ $t('settings.hide_followers_description') }}
-        </Checkbox>
-      </p>
-      <p class="setting-subitem">
-        <Checkbox
-          v-model="hideFollowersCount"
-          :disabled="!hideFollowers"
-        >
-          {{ $t('settings.hide_followers_count_description') }}
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="allowFollowingMove">
-          {{ $t('settings.allow_following_move') }}
-        </Checkbox>
-      </p>
       <p v-if="role === 'admin' || role === 'moderator'">
         <Checkbox v-model="showRole">
           <template v-if="role === 'admin'">
@@ -88,11 +33,6 @@
           <template v-if="role === 'moderator'">
             {{ $t('settings.show_moderator_badge') }}
           </template>
-        </Checkbox>
-      </p>
-      <p>
-        <Checkbox v-model="discoverable">
-          {{ $t('settings.discoverable') }}
         </Checkbox>
       </p>
       <div v-if="maxFields > 0">
@@ -128,8 +68,9 @@
             class="delete-field button-unstyled -hover-highlight"
             @click="deleteField(i)"
           >
+            <!-- TODO something is wrong with v-show here -->
             <FAIcon
-              v-show="newFields.length > 1"
+              v-if="newFields.length > 1"
               icon="times"
             />
           </button>
@@ -147,6 +88,13 @@
         <Checkbox v-model="bot">
           {{ $t('settings.bot') }}
         </Checkbox>
+      </p>
+      <p>
+        <interface-language-switcher
+          :prompt-text="$t('settings.email_language')"
+          :language="emailLanguage"
+          :set-language="val => emailLanguage = val"
+        />
       </p>
       <button
         :disabled="newName && newName.length === 0"
@@ -166,14 +114,17 @@
           :src="user.profile_image_url_original"
           class="current-avatar"
         >
-        <FAIcon
+        <button
           v-if="!isDefaultAvatar && pickAvatarBtnVisible"
           :title="$t('settings.reset_avatar')"
-          class="reset-button"
-          icon="times"
-          type="button"
           @click="resetAvatar"
-        />
+          class="button-unstyled reset-button"
+        >
+          <FAIcon
+            icon="times"
+            type="button"
+          />
+        </button>
       </div>
       <p>{{ $t('settings.set_new_avatar') }}</p>
       <button
@@ -195,14 +146,17 @@
       <h2>{{ $t('settings.profile_banner') }}</h2>
       <div class="banner-background-preview">
         <img :src="user.cover_photo">
-        <FAIcon
+        <button
           v-if="!isDefaultBanner"
+          class="button-unstyled reset-button"
           :title="$t('settings.reset_profile_banner')"
-          class="reset-button"
-          icon="times"
-          type="button"
           @click="resetBanner"
-        />
+        >
+          <FAIcon
+            icon="times"
+            type="button"
+          />
+        </button>
       </div>
       <p>{{ $t('settings.set_new_profile_banner') }}</p>
       <img
@@ -234,14 +188,17 @@
       <h2>{{ $t('settings.profile_background') }}</h2>
       <div class="banner-background-preview">
         <img :src="user.background_image">
-        <FAIcon
+        <button
           v-if="!isDefaultBackground"
+          class="button-unstyled reset-button"
           :title="$t('settings.reset_profile_background')"
-          class="reset-button"
-          icon="times"
-          type="button"
           @click="resetBackground"
-        />
+        >
+          <FAIcon
+            icon="times"
+            type="button"
+          />
+        </button>
       </div>
       <p>{{ $t('settings.set_new_profile_background') }}</p>
       <img
@@ -268,6 +225,67 @@
       >
         {{ $t('settings.save') }}
       </button>
+    </div>
+    <div class="setting-item">
+      <h2>{{ $t('settings.account_privacy') }}</h2>
+      <ul class="setting-list">
+        <li>
+          <BooleanSetting path="serverSide_locked">
+            {{ $t('settings.lock_account_description') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_discoverable">
+            {{ $t('settings.discoverable') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_allowFollowingMove">
+            {{ $t('settings.allow_following_move') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_hideFavorites">
+            {{ $t('settings.hide_favorites_description') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_hideFollowers">
+            {{ $t('settings.hide_followers_description') }}
+          </BooleanSetting>
+          <ul
+            class="setting-list suboptions"
+            :class="[{disabled: !serverSide_hideFollowers}]"
+          >
+            <li>
+              <BooleanSetting
+                path="serverSide_hideFollowersCount"
+                :disabled="!serverSide_hideFollowers"
+              >
+                {{ $t('settings.hide_followers_count_description') }}
+              </BooleanSetting>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <BooleanSetting path="serverSide_hideFollows">
+            {{ $t('settings.hide_follows_description') }}
+          </BooleanSetting>
+          <ul
+            class="setting-list suboptions"
+            :class="[{disabled: !serverSide_hideFollows}]"
+          >
+            <li>
+              <BooleanSetting
+                path="serverSide_hideFollowsCount"
+                :disabled="!serverSide_hideFollows"
+              >
+                {{ $t('settings.hide_follows_count_description') }}
+              </BooleanSetting>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

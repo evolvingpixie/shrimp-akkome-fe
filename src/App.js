@@ -1,6 +1,5 @@
 import UserPanel from './components/user_panel/user_panel.vue'
 import NavPanel from './components/nav_panel/nav_panel.vue'
-import Notifications from './components/notifications/notifications.vue'
 import InstanceSpecificPanel from './components/instance_specific_panel/instance_specific_panel.vue'
 import FeaturesPanel from './components/features_panel/features_panel.vue'
 import WhoToFollowPanel from './components/who_to_follow_panel/who_to_follow_panel.vue'
@@ -16,13 +15,14 @@ import PostStatusModal from './components/post_status_modal/post_status_modal.vu
 import GlobalNoticeList from './components/global_notice_list/global_notice_list.vue'
 import { windowWidth, windowHeight } from './services/window_utils/window_utils'
 import { mapGetters } from 'vuex'
+import { defineAsyncComponent } from 'vue'
 
 export default {
   name: 'app',
   components: {
     UserPanel,
     NavPanel,
-    Notifications,
+    Notifications: defineAsyncComponent(() => import('./components/notifications/notifications.vue')),
     InstanceSpecificPanel,
     FeaturesPanel,
     WhoToFollowPanel,
@@ -46,10 +46,20 @@ export default {
     this.$store.dispatch('setOption', { name: 'interfaceLanguage', value: val })
     window.addEventListener('resize', this.updateMobileState)
   },
-  destroyed () {
+  unmounted () {
     window.removeEventListener('resize', this.updateMobileState)
   },
   computed: {
+    classes () {
+      return [
+        {
+          '-reverse': this.reverseLayout,
+          '-no-sticky-headers': this.noSticky,
+          '-has-new-post-button': this.newPostButtonShown
+        },
+        '-' + this.layoutType
+      ]
+    },
     currentUser () { return this.$store.state.users.currentUser },
     userBackground () { return this.currentUser.background_image },
     instanceBackground () {
@@ -65,38 +75,45 @@ export default {
         }
       }
     },
-    shout () { return this.$store.state.shout.channel.state === 'joined' },
+    shout () { return this.$store.state.shout.joined },
     suggestionsEnabled () { return this.$store.state.instance.suggestionsEnabled },
     showInstanceSpecificPanel () {
       return this.$store.state.instance.showInstanceSpecificPanel &&
         !this.$store.getters.mergedConfig.hideISP &&
         this.$store.state.instance.instanceSpecificPanelContent
     },
+    isChats () {
+      return this.$route.name === 'chat' || this.$route.name === 'chats'
+    },
+    newPostButtonShown () {
+      if (this.isChats) return false
+      return this.$store.getters.mergedConfig.alwaysShowNewPostButton || this.layoutType === 'mobile'
+    },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
     shoutboxPosition () {
-      return this.$store.getters.mergedConfig.showNewPostButton || false
+      return this.$store.getters.mergedConfig.alwaysShowNewPostButton || false
     },
     hideShoutbox () {
       return this.$store.getters.mergedConfig.hideShoutbox
     },
-    isMobileLayout () { return this.$store.state.interface.mobileLayout },
+    layoutType () { return this.$store.state.interface.layoutType },
     privateMode () { return this.$store.state.instance.private },
-    sidebarAlign () {
-      return {
-        'order': this.$store.getters.mergedConfig.sidebarRight ? 99 : 0
+    reverseLayout () {
+      const { thirdColumnMode, sidebarRight: reverseSetting } = this.$store.getters.mergedConfig
+      if (this.layoutType !== 'wide') {
+        return reverseSetting
+      } else {
+        return thirdColumnMode === 'notifications' ? reverseSetting : !reverseSetting
       }
     },
+    noSticky () { return this.$store.getters.mergedConfig.disableStickyHeaders },
+    showScrollbars () { return this.$store.getters.mergedConfig.showScrollbars },
     ...mapGetters(['mergedConfig'])
   },
   methods: {
     updateMobileState () {
-      const mobileLayout = windowWidth() <= 800
-      const layoutHeight = windowHeight()
-      const changed = mobileLayout !== this.isMobileLayout
-      if (changed) {
-        this.$store.dispatch('setMobileLayout', mobileLayout)
-      }
-      this.$store.dispatch('setLayoutHeight', layoutHeight)
+      this.$store.dispatch('setLayoutWidth', windowWidth())
+      this.$store.dispatch('setLayoutHeight', windowHeight())
     }
   }
 }

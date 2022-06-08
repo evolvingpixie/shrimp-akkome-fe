@@ -1,8 +1,14 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import routes from './routes'
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import vClickOutside from 'click-outside-vue3'
+
+import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
+
 import App from '../App.vue'
-import { windowWidth } from '../services/window_utils/window_utils'
+import routes from './routes'
+import VBodyScrollLock from 'src/directives/body_scroll_lock'
+
+import { windowWidth, windowHeight } from '../services/window_utils/window_utils'
 import { getOrCreateApp, getClientToken } from '../services/new_api/oauth.js'
 import backendInteractorService from '../services/backend_interactor_service/backend_interactor_service.js'
 import { CURRENT_VERSION } from '../services/theme_data/theme_data.service.js'
@@ -115,6 +121,7 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('nsfwCensorImage')
   copyInstanceOption('background')
   copyInstanceOption('hidePostStats')
+  copyInstanceOption('hideBotIndication')
   copyInstanceOption('hideUserStats')
   copyInstanceOption('hideFilteredStatuses')
   copyInstanceOption('logo')
@@ -325,8 +332,8 @@ const checkOAuthToken = async ({ store }) => {
 }
 
 const afterStoreSetup = async ({ store, i18n }) => {
-  const width = windowWidth()
-  store.dispatch('setMobileLayout', width <= 800)
+  store.dispatch('setLayoutWidth', windowWidth())
+  store.dispatch('setLayoutHeight', windowHeight())
 
   FaviconService.initFaviconService()
 
@@ -366,25 +373,32 @@ const afterStoreSetup = async ({ store, i18n }) => {
   getTOS({ store })
   getStickers({ store })
 
-  const router = new VueRouter({
-    mode: 'history',
+  const router = createRouter({
+    history: createWebHistory(),
     routes: routes(store),
     scrollBehavior: (to, _from, savedPosition) => {
       if (to.matched.some(m => m.meta.dontScroll)) {
         return false
       }
-      return savedPosition || { x: 0, y: 0 }
+      return savedPosition || { left: 0, top: 0 }
     }
   })
 
-  /* eslint-disable no-new */
-  return new Vue({
-    router,
-    store,
-    i18n,
-    el: '#app',
-    render: h => h(App)
-  })
+  const app = createApp(App)
+
+  app.use(router)
+  app.use(store)
+  app.use(i18n)
+
+  app.use(vClickOutside)
+  app.use(VBodyScrollLock)
+
+  app.component('FAIcon', FontAwesomeIcon)
+  app.component('FALayers', FontAwesomeLayers)
+
+  app.mount('#app')
+
+  return app
 }
 
 export default afterStoreSetup

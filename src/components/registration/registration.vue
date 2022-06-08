@@ -12,7 +12,7 @@
           <div class="text-fields">
             <div
               class="form-group"
-              :class="{ 'form-group--error': $v.user.username.$error }"
+              :class="{ 'form-group--error': v$.user.username.$error }"
             >
               <label
                 class="form--label"
@@ -20,18 +20,18 @@
               >{{ $t('login.username') }}</label>
               <input
                 id="sign-up-username"
-                v-model.trim="$v.user.username.$model"
+                v-model.trim="v$.user.username.$model"
                 :disabled="isPending"
                 class="form-control"
                 :placeholder="$t('registration.username_placeholder')"
               >
             </div>
             <div
-              v-if="$v.user.username.$dirty"
+              v-if="v$.user.username.$dirty"
               class="form-error"
             >
               <ul>
-                <li v-if="!$v.user.username.required">
+                <li v-if="!v$.user.username.required">
                   <span>{{ $t('registration.validations.username_required') }}</span>
                 </li>
               </ul>
@@ -39,7 +39,7 @@
 
             <div
               class="form-group"
-              :class="{ 'form-group--error': $v.user.fullname.$error }"
+              :class="{ 'form-group--error': v$.user.fullname.$error }"
             >
               <label
                 class="form--label"
@@ -47,18 +47,18 @@
               >{{ $t('registration.fullname') }}</label>
               <input
                 id="sign-up-fullname"
-                v-model.trim="$v.user.fullname.$model"
+                v-model.trim="v$.user.fullname.$model"
                 :disabled="isPending"
                 class="form-control"
                 :placeholder="$t('registration.fullname_placeholder')"
               >
             </div>
             <div
-              v-if="$v.user.fullname.$dirty"
+              v-if="v$.user.fullname.$dirty"
               class="form-error"
             >
               <ul>
-                <li v-if="!$v.user.fullname.required">
+                <li v-if="!v$.user.fullname.required">
                   <span>{{ $t('registration.validations.fullname_required') }}</span>
                 </li>
               </ul>
@@ -66,7 +66,7 @@
 
             <div
               class="form-group"
-              :class="{ 'form-group--error': $v.user.email.$error }"
+              :class="{ 'form-group--error': v$.user.email.$error }"
             >
               <label
                 class="form--label"
@@ -74,18 +74,18 @@
               >{{ $t('registration.email') }}</label>
               <input
                 id="email"
-                v-model="$v.user.email.$model"
+                v-model="v$.user.email.$model"
                 :disabled="isPending"
                 class="form-control"
                 type="email"
               >
             </div>
             <div
-              v-if="$v.user.email.$dirty"
+              v-if="v$.user.email.$dirty"
               class="form-error"
             >
               <ul>
-                <li v-if="!$v.user.email.required">
+                <li v-if="!v$.user.email.required">
                   <span>{{ $t('registration.validations.email_required') }}</span>
                 </li>
               </ul>
@@ -107,7 +107,7 @@
 
             <div
               class="form-group"
-              :class="{ 'form-group--error': $v.user.password.$error }"
+              :class="{ 'form-group--error': v$.user.password.$error }"
             >
               <label
                 class="form--label"
@@ -122,11 +122,11 @@
               >
             </div>
             <div
-              v-if="$v.user.password.$dirty"
+              v-if="v$.user.password.$dirty"
               class="form-error"
             >
               <ul>
-                <li v-if="!$v.user.password.required">
+                <li v-if="!v$.user.password.required">
                   <span>{{ $t('registration.validations.password_required') }}</span>
                 </li>
               </ul>
@@ -134,7 +134,7 @@
 
             <div
               class="form-group"
-              :class="{ 'form-group--error': $v.user.confirm.$error }"
+              :class="{ 'form-group--error': v$.user.confirm.$error }"
             >
               <label
                 class="form--label"
@@ -149,17 +149,29 @@
               >
             </div>
             <div
-              v-if="$v.user.confirm.$dirty"
+              v-if="v$.user.confirm.$dirty"
               class="form-error"
             >
               <ul>
-                <li v-if="!$v.user.confirm.required">
+                <li v-if="!v$.user.confirm.required">
                   <span>{{ $t('registration.validations.password_confirmation_required') }}</span>
                 </li>
-                <li v-if="!$v.user.confirm.sameAsPassword">
+                <li v-if="!v$.user.confirm.sameAsPassword">
                   <span>{{ $t('registration.validations.password_confirmation_match') }}</span>
                 </li>
               </ul>
+            </div>
+
+            <div
+              class="form-group"
+              :class="{ 'form-group--error': v$.user.language.$error }"
+            >
+              <interface-language-switcher
+                for="email-language"
+                :prompt-text="$t('registration.email_language')"
+                :language="v$.user.language.$model"
+                :set-language="val => v$.user.language.$model = val"
+              />
             </div>
 
             <div
@@ -271,7 +283,10 @@ $validations-cRed: #f04124;
   .container {
     display: flex;
     flex-direction: row;
-    //margin-bottom: 1em;
+
+    > * {
+      min-width: 0;
+    }
   }
 
   .terms-of-service {
@@ -294,8 +309,8 @@ $validations-cRed: #f04124;
   .form-group {
     display: flex;
     flex-direction: column;
-    padding: 0.3em 0.0em 0.3em;
-    line-height:24px;
+    padding: 0.3em 0;
+    line-height: 2;
     margin-bottom: 1em;
   }
 
@@ -315,7 +330,7 @@ $validations-cRed: #f04124;
     text-align: left;
 
     span {
-      font-size: 12px;
+      font-size: 0.85em;
     }
   }
 
@@ -341,7 +356,7 @@ $validations-cRed: #f04124;
 
   .btn {
     margin-top: 0.6em;
-    height: 28px;
+    height: 2em;
   }
 
   .error {

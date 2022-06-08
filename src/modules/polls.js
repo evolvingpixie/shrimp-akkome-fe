@@ -1,5 +1,4 @@
 import { merge } from 'lodash'
-import { set } from 'vue'
 
 const polls = {
   state: {
@@ -13,25 +12,25 @@ const polls = {
       // Make expired-state change trigger re-renders properly
       poll.expired = Date.now() > Date.parse(poll.expires_at)
       if (existingPoll) {
-        set(state.pollsObject, poll.id, merge(existingPoll, poll))
+        state.pollsObject[poll.id] = merge(existingPoll, poll)
       } else {
-        set(state.pollsObject, poll.id, poll)
+        state.pollsObject[poll.id] = poll
       }
     },
     trackPoll (state, pollId) {
       const currentValue = state.trackedPolls[pollId]
       if (currentValue) {
-        set(state.trackedPolls, pollId, currentValue + 1)
+        state.trackedPolls[pollId] = currentValue + 1
       } else {
-        set(state.trackedPolls, pollId, 1)
+        state.trackedPolls[pollId] = 1
       }
     },
     untrackPoll (state, pollId) {
       const currentValue = state.trackedPolls[pollId]
       if (currentValue) {
-        set(state.trackedPolls, pollId, currentValue - 1)
+        state.trackedPolls[pollId] = currentValue - 1
       } else {
-        set(state.trackedPolls, pollId, 0)
+        state.trackedPolls[pollId] = 0
       }
     }
   },

@@ -18,7 +18,7 @@ const TagTimeline = {
       this.$store.dispatch('startFetchingTimeline', { timeline: 'tag', tag: this.tag })
     }
   },
-  destroyed () {
+  unmounted () {
     this.$store.dispatch('stopFetchingTimeline', 'tag')
   }
 }

@@ -1,4 +1,4 @@
-import TabSwitcher from 'src/components/tab_switcher/tab_switcher.js'
+import TabSwitcher from 'src/components/tab_switcher/tab_switcher.jsx'
 
 import DataImportExportTab from './tabs/data_import_export_tab.vue'
 import MutesAndBlocksTab from './tabs/mutes_and_blocks_tab.vue'
@@ -53,6 +53,9 @@ const SettingsModalContent = {
     },
     open () {
       return this.$store.state.interface.settingsModalState !== 'hidden'
+    },
+    bodyLock () {
+      return this.$store.state.interface.settingsModalState === 'visible'
     }
   },
   methods: {
@@ -60,8 +63,8 @@ const SettingsModalContent = {
       const targetTab = this.$store.state.interface.settingsModalTargetTab
       // We're being told to open in specific tab
       if (targetTab) {
-        const tabIndex = this.$refs.tabSwitcher.$slots.default.findIndex(elm => {
-          return elm.data && elm.data.attrs['data-tab-name'] === targetTab
+        const tabIndex = this.$refs.tabSwitcher.$slots.default().findIndex(elm => {
+          return elm.props && elm.props['data-tab-name'] === targetTab
         })
         if (tabIndex >= 0) {
           this.$refs.tabSwitcher.setTab(tabIndex)

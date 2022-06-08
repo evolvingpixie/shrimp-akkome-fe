@@ -1,5 +1,8 @@
 <template>
-  <div class="StatusBody">
+  <div
+    class="StatusBody"
+    :class="{ '-compact': compact }"
+  >
     <div class="body">
       <div
         v-if="status.summary_raw_html"
@@ -12,16 +15,16 @@
           :emoji="status.emojis"
         />
         <button
-          v-if="longSubject && showingLongSubject"
+          v-show="longSubject && showingLongSubject"
           class="button-unstyled -link tall-subject-hider"
-          @click.prevent="showingLongSubject=false"
+          @click.prevent="toggleShowingLongSubject"
         >
           {{ $t("status.hide_full_subject") }}
         </button>
         <button
-          v-else-if="longSubject"
+          v-show="longSubject && !showingLongSubject"
           class="button-unstyled -link tall-subject-hider"
-          @click.prevent="showingLongSubject=true"
+          @click.prevent="toggleShowingLongSubject"
         >
           {{ $t("status.show_full_subject") }}
         </button>
@@ -31,7 +34,7 @@
         class="text-wrapper"
       >
         <button
-          v-if="hideTallStatus"
+          v-show="hideTallStatus"
           class="button-unstyled -link tall-status-hider"
           :class="{ '-focused': focused }"
           @click.prevent="toggleShowMore"
@@ -51,7 +54,7 @@
         />
 
         <button
-          v-if="hideSubjectStatus"
+          v-show="hideSubjectStatus"
           class="button-unstyled -link cw-status-hider"
           @click.prevent="toggleShowMore"
         >
@@ -82,7 +85,7 @@
           />
         </button>
         <button
-          v-if="showingMore && !fullContent"
+          v-show="showingMore && !fullContent"
           class="button-unstyled -link status-unhider"
           @click.prevent="toggleShowMore"
         >

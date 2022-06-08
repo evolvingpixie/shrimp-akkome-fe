@@ -13,10 +13,10 @@ export const applyTheme = (input) => {
   const styleSheet = styleEl.sheet
 
   styleSheet.toString()
-  styleSheet.insertRule(`body { ${rules.radii} }`, 'index-max')
-  styleSheet.insertRule(`body { ${rules.colors} }`, 'index-max')
-  styleSheet.insertRule(`body { ${rules.shadows} }`, 'index-max')
-  styleSheet.insertRule(`body { ${rules.fonts} }`, 'index-max')
+  styleSheet.insertRule(`:root { ${rules.radii} }`, 'index-max')
+  styleSheet.insertRule(`:root { ${rules.colors} }`, 'index-max')
+  styleSheet.insertRule(`:root { ${rules.shadows} }`, 'index-max')
+  styleSheet.insertRule(`:root { ${rules.fonts} }`, 'index-max')
   body.classList.remove('hidden')
 }
 

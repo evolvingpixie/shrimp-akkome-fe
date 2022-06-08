@@ -1,0 +1,198 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: $fallback--bg;
+  background-color: var(--bg, $fallback--bg);
+
+  &::after,
+  & {
+    border-radius: $fallback--panelRadius;
+    border-radius: var(--panelRadius, $fallback--panelRadius);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--panelShadow);
+    pointer-events: none;
+  }
+}
+
+.panel-body {
+  padding: var(--panel-body-padding, 0);
+
+  &:empty::before {
+    content: "¯\\_(ツ)_/¯"; // Could use words but it'd require translations
+    display: block;
+    margin: 1em;
+    text-align: center;
+  }
+
+  > p {
+    line-height: 1.3;
+    padding: 1em;
+    margin: 0;
+  }
+}
+
+.panel-heading,
+.panel-footer {
+  --panel-heading-height-padding: 0.6em;
+  --__panel-heading-height: 3.2em;
+  --__panel-heading-height-inner: calc(var(--__panel-heading-height) - 2 * var(--panel-heading-height-padding));
+
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: minmax(50%, 1fr);
+  grid-auto-columns: auto;
+  grid-column-gap: 0.5em;
+  flex: none;
+  background-size: cover;
+  padding: 0.6em;
+  height: var(--__panel-heading-height);
+  line-height: var(--__panel-heading-height-inner);
+  z-index: 4;
+
+  &.-flexible-height {
+    --__panel-heading-height: auto;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+
+  &.-stub {
+    &,
+    &::after {
+      border-radius: $fallback--panelRadius;
+      border-radius: var(--panelRadius, $fallback--panelRadius);
+    }
+  }
+
+  &.-sticky {
+    position: sticky;
+    top: var(--navbar-height);
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  .title {
+    font-size: 1.3em;
+  }
+
+  .alert {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
+
+  &:not(.-flexible-height) {
+    > .button-default,
+    > .alert {
+      height: var(--__panel-heading-height-inner);
+      min-height: 0;
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 1px;
+      padding-top: 0;
+      padding-bottom: 0;
+      align-self: stretch;
+    }
+  }
+}
+
+// TODO Should refactor panels into separate component and utilize slots
+
+.panel-heading {
+  border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
+  border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
+  border-width: 0 0 1px 0;
+  align-items: start;
+  // panel theme
+  color: var(--panelText);
+  background-color: $fallback--bg;
+  background-color: var(--bg, $fallback--bg);
+
+  &::after {
+    background-color: $fallback--fg;
+    background-color: var(--panel, $fallback--fg);
+    z-index: -2;
+    border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
+    border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
+    box-shadow: var(--panelHeaderShadow);
+  }
+
+  a,
+  .-link {
+    color: $fallback--link;
+    color: var(--panelLink, $fallback--link);
+  }
+
+  .faint {
+    background-color: transparent;
+    color: $fallback--faint;
+    color: var(--panelFaint, $fallback--faint);
+  }
+
+  .faint-link {
+    color: $fallback--faint;
+    color: var(--faintLink, $fallback--faint);
+  }
+
+  &:not(.-flexible-height) {
+    > .button-default {
+      flex-shrink: 0;
+
+      &,
+      i[class*=icon-] {
+        color: $fallback--text;
+        color: var(--btnPanelText, $fallback--text);
+      }
+
+      &:active {
+        background-color: $fallback--fg;
+        background-color: var(--btnPressedPanel, $fallback--fg);
+        color: $fallback--text;
+        color: var(--btnPressedPanelText, $fallback--text);
+      }
+
+      &:disabled {
+        color: $fallback--text;
+        color: var(--btnDisabledPanelText, $fallback--text);
+      }
+
+      &.toggled {
+        color: $fallback--text;
+        color: var(--btnToggledPanelText, $fallback--text);
+      }
+    }
+  }
+}
+
+.panel-footer {
+  border-radius: 0 0 $fallback--panelRadius $fallback--panelRadius;
+  border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
+  align-items: center;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: var(--border, $fallback--border);
+}

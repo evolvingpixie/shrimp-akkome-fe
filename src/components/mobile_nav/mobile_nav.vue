@@ -5,7 +5,6 @@
     <nav
       id="nav"
       class="mobile-nav"
-      :class="{ 'mobile-hidden': isChat }"
       @click="scrollToTop()"
     >
       <div class="item">
@@ -51,7 +50,7 @@
     <div
       v-if="currentUser"
       class="mobile-notifications-drawer"
-      :class="{ 'closed': !notificationsOpen }"
+      :class="{ '-closed': !notificationsOpen }"
       @touchstart.stop="notificationsTouchStart"
       @touchmove.stop="notificationsTouchMove"
     >
@@ -69,12 +68,9 @@
       </div>
       <div
         class="mobile-notifications"
+        id="mobile-notifications"
         @scroll="onScroll"
       >
-        <Notifications
-          ref="notifications"
-          :no-heading="true"
-        />
       </div>
     </div>
     <SideDrawer
@@ -92,13 +88,14 @@
 .MobileNav {
   .mobile-nav {
     display: grid;
-    line-height: 50px;
-    height: 50px;
+    line-height: var(--navbar-height);
     grid-template-rows: 50px;
     grid-template-columns: 2fr auto;
     width: 100%;
-    position: fixed;
     box-sizing: border-box;
+    a {
+      color: var(--topBarLink, $fallback--link);
+    }
   }
 
   .mobile-inner-nav {
@@ -153,8 +150,9 @@
     z-index: 1001;
     -webkit-overflow-scrolling: touch;
 
-    &.closed {
+    &.-closed {
       transform: translateX(100%);
+      box-shadow: none;
     }
   }
 
@@ -182,7 +180,7 @@
   .mobile-notifications {
     margin-top: 50px;
     width: 100vw;
-    height: calc(100vh - 50px);
+    height: calc(100vh - var(--navbar-height));
     overflow-x: hidden;
     overflow-y: scroll;
 

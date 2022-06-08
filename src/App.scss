@@ -1,68 +1,102 @@
+// stylelint-disable rscss/class-format
 @import './_variables.scss';
 
-#app {
-  min-height: 100vh;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.app-bg-wrapper {
-  position: fixed;
-  z-index: -1;
-  height: 100%;
-  left: 0;
-  right: -20px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: var(--wallpaper);
-  background-image: var(--body-background-image);
-  background-position: 50% 50px;
-}
-
-i[class^='icon-'] {
-  user-select: none;
-}
-
-h4 {
-  margin: 0;
-}
-
-#content {
-  box-sizing: border-box;
-  padding-top: 60px;
-  margin: auto;
-  min-height: 100vh;
-  max-width: 980px;
-  align-content: flex-start;
-}
-
-.underlay {
-  background-color: rgba(0,0,0,0.15);
-  background-color: var(--underlay, rgba(0,0,0,0.15));
-}
-
-.text-center {
-  text-align: center;
+:root {
+  --navbar-height: 3.5rem;
+  --post-line-height: 1.4;
 }
 
 html {
   font-size: 14px;
+  // overflow-x: clip causes my browser's tab to crash with SIGILL lul
 }
 
 body {
-  overscroll-behavior-y: none;
   font-family: sans-serif;
   font-family: var(--interfaceFont, sans-serif);
   margin: 0;
   color: $fallback--text;
   color: var(--text, $fallback--text);
-  max-width: 100vw;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+  overflow-x: clip;
+  overflow-y: scroll;
 
   &.hidden {
     display: none;
+  }
+}
+
+// ## Custom scrollbars
+// Only show custom scrollbars on devices which
+// have a cursor/pointer to operate them
+@media (any-pointer: fine) {
+  * {
+    scrollbar-color: var(--btn) transparent;
+
+    &::-webkit-scrollbar {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-button,
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--btn);
+      box-shadow: var(--buttonShadow);
+      border-radius: var(--btnRadius);
+    }
+
+    // horizontal/vertical/increment/decrement are webkit-specific stuff
+    // that indicates whether we're affecting vertical scrollbar, increase button etc
+    // stylelint-disable selector-pseudo-class-no-unknown
+    &::-webkit-scrollbar-button {
+      --___bgPadding: 2px;
+
+      color: var(--btnText);
+      background-repeat: no-repeat, no-repeat;
+
+      &:horizontal {
+        background-size: 50% calc(50% - var(--___bgPadding)), 50% calc(50% - var(--___bgPadding));
+
+        &:increment {
+          background-image:
+            linear-gradient(45deg, var(--btnText) 50%, transparent 51%),
+            linear-gradient(-45deg, transparent 50%, var(--btnText) 51%);
+          background-position: top var(--___bgPadding) left 50%, right 50% bottom var(--___bgPadding);
+        }
+
+        &:decrement {
+          background-image:
+            linear-gradient(45deg, transparent 50%, var(--btnText) 51%),
+            linear-gradient(-45deg, var(--btnText) 50%, transparent 51%);
+          background-position: bottom var(--___bgPadding) right 50%, left 50% top var(--___bgPadding);
+        }
+      }
+
+      &:vertical {
+        background-size: calc(50% - var(--___bgPadding)) 50%, calc(50% - var(--___bgPadding)) 50%;
+
+        &:increment {
+          background-image:
+            linear-gradient(-45deg, transparent 50%, var(--btnText) 51%),
+            linear-gradient(45deg, transparent 50%, var(--btnText) 51%);
+          background-position: right var(--___bgPadding) top 50%, left var(--___bgPadding) top 50%;
+        }
+
+        &:decrement {
+          background-image:
+            linear-gradient(-45deg, var(--btnText) 50%, transparent 51%),
+            linear-gradient(45deg, var(--btnText) 50%, transparent 51%);
+          background-position: left var(--___bgPadding) top 50%, right var(--___bgPadding) top 50%;
+        }
+      }
+    }
+    // stylelint-enable selector-pseudo-class-no-unknown
+  }
+  // Body should have background to scrollbar otherwise it will use white (body color?)
+  html {
+    scrollbar-color: var(--selectedMenu) var(--wallpaper);
+    background: var(--wallpaper);
   }
 }
 
@@ -70,6 +104,228 @@ a {
   text-decoration: none;
   color: $fallback--link;
   color: var(--link, $fallback--link);
+}
+
+h4 {
+  margin: 0;
+}
+
+i[class*=icon-],
+.svg-inline--fa {
+  color: $fallback--icon;
+  color: var(--icon, $fallback--icon);
+}
+
+nav {
+  z-index: 1000;
+  color: var(--topBarText);
+  background-color: $fallback--fg;
+  background-color: var(--topBar, $fallback--fg);
+  color: $fallback--faint;
+  color: var(--faint, $fallback--faint);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--topBarShadow);
+  box-sizing: border-box;
+  height: var(--navbar-height);
+  position: fixed;
+}
+
+#sidebar {
+  grid-area: sidebar;
+}
+
+.column.-scrollable {
+  top: var(--navbar-height);
+  position: sticky;
+}
+
+#main-scroller {
+  grid-area: content;
+  position: relative;
+}
+
+#notifs-column {
+  grid-area: notifs;
+}
+
+.app-bg-wrapper {
+  position: fixed;
+  height: 100%;
+  top: var(--navbar-height);
+  z-index: -1000;
+  left: 0;
+  right: -20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--wallpaper);
+  background-image: var(--body-background-image);
+  background-position: 50%;
+}
+
+.underlay {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.15);
+  background-color: var(--underlay, rgba(0, 0, 0, 0.15));
+  z-index: -1000;
+}
+
+.app-layout {
+  --miniColumn: 25rem;
+  --maxiColumn: minmax(var(--miniColumn), 45rem);
+  --columnGap: 1em;
+  --status-margin: 0.75em;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--miniColumn) var(--maxiColumn);
+  grid-template-areas: "sidebar content";
+  grid-template-rows: 1fr;
+  box-sizing: border-box;
+  margin: 0 auto;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: clip;
+
+  .column {
+    --___columnMargin: var(--columnGap);
+
+    display: grid;
+    grid-template-columns: 100%;
+    box-sizing: border-box;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    margin: 0 calc(var(--___columnMargin) / 2);
+    padding: calc(var(--___columnMargin)) 0;
+    row-gap: var(--___columnMargin);
+    align-content: start;
+
+    &:not(.-scrollable) {
+      margin-top: var(--navbar-height);
+    }
+
+    &:hover {
+      z-index: 2;
+    }
+
+    &.-full-height {
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    &.-scrollable {
+      --___paddingIncrease: calc(var(--columnGap) / 2);
+
+      position: sticky;
+      top: var(--navbar-height);
+      max-height: calc(100vh - var(--navbar-height));
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin-left: calc(var(--___paddingIncrease) * -1);
+      padding-left: calc(var(--___paddingIncrease) + var(--___columnMargin) / 2);
+
+      // On browsers that don't support hiding scrollbars we enforce "show scrolbars" mode
+      // might implement old style of hiding scrollbars later if there's demand
+      @supports (scrollbar-width: none) or (-webkit-text-fill-color: initial) {
+        &:not(.-show-scrollbar) {
+          scrollbar-width: none;
+          margin-right: calc(var(--___paddingIncrease) * -1);
+          padding-right: calc(var(--___paddingIncrease) + var(--___columnMargin) / 2);
+
+          &::-webkit-scrollbar {
+            display: block;
+            width: 0;
+          }
+        }
+      }
+
+      .panel-heading.-sticky {
+        top: calc(var(--columnGap) / -1);
+      }
+    }
+  }
+
+  &.-has-new-post-button {
+    .column {
+      padding-bottom: 10rem;
+    }
+  }
+
+  &.-no-sticky-headers {
+    .column {
+      .panel-heading.-sticky {
+        position: relative;
+        top: 0;
+      }
+    }
+  }
+
+  .column-inner {
+    display: grid;
+    grid-template-columns: 100%;
+    box-sizing: border-box;
+    row-gap: 1em;
+    align-content: start;
+  }
+
+  &.-reverse:not(.-wide):not(.-mobile) {
+    grid-template-columns: var(--maxiColumn) var(--miniColumn);
+    grid-template-areas: "content sidebar";
+  }
+
+  &.-wide {
+    grid-template-columns: var(--miniColumn) var(--maxiColumn) var(--miniColumn);
+    grid-template-areas: "sidebar content notifs";
+
+    &.-reverse {
+      grid-template-areas: "notifs content sidebar";
+    }
+  }
+
+  &.-mobile {
+    grid-template-columns: 100vw;
+    grid-template-areas: "content";
+    padding: 0;
+
+    .column {
+      margin-left: 0;
+      margin-right: 0;
+      padding-top: 0;
+      margin-top: var(--navbar-height);
+      margin-bottom: 0;
+    }
+
+    .panel-heading,
+    .panel-heading::after,
+    .panel-heading::before,
+    .panel,
+    .panel::after {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .underlay,
+    #sidebar,
+    #notifs-column {
+      display: none;
+    }
+  }
+
+  &.-normal {
+    #notifs-column {
+      display: none;
+    }
+  }
+}
+
+.text-center {
+  text-align: center;
 }
 
 .button-default {
@@ -84,7 +340,7 @@ a {
   cursor: pointer;
   box-shadow: $fallback--buttonShadow;
   box-shadow: var(--buttonShadow);
-  font-size: 14px;
+  font-size: 1em;
   font-family: sans-serif;
   font-family: var(--interfaceFont, sans-serif);
 
@@ -103,12 +359,12 @@ a {
   }
 
   &:hover {
-    box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
     box-shadow: var(--buttonHoverShadow);
   }
 
   &:active {
-    box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.3), 0px 1px 0px 0px rgba(0, 0, 0, 0.2) inset, 0px -1px 0px 0px rgba(255, 255, 255, 0.2) inset;
+    box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.3), 0 1px 0 0 rgba(0, 0, 0, 0.2) inset, 0 -1px 0 0 rgba(255, 255, 255, 0.2) inset;
     box-shadow: var(--buttonPressedShadow);
     color: $fallback--text;
     color: var(--btnPressedText, $fallback--text);
@@ -141,7 +397,7 @@ a {
     color: var(--btnToggledText, $fallback--text);
     background-color: $fallback--fg;
     background-color: var(--btnToggled, $fallback--fg);
-    box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.3), 0px 1px 0px 0px rgba(0, 0, 0, 0.2) inset, 0px -1px 0px 0px rgba(255, 255, 255, 0.2) inset;
+    box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.3), 0 1px 0 0 rgba(0, 0, 0, 0.2) inset, 0 -1px 0 0 rgba(255, 255, 255, 0.2) inset;
     box-shadow: var(--buttonPressedShadow);
 
     svg,
@@ -191,8 +447,9 @@ a {
   }
 }
 
-input, textarea, .input {
-
+input,
+textarea,
+.input {
   &.unstyled {
     border-radius: 0;
     background: none;
@@ -200,10 +457,12 @@ input, textarea, .input {
     height: unset;
   }
 
+  --_padding: 0.5em;
+
   border: none;
   border-radius: $fallback--inputRadius;
   border-radius: var(--inputRadius, $fallback--inputRadius);
-  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2) inset, 0px -1px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 0px 2px 0px rgba(0, 0, 0, 1) inset;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2) inset, 0 -1px 0 0 rgba(255, 255, 255, 0.2) inset, 0 0 2px 0 rgba(0, 0, 0, 1) inset;
   box-shadow: var(--inputShadow);
   background-color: $fallback--fg;
   background-color: var(--input, $fallback--fg);
@@ -211,17 +470,18 @@ input, textarea, .input {
   color: var(--inputText, $fallback--lightText);
   font-family: sans-serif;
   font-family: var(--inputFont, sans-serif);
-  font-size: 14px;
+  font-size: 1em;
   margin: 0;
   box-sizing: border-box;
   display: inline-block;
   position: relative;
-  height: 28px;
-  line-height: 16px;
+  line-height: 2;
   hyphens: none;
-  padding: 8px .5em;
+  padding: 0 var(--_padding);
 
-  &:disabled, &[disabled=disabled], &.disabled {
+  &:disabled,
+  &[disabled=disabled],
+  &.disabled {
     cursor: not-allowed;
     opacity: 0.5;
   }
@@ -236,18 +496,21 @@ input, textarea, .input {
 
   &[type=radio] {
     display: none;
+
     &:checked + label::before {
-      box-shadow: 0px 0px 2px black inset, 0px 0px 0px 4px $fallback--fg inset;
-      box-shadow: var(--inputShadow), 0px 0px 0px 4px var(--fg, $fallback--fg) inset;
+      box-shadow: 0 0 2px black inset, 0 0 0 4px $fallback--fg inset;
+      box-shadow: var(--inputShadow), 0 0 0 4px var(--fg, $fallback--fg) inset;
       background-color: var(--accent, $fallback--link);
     }
+
     &:disabled {
       &,
       & + label,
       & + label::before {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
+
     + label::before {
       flex-shrink: 0;
       display: inline-block;
@@ -256,35 +519,37 @@ input, textarea, .input {
       width: 1.1em;
       height: 1.1em;
       border-radius: 100%; // Radio buttons should always be circle
-      box-shadow: 0px 0px 2px black inset;
+      box-shadow: 0 0 2px black inset;
       box-shadow: var(--inputShadow);
-      margin-right: .5em;
+      margin-right: 0.5em;
       background-color: $fallback--fg;
       background-color: var(--input, $fallback--fg);
       vertical-align: top;
       text-align: center;
-      line-height: 1.1em;
+      line-height: 1.1;
       font-size: 1.1em;
       box-sizing: border-box;
       color: transparent;
       overflow: hidden;
-      box-sizing: border-box;
     }
   }
 
   &[type=checkbox] {
     display: none;
+
     &:checked + label::before {
       color: $fallback--text;
       color: var(--inputText, $fallback--text);
     }
+
     &:disabled {
       &,
       & + label,
       & + label::before {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
+
     + label::before {
       flex-shrink: 0;
       display: inline-block;
@@ -294,25 +559,30 @@ input, textarea, .input {
       height: 1.1em;
       border-radius: $fallback--checkboxRadius;
       border-radius: var(--checkboxRadius, $fallback--checkboxRadius);
-      box-shadow: 0px 0px 2px black inset;
+      box-shadow: 0 0 2px black inset;
       box-shadow: var(--inputShadow);
-      margin-right: .5em;
+      margin-right: 0.5em;
       background-color: $fallback--fg;
       background-color: var(--input, $fallback--fg);
       vertical-align: top;
       text-align: center;
-      line-height: 1.1em;
+      line-height: 1.1;
       font-size: 1.1em;
       box-sizing: border-box;
       color: transparent;
       overflow: hidden;
-      box-sizing: border-box;
     }
   }
 
   &.resize-height {
     resize: vertical;
   }
+}
+
+// Textareas should have stock line-height + vertical padding instead of huge line-height
+textarea {
+  padding: var(--_padding);
+  line-height: var(--post-line-height);
 }
 
 option {
@@ -324,16 +594,12 @@ option {
 
 .hide-number-spinner {
   -moz-appearance: textfield;
+
   &[type=number]::-webkit-inner-spin-button,
   &[type=number]::-webkit-outer-spin-button {
     opacity: 0;
     display: none;
   }
-}
-
-i[class*=icon-], .svg-inline--fa  {
-  color: $fallback--icon;
-  color: var(--icon, $fallback--icon);
 }
 
 .btn-block {
@@ -362,271 +628,14 @@ i[class*=icon-], .svg-inline--fa  {
   }
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0 10px 0 10px;
-}
-
-.auto-size {
-  flex: 1
-}
-
-main-router {
-  flex: 1;
-}
-
-.status.compact {
-  color: rgba(0, 0, 0, 0.42);
-  font-weight: 300;
-
-  p {
-    margin: 0;
-    font-size: 0.8em
-  }
-}
-
-/* Panel */
-
-.panel {
-  display: flex;
-  position: relative;
-
-  flex-direction: column;
-  margin: 0.5em;
-
-  background-color: $fallback--bg;
-  background-color: var(--bg, $fallback--bg);
-
-  &::after, & {
-    border-radius: $fallback--panelRadius;
-    border-radius: var(--panelRadius, $fallback--panelRadius);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    pointer-events: none;
-
-    box-shadow: 1px 1px 4px rgba(0,0,0,.6);
-    box-shadow: var(--panelShadow);
-  }
-}
-
-.panel-body:empty::before {
-  content: "¯\\_(ツ)_/¯"; // Could use words but it'd require translations
-  display: block;
-  margin: 1em;
-  text-align: center;
-}
-
-.panel-heading {
-  display: flex;
-  flex: none;
-  border-radius: $fallback--panelRadius $fallback--panelRadius 0 0;
-  border-radius: var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius) 0 0;
-  background-size: cover;
-  padding: .6em .6em;
-  text-align: left;
-  line-height: 28px;
-  color: var(--panelText);
-  background-color: $fallback--fg;
-  background-color: var(--panel, $fallback--fg);
-  align-items: baseline;
-  box-shadow: var(--panelHeaderShadow);
-
-  .title {
-    flex: 1 0 auto;
-    font-size: 1.3em;
-  }
-
-  .faint {
-    background-color: transparent;
-    color: $fallback--faint;
-    color: var(--panelFaint, $fallback--faint);
-  }
-
-  .faint-link {
-    color: $fallback--faint;
-    color: var(--faintLink, $fallback--faint);
-  }
-
-  .alert {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-  }
-
-  .button-default,
-  .alert {
-    // height: 100%;
-    line-height: 21px;
-    min-height: 0;
-    box-sizing: border-box;
-    margin: 0;
-    margin-left: .5em;
-    min-width: 1px;
-    align-self: stretch;
-  }
-
-  .button-default {
-    flex-shrink: 0;
-
-    &,
-    i[class*=icon-] {
-      color: $fallback--text;
-      color: var(--btnPanelText, $fallback--text);
-    }
-
-    &:active {
-      background-color: $fallback--fg;
-      background-color: var(--btnPressedPanel, $fallback--fg);
-      color: $fallback--text;
-      color: var(--btnPressedPanelText, $fallback--text);
-    }
-
-    &:disabled {
-      color: $fallback--text;
-      color: var(--btnDisabledPanelText, $fallback--text);
-    }
-
-    &.toggled {
-      color: $fallback--text;
-      color: var(--btnToggledPanelText, $fallback--text);
-    }
-  }
-
-  a,
-  .-link {
-    color: $fallback--link;
-    color: var(--panelLink, $fallback--link)
-  }
-}
-
-.panel-heading.stub {
-  border-radius: $fallback--panelRadius;
-  border-radius: var(--panelRadius, $fallback--panelRadius);
-}
-
-/* TODO Should remove timeline-footer from here when we refactor panels into
- * separate component and utilize slots
- */
-.panel-footer, .timeline-footer {
-  display: flex;
-  border-radius: 0 0 $fallback--panelRadius $fallback--panelRadius;
-  border-radius: 0 0 var(--panelRadius, $fallback--panelRadius) var(--panelRadius, $fallback--panelRadius);
-  flex: none;
-  padding: 0.6em 0.6em;
-  text-align: left;
-  line-height: 28px;
-  align-items: baseline;
-  border-width: 1px 0 0 0;
-  border-style: solid;
-  border-color: var(--border, $fallback--border);
-
-  .faint {
-    color: $fallback--faint;
-    color: var(--panelFaint, $fallback--faint);
-  }
-
-  a,
-  .-link {
-    color: $fallback--link;
-    color: var(--panelLink, $fallback--link);
-  }
-}
-
-.panel-body > p {
-  line-height: 18px;
-  padding: 1em;
-  margin: 0;
-}
-
-.container > * {
-  min-width: 0px;
-}
+@import './panel.scss';
 
 .fa {
   color: grey;
 }
 
-nav {
-  z-index: 1000;
-  color: var(--topBarText);
-  background-color: $fallback--fg;
-  background-color: var(--topBar, $fallback--fg);
-  color: $fallback--faint;
-  color: var(--faint, $fallback--faint);
-  box-shadow: 0px 0px 4px rgba(0,0,0,.6);
-  box-shadow: var(--topBarShadow);
-  box-sizing: border-box;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0
-}
-
-.main {
-  flex-basis: 50%;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
-.sidebar-bounds {
-  flex: 0;
-  flex-basis: 35%;
-}
-
-.sidebar-flexer {
-  flex: 1;
-  flex-basis: 345px;
-  width: 365px;
-}
-
 .mobile-shown {
   display: none;
-}
-
-@media all and (min-width: 800px) {
-  body {
-    overflow-y: scroll;
-  }
-
-  .sidebar-bounds {
-    overflow: hidden;
-    max-height: 100vh;
-    width: 345px;
-    position: fixed;
-    margin-top: -10px;
-
-    .sidebar-scroller {
-      height: 96vh;
-      width: 365px;
-      padding-top: 10px;
-      padding-right: 50px;
-      overflow-x: hidden;
-      overflow-y: scroll;
-    }
-
-    .sidebar {
-      width: 345px;
-    }
-  }
-  .sidebar-flexer {
-    max-height: 96vh;
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
 }
 
 .badge {
@@ -656,12 +665,10 @@ nav {
 }
 
 .alert {
-  margin: 0.35em;
-  padding: 0.25em;
+  margin: 0 0.35em;
+  padding: 0 0.25em;
   border-radius: $fallback--tooltipRadius;
   border-radius: var(--tooltipRadius, $fallback--tooltipRadius);
-  min-height: 28px;
-  line-height: 28px;
 
   &.error {
     background-color: $fallback--alertError;
@@ -712,7 +719,7 @@ nav {
 }
 
 .visibility-notice {
-  padding: .5em;
+  padding: 0.5em;
   border: 1px solid $fallback--faint;
   border: 1px solid var(--faint, $fallback--faint);
   border-radius: $fallback--inputRadius;
@@ -727,7 +734,7 @@ nav {
     position: absolute;
     top: 0;
     right: 0;
-    padding: .5em;
+    padding: 0.5em;
     color: inherit;
   }
 }
@@ -744,72 +751,6 @@ nav {
   }
 }
 
-@keyframes shakeError {
-  0% {
-    transform: translateX(0);
-  }
-  15% {
-    transform: translateX(0.375rem);
-  }
-  30% {
-    transform: translateX(-0.375rem);
-  }
-  45% {
-    transform: translateX(0.375rem);
-  }
-  60% {
-    transform: translateX(-0.375rem);
-  }
-  75% {
-    transform: translateX(0.375rem);
-  }
-  90% {
-    transform: translateX(-0.375rem);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@media all and (max-width: 800px) {
-  .mobile-hidden {
-    display: none;
-  }
-
-  .panel-switcher {
-    display: flex;
-  }
-
-  .container {
-    padding: 0;
-  }
-
-  .panel {
-    margin: 0.5em 0 0.5em 0;
-  }
-
-  .menu-button {
-    display: block;
-    margin-right: 0.8em;
-  }
-
-  .main {
-    margin-bottom: 7em;
-  }
-}
-
-.setting-list,
-.option-list{
-  list-style-type: none;
-  padding-left: 2em;
-  li {
-    margin-bottom: 0.5em;
-  }
-  .suboptions {
-    margin-top: 0.3em
-  }
-}
-
 .login-hint {
   text-align: center;
 
@@ -819,18 +760,26 @@ nav {
 
   a {
     display: inline-block;
-    padding: 1em 0px;
+    padding: 1em 0;
     width: 100%;
   }
 }
 
 .btn.button-default {
-  min-height: 28px;
+  min-height: 2em;
 }
 
-.animate-spin {
-  animation: spin 2s infinite linear;
-  display: inline-block;
+.new-status-notification {
+  position: relative;
+  font-size: 1.1em;
+  z-index: 1;
+  flex: 1;
+}
+
+@media all and (max-width: 800px) {
+  .mobile-hidden {
+    display: none;
+  }
 }
 
 @keyframes spin {
@@ -843,49 +792,47 @@ nav {
   }
 }
 
-.new-status-notification {
-  position: relative;
-  font-size: 1.1em;
-  z-index: 1;
-  flex: 1;
+@keyframes shakeError {
+  0% {
+    transform: translateX(0);
+  }
+
+  15% {
+    transform: translateX(0.375rem);
+  }
+
+  30% {
+    transform: translateX(-0.375rem);
+  }
+
+  45% {
+    transform: translateX(0.375rem);
+  }
+
+  60% {
+    transform: translateX(-0.375rem);
+  }
+
+  75% {
+    transform: translateX(0.375rem);
+  }
+
+  90% {
+    transform: translateX(-0.375rem);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
-.chat-layout {
-  // Needed for smoother chat navigation in the desktop Safari (otherwise the chat layout "jumps" as the chat opens).
-  overflow: hidden;
-  height: 100%;
+// Vue transitions
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
 
-  // Get rid of scrollbar on body as scrolling happens on different element
-  body {
-    overflow: hidden;
-  }
-
-  // Ensures the fixed position of the mobile browser bars on scroll up / down events.
-  // Prevents the mobile browser bars from overlapping or hiding the message posting form.
-  @media all and (max-width: 800px) {
-    body {
-      height: 100%;
-    }
-
-    #app {
-      height: 100%;
-      overflow: hidden;
-      min-height: auto;
-    }
-
-    #app_bg_wrapper {
-      overflow: hidden;
-    }
-
-    .main {
-      overflow: hidden;
-      height: 100%;
-    }
-
-    #content {
-      padding-top: 0;
-      height: 100%;
-      overflow: visible;
-    }
-  }
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
 }

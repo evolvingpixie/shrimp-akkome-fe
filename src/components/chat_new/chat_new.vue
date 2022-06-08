@@ -1,21 +1,20 @@
 <template>
   <div
-    id="nav"
     class="panel-default panel chat-new"
   >
     <div
       ref="header"
       class="panel-heading"
     >
-      <a
-        class="go-back-button"
+      <button
+        class="button-unstyled go-back-button"
         @click="goBack"
       >
         <FAIcon
           size="lg"
           icon="chevron-left"
         />
-      </a>
+      </button>
     </div>
     <div class="input-wrap">
       <div class="input-search">

@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { reactive } from 'vue'
 import { find, omitBy, orderBy, sumBy } from 'lodash'
 import chatService from '../services/chat_service/chat_service.js'
 import { parseChat, parseChatMessage } from '../services/entity_normalizer/entity_normalizer.service.js'
@@ -13,8 +13,8 @@ const emptyChatList = () => ({
 const defaultState = {
   chatList: emptyChatList(),
   chatListFetcher: null,
-  openedChats: {},
-  openedChatMessageServices: {},
+  openedChats: reactive({}),
+  openedChatMessageServices: reactive({}),
   fetcher: undefined,
   currentChatId: null,
   lastReadMessageId: null
@@ -137,10 +137,10 @@ const chats = {
     },
     addOpenedChat (state, { _dispatch, chat }) {
       state.currentChatId = chat.id
-      Vue.set(state.openedChats, chat.id, chat)
+      state.openedChats[chat.id] = chat
 
       if (!state.openedChatMessageServices[chat.id]) {
-        Vue.set(state.openedChatMessageServices, chat.id, chatService.empty(chat.id))
+        state.openedChatMessageServices[chat.id] = chatService.empty(chat.id)
       }
     },
     setCurrentChatId (state, { chatId }) {
@@ -160,7 +160,7 @@ const chats = {
           }
         } else {
           state.chatList.data.push(updatedChat)
-          Vue.set(state.chatList.idStore, updatedChat.id, updatedChat)
+          state.chatList.idStore[updatedChat.id] = updatedChat
         }
       })
     },
@@ -172,7 +172,7 @@ const chats = {
         chat.updated_at = updatedChat.updated_at
       }
       if (!chat) { state.chatList.data.unshift(updatedChat) }
-      Vue.set(state.chatList.idStore, updatedChat.id, updatedChat)
+      state.chatList.idStore[updatedChat.id] = updatedChat
     },
     deleteChat (state, { _dispatch, id, _rootGetters }) {
       state.chats.data = state.chats.data.filter(conversation =>
@@ -186,8 +186,8 @@ const chats = {
       commit('setChatListFetcher', { fetcher: undefined })
       for (const chatId in state.openedChats) {
         chatService.clear(state.openedChatMessageServices[chatId])
-        Vue.delete(state.openedChats, chatId)
-        Vue.delete(state.openedChatMessageServices, chatId)
+        delete state.openedChats[chatId]
+        delete state.openedChatMessageServices[chatId]
       }
     },
     setChatsLoading (state, { value }) {
@@ -215,8 +215,8 @@ const chats = {
       for (const chatId in state.openedChats) {
         if (currentChatId !== chatId) {
           chatService.clear(state.openedChatMessageServices[chatId])
-          Vue.delete(state.openedChats, chatId)
-          Vue.delete(state.openedChatMessageServices, chatId)
+          delete state.openedChats[chatId]
+          delete state.openedChatMessageServices[chatId]
         }
       }
     },

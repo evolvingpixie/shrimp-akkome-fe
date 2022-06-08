@@ -74,10 +74,6 @@
 <style lang="scss">
 @import '../../_variables.scss';
 .AccountActions {
-  button.dropdown-item {
-    margin-left: 0;
-  }
-
   .ellipsis-button {
     width: 2.5em;
     margin: -0.5em 0;

@@ -21,18 +21,21 @@ library.add(
 const StatusContent = {
   name: 'StatusContent',
   props: [
+    'compact',
     'status',
     'focused',
     'noHeading',
     'fullContent',
-    'singleLine'
+    'singleLine',
+    'showingTall',
+    'expandingSubject',
+    'showingLongSubject',
+    'toggleShowingTall',
+    'toggleExpandingSubject',
+    'toggleShowingLongSubject'
   ],
   data () {
     return {
-      showingTall: this.fullContent || (this.inConversation && this.focused),
-      showingLongSubject: false,
-      // not as computed because it sets the initial state which will be changed later
-      expandingSubject: !this.$store.getters.mergedConfig.collapseMessageWithSubject,
       postLength: this.status.text.length,
       parseReadyDone: false
     }
@@ -49,6 +52,7 @@ const StatusContent = {
     // Using max-height + overflow: auto for status components resulted in false positives
     // very often with japanese characters, and it was very annoying.
     tallStatus () {
+      if (this.singleLine || this.compact) return false
       const lengthScore = this.status.raw_html.split(/<p|<br/).length + this.postLength / 80
       return lengthScore > 20
     },
@@ -113,9 +117,9 @@ const StatusContent = {
     },
     toggleShowMore () {
       if (this.mightHideBecauseTall) {
-        this.showingTall = !this.showingTall
+        this.toggleShowingTall()
       } else if (this.mightHideBecauseSubject) {
-        this.expandingSubject = !this.expandingSubject
+        this.toggleExpandingSubject()
       }
     },
     generateTagLink (tag) {

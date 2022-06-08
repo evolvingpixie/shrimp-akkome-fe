@@ -1,6 +1,6 @@
 /* eslint-env browser */
 import statusPosterService from '../../services/status_poster/status_poster.service.js'
-import TabSwitcher from '../tab_switcher/tab_switcher.js'
+import TabSwitcher from '../tab_switcher/tab_switcher.jsx'
 
 const StickerPicker = {
   components: {

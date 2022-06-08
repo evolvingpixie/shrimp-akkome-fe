@@ -58,16 +58,7 @@
   background-color: var(--bg, $fallback--bg);
 
   .dialog-modal-heading {
-    padding: .5em .5em;
-    margin-right: auto;
-    margin-bottom: 0;
-    white-space: nowrap;
-    color: var(--panelText);
-    background-color: $fallback--fg;
-    background-color: var(--panel, $fallback--fg);
-
     .title {
-      margin-bottom: 0;
       text-align: center;
     }
   }

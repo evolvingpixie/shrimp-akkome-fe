@@ -12,19 +12,6 @@ library.add(
   faCog
 )
 
-export const getExcludedStatusIdsByPinning = (statuses, pinnedStatusIds) => {
-  const ids = []
-  if (pinnedStatusIds && pinnedStatusIds.length > 0) {
-    for (let status of statuses) {
-      if (!pinnedStatusIds.includes(status.id)) {
-        break
-      }
-      ids.push(status.id)
-    }
-  }
-  return ids
-}
-
 const Timeline = {
   props: [
     'timeline',
@@ -35,7 +22,8 @@ const Timeline = {
     'embedded',
     'count',
     'pinnedStatusIds',
-    'inProfile'
+    'inProfile',
+    'footerSlipgate' // reference to an element where we should put our footer
   ],
   data () {
     return {
@@ -53,6 +41,12 @@ const Timeline = {
     TimelineQuickSettings
   },
   computed: {
+    filteredVisibleStatuses () {
+      return this.timeline.visibleStatuses.filter(status => this.timelineName !== 'user' || (status.id >= this.timeline.minId && status.id <= this.timeline.maxId))
+    },
+    filteredPinnedStatusIds () {
+      return (this.pinnedStatusIds || []).filter(statusId => this.timeline.statusesObject[statusId])
+    },
     newStatusCount () {
       return this.timeline.newStatusCount
     },
@@ -67,29 +61,25 @@ const Timeline = {
       }
     },
     classes () {
-      let rootClasses = !this.embedded ? ['panel', 'panel-default'] : []
+      let rootClasses = !this.embedded ? ['panel', 'panel-default'] : ['-nonpanel']
       if (this.blockingClicks) rootClasses = rootClasses.concat(['-blocked', '_misclick-prevention'])
       return {
         root: rootClasses,
-        header: ['timeline-heading'].concat(!this.embedded ? ['panel-heading'] : []),
+        header: ['timeline-heading'].concat(!this.embedded ? ['panel-heading', '-sticky'] : []),
         body: ['timeline-body'].concat(!this.embedded ? ['panel-body'] : []),
         footer: ['timeline-footer'].concat(!this.embedded ? ['panel-footer'] : [])
       }
     },
     // id map of statuses which need to be hidden in the main list due to pinning logic
-    excludedStatusIdsObject () {
-      const ids = getExcludedStatusIdsByPinning(this.timeline.visibleStatuses, this.pinnedStatusIds)
-      // Convert id array to object
-      return keyBy(ids)
-    },
     pinnedStatusIdsObject () {
       return keyBy(this.pinnedStatusIds)
     },
     statusesToDisplay () {
       const amount = this.timeline.visibleStatuses.length
       const statusesPerSide = Math.ceil(Math.max(3, window.innerHeight / 80))
-      const min = Math.max(0, this.virtualScrollIndex - statusesPerSide)
-      const max = Math.min(amount, this.virtualScrollIndex + statusesPerSide)
+      const nonPinnedIndex = this.virtualScrollIndex - this.filteredPinnedStatusIds.length
+      const min = Math.max(0, nonPinnedIndex - statusesPerSide)
+      const max = Math.min(amount, nonPinnedIndex + statusesPerSide)
       return this.timeline.visibleStatuses.slice(min, max).map(_ => _.id)
     },
     virtualScrollingEnabled () {
@@ -122,7 +112,7 @@ const Timeline = {
     window.addEventListener('keydown', this.handleShortKey)
     setTimeout(this.determineVisibleStatuses, 250)
   },
-  destroyed () {
+  unmounted () {
     window.removeEventListener('scroll', this.handleScroll)
     window.removeEventListener('keydown', this.handleShortKey)
     if (typeof document.hidden !== 'undefined') document.removeEventListener('visibilitychange', this.handleVisibilityChange, false)
@@ -153,6 +143,7 @@ const Timeline = {
         this.$store.commit('showNewStatuses', { timeline: this.timelineName })
         this.paused = false
       }
+      window.scrollTo({ top: 0 })
     },
     fetchOlderStatuses: throttle(function () {
       const store = this.$store

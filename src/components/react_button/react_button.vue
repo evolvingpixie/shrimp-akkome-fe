@@ -108,7 +108,7 @@
       cursor: pointer;
 
       flex-basis: 20%;
-      line-height: 1.5em;
+      line-height: 1.5;
       align-content: center;
 
       &:hover {

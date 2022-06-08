@@ -15,13 +15,14 @@
       class="opt exlcude-disabled"
       type="checkbox"
       :checked="present"
-      @input="$emit('input', typeof value === 'undefined' ? fallback : undefined)"
+      @change="$emit('update:modelValue', typeof modelValue === 'undefined' ? fallback : undefined)"
     >
     <label
       v-if="typeof fallback !== 'undefined'"
       class="opt-l"
       :for="name + '-o'"
     />
+    {{ ' ' }}
     <Select
       :id="name + '-font-switcher'"
       v-model="preset"

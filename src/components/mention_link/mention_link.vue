@@ -9,9 +9,7 @@
       class="original"
       target="_blank"
       v-html="content"
-    />
-    <!-- eslint-enable vue/no-v-html -->
-    <span
+    /><!-- eslint-enable vue/no-v-html --><span
       v-if="user"
       class="new"
       :style="style"
@@ -19,6 +17,7 @@
     >
       <a
         class="short button-unstyled"
+        :class="{ '-with-tooltip': shouldShowTooltip }"
         :href="url"
         @click.prevent="onClick"
       >
@@ -26,22 +25,37 @@
         <span class="shortName">@<span
           class="userName"
           v-html="userName"
-        /></span>
+        /><span
+          v-if="shouldShowFullUserName"
+          class="serverName"
+          :class="{ '-faded': shouldFadeDomain }"
+          v-html="'@' + serverName"
+        />
+        </span>
         <span
-          v-if="isYou"
-          class="you"
-        >{{ $t('status.you') }}</span>
+          v-if="isYou && shouldShowYous"
+          :class="{ '-you': shouldBoldenYou }"
+        > {{ ' ' + $t('status.you') }}</span>
         <!-- eslint-enable vue/no-v-html -->
-      </a>
-      <span
-        v-if="userName !== userNameFull"
+      </a><span
+        v-if="shouldShowTooltip"
         class="full popover-default"
         :class="[highlightType]"
       >
         <span
           class="userNameFull"
-          v-text="'@' + userNameFull"
-        />
+        >
+          <!-- eslint-disable vue/no-v-html -->
+          @<span
+            class="userName"
+            v-html="userName"
+          /><span
+            class="serverName"
+            :class="{ '-faded': shouldFadeDomain }"
+            v-html="'@' + serverName"
+          />
+          <!-- eslint-enable vue/no-v-html -->
+        </span>
       </span>
     </span>
   </span>

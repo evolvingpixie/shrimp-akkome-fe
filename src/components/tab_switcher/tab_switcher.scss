@@ -25,8 +25,9 @@
         border-bottom-color: $fallback--border;
         border-bottom-color: var(--border, $fallback--border);
       }
+
       .tab-wrapper {
-        height: 28px;
+        height: 2em;
 
         &:not(.active)::after {
           left: 0;
@@ -166,13 +167,6 @@
     position: relative;
     white-space: nowrap;
     padding: 6px 1em;
-    background-color: $fallback--fg;
-    background-color: var(--tab, $fallback--fg);
-
-    &, &:active .tab-icon {
-      color: $fallback--text;
-      color: var(--tabText, $fallback--text);
-    }
 
     &:not(.active) {
       z-index: 4;

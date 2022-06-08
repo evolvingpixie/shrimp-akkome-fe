@@ -1,69 +1,71 @@
 <template>
-  <div
-    :class="{ minimal: minimalMode }"
-    class="Notifications"
-  >
-    <div :class="mainClass">
-      <div
-        v-if="!noHeading"
-        class="panel-heading"
-      >
-        <div class="title">
-          {{ $t('notifications.notifications') }}
-          <span
-            v-if="unseenCount"
-            class="badge badge-notification unseen-count"
-          >{{ unseenCount }}</span>
-        </div>
-        <button
-          v-if="unseenCount"
-          class="button-default read-button"
-          @click.prevent="markAsSeen"
-        >
-          {{ $t('notifications.read') }}
-        </button>
-        <NotificationFilters />
-      </div>
-      <div class="panel-body">
+  <teleport :disabled="minimalMode || disableTeleport" :to="teleportTarget">
+    <div
+      :class="{ minimal: minimalMode }"
+      class="Notifications"
+    >
+      <div :class="mainClass">
         <div
-          v-for="notification in notificationsToDisplay"
-          :key="notification.id"
-          class="notification"
-          :class="{&quot;unseen&quot;: !minimalMode && !notification.seen}"
+          v-if="!noHeading"
+          class="notifications-heading panel-heading -sticky"
         >
-          <div class="notification-overlay" />
-          <notification :notification="notification" />
-        </div>
-      </div>
-      <div class="panel-footer notifications-footer">
-        <div
-          v-if="bottomedOut"
-          class="new-status-notification text-center faint"
-        >
-          {{ $t('notifications.no_more_notifications') }}
-        </div>
-        <button
-          v-else-if="!loading"
-          class="button-unstyled -link -fullwidth"
-          @click.prevent="fetchOlderNotifications()"
-        >
-          <div class="new-status-notification text-center">
-            {{ minimalMode ? $t('interactions.load_older') : $t('notifications.load_older') }}
+          <div class="title">
+            {{ $t('notifications.notifications') }}
+            <span
+              v-if="unseenCount"
+              class="badge badge-notification unseen-count"
+            >{{ unseenCount }}</span>
           </div>
-        </button>
-        <div
-          v-else
-          class="new-status-notification text-center"
-        >
-          <FAIcon
-            icon="circle-notch"
-            spin
-            size="lg"
-          />
+          <button
+            v-if="unseenCount"
+            class="button-default read-button"
+            @click.prevent="markAsSeen"
+          >
+            {{ $t('notifications.read') }}
+          </button>
+          <NotificationFilters />
+        </div>
+        <div class="panel-body">
+          <div
+            v-for="notification in notificationsToDisplay"
+            :key="notification.id"
+            class="notification"
+            :class="{unseen: !minimalMode && !notification.seen}"
+          >
+            <div class="notification-overlay" />
+            <notification :notification="notification" />
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div
+            v-if="bottomedOut"
+            class="new-status-notification text-center faint"
+          >
+            {{ $t('notifications.no_more_notifications') }}
+          </div>
+          <button
+            v-else-if="!loading"
+            class="button-unstyled -link -fullwidth"
+            @click.prevent="fetchOlderNotifications()"
+          >
+            <div class="new-status-notification text-center">
+              {{ minimalMode ? $t('interactions.load_older') : $t('notifications.load_older') }}
+            </div>
+          </button>
+          <div
+            v-else
+            class="new-status-notification text-center"
+          >
+            <FAIcon
+              icon="circle-notch"
+              spin
+              size="lg"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </teleport>
 </template>
 
 <script src="./notifications.js"></script>

@@ -78,7 +78,7 @@
     top: 0;
     right: 0;
     margin: .2em .25em;
-    font-size: 16px;
+    font-size: 1.3em;
     cursor: pointer;
     line-height: 24px;
 

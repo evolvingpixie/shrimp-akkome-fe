@@ -1,5 +1,5 @@
 <template>
-  <div :class="[classes.root, 'Timeline']">
+  <div :class="['Timeline', classes.root]">
     <div :class="classes.header">
       <TimelineMenu v-if="!embedded" />
       <button
@@ -10,7 +10,7 @@
         {{ loadButtonString }}
       </button>
       <div
-        v-else
+        v-else-if="!embedded"
         class="loadmore-text faint"
         @click.prevent
       >
@@ -23,64 +23,62 @@
         ref="timeline"
         class="timeline"
       >
-        <template v-for="statusId in pinnedStatusIds">
-          <conversation
-            v-if="timeline.statusesObject[statusId]"
-            :key="statusId + '-pinned'"
-            class="status-fadein"
-            :status-id="statusId"
-            :collapsable="true"
-            :pinned-status-ids-object="pinnedStatusIdsObject"
-            :in-profile="inProfile"
-            :profile-user-id="userId"
-          />
-        </template>
-        <template v-for="status in timeline.visibleStatuses">
-          <conversation
-            v-if="!excludedStatusIdsObject[status.id]"
-            :key="status.id"
-            class="status-fadein"
-            :status-id="status.id"
-            :collapsable="true"
-            :in-profile="inProfile"
-            :profile-user-id="userId"
-            :virtual-hidden="virtualScrollingEnabled && !statusesToDisplay.includes(status.id)"
-          />
-        </template>
+        <conversation
+          v-for="statusId in filteredPinnedStatusIds"
+          :key="statusId + '-pinned'"
+          class="status-fadein"
+          :status-id="statusId"
+          :collapsable="true"
+          :pinned-status-ids-object="pinnedStatusIdsObject"
+          :in-profile="inProfile"
+          :profile-user-id="userId"
+        />
+        <conversation
+          v-for="status in filteredVisibleStatuses"
+          :key="status.id"
+          class="status-fadein"
+          :status-id="status.id"
+          :collapsable="true"
+          :in-profile="inProfile"
+          :profile-user-id="userId"
+          :virtual-hidden="virtualScrollingEnabled && !statusesToDisplay.includes(status.id)"
+        />
       </div>
     </div>
     <div :class="classes.footer">
-      <div
-        v-if="count===0"
-        class="new-status-notification text-center faint"
-      >
-        {{ $t('timeline.no_statuses') }}
-      </div>
-      <div
-        v-else-if="bottomedOut"
-        class="new-status-notification text-center faint"
-      >
-        {{ $t('timeline.no_more_statuses') }}
-      </div>
-      <button
-        v-else-if="!timeline.loading"
-        class="button-unstyled -link -fullwidth"
-        @click.prevent="fetchOlderStatuses()"
-      >
-        <div class="new-status-notification text-center">
-          {{ $t('timeline.load_older') }}
+      <teleport :to="footerSlipgate" :disabled="!embedded || !footerSlipgate">
+        <div
+          v-if="count===0"
+          class="new-status-notification text-center faint"
+        >
+          {{ $t('timeline.no_statuses') }}
         </div>
-      </button>
-      <div
-        v-else
-        class="new-status-notification text-center"
-      >
-        <FAIcon
-          icon="circle-notch"
-          spin
-          size="lg"
-        />
-      </div>
+        <div
+          v-else-if="bottomedOut"
+          class="new-status-notification text-center faint"
+        >
+          {{ $t('timeline.no_more_statuses') }}
+        </div>
+        <button
+          v-else-if="!timeline.loading"
+          class="button-unstyled -link"
+          @click.prevent="fetchOlderStatuses()"
+        >
+          <div class="new-status-notification text-center">
+            {{ $t('timeline.load_older') }}
+          </div>
+        </button>
+        <div
+          v-else
+          class="new-status-notification text-center"
+        >
+          <FAIcon
+            icon="circle-notch"
+            spin
+            size="lg"
+          />
+        </div>
+      </teleport>
     </div>
   </div>
 </template>

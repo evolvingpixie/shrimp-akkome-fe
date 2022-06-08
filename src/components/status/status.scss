@@ -1,10 +1,10 @@
 @import '../../_variables.scss';
 
-$status-margin: 0.75em;
-
 .Status {
   min-width: 0;
   white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
 
   &:hover {
     --_still-image-img-visibility: visible;
@@ -26,15 +26,8 @@ $status-margin: 0.75em;
     --icon: var(--selectedPostIcon, $fallback--icon);
   }
 
-  &.-conversation {
-    border-left-width: 4px;
-    border-left-style: solid;
-    border-left-color: $fallback--cRed;
-    border-left-color: var(--cRed, $fallback--cRed);
-  }
-
   .gravestone {
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
     color: $fallback--faint;
     color: var(--faint, $fallback--faint);
     display: flex;
@@ -47,7 +40,11 @@ $status-margin: 0.75em;
 
   .status-container {
     display: flex;
-    padding: $status-margin;
+    padding: var(--status-margin, $status-margin);
+
+    > * {
+      min-width: 0;
+    }
 
     &.-repeat {
       padding-top: 0;
@@ -55,7 +52,7 @@ $status-margin: 0.75em;
   }
 
   .pin {
-    padding: $status-margin $status-margin 0;
+    padding: var(--status-margin, $status-margin) var(--status-margin, $status-margin) 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -71,7 +68,7 @@ $status-margin: 0.75em;
   }
 
   .left-side {
-    margin-right: $status-margin;
+    margin-right: var(--status-margin, $status-margin);
   }
 
   .right-side {
@@ -80,12 +77,11 @@ $status-margin: 0.75em;
   }
 
   .usercard {
-    margin-bottom: $status-margin;
+    margin-bottom: var(--status-margin, $status-margin);
   }
 
   .status-username {
     white-space: nowrap;
-    font-size: 14px;
     overflow: hidden;
     max-width: 85%;
     font-weight: bold;
@@ -110,7 +106,7 @@ $status-margin: 0.75em;
   .heading-name-row {
     display: flex;
     justify-content: space-between;
-    line-height: 18px;
+    line-height: 1.3;
 
     a {
       display: inline-block;
@@ -163,17 +159,23 @@ $status-margin: 0.75em;
   & .heading-reply-row {
     position: relative;
     align-content: baseline;
-    font-size: 12px;
-    line-height: 160%;
+    font-size: 0.85em;
+    margin-top: 0.2em;
+    line-height: 130%;
     max-width: 100%;
     align-items: stretch;
   }
 
   & .reply-to-popover,
-  & .reply-to-no-popover {
+  & .reply-to-no-popover,
+  & .mentions {
     min-width: 0;
     margin-right: 0.4em;
     flex-shrink: 0;
+  }
+
+  .reply-glued-label {
+    margin-right: 0.5em;
   }
 
   .reply-to-popover {
@@ -209,7 +211,6 @@ $status-margin: 0.75em;
   & .reply-to {
     white-space: nowrap;
     position: relative;
-    padding-right: 0.25em;
   }
 
   & .mentions-text,
@@ -226,8 +227,8 @@ $status-margin: 0.75em;
 
   .replies {
     margin-top: 0.25em;
-    line-height: 18px;
-    font-size: 12px;
+    line-height: 1.3;
+    font-size: 0.85em;
     display: flex;
     flex-wrap: wrap;
 
@@ -241,7 +242,7 @@ $status-margin: 0.75em;
   }
 
   .repeat-info {
-    padding: 0.4em $status-margin;
+    padding: 0.4em var(--status-margin, $status-margin);
 
     .repeat-icon {
       color: $fallback--cGreen;
@@ -287,7 +288,7 @@ $status-margin: 0.75em;
     position: relative;
     width: 100%;
     display: flex;
-    margin-top: $status-margin;
+    margin-top: var(--status-margin, $status-margin);
 
     > * {
       max-width: 4em;
@@ -355,7 +356,7 @@ $status-margin: 0.75em;
   }
 
   .favs-repeated-users {
-    margin-top: $status-margin;
+    margin-top: var(--status-margin, $status-margin);
   }
 
   .stats {
@@ -382,19 +383,19 @@ $status-margin: 0.75em;
   }
 
   .stat-count {
-    margin-right: $status-margin;
+    margin-right: var(--status-margin, $status-margin);
     user-select: none;
 
     .stat-title {
       color: var(--faint, $fallback--faint);
-      font-size: 12px;
+      font-size: 0.85em;
       text-transform: uppercase;
       position: relative;
     }
 
     .stat-number {
       font-weight: bolder;
-      font-size: 16px;
+      font-size: 1.1em;
       line-height: 1em;
     }
 
@@ -408,13 +409,13 @@ $status-margin: 0.75em;
       margin-left: 20px;
     }
 
-    .avatar:not(.repeater-avatar) {
+    .post-avatar {
       width: 40px;
       height: 40px;
 
       // TODO define those other way somehow?
       // stylelint-disable rscss/class-format
-      &.avatar-compact {
+      &.-compact {
         width: 32px;
         height: 32px;
       }

@@ -1,13 +1,25 @@
+@import '../../_variables.scss';
+
 .MentionLink {
   position: relative;
   white-space: normal;
-  display: inline-block;
+  display: inline;
   color: var(--link);
+  word-break: normal;
 
   & .new,
   & .original {
-    display: inline-block;
+    display: inline;
     border-radius: 2px;
+  }
+
+  .mention-avatar {
+    border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    user-select: none;
+    margin-right: 0.2em;
   }
 
   .full {
@@ -27,13 +39,18 @@
     user-select: all;
   }
 
-  .short {
+  & .short.-with-tooltip,
+  & .you {
     user-select: none;
   }
 
   & .short,
   & .full {
     white-space: nowrap;
+  }
+
+  .shortName {
+    white-space: normal;
   }
 
   .new {
@@ -48,7 +65,6 @@
       color: var(--link);
       opacity: 0.8;
       display: inline-block;
-      height: 50%;
       line-height: 1;
       padding: 0 0.1em;
       vertical-align: -25%;
@@ -56,7 +72,7 @@
     }
 
     &.-striped {
-      & .userName,
+      & .shortName,
       & .full {
         background-image:
           repeating-linear-gradient(
@@ -70,14 +86,14 @@
     }
 
     &.-solid {
-      & .userName,
+      & .shortName,
       & .full {
         background-image: linear-gradient(var(--____highlight-tintColor2), var(--____highlight-tintColor2));
       }
     }
 
     &.-side {
-      & .userName,
+      & .shortName,
       & .userNameFull {
         box-shadow: 0 -5px 3px -4px inset var(--____highlight-solidColor);
       }
@@ -87,5 +103,13 @@
   &:hover .new .full {
     opacity: 1;
     pointer-events: initial;
+  }
+
+  .serverName.-faded {
+    color: var(--faintLink, $fallback--link);
+  }
+
+  .full .-faded {
+    color: var(--faint, $fallback--faint);
   }
 }

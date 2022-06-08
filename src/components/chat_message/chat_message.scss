@@ -1,6 +1,7 @@
 @import '../../_variables.scss';
 
 .chat-message-wrapper {
+
   &.hovered-message-chain {
     .animated.Avatar {
       canvas {
@@ -40,6 +41,12 @@
   .chat-message {
     display: flex;
     padding-bottom: 0.5em;
+
+    .status-body:hover {
+      --_still-image-img-visibility: visible;
+      --_still-image-canvas-visibility: hidden;
+      --_still-image-label-visibility: hidden;
+    }
   }
 
   .avatar-wrapper {
@@ -61,10 +68,6 @@
 
     &.with-media {
       width: 100%;
-
-      .gallery-row {
-        overflow: hidden;
-      }
 
       .status {
         width: 100%;

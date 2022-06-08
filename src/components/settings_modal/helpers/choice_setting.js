@@ -1,15 +1,18 @@
 import { get, set } from 'lodash'
 import Select from 'src/components/select/select.vue'
 import ModifiedIndicator from './modified_indicator.vue'
+import ServerSideIndicator from './server_side_indicator.vue'
 export default {
   components: {
     Select,
-    ModifiedIndicator
+    ModifiedIndicator,
+    ServerSideIndicator
   },
   props: [
     'path',
     'disabled',
-    'options'
+    'options',
+    'expert'
   ],
   computed: {
     pathDefault () {
@@ -27,8 +30,14 @@ export default {
     defaultState () {
       return get(this.$parent, this.pathDefault)
     },
+    isServerSide () {
+      return this.path.startsWith('serverSide_')
+    },
     isChanged () {
-      return this.state !== this.defaultState
+      return !this.path.startsWith('serverSide_') && this.state !== this.defaultState
+    },
+    matchesExpertLevel () {
+      return (this.expert || 0) <= this.$parent.expertLevel
     }
   },
   methods: {

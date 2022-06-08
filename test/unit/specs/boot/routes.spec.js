@@ -1,45 +1,40 @@
-import Vuex from 'vuex'
 import routes from 'src/boot/routes'
-import { createLocalVue } from '@vue/test-utils'
-import VueRouter from 'vue-router'
+import { createRouter, createMemoryHistory } from 'vue-router'
+import { createStore } from 'vuex'
 
-const localVue = createLocalVue()
-localVue.use(Vuex)
-localVue.use(VueRouter)
-
-const store = new Vuex.Store({
+const store = createStore({
   state: {
     instance: {}
   }
 })
 
 describe('routes', () => {
-  const router = new VueRouter({
-    mode: 'abstract',
+  const router = createRouter({
+    history: createMemoryHistory(),
     routes: routes(store)
   })
 
-  it('root path', () => {
-    router.push('/main/all')
+  it('root path', async () => {
+    await router.push('/main/all')
 
-    const matchedComponents = router.getMatchedComponents()
+    const matchedComponents = router.currentRoute.value.matched
 
-    expect(matchedComponents[0].components.hasOwnProperty('Timeline')).to.eql(true)
+    expect(matchedComponents[0].components.default.components.hasOwnProperty('Timeline')).to.eql(true)
   })
 
-  it('user\'s profile', () => {
-    router.push('/fake-user-name')
+  it('user\'s profile', async () => {
+    await router.push('/fake-user-name')
 
-    const matchedComponents = router.getMatchedComponents()
+    const matchedComponents = router.currentRoute.value.matched
 
-    expect(matchedComponents[0].components.hasOwnProperty('UserCard')).to.eql(true)
+    expect(matchedComponents[0].components.default.components.hasOwnProperty('UserCard')).to.eql(true)
   })
 
-  it('user\'s profile at /users', () => {
-    router.push('/users/fake-user-name')
+  it('user\'s profile at /users', async () => {
+    await router.push('/users/fake-user-name')
 
-    const matchedComponents = router.getMatchedComponents()
+    const matchedComponents = router.currentRoute.value.matched
 
-    expect(matchedComponents[0].components.hasOwnProperty('UserCard')).to.eql(true)
+    expect(matchedComponents[0].components.default.components.hasOwnProperty('UserCard')).to.eql(true)
   })
 })

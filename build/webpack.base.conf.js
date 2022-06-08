@@ -4,6 +4,7 @@ var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
 var CopyPlugin = require('copy-webpack-plugin');
+var { VueLoaderPlugin } = require('vue-loader')
 
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
@@ -29,16 +30,16 @@ module.exports = {
     }
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.jsx', '.vue'],
     modules: [
       path.join(__dirname, '../node_modules')
     ],
     alias: {
-      'vue$': 'vue/dist/vue.runtime.common',
       'static': path.resolve(__dirname, '../static'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js'
     }
   },
   module: {
@@ -59,8 +60,27 @@ module.exports = {
         }
       },
       {
+        enforce: 'post',
+        test: /\.(json5?|ya?ml)$/, // target json, json5, yaml and yml files
+        type: 'javascript/auto',
+        loader: '@intlify/vue-i18n-loader',
+        include: [ // Use `Rule.include` to specify the files of locale messages to be pre-compiled
+          path.resolve(__dirname, '../src/i18n')
+        ]
+      },
+      {
         test: /\.vue$/,
-        use: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            isCustomElement(tag) {
+              if (tag === 'pinch-zoom') {
+                return true
+              }
+              return false
+            }
+          }
+        }
       },
       {
         test: /\.jsx?$/,
@@ -95,6 +115,7 @@ module.exports = {
       entry: path.join(__dirname, '..', 'src/sw.js'),
       filename: 'sw-pleroma.js'
     }),
+    new VueLoaderPlugin(),
     // This copies Ruffle's WASM to a directory so that JS side can access it
     new CopyPlugin({
       patterns: [

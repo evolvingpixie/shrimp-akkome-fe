@@ -61,10 +61,19 @@
             :class="{ 'menu-checkbox-checked': filters.moves }"
           />{{ $t('settings.notification_visibility_moves') }}
         </button>
+        <button
+          class="button-default dropdown-item"
+          @click="toggleNotificationFilter('polls')"
+        >
+          <span
+            class="menu-checkbox"
+            :class="{ 'menu-checkbox-checked': filters.polls }"
+          />{{ $t('settings.notification_visibility_polls') }}
+        </button>
       </div>
     </template>
     <template v-slot:trigger>
-      <button class="button-unstyled">
+      <button class="filter-trigger-button button-unstyled">
         <FAIcon icon="filter" />
       </button>
     </template>
@@ -107,15 +116,14 @@ export default {
   align-self: stretch;
 
   > button {
-    font-size: 1.2em;
-    padding-left: 0.7em;
-    padding-right: 0.2em;
     line-height: 100%;
     height: 100%;
-  }
+    width: var(--__panel-heading-height-inner);
+    text-align: center;
 
-  .dropdown-item {
-    margin: 0;
+    svg {
+      font-size: 1.2em;
+    }
   }
 }
 

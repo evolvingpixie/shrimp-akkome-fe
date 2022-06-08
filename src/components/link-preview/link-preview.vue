@@ -63,7 +63,7 @@
   }
 
   .card-host {
-    font-size: 12px;
+    font-size: 0.85em;
   }
 
   .card-description {

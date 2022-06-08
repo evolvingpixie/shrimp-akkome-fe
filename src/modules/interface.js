@@ -1,5 +1,3 @@
-import { set, delete as del } from 'vue'
-
 const defaultState = {
   settingsModalState: 'hidden',
   settingsModalLoaded: false,
@@ -15,7 +13,7 @@ const defaultState = {
       window.CSS.supports('-webkit-filter', 'drop-shadow(0 0)')
     )
   },
-  mobileLayout: false,
+  layoutType: 'normal',
   globalNotices: [],
   layoutHeight: 0,
   lastTimeline: null
@@ -29,18 +27,17 @@ const interfaceMod = {
         if (state.noticeClearTimeout) {
           clearTimeout(state.noticeClearTimeout)
         }
-        set(state.settings, 'currentSaveStateNotice', { error: false, data: success })
-        set(state.settings, 'noticeClearTimeout',
-          setTimeout(() => del(state.settings, 'currentSaveStateNotice'), 2000))
+        state.settings.currentSaveStateNotice = { error: false, data: success }
+        state.settings.noticeClearTimeout = setTimeout(() => delete state.settings.currentSaveStateNotice, 2000)
       } else {
-        set(state.settings, 'currentSaveStateNotice', { error: true, errorData: error })
+        state.settings.currentSaveStateNotice = { error: true, errorData: error }
       }
     },
     setNotificationPermission (state, permission) {
       state.notificationPermission = permission
     },
-    setMobileLayout (state, value) {
-      state.mobileLayout = value
+    setLayoutType (state, value) {
+      state.layoutType = value
     },
     closeSettingsModal (state) {
       state.settingsModalState = 'hidden'
@@ -75,6 +72,9 @@ const interfaceMod = {
     setLayoutHeight (state, value) {
       state.layoutHeight = value
     },
+    setLayoutWidth (state, value) {
+      state.layoutWidth = value
+    },
     setLastTimeline (state, value) {
       state.lastTimeline = value
     }
@@ -88,9 +88,6 @@ const interfaceMod = {
     },
     setNotificationPermission ({ commit }, permission) {
       commit('setNotificationPermission', permission)
-    },
-    setMobileLayout ({ commit }, value) {
-      commit('setMobileLayout', value)
     },
     closeSettingsModal ({ commit }) {
       commit('closeSettingsModal')
@@ -109,7 +106,7 @@ const interfaceMod = {
       commit('openSettingsModal')
     },
     pushGlobalNotice (
-      { commit, dispatch },
+      { commit, dispatch, state },
       {
         messageKey,
         messageArgs = {},
@@ -121,17 +118,38 @@ const interfaceMod = {
         messageArgs,
         level
       }
-      if (timeout) {
-        setTimeout(() => dispatch('removeGlobalNotice', notice), timeout)
-      }
       commit('pushGlobalNotice', notice)
-      return notice
+      // Adding a new element to array wraps it in a Proxy, which breaks the comparison
+      // TODO: Generate UUID or something instead or relying on !== operator?
+      const newNotice = state.globalNotices[state.globalNotices.length - 1]
+      if (timeout) {
+        setTimeout(() => dispatch('removeGlobalNotice', newNotice), timeout)
+      }
+      return newNotice
     },
     removeGlobalNotice ({ commit }, notice) {
       commit('removeGlobalNotice', notice)
     },
     setLayoutHeight ({ commit }, value) {
       commit('setLayoutHeight', value)
+    },
+    // value is optional, assuming it was cached prior
+    setLayoutWidth ({ commit, state, rootGetters, rootState }, value) {
+      let width = value
+      if (value !== undefined) {
+        commit('setLayoutWidth', value)
+      } else {
+        width = state.layoutWidth
+      }
+      const mobileLayout = width <= 800
+      const normalOrMobile = mobileLayout ? 'mobile' : 'normal'
+      const { thirdColumnMode } = rootGetters.mergedConfig
+      if (thirdColumnMode === 'none' || !rootState.users.currentUser) {
+        commit('setLayoutType', normalOrMobile)
+      } else {
+        const wideLayout = width >= 1300
+        commit('setLayoutType', wideLayout ? 'wide' : normalOrMobile)
+      }
     },
     setLastTimeline ({ commit }, value) {
       commit('setLastTimeline', value)

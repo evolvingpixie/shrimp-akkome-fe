@@ -4,7 +4,7 @@
       <UserAvatar
         class="avatar"
         :user="user"
-        @click.prevent.native="toggleUserExpanded"
+        @click.prevent="toggleUserExpanded"
       />
     </router-link>
     <div

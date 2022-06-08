@@ -35,7 +35,10 @@ import {
   faStar,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faChevronUp,
+  faChevronDown,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -52,8 +55,46 @@ library.add(
   faEllipsisH,
   faEyeSlash,
   faEye,
-  faThumbtack
+  faThumbtack,
+  faChevronUp,
+  faChevronDown,
+  faAngleDoubleRight
 )
+
+const camelCase = name => name.charAt(0).toUpperCase() + name.slice(1)
+
+const controlledOrUncontrolledGetters = list => list.reduce((res, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const controlledName = `controlled${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  res[name] = function () {
+    return ((this.$data[toggle] !== undefined || this.$props[toggle] !== undefined) && this[toggle]) ? this[controlledName] : this[uncontrolledName]
+  }
+  return res
+}, {})
+
+const controlledOrUncontrolledToggle = (obj, name) => {
+  const camelized = camelCase(name)
+  const toggle = `controlledToggle${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  if (obj[toggle]) {
+    obj[toggle]()
+  } else {
+    obj[uncontrolledName] = !obj[uncontrolledName]
+  }
+}
+
+const controlledOrUncontrolledSet = (obj, name, val) => {
+  const camelized = camelCase(name)
+  const set = `controlledSet${camelized}`
+  const uncontrolledName = `uncontrolled${camelized}`
+  if (obj[set]) {
+    obj[set](val)
+  } else {
+    obj[uncontrolledName] = val
+  }
+}
 
 const Status = {
   name: 'Status',
@@ -89,20 +130,38 @@ const Status = {
     'inlineExpanded',
     'showPinned',
     'inProfile',
-    'profileUserId'
+    'profileUserId',
+
+    'simpleTree',
+    'controlledThreadDisplayStatus',
+    'controlledToggleThreadDisplay',
+    'showOtherRepliesAsButton',
+
+    'controlledShowingTall',
+    'controlledToggleShowingTall',
+    'controlledExpandingSubject',
+    'controlledToggleExpandingSubject',
+    'controlledShowingLongSubject',
+    'controlledToggleShowingLongSubject',
+    'controlledReplying',
+    'controlledToggleReplying',
+    'controlledMediaPlaying',
+    'controlledSetMediaPlaying',
+    'dive'
   ],
   data () {
     return {
-      replying: false,
+      uncontrolledReplying: false,
       unmuted: false,
       userExpanded: false,
-      mediaPlaying: [],
+      uncontrolledMediaPlaying: [],
       suspendable: true,
       error: null,
       headTailLinks: null
     }
   },
   computed: {
+    ...controlledOrUncontrolledGetters(['replying', 'mediaPlaying']),
     muteWords () {
       return this.mergedConfig.muteWords
     },
@@ -166,6 +225,18 @@ const Status = {
     muteWordHits () {
       return muteWordHits(this.status, this.muteWords)
     },
+    rtBotStatus () {
+      return this.statusoid.user.bot
+    },
+    botStatus () {
+      return this.status.user.bot
+    },
+    botIndicator () {
+      return this.botStatus && !this.hideBotIndication
+    },
+    rtBotIndicator () {
+      return this.rtBotStatus && !this.hideBotIndication
+    },
     mentionsLine () {
       if (!this.headTailLinks) return []
       const writtenSet = new Set(this.headTailLinks.writtenMentions.map(_ => _.url))
@@ -187,25 +258,33 @@ const Status = {
     },
     muted () {
       if (this.statusoid.user.id === this.currentUser.id) return false
+      const reasonsToMute = this.userIsMuted ||
+        // Thread is muted
+        status.thread_muted ||
+        // Wordfiltered
+        this.muteWordHits.length > 0 ||
+        // bot status
+        (this.muteBotStatuses && this.botStatus && !this.compact)
+      return !this.unmuted && !this.shouldNotMute && reasonsToMute
+    },
+    userIsMuted () {
+      if (this.statusoid.user.id === this.currentUser.id) return false
       const { status } = this
       const { reblog } = status
       const relationship = this.$store.getters.relationship(status.user.id)
       const relationshipReblog = reblog && this.$store.getters.relationship(reblog.user.id)
-      const reasonsToMute = (
-        // Post is muted according to BE
-        status.muted ||
+      return status.muted ||
         // Reprööt of a muted post according to BE
         (reblog && reblog.muted) ||
         // Muted user
         relationship.muting ||
         // Muted user of a reprööt
-        (relationshipReblog && relationshipReblog.muting) ||
-        // Thread is muted
-        status.thread_muted ||
-        // Wordfiltered
-        this.muteWordHits.length > 0
-      )
-      const excusesNotToMute = (
+        (relationshipReblog && relationshipReblog.muting)
+    },
+    shouldNotMute () {
+      const { status } = this
+      const { reblog } = status
+      return (
         (
           this.inProfile && (
             // Don't mute user's posts on user timeline (except reblogs)
@@ -218,14 +297,26 @@ const Status = {
         (this.inConversation && status.thread_muted)
         // No excuses if post has muted words
       ) && !this.muteWordHits.length > 0
-
-      return !this.unmuted && !excusesNotToMute && reasonsToMute
+    },
+    hideMutedUsers () {
+      return this.mergedConfig.hideMutedPosts
+    },
+    hideMutedThreads () {
+      return this.mergedConfig.hideMutedThreads
     },
     hideFilteredStatuses () {
       return this.mergedConfig.hideFilteredStatuses
     },
+    hideWordFilteredPosts () {
+      return this.mergedConfig.hideWordFilteredPosts
+    },
     hideStatus () {
-      return (this.muted && this.hideFilteredStatuses) || this.virtualHidden
+      return (!this.shouldNotMute) && (
+        (this.muted && this.hideFilteredStatuses) ||
+        (this.userIsMuted && this.hideMutedUsers) ||
+        (this.status.thread_muted && this.hideMutedThreads) ||
+        (this.muteWordHits.length > 0 && this.hideWordFilteredPosts)
+      )
     },
     isFocused () {
       // retweet or root of an expanded conversation
@@ -275,6 +366,12 @@ const Status = {
     hidePostStats () {
       return this.mergedConfig.hidePostStats
     },
+    muteBotStatuses () {
+      return this.mergedConfig.muteBotStatuses
+    },
+    hideBotIndication () {
+      return this.mergedConfig.hideBotIndication
+    },
     currentUser () {
       return this.$store.state.users.currentUser
     },
@@ -286,6 +383,15 @@ const Status = {
     },
     isSuspendable () {
       return !this.replying && this.mediaPlaying.length === 0
+    },
+    inThreadForest () {
+      return !!this.controlledThreadDisplayStatus
+    },
+    threadShowing () {
+      return this.controlledThreadDisplayStatus === 'showing'
+    },
+    visibilityLocalized () {
+      return this.$i18n.t('general.scope_in_timeline.' + this.status.visibility)
     }
   },
   methods: {
@@ -310,7 +416,7 @@ const Status = {
       this.error = undefined
     },
     toggleReplying () {
-      this.replying = !this.replying
+      controlledOrUncontrolledToggle(this, 'replying')
     },
     gotoOriginal (id) {
       if (this.inConversation) {
@@ -330,17 +436,19 @@ const Status = {
       return generateProfileLink(id, name, this.$store.state.instance.restrictedNicknames)
     },
     addMediaPlaying (id) {
-      this.mediaPlaying.push(id)
+      controlledOrUncontrolledSet(this, 'mediaPlaying', this.mediaPlaying.concat(id))
     },
     removeMediaPlaying (id) {
-      this.mediaPlaying = this.mediaPlaying.filter(mediaId => mediaId !== id)
+      controlledOrUncontrolledSet(this, 'mediaPlaying', this.mediaPlaying.filter(mediaId => mediaId !== id))
     },
     setHeadTailLinks (headTailLinks) {
       this.headTailLinks = headTailLinks
-    }
-  },
-  watch: {
-    'highlight': function (id) {
+    },
+    toggleThreadDisplay () {
+      this.controlledToggleThreadDisplay()
+    },
+    scrollIfHighlighted (highlightId) {
+      const id = highlightId
       if (this.status.id === id) {
         let rect = this.$el.getBoundingClientRect()
         if (rect.top < 100) {
@@ -354,6 +462,11 @@ const Status = {
           window.scrollBy(0, rect.bottom - window.innerHeight + 50)
         }
       }
+    }
+  },
+  watch: {
+    'highlight': function (id) {
+      this.scrollIfHighlighted(id)
     },
     'status.repeat_num': function (num) {
       // refetch repeats when repeat_num is changed in any way
@@ -369,11 +482,6 @@ const Status = {
     },
     'isSuspendable': function (val) {
       this.suspendable = val
-    }
-  },
-  filters: {
-    capitalize: function (str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
     }
   }
 }

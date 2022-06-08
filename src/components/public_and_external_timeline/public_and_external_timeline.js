@@ -9,7 +9,7 @@ const PublicAndExternalTimeline = {
   created () {
     this.$store.dispatch('startFetchingTimeline', { timeline: 'publicAndExternal' })
   },
-  destroyed () {
+  unmounted () {
     this.$store.dispatch('stopFetchingTimeline', 'publicAndExternal')
   }
 }

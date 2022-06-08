@@ -15,24 +15,9 @@ const Importer = {
       type: Function,
       required: true
     },
-    submitButtonLabel: {
-      type: String,
-      default () {
-        return this.$t('importer.submit')
-      }
-    },
-    successMessage: {
-      type: String,
-      default () {
-        return this.$t('importer.success')
-      }
-    },
-    errorMessage: {
-      type: String,
-      default () {
-        return this.$t('importer.error')
-      }
-    }
+    submitButtonLabel: { type: String },
+    successMessage: { type: String },
+    errorMessage: { type: String }
   },
   data () {
     return {

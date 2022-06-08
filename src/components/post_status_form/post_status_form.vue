@@ -8,21 +8,13 @@
       @submit.prevent
       @dragover.prevent="fileDrag"
     >
-      <div
-        v-show="showDropIcon !== 'hide'"
-        :style="{ animation: showDropIcon === 'show' ? 'fade-in 0.25s' : 'fade-out 0.5s' }"
-        class="drop-indicator"
-        @dragleave="fileDragStop"
-        @drop.stop="fileDrop"
-      >
-        <FAIcon :icon="uploadFileLimitReached ? 'ban' : 'upload'" />
-      </div>
       <div class="form-group">
-        <i18n
+        <i18n-t
           v-if="!$store.state.users.currentUser.locked && newStatus.visibility == 'private' && !disableLockWarning"
-          path="post_status.account_not_locked_warning"
+          keypath="post_status.account_not_locked_warning"
           tag="p"
           class="visibility-notice"
+          scope="global"
         >
           <button
             class="button-unstyled -link"
@@ -30,7 +22,7 @@
           >
             {{ $t('post_status.account_not_locked_warning_link') }}
           </button>
-        </i18n>
+        </i18n-t>
         <p
           v-if="!hideScopeNotice && newStatus.visibility === 'public'"
           class="visibility-notice notice-dismissible"
@@ -277,42 +269,45 @@
         </button>
       </div>
       <div
+        v-show="showDropIcon !== 'hide'"
+        :style="{ animation: showDropIcon === 'show' ? 'fade-in 0.25s' : 'fade-out 0.5s' }"
+        class="drop-indicator"
+        @dragleave="fileDragStop"
+        @drop.stop="fileDrop"
+      >
+        <FAIcon :icon="uploadFileLimitReached ? 'ban' : 'upload'" />
+      </div>
+      <div
         v-if="error"
         class="alert error"
       >
         Error: {{ error }}
-        <FAIcon
-          class="fa-scale-110 fa-old-padding"
-          icon="times"
+        <button
+          class="button-unstyled"
           @click="clearError"
-        />
-      </div>
-      <div class="attachments">
-        <div
-          v-for="file in newStatus.files"
-          :key="file.url"
-          class="media-upload-wrapper"
         >
-          <button
-            class="button-unstyled hider"
-            @click="removeMediaFile(file)"
-          >
-            <FAIcon icon="times" />
-          </button>
-          <attachment
-            :attachment="file"
-            :set-media="() => $store.dispatch('setMedia', newStatus.files)"
-            size="small"
-            allow-play="false"
+          <FAIcon
+            class="fa-scale-110 fa-old-padding"
+            icon="times"
           />
-          <input
-            v-model="newStatus.mediaDescriptions[file.id]"
-            type="text"
-            :placeholder="$t('post_status.media_description')"
-            @keydown.enter.prevent=""
-          >
-        </div>
+        </button>
       </div>
+      <gallery
+        v-if="newStatus.files && newStatus.files.length > 0"
+        class="attachments"
+        :grid="true"
+        :nsfw="false"
+        :attachments="newStatus.files"
+        :descriptions="newStatus.mediaDescriptions"
+        :set-media="() => $store.dispatch('setMedia', newStatus.files)"
+        :editable="true"
+        :edit-attachment="editAttachment"
+        :remove-attachment="removeMediaFile"
+        :shift-up-attachment="newStatus.files.length > 1 && shiftUpMediaFile"
+        :shift-dn-attachment="newStatus.files.length > 1 && shiftDnMediaFile"
+        @play="$emit('mediaplay', attachment.id)"
+        @pause="$emit('mediapause', attachment.id)"
+      />
       <div
         v-if="newStatus.files.length > 0 && !disableSensitivityCheckbox"
         class="upload_settings"
@@ -330,31 +325,18 @@
 <style lang="scss">
 @import '../../_variables.scss';
 
-.tribute-container {
-  ul {
-    padding: 0px;
-    li {
-      display: flex;
-      align-items: center;
-    }
-  }
-  img {
-    padding: 3px;
-    width: 16px;
-    height: 16px;
-    border-radius: $fallback--avatarAltRadius;
-    border-radius: var(--avatarAltRadius, $fallback--avatarAltRadius);
-  }
-}
-
 .post-status-form {
   position: relative;
+
+  .attachments {
+    margin-bottom: 0.5em;
+  }
 
   .form-bottom {
     display: flex;
     justify-content: space-between;
     padding: 0.5em;
-    height: 32px;
+    height: 2.5em;
 
     button {
       width: 10em;
@@ -412,7 +394,6 @@
     border-radius: var(--tooltipRadius, $fallback--tooltipRadius);
     padding: 0.5em;
     margin: 0;
-    line-height: 1.4em;
   }
 
   .text-format {
@@ -426,13 +407,16 @@
     display: flex;
     justify-content: space-between;
     padding-top: 5px;
+    align-items: baseline;
   }
 
   .media-upload-icon, .poll-icon, .emoji-icon {
-    font-size: 26px;
+    font-size: 1.85em;
     line-height: 1.1;
     flex: 1;
     padding: 0 0.1em;
+    display: flex;
+    align-items: center;
 
     &.selected, &:hover {
       // needs to be specific to override icon default color
@@ -459,21 +443,17 @@
   // Order is not necessary but a good indicator
   .media-upload-icon {
     order: 1;
-    text-align: left;
+    justify-content: left;
   }
 
   .emoji-icon {
     order: 2;
-    text-align: center;
+    justify-content: center;
   }
 
   .poll-icon {
     order: 3;
-    text-align: right;
-  }
-
-  .poll-icon {
-    cursor: pointer;
+    justify-content: right;
   }
 
   .error {
@@ -507,19 +487,6 @@
     flex-direction: column;
   }
 
-   .attachments .media-upload-wrapper {
-    position: relative;
-
-    .attachment {
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  .btn {
-    cursor: pointer;
-  }
-
   .btn[disabled] {
     cursor: not-allowed;
   }
@@ -535,26 +502,20 @@
     display: flex;
     flex-direction: column;
     padding: 0.25em 0.5em 0.5em;
-    line-height:24px;
-  }
-
-  form textarea.form-cw {
-    line-height:16px;
-    resize: none;
-    overflow: hidden;
-    transition: min-height 200ms 100ms;
-    min-height: 1px;
+    line-height: 1.85;
   }
 
   .form-post-body {
-    height: 16px; // Only affects the empty-height
-    line-height: 16px;
-    resize: none;
+    // TODO: make a resizable textarea component?
+    box-sizing: content-box; // needed for easier computation of dynamic size
     overflow: hidden;
     transition: min-height 200ms 100ms;
-    padding-bottom: 1.75em;
-    min-height: 1px;
-    box-sizing: content-box;
+    // stock padding + 1 line of text (for counter)
+    padding-bottom: calc(var(--_padding) + var(--post-line-height) * 1em);
+    // two lines of text
+    height: calc(var(--post-line-height) * 1em);
+    min-height: calc(var(--post-line-height) * 1em);
+    resize: none;
 
     &.scrollable-form {
       overflow-y: auto;
@@ -578,10 +539,6 @@
     }
   }
 
-  .btn {
-    cursor: pointer;
-  }
-
   .btn[disabled] {
     cursor: not-allowed;
   }
@@ -598,7 +555,6 @@
 
   .drop-indicator {
     position: absolute;
-    z-index: 1;
     width: 100%;
     height: 100%;
     font-size: 5em;
@@ -615,12 +571,5 @@
     border: 2px dashed $fallback--text;
     border: 2px dashed var(--text, $fallback--text);
   }
-}
-
-// todo: unify with attachment.vue (otherwise the uploaded images are not minified unless a status with an attachment was displayed before)
-img.media-upload, .media-upload-container > video {
-  line-height: 0;
-  max-height: 200px;
-  max-width: 100%;
 }
 </style>
