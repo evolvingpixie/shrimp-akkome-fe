@@ -22,7 +22,7 @@
           {{ reaction.count }}
         </span>
         <span v-else>
-          <span class="reaction-emoji">
+          <span class="reaction-emoji unicode-emoji">
             {{ reaction.name }}
           </span>
           <span>{{ reaction.count }}</span>
@@ -48,6 +48,10 @@
   display: flex;
   margin-top: 0.25em;
   flex-wrap: wrap;
+}
+
+.unicode-emoji {
+  font-size: 210%;
 }
 
 .emoji-reaction {

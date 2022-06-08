@@ -126,8 +126,8 @@
           <BooleanSetting path="sensitiveIfSubject">
             {{ $t('settings.sensitive_if_subject') }}
           </BooleanSetting>
-	</li>
-	<li>
+        </li>
+        <li>
           <BooleanSetting path="alwaysShowNewPostButton">
             {{ $t('settings.always_show_post_button') }}
           </BooleanSetting>
