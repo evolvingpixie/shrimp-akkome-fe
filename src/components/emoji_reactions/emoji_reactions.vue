@@ -11,8 +11,21 @@
         @click="emojiOnClick(reaction.name, $event)"
         @mouseenter="fetchEmojiReactionsByIfMissing()"
       >
-        <span class="reaction-emoji">{{ reaction.name }}</span>
-        <span>{{ reaction.count }}</span>
+        <span
+          v-if="reaction.url !== null"
+        >
+          <img
+            :src="reaction.url"
+            class="reaction-emoji"
+          >
+          {{ reaction.count }}
+        </span>
+        <span v-else>
+          <span class="reaction-emoji">
+            {{ reaction.name }}
+          </span>
+          <span>{{ reaction.count }}</span>
+        </span>
       </button>
     </UserListPopover>
     <a
@@ -45,7 +58,7 @@
   justify-content: center;
   box-sizing: border-box;
   .reaction-emoji {
-    width: 1.25em;
+    width: 2.55em;
     margin-right: 0.25em;
   }
   &:focus {
