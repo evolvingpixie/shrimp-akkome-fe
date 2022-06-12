@@ -118,7 +118,7 @@
                 >
                   <img
                     v-if="notification.emoji_url !== null"
-                    class="reaction-emoji"
+                    class="notification-reaction-emoji"
                     :src="notification.emoji_url"
                     :name="notification.emoji"
                   >
