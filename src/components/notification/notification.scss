@@ -1,5 +1,11 @@
 @import '../../_variables.scss';
 
+.reaction-emoji {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
 // TODO Copypaste from Status, should unify it somehow
 .Notification {
    border-bottom: 1px solid;
