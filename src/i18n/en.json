@@ -225,7 +225,7 @@
       "public": "This post will be visible to everyone",
       "private": "This post will be visible to your followers only",
       "unlisted": "This post will not be visible in Public Timeline and The Whole Known Network",
-      "local": "This post won't be visible outside of IHBA"
+      "local": "This post will not be visible on other instances"
     },
     "scope": {
       "direct": "Direct - post to mentioned users only",
