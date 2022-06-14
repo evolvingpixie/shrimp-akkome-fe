@@ -1,6 +1,17 @@
 
 export const extractCommit = versionString => {
-  const regex = /-g(\w+)/i
-  const matches = versionString.match(regex)
-  return matches ? matches[1] : ''
+  // X.Y.Z-1337-gdeadbeef => deadbeef
+  const commit = versionString.match(/-g(\w+)/i)
+  if (commit) {
+    return commit[1]
+  }
+
+  // X.Y.Z-develop => develop
+  const branch = versionString.match(/-([\w-/]+)$/i)
+  if (branch) {
+    return branch[1]
+  }
+
+  // X.Y.Z => vX.Y.Z
+  return 'v' + versionString
 }
