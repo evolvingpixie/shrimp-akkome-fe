@@ -146,7 +146,8 @@
     "who_to_follow": "Who to follow",
     "preferences": "Preferences",
     "timelines": "Timelines",
-    "chats": "Chats"
+    "chats": "Chats",
+    "lists": "Lists"
   },
   "notifications": {
     "broken_favorite": "Unknown status, searching for it…",

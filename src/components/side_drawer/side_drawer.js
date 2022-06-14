@@ -14,7 +14,8 @@ import {
   faSearch,
   faTachometerAlt,
   faCog,
-  faInfoCircle
+  faInfoCircle,
+  faList
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -28,7 +29,8 @@ library.add(
   faSearch,
   faTachometerAlt,
   faCog,
-  faInfoCircle
+  faInfoCircle,
+  faList
 )
 
 const SideDrawer = {

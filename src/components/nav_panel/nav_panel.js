@@ -12,7 +12,8 @@ import {
   faComments,
   faBell,
   faInfoCircle,
-  faStream
+  faStream,
+  faList
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -25,7 +26,8 @@ library.add(
   faComments,
   faBell,
   faInfoCircle,
-  faStream
+  faStream,
+  faList
 )
 
 const NavPanel = {
