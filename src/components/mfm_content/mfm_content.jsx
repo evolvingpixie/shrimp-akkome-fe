@@ -7,8 +7,7 @@ function concat (xss) {
   return ([]).concat(...xss)
 }
 
-export const MFM_TAGS = ['tada', 'jelly', 'twitch', 'shake', 'spin', 'jump', 'bounce', 'flip', 'x2', 'x3', 'x4', 'font', 'blur', 'rainbow', 'sparkle', 'rotate'];
-
+export const MFM_TAGS = ['tada', 'jelly', 'twitch', 'shake', 'spin', 'jump', 'bounce', 'flip', 'x2', 'x3', 'x4', 'font', 'blur', 'rainbow', 'sparkle', 'rotate']
 
 export default defineComponent({
   props: {
@@ -79,13 +78,13 @@ export default defineComponent({
             }
             case 'spin': {
               const direction =
-								token.props.args.left ? 'reverse'
-								  : token.props.args.alternate ? 'alternate'
-								    : 'normal'
+                token.props.args.left ? 'reverse'
+                  : token.props.args.alternate ? 'alternate'
+                    : 'normal'
               const anime =
-								token.props.args.x ? 'mfm-spinX'
-								  : token.props.args.y ? 'mfm-spinY'
-								    : 'mfm-spin'
+                token.props.args.x ? 'mfm-spinX'
+                  : token.props.args.y ? 'mfm-spinY'
+                    : 'mfm-spin'
               const speed = validTime(token.props.args.speed) || '1.5s'
               style = `animation: ${anime} ${speed} linear infinite; animation-direction: ${direction};`
               break
@@ -100,9 +99,9 @@ export default defineComponent({
             }
             case 'flip': {
               const transform =
-								(token.props.args.h && token.props.args.v) ? 'scale(-1, -1)'
-								  : token.props.args.v ? 'scaleY(-1)'
-								    : 'scaleX(-1)'
+                (token.props.args.h && token.props.args.v) ? 'scale(-1, -1)'
+                  : token.props.args.v ? 'scaleY(-1)'
+                    : 'scaleX(-1)'
               style = `transform: ${transform};`
               break
             }
@@ -120,13 +119,13 @@ export default defineComponent({
             }
             case 'font': {
               const family =
-								token.props.args.serif ? 'serif'
-								  : token.props.args.monospace ? 'monospace'
-								    : token.props.args.cursive ? 'cursive'
-								      : token.props.args.fantasy ? 'fantasy'
-								        : token.props.args.emoji ? 'emoji'
-								          : token.props.args.math ? 'math'
-								            : null
+                token.props.args.serif ? 'serif'
+                  : token.props.args.monospace ? 'monospace'
+                    : token.props.args.cursive ? 'cursive'
+                      : token.props.args.fantasy ? 'fantasy'
+                        : token.props.args.emoji ? 'emoji'
+                          : token.props.args.math ? 'math'
+                            : null
               if (family) style = `font-family: ${family};`
               break
             }
@@ -174,10 +173,11 @@ export default defineComponent({
             key: Math.random(),
             href: token.props.url,
             rel: 'nofollow noopener'
-          })]
+          }, token.props.url)]
         }
 
         case 'link': {
+          console.log(token.props)
           return [h('a', {
             key: Math.random(),
             href: token.props.url,
@@ -248,6 +248,21 @@ export default defineComponent({
 
         case 'unicodeEmoji': {
           return token.props.emoji
+        }
+
+        case 'math': {
+          return [h('pre', {
+            key: Math.random(),
+            code: token.props.code
+          })]
+        }
+
+        case 'mathInline': {
+          return [h('pre', {
+            key: Math.random(),
+            code: token.props.code,
+            inline: true
+          })]
         }
 
         default: {
