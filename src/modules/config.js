@@ -95,6 +95,7 @@ export const defaultState = {
   virtualScrolling: undefined, // instance default
   sensitiveByDefault: undefined, // instance default
   sensitiveIfSubject: undefined,
+  renderMisskeyMarkdown: undefined,
   conversationDisplay: undefined, // instance default
   conversationTreeAdvanced: undefined, // instance default
   conversationOtherRepliesButton: undefined, // instance default

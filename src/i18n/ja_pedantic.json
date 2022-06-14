@@ -582,6 +582,7 @@
     "greentext": "引用を緑色で表示",
     "sensitive_by_default": "はじめから投稿をセンシティブとして設定",
     "sensitive_if_subject": "ステータスにサブジェクトをついたらNSFWにする",
+    "render_mfm": "Misskey Markdownを表示",
     "more_settings": "その他の設定",
     "reply_visibility_self_short": "自分宛のリプライを見る",
     "reply_visibility_following_short": "フォローしている人に宛てられたリプライを見る",

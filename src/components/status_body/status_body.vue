@@ -41,18 +41,26 @@
         >
           {{ $t("general.show_more") }}
         </button>
-        <RichContent
+        <div
           v-if="!hideSubjectStatus && !(singleLine && status.summary_raw_html)"
-          :class="{ '-single-line': singleLine }"
-          class="text media-body"
-          :html="status.raw_html"
-          :emoji="status.emojis"
-          :handle-links="true"
-          :greentext="mergedConfig.greentext"
-          :attentions="status.attentions"
-          @parseReady="onParseReady"
-        />
-
+        >
+          <MFMContent
+            v-if="renderMisskeyMarkdown && status.mfm_content"
+            class="RichContent text media-body"
+            :status="status"
+          />
+          <RichContent
+            v-else
+            :class="{ '-single-line': singleLine }"
+            class="text media-body"
+            :html="status.raw_html"
+            :emoji="status.emojis"
+            :handle-links="true"
+            :greentext="mergedConfig.greentext"
+            :attentions="status.attentions"
+            @parseReady="onParseReady"
+          />
+        </div>
         <button
           v-show="hideSubjectStatus"
           class="button-unstyled -link cw-status-hider"

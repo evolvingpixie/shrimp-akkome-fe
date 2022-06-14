@@ -280,6 +280,15 @@ export const parseStatus = (data) => {
       output.summary = data.spoiler_text
     }
 
+    if (data.akkoma) {
+      const { akkoma } = data
+      if (akkoma && akkoma.source && akkoma.source.mediaType === 'text/x.misskeymarkdown') {
+        output.mfm_content = akkoma.source.content
+      }
+    } else {
+      output.mfm_content = null
+    }
+
     output.in_reply_to_status_id = data.in_reply_to_id
     output.in_reply_to_user_id = data.in_reply_to_account_id
     output.replies_count = data.replies_count
