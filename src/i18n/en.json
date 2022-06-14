@@ -209,7 +209,8 @@
       "text/plain": "Plain text",
       "text/html": "HTML",
       "text/markdown": "Markdown",
-      "text/bbcode": "BBCode"
+      "text/bbcode": "BBCode",
+      "text/x.misskeymarkdown": "MFM"
     },
     "content_warning": "Subject (optional)",
     "default": "Just landed in L.A.",
@@ -507,6 +508,7 @@
     "post_status_content_type": "Post status content type",
     "sensitive_by_default": "Mark posts as sensitive by default",
     "sensitive_if_subject": "Automatically mark images as sensitive if a subject line is specified",
+    "render_mfm": "Render Misskey Markdown",
     "useStreamingApiWarning": "It's cool use it. If it breaks refresh I guess?",
     "stop_gifs": "Pause animated images until you hover on them",
     "streaming": "Automatically show new posts when scrolled to the top",
@@ -840,7 +842,7 @@
     "hide_repeats": "Hide repeats",
     "show_repeats": "Show repeats",
     "domain_muted": "Unblock domain",
-    "mute_domain": "Block domain", 
+    "mute_domain": "Block domain",
     "bot": "Bot",
     "admin_menu": {
       "moderation": "Moderation",

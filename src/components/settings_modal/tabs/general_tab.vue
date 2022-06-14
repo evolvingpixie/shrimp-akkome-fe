@@ -100,6 +100,11 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="renderMisskeyMarkdown">
+            {{ $t('settings.render_mfm') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting
             path="alwaysShowNewPostButton"
             expert="1"

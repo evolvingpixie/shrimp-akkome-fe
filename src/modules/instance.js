@@ -55,6 +55,7 @@ const defaultState = {
   virtualScrolling: true,
   sensitiveByDefault: false,
   sensitiveIfSubject: false,
+  renderMisskeyMarkdown: false,
   conversationDisplay: 'linear',
   conversationTreeAdvanced: false,
   conversationOtherRepliesButton: 'below',
