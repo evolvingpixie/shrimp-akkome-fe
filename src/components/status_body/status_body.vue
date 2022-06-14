@@ -46,7 +46,7 @@
         >
           <MFMContent
             v-if="renderMisskeyMarkdown && status.mfm_content"
-            class="RichContent text media-body"
+            class="RichContent text media-body mfm-post-content"
             :status="status"
           />
           <RichContent
