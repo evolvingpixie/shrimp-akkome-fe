@@ -1,9 +1,21 @@
 <template>
-  <div class="settings panel panel-default">
+  <div v-if="isNew">
+    <ListNew @cancel="cancelNewList" />
+  </div>
+  <div
+    v-else
+    class="settings panel panel-default"
+  >
     <div class="panel-heading">
       <div class="title">
         {{ $t('lists.lists') }}
       </div>
+      <button
+        class="button-default"
+        @click="newList"
+      >
+        {{ $t("lists.new") }}
+      </button>
     </div>
     <div class="panel-body">
       <ListCard

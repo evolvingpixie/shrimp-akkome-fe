@@ -948,7 +948,11 @@
     "empty_chat_list_placeholder": "You don't have any chats yet. Start a new chat!"
   },
   "lists": {
-    "lists": "Lists"
+    "lists": "Lists",
+    "new": "New List",
+    "title": "List title",
+    "search": "Search users",
+    "create": "Create"
   },
   "file_type": {
     "audio": "Audio",

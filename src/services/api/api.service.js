@@ -51,6 +51,7 @@ const MASTODON_USER_URL = '/api/v1/accounts'
 const MASTODON_USER_RELATIONSHIPS_URL = '/api/v1/accounts/relationships'
 const MASTODON_USER_TIMELINE_URL = id => `/api/v1/accounts/${id}/statuses`
 const MASTODON_LIST_TIMELINE_URL = id => `/api/v1/timelines/list/${id}`
+const MASTODON_LIST_ACCOUNTS_URL = id => `/api/v1/lists/${id}/accounts`
 const MASTODON_TAG_TIMELINE_URL = tag => `/api/v1/timelines/tag/${tag}`
 const MASTODON_BOOKMARK_TIMELINE_URL = '/api/v1/bookmarks'
 const MASTODON_USER_BLOCKS_URL = '/api/v1/blocks/'
@@ -388,6 +389,30 @@ const fetchLists = ({ credentials }) => {
   const url = MASTODON_LISTS_URL
   return fetch(url, { headers: authHeaders(credentials) })
     .then((data) => data.json())
+}
+
+const createList = ({ title, credentials }) => {
+  const url = MASTODON_LISTS_URL
+  const headers = authHeaders(credentials)
+  headers['Content-Type'] = 'application/json'
+
+  return fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({ title })
+  }).then((data) => data.json())
+}
+
+const addAccountsToList = ({ id, accountIds, credentials }) => {
+  const url = MASTODON_LIST_ACCOUNTS_URL(id)
+  const headers = authHeaders(credentials)
+  headers['Content-Type'] = 'application/json'
+
+  return fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({ account_ids: accountIds })
+  })
 }
 
 const fetchConversation = ({ id, credentials }) => {
@@ -1363,6 +1388,8 @@ const apiService = {
   mfaConfirmOTP,
   fetchFollowRequests,
   fetchLists,
+  createList,
+  addAccountsToList,
   approveUser,
   denyUser,
   suggestions,

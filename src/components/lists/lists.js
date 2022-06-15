@@ -1,8 +1,15 @@
 import ListCard from '../list_card/list_card.vue'
+import ListNew from '../list_new/list_new.vue'
 
 const Lists = {
+  data () {
+    return {
+      isNew: false
+    }
+  },
   components: {
-    ListCard
+    ListCard,
+    ListNew
   },
   created () {
     this.$store.dispatch('startFetchingLists')
@@ -10,6 +17,14 @@ const Lists = {
   computed: {
     lists () {
       return this.$store.state.api.lists
+    }
+  },
+  methods: {
+    cancelNewList () {
+      this.isNew = false
+    },
+    newList () {
+      this.isNew = true
     }
   }
 }
