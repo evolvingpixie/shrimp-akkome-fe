@@ -191,12 +191,13 @@ const api = {
     startFetchingTimeline (store, {
       timeline = 'friends',
       tag = false,
-      userId = false
+      userId = false,
+      listId = false
     }) {
       if (store.state.fetchers[timeline]) return
 
       const fetcher = store.state.backendInteractor.startFetchingTimeline({
-        timeline, store, userId, tag
+        timeline, store, userId, listId, tag
       })
       store.commit('addFetcher', { fetcherName: timeline, fetcher })
     },

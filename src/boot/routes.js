@@ -20,6 +20,7 @@ import ShoutPanel from 'components/shout_panel/shout_panel.vue'
 import WhoToFollow from 'components/who_to_follow/who_to_follow.vue'
 import About from 'components/about/about.vue'
 import RemoteUserResolver from 'components/remote_user_resolver/remote_user_resolver.vue'
+import ListTimeline from 'components/list_timeline/list_timeline.vue'
 
 export default (store) => {
   const validateAuthenticatedRoute = (to, from, next) => {
@@ -69,7 +70,8 @@ export default (store) => {
     { name: 'search', path: '/search', component: Search, props: (route) => ({ query: route.query.query }) },
     { name: 'who-to-follow', path: '/who-to-follow', component: WhoToFollow, beforeEnter: validateAuthenticatedRoute },
     { name: 'about', path: '/about', component: About },
-    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile }
+    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile },
+    { name: 'list-timeline', path: '/lists/:id', component: ListTimeline }
   ]
 
   if (store.state.instance.pleromaChatMessagesAvailable) {

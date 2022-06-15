@@ -4,8 +4,8 @@ import notificationsFetcher from '../notifications_fetcher/notifications_fetcher
 import followRequestFetcher from '../../services/follow_request_fetcher/follow_request_fetcher.service'
 
 const backendInteractorService = credentials => ({
-  startFetchingTimeline ({ timeline, store, userId = false, tag }) {
-    return timelineFetcher.startFetching({ timeline, store, credentials, userId, tag })
+  startFetchingTimeline ({ timeline, store, userId = false, listId = false, tag }) {
+    return timelineFetcher.startFetching({ timeline, store, credentials, userId, listId, tag })
   },
 
   fetchTimeline (args) {

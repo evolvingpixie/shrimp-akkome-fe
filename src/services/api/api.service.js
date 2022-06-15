@@ -50,6 +50,7 @@ const MASTODON_STATUS_CONTEXT_URL = id => `/api/v1/statuses/${id}/context`
 const MASTODON_USER_URL = '/api/v1/accounts'
 const MASTODON_USER_RELATIONSHIPS_URL = '/api/v1/accounts/relationships'
 const MASTODON_USER_TIMELINE_URL = id => `/api/v1/accounts/${id}/statuses`
+const MASTODON_LIST_TIMELINE_URL = id => `/api/v1/timelines/list/${id}`
 const MASTODON_TAG_TIMELINE_URL = tag => `/api/v1/timelines/tag/${tag}`
 const MASTODON_BOOKMARK_TIMELINE_URL = '/api/v1/bookmarks'
 const MASTODON_USER_BLOCKS_URL = '/api/v1/blocks/'
@@ -503,6 +504,7 @@ const fetchTimeline = ({
   since = false,
   until = false,
   userId = false,
+  listId = false,
   tag = false,
   withMuted = false,
   replyVisibility = 'all'
@@ -515,6 +517,7 @@ const fetchTimeline = ({
     'publicAndExternal': MASTODON_PUBLIC_TIMELINE,
     user: MASTODON_USER_TIMELINE_URL,
     media: MASTODON_USER_TIMELINE_URL,
+    list: MASTODON_LIST_TIMELINE_URL,
     favorites: MASTODON_USER_FAVORITES_TIMELINE_URL,
     tag: MASTODON_TAG_TIMELINE_URL,
     bookmarks: MASTODON_BOOKMARK_TIMELINE_URL
@@ -526,6 +529,10 @@ const fetchTimeline = ({
 
   if (timeline === 'user' || timeline === 'media') {
     url = url(userId)
+  }
+
+  if (timeline === 'list') {
+    url = url(listId)
   }
 
   if (since) {
