@@ -946,6 +946,9 @@
     "error_sending_message": "Something went wrong when sending the message.",
     "empty_chat_list_placeholder": "You don't have any chats yet. Start a new chat!"
   },
+  "lists": {
+    "lists": "Lists"
+  },
   "file_type": {
     "audio": "Audio",
     "video": "Video",
