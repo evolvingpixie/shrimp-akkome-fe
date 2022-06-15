@@ -29,7 +29,10 @@
               {{ $t('settings.style.preview.content') }}
             </h4>
 
-            <i18n-t scope="global" keypath="settings.style.preview.text">
+            <i18n-t
+              scope="global"
+              keypath="settings.style.preview.text"
+            >
               <code style="font-family: var(--postCodeFont)">
                 {{ $t('settings.style.preview.mono') }}
               </code>

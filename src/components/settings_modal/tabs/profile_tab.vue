@@ -117,8 +117,8 @@
         <button
           v-if="!isDefaultAvatar && pickAvatarBtnVisible"
           :title="$t('settings.reset_avatar')"
-          @click="resetAvatar"
           class="button-unstyled reset-button"
+          @click="resetAvatar"
         >
           <FAIcon
             icon="times"

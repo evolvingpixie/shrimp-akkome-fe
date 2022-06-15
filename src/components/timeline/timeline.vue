@@ -46,7 +46,10 @@
       </div>
     </div>
     <div :class="classes.footer">
-      <teleport :to="footerSlipgate" :disabled="!embedded || !footerSlipgate">
+      <teleport
+        :to="footerSlipgate"
+        :disabled="!embedded || !footerSlipgate"
+      >
         <div
           v-if="count===0"
           class="new-status-notification text-center faint"

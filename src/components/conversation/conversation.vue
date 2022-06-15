@@ -31,8 +31,8 @@
             keypath="status.show_all_conversation_with_icon"
             tag="button"
             class="button-unstyled -link"
-            @click.prevent="diveToTopLevel"
             scope="global"
+            @click.prevent="diveToTopLevel"
           >
             <template #icon>
               <FAIcon

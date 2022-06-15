@@ -56,7 +56,7 @@
           :user-id="userId"
           :pinned-status-ids="user.pinnedStatusIds"
           :in-profile="true"
-          :footerSlipgate="footerRef"
+          :footer-slipgate="footerRef"
         />
         <div
           v-if="followsTabVisible"
@@ -95,7 +95,7 @@
           :timeline="media"
           :user-id="userId"
           :in-profile="true"
-          :footerSlipgate="footerRef"
+          :footer-slipgate="footerRef"
         />
         <Timeline
           v-if="isUs"
@@ -107,10 +107,13 @@
           timeline-name="favorites"
           :timeline="favorites"
           :in-profile="true"
-          :footerSlipgate="footerRef"
+          :footer-slipgate="footerRef"
         />
       </tab-switcher>
-      <div class="panel-footer" :ref="setFooterRef"></div>
+      <div
+        :ref="setFooterRef"
+        class="panel-footer"
+      />
     </div>
     <div
       v-else

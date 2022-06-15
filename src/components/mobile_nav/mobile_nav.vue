@@ -67,11 +67,10 @@
         </a>
       </div>
       <div
-        class="mobile-notifications"
         id="mobile-notifications"
+        class="mobile-notifications"
         @scroll="onScroll"
-      >
-      </div>
+      />
     </div>
     <SideDrawer
       ref="sideDrawer"

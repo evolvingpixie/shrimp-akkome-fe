@@ -4,8 +4,8 @@
     :title="title"
   >
     <router-link
-      class="avatar-container"
       v-if="withAvatar && user"
+      class="avatar-container"
       :to="getUserProfileLink(user)"
     >
       <UserAvatar
