@@ -10,6 +10,7 @@
         v-for="list in lists.slice().reverse()"
         :key="list"
         :list="list"
+        class="list-item"
       />
     </div>
   </div>
