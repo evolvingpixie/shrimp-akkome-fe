@@ -79,6 +79,7 @@ const MASTODON_SEARCH_2 = `/api/v2/search`
 const MASTODON_USER_SEARCH_URL = '/api/v1/accounts/search'
 const MASTODON_MASCOT_URL = '/api/v1/pleroma/mascot'
 const MASTODON_DOMAIN_BLOCKS_URL = '/api/v1/domain_blocks'
+const MASTODON_LISTS_URL = '/api/v1/lists'
 const MASTODON_STREAMING = '/api/v1/streaming'
 const MASTODON_KNOWN_DOMAIN_LIST_URL = '/api/v1/instance/peers'
 const PLEROMA_EMOJI_REACTIONS_URL = id => `/api/v1/pleroma/statuses/${id}/reactions`
@@ -381,6 +382,12 @@ const fetchFollowRequests = ({ credentials }) => {
   return fetch(url, { headers: authHeaders(credentials) })
     .then((data) => data.json())
     .then((data) => data.map(parseUser))
+}
+
+const fetchLists = ({ credentials }) => {
+  const url = MASTODON_LISTS_URL
+  return fetch(url, { headers: authHeaders(credentials) })
+    .then((data) => data.json())
 }
 
 const fetchConversation = ({ id, credentials }) => {
@@ -1355,6 +1362,7 @@ const apiService = {
   mfaSetupOTP,
   mfaConfirmOTP,
   fetchFollowRequests,
+  fetchLists,
   approveUser,
   denyUser,
   suggestions,

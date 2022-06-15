@@ -13,7 +13,8 @@ const api = {
     socket: null,
     mastoUserSocket: null,
     mastoUserSocketStatus: null,
-    followRequests: []
+    followRequests: [],
+    lists: []
   },
   mutations: {
     setBackendInteractor (state, backendInteractor) {
@@ -34,6 +35,9 @@ const api = {
     },
     setFollowRequests (state, value) {
       state.followRequests = value
+    },
+    setLists (state, value) {
+      state.lists = value
     },
     setMastoUserSocketStatus (state, value) {
       state.mastoUserSocketStatus = value
@@ -247,6 +251,18 @@ const api = {
     removeFollowRequest (store, request) {
       let requests = store.state.followRequests.filter((it) => it !== request)
       store.commit('setFollowRequests', requests)
+    },
+
+    // Lists
+    startFetchingLists (store) {
+      if (store.state.fetchers['lists']) return
+      const fetcher = store.state.backendInteractor.startFetchingLists({ store })
+      store.commit('addFetcher', { fetcherName: 'lists', fetcher })
+    },
+    stopFetchingLists (store) {
+      const fetcher = store.state.fetchers.lists
+      if (!fetcher) return
+      store.commit('removeFetcher', { fetcherName: 'lists', fetcher })
     },
 
     // Pleroma websocket
