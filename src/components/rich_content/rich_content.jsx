@@ -112,23 +112,6 @@ export default {
       }
     }
 
-    const renderLink = (attrs, children) => {
-      const updatedLink = attrs['href'].replace(/&amp;/g, '&')
-      const updatedChildren = children.map(child => {
-        if (typeof child === 'string') {
-          return child.replace(attrs['href'], updatedLink)
-        }
-        if (child[0] === '<span>') {
-          return <span>
-            { child[1] }
-          </span>
-        }
-        return child[1]
-      })
-      return <a {...{ attrs }} href={updatedLink}>
-        { ...updatedChildren }
-      </a>
-    }
     // Processor to use with html_tree_converter
     const processItem = (item, index, array, what) => {
       // Handle text nodes - just add emoji
@@ -193,9 +176,6 @@ export default {
               return renderMention(attrs, children)
             } else {
               currentMentions = null
-              if (attrs['href']) {
-                return renderLink(attrs, children)
-              }
               break
             }
           case 'span':
