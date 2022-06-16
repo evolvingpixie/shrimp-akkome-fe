@@ -19,7 +19,7 @@
         ref="title"
         v-model="title"
         :placeholder="$t('lists.title')"
-      />
+      >
     </div>
     <div class="input-wrap">
       <div class="input-search">

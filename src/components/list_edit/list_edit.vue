@@ -5,8 +5,8 @@
       class="panel-heading"
     >
       <button
-        @click="$router.back"
         class="button-unstyled go-back-button"
+        @click="$router.back"
       >
         <FAIcon
           size="lg"
@@ -19,7 +19,7 @@
         ref="title"
         v-model="title"
         :placeholder="$t('lists.title')"
-      />
+      >
     </div>
     <div class="input-wrap">
       <div class="input-search">
