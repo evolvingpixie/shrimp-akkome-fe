@@ -26,7 +26,8 @@ const TimelineMenu = {
   },
   data () {
     return {
-      isOpen: false
+      isOpen: false,
+      listTitle: null
     }
   },
   created () {
@@ -57,6 +58,11 @@ const TimelineMenu = {
       const route = this.$route.name
       if (route === 'tag-timeline') {
         return '#' + this.$route.params.tag
+      }
+      if (route === 'list-timeline') {
+        this.$store.state.api.backendInteractor.getList({ id: this.$route.params.id })
+          .then((data) => { this.listTitle = data.title })
+        return this.listTitle
       }
       const i18nkey = timelineNames()[this.$route.name]
       return i18nkey ? this.$t(i18nkey) : route
