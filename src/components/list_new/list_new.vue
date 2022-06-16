@@ -41,9 +41,11 @@
         :key="user.id"
         class="member"
       >
-        <div @click.capture.prevent="selectUser(user, $event)">
-          <BasicUserCard :user="user" />
-        </div>
+        <BasicUserCard
+          :user="user"
+          :class="isSelected(user) ? 'selected' : ''"
+          @click.capture.prevent="selectUser(user)"
+        />
       </div>
     </div>
     <button

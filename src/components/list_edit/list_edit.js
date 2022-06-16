@@ -57,14 +57,15 @@ const ListNew = {
     onInput () {
       this.search(this.query)
     },
-    selectUser (user, event) {
+    selectUser (user) {
       if (this.selectedUserIds.includes(user.id)) {
         this.removeUser(user.id)
-        event.target.classList.remove('selected')
       } else {
         this.addUser(user)
-        event.target.classList.add('selected')
       }
+    },
+    isSelected (user) {
+      return this.selectedUserIds.includes(user.id)
     },
     addUser (user) {
       this.selectedUserIds.push(user.id)
