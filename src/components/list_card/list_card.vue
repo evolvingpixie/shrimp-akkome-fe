@@ -1,10 +1,21 @@
 <template>
-  <router-link
-    :to="listLink(list.id)"
-    class="list-card"
-  >
-    {{ list.title }}
-  </router-link>
+  <div class="list-card">
+    <router-link
+      :to="listLink(list.id)"
+      class="list-name"
+    >
+      {{ list.title }}
+    </router-link>
+    <router-link
+      :to="listLink(list.id) + '/edit'"
+      class="button-list-edit"
+    >
+      <FAIcon
+        class="fa-scale-110 fa-old-padding"
+        icon="ellipsis-h"
+      />
+    </router-link>
+  </div>
 </template>
 
 <script src="./list_card.js"></script>
@@ -13,10 +24,13 @@
 @import '../../_variables.scss';
 
 .list-card {
+  display: flex;
+}
+
+.list-name,
+.button-list-edit {
   margin: 0;
   padding: 1em;
-  display: flex;
-  flex: 1 0;
   color: $fallback--link;
   color: var(--link, $fallback--link);
 
@@ -29,5 +43,9 @@
     --faintLink: var(--selectedMenuFaintLink, $fallback--faint);
     --lightText: var(--selectedMenuLightText, $fallback--lightText);
   }
+}
+
+.list-name {
+  flex-grow: 1;
 }
 </style>

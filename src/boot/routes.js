@@ -22,6 +22,7 @@ import About from 'components/about/about.vue'
 import RemoteUserResolver from 'components/remote_user_resolver/remote_user_resolver.vue'
 import Lists from 'components/lists/lists.vue'
 import ListTimeline from 'components/list_timeline/list_timeline.vue'
+import ListEdit from 'components/list_edit/list_edit.vue'
 
 export default (store) => {
   const validateAuthenticatedRoute = (to, from, next) => {
@@ -73,7 +74,8 @@ export default (store) => {
     { name: 'about', path: '/about', component: About },
     { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile },
     { name: 'lists', path: '/lists', component: Lists },
-    { name: 'list-timeline', path: '/lists/:id', component: ListTimeline }
+    { name: 'list-timeline', path: '/lists/:id', component: ListTimeline },
+    { name: 'list-edit', path: '/lists/:id/edit', component: ListEdit }
   ]
 
   if (store.state.instance.pleromaChatMessagesAvailable) {

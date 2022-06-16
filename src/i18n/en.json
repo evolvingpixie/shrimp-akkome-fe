@@ -952,7 +952,9 @@
     "new": "New List",
     "title": "List title",
     "search": "Search users",
-    "create": "Create"
+    "create": "Create",
+    "save": "Save changes",
+    "delete": "Delete list"
   },
   "file_type": {
     "audio": "Audio",

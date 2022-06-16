@@ -50,6 +50,7 @@ const MASTODON_STATUS_CONTEXT_URL = id => `/api/v1/statuses/${id}/context`
 const MASTODON_USER_URL = '/api/v1/accounts'
 const MASTODON_USER_RELATIONSHIPS_URL = '/api/v1/accounts/relationships'
 const MASTODON_USER_TIMELINE_URL = id => `/api/v1/accounts/${id}/statuses`
+const MASTODON_LIST_URL = id => `/api/v1/lists/${id}`
 const MASTODON_LIST_TIMELINE_URL = id => `/api/v1/timelines/list/${id}`
 const MASTODON_LIST_ACCOUNTS_URL = id => `/api/v1/lists/${id}/accounts`
 const MASTODON_TAG_TIMELINE_URL = tag => `/api/v1/timelines/tag/${tag}`
@@ -403,6 +404,31 @@ const createList = ({ title, credentials }) => {
   }).then((data) => data.json())
 }
 
+const getList = ({ id, credentials }) => {
+  const url = MASTODON_LIST_URL(id)
+  return fetch(url, { headers: authHeaders(credentials) })
+    .then((data) => data.json())
+}
+
+const updateList = ({ id, title, credentials }) => {
+  const url = MASTODON_LIST_URL(id)
+  const headers = authHeaders(credentials)
+  headers['Content-Type'] = 'application/json'
+
+  return fetch(url, {
+    method: 'PUT',
+    headers: headers,
+    body: JSON.stringify({ title })
+  })
+}
+
+const getListAccounts = ({ id, credentials }) => {
+  const url = MASTODON_LIST_ACCOUNTS_URL(id)
+  return fetch(url, { headers: authHeaders(credentials) })
+    .then((data) => data.json())
+    .then((data) => data.map(({ id }) => id))
+}
+
 const addAccountsToList = ({ id, accountIds, credentials }) => {
   const url = MASTODON_LIST_ACCOUNTS_URL(id)
   const headers = authHeaders(credentials)
@@ -412,6 +438,14 @@ const addAccountsToList = ({ id, accountIds, credentials }) => {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({ account_ids: accountIds })
+  })
+}
+
+const deleteList = ({ id, credentials }) => {
+  const url = MASTODON_LIST_URL(id)
+  return fetch(url, {
+    method: 'DELETE',
+    headers: authHeaders(credentials)
   })
 }
 
@@ -1389,7 +1423,11 @@ const apiService = {
   fetchFollowRequests,
   fetchLists,
   createList,
+  getList,
+  updateList,
+  getListAccounts,
   addAccountsToList,
+  deleteList,
   approveUser,
   denyUser,
   suggestions,
