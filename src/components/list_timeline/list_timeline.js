@@ -17,6 +17,7 @@ const ListTimeline = {
   },
   unmounted () {
     this.$store.dispatch('stopFetchingTimeline', 'list')
+    this.$store.commit('clearTimeline', { timeline: 'list' })
   }
 }
 
