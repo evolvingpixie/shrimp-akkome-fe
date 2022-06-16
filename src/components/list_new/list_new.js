@@ -20,7 +20,6 @@ const ListNew = {
   data () {
     return {
       title: '',
-      suggestions: [],
       userIds: [],
       selectedUserIds: [],
       loading: false,
@@ -31,11 +30,14 @@ const ListNew = {
     users () {
       return this.userIds.map(userId => this.findUser(userId))
     },
+    selectedUsers () {
+      return this.selectedUserIds.map(userId => this.findUser(userId))
+    },
     availableUsers () {
       if (this.query.length !== 0) {
         return this.users
       } else {
-        return this.suggestions
+        return this.selectedUsers
       }
     },
     ...mapState({
