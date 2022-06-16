@@ -441,6 +441,18 @@ const addAccountsToList = ({ id, accountIds, credentials }) => {
   })
 }
 
+const removeAccountsFromList = ({ id, accountIds, credentials }) => {
+  const url = MASTODON_LIST_ACCOUNTS_URL(id)
+  const headers = authHeaders(credentials)
+  headers['Content-Type'] = 'application/json'
+
+  return fetch(url, {
+    method: 'DELETE',
+    headers: headers,
+    body: JSON.stringify({ account_ids: accountIds })
+  })
+}
+
 const deleteList = ({ id, credentials }) => {
   const url = MASTODON_LIST_URL(id)
   return fetch(url, {
@@ -1427,6 +1439,7 @@ const apiService = {
   updateList,
   getListAccounts,
   addAccountsToList,
+  removeAccountsFromList,
   deleteList,
   approveUser,
   denyUser,

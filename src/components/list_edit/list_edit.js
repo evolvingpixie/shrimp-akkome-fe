@@ -94,14 +94,21 @@ const ListNew = {
         })
     },
     updateList () {
-      // the API has two different endpoints for "updating the list name" and
-      // "updating the accounts on the list".
+      // the API has three different endpoints: one for "updating the list name",
+      // one for "adding new accounts to the list" and one for "removing
+      // accounts from the list".
       this.$store.state.api.backendInteractor.updateList({ id: this.id, title: this.title })
       this.$store.state.api.backendInteractor.addAccountsToList({
         id: this.id, accountIds: this.selectedUserIds
-      }).then(() => {
-        this.$router.push({ name: 'list-timeline', params: { id: this.id } })
       })
+      this.$store.state.api.backendInteractor.getListAccounts({ id: this.id })
+        .then((data) => {
+          this.$store.state.api.backendInteractor.removeAccountsFromList({
+            id: this.id, accountIds: data.filter(x => !this.selectedUserIds.includes(x))
+          })
+        }).then(() => {
+          this.$router.push({ name: 'list-timeline', params: { id: this.id } })
+        })
     },
     deleteList () {
       this.$store.state.api.backendInteractor.deleteList({ id: this.id })
