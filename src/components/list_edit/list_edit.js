@@ -40,11 +40,10 @@ const ListNew = {
       return this.userIds.map(userId => this.findUser(userId))
     },
     selectedUsers () {
-      const users = this.selectedUserIds.map(userId => this.findUser(userId))
-      if (users.includes(undefined)) {
-        return []
+      for (let i = 0; i < this.selectedUserIds.length; i++) {
+        this.$store.dispatch('fetchUserIfMissing', this.selectedUserIds[i])
       }
-      return users
+      return this.selectedUserIds.map(userId => this.findUser(userId))
     },
     availableUsers () {
       if (this.query.length !== 0) {
