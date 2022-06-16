@@ -1,4 +1,5 @@
 import Popover from '../popover/popover.vue'
+import EmojiPicker from '../emoji_picker/emoji_picker.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSmileBeam } from '@fortawesome/free-regular-svg-icons'
 
@@ -12,10 +13,12 @@ const ReactButton = {
     }
   },
   components: {
-    Popover
+    Popover,
+    EmojiPicker
   },
   methods: {
-    addReaction (event, emoji, close) {
+    addReaction (event, close) {
+      const emoji = event.insertion
       const existingReaction = this.status.emoji_reactions.find(r => r.name === emoji)
       if (existingReaction && existingReaction.me) {
         this.$store.dispatch('unreactWithEmoji', { id: this.status.id, emoji })
@@ -32,40 +35,6 @@ const ReactButton = {
     }
   },
   computed: {
-    commonEmojis () {
-      return [
-        { displayText: 'thumbsup', replacement: '👍' },
-        { displayText: 'angry', replacement: '😠' },
-        { displayText: 'eyes', replacement: '👀' },
-        { displayText: 'joy', replacement: '😂' },
-        { displayText: 'fire', replacement: '🔥' }
-      ]
-    },
-    emojis () {
-      if (this.filterWord !== '') {
-        const filterWordLowercase = this.filterWord.toLowerCase()
-        let orderedEmojiList = []
-        for (const emoji of [
-          ...this.$store.state.instance.emoji,
-          ...this.$store.state.instance.customEmoji
-        ]) {
-          if (emoji.replacement === this.filterWord) return [emoji]
-
-          const indexOfFilterWord = emoji.displayText.toLowerCase().indexOf(filterWordLowercase)
-          if (indexOfFilterWord > -1) {
-            if (!Array.isArray(orderedEmojiList[indexOfFilterWord])) {
-              orderedEmojiList[indexOfFilterWord] = []
-            }
-            orderedEmojiList[indexOfFilterWord].push(emoji)
-          }
-        }
-        return orderedEmojiList.flat()
-      }
-      return [
-        ...this.$store.state.instance.emoji,
-        ...this.$store.state.instance.customEmoji
-      ] || []
-    },
     mergedConfig () {
       return this.$store.getters.mergedConfig
     }

@@ -3,6 +3,7 @@ pipeline:
     when:
       event:
       - push
+      - pull_request
     image: node:16
     commands:
     - yarn
@@ -13,6 +14,7 @@ pipeline:
     when:
       event:
       - push
+      - pull_request
     image: node:16
     commands:
     - apt update

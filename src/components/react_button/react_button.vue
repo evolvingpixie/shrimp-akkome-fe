@@ -9,43 +9,10 @@
     @show="focusInput"
   >
     <template v-slot:content="{close}">
-      <div class="reaction-picker-filter">
-        <input
-          v-model="filterWord"
-          size="1"
-          :placeholder="$t('emoji.search_emoji')"
-        >
-      </div>
-      <div class="reaction-picker">
-        <span
-          v-for="emoji in commonEmojis"
-          :key="emoji.replacement"
-          class="emoji-button"
-          :title="emoji.displayText"
-          @click="addReaction($event, emoji.replacement, close)"
-        >
-          {{ emoji.replacement }}
-        </span>
-        <div class="reaction-picker-divider" />
-        <span
-          v-for="(emoji, key) in emojis"
-          :key="key"
-          class="emoji-button"
-          :title="emoji.displayText"
-          @click="addReaction($event, emoji.replacement, close)"
-        >
-          <img
-            v-if="emoji.imageUrl !== false"
-            :src="emoji.imageUrl"
-            width="30px"
-            class="custom-reaction"
-          >
-          <span v-else>
-            {{ emoji.replacement }}
-          </span>
-        </span>
-        <div class="reaction-bottom-fader" />
-      </div>
+      <EmojiPicker
+        :enableStickerPicker="false"
+        @emoji="addReaction($event, close)"
+      />
     </template>
     <template v-slot:trigger>
       <button
