@@ -10,7 +10,7 @@
   >
     <template v-slot:content="{close}">
       <EmojiPicker
-        :enableStickerPicker="false"
+        :enable-sticker-picker="false"
         @emoji="addReaction($event, close)"
       />
     </template>
