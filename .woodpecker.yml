@@ -34,7 +34,7 @@ pipeline:
   release:
     when:
       event:
-      - tag
+      - push
     image: node:16
     secrets:
     - SCW_ACCESS_KEY
@@ -47,4 +47,4 @@ pipeline:
       - chmod +x scaleway-cli
       - ./scaleway-cli object config install type=rclone
       - zip akkoma-fe.zip -r dist
-      - rclone copyto akkoma-fe.zip scaleway:akkoma-updates/frontend/akkoma-fe.zip
+      - rclone copyto akkoma-fe.zip scaleway:akkoma-updates/frontend/$CI_COMMIT_BRANCH/akkoma-fe.zip
