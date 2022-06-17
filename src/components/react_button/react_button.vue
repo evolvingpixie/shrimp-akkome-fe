@@ -103,6 +103,11 @@
       color: var(--text, $fallback--text);
     }
   }
+
+  .popover {
+    transform: translateX(-64px) translateY(5px);
+    min-width: 70%;
+  }
 }
 
 </style>
