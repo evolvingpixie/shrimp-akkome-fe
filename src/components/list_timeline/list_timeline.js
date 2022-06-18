@@ -13,6 +13,7 @@ const ListTimeline = {
   },
   created () {
     this.listId = this.$route.params.id
+    this.$store.dispatch('fetchList', { id: this.listId })
     this.$store.dispatch('startFetchingTimeline', { timeline: 'list', listId: this.listId })
   },
   unmounted () {

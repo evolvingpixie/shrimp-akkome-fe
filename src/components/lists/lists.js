@@ -16,7 +16,7 @@ const Lists = {
   },
   computed: {
     lists () {
-      return this.$store.state.api.lists
+      return this.$store.state.lists.allLists
     }
   },
   methods: {

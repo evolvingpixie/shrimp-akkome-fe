@@ -27,10 +27,15 @@ const ListNew = {
     }
   },
   created () {
-    this.$store.state.api.backendInteractor.getList({ id: this.id })
-      .then((data) => { this.title = data.title })
-    this.$store.state.api.backendInteractor.getListAccounts({ id: this.id })
-      .then((data) => { this.selectedUserIds = data })
+    this.$store.dispatch('fetchList', { id: this.id })
+      .then(() => { this.title = this.findListTitle(this.id) })
+    this.$store.dispatch('fetchListAccounts', { id: this.id })
+      .then(() => {
+        this.selectedUserIds = this.findListAccounts(this.id)
+        this.selectedUserIds.forEach(userId => {
+          this.$store.dispatch('fetchUserIfMissing', userId)
+        })
+      })
   },
   computed: {
     id () {
@@ -40,10 +45,7 @@ const ListNew = {
       return this.userIds.map(userId => this.findUser(userId))
     },
     selectedUsers () {
-      for (let i = 0; i < this.selectedUserIds.length; i++) {
-        this.$store.dispatch('fetchUserIfMissing', this.selectedUserIds[i])
-      }
-      return this.selectedUserIds.map(userId => this.findUser(userId))
+      return this.selectedUserIds.map(userId => this.findUser(userId)).filter(user => user)
     },
     availableUsers () {
       if (this.query.length !== 0) {
@@ -53,10 +55,9 @@ const ListNew = {
       }
     },
     ...mapState({
-      currentUser: state => state.users.currentUser,
-      backendInteractor: state => state.api.backendInteractor
+      currentUser: state => state.users.currentUser
     }),
-    ...mapGetters(['findUser'])
+    ...mapGetters(['findUser', 'findListTitle', 'findListAccounts'])
   },
   methods: {
     onInput () {
@@ -93,25 +94,14 @@ const ListNew = {
         })
     },
     updateList () {
-      // the API has three different endpoints: one for "updating the list name",
-      // one for "adding new accounts to the list" and one for "removing
-      // accounts from the list".
-      this.$store.state.api.backendInteractor.updateList({ id: this.id, title: this.title })
-      this.$store.state.api.backendInteractor.addAccountsToList({
-        id: this.id, accountIds: this.selectedUserIds
-      })
-      this.$store.state.api.backendInteractor.getListAccounts({ id: this.id })
-        .then((data) => {
-          this.$store.state.api.backendInteractor.removeAccountsFromList({
-            id: this.id, accountIds: data.filter(x => !this.selectedUserIds.includes(x))
-          })
-        }).then(() => {
-          this.$router.push({ name: 'list-timeline', params: { id: this.id } })
-        })
+      this.$store.dispatch('setList', { id: this.id, title: this.title })
+      this.$store.dispatch('setListAccounts', { id: this.id, accountIds: this.selectedUserIds })
+
+      this.$router.push({ name: 'list-timeline', params: { id: this.id } })
     },
     deleteList () {
-      this.$store.state.api.backendInteractor.deleteList({ id: this.id })
-        .then(this.$router.push({ name: 'lists' }))
+      this.$store.dispatch('deleteList', { id: this.id })
+      this.$router.push({ name: 'lists' })
     }
   }
 }

@@ -41,8 +41,7 @@ const ListNew = {
       }
     },
     ...mapState({
-      currentUser: state => state.users.currentUser,
-      backendInteractor: state => state.api.backendInteractor
+      currentUser: state => state.users.currentUser
     }),
     ...mapGetters(['findUser'])
   },
@@ -86,12 +85,10 @@ const ListNew = {
     createList () {
       // the API has two different endpoints for "creating a list with a name"
       // and "updating the accounts on the list".
-      this.$store.state.api.backendInteractor.createList({ title: this.title })
-        .then((data) => {
-          this.$store.state.api.backendInteractor.addAccountsToList({
-            id: data.id, accountIds: this.selectedUserIds
-          })
-          this.$router.push({ name: 'list-timeline', params: { id: data.id } })
+      this.$store.dispatch('createList', { title: this.title })
+        .then((list) => {
+          this.$store.dispatch('setListAccounts', { id: list.id, accountIds: this.selectedUserIds })
+          this.$router.push({ name: 'list-timeline', params: { id: list.id } })
         })
     }
   }

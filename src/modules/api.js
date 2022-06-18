@@ -13,8 +13,7 @@ const api = {
     socket: null,
     mastoUserSocket: null,
     mastoUserSocketStatus: null,
-    followRequests: [],
-    lists: []
+    followRequests: []
   },
   mutations: {
     setBackendInteractor (state, backendInteractor) {
@@ -35,9 +34,6 @@ const api = {
     },
     setFollowRequests (state, value) {
       state.followRequests = value
-    },
-    setLists (state, value) {
-      state.lists = value
     },
     setMastoUserSocketStatus (state, value) {
       state.mastoUserSocketStatus = value
