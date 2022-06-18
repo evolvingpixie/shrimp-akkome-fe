@@ -5,7 +5,7 @@ export const defaultState = {
   allListsObject: {}
 }
 
-const mutations = {
+export const mutations = {
   setLists (state, value) {
     state.allLists = value
   },
@@ -14,7 +14,12 @@ const mutations = {
       state.allListsObject[id] = {}
     }
     state.allListsObject[id].title = title
-    find(state.allLists, { id }).title = title
+
+    if (!find(state.allLists, { id })) {
+      state.allLists.push({ id, title })
+    } else {
+      find(state.allLists, { id }).title = title
+    }
   },
   setListAccounts (state, { id, accountIds }) {
     if (!state.allListsObject[id]) {
@@ -65,7 +70,7 @@ const actions = {
   }
 }
 
-const getters = {
+export const getters = {
   findListTitle: state => id => {
     if (!state.allListsObject[id]) return
     return state.allListsObject[id].title
