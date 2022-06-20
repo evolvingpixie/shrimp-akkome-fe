@@ -234,16 +234,21 @@ export default defineComponent({
         }
 
         case 'emojiCode': {
-          return [h('div', {
-            class: 'still-image emoji img'
-          },
-          [h('img', {
-            key: Math.random(),
-            title: token.props.name,
-            alt: token.props.name,
-            src: this.status.emojis.find((emoji) => emoji.shortcode === token.props.name).static_url
-          })]
-          )]
+          const emoj = this.status.emojis.find((emoji) => emoji.shortcode === token.props.name)
+          if (emoj) {
+            return [h('div', {
+              class: 'still-image emoji img'
+            },
+            [h('img', {
+              key: Math.random(),
+              title: token.props.name,
+              alt: token.props.name,
+              src: this.status.emojis.find((emoji) => emoji.shortcode === token.props.name).static_url
+            })]
+            )]
+          } else {
+            return `:${token.props.name}:`
+          }
         }
 
         case 'unicodeEmoji': {
