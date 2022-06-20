@@ -62,7 +62,8 @@ export const defaultState = () => ({
     friends: emptyTl(),
     tag: emptyTl(),
     dms: emptyTl(),
-    bookmarks: emptyTl()
+    bookmarks: emptyTl(),
+    list: emptyTl()
   }
 })
 
