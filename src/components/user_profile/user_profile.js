@@ -7,6 +7,7 @@ import TabSwitcher from 'src/components/tab_switcher/tab_switcher.jsx'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
 import List from '../list/list.vue'
 import withLoadMore from '../../hocs/with_load_more/with_load_more'
+import { debounce } from 'lodash'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faCircleNotch
@@ -151,9 +152,9 @@ const UserProfile = {
         window.open(target.href, '_blank')
       }
     },
-    setNote () {
+    setNote: debounce(function () {
       this.$store.dispatch('setNote', { id: this.userId, note: this.note })
-    }
+    }, 1500)
   },
   watch: {
     '$route.params.id': function (newVal) {
