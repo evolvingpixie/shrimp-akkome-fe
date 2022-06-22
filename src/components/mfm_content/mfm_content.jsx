@@ -1,13 +1,12 @@
 import { defineComponent, h } from 'vue'
 import * as mfm from 'mfm-js'
 import MentionLink from '../mention_link/mention_link.vue'
-import mention_link from '../mention_link/mention_link'
 
 function concat (xss) {
   return ([]).concat(...xss)
 }
 
-export const MFM_TAGS = ['tada', 'jelly', 'twitch', 'shake', 'spin', 'jump', 'bounce', 'flip', 'x2', 'x3', 'x4', 'font', 'blur', 'rainbow', 'sparkle', 'rotate']
+export const MFM_TAGS = ['tada', 'jelly', 'twitch', 'shake', 'spin', 'jump', 'bounce', 'flip', 'x2', 'x3', 'x4', 'font', 'blur', 'rainbow', 'rotate']
 
 export default defineComponent({
   props: {
@@ -137,9 +136,6 @@ export default defineComponent({
             case 'rainbow': {
               style = 'animation: mfm-rainbow 1s linear infinite;'
               break
-            }
-            case 'sparkle': {
-              return h(MkSparkle, {}, genEl(token.children))
             }
             case 'rotate': {
               const degrees = parseInt(token.props.args.deg) || '90'
