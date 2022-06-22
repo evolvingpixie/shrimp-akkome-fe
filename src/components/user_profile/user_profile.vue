@@ -40,6 +40,12 @@
           </dd>
         </dl>
       </div>
+      <textarea
+        v-model="note"
+        class="note resize-height"
+        :placeholder="$t('user_card.note')"
+        @input="setNote"
+      />
       <tab-switcher
         :active-tab="tab"
         :render-only-focused="true"
@@ -201,6 +207,10 @@
     justify-content: center;
     align-items: middle;
     padding: 2em;
+  }
+
+  .note {
+    margin: 0.5em 0.75em;
   }
 }
 .user-profile-placeholder {

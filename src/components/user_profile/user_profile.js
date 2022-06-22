@@ -40,7 +40,8 @@ const UserProfile = {
       error: false,
       userId: null,
       tab: defaultTabKey,
-      footerRef: null
+      footerRef: null,
+      note: null
     }
   },
   created () {
@@ -110,9 +111,13 @@ const UserProfile = {
       const user = this.$store.getters.findUser(userNameOrId)
       if (user) {
         loadById(user.id)
+        this.note = user.relationship.note
       } else {
         this.$store.dispatch('fetchUser', userNameOrId)
-          .then(({ id }) => loadById(id))
+          .then(({ id, relationship }) => {
+            this.note = relationship.note
+            return loadById(id)
+          })
           .catch((reason) => {
             const errorMessage = get(reason, 'error.error')
             if (errorMessage === 'No user with such user_id') { // Known error
@@ -145,6 +150,9 @@ const UserProfile = {
       if (target.tagName === 'A') {
         window.open(target.href, '_blank')
       }
+    },
+    setNote () {
+      this.$store.dispatch('setNote', { id: this.userId, note: this.note })
     }
   },
   watch: {
