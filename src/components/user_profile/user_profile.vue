@@ -41,7 +41,7 @@
         </dl>
       </div>
       <div
-        v-if="!isUs"
+        v-if="currentUser && !isUs"
         class="note"
       >
         <textarea
