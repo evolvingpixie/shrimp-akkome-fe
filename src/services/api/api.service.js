@@ -47,7 +47,7 @@ const MASTODON_PUBLIC_TIMELINE = '/api/v1/timelines/public'
 const MASTODON_USER_HOME_TIMELINE_URL = '/api/v1/timelines/home'
 const MASTODON_STATUS_URL = id => `/api/v1/statuses/${id}`
 const MASTODON_STATUS_CONTEXT_URL = id => `/api/v1/statuses/${id}/context`
-const MASTODON_USER_URL = '/api/v1/accounts'
+const MASTODON_USER_URL = id => `/api/v1/accounts/${id}?with_relationships=true`
 const MASTODON_USER_RELATIONSHIPS_URL = '/api/v1/accounts/relationships'
 const MASTODON_USER_TIMELINE_URL = id => `/api/v1/accounts/${id}/statuses`
 const MASTODON_LIST_URL = id => `/api/v1/lists/${id}`
@@ -63,6 +63,7 @@ const MASTODON_MUTE_USER_URL = id => `/api/v1/accounts/${id}/mute`
 const MASTODON_UNMUTE_USER_URL = id => `/api/v1/accounts/${id}/unmute`
 const MASTODON_SUBSCRIBE_USER = id => `/api/v1/pleroma/accounts/${id}/subscribe`
 const MASTODON_UNSUBSCRIBE_USER = id => `/api/v1/pleroma/accounts/${id}/unsubscribe`
+const MASTODON_SET_NOTE_URL = id => `/api/v1/accounts/${id}/note`
 const MASTODON_BOOKMARK_STATUS_URL = id => `/api/v1/statuses/${id}/bookmark`
 const MASTODON_UNBOOKMARK_STATUS_URL = id => `/api/v1/statuses/${id}/unbookmark`
 const MASTODON_POST_STATUS_URL = '/api/v1/statuses'
@@ -310,7 +311,7 @@ const denyUser = ({ id, credentials }) => {
 }
 
 const fetchUser = ({ id, credentials }) => {
-  let url = `${MASTODON_USER_URL}/${id}`
+  const url = MASTODON_USER_URL(id)
   return promisedRequest({ url, credentials })
     .then((data) => parseUser(data))
 }
@@ -948,6 +949,18 @@ const unmuteUser = ({ id, credentials }) => {
   return promisedRequest({ url: MASTODON_UNMUTE_USER_URL(id), credentials, method: 'POST' })
 }
 
+const setNote = ({ id, note, credentials }) => {
+  const form = new FormData()
+
+  form.append('comment', note)
+
+  return fetch(MASTODON_SET_NOTE_URL(id), {
+    body: form,
+    headers: authHeaders(credentials),
+    method: 'POST'
+  }).then((data) => data.json())
+}
+
 const fetchMascot = ({ credentials }) => {
   return promisedRequest({ url: MASTODON_MASCOT_URL, credentials })
 }
@@ -1405,6 +1418,7 @@ const apiService = {
   fetchMutes,
   muteUser,
   unmuteUser,
+  setNote,
   subscribeUser,
   unsubscribeUser,
   fetchBlocks,

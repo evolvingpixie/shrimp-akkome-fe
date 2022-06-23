@@ -845,6 +845,7 @@
     "domain_muted": "Unblock domain",
     "mute_domain": "Block domain",
     "bot": "Bot",
+    "note": "Private note",
     "admin_menu": {
       "moderation": "Moderation",
       "grant_admin": "Grant Admin",

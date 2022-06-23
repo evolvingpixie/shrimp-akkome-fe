@@ -102,6 +102,11 @@ const unmuteDomain = (store, domain) => {
     .then(() => store.commit('removeDomainMute', domain))
 }
 
+const setNote = (store, { id, note }) => {
+  return store.rootState.api.backendInteractor.setNote({ id, note })
+    .then((relationship) => store.commit('updateUserRelationship', [relationship]))
+}
+
 export const mutations = {
   tagUser (state, { user: { id }, tag }) {
     const user = state.usersObject[id]
@@ -365,6 +370,9 @@ const users = {
     },
     unmuteDomains (store, domain = []) {
       return Promise.all(domain.map(domain => unmuteDomain(store, domain)))
+    },
+    setNote (store, { id, note }) {
+      return setNote(store, { id, note })
     },
     fetchFriends ({ rootState, commit }, id) {
       const user = rootState.users.usersObject[id]

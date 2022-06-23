@@ -40,6 +40,27 @@
           </dd>
         </dl>
       </div>
+      <div
+        v-if="!isUs"
+        class="note"
+      >
+        <textarea
+          v-model="note"
+          class="resize-height"
+          :placeholder="$t('user_card.note')"
+          @input="setNote"
+        />
+        <div
+          v-show="noteLoading"
+          class="preview-spinner"
+        >
+          <FAIcon
+            class="fa-old-padding"
+            spin
+            icon="circle-notch"
+          />
+        </div>
+      </div>
       <tab-switcher
         :active-tab="tab"
         :render-only-focused="true"
@@ -201,6 +222,22 @@
     justify-content: center;
     align-items: middle;
     padding: 2em;
+  }
+
+  .note {
+    position: relative;
+    margin: 0.5em 0.75em;
+
+    textarea {
+      width: 100%;
+    }
+
+    .preview-spinner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0.5em 0.25em;
+    }
   }
 }
 .user-profile-placeholder {

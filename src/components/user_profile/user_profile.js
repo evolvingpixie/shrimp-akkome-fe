@@ -7,6 +7,7 @@ import TabSwitcher from 'src/components/tab_switcher/tab_switcher.jsx'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
 import List from '../list/list.vue'
 import withLoadMore from '../../hocs/with_load_more/with_load_more'
+import { debounce } from 'lodash'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faCircleNotch
@@ -40,7 +41,9 @@ const UserProfile = {
       error: false,
       userId: null,
       tab: defaultTabKey,
-      footerRef: null
+      footerRef: null,
+      note: null,
+      noteLoading: false
     }
   },
   created () {
@@ -110,9 +113,13 @@ const UserProfile = {
       const user = this.$store.getters.findUser(userNameOrId)
       if (user) {
         loadById(user.id)
+        this.note = user.relationship.note
       } else {
         this.$store.dispatch('fetchUser', userNameOrId)
-          .then(({ id }) => loadById(id))
+          .then(({ id, relationship }) => {
+            this.note = relationship.note
+            return loadById(id)
+          })
           .catch((reason) => {
             const errorMessage = get(reason, 'error.error')
             if (errorMessage === 'No user with such user_id') { // Known error
@@ -145,7 +152,15 @@ const UserProfile = {
       if (target.tagName === 'A') {
         window.open(target.href, '_blank')
       }
-    }
+    },
+    setNote () {
+      this.noteLoading = true
+      this.debounceSetNote()
+    },
+    debounceSetNote: debounce(function () {
+      this.$store.dispatch('setNote', { id: this.userId, note: this.note })
+      this.noteLoading = false
+    }, 1500)
   },
   watch: {
     '$route.params.id': function (newVal) {
