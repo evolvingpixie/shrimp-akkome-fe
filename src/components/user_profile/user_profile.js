@@ -42,7 +42,8 @@ const UserProfile = {
       userId: null,
       tab: defaultTabKey,
       footerRef: null,
-      note: null
+      note: null,
+      noteLoading: false
     }
   },
   created () {
@@ -152,8 +153,13 @@ const UserProfile = {
         window.open(target.href, '_blank')
       }
     },
-    setNote: debounce(function () {
+    setNote () {
+      this.noteLoading = true
+      this.debounceSetNote()
+    },
+    debounceSetNote: debounce(function () {
       this.$store.dispatch('setNote', { id: this.userId, note: this.note })
+      this.noteLoading = false
     }, 1500)
   },
   watch: {
