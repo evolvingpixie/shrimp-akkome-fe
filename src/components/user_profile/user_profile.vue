@@ -40,7 +40,10 @@
           </dd>
         </dl>
       </div>
-      <div class="note">
+      <div
+        v-if="!isUs"
+        class="note"
+      >
         <textarea
           v-model="note"
           class="resize-height"
