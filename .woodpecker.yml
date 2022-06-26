@@ -34,7 +34,9 @@ pipeline:
   release:
     when:
       event:
-      - tag
+      - push
+      branch:
+      - develop
     image: node:16
     secrets:
     - SCW_ACCESS_KEY
