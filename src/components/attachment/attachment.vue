@@ -248,14 +248,15 @@
       class="description-container"
       :class="{ '-static': !edit }"
     >
-      <input
+      <textarea
         v-if="edit"
         v-model="localDescription"
-        type="text"
         class="description-field"
         :placeholder="$t('post_status.media_description')"
-        @keydown.enter.prevent=""
-      >
+        rows="1"
+        cols="1"
+        @input="resize"
+      />
       <p v-else>
         {{ localDescription }}
       </p>

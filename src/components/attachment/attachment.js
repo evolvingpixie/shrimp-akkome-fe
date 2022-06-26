@@ -199,6 +199,26 @@ const Attachment = {
       const width = image.naturalWidth
       const height = image.naturalHeight
       this.$emit('naturalSizeLoad', { id: this.attachment.id, width, height })
+    },
+    resize (e) {
+      const target = e.target || e
+      if (!(target instanceof window.Element)) { return }
+
+      // Reset to default height for empty form, nothing else to do here.
+      if (target.value === '') {
+        target.style.height = null
+        this.$emit('resize')
+        return
+      }
+
+      const paddingString = getComputedStyle(target)['padding']
+      // remove -px suffix
+      const padding = Number(paddingString.substring(0, paddingString.length - 2))
+
+      target.style.height = 'auto'
+      const newHeight = Math.floor(target.scrollHeight - padding * 2)
+      target.style.height = `${newHeight}px`
+      this.$emit('resize', newHeight)
     }
   }
 }

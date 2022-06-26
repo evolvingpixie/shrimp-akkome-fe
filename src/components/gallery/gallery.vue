@@ -171,7 +171,6 @@
 
       .gallery-item {
         margin: 0;
-        height: 200px;
       }
     }
   }
