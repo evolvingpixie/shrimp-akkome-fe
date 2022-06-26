@@ -1,7 +1,7 @@
 <template>
   <div class="RetweetButton">
     <button
-      v-if="visibility !== 'private' && visibility !== 'direct' && loggedIn"
+      v-if="(visibility !== 'private' || isOwn) && visibility !== 'direct' && loggedIn"
       class="button-unstyled interactive"
       :class="status.repeated && '-repeated'"
       :title="$t('tool_tip.repeat')"

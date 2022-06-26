@@ -24,6 +24,9 @@ const RetweetButton = {
     }
   },
   computed: {
+    isOwn () {
+      return this.status.user.id === this.$store.state.users.currentUser.id
+    },
     mergedConfig () {
       return this.$store.getters.mergedConfig
     }
