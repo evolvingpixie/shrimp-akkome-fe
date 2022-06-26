@@ -462,6 +462,20 @@ const deleteList = ({ id, credentials }) => {
   })
 }
 
+const errorStatusMapper = (response) => {
+  console.log(response)
+  switch (response.status) {
+    case 429:
+      return 'You are rate limited'
+    case 500:
+      return 'Internal Server Error'
+    case 503:
+      return 'The backend is not available'
+    default:
+      return `Unexpected status: ${response.status}`
+  }
+}
+
 const fetchConversation = ({ id, credentials }) => {
   let urlContext = MASTODON_STATUS_CONTEXT_URL(id)
   return fetch(urlContext, { headers: authHeaders(credentials) })
@@ -469,7 +483,7 @@ const fetchConversation = ({ id, credentials }) => {
       if (data.ok) {
         return data
       }
-      throw new Error('Error fetching timeline', data)
+      throw new Error('Error fetching timeline', errorStatusMapper(data))
     })
     .then((data) => data.json())
     .then(({ ancestors, descendants }) => ({
@@ -485,7 +499,7 @@ const fetchStatus = ({ id, credentials }) => {
       if (data.ok) {
         return data
       }
-      throw new Error('Error fetching timeline', data)
+      throw new Error('Error fetching timeline', errorStatusMapper(data))
     })
     .then((data) => data.json())
     .then((data) => parseStatus(data))
@@ -657,8 +671,15 @@ const fetchTimeline = ({
       })
       return data
     })
-    .then((data) => data.json())
     .then((data) => {
+      if (data.ok) return data.json()
+
+      throw new Error(errorStatusMapper(data))
+    })
+    .then((data) => {
+      if (data.error) {
+        throw new Error(data.error)
+      }
       if (!data.errors) {
         return { data: data.map(isNotifications ? parseNotification : parseStatus), pagination }
       } else {
