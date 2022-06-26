@@ -25,7 +25,9 @@ pipeline:
   build:
     when:
       event:
-      - tag
+      - push
+      branch:
+      - develop
     image: node:16
     commands:
     - yarn
