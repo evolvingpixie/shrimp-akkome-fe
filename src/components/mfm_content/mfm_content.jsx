@@ -210,11 +210,10 @@ export default defineComponent({
         }
 
         case 'inlineCode': {
-          return [h('pre', {
+          return [h('code', {
             key: Math.random(),
-            code: token.props.code,
-            inline: true
-          })]
+            display: 'inline'
+          }, token.props.code)]
         }
 
         case 'quote': {
