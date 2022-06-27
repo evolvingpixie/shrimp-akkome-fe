@@ -67,6 +67,14 @@
         </li>
         <li>
           <BooleanSetting
+            path="webPushHideIfCW"
+            expert="1"
+          >
+            {{ $t('settings.notification_setting_hide_if_cw') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
             path="serverSide_webPushHideContents"
             expert="1"
           >

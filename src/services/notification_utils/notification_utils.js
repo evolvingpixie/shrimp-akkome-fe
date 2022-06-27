@@ -58,7 +58,7 @@ export const maybeShowNotification = (store, notification) => {
   if (!visibleTypes(store).includes(notification.type)) return
   if (notification.type === 'mention' && isMutedNotification(store, notification)) return
 
-  const notificationObject = prepareNotificationObject(notification, store.rootGetters.i18n)
+  const notificationObject = prepareNotificationObject(notification, store.rootGetters.i18n, store)
   showDesktopNotification(rootState, notificationObject)
 }
 
@@ -74,7 +74,7 @@ export const filteredNotificationsFromStore = (store, types) => {
 export const unseenNotificationsFromStore = store =>
   filter(filteredNotificationsFromStore(store), ({ seen }) => !seen)
 
-export const prepareNotificationObject = (notification, i18n) => {
+export const prepareNotificationObject = (notification, i18n, store) => {
   const notifObj = {
     tag: notification.id
   }
@@ -109,7 +109,15 @@ export const prepareNotificationObject = (notification, i18n) => {
   } else if (i18nString) {
     notifObj.body = i18n.t('notifications.' + i18nString)
   } else if (isStatusNotification(notification.type)) {
-    notifObj.body = notification.status.text
+    if (notification.status.summary) {
+      if (store.getters.mergedConfig.webPushHideIfCW) {
+        notifObj.body = notification.status.summary
+      } else {
+        notifObj.body = `${notification.status.summary}:\n${notification.status.text}`
+      }
+    } else {
+      notifObj.body = notification.status.text
+    }
   }
 
   // Shows first attached non-nsfw image, if any. Should add configuration for this somehow...

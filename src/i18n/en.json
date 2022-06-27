@@ -546,6 +546,7 @@
     "notification_setting_block_from_strangers": "Block notifications from users who you do not follow",
     "notification_setting_privacy": "Privacy",
     "notification_setting_hide_notification_contents": "Hide the sender and contents of push notifications",
+    "notification_setting_hide_if_cw": "Hide the contents of push notifications if under a Content Warning",
     "notification_mutes": "To stop receiving notifications from a specific user, use a mute.",
     "notification_blocks": "Blocking a user stops all notifications as well as unsubscribes them.",
     "enable_web_push_notifications": "Enable web push notifications",
