@@ -54,7 +54,7 @@ const defaultState = {
   theme: 'pleroma-dark',
   virtualScrolling: true,
   sensitiveByDefault: false,
-  sensitiveIfSubject: false,
+  sensitiveIfSubject: true,
   renderMisskeyMarkdown: false,
   conversationDisplay: 'linear',
   conversationTreeAdvanced: false,

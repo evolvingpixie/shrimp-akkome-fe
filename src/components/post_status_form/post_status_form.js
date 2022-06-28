@@ -281,8 +281,6 @@ const PostStatusForm = {
       if (this.preview) this.previewStatus()
     },
     async postStatus (event, newStatus, opts = {}) {
-      const { sensitiveIfSubject } = this.$store.getters.mergedConfig
-
       if (this.posting && !this.optimisticPosting) { return }
       if (this.disableSubmit) { return }
       if (this.emojiInputShown) { return }
@@ -318,7 +316,7 @@ const PostStatusForm = {
         status: newStatus.status,
         spoilerText: newStatus.spoilerText || null,
         visibility: newStatus.visibility,
-        sensitive: (newStatus.nsfw || (sensitiveIfSubject && newStatus.spoilerText)),
+        sensitive: newStatus.nsfw,
         media: newStatus.files,
         store: this.$store,
         inReplyToStatusId: this.replyTo,
@@ -392,6 +390,10 @@ const PostStatusForm = {
     },
     addMediaFile (fileInfo) {
       this.newStatus.files.push(fileInfo)
+
+      if (this.newStatus.sensitiveIfSubject && this.newStatus.spoilerText !== '') {
+        this.newStatus.nsfw = true
+      }
       this.$emit('resize', { delayed: true })
     },
     removeMediaFile (fileInfo) {
@@ -467,6 +469,11 @@ const PostStatusForm = {
       this.$nextTick(() => {
         this.resize(this.$refs['textarea'])
       })
+    },
+    onSubjectInput (e) {
+      if (this.newStatus.sensitiveIfSubject) {
+        this.newStatus.nsfw = true
+      }
     },
     resize (e) {
       const target = e.target || e

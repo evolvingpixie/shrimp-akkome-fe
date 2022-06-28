@@ -124,8 +124,18 @@
             :disabled="posting && !optimisticPosting"
             size="1"
             class="form-post-subject"
+            @input="onSubjectInput"
           >
         </EmojiInput>
+        <i18n-t
+          v-if="newStatus.files.length !== 0 && newStatus.nsfw === false && newStatus.spoilerText !== ''"
+          keypath="post_status.media_not_sensitive_warning"
+          tag="p"
+          class="visibility-notice"
+          scope="global"
+        >
+          {{ $t('post_status.media_not_sensitive_warning') }}
+        </i18n-t>
         <EmojiInput
           ref="emoji-input"
           v-model="newStatus.status"
