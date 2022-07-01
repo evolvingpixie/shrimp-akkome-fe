@@ -265,6 +265,13 @@ export default defineComponent({
           })]
         }
 
+        case 'search': {
+          return [h('a', {
+            href: `https://www.google.com/search?q=${token.props.query}`
+          }, token.props.content)
+          ]
+        }
+
         default: {
           console.error('unrecognized ast type:', token.type)
 
