@@ -103,6 +103,114 @@
       </table>
     </div>
     <mfa />
+
+    <div class="setting-item">
+      <h2>{{ $t('settings.account_alias') }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ $t('settings.account_alias_table_head') }}</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="alias in aliases"
+            :key="alias"
+          >
+            <td>{{ alias }}</td>
+            <td class="actions">
+              <button
+                class="btn button-default"
+                @click="removeAlias(alias)"
+              >
+                {{ $t('settings.remove_alias') }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        v-if="listAliasesError"
+        class="alert error"
+      >
+        {{ $t('settings.list_aliases_error', { error }) }}
+        <FAIcon
+          class="fa-scale-110 fa-old-padding"
+          icon="times"
+          :title="$t('settings.hide_list_aliases_error_action')"
+          @click="listAliasesError = false"
+        />
+      </div>
+      <div>
+        <i18n
+          path="settings.new_alias_target"
+          tag="p"
+        >
+          <code
+            place="example"
+          >
+            foo@example.org
+          </code>
+        </i18n>
+        <input
+          v-model="addAliasTarget"
+        >
+      </div>
+      <button
+        class="btn button-default"
+        @click="addAlias"
+      >
+        {{ $t('settings.save') }}
+      </button>
+      <p v-if="addedAlias">
+        {{ $t('settings.added_alias') }}
+      </p>
+      <template v-if="addAliasError !== false">
+        <p>{{ $t('settings.add_alias_error', { error: addAliasError }) }}</p>
+      </template>
+    </div>
+
+    <div class="setting-item">
+      <h2>{{ $t('settings.move_account') }}</h2>
+      <p>{{ $t('settings.move_account_notes') }}</p>
+      <div>
+        <i18n
+          path="settings.move_account_target"
+          tag="p"
+        >
+          <code
+            place="example"
+          >
+            foo@example.org
+          </code>
+        </i18n>
+        <input
+          v-model="moveAccountTarget"
+        >
+      </div>
+      <div>
+        <p>{{ $t('settings.current_password') }}</p>
+        <input
+          v-model="moveAccountPassword"
+          type="password"
+          autocomplete="current-password"
+        >
+      </div>
+      <button
+        class="btn button-default"
+        @click="moveAccount"
+      >
+        {{ $t('settings.save') }}
+      </button>
+      <p v-if="movedAccount">
+        {{ $t('settings.moved_account') }}
+      </p>
+      <template v-if="moveAccountError !== false">
+        <p>{{ $t('settings.move_account_error', { error: moveAccountError }) }}</p>
+      </template>
+    </div>
+
     <div class="setting-item">
       <h2>{{ $t('settings.delete_account') }}</h2>
       <p v-if="!deletingAccount">
