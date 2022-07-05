@@ -1188,7 +1188,7 @@ const searchUsers = ({ credentials, query }) => {
     .then((data) => data.map(parseUser))
 }
 
-const search2 = ({ credentials, q, resolve, limit, offset, following }) => {
+const search2 = ({ credentials, q, resolve, limit, offset, following, type }) => {
   let url = MASTODON_SEARCH_2
   let params = []
 
@@ -1210,6 +1210,10 @@ const search2 = ({ credentials, q, resolve, limit, offset, following }) => {
 
   if (following) {
     params.push(['following', true])
+  }
+
+  if (type) {
+    params.push(['type', type])
   }
 
   params.push(['with_relationships', true])

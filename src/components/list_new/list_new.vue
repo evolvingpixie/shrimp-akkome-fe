@@ -21,23 +21,10 @@
         :placeholder="$t('lists.title')"
       >
     </div>
-    <div class="input-wrap">
-      <div class="input-search">
-        <FAIcon
-          class="search-icon fa-scale-110 fa-old-padding"
-          icon="search"
-        />
-      </div>
-      <input
-        ref="search"
-        v-model="query"
-        :placeholder="$t('lists.search')"
-        @input="onInput"
-      >
-    </div>
+
     <div class="member-list">
       <div
-        v-for="user in availableUsers"
+        v-for="user in selectedUsers"
         :key="user.id"
         class="member"
       >
@@ -48,6 +35,21 @@
         />
       </div>
     </div>
+    <ListUserSearch
+      @results="onResults"
+    />
+    <div
+      v-for="user in users"
+      :key="user.id"
+      class="member"
+    >
+      <BasicUserCard
+        :user="user"
+        :class="isSelected(user) ? 'selected' : ''"
+        @click.capture.prevent="selectUser(user)"
+      />
+    </div>
+
     <button
       :disabled="title && title.length === 0"
       class="btn button-default"
@@ -64,15 +66,6 @@
 @import '../../_variables.scss';
 
 .list-new {
-  .input-wrap {
-    display: flex;
-    margin: 0.7em 0.5em 0.7em 0.5em;
-
-    input {
-      width: 100%;
-    }
-  }
-
   .search-icon {
     margin-right: 0.3em;
   }

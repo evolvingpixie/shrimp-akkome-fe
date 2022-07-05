@@ -21,23 +21,23 @@
         :placeholder="$t('lists.title')"
       >
     </div>
-    <div class="input-wrap">
-      <div class="input-search">
-        <FAIcon
-          class="search-icon fa-scale-110 fa-old-padding"
-          icon="search"
-        />
-      </div>
-      <input
-        ref="search"
-        v-model="query"
-        :placeholder="$t('lists.search')"
-        @input="onInput"
-      >
-    </div>
     <div class="member-list">
       <div
-        v-for="user in availableUsers"
+        v-for="user in selectedUsers"
+        :key="user.id"
+        class="member"
+      >
+        <BasicUserCard
+          :user="user"
+          :class="isSelected(user) ? 'selected' : ''"
+          @click.capture.prevent="selectUser(user)"
+        />
+      </div>
+    </div>
+    <ListUserSearch @results="onResults" />
+    <div class="member-list">
+      <div
+        v-for="user in users"
         :key="user.id"
         class="member"
       >
