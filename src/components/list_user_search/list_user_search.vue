@@ -17,6 +17,7 @@
     <div class="input-wrap">
       <Checkbox
         v-model="followingOnly"
+        @change="onInput"
       >
         {{ $t('lists.following_only') }}
       </Checkbox>
