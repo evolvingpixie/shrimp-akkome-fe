@@ -970,7 +970,8 @@
     "search": "Search users",
     "create": "Create",
     "save": "Save changes",
-    "delete": "Delete list"
+    "delete": "Delete list",
+    "following_only": "Limit to Following"
   },
   "file_type": {
     "audio": "Audio",

@@ -1,5 +1,6 @@
 import { mapState, mapGetters } from 'vuex'
 import BasicUserCard from '../basic_user_card/basic_user_card.vue'
+import ListUserSearch from '../list_user_search/list_user_search.vue'
 import UserAvatar from '../user_avatar/user_avatar.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -15,15 +16,14 @@ library.add(
 const ListNew = {
   components: {
     BasicUserCard,
-    UserAvatar
+    UserAvatar,
+    ListUserSearch
   },
   data () {
     return {
       title: '',
       userIds: [],
-      selectedUserIds: [],
-      loading: false,
-      query: ''
+      selectedUserIds: []
     }
   },
   created () {
@@ -46,13 +46,6 @@ const ListNew = {
     },
     selectedUsers () {
       return this.selectedUserIds.map(userId => this.findUser(userId)).filter(user => user)
-    },
-    availableUsers () {
-      if (this.query.length !== 0) {
-        return this.users
-      } else {
-        return this.selectedUsers
-      }
     },
     ...mapState({
       currentUser: state => state.users.currentUser
@@ -79,19 +72,8 @@ const ListNew = {
     removeUser (userId) {
       this.selectedUserIds = this.selectedUserIds.filter(id => id !== userId)
     },
-    search (query) {
-      if (!query) {
-        this.loading = false
-        return
-      }
-
-      this.loading = true
-      this.userIds = []
-      this.$store.dispatch('search', { q: query, resolve: true, type: 'accounts', following: true })
-        .then(data => {
-          this.loading = false
-          this.userIds = data.accounts.map(a => a.id)
-        })
+    onResults (results) {
+      this.userIds = results
     },
     updateList () {
       this.$store.dispatch('setList', { id: this.id, title: this.title })
