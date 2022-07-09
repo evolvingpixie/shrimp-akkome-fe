@@ -33,6 +33,8 @@
     "escape-html": "1.0.3",
     "js-cookie": "^3.0.1",
     "localforage": "1.10.0",
+    "marked": "^4.0.17",
+    "marked-mfm": "^0.2.1",
     "mfm-js": "^0.22.1",
     "parse-link-header": "1.0.1",
     "phoenix": "1.6.2",
