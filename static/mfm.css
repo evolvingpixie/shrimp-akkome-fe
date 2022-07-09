@@ -1,4 +1,95 @@
-@keyframes tada {
+.mfm {
+  display: inline-block;
+}
+
+._mfm_tada_ {
+  font-size: 150%;
+  animation: mfm-tada 1s linear infinite both;
+}
+
+._mfm_jelly_ {
+  --speed: attr(data-speed time, 1s);
+  animation: mfm-jelly var(--speed) linear infinite both;
+}
+
+._mfm_twitch_ {
+  --speed: attr(data-speed time, 0.5s);
+  animation: mfm-twitch var(--speed) ease infinite;
+}
+
+._mfm_shake_ {
+  --speed: attr(data-speed time, 0.5s);
+  animation: mfm-shake var(--speed) ease infinite;
+}
+
+._mfm_spin_ {
+  --speed: attr(data-speed time, 1.5s);
+  animation: mfm-spin var(--speed) linear infinite;
+}
+
+._mfm_spin_[x] {
+  animation-name: mfm-spinX;
+}
+._mfm_spin_[y] {
+  animation-name: mfm-spinY;
+}
+._mfm_spin_[left] {
+  animation-direction: reverse;
+}
+._mfm_spin_[alternate] {
+  animation-direction: alternate;
+}
+
+._mfm_jump_ {
+  animation: mfm-jump 0.75 linear infinite;
+}
+
+._mfm_bounce_ {
+  animation: mfm-bounce 0.75 linear infinite;
+  transform-origin: center bottom;
+}
+
+._mfm_flip_[data-h][data-v] {
+  transform: scale(-1, -1);
+}
+._mfm_flip_[data-v] {
+  transform: scaleY(-1);
+}
+._mfm_flip_:not([data-v]) {
+  transform: scaleX(-1);
+}
+
+._mfm_x2_ {
+  font-size: 200%;
+}
+
+._mfm_x3_ {
+  font-size: 400%;
+}
+
+._mfm_x4_ {
+  font-size: 600%;
+}
+
+._mfm_font_ {
+  font-family: attr(family, inherit);
+}
+
+/* blur */
+
+._mfm_rainbow_ {
+  animation: mfm-rainbow 1s linear infinite;
+}
+
+._mfm_rotate_ {
+  --deg: attr(data-deg deg, 90deg);
+  transform: rotate(var(--deg));
+  transform-origin: center center;
+}
+
+/* sparkle */
+
+@keyframes mfm-tada {
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -123,7 +214,7 @@
   100% { transform: translate(2px, 1px) rotate(2deg); }
 }
 
-@keyframes mfm-rubberBand {
+@keyframes mfm-jelly {
   from { transform: scale3d(1, 1, 1); }
   30% { transform: scale3d(1.25, 0.75, 1); }
   40% { transform: scale3d(0.75, 1.25, 1); }
