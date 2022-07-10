@@ -80,10 +80,15 @@
   }
 
   .nav-icon {
-    margin-left: 0.2em;
+    margin-left: 1em;
     width: 2em;
     height: 100%;
+    font-size: 130%;
     text-align: center;
+
+    &-logout {
+      margin-left: 2em;
+    }
 
     .svg-inline--fa {
       color: $fallback--link;
