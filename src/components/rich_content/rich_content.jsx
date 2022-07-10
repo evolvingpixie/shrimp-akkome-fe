@@ -126,7 +126,26 @@ export default {
         gfm: false,
         breaks: true
       })
-      return marked.parse(content)
+      const mfmHtml = document.createElement('template')
+      mfmHtml.innerHTML = marked.parse(content)
+
+      // Add options with set values to CSS
+      Array.from(mfmHtml.content.firstChild.getElementsByClassName('mfm')).map((el) => {
+        if (el.dataset.speed) {
+          el.style.animationDuration = el.dataset.speed
+        }
+        if (el.dataset.deg) {
+          el.style.transform = `rotate(${el.dataset.deg}deg)`
+        }
+        if (Array.from(el.classList).includes('_mfm_font_')) {
+          const font = Object.keys(el.dataset)[0]
+          if (['serif', 'monospace', 'cursive', 'fantasy', 'emoji', 'math'].includes(font)) {
+            el.style.fontFamily = font
+          }
+        }
+      })
+
+      return mfmHtml.innerHTML
     }
 
     // Processor to use with html_tree_converter

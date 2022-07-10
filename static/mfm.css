@@ -8,23 +8,19 @@
 }
 
 ._mfm_jelly_ {
-  --speed: attr(data-speed time, 1s);
-  animation: mfm-jelly var(--speed) linear infinite both;
+  animation: mfm-jelly 1s linear infinite both;
 }
 
 ._mfm_twitch_ {
-  --speed: attr(data-speed time, 0.5s);
-  animation: mfm-twitch var(--speed) ease infinite;
+  animation: mfm-twitch 0.5s ease infinite;
 }
 
 ._mfm_shake_ {
-  --speed: attr(data-speed time, 0.5s);
-  animation: mfm-shake var(--speed) ease infinite;
+  animation: mfm-shake 0.5s ease infinite;
 }
 
 ._mfm_spin_ {
-  --speed: attr(data-speed time, 1.5s);
-  animation: mfm-spin var(--speed) linear infinite;
+  animation: mfm-spin 0.5s linear infinite;
 }
 
 ._mfm_spin_[x] {
@@ -71,10 +67,6 @@
   font-size: 600%;
 }
 
-._mfm_font_ {
-  font-family: attr(family, inherit);
-}
-
 /* blur */
 
 ._mfm_rainbow_ {
@@ -82,8 +74,7 @@
 }
 
 ._mfm_rotate_ {
-  --deg: attr(data-deg deg, 90deg);
-  transform: rotate(var(--deg));
+  transform: rotate(90deg);
   transform-origin: center center;
 }
 
