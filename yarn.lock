@@ -7443,10 +7443,10 @@ markdown-table@^2.0.0:
   dependencies:
     repeat-string "^1.0.0"
 
-marked-mfm@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/marked-mfm/-/marked-mfm-0.2.1.tgz#0956f469111772da92a4ed2bb33c7c4d1b2c7040"
-  integrity sha512-sD4NMZz8BUa+gyyqEqZN+vgQCdP/kvShr8Etsv5q5TdUTbENSXLL8oNGHMTeLt+bxDzAaHY02cAwXidXWNXriw==
+marked-mfm@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/marked-mfm/-/marked-mfm-0.4.0.tgz#d3094c42daaa57b1b0b263278633de82ebf62396"
+  integrity sha512-2ZdBHGOV7BFJUcQNLp/jjwEE2IT1O5d1H7cd4dGeuOBI1nivuBCv1Azt7fbRlygfUSQ2rgGtFZ1ZbrP4dRhh3A==
   dependencies:
     "@babel/core" "^7.18.6"
     "@babel/preset-env" "^7.18.6"

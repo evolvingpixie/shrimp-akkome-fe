@@ -1,6 +1,5 @@
 import fileType from 'src/services/file_type/file_type.service'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
-import MFMContent from 'src/components/mfm_content/mfm_content.jsx'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -84,8 +83,7 @@ const StatusContent = {
     ...mapGetters(['mergedConfig'])
   },
   components: {
-    RichContent,
-    MFMContent
+    RichContent
   },
   mounted () {
     this.status.attentions && this.status.attentions.forEach(attn => {
