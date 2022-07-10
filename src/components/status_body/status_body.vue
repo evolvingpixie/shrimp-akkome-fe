@@ -50,7 +50,7 @@
             :html="status.raw_html"
             :emoji="status.emojis"
             :handle-links="true"
-            :mfm="renderMisskeyMarkdown && (status.content_type === 'text/x.misskeymarkdown')"
+            :mfm="renderMisskeyMarkdown && (status.media_type === 'text/x.misskeymarkdown')"
             :greentext="mergedConfig.greentext"
             :attentions="status.attentions"
             @parseReady="onParseReady"
