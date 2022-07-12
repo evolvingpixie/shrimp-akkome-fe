@@ -17,7 +17,6 @@
   & .text,
   & .summary {
     font-family: var(--postFont, sans-serif);
-    white-space: pre-wrap;
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
@@ -31,6 +30,9 @@
   }
 
   .text {
+    & > * {
+      white-space: pre-wrap;
+    }
     &.-single-line {
       white-space: nowrap;
       text-overflow: ellipsis;
