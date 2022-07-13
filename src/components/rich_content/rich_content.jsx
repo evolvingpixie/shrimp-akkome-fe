@@ -70,6 +70,11 @@ export default {
   },
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render () {
+    // Don't greentext MFM
+    if (this.mfm) {
+      this.greentext = false
+    }
+
     // Pre-process HTML
     const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
