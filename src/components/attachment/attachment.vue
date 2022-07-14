@@ -255,6 +255,7 @@
         :placeholder="$t('post_status.media_description')"
         rows="1"
         cols="1"
+        @keydown.ctrl.enter="postStatus()"
         @input="resize"
       />
       <p v-else>
