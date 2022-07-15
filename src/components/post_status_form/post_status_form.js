@@ -112,16 +112,10 @@ const PostStatusForm = {
     const preset = this.$route.query.message
     let statusText = preset || ''
 
-    const { scopeCopy } = this.$store.getters.mergedConfig
-
     if (this.replyTo) {
       const currentUser = this.$store.state.users.currentUser
       statusText = buildMentionsString({ user: this.repliedUser, attentions: this.attentions }, currentUser)
     }
-
-    const scope = ((this.copyMessageScope && scopeCopy) || this.copyMessageScope === 'direct')
-      ? this.copyMessageScope
-      : this.$store.state.users.currentUser.default_scope
 
     const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject } = this.$store.getters.mergedConfig
 
@@ -139,7 +133,7 @@ const PostStatusForm = {
         files: [],
         poll: {},
         mediaDescriptions: {},
-        visibility: scope,
+        visibility: this.suggestedVisibility(),
         contentType
       },
       caret: 0,
@@ -614,6 +608,19 @@ const PostStatusForm = {
     },
     openProfileTab () {
       this.$store.dispatch('openSettingsModalTab', 'profile')
+    },
+    suggestedVisibility () {
+      if (this.copyMessageScope) {
+        if (this.copyMessageScope === 'direct') {
+          return this.copyMessageScope
+        }
+        if (this.$store.getters.mergedConfig.scopeCopy) {
+          if (this.copyMessageScope !== 'public' && this.$store.state.users.currentUser.default_scope !== 'private') {
+            return this.copyMessageScope
+          }
+        }
+      }
+      return this.$store.state.users.currentUser.default_scope
     }
   }
 }

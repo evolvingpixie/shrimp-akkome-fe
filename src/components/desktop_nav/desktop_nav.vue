@@ -63,7 +63,7 @@
         </a>
         <button
           v-if="currentUser"
-          class="button-unstyled nav-icon"
+          class="button-unstyled nav-icon nav-icon-logout"
           @click.prevent="logout"
         >
           <FAIcon
