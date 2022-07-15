@@ -25,7 +25,7 @@ This could be a bit trickier, you basically need steps 1-4 from *develop build* 
 
 ### Replacing your instance's frontend with custom FE build
 
-This is the most easiest way to use and test FE build: you just need to copy or symlink contents of `dist` folder into backend's [static directory](../backend/configuration/static_dir.md), by default it is located in `instance/static`, or in `/var/lib/pleroma/static` for OTP release installations, create it if it doesn't exist already. Be aware that running `yarn build` wipes the contents of `dist` folder.
+This is the most easiest way to use and test FE build: you just need to copy or symlink contents of `dist` folder into backend's [static directory](https://docs.akkoma.dev/stable/configuration/static_dir/), by default it is located in `instance/static`, or in `/var/lib/pleroma/static` for OTP release installations, create it if it doesn't exist already. Be aware that running `yarn build` wipes the contents of `dist` folder.
 
 ### Running production build locally or on a separate server
 
@@ -67,7 +67,7 @@ server {
 
 ### API, Data, Operations
 
-In 99% cases PleromaFE uses [MastoAPI](https://docs.joinmastodon.org/api/) with [Pleroma Extensions](../backend/API/differences_in_mastoapi_responses.md) to fetch the data. The rest is either QvitterAPI leftovers or pleroma-exclusive APIs. QvitterAPI doesn't exactly have documentation and uses different JSON structure and sometimes different parameters and workflows, [this](https://twitter-api.readthedocs.io/en/latest/index.html) could be a good reference though. Some pleroma-exclusive API may still be using QvitterAPI JSON structure.
+In 99% cases PleromaFE uses [MastoAPI](https://docs.joinmastodon.org/api/) with [Pleroma Extensions](https://docs.akkoma.dev/stable/differences_in_mastoapi_responses.md) to fetch the data. The rest is either QvitterAPI leftovers or pleroma-exclusive APIs. QvitterAPI doesn't exactly have documentation and uses different JSON structure and sometimes different parameters and workflows, [this](https://twitter-api.readthedocs.io/en/latest/index.html) could be a good reference though. Some pleroma-exclusive API may still be using QvitterAPI JSON structure.
 
 PleromaFE supports both formats by transforming them into internal format which is basically QvitterAPI one with some additions and renaming. All data is passed trough [Entity Normalizer](https://git.pleroma.social/pleroma/pleroma-fe/-/blob/develop/src/services/entity_normalizer/entity_normalizer.service.js) which can serve as a reference of API and what's actually used, it's also a host for all the hacks and data transformation.
 
