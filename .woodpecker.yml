@@ -60,7 +60,6 @@ pipeline:
       branch:
       - develop
       - stable
-      - stable-docs
     environment:
       CI: "true"
     image: python:3.10-slim
