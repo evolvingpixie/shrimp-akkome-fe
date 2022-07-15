@@ -2,7 +2,6 @@ pipeline:
   lint:
     when:
       event:
-      - push
       - pull_request
     image: node:16
     commands:
@@ -13,7 +12,6 @@ pipeline:
   test:
     when:
       event:
-      - push
       - pull_request
     image: node:16
     commands:
@@ -28,6 +26,7 @@ pipeline:
       - push
       branch:
       - develop
+      - stable
     image: node:16
     commands:
     - yarn
@@ -39,6 +38,7 @@ pipeline:
       - push
       branch:
       - develop
+      - stable
     image: node:16
     secrets:
     - SCW_ACCESS_KEY
@@ -52,3 +52,31 @@ pipeline:
       - ./scaleway-cli object config install type=rclone
       - zip akkoma-fe.zip -r dist
       - rclone copyto akkoma-fe.zip scaleway:akkoma-updates/frontend/akkoma-fe.zip
+
+  docs:
+    when:
+      event:
+      - push
+      branch:
+      - develop
+      - stable
+      - stable-docs
+    environment:
+      CI: "true"
+    image: python:3.10-slim
+    secrets:
+    - SCW_ACCESS_KEY
+    - SCW_SECRET_KEY
+    - SCW_DEFAULT_ORGANIZATION_ID
+    commands:
+    - apt-get update && apt-get install -y rclone wget git zip
+    - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.5.1/scaleway-cli_2.5.1_linux_amd64
+    - mv scaleway-cli_2.5.1_linux_amd64 scaleway-cli
+    - chmod +x scaleway-cli
+    - ./scaleway-cli object config install type=rclone
+    - cd docs
+    - pip install -r requirements.txt
+    - mkdocs build
+    - zip -r docs.zip site/*
+    - cd site
+    - rclone copy . scaleway:akkoma-docs/frontend/$CI_COMMIT_BRANCH/
