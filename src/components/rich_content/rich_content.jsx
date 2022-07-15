@@ -71,12 +71,10 @@ export default {
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render () {
     // Don't greentext MFM
-    if (this.mfm) {
-      this.greentext = false
-    }
+    const greentext = this.mfm ? false : this.greentext
 
     // Pre-process HTML
-    const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
+    const { newHtml: html } = preProcessPerLine(this.html, greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
     // This is used to recover spacing removed when parsing mentions
     let lastSpacing = ''

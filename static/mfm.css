@@ -23,10 +23,10 @@
   animation: mfm-spin 0.5s linear infinite;
 }
 
-._mfm_spin_[x] {
+._mfm_spin_[data-x] {
   animation-name: mfm-spinX;
 }
-._mfm_spin_[y] {
+._mfm_spin_[data-y] {
   animation-name: mfm-spinY;
 }
 ._mfm_spin_[left] {
