@@ -44,18 +44,13 @@
         <div
           v-if="!hideSubjectStatus && !(singleLine && status.summary_raw_html)"
         >
-          <MFMContent
-            v-if="renderMisskeyMarkdown && status.mfm_content"
-            class="RichContent text media-body mfm-post-content"
-            :status="status"
-          />
           <RichContent
-            v-else
             :class="{ '-single-line': singleLine }"
             class="text media-body"
             :html="status.raw_html"
             :emoji="status.emojis"
             :handle-links="true"
+            :mfm="renderMisskeyMarkdown && (status.media_type === 'text/x.misskeymarkdown')"
             :greentext="mergedConfig.greentext"
             :attentions="status.attentions"
             @parseReady="onParseReady"

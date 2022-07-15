@@ -2,6 +2,8 @@ import { unescape, flattenDeep } from 'lodash'
 import { getTagName, processTextForEmoji, getAttrs } from 'src/services/html_converter/utility.service.js'
 import { convertHtmlToTree } from 'src/services/html_converter/html_tree_converter.service.js'
 import { convertHtmlToLines } from 'src/services/html_converter/html_line_converter.service.js'
+import { marked } from 'marked'
+import markedMfm from 'marked-mfm'
 import StillImage from 'src/components/still-image/still-image.vue'
 import MentionsLine, { MENTIONS_LIMIT } from 'src/components/mentions_line/mentions_line.vue'
 import HashtagLink from 'src/components/hashtag_link/hashtag_link.vue'
@@ -58,10 +60,21 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    // Render Misskey Markdown
+    mfm: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   // NEVER EVER TOUCH DATA INSIDE RENDER
   render () {
+    // Don't greentext MFM
+    if (this.mfm) {
+      this.greentext = false
+    }
+
     // Pre-process HTML
     const { newHtml: html } = preProcessPerLine(this.html, this.greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
@@ -110,6 +123,34 @@ export default {
       } else {
         return ''
       }
+    }
+
+    const renderMisskeyMarkdown = (content) => {
+      marked.use(markedMfm, {
+        mangle: false,
+        gfm: false,
+        breaks: true
+      })
+      const mfmHtml = document.createElement('template')
+      mfmHtml.innerHTML = marked.parse(content)
+
+      // Add options with set values to CSS
+      Array.from(mfmHtml.content.firstChild.getElementsByClassName('mfm')).map((el) => {
+        if (el.dataset.speed) {
+          el.style.animationDuration = el.dataset.speed
+        }
+        if (el.dataset.deg) {
+          el.style.transform = `rotate(${el.dataset.deg}deg)`
+        }
+        if (Array.from(el.classList).includes('_mfm_font_')) {
+          const font = Object.keys(el.dataset)[0]
+          if (['serif', 'monospace', 'cursive', 'fantasy', 'emoji', 'math'].includes(font)) {
+            el.style.fontFamily = font
+          }
+        }
+      })
+
+      return mfmHtml.innerHTML
     }
 
     // Processor to use with html_tree_converter
@@ -249,7 +290,7 @@ export default {
       return item
     }
 
-    const pass1 = convertHtmlToTree(html).map(processItem)
+    const pass1 = convertHtmlToTree(this.mfm ? renderMisskeyMarkdown(html) : html).map(processItem)
     const pass2 = [...pass1].reverse().map(processItemReverse).reverse()
     // DO NOT USE SLOTS they cause a re-render feedback loop here.
     // slots updated -> rerender -> emit -> update up the tree -> rerender -> ...

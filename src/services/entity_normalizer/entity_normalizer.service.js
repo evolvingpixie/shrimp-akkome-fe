@@ -282,11 +282,9 @@ export const parseStatus = (data) => {
 
     if (data.akkoma) {
       const { akkoma } = data
-      if (akkoma && akkoma.source && akkoma.source.mediaType === 'text/x.misskeymarkdown') {
-        output.mfm_content = akkoma.source.content
+      if (akkoma && akkoma.source) {
+        output.media_type = akkoma.source.mediaType
       }
-    } else {
-      output.mfm_content = null
     }
 
     output.in_reply_to_status_id = data.in_reply_to_id
