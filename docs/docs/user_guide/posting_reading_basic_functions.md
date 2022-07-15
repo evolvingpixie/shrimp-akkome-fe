@@ -65,6 +65,16 @@ If you set the input-method to Markdown, and post this, it will look something l
 
 ![example_markdown](../assets/example_markdown.png)
 
+## Misskey markdown
+
+The akkoma version of pleroma-fe includes support for writing and rendering
+misskey markdown (MFM). To write this you will need to select "MFM" from
+the content type dropdown (if supported), and then you can format text
+[in MFM](https://akkoma.dev/sfr/marked-mfm/src/branch/master/docs/syntax.md).
+
+To render MFM, you will need to turn on "Render Misskey Markdown" in
+the settings modal.
+
 ## Other actions
 
 In addition to posting you can also *favorite* posts also known as *liking* them and *repeat* posts (also known as *retweeting*, *boosting* and even *reprööting*). Favoriting a post increments a counter on it, notifies the post author of your affection towards that post and also adds that post to your "favorited" posts list (in your own profile, "Favorites" tab). Reprööting a post does all that and also repeats this post to your followers and your profile page with a note "*user* repeated post".
