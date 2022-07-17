@@ -126,6 +126,9 @@ const Attachment = {
     videoTag () {
       return this.useModal ? 'button' : 'span'
     },
+    statusForm () {
+      return this.$parent.$parent
+    },
     ...mapGetters(['mergedConfig'])
   },
   watch: {
@@ -219,6 +222,9 @@ const Attachment = {
       const newHeight = Math.floor(target.scrollHeight - padding * 2)
       target.style.height = `${newHeight}px`
       this.$emit('resize', newHeight)
+    },
+    postStatus (event) {
+      console.log(this.statusForm.postStatus(event, this.statusForm.newStatus))
     }
   }
 }
