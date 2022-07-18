@@ -731,8 +731,7 @@
       "disable_remote_subscription": "No permitir que usuarios de instancias remotas te siga",
       "disable_any_subscription": "No permitir que ningún usuario te siga",
       "quarantine": "No permitir publicaciones de usuarios de instancias remotas",
-      "delete_user": "Eliminar usuario",
-      "delete_user_confirmation": "¿Estás completamente seguro? Esta acción no se puede deshacer."
+      "delete_user": "Eliminar usuario"
     },
     "show_repeats": "Mostrar repetidos",
     "hide_repeats": "Ocultar repetidos",

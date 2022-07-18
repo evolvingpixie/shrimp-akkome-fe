@@ -3,6 +3,10 @@
 .DesktopNav {
   width: 100%;
 
+  input {
+    color: var(--inputTopbarText, var(--inputText));
+  }
+
   a {
     color: var(--topBarLink, $fallback--link);
   }

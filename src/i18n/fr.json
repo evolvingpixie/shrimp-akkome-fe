@@ -659,8 +659,7 @@
       "disable_remote_subscription": "Interdir de s'abonner a l'utilisateur depuis l'instance distante",
       "disable_any_subscription": "Interdir de s'abonner à l'utilisateur tout court",
       "quarantine": "Interdir les statuts de l'utilisateur à fédérer",
-      "delete_user": "Supprimer l'utilisateur",
-      "delete_user_confirmation": "Êtes-vous absolument-sûr⋅e ? Cette action ne peut être annulée."
+      "delete_user": "Supprimer l'utilisateur"
     },
     "mention": "Mention",
     "hidden": "Caché",

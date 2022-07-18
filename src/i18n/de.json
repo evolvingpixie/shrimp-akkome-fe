@@ -582,7 +582,6 @@
     "statuses": "Beiträge",
     "admin_menu": {
       "sandbox": "Erzwinge Beiträge nur für Follower sichtbar zu sein",
-      "delete_user_confirmation": "Achtung! Diese Entscheidung kann nicht rückgängig gemacht werden! Trotzdem durchführen?",
       "grant_admin": "Administratorprivilegien gewähren",
       "delete_user": "Nutzer löschen",
       "strip_media": "Medien von Beiträgen entfernen",

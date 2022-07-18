@@ -3,6 +3,7 @@ import timelineFetcher from '../timeline_fetcher/timeline_fetcher.service.js'
 import notificationsFetcher from '../notifications_fetcher/notifications_fetcher.service.js'
 import followRequestFetcher from '../../services/follow_request_fetcher/follow_request_fetcher.service'
 import listsFetcher from '../../services/lists_fetcher/lists_fetcher.service.js'
+import announcementsFetcher from '../../services/announcements_fetcher/announcements_fetcher.service.js'
 
 const backendInteractorService = credentials => ({
   startFetchingTimeline ({ timeline, store, userId = false, listId = false, tag }) {
@@ -27,6 +28,10 @@ const backendInteractorService = credentials => ({
 
   startFetchingLists ({ store }) {
     return listsFetcher.startFetching({ store, credentials })
+  },
+
+  startFetchingAnnouncements ({ store }) {
+    return announcementsFetcher.startFetching({ store, credentials })
   },
 
   startUserSocket ({ store }) {

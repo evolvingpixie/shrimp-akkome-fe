@@ -762,8 +762,7 @@
       "disable_remote_subscription": "Zakaż obserwowania użytkownika ze zdalnych instancji",
       "disable_any_subscription": "Zakaż całkowicie obserwowania użytkownika",
       "quarantine": "Zakaż federowania postów od tego użytkownika",
-      "delete_user": "Usuń użytkownika",
-      "delete_user_confirmation": "Czy jesteś absolutnie pewny(-a)? Ta operacja nie może być cofnięta."
+      "delete_user": "Usuń użytkownika"
     },
     "message": "Napisz",
     "edit_profile": "Edytuj profil",

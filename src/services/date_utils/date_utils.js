@@ -10,31 +10,29 @@ export const relativeTime = (date, nowThreshold = 1) => {
   if (typeof date === 'string') date = Date.parse(date)
   const round = Date.now() > date ? Math.floor : Math.ceil
   const d = Math.abs(Date.now() - date)
-  let r = { num: round(d / YEAR), key: 'time.years' }
+  let r = { num: round(d / YEAR), key: 'time.unit.years' }
   if (d < nowThreshold * SECOND) {
     r.num = 0
     r.key = 'time.now'
   } else if (d < MINUTE) {
     r.num = round(d / SECOND)
-    r.key = 'time.seconds'
+    r.key = 'time.unit.seconds'
   } else if (d < HOUR) {
     r.num = round(d / MINUTE)
-    r.key = 'time.minutes'
+    r.key = 'time.unit.minutes'
   } else if (d < DAY) {
     r.num = round(d / HOUR)
-    r.key = 'time.hours'
+    r.key = 'time.unit.hours'
   } else if (d < WEEK) {
     r.num = round(d / DAY)
-    r.key = 'time.days'
+    r.key = 'time.unit.days'
   } else if (d < MONTH) {
     r.num = round(d / WEEK)
-    r.key = 'time.weeks'
+    r.key = 'time.unit.weeks'
   } else if (d < YEAR) {
     r.num = round(d / MONTH)
-    r.key = 'time.months'
+    r.key = 'time.unit.months'
   }
-  // Remove plural form when singular
-  if (r.num === 1) r.key = r.key.slice(0, -1)
   return r
 }
 

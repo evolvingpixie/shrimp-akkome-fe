@@ -606,7 +606,6 @@
     "mention": "Mencio",
     "hidden": "Kaŝita",
     "admin_menu": {
-      "delete_user_confirmation": "Ĉu vi tute certas? Ĉi tiu ago ne estas malfarebla.",
       "delete_user": "Forigi uzanton",
       "quarantine": "Malpermesi federadon de afiŝoj de uzanto",
       "disable_any_subscription": "Malpermesi ĉian abonadon al uzanto",

@@ -747,7 +747,6 @@
     "admin_menu": {
       "delete_account": "刪除賬號",
       "delete_user": "刪除用戶",
-      "delete_user_confirmation": "你確認嗎？此操作無法撤銷。",
       "moderation": "調停",
       "grant_admin": "賦予管理權限",
       "revoke_admin": "撤銷管理權限",

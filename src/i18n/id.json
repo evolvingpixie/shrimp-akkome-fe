@@ -327,8 +327,7 @@
       "delete_account": "Hapus akun",
       "force_nsfw": "Tandai semua postingan sebagai NSFW",
       "strip_media": "Hapus media dari postingan-postingan",
-      "delete_user": "Hapus pengguna",
-      "delete_user_confirmation": "Apakah Anda benar-benar yakin? Tindakan ini tidak dapat dibatalkan."
+      "delete_user": "Hapus pengguna"
     },
     "follow_unfollow": "Berhenti mengikuti",
     "followees": "Mengikuti",

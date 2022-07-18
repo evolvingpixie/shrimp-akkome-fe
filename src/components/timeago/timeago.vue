@@ -3,7 +3,7 @@
     :datetime="time"
     :title="localeDateString"
   >
-    {{ $t(relativeTime.key, [relativeTime.num]) }}
+    {{ $tc(relativeTime.key, relativeTime.num, [relativeTime.num]) }}
   </time>
 </template>
 

@@ -47,7 +47,7 @@ const MobileNav = {
     isChat () {
       return this.$route.name === 'chat'
     },
-    ...mapGetters(['unreadChatCount'])
+    ...mapGetters(['unreadChatCount', 'unreadAnnouncementCount'])
   },
   methods: {
     toggleMobileSidebar () {

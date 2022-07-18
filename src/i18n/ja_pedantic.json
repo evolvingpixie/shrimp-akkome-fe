@@ -731,8 +731,7 @@
       "disable_remote_subscription": "他のインスタンスからフォローされないようにする",
       "disable_any_subscription": "フォローされないようにする",
       "quarantine": "他のインスタンスからの投稿を止める",
-      "delete_user": "ユーザーを削除",
-      "delete_user_confirmation": "あなたの精神状態に何か問題はございませんか？ この操作を取り消すことはできません。"
+      "delete_user": "ユーザーを削除"
     },
     "roles": {
       "moderator": "モデレーター",

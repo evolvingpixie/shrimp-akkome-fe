@@ -347,8 +347,7 @@
       "disable_remote_subscription": "אל תאפשר עקיבה של המשתמש מאינסטנס אחר",
       "disable_any_subscription": "אל תאפשר עקיבה של המשתמש בכלל",
       "quarantine": "אל תאפשר פדרציה של ההודעות של המשתמש",
-      "delete_user": "מחק משתמש",
-      "delete_user_confirmation": "בטוח? פעולה זו הינה בלתי הפיכה."
+      "delete_user": "מחק משתמש"
     }
   },
   "user_profile": {

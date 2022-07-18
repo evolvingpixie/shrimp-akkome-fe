@@ -163,6 +163,7 @@ const api = {
                 dispatch('startFetchingTimeline', { timeline: 'friends' })
                 dispatch('startFetchingNotifications')
                 dispatch('startFetchingChats')
+                dispatch('startFetchingAnnouncements')
                 dispatch('pushGlobalNotice', {
                   level: 'error',
                   messageKey: 'timeline.socket_broke',
@@ -259,6 +260,18 @@ const api = {
       const fetcher = store.state.fetchers.lists
       if (!fetcher) return
       store.commit('removeFetcher', { fetcherName: 'lists', fetcher })
+    },
+
+    // Lists
+    startFetchingAnnouncements (store) {
+      if (store.state.fetchers['announcements']) return
+      const fetcher = store.state.backendInteractor.startFetchingAnnouncements({ store })
+      store.commit('addFetcher', { fetcherName: 'announcements', fetcher })
+    },
+    stopFetchingAnnouncements (store) {
+      const fetcher = store.state.fetchers.announcements
+      if (!fetcher) return
+      store.commit('removeFetcher', { fetcherName: 'announcements', fetcher })
     },
 
     // Pleroma websocket

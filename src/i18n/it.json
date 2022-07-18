@@ -485,7 +485,6 @@
     "deny": "Nega",
     "remote_follow": "Segui da remoto",
     "admin_menu": {
-      "delete_user_confirmation": "Ne sei completamente sicuro? Non potrai tornare indietro.",
       "delete_user": "Elimina utente",
       "quarantine": "I messaggi non arriveranno alle altre stanze",
       "disable_any_subscription": "Rendi utente non seguibile",

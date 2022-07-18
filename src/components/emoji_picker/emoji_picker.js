@@ -6,6 +6,7 @@ import {
   faStickyNote,
   faSmileBeam
 } from '@fortawesome/free-solid-svg-icons'
+import { trim } from 'lodash'
 
 library.add(
   faBoxOpen,
@@ -176,7 +177,7 @@ const EmojiPicker = {
     filteredEmoji () {
       return filterByKeyword(
         this.$store.state.instance.customEmoji || [],
-        this.keyword
+        trim(this.keyword)
       )
     },
     customEmojiBuffer () {
@@ -197,7 +198,7 @@ const EmojiPicker = {
           id: 'standard',
           text: this.$t('emoji.unicode'),
           icon: 'box-open',
-          emojis: filterByKeyword(standardEmojis, this.keyword)
+          emojis: filterByKeyword(standardEmojis, trim(this.keyword))
         }
       ]
     },

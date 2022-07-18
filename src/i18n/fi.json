@@ -620,8 +620,7 @@
       "sandbox": "Pakota viestit vain seuraajille",
       "disable_remote_subscription": "Estä seuraaminen ulkopuolisilta sivuilta",
       "quarantine": "Estä käyttäjän viestin federoituminen",
-      "delete_user": "Poista käyttäjä",
-      "delete_user_confirmation": "Oletko aivan varma? Tätä ei voi kumota."
+      "delete_user": "Poista käyttäjä"
     },
     "favorites": "Tykkäykset",
     "mention": "Mainitse",

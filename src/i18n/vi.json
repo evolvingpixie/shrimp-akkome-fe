@@ -772,8 +772,7 @@
       "quarantine": "Không cho phép tút liên hợp",
       "delete_user": "Xóa người dùng",
       "revoke_moderator": "Gỡ bỏ Quản trị viên",
-      "force_unlisted": "Đánh dấu tất cả tút là hạn chế",
-      "delete_user_confirmation": "Bạn chắc chắn chưa? Hành động này không thể phục hồi."
+      "force_unlisted": "Đánh dấu tất cả tút là hạn chế"
     },
     "highlight": {
       "disabled": "Không nổi bật",

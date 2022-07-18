@@ -580,7 +580,6 @@
     "remote_follow": "Volg vanop afstand",
     "statuses": "Statussen",
     "admin_menu": {
-      "delete_user_confirmation": "Weet je het heel zeker? Deze uitvoering kan niet ongedaan worden gemaakt.",
       "delete_user": "Gebruiker verwijderen",
       "quarantine": "Federeren van gebruikers berichten verbieden",
       "disable_any_subscription": "Volgen van gebruiker in zijn geheel verbieden",

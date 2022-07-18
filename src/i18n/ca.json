@@ -621,7 +621,6 @@
       "disable_any_subscription": "Deshabilita completament seguir algú",
       "quarantine": "Deshabilita la federació a les entrades de les usuàries",
       "moderation": "Moderació",
-      "delete_user_confirmation": "Estàs completament segur/a? Aquesta acció no es pot desfer.",
       "revoke_admin": "Revoca l'Admin",
       "activate_account": "Activa el compte",
       "deactivate_account": "Desactiva el compte",

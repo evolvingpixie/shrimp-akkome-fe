@@ -576,8 +576,7 @@
       "disable_remote_subscription": "Запретить читать с других узлов",
       "disable_any_subscription": "Запретить читать пользователя",
       "quarantine": "Не федерировать статусы пользователя",
-      "delete_user": "Удалить пользователя",
-      "delete_user_confirmation": "Вы уверены? Это действие нельзя отменить."
+      "delete_user": "Удалить пользователя"
     },
     "media": "С вложениями",
     "mention": "Упомянуть",

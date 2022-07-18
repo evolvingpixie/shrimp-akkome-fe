@@ -53,6 +53,67 @@
         :export-button-label="$t('settings.mute_export_button')"
       />
     </div>
+    <div class="setting-item">
+      <h2>{{ $t('settings.account_backup') }}</h2>
+      <p>{{ $t('settings.account_backup_description') }}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ $t('settings.account_backup_table_head') }}</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="backup in backups"
+            :key="backup.id"
+          >
+            <td>{{ backup.inserted_at }}</td>
+            <td class="actions">
+              <a
+                v-if="backup.processed"
+                target="_blank"
+                :href="backup.url"
+              >
+                {{ $t('settings.download_backup') }}
+              </a>
+              <span
+                v-else
+              >
+                {{ $t('settings.backup_not_ready') }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        v-if="listBackupsError"
+        class="alert error"
+      >
+        {{ $t('settings.list_backups_error', { error }) }}
+        <button
+          :title="$t('settings.hide_list_backups_error_action')"
+          @click="listBackupsError = false"
+        >
+          <FAIcon
+            class="fa-scale-110 fa-old-padding"
+            icon="times"
+          />
+        </button>
+      </div>
+      <button
+        class="btn button-default"
+        @click="addBackup"
+      >
+        {{ $t('settings.add_backup') }}
+      </button>
+      <p v-if="addedBackup">
+        {{ $t('settings.added_backup') }}
+      </p>
+      <template v-if="addBackupError !== false">
+        <p>{{ $t('settings.add_backup_error', { error: addBackupError }) }}</p>
+      </template>
+    </div>
   </div>
 </template>
 

@@ -23,6 +23,7 @@ import RemoteUserResolver from 'components/remote_user_resolver/remote_user_reso
 import Lists from 'components/lists/lists.vue'
 import ListTimeline from 'components/list_timeline/list_timeline.vue'
 import ListEdit from 'components/list_edit/list_edit.vue'
+import AnnouncementsPage from 'components/announcements_page/announcements_page.vue'
 
 export default (store) => {
   const validateAuthenticatedRoute = (to, from, next) => {
@@ -72,10 +73,11 @@ export default (store) => {
     { name: 'search', path: '/search', component: Search, props: (route) => ({ query: route.query.query }) },
     { name: 'who-to-follow', path: '/who-to-follow', component: WhoToFollow, beforeEnter: validateAuthenticatedRoute },
     { name: 'about', path: '/about', component: About },
-    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile },
     { name: 'lists', path: '/lists', component: Lists },
     { name: 'list-timeline', path: '/lists/:id', component: ListTimeline },
-    { name: 'list-edit', path: '/lists/:id/edit', component: ListEdit }
+    { name: 'list-edit', path: '/lists/:id/edit', component: ListEdit },
+    { name: 'announcements', path: '/announcements', component: AnnouncementsPage },
+    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile }
   ]
 
   if (store.state.instance.pleromaChatMessagesAvailable) {

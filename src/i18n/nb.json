@@ -553,8 +553,7 @@
       "disable_remote_subscription": "Fjern mulighet til å følge brukeren fra andre instanser",
       "disable_any_subscription": "Fjern mulighet til å følge brukeren",
       "quarantine": "Gjør at statuser fra brukeren ikke kan sendes til andre instanser",
-      "delete_user": "Slett bruker",
-      "delete_user_confirmation": "Er du helt sikker? Denne handlingen kan ikke omgjøres."
+      "delete_user": "Slett bruker"
     }
   },
   "user_profile": {

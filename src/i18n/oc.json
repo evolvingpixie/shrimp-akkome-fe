@@ -501,8 +501,7 @@
       "disable_remote_subscription": "Desactivar lo seguiment d’utilizaire d’instàncias alonhadas",
       "disable_any_subscription": "Desactivar tot seguiment",
       "quarantine": "Defendre la federacion de las publicacions de l’utilizaire",
-      "delete_user": "Suprimir l’utilizaire",
-      "delete_user_confirmation": "Volètz vertadièrament far aquò ? Aquesta accion se pòt pas anullar."
+      "delete_user": "Suprimir l’utilizaire"
     }
   },
   "user_profile": {

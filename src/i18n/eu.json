@@ -609,8 +609,7 @@
       "disable_remote_subscription": "Ez utzi istantzia kanpoko erabiltzaileak zuri jarraitzea",
       "disable_any_subscription": "Ez utzi beste erabiltzaileak zuri jarraitzea",
       "quarantine": "Ez onartu mezuak beste instantzietatik",
-      "delete_user": "Erabiltzailea ezabatu",
-      "delete_user_confirmation": "Erabat ziur zaude? Ekintza hau ezin da desegin."
+      "delete_user": "Erabiltzailea ezabatu"
     }
   },
   "user_profile": {

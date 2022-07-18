@@ -60,7 +60,7 @@ const Notifications = {
       return this.unseenNotifications.length
     },
     unseenCountTitle () {
-      return this.unseenCount + (this.unreadChatCount)
+      return this.unseenCount + (this.unreadChatCount) + this.unreadAnnouncementCount
     },
     loading () {
       return this.$store.state.statuses.notifications.loading
@@ -80,7 +80,7 @@ const Notifications = {
     notificationsToDisplay () {
       return this.filteredNotifications.slice(0, this.unseenCount + this.seenToDisplayCount)
     },
-    ...mapGetters(['unreadChatCount'])
+    ...mapGetters(['unreadChatCount', 'unreadAnnouncementCount'])
   },
   watch: {
     unseenCountTitle (count) {

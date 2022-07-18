@@ -20,6 +20,7 @@ import reportsModule from './modules/reports.js'
 import pollsModule from './modules/polls.js'
 import postStatusModule from './modules/postStatus.js'
 import chatsModule from './modules/chats.js'
+import announcementsModule from './modules/announcements.js'
 
 import { createI18n } from 'vue-i18n'
 
@@ -83,7 +84,8 @@ const persistedStateOptions = {
       reports: reportsModule,
       polls: pollsModule,
       postStatus: postStatusModule,
-      chats: chatsModule
+      chats: chatsModule,
+      announcements: announcementsModule
     },
     plugins,
     strict: false // Socket modifies itself, let's ignore this for now.

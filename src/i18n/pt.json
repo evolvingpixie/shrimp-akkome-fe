@@ -594,7 +594,6 @@
     "unmute_progress": "A retirar silêncio…",
     "mute_progress": "A silenciar…",
     "admin_menu": {
-      "delete_user_confirmation": "Tens a certeza? Esta ação não pode ser revertida.",
       "delete_user": "Eliminar utilizador",
       "quarantine": "Não permitir publicações de utilizadores de instâncias remotas",
       "disable_any_subscription": "Não permitir que nenhum utilizador te siga",

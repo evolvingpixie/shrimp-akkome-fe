@@ -7,11 +7,16 @@ const DataImportExportTab = {
   data () {
     return {
       activeTab: 'profile',
-      newDomainToMute: ''
+      newDomainToMute: '',
+      listBackupsError: false,
+      addBackupError: false,
+      addedBackup: false,
+      backups: []
     }
   },
   created () {
     this.$store.dispatch('fetchTokens')
+    this.fetchBackups()
   },
   components: {
     Importer,
@@ -72,6 +77,28 @@ const DataImportExportTab = {
         }
         return user.screen_name
       }).join('\n')
+    },
+    addBackup () {
+      this.$store.state.api.backendInteractor.addBackup()
+        .then((res) => {
+          this.addedBackup = true
+          this.addBackupError = false
+        })
+        .catch((error) => {
+          this.addedBackup = false
+          this.addBackupError = error
+        })
+        .then(() => this.fetchBackups())
+    },
+    fetchBackups () {
+      this.$store.state.api.backendInteractor.listBackups()
+        .then((res) => {
+          this.backups = res
+          this.listBackupsError = false
+        })
+        .catch((error) => {
+          this.listBackupsError = error.error
+        })
     }
   }
 }

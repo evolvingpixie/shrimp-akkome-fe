@@ -608,8 +608,7 @@
       "disable_remote_subscription": "ほかのインスタンスからフォローされないようにする",
       "disable_any_subscription": "フォローされないようにする",
       "quarantine": "ほかのインスタンスのユーザーのとうこうをとめる",
-      "delete_user": "ユーザーをけす",
-      "delete_user_confirmation": "あなたは、ほんとうに、きはたしかですか？ これは、とりけすことが、できません。"
+      "delete_user": "ユーザーをけす"
     }
   },
   "user_profile": {
