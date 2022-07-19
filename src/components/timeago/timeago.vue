@@ -40,7 +40,6 @@ export default {
       this.relativeTime = this.longFormat
         ? DateUtils.relativeTime(this.time, nowThreshold)
         : DateUtils.relativeTimeShort(this.time, nowThreshold)
-      
       if (this.autoUpdate) {
         this.interval = setTimeout(
           this.refreshRelativeTimeObject,
