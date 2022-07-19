@@ -79,6 +79,9 @@ const UserProfile = {
     },
     followersTabVisible () {
       return this.isUs || !this.user.hide_followers
+    },
+    currentUser () {
+      return this.$store.state.users.currentUser
     }
   },
   methods: {
