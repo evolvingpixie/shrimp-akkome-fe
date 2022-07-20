@@ -1,5 +1,5 @@
 import { each, map, concat, last, get } from 'lodash'
-import { parseStatus, parseUser, parseNotification, parseAttachment, parseChat, parseLinkHeaderPagination } from '../entity_normalizer/entity_normalizer.service.js'
+import { parseStatus, parseUser, parseNotification, parseAttachment, parseLinkHeaderPagination } from '../entity_normalizer/entity_normalizer.service.js'
 import { RegistrationError, StatusCodeError } from '../errors/errors'
 
 /* eslint-env browser */
@@ -92,11 +92,6 @@ const MASTODON_ANNOUNCEMENTS_DISMISS_URL = id => `/api/v1/announcements/${id}/di
 const PLEROMA_EMOJI_REACTIONS_URL = id => `/api/v1/pleroma/statuses/${id}/reactions`
 const PLEROMA_EMOJI_REACT_URL = (id, emoji) => `/api/v1/pleroma/statuses/${id}/reactions/${emoji}`
 const PLEROMA_EMOJI_UNREACT_URL = (id, emoji) => `/api/v1/pleroma/statuses/${id}/reactions/${emoji}`
-const PLEROMA_CHATS_URL = `/api/v1/pleroma/chats`
-const PLEROMA_CHAT_URL = id => `/api/v1/pleroma/chats/by-account-id/${id}`
-const PLEROMA_CHAT_MESSAGES_URL = id => `/api/v1/pleroma/chats/${id}/messages`
-const PLEROMA_CHAT_READ_URL = id => `/api/v1/pleroma/chats/${id}/read`
-const PLEROMA_DELETE_CHAT_MESSAGE_URL = (chatId, messageId) => `/api/v1/pleroma/chats/${chatId}/messages/${messageId}`
 const PLEROMA_BACKUP_URL = '/api/v1/pleroma/backups'
 const PLEROMA_ANNOUNCEMENTS_URL = '/api/v1/pleroma/admin/announcements'
 const PLEROMA_POST_ANNOUNCEMENT_URL = '/api/v1/pleroma/admin/announcements'
@@ -1378,7 +1373,6 @@ const MASTODON_STREAMING_EVENTS = new Set([
 ])
 
 const PLEROMA_STREAMING_EVENTS = new Set([
-  'pleroma:chat_update'
 ])
 
 // A thin wrapper around WebSocket API that allows adding a pre-processor to it
@@ -1448,8 +1442,6 @@ export const handleMastoWS = (wsEvent) => {
       return { event, status: parseStatus(data) }
     } else if (event === 'notification') {
       return { event, notification: parseNotification(data) }
-    } else if (event === 'pleroma:chat_update') {
-      return { event, chatUpdate: parseChat(data) }
     }
   } else {
     console.warn('Unknown event', wsEvent)
@@ -1465,82 +1457,6 @@ export const WSConnectionStatus = Object.freeze({
   'STARTING': 5,
   'STARTING_INITIAL': 6
 })
-
-const chats = ({ credentials }) => {
-  return fetch(PLEROMA_CHATS_URL, { headers: authHeaders(credentials) })
-    .then((data) => data.json())
-    .then((data) => {
-      return { chats: data.map(parseChat).filter(c => c) }
-    })
-}
-
-const getOrCreateChat = ({ accountId, credentials }) => {
-  return promisedRequest({
-    url: PLEROMA_CHAT_URL(accountId),
-    method: 'POST',
-    credentials
-  })
-}
-
-const chatMessages = ({ id, credentials, maxId, sinceId, limit = 20 }) => {
-  let url = PLEROMA_CHAT_MESSAGES_URL(id)
-  const args = [
-    maxId && `max_id=${maxId}`,
-    sinceId && `since_id=${sinceId}`,
-    limit && `limit=${limit}`
-  ].filter(_ => _).join('&')
-
-  url = url + (args ? '?' + args : '')
-
-  return promisedRequest({
-    url,
-    method: 'GET',
-    credentials
-  })
-}
-
-const sendChatMessage = ({ id, content, mediaId = null, idempotencyKey, credentials }) => {
-  const payload = {
-    'content': content
-  }
-
-  if (mediaId) {
-    payload['media_id'] = mediaId
-  }
-
-  const headers = {}
-
-  if (idempotencyKey) {
-    headers['idempotency-key'] = idempotencyKey
-  }
-
-  return promisedRequest({
-    url: PLEROMA_CHAT_MESSAGES_URL(id),
-    method: 'POST',
-    payload: payload,
-    credentials,
-    headers
-  })
-}
-
-const readChat = ({ id, lastReadId, credentials }) => {
-  return promisedRequest({
-    url: PLEROMA_CHAT_READ_URL(id),
-    method: 'POST',
-    payload: {
-      'last_read_id': lastReadId
-    },
-    credentials
-  })
-}
-
-const deleteChatMessage = ({ chatId, messageId, credentials }) => {
-  return promisedRequest({
-    url: PLEROMA_DELETE_CHAT_MESSAGE_URL(chatId, messageId),
-    method: 'DELETE',
-    credentials
-  })
-}
 
 const apiService = {
   verifyCredentials,
@@ -1639,12 +1555,6 @@ const apiService = {
   fetchDomainMutes,
   muteDomain,
   unmuteDomain,
-  chats,
-  getOrCreateChat,
-  chatMessages,
-  sendChatMessage,
-  readChat,
-  deleteChatMessage,
   fetchAnnouncements,
   dismissAnnouncement,
   postAnnouncement,

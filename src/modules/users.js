@@ -523,7 +523,6 @@ const users = {
           store.dispatch('stopFetchingFollowRequests')
           store.commit('clearNotifications')
           store.commit('resetStatuses')
-          store.dispatch('resetChats')
           store.dispatch('setLastTimeline', 'public-timeline')
           store.dispatch('setLayoutWidth', windowWidth())
           store.dispatch('setLayoutHeight', windowHeight())
@@ -555,9 +554,6 @@ const users = {
 
               if (user.token) {
                 store.dispatch('setWsToken', user.token)
-
-                // Initialize the shout socket.
-                store.dispatch('initializeSocket')
               }
 
               const startPolling = () => {
@@ -566,9 +562,6 @@ const users = {
 
                 // Start fetching notifications
                 store.dispatch('startFetchingNotifications')
-
-                // Start fetching chats
-                store.dispatch('startFetchingChats')
               }
 
               if (store.getters.mergedConfig.useStreamingApi) {
@@ -577,7 +570,6 @@ const users = {
                 store.dispatch('enableMastoSockets', true).catch((error) => {
                   console.error('Failed initializing MastoAPI Streaming socket', error)
                 }).then(() => {
-                  store.dispatch('fetchChats', { latest: true })
                   setTimeout(() => store.dispatch('setNotificationsSilence', false), 10000)
                 })
               } else {

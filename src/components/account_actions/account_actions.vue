@@ -48,13 +48,6 @@
           >
             {{ $t('user_card.report') }}
           </button>
-          <button
-            v-if="pleromaChatMessagesAvailable"
-            class="btn button-default btn-block dropdown-item"
-            @click="openChat"
-          >
-            {{ $t('user_card.message') }}
-          </button>
         </div>
       </template>
       <template v-slot:trigger>

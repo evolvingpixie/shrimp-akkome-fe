@@ -3,7 +3,6 @@ import NavPanel from './components/nav_panel/nav_panel.vue'
 import InstanceSpecificPanel from './components/instance_specific_panel/instance_specific_panel.vue'
 import FeaturesPanel from './components/features_panel/features_panel.vue'
 import WhoToFollowPanel from './components/who_to_follow_panel/who_to_follow_panel.vue'
-import ShoutPanel from './components/shout_panel/shout_panel.vue'
 import SettingsModal from './components/settings_modal/settings_modal.vue'
 import MediaModal from './components/media_modal/media_modal.vue'
 import SideDrawer from './components/side_drawer/side_drawer.vue'
@@ -26,7 +25,6 @@ export default {
     InstanceSpecificPanel,
     FeaturesPanel,
     WhoToFollowPanel,
-    ShoutPanel,
     MediaModal,
     SideDrawer,
     MobilePostStatusButton,
@@ -75,27 +73,16 @@ export default {
         }
       }
     },
-    shout () { return this.$store.state.shout.joined },
     suggestionsEnabled () { return this.$store.state.instance.suggestionsEnabled },
     showInstanceSpecificPanel () {
       return this.$store.state.instance.showInstanceSpecificPanel &&
         !this.$store.getters.mergedConfig.hideISP &&
         this.$store.state.instance.instanceSpecificPanelContent
     },
-    isChats () {
-      return this.$route.name === 'chat' || this.$route.name === 'chats'
-    },
     newPostButtonShown () {
-      if (this.isChats) return false
       return this.$store.getters.mergedConfig.alwaysShowNewPostButton || this.layoutType === 'mobile'
     },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
-    shoutboxPosition () {
-      return this.$store.getters.mergedConfig.alwaysShowNewPostButton || false
-    },
-    hideShoutbox () {
-      return this.$store.getters.mergedConfig.hideShoutbox
-    },
     layoutType () { return this.$store.state.interface.layoutType },
     privateMode () { return this.$store.state.instance.private },
     reverseLayout () {

@@ -28,7 +28,6 @@ export const defaultState = {
   customThemeSource: undefined,
   hideISP: false,
   hideInstanceWallpaper: false,
-  hideShoutbox: false,
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: undefined, // instance default
   hideMutedThreads: undefined, // instance default
@@ -59,7 +58,6 @@ export const defaultState = {
     moves: true,
     emojiReactions: true,
     followRequest: true,
-    chatMention: true,
     polls: true
   },
   webPushNotifications: false,

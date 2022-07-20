@@ -8,11 +8,6 @@ library.add(
   faPen
 )
 
-const HIDDEN_FOR_PAGES = new Set([
-  'chats',
-  'chat'
-])
-
 const MobilePostStatusButton = {
   data () {
     return {
@@ -40,8 +35,6 @@ const MobilePostStatusButton = {
       return !!this.$store.state.users.currentUser
     },
     isHidden () {
-      if (HIDDEN_FOR_PAGES.has(this.$route.name)) { return true }
-
       return this.autohideFloatingPostButton && (this.hidden || this.inputActive)
     },
     isPersistent () {

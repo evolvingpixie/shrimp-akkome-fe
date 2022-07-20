@@ -2,7 +2,6 @@ import SideDrawer from '../side_drawer/side_drawer.vue'
 import Notifications from '../notifications/notifications.vue'
 import { unseenNotificationsFromStore } from '../../services/notification_utils/notification_utils'
 import GestureService from '../../services/gesture_service/gesture_service'
-import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faTimes,
@@ -43,11 +42,7 @@ const MobileNav = {
       return this.unseenNotifications.length
     },
     hideSitename () { return this.$store.state.instance.hideSitename },
-    sitename () { return this.$store.state.instance.name },
-    isChat () {
-      return this.$route.name === 'chat'
-    },
-    ...mapGetters(['unreadChatCount', 'unreadAnnouncementCount'])
+    sitename () { return this.$store.state.instance.name }
   },
   methods: {
     toggleMobileSidebar () {

@@ -47,10 +47,6 @@ export const settingsMap = {
   },
   // Privacy
   'locked': 'locked',
-  'acceptChatMessages': {
-    get: 'pleroma.accepts_chat_messages',
-    set: 'accepts_chat_messages'
-  },
   'allowFollowingMove': {
     get: 'pleroma.allow_following_move',
     set: 'allow_following_move'

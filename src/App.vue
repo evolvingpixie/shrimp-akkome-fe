@@ -33,7 +33,7 @@
       <div
         id="main-scroller"
         class="column main"
-        :class="{ '-full-height': isChats }"
+        :class="{ '-full-height': false }"
       >
         <div
           v-if="!currentUser"
@@ -55,12 +55,6 @@
       />
     </div>
     <media-modal />
-    <shout-panel
-      v-if="currentUser && shout && !hideShoutbox"
-      :floating="true"
-      class="floating-shout mobile-hidden"
-      :class="{ '-left': shoutboxPosition }"
-    />
     <MobilePostStatusButton />
     <UserReportingModal />
     <PostStatusModal />

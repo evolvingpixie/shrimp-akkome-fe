@@ -74,9 +74,6 @@ const defaultState = {
   knownDomains: [],
 
   // Feature-set, apparently, not everything here is reported...
-  shoutAvailable: false,
-  pleromaChatMessagesAvailable: false,
-  gopherAvailable: false,
   mediaProxyAvailable: false,
   suggestionsEnabled: false,
   suggestionsWeb: '',
@@ -126,11 +123,6 @@ const instance = {
       switch (name) {
         case 'name':
           dispatch('setPageTitle')
-          break
-        case 'shoutAvailable':
-          if (value) {
-            dispatch('initializeSocket')
-          }
           break
         case 'theme':
           dispatch('setTheme', value)

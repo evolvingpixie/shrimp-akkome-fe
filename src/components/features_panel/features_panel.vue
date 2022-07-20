@@ -8,15 +8,6 @@
       </div>
       <div class="panel-body features-panel">
         <ul>
-          <li v-if="shout">
-            {{ $t('features_panel.shout') }}
-          </li>
-          <li v-if="pleromaChatMessages">
-            {{ $t('features_panel.pleroma_chat_messages') }}
-          </li>
-          <li v-if="gopher">
-            {{ $t('features_panel.gopher') }}
-          </li>
           <li v-if="whoToFollow">
             {{ $t('features_panel.who_to_follow') }}
           </li>

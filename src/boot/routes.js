@@ -6,8 +6,6 @@ import BookmarkTimeline from 'components/bookmark_timeline/bookmark_timeline.vue
 import ConversationPage from 'components/conversation-page/conversation-page.vue'
 import Interactions from 'components/interactions/interactions.vue'
 import DMs from 'components/dm_timeline/dm_timeline.vue'
-import ChatList from 'components/chat_list/chat_list.vue'
-import Chat from 'components/chat/chat.vue'
 import UserProfile from 'components/user_profile/user_profile.vue'
 import Search from 'components/search/search.vue'
 import Registration from 'components/registration/registration.vue'
@@ -16,7 +14,6 @@ import FollowRequests from 'components/follow_requests/follow_requests.vue'
 import OAuthCallback from 'components/oauth_callback/oauth_callback.vue'
 import Notifications from 'components/notifications/notifications.vue'
 import AuthForm from 'components/auth_form/auth_form.js'
-import ShoutPanel from 'components/shout_panel/shout_panel.vue'
 import WhoToFollow from 'components/who_to_follow/who_to_follow.vue'
 import About from 'components/about/about.vue'
 import RemoteUserResolver from 'components/remote_user_resolver/remote_user_resolver.vue'
@@ -68,7 +65,6 @@ export default (store) => {
     { name: 'friend-requests', path: '/friend-requests', component: FollowRequests, beforeEnter: validateAuthenticatedRoute },
     { name: 'notifications', path: '/:username/notifications', component: Notifications, props: () => ({ disableTeleport: true }), beforeEnter: validateAuthenticatedRoute },
     { name: 'login', path: '/login', component: AuthForm },
-    { name: 'shout-panel', path: '/shout-panel', component: ShoutPanel, props: () => ({ floating: false }) },
     { name: 'oauth-callback', path: '/oauth-callback', component: OAuthCallback, props: (route) => ({ code: route.query.code }) },
     { name: 'search', path: '/search', component: Search, props: (route) => ({ query: route.query.query }) },
     { name: 'who-to-follow', path: '/who-to-follow', component: WhoToFollow, beforeEnter: validateAuthenticatedRoute },
@@ -79,13 +75,6 @@ export default (store) => {
     { name: 'announcements', path: '/announcements', component: AnnouncementsPage },
     { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile }
   ]
-
-  if (store.state.instance.pleromaChatMessagesAvailable) {
-    routes = routes.concat([
-      { name: 'chat', path: '/users/:username/chats/:recipient_id', component: Chat, meta: { dontScroll: false }, beforeEnter: validateAuthenticatedRoute },
-      { name: 'chats', path: '/users/:username/chats', component: ChatList, meta: { dontScroll: false }, beforeEnter: validateAuthenticatedRoute }
-    ])
-  }
 
   return routes
 }

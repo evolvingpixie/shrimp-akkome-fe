@@ -17,7 +17,7 @@
             icon="bars"
           />
           <div
-            v-if="unreadChatCount || unreadAnnouncementCount"
+            v-if="unreadAnnouncementCount"
             class="alert-dot"
           />
         </button>

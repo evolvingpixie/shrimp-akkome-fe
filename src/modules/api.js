@@ -1,7 +1,5 @@
 import backendInteractorService from '../services/backend_interactor_service/backend_interactor_service.js'
 import { WSConnectionStatus } from '../services/api/api.service.js'
-import { maybeShowChatNotification } from '../services/chat_utils/chat_utils.js'
-import { Socket } from 'phoenix'
 
 const retryTimeout = (multiplier) => 1000 * multiplier
 
@@ -102,19 +100,6 @@ const api = {
                 })
               } else if (message.event === 'delete') {
                 dispatch('deleteStatusById', message.id)
-              } else if (message.event === 'pleroma:chat_update') {
-                // The setTimeout wrapper is a temporary band-aid to avoid duplicates for the user's own messages when doing optimistic sending.
-                // The cause of the duplicates is the WS event arriving earlier than the HTTP response.
-                // This setTimeout wrapper can be removed once the commit `8e41baff` is in the stable Pleroma release.
-                // (`8e41baff` adds the idempotency key to the chat message entity, which PleromaFE uses when it's available, and it makes this artificial delay unnecessary).
-                setTimeout(() => {
-                  dispatch('addChatMessages', {
-                    chatId: message.chatUpdate.id,
-                    messages: [message.chatUpdate.lastMessage]
-                  })
-                  dispatch('updateChat', { chat: message.chatUpdate })
-                  maybeShowChatNotification(store, message.chatUpdate)
-                }, 100)
               }
             }
           )
@@ -134,15 +119,12 @@ const api = {
             ]).has(state.mastoUserSocketStatus)) {
               dispatch('stopFetchingTimeline', { timeline: 'friends' })
               dispatch('stopFetchingNotifications')
-              dispatch('stopFetchingChats')
             }
             commit('resetRetryMultiplier')
             commit('setMastoUserSocketStatus', WSConnectionStatus.JOINED)
           })
           state.mastoUserSocket.addEventListener('error', ({ detail: error }) => {
             console.error('Error in MastoAPI websocket:', error)
-            // TODO is this needed?
-            dispatch('clearOpenedChats')
           })
           state.mastoUserSocket.addEventListener('close', ({ detail: closeEvent }) => {
             const ignoreCodes = new Set([
@@ -162,7 +144,6 @@ const api = {
               if (state.mastoUserSocketStatus !== WSConnectionStatus.ERROR) {
                 dispatch('startFetchingTimeline', { timeline: 'friends' })
                 dispatch('startFetchingNotifications')
-                dispatch('startFetchingChats')
                 dispatch('startFetchingAnnouncements')
                 dispatch('pushGlobalNotice', {
                   level: 'error',
@@ -173,7 +154,6 @@ const api = {
               }
               commit('setMastoUserSocketStatus', WSConnectionStatus.ERROR)
             }
-            dispatch('clearOpenedChats')
           })
           resolve()
         } catch (e) {
@@ -184,7 +164,6 @@ const api = {
     stopMastoUserSocket ({ state, dispatch }) {
       dispatch('startFetchingTimeline', { timeline: 'friends' })
       dispatch('startFetchingNotifications')
-      dispatch('startFetchingChats')
       state.mastoUserSocket.close()
     },
 
@@ -277,17 +256,6 @@ const api = {
     // Pleroma websocket
     setWsToken (store, token) {
       store.commit('setWsToken', token)
-    },
-    initializeSocket ({ dispatch, commit, state, rootState }) {
-      // Set up websocket connection
-      const token = state.wsToken
-      if (rootState.instance.shoutAvailable && typeof token !== 'undefined' && state.socket === null) {
-        const socket = new Socket('/socket', { params: { token } })
-        socket.connect()
-
-        commit('setSocket', socket)
-        dispatch('initializeShout', socket)
-      }
     },
     disconnectFromSocket ({ commit, state }) {
       state.socket && state.socket.disconnect()

@@ -67,27 +67,6 @@
             /> {{ $t("nav.lists") }}
           </router-link>
         </li>
-        <li
-          v-if="currentUser && pleromaChatMessagesAvailable"
-          @click="toggleDrawer"
-        >
-          <router-link
-            :to="{ name: 'chats', params: { username: currentUser.screen_name } }"
-            style="position: relative"
-          >
-            <FAIcon
-              fixed-width
-              class="fa-scale-110 fa-old-padding"
-              icon="comments"
-            /> {{ $t("nav.chats") }}
-            <span
-              v-if="unreadChatCount"
-              class="badge badge-notification"
-            >
-              {{ unreadChatCount }}
-            </span>
-          </router-link>
-        </li>
       </ul>
       <ul v-if="currentUser">
         <li @click="toggleDrawer">
@@ -115,18 +94,6 @@
             >
               {{ followRequestCount }}
             </span>
-          </router-link>
-        </li>
-        <li
-          v-if="shout"
-          @click="toggleDrawer"
-        >
-          <router-link :to="{ name: 'shout-panel' }">
-            <FAIcon
-              fixed-width
-              class="fa-scale-110 fa-old-padding"
-              icon="bullhorn"
-            /> {{ $t("shoutbox.title") }}
           </router-link>
         </li>
       </ul>

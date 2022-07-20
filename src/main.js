@@ -11,7 +11,6 @@ import usersModule from './modules/users.js'
 import apiModule from './modules/api.js'
 import configModule from './modules/config.js'
 import serverSideConfigModule from './modules/serverSideConfig.js'
-import shoutModule from './modules/shout.js'
 import oauthModule from './modules/oauth.js'
 import authFlowModule from './modules/auth_flow.js'
 import mediaViewerModule from './modules/media_viewer.js'
@@ -19,7 +18,6 @@ import oauthTokensModule from './modules/oauth_tokens.js'
 import reportsModule from './modules/reports.js'
 import pollsModule from './modules/polls.js'
 import postStatusModule from './modules/postStatus.js'
-import chatsModule from './modules/chats.js'
 import announcementsModule from './modules/announcements.js'
 
 import { createI18n } from 'vue-i18n'
@@ -76,7 +74,6 @@ const persistedStateOptions = {
       api: apiModule,
       config: configModule,
       serverSideConfig: serverSideConfigModule,
-      shout: shoutModule,
       oauth: oauthModule,
       authFlow: authFlowModule,
       mediaViewer: mediaViewerModule,
@@ -84,7 +81,6 @@ const persistedStateOptions = {
       reports: reportsModule,
       polls: pollsModule,
       postStatus: postStatusModule,
-      chats: chatsModule,
       announcements: announcementsModule
     },
     plugins,

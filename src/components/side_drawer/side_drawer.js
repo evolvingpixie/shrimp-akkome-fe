@@ -1,4 +1,4 @@
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import UserCard from '../user_card/user_card.vue'
 import { unseenNotificationsFromStore } from '../../services/notification_utils/notification_utils'
 import GestureService from '../../services/gesture_service/gesture_service'
@@ -51,7 +51,6 @@ const SideDrawer = {
     currentUser () {
       return this.$store.state.users.currentUser
     },
-    shout () { return this.$store.state.shout.joined },
     unseenNotifications () {
       return unseenNotificationsFromStore(this.$store)
     },
@@ -85,10 +84,7 @@ const SideDrawer = {
       }
       return this.currentUser ? 'friends' : 'public-timeline'
     },
-    ...mapState({
-      pleromaChatMessagesAvailable: state => state.instance.pleromaChatMessagesAvailable
-    }),
-    ...mapGetters(['unreadChatCount', 'unreadAnnouncementCount'])
+    ...mapGetters(['unreadAnnouncementCount'])
   },
   methods: {
     toggleDrawer () {

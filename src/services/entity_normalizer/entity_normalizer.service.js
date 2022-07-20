@@ -94,7 +94,6 @@ export const parseUser = (data) => {
 
       output.background_image = data.pleroma.background_image
       output.favicon = data.pleroma.favicon
-      output.token = data.pleroma.chat_token
 
       if (relationship) {
         output.relationship = relationship
@@ -200,7 +199,6 @@ export const parseUser = (data) => {
       : data.pleroma.deactivated // old backend
 
     output.notification_settings = data.pleroma.notification_settings
-    output.unread_chat_count = data.pleroma.unread_chat_count
   }
 
   output.tags = output.tags || []
@@ -403,7 +401,7 @@ export const parseNotification = (data) => {
       ? parseStatus(data.notice.favorited_status)
       : parsedNotice
     output.action = parsedNotice
-    output.from_profile = output.type === 'pleroma:chat_mention' ? parseUser(data.account) : parseUser(data.from_profile)
+    output.from_profile = parseUser(data.from_profile)
   }
 
   output.created_at = new Date(data.created_at)
@@ -428,35 +426,4 @@ export const parseLinkHeaderPagination = (linkHeader, opts = {}) => {
     maxId: flakeId ? maxId : parseInt(maxId, 10),
     minId: flakeId ? minId : parseInt(minId, 10)
   }
-}
-
-export const parseChat = (chat) => {
-  const output = {}
-  output.id = chat.id
-  output.account = parseUser(chat.account)
-  output.unread = chat.unread
-  output.lastMessage = parseChatMessage(chat.last_message)
-  output.updated_at = new Date(chat.updated_at)
-  return output
-}
-
-export const parseChatMessage = (message) => {
-  if (!message) { return }
-  if (message.isNormalized) { return message }
-  const output = message
-  output.id = message.id
-  output.created_at = new Date(message.created_at)
-  output.chat_id = message.chat_id
-  output.emojis = message.emojis
-  output.content = message.content
-  if (message.attachment) {
-    output.attachments = [parseAttachment(message.attachment)]
-  } else {
-    output.attachments = []
-  }
-  output.pending = !!message.pending
-  output.error = false
-  output.idempotency_key = message.idempotency_key
-  output.isNormalized = true
-  return output
 }

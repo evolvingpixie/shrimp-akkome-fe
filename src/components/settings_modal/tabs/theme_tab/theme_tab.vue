@@ -748,65 +748,6 @@
             />
             <ContrastRatio :contrast="previewContrast.selectedMenuLink" />
           </div>
-          <div class="color-item">
-            <h4>{{ $t('chats.chats') }}</h4>
-            <ColorInput
-              v-model="chatBgColorLocal"
-              name="chatBgColor"
-              :fallback="previewTheme.colors.bg"
-              :label="$t('settings.background')"
-            />
-            <h5>{{ $t('settings.style.advanced_colors.chat.incoming') }}</h5>
-            <ColorInput
-              v-model="chatMessageIncomingBgColorLocal"
-              name="chatMessageIncomingBgColor"
-              :fallback="previewTheme.colors.bg"
-              :label="$t('settings.background')"
-            />
-            <ColorInput
-              v-model="chatMessageIncomingTextColorLocal"
-              name="chatMessageIncomingTextColor"
-              :fallback="previewTheme.colors.text"
-              :label="$t('settings.text')"
-            />
-            <ColorInput
-              v-model="chatMessageIncomingLinkColorLocal"
-              name="chatMessageIncomingLinkColor"
-              :fallback="previewTheme.colors.link"
-              :label="$t('settings.links')"
-            />
-            <ColorInput
-              v-model="chatMessageIncomingBorderColorLocal"
-              name="chatMessageIncomingBorderLinkColor"
-              :fallback="previewTheme.colors.fg"
-              :label="$t('settings.style.advanced_colors.chat.border')"
-            />
-            <h5>{{ $t('settings.style.advanced_colors.chat.outgoing') }}</h5>
-            <ColorInput
-              v-model="chatMessageOutgoingBgColorLocal"
-              name="chatMessageOutgoingBgColor"
-              :fallback="previewTheme.colors.bg"
-              :label="$t('settings.background')"
-            />
-            <ColorInput
-              v-model="chatMessageOutgoingTextColorLocal"
-              name="chatMessageOutgoingTextColor"
-              :fallback="previewTheme.colors.text"
-              :label="$t('settings.text')"
-            />
-            <ColorInput
-              v-model="chatMessageOutgoingLinkColorLocal"
-              name="chatMessageOutgoingLinkColor"
-              :fallback="previewTheme.colors.link"
-              :label="$t('settings.links')"
-            />
-            <ColorInput
-              v-model="chatMessageOutgoingBorderColorLocal"
-              name="chatMessageOutgoingBorderLinkColor"
-              :fallback="previewTheme.colors.bg"
-              :label="$t('settings.style.advanced_colors.chat.border')"
-            />
-          </div>
         </div>
 
         <div
@@ -883,14 +824,6 @@
             name="tooltipRadius"
             :label="$t('settings.tooltipRadius')"
             :fallback="previewTheme.radii.tooltip"
-            max="50"
-            hard-min="0"
-          />
-          <RangeInput
-            v-model="chatMessageRadiusLocal"
-            name="chatMessageRadius"
-            :label="$t('settings.chatMessageRadius')"
-            :fallback="previewTheme.radii.chatMessage || 2"
             max="50"
             hard-min="0"
           />
