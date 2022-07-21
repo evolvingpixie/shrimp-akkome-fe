@@ -6,11 +6,19 @@ export const WEEK = 7 * DAY
 export const MONTH = 30 * DAY
 export const YEAR = 365.25 * DAY
 
+const direction = (diff, nowThreshold) => {
+  if (Math.abs(diff) < nowThreshold) {
+    return ''
+  }
+  return diff >= 0 ? 'time.in_past' : 'time.in_future'
+}
+
 export const relativeTime = (date, nowThreshold = 1) => {
   if (typeof date === 'string') date = Date.parse(date)
   const round = Date.now() > date ? Math.floor : Math.ceil
-  const d = Math.abs(Date.now() - date)
-  let r = { num: round(d / YEAR), key: 'time.unit.years' }
+  const rawD = Date.now() - date
+  const d = Math.abs(rawD)
+  let r = { num: round(d / YEAR), key: 'time.unit.years', direction: direction(rawD, nowThreshold * SECOND) }
   if (d < nowThreshold * SECOND) {
     r.num = 0
     r.key = 'time.now'

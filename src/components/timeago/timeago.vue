@@ -2,8 +2,13 @@
   <time
     :datetime="time"
     :title="localeDateString"
+    :class="{ warning: relativeTime.direction === 'time.in_future' }"
   >
-    {{ $tc(relativeTime.key, relativeTime.num, [relativeTime.num]) }}
+    {{
+      relativeTime.direction === '' ?
+        $tc(relativeTime.key, relativeTime.num, [relativeTime.num]) :
+        $t(relativeTime.direction, [$tc(relativeTime.key, relativeTime.num, [relativeTime.num])])
+    }}
   </time>
 </template>
 
@@ -50,3 +55,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import '../../_variables.scss';
+time.warning {
+  color: var(--alertWarning, $fallback--alertWarning);
+}
+</style>
