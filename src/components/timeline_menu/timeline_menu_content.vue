@@ -11,6 +11,20 @@
           icon="home"
         />{{ $t("nav.home_timeline") }}
       </router-link>
+      <span class="timeline-desc">{{ $t("nav.home_timeline_description") }}</span>
+    </li>
+    <li v-if="currentUser">
+      <router-link
+        class="menu-item"
+        :to="{ name: 'bubble-timeline' }"
+      >
+        <FAIcon
+          fixed-width
+          class="fa-scale-110 fa-old-padding "
+          icon="circle"
+        />{{ $t("nav.bubble_timeline") }}
+      </router-link>
+      <span class="timeline-desc">{{ $t("nav.bubble_timeline_description") }}</span>
     </li>
     <li v-if="currentUser || !privateMode">
       <router-link
@@ -23,6 +37,7 @@
           icon="users"
         />{{ $t("nav.public_tl") }}
       </router-link>
+      <span class="timeline-desc">{{ $t("nav.public_timeline_description") }}</span>
     </li>
     <li v-if="federating && (currentUser || !privateMode)">
       <router-link
@@ -35,6 +50,7 @@
           icon="globe"
         />{{ $t("nav.twkn") }}
       </router-link>
+      <span class="timeline-desc">{{ $t("nav.twkn_timeline_description") }}</span>
     </li>
     <li v-if="currentUser">
       <router-link
@@ -64,3 +80,15 @@
 </template>
 
 <script src="./timeline_menu_content.js" ></script>
+
+<style lang="scss">
+@import "../../_variables.scss";
+.timeline-desc {
+  text-decoration: none;
+  color: var(--text, $fallback--text);
+  padding-left: 1em;
+  display: block;
+  background-color: scale(var(--bg, $fallback--bg), 0.1);
+  padding-bottom: 0.4em;
+}
+</style>

@@ -47,6 +47,7 @@ const MASTODON_DENY_USER_URL = id => `/api/v1/follow_requests/${id}/reject`
 const MASTODON_DIRECT_MESSAGES_TIMELINE_URL = '/api/v1/timelines/direct'
 const MASTODON_PUBLIC_TIMELINE = '/api/v1/timelines/public'
 const MASTODON_USER_HOME_TIMELINE_URL = '/api/v1/timelines/home'
+const AKKOMA_BUBBLE_TIMELINE_URL = '/api/v1/timelines/bubble'
 const MASTODON_STATUS_URL = id => `/api/v1/statuses/${id}`
 const MASTODON_STATUS_CONTEXT_URL = id => `/api/v1/statuses/${id}/context`
 const MASTODON_USER_URL = id => `/api/v1/accounts/${id}?with_relationships=true`
@@ -608,6 +609,7 @@ const fetchTimeline = ({
 }) => {
   const timelineUrls = {
     public: MASTODON_PUBLIC_TIMELINE,
+    bubble: AKKOMA_BUBBLE_TIMELINE_URL,
     friends: MASTODON_USER_HOME_TIMELINE_URL,
     dms: MASTODON_DIRECT_MESSAGES_TIMELINE_URL,
     notifications: MASTODON_USER_NOTIFICATIONS_URL,
@@ -1395,7 +1397,15 @@ export const ProcessedWS = ({
   }
   socket.addEventListener('open', (wsEvent) => {
     console.debug(`[WS][${id}] Socket connected`, wsEvent)
+    setInterval(() => {
+      try {
+        socket.send('ping')
+      } catch (e) {
+        clearInterval(this)
+      }
+    }, 30000)
   })
+
   socket.addEventListener('error', (wsEvent) => {
     console.debug(`[WS][${id}] Socket errored`, wsEvent)
   })

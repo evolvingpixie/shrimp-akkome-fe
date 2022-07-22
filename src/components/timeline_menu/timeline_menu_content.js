@@ -5,7 +5,8 @@ import {
   faGlobe,
   faBookmark,
   faEnvelope,
-  faHome
+  faHome,
+  faCircle
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -13,7 +14,8 @@ library.add(
   faGlobe,
   faBookmark,
   faEnvelope,
-  faHome
+  faHome,
+  faCircle
 )
 
 const TimelineMenuContent = {
