@@ -1440,6 +1440,8 @@ export const ProcessedWS = ({
 export const handleMastoWS = (wsEvent) => {
   const { data } = wsEvent
   if (!data) return
+  if (data === 'pong') return
+
   const parsedEvent = JSON.parse(data)
   const { event, payload } = parsedEvent
   if (MASTODON_STREAMING_EVENTS.has(event) || PLEROMA_STREAMING_EVENTS.has(event)) {
