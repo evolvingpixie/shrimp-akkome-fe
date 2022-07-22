@@ -90,9 +90,13 @@
     "interactions": "インタラクション",
     "dms": "ダイレクトメッセージ",
     "public_tl": "公開タイムライン",
+    "public_timeline_description": "このインスタンスからの公開投稿",
     "timeline": "タイムライン",
     "lists": "リスト",
     "twkn": "すべてのネットワーク",
+    "twkn_timeline_description": "全連合からの投稿",
+    "bubble_timeline": "バブルタイムライン",
+    "bubble_timeline_description": "管理者がおすすめしているインスタンスからの投稿",
     "user_search": "ユーザーを探す",
     "search": "検索",
     "who_to_follow": "おすすめユーザー",
@@ -102,6 +106,7 @@
     "timelines": "タイムライン",
     "chats": "チャット",
     "home_timeline": "ホームタイムライン",
+    "home_timeline_description": "フォローしているユーザーからの投稿",
     "announcements": "お知らせ"
   },
   "notifications": {
