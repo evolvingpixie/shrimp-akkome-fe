@@ -90,8 +90,10 @@
     "interactions": "Interactions",
     "dms": "Messages directs",
     "public_tl": "Flux publique",
+    "public_timeline_description": "Tous les status publics de cette instance",
     "timeline": "Flux personnel",
     "twkn": "Réseau connu",
+    "twkn_timeline_description": "Les status du réseau entier",
     "user_search": "Recherche de comptes",
     "who_to_follow": "Suggestion de suivit",
     "preferences": "Préférences",
@@ -100,7 +102,10 @@
     "chats": "Chats",
     "bookmarks": "Marques-Pages",
     "timelines": "Flux",
-    "home_timeline": "Flux personnel"
+    "home_timeline": "Flux personnel",
+    "home_timeline_description": "Les status de vos abonnements",
+    "bubble_timeline": "Flux de cette bulle",
+    "bubble_timeline_description": "Les status des instances proches de celle-ci, choisies par l'administrateur⋅ice"
   },
   "notifications": {
     "broken_favorite": "Message inconnu, recherche en cours…",
@@ -141,7 +146,8 @@
     "scope_notice": {
       "public": "Ce statut sera visible par tout le monde",
       "private": "Ce statut sera visible par seulement vos abonné⋅e⋅s",
-      "unlisted": "Ce statut ne sera pas visible dans le Flux Public et le Flux Fédéré"
+      "unlisted": "Ce statut ne sera pas visible dans les flux publics ni les flux fédérés",
+      "local": "Ce statut ne sera pas visible dans le flux fédéré"
     },
     "scope": {
       "direct": "Direct - N'envoyer qu'aux personnes mentionnées",
