@@ -56,6 +56,7 @@ const pxStringToNumber = (str) => {
 const PostStatusForm = {
   props: [
     'replyTo',
+    'quoteId',
     'repliedUser',
     'attentions',
     'copyMessageScope',
@@ -99,12 +100,12 @@ const PostStatusForm = {
     this.updateIdempotencyKey()
     this.resize(this.$refs.textarea)
 
-    if (this.replyTo) {
+    if (this.replyTo || this.quoteId) {
       const textLength = this.$refs.textarea.value.length
       this.$refs.textarea.setSelectionRange(textLength, textLength)
     }
 
-    if (this.replyTo || this.autoFocus) {
+    if (this.replyTo || this.quoteId || this.autoFocus) {
       this.$refs.textarea.focus()
     }
   },
@@ -112,7 +113,7 @@ const PostStatusForm = {
     const preset = this.$route.query.message
     let statusText = preset || ''
 
-    if (this.replyTo) {
+    if (this.replyTo || this.quoteId) {
       const currentUser = this.$store.state.users.currentUser
       statusText = buildMentionsString({ user: this.repliedUser, attentions: this.attentions }, currentUser)
     }
@@ -314,6 +315,7 @@ const PostStatusForm = {
         media: newStatus.files,
         store: this.$store,
         inReplyToStatusId: this.replyTo,
+        quoteId: this.quoteId,
         contentType: newStatus.contentType,
         poll,
         idempotencyKey: this.idempotencyKey
@@ -347,6 +349,7 @@ const PostStatusForm = {
         media: [],
         store: this.$store,
         inReplyToStatusId: this.replyTo,
+        quoteId: this.quoteId,
         contentType: newStatus.contentType,
         poll: {},
         preview: true

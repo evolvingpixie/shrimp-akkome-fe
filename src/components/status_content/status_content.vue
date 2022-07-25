@@ -40,7 +40,14 @@
         @play="$emit('mediaplay', attachment.id)"
         @pause="$emit('mediapause', attachment.id)"
       />
-
+      <div
+        v-if="status.quote && !compact"
+        class="quote"
+      >
+        <QuoteCard
+          :status="status.quote"
+        />
+      </div>
       <div
         v-if="status.card && !noHeading && !compact"
         class="link-preview media-body"

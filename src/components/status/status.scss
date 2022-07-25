@@ -101,6 +101,10 @@
 
   .status-heading {
     margin-bottom: 0.5em;
+
+    .emoji {
+      --emoji-size: 16px;
+    }
   }
 
   .heading-name-row {
@@ -352,6 +356,15 @@
   }
 
   .reply-body {
+    flex: 1;
+  }
+
+  .quote-form {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .quote-body {
     flex: 1;
   }
 

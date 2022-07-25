@@ -10,6 +10,7 @@ const postStatus = ({
   poll,
   media = [],
   inReplyToStatusId = undefined,
+  quoteId = undefined,
   contentType = 'text/plain',
   preview = false,
   idempotencyKey = ''
@@ -24,6 +25,7 @@ const postStatus = ({
     sensitive,
     mediaIds,
     inReplyToStatusId,
+    quoteId,
     contentType,
     poll,
     preview,

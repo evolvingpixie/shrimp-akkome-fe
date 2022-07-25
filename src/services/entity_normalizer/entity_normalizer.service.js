@@ -347,6 +347,9 @@ export const parseStatus = (data) => {
   output.visibility = data.visibility
   output.card = data.card
   output.created_at = new Date(data.created_at)
+  if (data.quote) {
+    output.quote = parseStatus(data.quote)
+  }
 
   // Converting to string, the right way.
   output.in_reply_to_status_id = output.in_reply_to_status_id

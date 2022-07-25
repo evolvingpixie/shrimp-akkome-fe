@@ -430,6 +430,12 @@
               :status="status"
               @toggle="toggleReplying"
             />
+            <quote-button
+              :visibility="status.visibility"
+              :quoting="quoting"
+              :status="status"
+              @toggle="toggleQuoting"
+            />
             <retweet-button
               :visibility="status.visibility"
               :logged-in="loggedIn"
@@ -486,6 +492,20 @@
           :copy-message-scope="status.visibility"
           :subject="replySubject"
           @posted="toggleReplying"
+        />
+      </div>
+      <div
+        v-if="quoting"
+        class="status-container quote-form"
+      >
+        <PostStatusForm
+          class="quote-body"
+          :quote-id="status.id"
+          :attentions="[status.user]"
+          :replied-user="status.user"
+          :copy-message-scope="status.visibility"
+          :subject="replySubject"
+          @posted="toggleQuoting"
         />
       </div>
     </template>

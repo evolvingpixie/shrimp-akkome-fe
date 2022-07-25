@@ -763,6 +763,7 @@ const postStatus = ({
   poll,
   mediaIds = [],
   inReplyToStatusId,
+  quoteId,
   contentType,
   preview,
   idempotencyKey
@@ -794,6 +795,9 @@ const postStatus = ({
   }
   if (inReplyToStatusId) {
     form.append('in_reply_to_id', inReplyToStatusId)
+  }
+  if (quoteId) {
+    form.append('quote_id', quoteId)
   }
   if (preview) {
     form.append('preview', 'true')

@@ -1,4 +1,5 @@
 import ReplyButton from '../reply_button/reply_button.vue'
+import QuoteButton from '../quote_button/quote_button.vue'
 import FavoriteButton from '../favorite_button/favorite_button.vue'
 import ReactButton from '../react_button/react_button.vue'
 import RetweetButton from '../retweet_button/retweet_button.vue'
@@ -115,7 +116,8 @@ const Status = {
     StatusContent,
     RichContent,
     MentionLink,
-    MentionsLine
+    MentionsLine,
+    QuoteButton
   },
   props: [
     'statusoid',
@@ -145,6 +147,8 @@ const Status = {
     'controlledToggleShowingLongSubject',
     'controlledReplying',
     'controlledToggleReplying',
+    'controlledQuoting',
+    'controlledToggleQuoting',
     'controlledMediaPlaying',
     'controlledSetMediaPlaying',
     'dive'
@@ -152,6 +156,7 @@ const Status = {
   data () {
     return {
       uncontrolledReplying: false,
+      uncontrolledQuoting: false,
       unmuted: false,
       userExpanded: false,
       uncontrolledMediaPlaying: [],
@@ -161,7 +166,7 @@ const Status = {
     }
   },
   computed: {
-    ...controlledOrUncontrolledGetters(['replying', 'mediaPlaying']),
+    ...controlledOrUncontrolledGetters(['replying', 'quoting', 'mediaPlaying']),
     muteWords () {
       return this.mergedConfig.muteWords
     },
@@ -417,6 +422,9 @@ const Status = {
     },
     toggleReplying () {
       controlledOrUncontrolledToggle(this, 'replying')
+    },
+    toggleQuoting () {
+      controlledOrUncontrolledToggle(this, 'quoting')
     },
     gotoOriginal (id) {
       if (this.inConversation) {
