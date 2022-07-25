@@ -1,10 +1,9 @@
 <template>
   <div
-    v-if="loggedIn"
+    v-if="(visibility === 'public' || visibility === 'unlisted') && loggedIn"
     class="QuoteButton"
   >
     <button
-      v-if="visibility === 'public' || visibility === 'unlisted'"
       class="button-unstyled interactive"
       :class="{'-active': quoting}"
       :title="$t('tool_tip.quote')"
@@ -15,13 +14,6 @@
         icon="quote-left"
       />
     </button>
-    <span v-else-if="loggedIn">
-      <FAIcon
-        class="fa-scale-110 fa-old-padding"
-        icon="lock"
-        :title="$t('timeline.no_quote_hint')"
-      />
-    </span>
   </div>
 </template>
 
