@@ -84,7 +84,7 @@
             :key="unit"
             :value="unit"
           >
-            {{ $t(`time.unit.${unit}_short`, ['']) }}
+            {{ $tc(`time.unit.${unit}_short`, expiryAmount, ['']) }}
           </option>
         </Select>
       </div>
