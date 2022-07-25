@@ -1,15 +1,13 @@
 <template>
   <div>
-    <a
+    <router-link
       class="quote-card"
-      :href="$router.resolve(statusLink).href"
-      target="_blank"
-      rel="noopener"
+      :to="{ name: 'conversation', params: { id: status.id } }"
     >
       <QuoteCardContent
         :status="status"
       />
-    </a>
+    </router-link>
   </div>
 </template>
 
