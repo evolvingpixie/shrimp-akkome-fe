@@ -4,7 +4,6 @@
     },
     "features_panel": {
         "chat": "Chat",
-        "gopher": "Gopher",
         "media_proxy": "Proxy de multimédia",
         "scope_options": "Opções de privacidade",
         "text_limit": "Limite de caracteres",
