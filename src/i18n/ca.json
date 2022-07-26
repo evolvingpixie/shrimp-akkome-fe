@@ -4,7 +4,6 @@
     },
     "features_panel": {
         "chat": "Xat",
-        "gopher": "Gopher",
         "media_proxy": "Proxy per multimèdia",
         "scope_options": "Opcions d'abast i visibilitat",
         "text_limit": "Límit de text",
