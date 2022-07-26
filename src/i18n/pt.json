@@ -10,8 +10,7 @@
         "text_limit": "Limite de caracteres",
         "title": "Características",
         "who_to_follow": "Quem seguir",
-        "upload_limit": "Limite de carregamento",
-        "pleroma_chat_messages": "Chat do Pleroma"
+        "upload_limit": "Limite de carregamento"
     },
     "finder": {
         "error_fetching_user": "Erro ao pesquisar utilizador",
