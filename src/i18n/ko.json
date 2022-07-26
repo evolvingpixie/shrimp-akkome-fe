@@ -4,7 +4,6 @@
     },
     "features_panel": {
         "chat": "챗",
-        "gopher": "고퍼",
         "media_proxy": "미디어 프록시",
         "scope_options": "범위 옵션",
         "text_limit": "텍스트 제한",
