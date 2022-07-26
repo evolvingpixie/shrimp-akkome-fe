@@ -8,7 +8,6 @@
     },
     "features_panel": {
         "chat": "聊天",
-        "gopher": "Gopher",
         "media_proxy": "媒体代理",
         "scope_options": "可见范围设置",
         "text_limit": "文字数量限制",
