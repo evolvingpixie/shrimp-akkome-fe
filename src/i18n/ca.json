@@ -10,7 +10,8 @@
         "text_limit": "Límit de text",
         "title": "Funcionalitats",
         "who_to_follow": "A qui seguir",
-        "upload_limit": "Límit de càrrega"
+        "upload_limit": "Límit de càrrega",
+        "shout": "Altaveu"
     },
     "finder": {
         "error_fetching_user": "No s'ha pogut carregar l'usuari/a",
@@ -41,7 +42,13 @@
             "admin": "Administrador/a"
         },
         "dismiss": "Descartar",
-        "peek": "Donar un cop d'ull"
+        "peek": "Donar un cop d'ull",
+        "scope_in_timeline": {
+            "direct": "Directe",
+            "private": "Només seguidors",
+            "public": "Públic",
+            "unlisted": "No llistat"
+        }
     },
     "login": {
         "login": "Inicia sessió",
@@ -80,7 +87,14 @@
         "about": "Quant a",
         "bookmarks": "Marcadors",
         "user_search": "Cerca d'usuaris",
-        "home_timeline": "Línea temporal personal"
+        "home_timeline": "Línea temporal personal",
+        "bubble_timeline_description": "Publicacions d'instàncies properes a la teva, recomanades per els admins",
+        "twkn_timeline_description": "Publicacions de tota la xarxa",
+        "public_timeline_description": "Publicacions públiques des d'aquesta instància",
+        "home_timeline_description": "Publicacions de gent que segueixes",
+        "bubble_timeline": "Línia de temps bombolla",
+        "lists": "Llistes",
+        "announcements": "Anuncis"
     },
     "notifications": {
         "broken_favorite": "Publicació desconeguda, s'està cercant…",
@@ -94,7 +108,8 @@
         "no_more_notifications": "No més notificacions",
         "follow_request": "et vol seguir",
         "reacted_with": "ha reaccionat amb {0}",
-        "error": "Error obtenint notificacions: {0}"
+        "error": "Error obtenint notificacions: {0}",
+        "poll_ended": "l'enquesta ha acabat"
     },
     "post_status": {
         "account_not_locked_warning": "El teu compte no està {0}. Qualsevol persona pot seguir-te per llegir les teves entrades reservades només a seguidores.",
@@ -104,7 +119,8 @@
             "text/plain": "Text pla",
             "text/markdown": "Markdown",
             "text/html": "HTML",
-            "text/bbcode": "BBCode"
+            "text/bbcode": "BBCode",
+            "text/x.misskeymarkdown": "MFM"
         },
         "content_warning": "Assumpte (opcional)",
         "default": "Acabe d'aterrar a L.A.",
@@ -114,12 +130,14 @@
             "direct": "Directa - publica només per als usuaris etiquetats",
             "private": "Només seguidors/es - publica només per comptes que et segueixin",
             "public": "Pública - publica als fluxos públics",
-            "unlisted": "Silenciosa - no la mostris en fluxos públics"
+            "unlisted": "Silenciosa - no la mostris en fluxos públics",
+            "local": "Local - no federar aquesta publicació"
         },
         "scope_notice": {
             "private": "Aquesta entrada serà visible només per a qui et segueixi",
             "public": "Aquesta entrada serà visible per a tothom",
-            "unlisted": "Aquesta entrada no es veurà ni a la Línia de temps local ni a la Línia de temps federada"
+            "unlisted": "Aquesta entrada no es veurà ni a la Línia de temps local ni a la Línia de temps federada",
+            "local": "Aquesta publicació no serà visible en altres instàncies"
         },
         "preview_empty": "Buida",
         "preview": "Vista prèvia",
@@ -129,7 +147,8 @@
         "direct_warning_to_all": "Aquesta publicació serà visible per a tots els usuaris mencionats.",
         "new_status": "Publicar un nou estat",
         "post": "Publicació",
-        "media_description_error": "Ha fallat la pujada del contingut. Prova de nou"
+        "media_description_error": "Ha fallat la pujada del contingut. Prova de nou",
+        "media_not_sensitive_warning": "Tens un avís de contingut però els adjunts no estan marcats com a sensibles!"
     },
     "registration": {
         "bio": "Presentació",
@@ -153,7 +172,8 @@
         "reason": "Raó per a registrar-se",
         "bio_placeholder": "p.e.\nHola, sóc la Lain.\nSóc una noia anime que viu a un suburbi de Japó. Potser em coneixes per Wired.",
         "reason_placeholder": "Aquesta instància aprova els registres manualment.\nExplica a l'administració per què vols registrar-te.",
-        "new_captcha": "Clica a la imatge per obtenir un nou captcha"
+        "new_captcha": "Clica a la imatge per obtenir un nou captcha",
+        "email_language": "En quina llengua vols rebre els correus del servidor?"
     },
     "settings": {
         "attachmentRadius": "Adjunts",
@@ -712,7 +732,9 @@
     },
     "media_modal": {
         "next": "Següent",
-        "previous": "Anterior"
+        "previous": "Anterior",
+        "counter": "{current} / {total}",
+        "hide": "Tanca reproductor mèdia"
     },
     "importer": {
         "error": "Ha succeït un error mentre s'importava aquest arxiu.",
@@ -746,21 +768,24 @@
                 "accept_desc": "Aquesta instància només accepta missatges de les següents instàncies:",
                 "accept": "Accepta",
                 "simple_policies": "Polítiques específiques de la instància",
-                "ftl_removal_desc": "Aquesta instància elimina les següents instàncies del flux de la xarxa coneguda:",
-                "ftl_removal": "Eliminació de la línia de temps coneguda",
-                "media_nsfw_desc": "Aquesta instància obliga el contingut multimèdia a establir-se com a sensible dins de les publicacions en les següents instàncies:",
-                "media_removal": "Eliminació de la multimèdia",
-                "media_removal_desc": "Aquesta instància elimina els suports multimèdia de les publicacions en les següents instàncies:",
-                "media_nsfw": "Forçar contingut multimèdia com a sensible"
+                "ftl_removal_desc": "Aquesta instància elimina les següents instàncies de la línia de temps \"Xarxa Coneguda\":",
+                "ftl_removal": "Eliminar de la línia de temps \"Xarxa Coneguda\"",
+                "media_nsfw_desc": "Aquesta instància obliga el contingut multimèdia a establir-se com a sensible en les publicacions de les següents instàncies:",
+                "media_removal": "Eliminació de la Multimèdia",
+                "media_removal_desc": "Aquesta instància elimina els adjunts multimèdia de les publicacions de les següents instàncies:",
+                "media_nsfw": "Forçar contingut multimèdia com a sensible",
+                "instance": "Instància",
+                "reason": "Motiu",
+                "not_applicable": "N/A"
             },
-            "mrf_policies_desc": "Les polítiques MRF controlen el comportament federat de la instància. Les següents polítiques estan habilitades:",
+            "mrf_policies_desc": "Les polítiques MRF manipulen el comportament federat de la instància. Les següents polítiques estan habilitades:",
             "mrf_policies": "Polítiques MRF habilitades",
             "keyword": {
                 "replace": "Reemplaça",
                 "reject": "Rebutja",
-                "keyword_policies": "Filtratge per paraules clau",
+                "keyword_policies": "Polítiques de paraules clau",
                 "is_replaced_by": "→",
-                "ftl_removal": "Eliminació de la línia de temps federada"
+                "ftl_removal": "Eliminar de la línia de temps \"Tota la Xarxa Coneguda\""
             },
             "federation": "Federació"
         }
@@ -873,5 +898,26 @@
     },
     "display_date": {
         "today": "Avui"
+    },
+    "announcements": {
+        "page_header": "Anuncis",
+        "title": "Anunci",
+        "post_form_header": "Publica l'anunci",
+        "post_action": "Publicació",
+        "post_error": "Error: {error}",
+        "close_error": "Tanca",
+        "delete_action": "Esborra",
+        "start_time_prompt": "Hora inicial: ",
+        "end_time_prompt": "Hora final: ",
+        "all_day_prompt": "És un esdeveniment de tot el dia",
+        "published_time_display": "Publicat a les {time}",
+        "end_time_display": "Acaba a les {time}",
+        "edit_action": "Edita",
+        "submit_edit_action": "Fet",
+        "cancel_edit_action": "Cancel·la",
+        "inactive_message": "Aquest anunci no està actiu",
+        "mark_as_read_action": "Marca com a llegit",
+        "start_time_display": "Comença a les {time}",
+        "post_placeholder": "Contingut del anunci"
     }
 }
