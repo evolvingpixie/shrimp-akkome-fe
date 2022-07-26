@@ -10,8 +10,7 @@
         "text_limit": "Tekstlimiet",
         "title": "Kenmerken",
         "who_to_follow": "Wie te volgen",
-        "upload_limit": "Upload limiet",
-        "pleroma_chat_messages": "Pleroma Chat"
+        "upload_limit": "Upload limiet"
     },
     "finder": {
         "error_fetching_user": "Fout tijdens ophalen gebruiker",
