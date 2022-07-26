@@ -131,7 +131,6 @@
         "scope_options": "可見範圍設置",
         "media_proxy": "媒體代理",
         "chat": "聊天",
-        "gopher": "Gopher",
         "upload_limit": "上傳限制"
     },
     "exporter": {
