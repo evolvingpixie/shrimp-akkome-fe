@@ -8,7 +8,6 @@
     },
     "features_panel": {
         "chat": "Chat",
-        "gopher": "Gopher",
         "media_proxy": "Proxy pièce-jointes",
         "scope_options": "Options de visibilité",
         "text_limit": "Limite du texte",
