@@ -14,8 +14,7 @@
         "text_limit": "文字の数",
         "title": "有効な機能",
         "who_to_follow": "おすすめユーザー",
-        "upload_limit": "ファイルサイズの上限",
-        "pleroma_chat_messages": "Pleroma チャット"
+        "upload_limit": "ファイルサイズの上限"
     },
     "finder": {
         "error_fetching_user": "ユーザー検索がエラーになりました",
