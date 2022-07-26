@@ -868,5 +868,12 @@
         "delete": "Verwijderen",
         "message_user": "Spreek met {nickname}",
         "you": "Jij:"
+    },
+    "announcements": {
+        "page_header": "Aankondigingen",
+        "title": "Aankondiging",
+        "mark_as_read_action": "Als gelezen markeren",
+        "post_form_header": "Aankondiging verzenden",
+        "post_placeholder": "Aankondiging inhoud"
     }
 }
