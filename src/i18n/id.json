@@ -596,7 +596,6 @@
     "features_panel": {
         "title": "Fitur-fitur",
         "text_limit": "Batas teks",
-        "gopher": "Gopher",
         "chat": "Obrolan",
         "upload_limit": "Batas unggahan"
     },
