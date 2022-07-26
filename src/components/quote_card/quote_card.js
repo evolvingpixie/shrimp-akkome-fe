@@ -14,15 +14,7 @@ const QuoteCard = {
   computed: {
     ...mapGetters([
       'mergedConfig'
-    ]),
-    statusLink () {
-      return {
-        name: 'conversation',
-        params: {
-          id: this.status.id
-        }
-      }
-    }
+    ])
   },
   components: {
     QuoteCardContent
