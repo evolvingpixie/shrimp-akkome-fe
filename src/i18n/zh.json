@@ -14,7 +14,6 @@
         "text_limit": "文字数量限制",
         "title": "功能",
         "who_to_follow": "推荐关注",
-        "pleroma_chat_messages": "Pleroma 聊天",
         "upload_limit": "上传限制"
     },
     "finder": {
