@@ -10,8 +10,7 @@
         "text_limit": "텍스트 제한",
         "title": "기능",
         "who_to_follow": "팔로우 추천",
-        "upload_limit": "최대 파일용량",
-        "pleroma_chat_messages": "Pleroma 채트"
+        "upload_limit": "최대 파일용량"
     },
     "finder": {
         "error_fetching_user": "사용자 정보 불러오기 실패",
