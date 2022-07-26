@@ -32,7 +32,6 @@
     },
     "features_panel": {
         "gopher": "Gopher",
-        "pleroma_chat_messages": "Чати",
         "chat": "Оголошення",
         "who_to_follow": "Кого відстежувати",
         "title": "Особливості",
