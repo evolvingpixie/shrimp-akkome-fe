@@ -44,7 +44,6 @@
     },
     "features_panel": {
         "chat": "Czat",
-        "gopher": "Gopher",
         "media_proxy": "Proxy mediów",
         "scope_options": "Ustawienia zakresu",
         "text_limit": "Limit tekstu",
