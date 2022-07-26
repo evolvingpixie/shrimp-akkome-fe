@@ -44,7 +44,6 @@
     },
     "features_panel": {
         "shout": "Verejné fórum",
-        "gopher": "Gopher",
         "media_proxy": "Proxy pre médiá",
         "scope_options": "Nastavenia rámca",
         "text_limit": "Limit počtu znakov",
