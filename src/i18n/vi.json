@@ -41,7 +41,6 @@
     },
     "features_panel": {
         "chat": "Chat",
-        "gopher": "Gopher",
         "media_proxy": "Proxy media",
         "text_limit": "Giới hạn ký tự",
         "title": "Tính năng",
