@@ -10,8 +10,7 @@
         "text_limit": "Zeichenlimit",
         "title": "Funktionen",
         "who_to_follow": "Vorschläge",
-        "upload_limit": "Maximale Upload Größe",
-        "pleroma_chat_messages": "Pleroma Chat"
+        "upload_limit": "Maximale Upload Größe"
     },
     "finder": {
         "error_fetching_user": "Fehler beim Suchen des Benutzers",
