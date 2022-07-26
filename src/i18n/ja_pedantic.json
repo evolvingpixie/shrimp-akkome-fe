@@ -887,9 +887,6 @@
     "errors": {
         "storage_unavailable": "ブラウザのストレージに接続できなかったため、ログインや設定情報は保存されません。Cookieを有効にしてください。"
     },
-    "shoutbox": {
-        "title": "Shoutbox"
-    },
     "chats": {
         "empty_chat_list_placeholder": "チャットはありません。新規チャットのボタンを押して始めましょう！",
         "error_sending_message": "メッセージの送信に失敗しました。",
