@@ -536,7 +536,6 @@
     },
     "features_panel": {
         "chat": "Chat",
-        "gopher": "Gopher",
         "media_proxy": "Proxy allegati",
         "scope_options": "Opzioni visibilità",
         "text_limit": "Lunghezza massima",
