@@ -65,7 +65,6 @@
     },
     "features_panel": {
         "shout": "Shoutbox",
-        "pleroma_chat_messages": "Pleroma Chat",
         "gopher": "Gopher",
         "media_proxy": "Media proxy",
         "scope_options": "Scope options",
