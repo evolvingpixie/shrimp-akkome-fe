@@ -130,7 +130,6 @@
         "text_limit": "文字數量限制",
         "scope_options": "可見範圍設置",
         "media_proxy": "媒體代理",
-        "pleroma_chat_messages": "Pleroma 聊天",
         "chat": "聊天",
         "gopher": "Gopher",
         "upload_limit": "上傳限制"
