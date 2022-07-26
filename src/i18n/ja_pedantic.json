@@ -908,5 +908,8 @@
         "unmute": "ミュート解除",
         "mute_progress": "ミュート中…",
         "mute": "ミュート"
+    },
+    "announcements": {
+        "page_header": "お知らせ"
     }
 }
