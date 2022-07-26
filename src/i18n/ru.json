@@ -659,7 +659,6 @@
         "title": "Особенности",
         "gopher": "Gopher",
         "who_to_follow": "Предложения кого читать",
-        "pleroma_chat_messages": "Pleroma Чат",
         "upload_limit": "Наибольший размер загружаемого файла",
         "scope_options": "Настраиваемая видимость статусов"
     },
