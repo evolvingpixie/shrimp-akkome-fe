@@ -8,7 +8,6 @@
     },
     "features_panel": {
         "chat": "チャット",
-        "gopher": "Gopher",
         "media_proxy": "メディアプロクシ",
         "scope_options": "公開範囲選択",
         "text_limit": "文字の数",
