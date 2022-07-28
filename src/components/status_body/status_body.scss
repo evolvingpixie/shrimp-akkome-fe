@@ -6,8 +6,12 @@
 
   .emoji {
     --_still_image-label-scale: 0.5;
-    --emoji-size: 50px;
-    --emoji-size: 50px;
+    --emoji-size: 38px;
+  }
+
+  .emoji:hover {
+    transform: scale(1.4);
+    transition: 0.05s;
   }
 
   ._mfm_x2_ {
