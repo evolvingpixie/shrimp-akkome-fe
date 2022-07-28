@@ -8,7 +8,7 @@ This is a fork of Pleroma-FE from the Pleroma project, with support for new Akko
 
 The [Weblate UI](https://translate.akkoma.dev/projects/akkoma/pleroma-fe/) is recommended for adding or modifying translations for Pleroma-FE. 
 
-Alternatively, edit/create `src/i18n/$LANGUAGE_CODE.json` (where `$LANGUAGE_CODE` is the [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language), then add your language to [src/i18n/messages.js](https://akkoma.dev/AkkomaGang/pleroma-fe/src/branch/develop/src/i18n/messages.js) if it doesn't laready exist there.
+Alternatively, edit/create `src/i18n/$LANGUAGE_CODE.json` (where `$LANGUAGE_CODE` is the [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language), then add your language to [src/i18n/messages.js](https://akkoma.dev/AkkomaGang/pleroma-fe/src/branch/develop/src/i18n/messages.js) if it doesn't already exist there.
 
 Pleroma-FE will set your language by your browser locale, but you can temporarily force it in the code by changing the locale in main.js.
 
