@@ -2,7 +2,8 @@
 
 .notification-reaction-emoji {
   width: 40px;
-  display: flex;
+  display: inline-flex;
+  vertical-align: middle;
   flex-direction: column;
 }
 
