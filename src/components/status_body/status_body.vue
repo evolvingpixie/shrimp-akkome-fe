@@ -43,6 +43,7 @@
         </button>
         <div
           v-if="!hideSubjectStatus && !(singleLine && status.summary_raw_html)"
+          class="media-body-wrapper"
         >
           <RichContent
             :class="{ '-single-line': singleLine }"

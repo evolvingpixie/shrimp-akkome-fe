@@ -93,7 +93,7 @@
       overflow-y: hidden;
       z-index: 1;
 
-      .media-body {
+      .media-body-wrapper {
         min-height: 0;
         mask:
           linear-gradient(to top, white, transparent) bottom/100% 70px no-repeat,
