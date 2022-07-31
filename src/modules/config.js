@@ -31,6 +31,7 @@ export const defaultState = {
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: undefined, // instance default
   hideMutedThreads: undefined, // instance default
+  hideThreadsWithBlockedUsers: undefined, // instance default
   hideWordFilteredPosts: undefined, // instance default
   muteBotStatuses: undefined, // instance default
   collapseMessageWithSubject: undefined, // instance default

@@ -30,6 +30,7 @@ const defaultState = {
   // bad name: actually hides posts of muted USERS
   hideMutedPosts: false,
   hideMutedThreads: true,
+  hideThreadsWithBlockedUsers: false,
   hideWordFilteredPosts: false,
   hidePostStats: false,
   hideBotIndication: false,

@@ -37,6 +37,15 @@
                 {{ $t('settings.hide_muted_posts') }}
               </BooleanSetting>
             </li>
+            <li>
+              <BooleanSetting
+                v-if="user"
+                :disabled="hideFilteredStatuses"
+                path="hideThreadsWithBlockedUsers"
+              >
+                {{ $t('settings.hide_threads_with_blocked_users') }}
+              </BooleanSetting>
+            </li>
           </ul>
         </li>
         <li>

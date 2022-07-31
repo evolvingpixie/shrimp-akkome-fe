@@ -458,6 +458,7 @@
         "hide_muted_threads": "Hide muted threads",
         "hide_post_stats": "Hide post statistics (e.g. the number of favorites)",
         "hide_shoutbox": "Hide instance shoutbox",
+        "hide_threads_with_blocked_users": "Hide threads tagging blocked users",
         "hide_user_stats": "Hide user statistics (e.g. the number of followers)",
         "hide_wallpaper": "Hide instance wallpaper",
         "hide_wordfiltered_statuses": "Hide word-filtered statuses",
