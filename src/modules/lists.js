@@ -57,12 +57,16 @@ const actions = {
     commit('setList', { id, title })
   },
   setListAccounts ({ rootState, commit }, { id, accountIds }) {
+    const saved = rootState.lists.allListsObject[id].accountIds
+    const added = accountIds.filter(id => !saved.includes(id))
+    const removed = saved.filter(id => !accountIds.includes(id))
     commit('setListAccounts', { id, accountIds })
-    rootState.api.backendInteractor.addAccountsToList({ id, accountIds })
-    rootState.api.backendInteractor.removeAccountsFromList({
-      id,
-      accountIds: rootState.lists.allListsObject[id].accountIds.filter(id => !accountIds.includes(id))
-    })
+    if (added.length > 0) {
+      rootState.api.backendInteractor.addAccountsToList({ id, accountIds: added })
+    }
+    if (removed.length > 0) {
+      rootState.api.backendInteractor.removeAccountsFromList({ id, accountIds: removed })
+    }
   },
   deleteList ({ rootState, commit }, { id }) {
     rootState.api.backendInteractor.deleteList({ id })
@@ -76,7 +80,7 @@ export const getters = {
     return state.allListsObject[id].title
   },
   findListAccounts: state => id => {
-    return state.allListsObject[id].accountIds
+    return [...state.allListsObject[id].accountIds]
   }
 }
 
