@@ -30,7 +30,7 @@ module.exports = {
     }
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.vue'],
+    extensions: ['.js', '.jsx', '.vue', '.mjs'],
     modules: [
       path.join(__dirname, '../node_modules')
     ],
@@ -67,6 +67,11 @@ module.exports = {
         include: [ // Use `Rule.include` to specify the files of locale messages to be pre-compiled
           path.resolve(__dirname, '../src/i18n')
         ]
+      },
+      {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: "javascript/auto"
       },
       {
         test: /\.vue$/,

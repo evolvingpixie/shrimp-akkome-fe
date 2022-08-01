@@ -56,7 +56,7 @@
     "@vue/babel-helper-vue-jsx-merge-props": "1.2.1",
     "@vue/babel-plugin-jsx": "1.1.1",
     "@vue/compiler-sfc": "^3.1.0",
-    "@vue/test-utils": "2.0.0-rc.17",
+    "@vue/test-utils": "^2.0.2",
     "autoprefixer": "6.7.7",
     "babel-eslint": "7.2.3",
     "babel-loader": "8.2.4",
