@@ -23,7 +23,7 @@
                 "media_removal_desc": "Aquesta instància elimina els adjunts multimèdia dels apunts de les següents instàncies:",
                 "not_applicable": "N/A",
                 "quarantine": "Quarantena",
-                "quarantine_desc": "Aquesta instància només enviarà entrades públiques a les següents instàncies:",
+                "quarantine_desc": "Aquesta instància no enviarà apunts a les següents instàncies:",
                 "reason": "Motiu",
                 "reject": "Rebutja",
                 "reject_desc": "Aquesta instància no acceptarà missatges de les següents instàncies:",

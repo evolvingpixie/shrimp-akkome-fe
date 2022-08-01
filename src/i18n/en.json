@@ -23,7 +23,7 @@
                 "media_removal_desc": "This instance removes media from posts on the following instances:",
                 "not_applicable": "N/A",
                 "quarantine": "Quarantine",
-                "quarantine_desc": "This instance will send only public posts to the following instances:",
+                "quarantine_desc": "This instance will not send posts to the following instances:",
                 "reason": "Reason",
                 "reject": "Reject",
                 "reject_desc": "This instance will not accept messages from the following instances:",
