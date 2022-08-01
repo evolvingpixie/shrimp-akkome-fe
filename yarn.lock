@@ -7445,10 +7445,10 @@ markdown-table@^2.0.0:
   dependencies:
     repeat-string "^1.0.0"
 
-marked-mfm@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/marked-mfm/-/marked-mfm-0.4.0.tgz#d3094c42daaa57b1b0b263278633de82ebf62396"
-  integrity sha512-2ZdBHGOV7BFJUcQNLp/jjwEE2IT1O5d1H7cd4dGeuOBI1nivuBCv1Azt7fbRlygfUSQ2rgGtFZ1ZbrP4dRhh3A==
+marked-mfm@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/marked-mfm/-/marked-mfm-0.5.0.tgz#0632c4fa8f5044d350b3aaa771b136e5d50b4b60"
+  integrity sha512-nRazH80nu7gVEDeORQWCWehY3v7fofC4usKdY/d6mckxfRY4PrPNLM3iGpVedpij9ktmesWAtY7SpCLq/BxP4Q==
   dependencies:
     "@babel/core" "^7.18.6"
     "@babel/preset-env" "^7.18.6"
@@ -7560,13 +7560,6 @@ merge2@^1.3.0, merge2@^1.4.1:
 methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/methods/-/methods-1.1.2.tgz"
-
-mfm-js@^0.22.1:
-  version "0.22.1"
-  resolved "https://registry.npmjs.org/mfm-js/-/mfm-js-0.22.1.tgz"
-  integrity sha512-UV5zvDKlWPpBFeABhyCzuOTJ3RwrNrmVpJ+zz/dFX6D/ntEywljgxkfsLamcy0ZSwUAr0O+WQxGHvAwyxUgsAQ==
-  dependencies:
-    twemoji-parser "14.0.x"
 
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
@@ -10746,11 +10739,6 @@ tsutils@^3.21.0:
 tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.npmjs.org/tty-browserify/-/tty-browserify-0.0.0.tgz"
-
-twemoji-parser@14.0.x:
-  version "14.0.0"
-  resolved "https://registry.npmjs.org/twemoji-parser/-/twemoji-parser-14.0.0.tgz"
-  integrity sha512-9DUOTGLOWs0pFWnh1p6NF+C3CkQ96PWmEFwhOVmT3WbecRC+68AIqpsnJXygfkFcp4aXbOp8Dwbhh/HQgvoRxA==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

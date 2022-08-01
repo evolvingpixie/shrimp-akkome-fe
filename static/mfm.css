@@ -37,11 +37,11 @@
 }
 
 ._mfm_jump_ {
-  animation: mfm-jump 0.75 linear infinite;
+  animation: mfm-jump 0.75s linear infinite;
 }
 
 ._mfm_bounce_ {
-  animation: mfm-bounce 0.75 linear infinite;
+  animation: mfm-bounce 0.75s linear infinite;
   transform-origin: center bottom;
 }
 
@@ -67,7 +67,13 @@
   font-size: 600%;
 }
 
-/* blur */
+._mfm_blur_ {
+  filter: blur(6px);
+  transition: filter 0.3s
+}
+._mfm_blur_:hover {
+  filter: blur(0px);
+}
 
 ._mfm_rainbow_ {
   animation: mfm-rainbow 1s linear infinite;
