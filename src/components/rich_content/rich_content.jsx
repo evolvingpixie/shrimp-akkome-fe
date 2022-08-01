@@ -124,6 +124,14 @@ export default {
     }
 
     const renderMisskeyMarkdown = (content) => {
+      // Untangle code blocks from <br> tags
+      const codeblocks = content.match(/(<br\/>)?(~~~|```)\w*<br\/>.+?<br\/>\2\1?/g)
+      if (codeblocks) {
+        codeblocks.forEach((pre) => {
+          content = content.replace(pre, pre.replaceAll('<br/>', '\n'))
+        })
+      }
+
       marked.use(markedMfm, {
         mangle: false,
         gfm: false,
