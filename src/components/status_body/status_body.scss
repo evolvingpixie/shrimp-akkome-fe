@@ -157,16 +157,19 @@
 
     --emoji-size: 16px;
 
-    & .body,
+    & .body:not(:active),
     & .attachments {
       max-height: 3.25em;
     }
 
     .body {
-      overflow: hidden;
       white-space: normal;
       min-width: 5em;
       flex: 5 1 auto;
+    }
+
+    .body:not(:active) {
+      overflow: hidden;
       mask-size: auto 3.5em, auto auto;
       mask-position: 0 0, 0 0;
       mask-repeat: repeat-x, repeat;
