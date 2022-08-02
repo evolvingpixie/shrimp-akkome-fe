@@ -3,6 +3,7 @@ const createFaviconService = () => {
   const faviconWidth = 128
   const faviconHeight = 128
   const badgeRadius = 32
+  const gapWidth = 24
 
   const initFaviconService = () => {
     const nodes = document.querySelectorAll('link[rel="icon"]')
@@ -47,6 +48,14 @@ const createFaviconService = () => {
       if (isImageLoaded(favimg)) {
         favcontext.drawImage(favimg, 0, 0, favimg.width, favimg.height, 0, 0, faviconWidth, faviconHeight)
       }
+
+      // draw bigger transparent circle to create gap
+      favcontext.globalCompositeOperation = 'destination-out'
+      favcontext.beginPath()
+      favcontext.arc(faviconWidth - badgeRadius, badgeRadius, badgeRadius + gapWidth, 0, 2 * Math.PI, false)
+      favcontext.fill()
+
+      favcontext.globalCompositeOperation = 'source-over'
       favcontext.fillStyle = badgeColor
       favcontext.beginPath()
       favcontext.arc(faviconWidth - badgeRadius, badgeRadius, badgeRadius, 0, 2 * Math.PI, false)
