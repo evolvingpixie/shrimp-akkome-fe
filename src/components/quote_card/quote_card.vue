@@ -18,7 +18,7 @@
 
 .quote-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   cursor: pointer;
   overflow: hidden;
   margin-top: 0.5em;
