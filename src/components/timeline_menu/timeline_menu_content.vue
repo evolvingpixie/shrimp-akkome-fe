@@ -9,9 +9,12 @@
           fixed-width
           class="fa-scale-110 fa-old-padding "
           icon="home"
-        />{{ $t("nav.home_timeline") }}
+        />
+        <span
+          :title="$t('nav.home_timeline_description')"
+          :aria-label="$t('nav.home_timeline_description')"
+        >{{ $t("nav.home_timeline") }}</span>
       </router-link>
-      <span class="timeline-desc">{{ $t("nav.home_timeline_description") }}</span>
     </li>
     <li v-if="currentUser">
       <router-link
@@ -22,9 +25,12 @@
           fixed-width
           class="fa-scale-110 fa-old-padding "
           icon="circle"
-        />{{ $t("nav.bubble_timeline") }}
+        />
+        <span
+          :title="$t('nav.bubble_timeline_description')"
+          :aria-label="$t('nav.bubble_timeline_description')"
+        >{{ $t("nav.bubble_timeline") }}</span>
       </router-link>
-      <span class="timeline-desc">{{ $t("nav.bubble_timeline_description") }}</span>
     </li>
     <li v-if="currentUser || !privateMode">
       <router-link
@@ -35,9 +41,12 @@
           fixed-width
           class="fa-scale-110 fa-old-padding "
           icon="users"
-        />{{ $t("nav.public_tl") }}
+        />
+        <span
+          :title="$t('nav.public_timeline_description')"
+          :aria-label="$t('nav.public_timeline_description')"
+        >{{ $t("nav.public_tl") }}</span>
       </router-link>
-      <span class="timeline-desc">{{ $t("nav.public_timeline_description") }}</span>
     </li>
     <li v-if="federating && (currentUser || !privateMode)">
       <router-link
@@ -48,9 +57,12 @@
           fixed-width
           class="fa-scale-110 fa-old-padding "
           icon="globe"
-        />{{ $t("nav.twkn") }}
+        />
+        <span
+          :title="$t('nav.twkn_timeline_description')"
+          :aria-label="$t('nav.twkn_timeline_description')"
+        >{{ $t("nav.twkn") }}</span>
       </router-link>
-      <span class="timeline-desc">{{ $t("nav.twkn_timeline_description") }}</span>
     </li>
     <li v-if="currentUser">
       <router-link
@@ -61,7 +73,11 @@
           fixed-width
           class="fa-scale-110 fa-old-padding "
           icon="bookmark"
-        />{{ $t("nav.bookmarks") }}
+        />
+        <span
+          :title="$t('nav.bookmarks')"
+          :aria-label="$t('nav.bookmarks')"
+        >{{ $t("nav.bookmarks") }}</span>
       </router-link>
     </li>
     <li v-if="currentUser">
@@ -73,7 +89,11 @@
           fixed-width
           class="fa-scale-110 fa-old-padding "
           icon="envelope"
-        />{{ $t("nav.dms") }}
+        />
+        <span
+          :title="$t('nav.dms')"
+          :aria-label="$t('nav.dms')"
+        >{{ $t("nav.dms") }}</span>
       </router-link>
     </li>
   </ul>
