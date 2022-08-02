@@ -58,7 +58,9 @@ export default {
 
 <style lang="scss">
 @import '../../_variables.scss';
-time.warning {
-  color: var(--alertWarning, $fallback--alertWarning);
+.timeago {
+  time.warning {
+    color: var(--alertWarning, $fallback--alertWarning);
+  }
 }
 </style>
