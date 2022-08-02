@@ -22,6 +22,11 @@
         @click.prevent="onClick"
       >
         <!-- eslint-disable vue/no-v-html -->
+        <UserAvatar
+          v-if="shouldShowAvatar"
+          class="mention-avatar"
+          :user="user"
+        />
         <span class="shortName">@<span
           class="userName"
           v-html="userName"
