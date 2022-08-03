@@ -13,10 +13,11 @@
           :title="group.text"
           @click.prevent="highlight(group.id)"
         >
-          <FAIcon
-            :icon="group.icon"
-            fixed-width
-          />
+          <span v-if="!group.first.imageUrl">{{ group.first.replacement }}</span>
+          <img
+            v-else
+            :src="group.first.imageUrl"
+          >
         </span>
       </span>
       <span
