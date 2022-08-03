@@ -466,6 +466,7 @@
         "hide_muted_threads": "Amaga fils silenciats",
         "hide_post_stats": "Amaga les estadístiques dels apunts (p. ex. el número de favorits)",
         "hide_shoutbox": "Amaga la casella de gàbia de grills",
+        "hide_threads_with_blocked_users": "Amaga els fils mencionant usuaris bloquejats",
         "hide_user_stats": "Amaga les estadístiques de l'usuari (p. ex. el número de seguidors)",
         "hide_wallpaper": "Amagar el fons de la instància",
         "hide_wordfiltered_statuses": "Amaga apunts filtrats per paraules",
