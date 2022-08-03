@@ -138,7 +138,8 @@
             "direct": "Direct",
             "private": "Followers-only",
             "public": "Public",
-            "unlisted": "Unlisted"
+            "unlisted": "Unlisted",
+            "local": "Local - only your instance can see this status"
         },
         "show_less": "Show less",
         "show_more": "Show more",
