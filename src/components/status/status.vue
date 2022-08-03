@@ -187,6 +187,7 @@
                 >
                   <Timeago
                     :time="status.created_at"
+                    :with-direction="true"
                     :auto-update="60"
                   />
                 </router-link>
