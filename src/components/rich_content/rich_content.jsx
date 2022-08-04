@@ -124,11 +124,18 @@ export default {
     }
 
     const renderMisskeyMarkdown = (content) => {
-      // Untangle code blocks from <br> tags
+      // Untangle code blocks from <br> tags and other html encodings
       const codeblocks = content.match(/(<br\/>)?(~~~|```)\w*<br\/>.+?<br\/>\2\1?/g)
       if (codeblocks) {
         codeblocks.forEach((pre) => {
-          content = content.replace(pre, pre.replaceAll('<br/>', '\n'))
+          content = content.replace(pre,
+            pre.replaceAll('<br/>', '\n')
+               .replaceAll('&amp;', '&')
+               .replaceAll('&lt;', '<')
+               .replaceAll('&gt;', '>')
+               .replaceAll('&quot', '"')
+               .replaceAll('&#39;', "'")
+          )
         })
       }
 
