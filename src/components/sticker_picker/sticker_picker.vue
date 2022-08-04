@@ -36,6 +36,22 @@
 
 .sticker-picker {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 0 !important;
+  background-color: $fallback--bg;
+  background-color: var(--popover, $fallback--bg);
+  color: $fallback--link;
+  color: var(--popoverText, $fallback--link);
+  --lightText: var(--popoverLightText, $fallback--faint);
+  --faint: var(--popoverFaintText, $fallback--faint);
+  --faintLink: var(--popoverFaintLink, $fallback--faint);
+  --lightText: var(--popoverLightText, $fallback--lightText);
+  --icon: var(--popoverIcon, $fallback--icon);
+
   .contents {
     min-height: 250px;
     .sticker-picker-content {

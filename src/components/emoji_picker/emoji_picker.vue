@@ -19,13 +19,9 @@
             :src="group.first.imageUrl"
           >
         </span>
-      </span>
-      <span
-        v-if="stickerPickerEnabled"
-        class="additional-tabs"
-      >
         <span
-          class="stickers-tab-icon additional-tabs-item"
+          v-if="stickerPickerEnabled"
+          class="stickers-tab-icon emoji-tabs-item"
           :class="{active: showingStickers}"
           :title="$t('emoji.stickers')"
           @click.prevent="toggleStickers"

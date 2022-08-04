@@ -72,7 +72,7 @@
     width: 100%;
 
     white-space: nowrap;
-    
+
     &-item {
       vertical-align: top;
       display: inline-flex;
@@ -105,6 +105,9 @@
           color: $fallback--lightText;
           color: var(--lightText, $fallback--lightText);
         }
+      }
+      .fa-sticky-note {
+        font-size: 2em;
       }
     }
   }

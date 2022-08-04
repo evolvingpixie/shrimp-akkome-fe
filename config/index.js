@@ -61,7 +61,17 @@ module.exports = {
         target,
         changeOrigin: true,
         cookieDomainRewrite: 'localhost'
-      }
+      },
+      '/static/stickers.json': {
+        target,
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost'
+      },
+      '/static/stickers': {
+        target,
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost'
+      },
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

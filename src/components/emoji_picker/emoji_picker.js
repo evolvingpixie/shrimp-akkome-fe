@@ -215,7 +215,7 @@ const EmojiPicker = {
       }
     },
     stickerPickerEnabled () {
-      return (this.$store.state.instance.stickers || []).length !== 0
+      return (this.$store.state.instance.stickers || []).length !== 0 && this.enableStickerPicker
     }
   }
 }
