@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+# For restructuring files that have keys like "chat.title"
+# into more useful formats
+
+import sys
+import json
+from collections import defaultdict
+
+with open(sys.argv[1], "r") as f:
+    data = json.load(f)
+
+d = defaultdict(str)
+
+
+def create_and_set(dic, key_path, value):
+    if len(key_path) == 1:
+        dic[key_path[0]] = value
+    else:
+        if key_path[0] not in dic:
+            dic[key_path[0]] = {}
+        create_and_set(dic[key_path[0]], key_path[1:], value)
+
+
+for key, value in data.items():
+    nested_key = key.split(".")
+    create_and_set(d, nested_key, value)
+
+with open(sys.argv[1], "w", encoding="utf-8") as f:
+    json.dump(d, f, indent=4, sort_keys=True, ensure_ascii=False)

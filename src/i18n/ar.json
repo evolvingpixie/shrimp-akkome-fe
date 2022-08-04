@@ -1,9 +1,5 @@
 {
-    "chat": {
-        "title": "الدردشة"
-    },
     "features_panel": {
-        "chat": "الدردشة",
         "media_proxy": "بروكسي الوسائط",
         "scope_options": "",
         "text_limit": "الحد الأقصى للنص",
@@ -27,7 +23,6 @@
         "username": "إسم المستخدم"
     },
     "nav": {
-        "chat": "الدردشة المحلية",
         "friend_requests": "طلبات المتابَعة",
         "mentions": "الإشارات",
         "public_tl": "الخيط الزمني العام",
@@ -52,7 +47,6 @@
         },
         "content_warning": "الموضوع (اختياري)",
         "default": "وصلت للتوّ إلى لوس أنجلس.",
-        "direct_warning": "",
         "posting": "النشر",
         "scope": {
             "direct": "",
@@ -89,7 +83,6 @@
         "confirm_new_password": "تأكيد كلمة السر الجديدة",
         "current_avatar": "صورتك الرمزية الحالية",
         "current_password": "كلمة السر الحالية",
-        "current_profile_banner": "الرأسية الحالية لصفحتك الشخصية",
         "data_import_export_tab": "تصدير واستيراد البيانات",
         "default_vis": "أسلوب العرض الافتراضي",
         "delete_account": "حذف الحساب",
@@ -101,7 +94,6 @@
         "filtering_explanation": "سيتم إخفاء كافة المنشورات التي تحتوي على هذه الكلمات، كلمة واحدة في كل سطر",
         "follow_export": "تصدير الاشتراكات",
         "follow_export_button": "تصدير الاشتراكات كملف csv",
-        "follow_export_processing": "التصدير جارٍ، سوف يُطلَب منك تنزيل ملفك بعد حين",
         "follow_import": "استيراد الاشتراكات",
         "follow_import_error": "خطأ أثناء استيراد المتابِعين",
         "follows_imported": "",
@@ -133,10 +125,6 @@
         "notification_visibility_repeats": "",
         "nsfw_clickthrough": "",
         "oauth_tokens": "رموز OAuth",
-        "token": "رمز",
-        "refresh_token": "رمز التحديث",
-        "valid_until": "صالح حتى",
-        "revoke_token": "سحب",
         "panelRadius": "",
         "pause_on_unfocused": "",
         "presets": "النماذج",
@@ -144,10 +132,12 @@
         "profile_banner": "رأسية الصفحة الشخصية",
         "profile_tab": "الملف الشخصي",
         "radii_help": "",
+        "refresh_token": "رمز التحديث",
         "replies_in_timeline": "الردود على الخيط الزمني",
         "reply_visibility_all": "عرض كافة الردود",
         "reply_visibility_following": "",
         "reply_visibility_self": "",
+        "revoke_token": "سحب",
         "saving_err": "خطأ أثناء حفظ الإعدادات",
         "saving_ok": "تم حفظ الإعدادات",
         "security_tab": "الأمان",
@@ -160,8 +150,10 @@
         "text": "النص",
         "theme": "المظهر",
         "theme_help": "",
+        "token": "رمز",
         "tooltipRadius": "",
         "user_settings": "إعدادات المستخدم",
+        "valid_until": "صالح حتى",
         "values": {
             "false": "لا",
             "true": "نعم"
@@ -170,7 +162,6 @@
     "timeline": {
         "collapse": "",
         "conversation": "محادثة",
-        "error_fetching": "خطأ أثناء جلب التحديثات",
         "load_older": "تحميل المنشورات القديمة",
         "no_retweet_hint": "",
         "repeated": "",

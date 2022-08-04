@@ -53,9 +53,6 @@
         "submit_edit_action": "Envoyer",
         "title": "Annonce"
     },
-    "chat": {
-        "title": "Chat"
-    },
     "chats": {
         "chats": "Discussions",
         "delete": "Effacer",
@@ -97,10 +94,7 @@
         "processing": "En cours de traitement, vous pourrez bientôt télécharger votre fichier"
     },
     "features_panel": {
-        "chat": "Chat",
-        "gopher": "Gopher",
         "media_proxy": "Proxy pièce-jointes",
-        "pleroma_chat_messages": "Chat Pleroma",
         "scope_options": "Options de visibilité",
         "shout": "Shoutbox",
         "text_limit": "Limite du texte",
@@ -210,7 +204,6 @@
         "bookmarks": "Marques-Pages",
         "bubble_timeline": "Flux de cette bulle",
         "bubble_timeline_description": "Les status des instances proches de celle-ci, choisies par l'administration",
-        "chat": "Chat local",
         "chats": "Chats",
         "dms": "Messages directs",
         "friend_requests": "Demandes de suivi",
@@ -409,7 +402,6 @@
         "current_avatar": "Avatar actuel",
         "current_mascot": "Mascotte actuelle",
         "current_password": "Mot de passe actuel",
-        "current_profile_banner": "Bannière de profil actuelle",
         "data_import_export_tab": "Import / Export des Données",
         "default_vis": "Visibilité par défaut",
         "delete_account": "Supprimer le compte",
@@ -550,7 +542,6 @@
         "notification_setting_hide_if_cw": "Cacher les notifications avec avertissement de contenu sensible",
         "notification_setting_hide_notification_contents": "Cacher l'expéditeur et le contenu des notifications push",
         "notification_setting_privacy": "Vie privée",
-        "notification_setting_privacy_option": "Masquer l'expéditeur et le contenu des notifications push",
         "notification_visibility": "Types de notifications à afficher",
         "notification_visibility_emoji_reactions": "Réactions",
         "notification_visibility_follows": "Suivis",
@@ -733,7 +724,6 @@
                     "inset_classic": "L'ombre interne utilisera toujours {0}",
                     "spread_zero": "Les ombres avec une dispersion > 0 apparaitrons comme si ils étaient à zéro"
                 },
-                "hint": "Pour les ombres, vous pouvez aussi utiliser --variable comme valeur de couleur en CSS3. Veuillez noter que spécifier la transparence ne fonctionnera pas dans ce cas.",
                 "hintV3": "Pour les ombres vous pouvez aussi utiliser la notation {0} pour utiliser un autre emplacement de couleur.",
                 "inset": "Interne",
                 "override": "Surcharger",
@@ -811,9 +801,6 @@
         "word_filter": "Filtrage par mots",
         "wordfilter": "Filtrage par mot-clé"
     },
-    "shoutbox": {
-        "title": "Shoutbox"
-    },
     "status": {
         "ancestor_follow": "Voir {numReplies} autre réponse en dessous de ce status | Voir {numReplies} autres réponses en dessous de ce status",
         "ancestor_follow_with_icon": "{icon} {text}",
@@ -873,32 +860,18 @@
         "now": "tout de suite",
         "now_short": "maintenant",
         "unit": {
-            "day": "{0} jour",
-            "day_short": "{0}j",
             "days": "{0} jours",
             "days_short": "{0}j",
-            "hour": "{0} heure",
-            "hour_short": "{0}h",
             "hours": "{0} heures",
             "hours_short": "{0}h",
-            "minute": "{0} minute",
-            "minute_short": "{0}min",
             "minutes": "{0} minutes",
             "minutes_short": "{0}min",
-            "month": "{0} mois",
-            "month_short": "{0}m",
             "months": "{0} mois",
             "months_short": "{0}m",
-            "second": "{0} seconde",
-            "second_short": "{0}s",
             "seconds": "{0} secondes",
             "seconds_short": "{0}s",
-            "week": "{0} semaine",
-            "week_short": "{0}s",
             "weeks": "{0} semaines",
             "weeks_short": "{0}s",
-            "year": "{0} année",
-            "year_short": "{0}a",
             "years": "{0} années",
             "years_short": "{0}a"
         }
@@ -907,7 +880,6 @@
         "collapse": "Fermer",
         "conversation": "Conversation",
         "error": "Erreur lors de l'affichage du flux : {0}",
-        "error_fetching": "Erreur en cherchant les mises à jour",
         "load_older": "Afficher des status plus ancien",
         "no_more_statuses": "Pas plus de statuts",
         "no_retweet_hint": "Le message est marqué en abonnés-seulement ou direct et ne peut pas être partagé",
@@ -1005,10 +977,6 @@
         "per_day": "par jour",
         "remote_follow": "Suivre d'une autre instance",
         "report": "Signalement",
-        "roles": {
-            "admin": "Administrateur⋅ice",
-            "moderator": "Modérateur⋅ice"
-        },
         "show_repeats": "Montrer les partages",
         "statuses": "Statuts",
         "subscribe": "Abonner",

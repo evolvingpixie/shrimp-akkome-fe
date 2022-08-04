@@ -1,19 +1,65 @@
 {
-    "chat": {
-        "title": "Txata"
+    "about": {
+        "mrf": {
+            "federation": "Federazioa",
+            "keyword": {
+                "ftl_removal": "\"Ezagutzen den Sarea\" denbora-lerrotik ezabatu",
+                "is_replaced_by": "→",
+                "keyword_policies": "Gako-hitz politika",
+                "reject": "Ukatuak",
+                "replace": "Ordezkatuak"
+            },
+            "mrf_policies": "Gaitutako MRF politikak",
+            "mrf_policies_desc": "MRF politikek instantzia honen federazioa manipulatzen dute gainerako instantziekin. Honako politika hauek daude gaituta:",
+            "simple": {
+                "accept": "Onartu",
+                "accept_desc": "Instantzia honek hurrengo instantzietako mezuak soilik onartzen ditu:",
+                "ftl_removal": "\"Ezagutzen den Sarea\" denbora-lerrotik ezabatu",
+                "ftl_removal_desc": "Instantzia honek hurrengo instantziak ezabatzen ditu \"Ezagutzen den Sarea\" denbora-lerrotik:",
+                "media_nsfw": "Behartu multimedia sentikor moduan",
+                "media_nsfw_desc": "Instantzia honek hurrengo instantzien multimediak sentikorrak izatera behartzen ditu:",
+                "media_removal": "Multimedia Ezabatu",
+                "media_removal_desc": "Instantzia honek atxikitutako multimedia hurrengo instantzietatik ezabatzen ditu:",
+                "quarantine": "Koarentena",
+                "quarantine_desc": "Instantzia honek soilik mezu publikoak bidaliko ditu instantzia hauetara:",
+                "reject": "Ukatuak",
+                "reject_desc": "Instantzia honek ez ditu hurrengo instantzien mezuak onartuko:",
+                "simple_policies": "Gure instantziaren politika zehatzak"
+            }
+        },
+        "staff": "Arduradunak"
+    },
+    "domain_mute_card": {
+        "mute": "Isilarazi",
+        "mute_progress": "Isiltzen…",
+        "unmute": "Isiltasuna kendu",
+        "unmute_progress": "Isiltasuna kentzen…"
+    },
+    "emoji": {
+        "add_emoji": "Emoji bat gehitu",
+        "custom": "Ohiko emojiak",
+        "emoji": "Emoji",
+        "keep_open": "Mantendu hautatzailea zabalik",
+        "load_all": "{emojiAmount} emoji guztiak kargatzen",
+        "load_all_hint": "Lehenengo {saneAmount} emojia kargatuta, emoji guztiak kargatzeak errendimendu arazoak sor ditzake.",
+        "search_emoji": "Bilatu emoji bat",
+        "stickers": "Pegatinak",
+        "unicode": "Unicode emojiak"
+    },
+    "errors": {
+        "storage_unavailable": "Pleromak ezin izan du nabigatzailearen biltegira sartu. Hasiera-saioa edo tokiko ezarpenak ez dira gordeko eta ustekabeko arazoak sor ditzake. Saiatu cookie-ak gaitzen."
     },
     "exporter": {
         "export": "Esportatu",
         "processing": "Prozesatzen, zure fitxategia deskargatzeko eskatuko zaizu laster"
     },
     "features_panel": {
-        "chat": "Txata",
         "media_proxy": "Media proxy",
         "scope_options": "Ikusgaitasun aukerak",
         "text_limit": "Testu limitea",
         "title": "Ezaugarriak",
-        "who_to_follow": "Nori jarraitu",
-        "upload_limit": "Kargatzeko muga"
+        "upload_limit": "Kargatzeko muga",
+        "who_to_follow": "Nori jarraitu"
     },
     "finder": {
         "error_fetching_user": "Errorea erabiltzailea eskuratzen",
@@ -21,128 +67,41 @@
     },
     "general": {
         "apply": "Aplikatu",
-        "submit": "Bidali",
-        "more": "Gehiago",
-        "generic_error": "Errore bat gertatu da",
-        "optional": "Hautazkoa",
-        "show_more": "Gehiago erakutsi",
-        "show_less": "Gutxiago erakutsi",
         "cancel": "Ezeztatu",
-        "disable": "Ezgaitu",
-        "enable": "Gaitu",
-        "confirm": "Baieztatu",
-        "verify": "Egiaztatu",
-        "peek": "Begiratu",
         "close": "Itxi",
+        "confirm": "Baieztatu",
+        "disable": "Ezgaitu",
         "dismiss": "Baztertu",
-        "retry": "Saiatu berriro",
+        "enable": "Gaitu",
         "error_retry": "Saiatu berriro mesedez",
-        "loading": "Kargatzen…",
-        "role": {
-            "moderator": "Moderatzailea",
-            "admin": "Administratzailea"
-        },
         "flash_content": "Klik egin Flash edukia erakusteko Ruffle erabilita (esperimentala, baliteke ez ibiltzea).",
+        "flash_fail": "Ezin izan da Flash edukia kargatu. Ikusi kontsola xehetasunetarako.",
         "flash_security": "Kontuan izan arriskutsua izan daitekeela, Flash edukia kode arbitrarioa baita.",
-        "flash_fail": "Ezin izan da Flash edukia kargatu. Ikusi kontsola xehetasunetarako."
+        "generic_error": "Errore bat gertatu da",
+        "loading": "Kargatzen…",
+        "more": "Gehiago",
+        "optional": "Hautazkoa",
+        "peek": "Begiratu",
+        "retry": "Saiatu berriro",
+        "role": {
+            "admin": "Administratzailea",
+            "moderator": "Moderatzailea"
+        },
+        "show_less": "Gutxiago erakutsi",
+        "show_more": "Gehiago erakutsi",
+        "submit": "Bidali",
+        "verify": "Egiaztatu"
     },
     "image_cropper": {
+        "cancel": "Ezeztatu",
         "crop_picture": "Moztu argazkia",
         "save": "Gorde",
-        "save_without_cropping": "Gorde moztu gabe",
-        "cancel": "Ezeztatu"
+        "save_without_cropping": "Gorde moztu gabe"
     },
     "importer": {
+        "error": "Errore bat gertatu da fitxategi hau inportatzerakoan.",
         "submit": "Bidali",
-        "success": "Ondo inportatu da.",
-        "error": "Errore bat gertatu da fitxategi hau inportatzerakoan."
-    },
-    "login": {
-        "login": "Saioa hasi",
-        "description": "OAuth-ekin saioa hasi",
-        "logout": "Saioa itxi",
-        "password": "Pasahitza",
-        "placeholder": "adibidez Lain",
-        "register": "Erregistratu",
-        "username": "Erabiltzaile-izena",
-        "hint": "Hasi saioa eztabaidan parte-hartzeko",
-        "authentication_code": "Autentifikazio kodea",
-        "enter_recovery_code": "Sartu berreskuratze kodea",
-        "enter_two_factor_code": "Sartu bi-faktore kodea",
-        "recovery_code": "Berreskuratze kodea",
-        "heading": {
-            "totp": "Bi-faktore autentifikazioa",
-            "recovery": "Bi-faktore berreskuratzea"
-        }
-    },
-    "media_modal": {
-        "previous": "Aurrekoa",
-        "next": "Hurrengoa"
-    },
-    "nav": {
-        "about": "Honi buruz",
-        "administration": "Administrazioa",
-        "back": "Atzera",
-        "chat": "Txat lokala",
-        "friend_requests": "Jarraitzeko eskaerak",
-        "mentions": "Aipamenak",
-        "interactions": "Interakzioak",
-        "dms": "Zuzeneko mezuak",
-        "public_tl": "Denbora-lerro publikoa",
-        "timeline": "Denbora-lerroa",
-        "twkn": "Ezagutzen den Sarea",
-        "user_search": "Erabiltzailea Bilatu",
-        "search": "Bilatu",
-        "who_to_follow": "Nori jarraitu",
-        "preferences": "Hobespenak",
-        "chats": "Txatak",
-        "timelines": "Denbora-lerroak",
-        "bookmarks": "Laster-markak",
-        "home_timeline": "Denbora-lerro pertsonala"
-    },
-    "notifications": {
-        "broken_favorite": "Egoera ezezaguna, bilatzen…",
-        "favorited_you": "zure mezua gogoko du",
-        "followed_you": "Zu jarraitzen zaitu",
-        "load_older": "Kargatu jakinarazpen zaharragoak",
-        "notifications": "Jakinarazpenak",
-        "read": "Irakurrita!",
-        "repeated_you": "zure mezua errepikatu du",
-        "no_more_notifications": "Ez dago jakinarazpen gehiago",
-        "reacted_with": "{0}kin erreakzionatu zuen",
-        "migrated_to": "hona migratua:",
-        "follow_request": "jarraitu nahi zaitu",
-        "error": "Errorea jakinarazpenak eskuratzean: {0}"
-    },
-    "polls": {
-        "add_poll": "Inkesta gehitu",
-        "add_option": "Gehitu aukera",
-        "option": "Aukera",
-        "votes": "Bozkak",
-        "vote": "Bozka",
-        "type": "Inkesta mota",
-        "single_choice": "Aukera bakarra",
-        "multiple_choices": "Aukera anizkoitza",
-        "expiry": "Inkestaren iraupena",
-        "expires_in": "Inkesta {0} bukatzen da",
-        "expired": "Inkesta {0} bukatu zen",
-        "not_enough_options": "Aukera gutxiegi inkestan",
-        "votes_count": "{count} boto| {count} boto",
-        "people_voted_count": "Pertsona batek bozkatu du | {count} pertsonak bozkatu dute"
-    },
-    "emoji": {
-        "stickers": "Pegatinak",
-        "emoji": "Emoji",
-        "keep_open": "Mantendu hautatzailea zabalik",
-        "search_emoji": "Bilatu emoji bat",
-        "add_emoji": "Emoji bat gehitu",
-        "custom": "Ohiko emojiak",
-        "unicode": "Unicode emojiak",
-        "load_all": "{emojiAmount} emoji guztiak kargatzen",
-        "load_all_hint": "Lehenengo {saneAmount} emojia kargatuta, emoji guztiak kargatzeak errendimendu arazoak sor ditzake."
-    },
-    "stickers": {
-        "add_sticker": "Pegatina gehitu"
+        "success": "Ondo inportatu da."
     },
     "interactions": {
         "favs_repeats": "Errepikapen eta gogokoak",
@@ -150,97 +109,172 @@
         "load_older": "Kargatu elkarrekintza zaharragoak",
         "moves": "Erabiltzailea migratuta"
     },
+    "login": {
+        "authentication_code": "Autentifikazio kodea",
+        "description": "OAuth-ekin saioa hasi",
+        "enter_recovery_code": "Sartu berreskuratze kodea",
+        "enter_two_factor_code": "Sartu bi-faktore kodea",
+        "heading": {
+            "recovery": "Bi-faktore berreskuratzea",
+            "totp": "Bi-faktore autentifikazioa"
+        },
+        "hint": "Hasi saioa eztabaidan parte-hartzeko",
+        "login": "Saioa hasi",
+        "logout": "Saioa itxi",
+        "password": "Pasahitza",
+        "placeholder": "adibidez Lain",
+        "recovery_code": "Berreskuratze kodea",
+        "register": "Erregistratu",
+        "username": "Erabiltzaile-izena"
+    },
+    "media_modal": {
+        "next": "Hurrengoa",
+        "previous": "Aurrekoa"
+    },
+    "nav": {
+        "about": "Honi buruz",
+        "administration": "Administrazioa",
+        "back": "Atzera",
+        "bookmarks": "Laster-markak",
+        "chats": "Txatak",
+        "dms": "Zuzeneko mezuak",
+        "friend_requests": "Jarraitzeko eskaerak",
+        "home_timeline": "Denbora-lerro pertsonala",
+        "interactions": "Interakzioak",
+        "mentions": "Aipamenak",
+        "preferences": "Hobespenak",
+        "public_tl": "Denbora-lerro publikoa",
+        "search": "Bilatu",
+        "timeline": "Denbora-lerroa",
+        "timelines": "Denbora-lerroak",
+        "twkn": "Ezagutzen den Sarea",
+        "user_search": "Erabiltzailea Bilatu",
+        "who_to_follow": "Nori jarraitu"
+    },
+    "notifications": {
+        "broken_favorite": "Egoera ezezaguna, bilatzen…",
+        "error": "Errorea jakinarazpenak eskuratzean: {0}",
+        "favorited_you": "zure mezua gogoko du",
+        "follow_request": "jarraitu nahi zaitu",
+        "followed_you": "Zu jarraitzen zaitu",
+        "load_older": "Kargatu jakinarazpen zaharragoak",
+        "migrated_to": "hona migratua:",
+        "no_more_notifications": "Ez dago jakinarazpen gehiago",
+        "notifications": "Jakinarazpenak",
+        "reacted_with": "{0}kin erreakzionatu zuen",
+        "read": "Irakurrita!",
+        "repeated_you": "zure mezua errepikatu du"
+    },
+    "password_reset": {
+        "check_email": "Begiratu zure posta elektronikoa pasahitza berrezarri ahal izateko.",
+        "forgot_password": "Pasahitza ahaztua?",
+        "instruction": "Idatzi zure helbide elektronikoa edo erabiltzaile izena. Pasahitza berrezartzeko esteka bidaliko dizugu.",
+        "password_reset": "Pasahitza berrezarri",
+        "password_reset_disabled": "Pasahitza berrezartzea debekatuta dago. Mesedez, jarri harremanetan instantzia administratzailearekin.",
+        "password_reset_required": "Pasahitza berrezarri behar duzu saioa hasteko.",
+        "password_reset_required_but_mailer_is_disabled": "Pasahitza berrezarri behar duzu, baina pasahitza berrezartzeko aukera desgaituta dago. Mesedez, jarri harremanetan instantziaren administratzailearekin.",
+        "placeholder": "Zure e-posta edo erabiltzaile izena",
+        "return_home": "Itzuli hasierara",
+        "too_many_requests": "Saiakera gehiegi burutu ditzu, saiatu berriro geroxeago."
+    },
+    "polls": {
+        "add_option": "Gehitu aukera",
+        "add_poll": "Inkesta gehitu",
+        "expired": "Inkesta {0} bukatu zen",
+        "expires_in": "Inkesta {0} bukatzen da",
+        "expiry": "Inkestaren iraupena",
+        "multiple_choices": "Aukera anizkoitza",
+        "not_enough_options": "Aukera gutxiegi inkestan",
+        "option": "Aukera",
+        "people_voted_count": "Pertsona batek bozkatu du | {count} pertsonak bozkatu dute",
+        "single_choice": "Aukera bakarra",
+        "type": "Inkesta mota",
+        "vote": "Bozka",
+        "votes": "Bozkak",
+        "votes_count": "{count} boto| {count} boto"
+    },
     "post_status": {
-        "new_status": "Mezu berri bat idatzi",
         "account_not_locked_warning": "Zure kontua ez dago {0}. Edozeinek jarraitzen hastearekin, zure mezuak irakur ditzake.",
         "account_not_locked_warning_link": "Blokeatuta",
         "attachments_sensitive": "Nabarmendu eranskinak hunkigarri gisa",
         "content_type": {
-            "text/plain": "Testu arrunta",
+            "text/bbcode": "BBCode",
             "text/html": "HTML",
             "text/markdown": "Markdown",
-            "text/bbcode": "BBCode"
+            "text/plain": "Testu arrunta"
         },
         "content_warning": "Gaia (hautazkoa)",
         "default": "Iadanik Los Angeles-en",
         "direct_warning_to_all": "Mezu hau aipatutako erabiltzaile guztientzat ikusgai egongo da.",
         "direct_warning_to_first_only": "Mezu hau ikusgai egongo da bakarrik hasieran aipatzen diren erabiltzaileei.",
+        "empty_status_error": "Ezin da argitaratu ezer idatzi gabe edo eranskinik gabe",
+        "media_description": "Media deskribapena",
+        "media_description_error": "Ezin izan da artxiboa eguneratu, saiatu berriro",
+        "new_status": "Mezu berri bat idatzi",
+        "post": "Bidali",
         "posting": "Argitaratzen",
-        "scope_notice": {
-            "public": "Mezu hau guztiontzat ikusgai izango da",
-            "private": "Mezu hau zure jarraitzaileek soilik ikusiko dute",
-            "unlisted": "Mezu hau ez da argitaratuko Denbora-lerro Publikoan ezta Ezagutzen den Sarean"
-        },
+        "preview": "Aurrebista",
+        "preview_empty": "Hutsik",
         "scope": {
             "direct": "Zuzena: bidali aipatutako erabiltzaileei besterik ez",
             "private": "Jarraitzaileentzako bakarrik: bidali jarraitzaileentzat bakarrik",
             "public": "Publikoa: bistaratu denbora-lerro publikoetan",
             "unlisted": "Zerrendatu gabea: ez bidali denbora-lerro publikoetara"
         },
-        "media_description_error": "Ezin izan da artxiboa eguneratu, saiatu berriro",
-        "preview": "Aurrebista",
-        "media_description": "Media deskribapena",
-        "preview_empty": "Hutsik",
-        "post": "Bidali",
-        "empty_status_error": "Ezin da argitaratu ezer idatzi gabe edo eranskinik gabe"
+        "scope_notice": {
+            "private": "Mezu hau zure jarraitzaileek soilik ikusiko dute",
+            "public": "Mezu hau guztiontzat ikusgai izango da",
+            "unlisted": "Mezu hau ez da argitaratuko Denbora-lerro Publikoan ezta Ezagutzen den Sarean"
+        }
     },
     "registration": {
         "bio": "Biografia",
+        "bio_placeholder": "Adidibez.\nKaixo, Lain naiz.\nFedibertsoa gustokoa dut eta euskeraz hitzegiten dut.",
+        "captcha": "CAPTCHA",
         "email": "E-posta",
         "fullname": "Erakutsi izena",
-        "password_confirm": "Pasahitza berretsi",
-        "registration": "Sortu kontua",
-        "token": "Gonbidapen txartela",
-        "captcha": "CAPTCHA",
-        "new_captcha": "Klikatu irudia captcha berri bat lortzeko",
-        "username_placeholder": "Adibidez lain",
         "fullname_placeholder": "Adibidez Lain Iwakura",
-        "bio_placeholder": "Adidibez.\nKaixo, Lain naiz.\nFedibertsoa gustokoa dut eta euskeraz hitzegiten dut.",
-        "validations": {
-            "username_required": "Ezin da hutsik utzi",
-            "fullname_required": "Ezin da hutsik utzi",
-            "email_required": "Ezin da hutsik utzi",
-            "password_required": "Ezin da hutsik utzi",
-            "password_confirmation_required": "Ezin da hutsik utzi",
-            "password_confirmation_match": "Pasahitzaren berdina izan behar du"
-        },
+        "new_captcha": "Klikatu irudia captcha berri bat lortzeko",
+        "password_confirm": "Pasahitza berretsi",
         "reason": "Kontua sortzeko arrazoia",
         "reason_placeholder": "Instantzia honek kontu berriak eskuz onartzen ditu.\nJakinarazi administrazioari zergatik erregistratu nahi duzun.",
-        "register": "Erregistratu"
+        "register": "Erregistratu",
+        "registration": "Sortu kontua",
+        "token": "Gonbidapen txartela",
+        "username_placeholder": "Adibidez lain",
+        "validations": {
+            "email_required": "Ezin da hutsik utzi",
+            "fullname_required": "Ezin da hutsik utzi",
+            "password_confirmation_match": "Pasahitzaren berdina izan behar du",
+            "password_confirmation_required": "Ezin da hutsik utzi",
+            "password_required": "Ezin da hutsik utzi",
+            "username_required": "Ezin da hutsik utzi"
+        }
+    },
+    "remote_user_resolver": {
+        "error": "Ez da aurkitu.",
+        "searching_for": "Bilatzen"
+    },
+    "search": {
+        "hashtags": "Traolak",
+        "no_results": "Emaitzarik ez",
+        "people": "Erabiltzaileak",
+        "people_talking": "{count} jende hitzegiten",
+        "person_talking": "{count} pertsona hitzegiten"
     },
     "selectable_list": {
         "select_all": "Hautatu denak"
     },
     "settings": {
+        "allow_following_move": "Baimendu jarraipen automatikoa, jarraitzen duzun kontua beste instantzia batera eramaten denean",
         "app_name": "App izena",
-        "security": "Segurtasuna",
-        "enter_current_password_to_confirm": "Sar ezazu zure egungo pasahitza zure identitatea baieztatzeko",
-        "mfa": {
-            "otp": "OTP",
-            "setup_otp": "OTP konfiguratu",
-            "wait_pre_setup_otp": "OTP aurredoitzen",
-            "confirm_and_enable": "Baieztatu eta gaitu OTP",
-            "title": "Bi-faktore autentifikazioa",
-            "generate_new_recovery_codes": "Sortu berreskuratze kode berriak",
-            "warning_of_generate_new_codes": "Berreskuratze kode berriak sortzean, zure berreskuratze kode zaharrak ez dute balioko.",
-            "recovery_codes": "Berreskuratze kodea.",
-            "waiting_a_recovery_codes": "Babes-kopia kodeak jasotzen…",
-            "recovery_codes_warning": "Idatzi edo gorde kodeak leku seguruan - bestela ez dituzu berriro ikusiko. Zure 2FA aplikaziorako sarbidea eta berreskuratze kodeak galduz gero, zure kontutik blokeatuta egongo zara.",
-            "authentication_methods": "Autentifikazio metodoa",
-            "scan": {
-                "title": "Eskaneatu",
-                "desc": "Zure bi-faktore aplikazioa erabiliz, eskaneatu QR kode hau edo idatzi testu-gakoa:",
-                "secret_code": "Giltza"
-            },
-            "verify": {
-                "desc": "Bi-faktore autentifikazioa gaitzeko, sar ezazu bi-faktore kodea zure app-tik:"
-            }
-        },
         "attachmentRadius": "Eranskinak",
         "attachments": "Eranskinak",
+        "autohide_floating_post_button": "Automatikoki ezkutatu Mezu Berriaren botoia (sakelako)",
         "avatar": "Avatarra",
         "avatarAltRadius": "Abatarra (aipamenak)",
         "avatarRadius": "Avatarrak",
+        "avatar_size_instruction": "Avatar irudien gomendatutako gutxieneko tamaina 150x150 pixel dira.",
         "background": "Atzeko planoa",
         "bio": "Biografia",
         "block_export": "Blokeatu dituzunak esportatu",
@@ -257,21 +291,21 @@
         "change_password": "Pasahitza aldatu",
         "change_password_error": "Arazao bat egon da zure pasahitza aldatzean.",
         "changed_password": "Pasahitza ondo aldatu da!",
+        "checkboxRadius": "Kuadrotxoak",
         "collapse_subject": "Bildu gaia daukaten mezuak",
         "composing": "Idazten",
         "confirm_new_password": "Baieztatu pasahitz berria",
         "current_avatar": "Zure uneko avatarra",
         "current_password": "Indarrean dagoen pasahitza",
-        "current_profile_banner": "Zure profilaren banner-a",
         "data_import_export_tab": "Datuak inportatu / esportatu",
         "default_vis": "Lehenetsitako ikusgaitasunak",
         "delete_account": "Ezabatu kontua",
-        "discoverable": "Baimendu zure kontua kanpo bilaketa-emaitzetan eta bestelako zerbitzuetan agertzea",
         "delete_account_description": "Betirako ezabatu zure datuak eta desaktibatu kontua.",
-        "pad_emoji": "Zuriuneak gehitu emoji bat aukeratzen denean",
         "delete_account_error": "Arazo bat gertatu da zure kontua ezabatzerakoan. Arazoa jarraitu eskero, administratzailearekin harremanetan jarri.",
         "delete_account_instructions": "Idatzi zure pasahitza kontua ezabatzeko.",
-        "avatar_size_instruction": "Avatar irudien gomendatutako gutxieneko tamaina 150x150 pixel dira.",
+        "discoverable": "Baimendu zure kontua kanpo bilaketa-emaitzetan eta bestelako zerbitzuetan agertzea",
+        "enable_web_push_notifications": "Gaitu web jakinarazpenak",
+        "enter_current_password_to_confirm": "Sar ezazu zure egungo pasahitza zure identitatea baieztatzeko",
         "export_theme": "Gorde aurre-ezarpena",
         "filtering": "Iragazten",
         "filtering_explanation": "Hitz hauek dituzten mezu guztiak isilduak izango dira. Lerro bakoitzeko bat",
@@ -284,19 +318,19 @@
         "general": "Orokorra",
         "hide_attachments_in_convo": "Ezkutatu eranskinak elkarrizketatan",
         "hide_attachments_in_tl": "Ezkutatu eranskinak donbora-lerroan",
-        "hide_muted_posts": "Ezkutatu mutututako erabiltzaileen mezuak",
-        "max_thumbnails": "Mezu bakoitzeko argazki-miniatura kopuru maximoa",
+        "hide_filtered_statuses": "Ezkutatu iragazitako mezuak",
+        "hide_followers_count_description": "Ez erakutsi nire jarraitzaileen kontuen kopurua",
+        "hide_followers_description": "Ez erakutsi nor ari den ni jarraitzen",
+        "hide_follows_count_description": "Ez erakutsi jarraitzen ari naizen kontuen kopurua",
+        "hide_follows_description": "Ez erakutsi nor jarraitzen ari naizen",
         "hide_isp": "Instantziari buruzko panela ezkutatu",
-        "preload_images": "Argazkiak aurrekargatu",
-        "use_one_click_nsfw": "Ireki eduki hunkigarria duten eranskinak klik batekin",
+        "hide_muted_posts": "Ezkutatu mutututako erabiltzaileen mezuak",
         "hide_post_stats": "Ezkutatu mezuaren estatistikak (adibidez faborito kopurua)",
         "hide_user_stats": "Ezkutatu erabiltzaile estatistikak (adibidez jarraitzaile kopurua)",
-        "hide_filtered_statuses": "Ezkutatu iragazitako mezuak",
         "import_blocks_from_a_csv_file": "Blokeatutakoak inportatu CSV fitxategi batetik",
         "import_followers_from_a_csv_file": "Inportatu jarraitzaileak csv fitxategi batetik",
         "import_theme": "Kargatu aurre-ezarpena",
         "inputRadius": "Sarrera eremuak",
-        "checkboxRadius": "Kuadrotxoak",
         "instance_default": "(lehenetsia: {value})",
         "instance_default_simple": "(lehenetsia)",
         "interface": "Interfazea",
@@ -307,410 +341,351 @@
         "lock_account_description": "Mugatu zure kontua soilik onartutako jarraitzaileei",
         "loop_video": "Begizta bideoak",
         "loop_video_silent_only": "Soinu gabeko bideoak begiztatu bakarrik (adibidez Mastodon-eko gif-ak)",
+        "max_thumbnails": "Mezu bakoitzeko argazki-miniatura kopuru maximoa",
+        "mfa": {
+            "authentication_methods": "Autentifikazio metodoa",
+            "confirm_and_enable": "Baieztatu eta gaitu OTP",
+            "generate_new_recovery_codes": "Sortu berreskuratze kode berriak",
+            "otp": "OTP",
+            "recovery_codes": "Berreskuratze kodea.",
+            "recovery_codes_warning": "Idatzi edo gorde kodeak leku seguruan - bestela ez dituzu berriro ikusiko. Zure 2FA aplikaziorako sarbidea eta berreskuratze kodeak galduz gero, zure kontutik blokeatuta egongo zara.",
+            "scan": {
+                "desc": "Zure bi-faktore aplikazioa erabiliz, eskaneatu QR kode hau edo idatzi testu-gakoa:",
+                "secret_code": "Giltza",
+                "title": "Eskaneatu"
+            },
+            "setup_otp": "OTP konfiguratu",
+            "title": "Bi-faktore autentifikazioa",
+            "verify": {
+                "desc": "Bi-faktore autentifikazioa gaitzeko, sar ezazu bi-faktore kodea zure app-tik:"
+            },
+            "wait_pre_setup_otp": "OTP aurredoitzen",
+            "waiting_a_recovery_codes": "Babes-kopia kodeak jasotzen…",
+            "warning_of_generate_new_codes": "Berreskuratze kode berriak sortzean, zure berreskuratze kode zaharrak ez dute balioko."
+        },
+        "minimal_scopes_mode": "Bildu ikusgaitasun aukerak",
         "mutes_tab": "Mututuak",
-        "play_videos_in_modal": "Erreproduzitu bideoak zuzenean multimedia erreproduzigailuan",
-        "use_contain_fit": "Eranskinak ez moztu miniaturetan",
         "name": "Izena",
         "name_bio": "Izena eta biografia",
+        "new_email": "E-posta berria",
         "new_password": "Pasahitz berria",
+        "no_blocks": "Ez daude erabiltzaile blokeatutak",
+        "no_mutes": "Ez daude erabiltzaile mututuak",
+        "no_rich_text_description": "Kendu testu-formatu aberastuak mezu guztietatik",
+        "notification_blocks": "Erabiltzaile bat blokeatzeak jakinarazpen guztiak gelditzen ditu eta harpidetza ezeztatu.",
+        "notification_mutes": "Erabiltzaile jakin baten jakinarazpenak jasotzeari uzteko, isilarazi ezazu.",
         "notification_visibility": "Erakusteko jakinarazpen motak",
         "notification_visibility_follows": "Jarraitzaileak",
         "notification_visibility_likes": "Gogokoak",
         "notification_visibility_mentions": "Aipamenak",
         "notification_visibility_repeats": "Errepikapenak",
-        "no_rich_text_description": "Kendu testu-formatu aberastuak mezu guztietatik",
-        "no_blocks": "Ez daude erabiltzaile blokeatutak",
-        "no_mutes": "Ez daude erabiltzaile mututuak",
-        "hide_follows_description": "Ez erakutsi nor jarraitzen ari naizen",
-        "hide_followers_description": "Ez erakutsi nor ari den ni jarraitzen",
-        "hide_follows_count_description": "Ez erakutsi jarraitzen ari naizen kontuen kopurua",
-        "hide_followers_count_description": "Ez erakutsi nire jarraitzaileen kontuen kopurua",
-        "show_admin_badge": "Erakutsi \"Administratzaile\" etiketa nire profilan",
-        "show_moderator_badge": "Erakutsi \"Moderatzaile\" etiketa nire profilan",
+        "notifications": "Jakinarazpenak",
         "nsfw_clickthrough": "Gaitu klika hunkigarri eranskinak ezkutatzeko",
         "oauth_tokens": "OAuth tokenak",
-        "token": "Tokena",
-        "refresh_token": "Berrgin tokena",
-        "valid_until": "Baliozkoa arte",
-        "revoke_token": "Ezeztatu",
+        "pad_emoji": "Zuriuneak gehitu emoji bat aukeratzen denean",
         "panelRadius": "Panelak",
         "pause_on_unfocused": "Eguneraketa automatikoa gelditu fitxatik kanpo",
+        "play_videos_in_modal": "Erreproduzitu bideoak zuzenean multimedia erreproduzigailuan",
+        "post_status_content_type": "Argitarapen formatua",
+        "preload_images": "Argazkiak aurrekargatu",
         "presets": "Aurrezarpenak",
         "profile_background": "Profilaren atzeko planoa",
         "profile_banner": "Profilaren banner-a",
         "profile_tab": "Profila",
         "radii_help": "Konfiguratu interfazearen ertzen biribiltzea (pixeletan)",
+        "refresh_token": "Berrgin tokena",
         "replies_in_timeline": "Denbora-lerroko erantzunak",
         "reply_visibility_all": "Erakutsi erantzun guztiak",
         "reply_visibility_following": "Erakutsi bakarrik niri zuzendutako edo nik jarraitutako erabiltzaileen erantzunak",
         "reply_visibility_self": "Erakutsi bakarrik niri zuzendutako erantzunak",
-        "autohide_floating_post_button": "Automatikoki ezkutatu Mezu Berriaren botoia (sakelako)",
+        "revoke_token": "Ezeztatu",
+        "save": "Aldaketak gorde",
         "saving_err": "Errorea ezarpenak gordetzean",
         "saving_ok": "Ezarpenak gordeta",
+        "scope_copy": "Ikusgaitasun aukerak kopiatu mezua erantzuterakoan (Zuzeneko Mezuak beti kopiatzen dute)",
         "search_user_to_block": "Bilatu zein blokeatu nahi duzun",
         "search_user_to_mute": "Bilatu zein isilarazi nahi duzun",
+        "security": "Segurtasuna",
         "security_tab": "Segurtasuna",
-        "scope_copy": "Ikusgaitasun aukerak kopiatu mezua erantzuterakoan (Zuzeneko Mezuak beti kopiatzen dute)",
-        "minimal_scopes_mode": "Bildu ikusgaitasun aukerak",
         "set_new_avatar": "Ezarri avatar berria",
         "set_new_profile_background": "Ezarri atzeko plano berria",
         "set_new_profile_banner": "Ezarri profil banner berria",
+        "setting_changed": "Ezarpena lehenetsitakoaren desberdina da",
         "settings": "Ezarpenak",
-        "subject_input_always_show": "Erakutsi beti gaiaren eremua",
-        "subject_line_behavior": "Gaia kopiatu erantzuterakoan",
-        "subject_line_email": "E-maila bezala: \"re: gaia\"",
-        "subject_line_mastodon": "Mastodon bezala: kopiatu den bezala",
-        "subject_line_noop": "Ez kopiatu",
-        "post_status_content_type": "Argitarapen formatua",
+        "show_admin_badge": "Erakutsi \"Administratzaile\" etiketa nire profilan",
+        "show_moderator_badge": "Erakutsi \"Moderatzaile\" etiketa nire profilan",
         "stop_gifs": "GIF-a iniziatu arratoia gainean jarrita",
         "streaming": "Gaitu mezu berrien karga goraino mugitzean",
-        "text": "Testua",
-        "theme": "Gaia",
-        "theme_help": "Erabili hex-kolore kodeak (#rrggbb) gaiaren koloreak pertsonalizatzeko.",
-        "theme_help_v2_1": "Zenbait osagaien koloreak eta opakutasuna ezeztatu ditzakezu kontrol-laukia aktibatuz, \"Garbitu dena\" botoia erabili aldaketak deusezteko.",
-        "theme_help_v2_2": "Sarreren batzuen azpian dauden ikonoak atzeko planoaren eta testuaren arteko kontrastearen adierazleak dira, kokatu arratoia gainean informazio zehatza eskuratzeko. Kontuan izan gardentasun kontrasteen adierazleek erabiltzen direnean, kasurik okerrena erakusten dutela.",
-        "tooltipRadius": "Argibideak/alertak",
-        "upload_a_photo": "Argazkia kargatu",
-        "user_settings": "Erabiltzaile Ezarpenak",
-        "values": {
-            "false": "ez",
-            "true": "bai"
-        },
-        "notifications": "Jakinarazpenak",
-        "notification_mutes": "Erabiltzaile jakin baten jakinarazpenak jasotzeari uzteko, isilarazi ezazu.",
-        "notification_blocks": "Erabiltzaile bat blokeatzeak jakinarazpen guztiak gelditzen ditu eta harpidetza ezeztatu.",
-        "enable_web_push_notifications": "Gaitu web jakinarazpenak",
         "style": {
-            "switcher": {
-                "keep_color": "Mantendu koloreak",
-                "keep_shadows": "Mantendu itzalak",
-                "keep_opacity": "Mantendu opakotasuna",
-                "keep_roundness": "Mantendu biribiltasuna",
-                "keep_fonts": "Mantendu iturriak",
-                "save_load_hint": "\"Mantendu\" aukerak uneko konfiguratutako aukerak gordetzen ditu gaiak hautatzerakoan edo kargatzean, gai hauek esportatze garaian ere gordetzen ditu. Kontrol-lauki guztiak garbitzen direnean, esportazio-gaiak dena gordeko du.",
-                "reset": "Berrezarri",
-                "clear_all": "Garbitu dena",
-                "clear_opacity": "Garbitu opakotasuna"
-            },
-            "common": {
-                "color": "Kolorea",
-                "opacity": "Opakotasuna",
-                "contrast": {
-                    "hint": "Kontrastearen erlazioa {ratio} da, {level} {context}",
-                    "level": {
-                        "aa": "AA Mailako gidaliburua betetzen du (gutxienezkoa)",
-                        "aaa": "AAA Mailako gidaliburua betetzen du (gomendatua)",
-                        "bad": "ez ditu irisgarritasun arauak betetzen"
-                    },
-                    "context": {
-                        "18pt": "testu handientzat (+18pt)",
-                        "text": "testuentzat"
-                    }
-                }
-            },
-            "common_colors": {
-                "_tab_label": "Ohikoa",
-                "main": "Ohiko koloreak",
-                "foreground_hint": "Ikusi \"Aurreratua\" fitxa kontrol zehatzagoa lortzeko",
-                "rgbo": "Ikono, azentu eta etiketak"
-            },
             "advanced_colors": {
                 "_tab_label": "Aurreratua",
                 "alert": "Alerten atzeko planoa",
                 "alert_error": "Errorea",
                 "badge": "Etiketen atzeko planoa",
                 "badge_notification": "Jakinarazpenak",
-                "panel_header": "Panelaren goiburua",
-                "top_bar": "Goiko barra",
                 "borders": "Ertzak",
                 "buttons": "Botoiak",
+                "faint_text": "Testu itzalita",
                 "inputs": "Sarrera eremuak",
-                "faint_text": "Testu itzalita"
+                "panel_header": "Panelaren goiburua",
+                "top_bar": "Goiko barra"
+            },
+            "common": {
+                "color": "Kolorea",
+                "contrast": {
+                    "context": {
+                        "18pt": "testu handientzat (+18pt)",
+                        "text": "testuentzat"
+                    },
+                    "hint": "Kontrastearen erlazioa {ratio} da, {level} {context}",
+                    "level": {
+                        "aa": "AA Mailako gidaliburua betetzen du (gutxienezkoa)",
+                        "aaa": "AAA Mailako gidaliburua betetzen du (gomendatua)",
+                        "bad": "ez ditu irisgarritasun arauak betetzen"
+                    }
+                },
+                "opacity": "Opakotasuna"
+            },
+            "common_colors": {
+                "_tab_label": "Ohikoa",
+                "foreground_hint": "Ikusi \"Aurreratua\" fitxa kontrol zehatzagoa lortzeko",
+                "main": "Ohiko koloreak",
+                "rgbo": "Ikono, azentu eta etiketak"
+            },
+            "fonts": {
+                "_tab_label": "Letra-tipoak",
+                "components": {
+                    "input": "Sarrera eremuak",
+                    "interface": "Interfazea",
+                    "post": "Mezuen testua",
+                    "postCode": "Tarte-bakarreko testua mezuetan (testu-formatu aberastuak)"
+                },
+                "custom": "Pertsonalizatua",
+                "family": "Letra-tipoaren izena",
+                "help": "Aukeratu letra-tipoak erabiltzailearen interfazean erabiltzeko. \"Pertsonalizatua\" letra-tipoan, sisteman agertzen den izen berdinarekin idatzi behar duzu.",
+                "size": "Tamaina (px)",
+                "weight": "Pisua (lodiera)"
+            },
+            "preview": {
+                "button": "Botoia",
+                "checkbox": "Baldintzak berrikusi ditut",
+                "content": "Edukia",
+                "error": "Adibide errorea",
+                "faint_link": "laguntza",
+                "fine_print": "Irakurri gure {0} ezer erabilgarria ikasteko!",
+                "header": "Aurrebista",
+                "header_faint": "Ondo dago",
+                "input": "Jadanik Los Angeles-en.",
+                "link": "esteka polita",
+                "mono": "edukia",
+                "text": "Hamaika {0} eta {1}"
             },
             "radii": {
                 "_tab_label": "Biribiltasuna"
             },
             "shadows": {
                 "_tab_label": "Itzal eta argiak",
-                "component": "Atala",
-                "override": "Berridatzi",
-                "shadow_id": "Itzala #{value}",
                 "blur": "Lausotu",
-                "spread": "Hedapena",
-                "inset": "Barrutik",
-                "hint": "Itzaletarako ere erabil dezakezu --aldagarri kolore balio gisa CSS3 aldagaiak erabiltzeko. Kontuan izan opakutasuna ezartzeak ez duela kasu honetan funtzionatuko.",
-                "filter_hint": {
-                    "always_drop_shadow": "Kontuz, itzal honek beti erabiltzen du {0} nabigatzaileak onartzen duenean.",
-                    "drop_shadow_syntax": "{0} ez du onartzen {1} parametroa eta {2} gako-hitza.",
-                    "avatar_inset": "Kontuan izan behar da barruko eta kanpoko itzal konbinazioak, ez esparotako emaitzak ager daitezkeela atzeko plano gardena duten Avatarretan.",
-                    "spread_zero": "Hedapena > 0 duten itzalak zero izango balitz bezala agertuko dira",
-                    "inset_classic": "Barruko itzalak {0} erabiliko dute"
-                },
+                "component": "Atala",
                 "components": {
-                    "panel": "Panela",
-                    "panelHeader": "Panel goiburua",
-                    "topBar": "Goiko barra",
                     "avatar": "Erabiltzailearen avatarra (profilan)",
                     "avatarStatus": "Erabiltzailearen avatarra (mezuetan)",
-                    "popup": "Popup-ak eta argibideak",
                     "button": "Botoia",
                     "buttonHover": "Botoia (gainean)",
                     "buttonPressed": "Botoai (sakatuta)",
                     "buttonPressedHover": "Botoia (sakatuta+gainean)",
-                    "input": "Sarrera eremuak"
-                }
-            },
-            "fonts": {
-                "_tab_label": "Letra-tipoak",
-                "help": "Aukeratu letra-tipoak erabiltzailearen interfazean erabiltzeko. \"Pertsonalizatua\" letra-tipoan, sisteman agertzen den izen berdinarekin idatzi behar duzu.",
-                "components": {
-                    "interface": "Interfazea",
                     "input": "Sarrera eremuak",
-                    "post": "Mezuen testua",
-                    "postCode": "Tarte-bakarreko testua mezuetan (testu-formatu aberastuak)"
+                    "panel": "Panela",
+                    "panelHeader": "Panel goiburua",
+                    "popup": "Popup-ak eta argibideak",
+                    "topBar": "Goiko barra"
                 },
-                "family": "Letra-tipoaren izena",
-                "size": "Tamaina (px)",
-                "weight": "Pisua (lodiera)",
-                "custom": "Pertsonalizatua"
+                "filter_hint": {
+                    "always_drop_shadow": "Kontuz, itzal honek beti erabiltzen du {0} nabigatzaileak onartzen duenean.",
+                    "avatar_inset": "Kontuan izan behar da barruko eta kanpoko itzal konbinazioak, ez esparotako emaitzak ager daitezkeela atzeko plano gardena duten Avatarretan.",
+                    "drop_shadow_syntax": "{0} ez du onartzen {1} parametroa eta {2} gako-hitza.",
+                    "inset_classic": "Barruko itzalak {0} erabiliko dute",
+                    "spread_zero": "Hedapena > 0 duten itzalak zero izango balitz bezala agertuko dira"
+                },
+                "inset": "Barrutik",
+                "override": "Berridatzi",
+                "shadow_id": "Itzala #{value}",
+                "spread": "Hedapena"
             },
-            "preview": {
-                "header": "Aurrebista",
-                "content": "Edukia",
-                "error": "Adibide errorea",
-                "button": "Botoia",
-                "text": "Hamaika {0} eta {1}",
-                "mono": "edukia",
-                "input": "Jadanik Los Angeles-en.",
-                "faint_link": "laguntza",
-                "fine_print": "Irakurri gure {0} ezer erabilgarria ikasteko!",
-                "header_faint": "Ondo dago",
-                "checkbox": "Baldintzak berrikusi ditut",
-                "link": "esteka polita"
+            "switcher": {
+                "clear_all": "Garbitu dena",
+                "clear_opacity": "Garbitu opakotasuna",
+                "keep_color": "Mantendu koloreak",
+                "keep_fonts": "Mantendu iturriak",
+                "keep_opacity": "Mantendu opakotasuna",
+                "keep_roundness": "Mantendu biribiltasuna",
+                "keep_shadows": "Mantendu itzalak",
+                "reset": "Berrezarri",
+                "save_load_hint": "\"Mantendu\" aukerak uneko konfiguratutako aukerak gordetzen ditu gaiak hautatzerakoan edo kargatzean, gai hauek esportatze garaian ere gordetzen ditu. Kontrol-lauki guztiak garbitzen direnean, esportazio-gaiak dena gordeko du."
             }
         },
-        "version": {
-            "title": "Bertsioa",
-            "backend_version": "Backend bertsioa",
-            "frontend_version": "Frontend bertsioa"
+        "subject_input_always_show": "Erakutsi beti gaiaren eremua",
+        "subject_line_behavior": "Gaia kopiatu erantzuterakoan",
+        "subject_line_email": "E-maila bezala: \"re: gaia\"",
+        "subject_line_mastodon": "Mastodon bezala: kopiatu den bezala",
+        "subject_line_noop": "Ez kopiatu",
+        "text": "Testua",
+        "theme": "Gaia",
+        "theme_help": "Erabili hex-kolore kodeak (#rrggbb) gaiaren koloreak pertsonalizatzeko.",
+        "theme_help_v2_1": "Zenbait osagaien koloreak eta opakutasuna ezeztatu ditzakezu kontrol-laukia aktibatuz, \"Garbitu dena\" botoia erabili aldaketak deusezteko.",
+        "theme_help_v2_2": "Sarreren batzuen azpian dauden ikonoak atzeko planoaren eta testuaren arteko kontrastearen adierazleak dira, kokatu arratoia gainean informazio zehatza eskuratzeko. Kontuan izan gardentasun kontrasteen adierazleek erabiltzen direnean, kasurik okerrena erakusten dutela.",
+        "token": "Tokena",
+        "tooltipRadius": "Argibideak/alertak",
+        "upload_a_photo": "Argazkia kargatu",
+        "use_contain_fit": "Eranskinak ez moztu miniaturetan",
+        "use_one_click_nsfw": "Ireki eduki hunkigarria duten eranskinak klik batekin",
+        "user_settings": "Erabiltzaile Ezarpenak",
+        "valid_until": "Baliozkoa arte",
+        "values": {
+            "false": "ez",
+            "true": "bai"
         },
-        "save": "Aldaketak gorde",
-        "setting_changed": "Ezarpena lehenetsitakoaren desberdina da",
-        "allow_following_move": "Baimendu jarraipen automatikoa, jarraitzen duzun kontua beste instantzia batera eramaten denean",
-        "new_email": "E-posta berria"
+        "version": {
+            "backend_version": "Backend bertsioa",
+            "frontend_version": "Frontend bertsioa",
+            "title": "Bertsioa"
+        }
+    },
+    "status": {
+        "delete": "Mezua ezabatu",
+        "delete_confirm": "Mezu hau benetan ezabatu nahi duzu?",
+        "favorites": "Gogokoak",
+        "mute_conversation": "Elkarrizketa isilarazi",
+        "pin": "Profilan ainguratu",
+        "pinned": "Ainguratuta",
+        "repeats": "Errepikapenak",
+        "replies_list": "Erantzunak:",
+        "reply_to": "Erantzuten",
+        "unmute_conversation": "Elkarrizketa aktibatu",
+        "unpin": "Aingura ezeztatu profilatik"
     },
     "time": {
-        "now": "oraintxe bertan",
-        "now_short": "orain",
         "in_future": "{0} barru",
         "in_past": "duela {0}",
+        "now": "oraintxe bertan",
+        "now_short": "orain",
         "unit": {
-            "day": "{0} egun",
             "days": "{0} egun",
-            "day_short": "{0}e",
             "days_short": "{0}e",
-            "hour": "{0} ordu",
             "hours": "{0} ordu",
-            "hour_short": "{0}o",
             "hours_short": "{0}o",
-            "minute": "{0} minutu",
             "minutes": "{0} minutu",
-            "minute_short": "{0}min",
             "minutes_short": "{0}min",
-            "month": "{0} hilabete",
             "months": "{0} hilabete",
-            "month_short": "{0}h",
             "months_short": "{0}h",
-            "second": "{0} segundu",
             "seconds": "{0} segundu",
-            "second_short": "{0}s",
             "seconds_short": "{0}s",
-            "week": "{0} aste",
             "weeks": "{0} aste",
-            "week_short": "{0}a",
             "weeks_short": "{0}a",
-            "year": "{0} urte",
             "years": "{0} urte",
-            "year_short": "{0}u",
             "years_short": "{0}u"
         }
     },
     "timeline": {
         "collapse": "Bildu",
         "conversation": "Elkarrizketa",
-        "error_fetching": "Errorea eguneraketak eskuratzen",
         "load_older": "Kargatu mezu zaharragoak",
+        "no_more_statuses": "Ez daude mezu gehiago",
         "no_retweet_hint": "Mezu hau jarraitzailentzako bakarrik markatuta dago eta ezin da errepikatu",
+        "no_statuses": "Mezurik gabe",
         "repeated": "Errepikatuta",
         "show_new": "Berriena erakutsi",
-        "up_to_date": "Eguneratuta",
-        "no_more_statuses": "Ez daude mezu gehiago",
-        "no_statuses": "Mezurik gabe"
-    },
-    "status": {
-        "favorites": "Gogokoak",
-        "repeats": "Errepikapenak",
-        "delete": "Mezua ezabatu",
-        "pin": "Profilan ainguratu",
-        "unpin": "Aingura ezeztatu profilatik",
-        "pinned": "Ainguratuta",
-        "delete_confirm": "Mezu hau benetan ezabatu nahi duzu?",
-        "reply_to": "Erantzuten",
-        "replies_list": "Erantzunak:",
-        "mute_conversation": "Elkarrizketa isilarazi",
-        "unmute_conversation": "Elkarrizketa aktibatu"
-    },
-    "user_card": {
-        "approve": "Onartu",
-        "block": "Blokeatu",
-        "blocked": "Blokeatuta!",
-        "deny": "Ukatu",
-        "favorites": "Gogokoak",
-        "follow": "Jarraitu",
-        "follow_sent": "Eskaera bidalita!",
-        "follow_progress": "Eskatzen…",
-        "follow_unfollow": "Jarraitzeari utzi",
-        "followees": "Jarraitzen",
-        "followers": "Jarraitzaileak",
-        "following": "Jarraitzen!",
-        "follows_you": "Jarraitzen dizu!",
-        "its_you": "Zu zara!",
-        "media": "Multimedia",
-        "mention": "Aipatu",
-        "mute": "Isilarazi",
-        "muted": "Isilduta",
-        "per_day": "eguneko",
-        "remote_follow": "Jarraitu",
-        "report": "Berri eman",
-        "statuses": "Mezuak",
-        "subscribe": "Harpidetu",
-        "unsubscribe": "Harpidetza ezeztatu",
-        "unblock": "Blokeoa kendu",
-        "unblock_progress": "Blokeoa ezeztatzen…",
-        "block_progress": "Blokeatzen…",
-        "unmute": "Isiltasuna kendu",
-        "unmute_progress": "Isiltasuna kentzen…",
-        "mute_progress": "Isiltzen…",
-        "hide_repeats": "Ezkutatu errepikapenak",
-        "show_repeats": "Erakutsi errpekiapenak",
-        "admin_menu": {
-            "moderation": "Moderazioa",
-            "grant_admin": "Administratzaile baimena",
-            "revoke_admin": "Ezeztatu administratzaile baimena",
-            "grant_moderator": "Moderatzaile baimena",
-            "revoke_moderator": "Ezeztatu moderatzaile baimena",
-            "activate_account": "Aktibatu kontua",
-            "deactivate_account": "Desaktibatu kontua",
-            "delete_account": "Ezabatu kontua",
-            "force_nsfw": "Markatu mezu guztiak hunkigarri gisa",
-            "strip_media": "Kendu multimedia mezuetatik",
-            "force_unlisted": "Behartu mezuak listatu gabekoak izatea",
-            "sandbox": "Behartu zure jarraitzaileentzako bakarrik argitaratzera",
-            "disable_remote_subscription": "Ez utzi istantzia kanpoko erabiltzaileak zuri jarraitzea",
-            "disable_any_subscription": "Ez utzi beste erabiltzaileak zuri jarraitzea",
-            "quarantine": "Ez onartu mezuak beste instantzietatik",
-            "delete_user": "Erabiltzailea ezabatu"
-        }
-    },
-    "user_profile": {
-        "timeline_title": "Erabiltzailearen denbora-lerroa",
-        "profile_does_not_exist": "Barkatu, profil hau ez da existitzen.",
-        "profile_loading_error": "Barkatu, errore bat gertatu da profila kargatzean."
-    },
-    "user_reporting": {
-        "title": "{0}-ri buruz berri ematen",
-        "add_comment_description": "Zure kexa moderatzaileei bidaliko da. Nahi baduzu zure kexaren zergatia idatz dezakezu:",
-        "additional_comments": "Iruzkin gehiago",
-        "forward_description": "Kontu hau beste instantzia batekoa da. Nahi duzu txostenaren kopia bat bidali ere?",
-        "forward_to": "{0}-ri birbidali",
-        "submit": "Bidali",
-        "generic_error": "Errore bat gertatu da zure eskaera prozesatzerakoan."
-    },
-    "who_to_follow": {
-        "more": "Gehiago",
-        "who_to_follow": "Nori jarraitu"
+        "up_to_date": "Eguneratuta"
     },
     "tool_tip": {
+        "favorite": "Gogokoa",
         "media_upload": "Multimedia igo",
         "repeat": "Errepikatu",
         "reply": "Erantzun",
-        "favorite": "Gogokoa",
         "user_settings": "Erabiltzaile ezarpenak"
     },
     "upload": {
         "error": {
             "base": "Igoerak huts egin du.",
-            "file_too_big": "Artxiboa haundiegia [{filesize}{filesizeunit} / {allowedsize}{allowedsizeunit}]",
-            "default": "Saiatu berriro geroago"
+            "default": "Saiatu berriro geroago",
+            "file_too_big": "Artxiboa haundiegia [{filesize}{filesizeunit} / {allowedsize}{allowedsizeunit}]"
         },
         "file_size_units": {
             "B": "B",
+            "GiB": "GiB",
             "KiB": "KiB",
             "MiB": "MiB",
-            "GiB": "GiB",
             "TiB": "TiB"
         }
     },
-    "search": {
-        "people": "Erabiltzaileak",
-        "hashtags": "Traolak",
-        "person_talking": "{count} pertsona hitzegiten",
-        "people_talking": "{count} jende hitzegiten",
-        "no_results": "Emaitzarik ez"
-    },
-    "password_reset": {
-        "forgot_password": "Pasahitza ahaztua?",
-        "password_reset": "Pasahitza berrezarri",
-        "instruction": "Idatzi zure helbide elektronikoa edo erabiltzaile izena. Pasahitza berrezartzeko esteka bidaliko dizugu.",
-        "placeholder": "Zure e-posta edo erabiltzaile izena",
-        "check_email": "Begiratu zure posta elektronikoa pasahitza berrezarri ahal izateko.",
-        "return_home": "Itzuli hasierara",
-        "too_many_requests": "Saiakera gehiegi burutu ditzu, saiatu berriro geroxeago.",
-        "password_reset_disabled": "Pasahitza berrezartzea debekatuta dago. Mesedez, jarri harremanetan instantzia administratzailearekin.",
-        "password_reset_required": "Pasahitza berrezarri behar duzu saioa hasteko.",
-        "password_reset_required_but_mailer_is_disabled": "Pasahitza berrezarri behar duzu, baina pasahitza berrezartzeko aukera desgaituta dago. Mesedez, jarri harremanetan instantziaren administratzailearekin."
-    },
-    "about": {
-        "mrf": {
-            "keyword": {
-                "keyword_policies": "Gako-hitz politika",
-                "ftl_removal": "\"Ezagutzen den Sarea\" denbora-lerrotik ezabatu",
-                "is_replaced_by": "→",
-                "replace": "Ordezkatuak",
-                "reject": "Ukatuak"
-            },
-            "federation": "Federazioa",
-            "simple": {
-                "media_nsfw_desc": "Instantzia honek hurrengo instantzien multimediak sentikorrak izatera behartzen ditu:",
-                "media_nsfw": "Behartu multimedia sentikor moduan",
-                "media_removal_desc": "Instantzia honek atxikitutako multimedia hurrengo instantzietatik ezabatzen ditu:",
-                "media_removal": "Multimedia Ezabatu",
-                "ftl_removal_desc": "Instantzia honek hurrengo instantziak ezabatzen ditu \"Ezagutzen den Sarea\" denbora-lerrotik:",
-                "ftl_removal": "\"Ezagutzen den Sarea\" denbora-lerrotik ezabatu",
-                "quarantine_desc": "Instantzia honek soilik mezu publikoak bidaliko ditu instantzia hauetara:",
-                "quarantine": "Koarentena",
-                "reject_desc": "Instantzia honek ez ditu hurrengo instantzien mezuak onartuko:",
-                "reject": "Ukatuak",
-                "accept_desc": "Instantzia honek hurrengo instantzietako mezuak soilik onartzen ditu:",
-                "accept": "Onartu",
-                "simple_policies": "Gure instantziaren politika zehatzak"
-            },
-            "mrf_policies_desc": "MRF politikek instantzia honen federazioa manipulatzen dute gainerako instantziekin. Honako politika hauek daude gaituta:",
-            "mrf_policies": "Gaitutako MRF politikak"
+    "user_card": {
+        "admin_menu": {
+            "activate_account": "Aktibatu kontua",
+            "deactivate_account": "Desaktibatu kontua",
+            "delete_account": "Ezabatu kontua",
+            "delete_user": "Erabiltzailea ezabatu",
+            "disable_any_subscription": "Ez utzi beste erabiltzaileak zuri jarraitzea",
+            "disable_remote_subscription": "Ez utzi istantzia kanpoko erabiltzaileak zuri jarraitzea",
+            "force_nsfw": "Markatu mezu guztiak hunkigarri gisa",
+            "force_unlisted": "Behartu mezuak listatu gabekoak izatea",
+            "grant_admin": "Administratzaile baimena",
+            "grant_moderator": "Moderatzaile baimena",
+            "moderation": "Moderazioa",
+            "quarantine": "Ez onartu mezuak beste instantzietatik",
+            "revoke_admin": "Ezeztatu administratzaile baimena",
+            "revoke_moderator": "Ezeztatu moderatzaile baimena",
+            "sandbox": "Behartu zure jarraitzaileentzako bakarrik argitaratzera",
+            "strip_media": "Kendu multimedia mezuetatik"
         },
-        "staff": "Arduradunak"
-    },
-    "domain_mute_card": {
-        "unmute_progress": "Isiltasuna kentzen…",
-        "unmute": "Isiltasuna kendu",
+        "approve": "Onartu",
+        "block": "Blokeatu",
+        "block_progress": "Blokeatzen…",
+        "blocked": "Blokeatuta!",
+        "deny": "Ukatu",
+        "favorites": "Gogokoak",
+        "follow": "Jarraitu",
+        "follow_progress": "Eskatzen…",
+        "follow_sent": "Eskaera bidalita!",
+        "follow_unfollow": "Jarraitzeari utzi",
+        "followees": "Jarraitzen",
+        "followers": "Jarraitzaileak",
+        "following": "Jarraitzen!",
+        "follows_you": "Jarraitzen dizu!",
+        "hide_repeats": "Ezkutatu errepikapenak",
+        "its_you": "Zu zara!",
+        "media": "Multimedia",
+        "mention": "Aipatu",
+        "mute": "Isilarazi",
         "mute_progress": "Isiltzen…",
-        "mute": "Isilarazi"
+        "muted": "Isilduta",
+        "per_day": "eguneko",
+        "remote_follow": "Jarraitu",
+        "report": "Berri eman",
+        "show_repeats": "Erakutsi errpekiapenak",
+        "statuses": "Mezuak",
+        "subscribe": "Harpidetu",
+        "unblock": "Blokeoa kendu",
+        "unblock_progress": "Blokeoa ezeztatzen…",
+        "unmute": "Isiltasuna kendu",
+        "unmute_progress": "Isiltasuna kentzen…",
+        "unsubscribe": "Harpidetza ezeztatu"
     },
-    "errors": {
-        "storage_unavailable": "Pleromak ezin izan du nabigatzailearen biltegira sartu. Hasiera-saioa edo tokiko ezarpenak ez dira gordeko eta ustekabeko arazoak sor ditzake. Saiatu cookie-ak gaitzen."
+    "user_profile": {
+        "profile_does_not_exist": "Barkatu, profil hau ez da existitzen.",
+        "profile_loading_error": "Barkatu, errore bat gertatu da profila kargatzean.",
+        "timeline_title": "Erabiltzailearen denbora-lerroa"
     },
-    "remote_user_resolver": {
-        "searching_for": "Bilatzen",
-        "error": "Ez da aurkitu."
+    "user_reporting": {
+        "add_comment_description": "Zure kexa moderatzaileei bidaliko da. Nahi baduzu zure kexaren zergatia idatz dezakezu:",
+        "additional_comments": "Iruzkin gehiago",
+        "forward_description": "Kontu hau beste instantzia batekoa da. Nahi duzu txostenaren kopia bat bidali ere?",
+        "forward_to": "{0}-ri birbidali",
+        "generic_error": "Errore bat gertatu da zure eskaera prozesatzerakoan.",
+        "submit": "Bidali",
+        "title": "{0}-ri buruz berri ematen"
+    },
+    "who_to_follow": {
+        "more": "Gehiago",
+        "who_to_follow": "Nori jarraitu"
     }
 }

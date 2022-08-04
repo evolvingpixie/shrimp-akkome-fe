@@ -33,9 +33,6 @@
     "announcements": {
         "page_header": "お知らせ"
     },
-    "chat": {
-        "title": "チャット"
-    },
     "chats": {
         "chats": "チャット一覧",
         "delete": "削除",
@@ -77,7 +74,6 @@
         "processing": "処理中です。処理が完了すると、ファイルをダウンロードするよう指示があります"
     },
     "features_panel": {
-        "chat": "チャット",
         "media_proxy": "メディアプロクシ",
         "scope_options": "公開範囲選択",
         "text_limit": "文字の数",
@@ -169,7 +165,6 @@
         "bookmarks": "ブックマーク",
         "bubble_timeline": "バブルタイムライン",
         "bubble_timeline_description": "管理者がおすすめしているインスタンスからの投稿",
-        "chat": "ローカルチャット",
         "chats": "チャット",
         "dms": "ダイレクトメッセージ",
         "friend_requests": "フォローリクエスト",
@@ -243,7 +238,6 @@
         },
         "content_warning": "説明 (省略可)",
         "default": "羽田空港に着きました。",
-        "direct_warning": "このステータスは、メンションされたユーザーだけが、読むことができます。",
         "direct_warning_to_all": "この投稿は、メンションされたすべてのユーザーが、見ることができます。",
         "direct_warning_to_first_only": "この投稿は、メッセージの冒頭でメンションされたユーザーだけが、見ることができます。",
         "empty_status_error": "投稿内容を入力してください",
@@ -345,7 +339,6 @@
         "confirm_new_password": "新しいパスワードの確認",
         "current_avatar": "現在のアバター",
         "current_password": "現在のパスワード",
-        "current_profile_banner": "現在のプロフィールバナー",
         "data_import_export_tab": "インポートとエクスポート",
         "default_vis": "デフォルトの公開範囲",
         "delete_account": "アカウントを消す",
@@ -374,7 +367,6 @@
         "filtering_explanation": "これらの言葉を含むすべてのものがミュートされます。1行に1つの言葉を書いてください",
         "follow_export": "フォローのエクスポート",
         "follow_export_button": "エクスポート",
-        "follow_export_processing": "お待ちください。まもなくファイルをダウンロードできます。",
         "follow_import": "フォローのインポート",
         "follow_import_error": "フォローのインポートがエラーになりました",
         "follows_imported": "フォローがインポートされました！ 少し時間がかかるかもしれません。",
@@ -638,7 +630,6 @@
                     "inset_classic": "内側の影は {0} を使います",
                     "spread_zero": "広がりが 0 よりも大きな影は、0 と同じです"
                 },
-                "hint": "影の設定では、色の値として --variable を使うことができます。これはCSS3変数です。ただし、透明度の設定は、効かなくなります。",
                 "hintV3": "影の場合は、 {0} 表記を使って他の色スロットを使うこともできます。",
                 "inset": "内側",
                 "override": "オーバーライド",
@@ -741,41 +732,24 @@
         "unpin": "プロフィールのピン留めを外す",
         "you": "（あなた）"
     },
-    "stickers": {
-        "add_sticker": "ステッカーを追加"
-    },
     "time": {
         "in_future": "{0}で",
         "in_past": "{0}前",
         "now": "たった今",
         "now_short": "たった今",
         "unit": {
-            "day": "{0}日",
-            "day_short": "{0}日",
             "days": "{0}日",
             "days_short": "{0}日",
-            "hour": "{0}時間",
-            "hour_short": "{0}時間",
             "hours": "{0}時間",
             "hours_short": "{0}時間",
-            "minute": "{0}分",
-            "minute_short": "{0}分",
             "minutes": "{0}分",
             "minutes_short": "{0}分",
-            "month": "{0}ヶ月前",
-            "month_short": "{0}ヶ月前",
             "months": "{0}ヶ月",
             "months_short": "{0}ヶ月",
-            "second": "{0}秒",
-            "second_short": "{0}秒",
             "seconds": "{0}秒",
             "seconds_short": "{0}秒",
-            "week": "{0}週間",
-            "week_short": "{0}週間",
             "weeks": "{0}週間",
             "weeks_short": "{0}週間",
-            "year": "{0}年",
-            "year_short": "{0}年",
             "years": "{0}年",
             "years_short": "{0}年"
         }
@@ -784,7 +758,6 @@
         "collapse": "たたむ",
         "conversation": "スレッド",
         "error": "タイムラインの読み込みに失敗しました: {0}",
-        "error_fetching": "読み込みがエラーになりました",
         "load_older": "古いステータス",
         "no_more_statuses": "これで終わりです",
         "no_retweet_hint": "投稿を「フォロワーのみ」または「ダイレクト」にすると、リピートできなくなります",
@@ -876,10 +849,6 @@
         "per_day": "/日",
         "remote_follow": "リモートフォロー",
         "report": "通報",
-        "roles": {
-            "admin": "管理者",
-            "moderator": "モデレーター"
-        },
         "show_repeats": "リピートを見る",
         "statuses": "ステータス",
         "subscribe": "購読",
