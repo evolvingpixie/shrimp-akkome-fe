@@ -8,3 +8,4 @@ selenium-debug.log
 .idea/
 config/local.json
 config/local.*.json
+docs/site/
