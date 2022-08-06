@@ -491,11 +491,10 @@ const EmojiInput = {
     },
     setPlacement (container, target, offsetBottom) {
       if (!container || !target) return
-
-      target.style.top = offsetBottom + 'px'
-      target.style.bottom = 'auto'
-
-      if (this.placement === 'top' || (this.placement === 'auto' && this.overflowsBottom(container))) {
+      if (this.placement === 'bottom' || (this.placement === 'auto' && !this.overflowsBottom(container))) {
+        target.style.top = offsetBottom + 'px'
+        target.style.bottom = 'auto'
+      } else {
         target.style.top = 'auto'
         target.style.bottom = this.input.offsetHeight + 'px'
       }
