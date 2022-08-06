@@ -121,9 +121,9 @@
         "dismiss": "Opheffen",
         "enable": "Inschakelen",
         "error_retry": "Probeer het opnieuw",
-        "flash_content": "Klik om Flash content te laten zien met Ruffle (Experimenteel, werkt mogelijk niet).",
-        "flash_fail": "Laden van flash content is mislukt, zie console voor details.",
-        "flash_security": "Let op dat dit mogelijk gevaarlijk kan zijn gezien Flash content willekeurige code kan bevatten.",
+        "flash_content": "Klik om Flash-content te laten zien met Ruffle (Experimenteel, werkt mogelijk niet).",
+        "flash_fail": "Laden van Flash-content is mislukt, zie console voor details.",
+        "flash_security": "Let op: Flash-inhoud is niet gescreend en kan malware bevatten.",
         "generic_error": "Er is een fout opgetreden",
         "loading": "Laden…",
         "more": "Meer",
@@ -136,6 +136,7 @@
         },
         "scope_in_timeline": {
             "direct": "Privé",
+            "local": "Lokaal - alleen jou instantie kan dit bericht lezen",
             "private": "Alleen-volgers",
             "public": "Openbaar",
             "unlisted": "Niet-openbaar"

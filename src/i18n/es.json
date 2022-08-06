@@ -16,18 +16,42 @@
                 "accept_desc": "Esta instancia solo acepta mensajes de las siguientes instancias:",
                 "ftl_removal": "Eliminar de la línea de tiempo \"Red Conocida\"",
                 "ftl_removal_desc": "Esta instancia elimina las siguientes instancias de la línea de tiempo \"Red Conocida\":",
+                "instance": "Instancia",
                 "media_nsfw": "Forzar contenido multimedia como sensible",
                 "media_nsfw_desc": "Esta instancia obliga a que los archivos multimedia se establezcan como sensibles en las publicaciones de las siguientes instancias:",
                 "media_removal": "Eliminar Multimedia",
                 "media_removal_desc": "Esta instancia elimina los archivos multimedia de las publicaciones de las siguientes instancias:",
+                "not_applicable": "n/a",
                 "quarantine": "Cuarentena",
                 "quarantine_desc": "Esta instancia enviará solo publicaciones públicas a las siguientes instancias:",
+                "reason": "Motivo",
                 "reject": "Rechazar",
                 "reject_desc": "Esta instancia no aceptará mensajes de las siguientes instancias:",
                 "simple_policies": "Políticas específicas de la instancia"
             }
         },
         "staff": "Equipo"
+    },
+    "announcements": {
+        "all_day_prompt": "Este evento durará todo el día",
+        "cancel_edit_action": "Cancelar",
+        "close_error": "Cerrar",
+        "delete_action": "Eliminar",
+        "edit_action": "Editar",
+        "end_time_display": "Termina a las {time}",
+        "end_time_prompt": "Hora de finalización: ",
+        "inactive_message": "Este anuncio está inactivo",
+        "mark_as_read_action": "Marcar como leído",
+        "page_header": "Anuncios",
+        "post_action": "Publicar",
+        "post_error": "Error: {error}",
+        "post_form_header": "Publicar anuncio",
+        "post_placeholder": "Contenido del anuncio",
+        "published_time_display": "Publicado a las {time}",
+        "start_time_display": "Comienza a las {time}",
+        "start_time_prompt": "Hora de inicio: ",
+        "submit_edit_action": "Enviar",
+        "title": "Anuncio"
     },
     "chats": {
         "chats": "Chats",
@@ -109,6 +133,12 @@
             "admin": "Administrador/a",
             "moderator": "Moderador/a"
         },
+        "scope_in_timeline": {
+            "direct": "Directo",
+            "local": "Local - sólo tu instancia puede ver esta publicación",
+            "private": "Sólo para seguidores",
+            "public": "Público"
+        },
         "show_less": "Mostrar menos",
         "show_more": "Mostrar más",
         "submit": "Enviar",
@@ -130,6 +160,13 @@
         "follows": "Nuevos seguidores",
         "load_older": "Cargar interacciones más antiguas",
         "moves": "Usuario migrado"
+    },
+    "lists": {
+        "create": "Crear",
+        "delete": "Eliminar lista",
+        "save": "Guardar cambios",
+        "search": "Buscar cuentas",
+        "title": "Título de la lista"
     },
     "login": {
         "authentication_code": "Código de autenticación",
