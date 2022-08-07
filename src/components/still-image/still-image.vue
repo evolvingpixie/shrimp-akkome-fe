@@ -51,6 +51,10 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+
+    &::before {
+      line-height: 20px;
+    }
   }
 
   &.animated {
