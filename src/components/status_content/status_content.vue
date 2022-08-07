@@ -76,4 +76,10 @@
     }
   }
 }
+
+.quote-inline,
+.quote + .link-preview {
+  display: none;
+}
+
 </style>
