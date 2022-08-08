@@ -103,6 +103,18 @@
           <BooleanSetting path="renderMisskeyMarkdown">
             {{ $t('settings.render_mfm') }}
           </BooleanSetting>
+          <ul
+            class="setting-list suboptions"
+          >
+            <li>
+              <BooleanSetting
+                path="renderMfmOnHover"
+                :disabled="!renderMisskeyMarkdown"
+              >
+                {{ $t('settings.render_mfm_on_hover') }}
+              </BooleanSetting>
+            </li>
+          </ul>
         </li>
         <li>
           <BooleanSetting

@@ -1,7 +1,7 @@
 <template>
   <div
     class="StatusContent"
-    :class="{ '-compact': compact }"
+    :class="{ '-compact': compact, 'mfm-hover': renderMfmOnHover }"
   >
     <slot name="header" />
     <StatusBody
@@ -73,6 +73,12 @@
     &.emoji {
       width: 50px;
       height: 50px;
+    }
+  }
+
+  &.mfm-hover:not(:hover) {
+    .mfm {
+      animation: none;
     }
   }
 }

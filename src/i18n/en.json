@@ -577,6 +577,7 @@
         "remove_alias": "Remove this alias",
         "remove_backup": "Remove",
         "render_mfm": "Render Misskey Markdown",
+        "render_mfm_on_hover": "Pause MFM animations until post hover",
         "replies_in_timeline": "Replies in timeline",
         "reply_visibility_all": "Show all replies",
         "reply_visibility_following": "Only show replies directed at me or users I'm following",
