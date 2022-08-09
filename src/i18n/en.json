@@ -1,5 +1,7 @@
 {
     "about": {
+        "bubble_instances": "Local Bubble Instances",
+        "bubble_instances_description": "Instances chosen by the admins to represent the local area of this instance",
         "mrf": {
             "federation": "Federation",
             "keyword": {

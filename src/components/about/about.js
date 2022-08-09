@@ -3,6 +3,7 @@ import FeaturesPanel from '../features_panel/features_panel.vue'
 import TermsOfServicePanel from '../terms_of_service_panel/terms_of_service_panel.vue'
 import StaffPanel from '../staff_panel/staff_panel.vue'
 import MRFTransparencyPanel from '../mrf_transparency_panel/mrf_transparency_panel.vue'
+import LocalBubblePanel from '../local_bubble_panel/local_bubble_panel.vue'
 
 const About = {
   components: {
@@ -10,7 +11,8 @@ const About = {
     FeaturesPanel,
     TermsOfServicePanel,
     StaffPanel,
-    MRFTransparencyPanel
+    MRFTransparencyPanel,
+    LocalBubblePanel
   },
   computed: {
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },

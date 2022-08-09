@@ -285,6 +285,7 @@ const getNodeInfo = async ({ store }) => {
       })
 
       store.dispatch('setInstanceOption', { name: 'federationPolicy', value: federation })
+      store.dispatch('setInstanceOption', { name: 'localBubbleInstances', value: metadata.localBubbleInstances })
       store.dispatch('setInstanceOption', {
         name: 'federating',
         value: typeof federation.enabled === 'undefined'
