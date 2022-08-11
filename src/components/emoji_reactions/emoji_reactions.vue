@@ -2,12 +2,13 @@
   <div class="emoji-reactions">
     <UserListPopover
       v-for="(reaction) in emojiReactions"
-      :key="reaction.name"
-      :users="accountsForEmoji[reaction.name]"
+      :key="reaction.url || reaction.name"
+      :users="accountsForEmoji[reaction.url || reaction.name]"
     >
       <button
         class="emoji-reaction btn button-default"
         :class="{ 'picked-reaction': reactedWith(reaction.name), 'not-clickable': !loggedIn }"
+        :disabled="!isLocalReaction(reaction.url)"
         @click="emojiOnClick(reaction.name, $event)"
         @mouseenter="fetchEmojiReactionsByIfMissing()"
       >
