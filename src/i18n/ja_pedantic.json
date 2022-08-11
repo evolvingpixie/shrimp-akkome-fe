@@ -1,5 +1,7 @@
 {
     "about": {
+        "bubble_instances": "ローカルバブルのインスタンス",
+        "bubble_instances_description": "管理者がおすすめしているインスタンス",
         "mrf": {
             "federation": "連合",
             "keyword": {

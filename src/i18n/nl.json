@@ -1,9 +1,11 @@
 {
     "about": {
+        "bubble_instances": "Lokale Bubbel-instanties",
+        "bubble_instances_description": "Instanties die gekozen zijn door de beheerders om de lokale omgeving van deze instantie te representeren",
         "mrf": {
             "federation": "Federatie",
             "keyword": {
-                "ftl_removal": "Verwijderen van \"Het Gehele Netwerk\" Tijdlijn",
+                "ftl_removal": "Verwijderen van \"Het Globale Netwerk\" Tijdlijn",
                 "is_replaced_by": "→",
                 "keyword_policies": "Zoekwoordbeleid",
                 "reject": "Afwijzen",
@@ -14,10 +16,10 @@
             "simple": {
                 "accept": "Accepteren",
                 "accept_desc": "Deze instantie accepteert alleen berichten van de volgende instanties:",
-                "ftl_removal": "Verwijderen van \"Bekende Netwerk\" Tijdlijn",
-                "ftl_removal_desc": "Deze instantie verwijdert de volgende instanties van \"Bekende Netwerk\" tijdlijn:",
+                "ftl_removal": "Verwijderen van \"Globale Netwerk\" Tijdlijn",
+                "ftl_removal_desc": "Deze instantie verwijdert de volgende instanties van \"Globale Netwerk\" tijdlijn:",
                 "instance": "Instantie",
-                "media_nsfw": "Media als gevoelig forceren",
+                "media_nsfw": "Media als gevoelig markeren",
                 "media_nsfw_desc": "Deze instantie markeert media als gevoelig in berichten van de volgende instanties:",
                 "media_removal": "Verwijderen van media",
                 "media_removal_desc": "Deze instantie verwijdert media van berichten van de volgende instanties:",
@@ -26,8 +28,8 @@
                 "quarantine_desc": "Deze instantie zal géén berichten sturen naar de volgende instanties:",
                 "reason": "Reden",
                 "reject": "Afwijzen",
-                "reject_desc": "Deze instantie zal geen berichten accepteren van de volgende instanties:",
-                "simple_policies": "Instantiespecifieke regels"
+                "reject_desc": "Deze instantie zal géén berichten accepteren van de volgende instanties:",
+                "simple_policies": "Instantie-specifieke regels"
             }
         },
         "staff": "Personeel"
@@ -219,15 +221,15 @@
         "search": "Zoeken",
         "timeline": "Tijdlijn",
         "timelines": "Tijdlijnen",
-        "twkn": "Bekende Netwerk",
-        "twkn_timeline_description": "Berichten van het gehele netwerk",
+        "twkn": "Globale Netwerk",
+        "twkn_timeline_description": "Berichten van het globale netwerk",
         "user_search": "Gebruiker Zoeken",
         "who_to_follow": "Wie te volgen"
     },
     "notifications": {
         "broken_favorite": "Onbekend bericht, aan het zoeken…",
         "error": "Fout bij ophalen van meldingen: {0}",
-        "favorited_you": "vond je status leuk",
+        "favorited_you": "vond je bericht leuk",
         "follow_request": "wil je volgen",
         "followed_you": "volgt jou",
         "load_older": "Oudere meldingen laden",
@@ -243,10 +245,10 @@
         "check_email": "Controleer je email inbox voor een link om je wachtwoord opnieuw in te stellen.",
         "forgot_password": "Wachtwoord vergeten?",
         "instruction": "Voer je email adres of gebruikersnaam in. We sturen je een link om je wachtwoord opnieuw in te stellen.",
-        "password_reset": "Wachtwoord opnieuw instellen",
-        "password_reset_disabled": "Wachtwoord reset is uitgeschakeld. Neem contact op met de beheerder van deze instantie.",
+        "password_reset": "Wachtwoord herstellen",
+        "password_reset_disabled": "Wachtwoordherstel is uitgeschakeld. Neem contact op met de beheerder van deze instantie.",
         "password_reset_required": "Je dient je wachtwoord opnieuw in te stellen om in te kunnen loggen.",
-        "password_reset_required_but_mailer_is_disabled": "Je dient je wachtwoord opnieuw in te stellen, maar wachtwoord reset is uitgeschakeld. Neem contact op met de beheerder van deze instantie.",
+        "password_reset_required_but_mailer_is_disabled": "Je dient je wachtwoord opnieuw in te stellen, maar wachtwoordherstel is uitgeschakeld. Neem contact op met de beheerder van deze instantie.",
         "placeholder": "Je email of gebruikersnaam",
         "return_home": "Terugkeren naar de home pagina",
         "too_many_requests": "Je hebt het maximaal aantal pogingen bereikt, probeer het later opnieuw."
@@ -282,13 +284,13 @@
         "default": "Zojuist gearriveerd op de Zweinstein Hogeschool",
         "direct_warning_to_all": "Dit bericht zal zichtbaar zijn voor alle vermelde gebruikers.",
         "direct_warning_to_first_only": "Dit bericht zal alleen zichtbaar zijn voor de vermelde gebruikers aan het begin van het bericht.",
-        "empty_status_error": "Kan geen lege status zonder bijlagen plaatsen",
+        "empty_status_error": "Kan geen leeg bericht zonder bijlagen plaatsen",
         "media_description": "Mediaomschrijving",
         "media_description_error": "Kon media niet ophalen, probeer het opnieuw",
         "media_not_sensitive_warning": "Je hebt een Content Waarschuwing, maar de bijlagen zijn niet gemarkeerd als gevoelig!",
         "new_status": "Nieuw bericht plaatsen",
         "post": "Plaatsen",
-        "posting": "Plaatsen...",
+        "posting": "Aan het plaatsen",
         "preview": "Voorbeeld",
         "preview_empty": "Leeg",
         "scope": {
@@ -302,7 +304,7 @@
             "local": "Dit bericht zal niet zichtbaar zijn op andere instanties",
             "private": "Dit bericht zal voor alleen je volgers zichtbaar zijn",
             "public": "Dit bericht zal voor iedereen zichtbaar zijn",
-            "unlisted": "Dit bericht zal niet zichtbaar zijn in de Openbare Tijdlijn en Het Gehele Netwerk"
+            "unlisted": "Dit bericht zal niet zichtbaar zijn in de Openbare Tijdlijn en Het Globale Netwerk"
         }
     },
     "registration": {
@@ -359,11 +361,11 @@
         "added_alias": "Alias is toegevoegd.",
         "added_backup": "Nieuwe back-up is toegevoegd.",
         "allow_following_move": "Automatisch volgen toestaan wanneer een gevolgd account verhuist",
-        "always_show_post_button": "Altijd de zwevende Nieuw Bericht knop tonen",
+        "always_show_post_button": "Altijd de zwevende \"Bericht opstellen\"-knop tonen",
         "app_name": "App naam",
         "attachmentRadius": "Bijlagen",
         "attachments": "Bijlagen",
-        "autohide_floating_post_button": "Nieuw Bericht knop automatisch verbergen (mobiel)",
+        "autohide_floating_post_button": "\"Bericht opstellen\"-knop automatisch verbergen (mobiel)",
         "avatar": "Avatar",
         "avatarAltRadius": "Avatars (meldingen)",
         "avatarRadius": "Avatars",
@@ -413,7 +415,7 @@
         "discoverable": "Sta toe dat dit account ontdekt kan worden in zoekresultaten en andere diensten",
         "domain_mutes": "Domeinen",
         "download_backup": "Downloaden",
-        "email_language": "Taal voor emails van de server",
+        "email_language": "Taal voor e-mails van de server",
         "emoji_reactions_on_timeline": "Toon emoji-reacties op de tijdlijn",
         "enable_web_push_notifications": "Web push meldingen inschakelen",
         "enter_current_password_to_confirm": "Voer je huidige wachtwoord in om je identiteit te bevestigen",
@@ -559,7 +561,7 @@
         "pause_on_unfocused": "Streamen pauzeren wanneer de tab niet in focus is",
         "play_videos_in_modal": "Video's in een popup venster afspelen",
         "post_look_feel": "Berichten Look & Feel",
-        "post_status_content_type": "Standaard bericht  content type",
+        "post_status_content_type": "Standaard bericht content type",
         "posts": "Berichten",
         "preload_images": "Afbeeldingen vooraf laden",
         "presets": "Presets",
@@ -577,6 +579,7 @@
         "remove_alias": "Deze alias verwijderen",
         "remove_backup": "Verwijderen",
         "render_mfm": "Misskey Markdown weergeven",
+        "render_mfm_on_hover": "MFM animaties afspelen bij zweven over bericht",
         "replies_in_timeline": "Antwoorden in tijdlijn",
         "reply_visibility_all": "Alle antwoorden tonen",
         "reply_visibility_following": "Enkel antwoorden tonen die aan mij of gevolgde gebruikers gericht zijn",
@@ -777,10 +780,11 @@
         "token": "Token",
         "tooltipRadius": "Tooltips/alarmen",
         "tree_advanced": "Flexibelere navigatie toestaan in boom weergave",
+        "tree_fade_ancestors": "Ouders van huidige bericht met gedempte tekst tonen",
         "type_domains_to_mute": "Zoek domeinen om te negeren",
         "upload_a_photo": "Foto uploaden",
         "useStreamingApi": "Berichten en meldingen in real-time ontvangen",
-        "useStreamingApiWarning": "Iets experimenteels met berichten streamen uwu miss kun je beter uit laten ofzo",
+        "useStreamingApiWarning": "Iets experimenteels met berichten streamen uwu miss kun je beter uit laten ofzo?",
         "use_at_icon": "{'@'} symbool als icoon tonen in plaats van tekst",
         "use_contain_fit": "Bijlage in miniaturen niet bijsnijden",
         "use_one_click_nsfw": "Gevoelige bijlagen met slechts één klik openen",
@@ -802,6 +806,7 @@
         "wordfilter": "Woordfilter"
     },
     "status": {
+        "ancestor_follow": "{numReplies} ander antwoord onder dit bericht tonen | {numReplies} andere antwoorden onder dit bericht tonen",
         "ancestor_follow_with_icon": "{icon} {text}",
         "attachment_stop_flash": "Flash speler stoppen",
         "bookmark": "Bladwijzer toevoegen",
