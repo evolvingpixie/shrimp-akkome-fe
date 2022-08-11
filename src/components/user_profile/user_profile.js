@@ -49,7 +49,7 @@ const UserProfile = {
   created () {
     const routeParams = this.$route.params
     this.load(routeParams.name || routeParams.id)
-    this.tab = get(this.$route, 'query.tab', defaultTabKey)
+    this.tab = get(this.$route, 'query.hash', defaultTabKey).replace(/^#/, '')
   },
   unmounted () {
     this.stopFetching()
@@ -146,7 +146,7 @@ const UserProfile = {
     },
     onTabSwitch (tab) {
       this.tab = tab
-      this.$router.replace({ query: { tab } })
+      this.$router.replace({ hash: `#${tab}` })
     },
     linkClicked ({ target }) {
       if (target.tagName === 'SPAN') {
@@ -176,8 +176,8 @@ const UserProfile = {
         this.switchUser(newVal)
       }
     },
-    '$route.query': function (newVal) {
-      this.tab = newVal.tab || defaultTabKey
+    '$route.hash': function (newVal) {
+      this.tab = newVal.replace(/^#/, '') || defaultTabKey
     }
   },
   components: {

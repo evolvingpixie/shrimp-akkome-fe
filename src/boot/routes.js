@@ -58,7 +58,7 @@ export default (store) => {
       component: RemoteUserResolver,
       beforeEnter: validateAuthenticatedRoute
     },
-    { name: 'external-user-profile', path: '/users/:id', component: UserProfile },
+    { name: 'external-user-profile', path: '/users/:id', component: UserProfile, meta: { dontScroll: true } },
     { name: 'interactions', path: '/users/:username/interactions', component: Interactions, beforeEnter: validateAuthenticatedRoute },
     { name: 'dms', path: '/users/:username/dms', component: DMs, beforeEnter: validateAuthenticatedRoute },
     { name: 'registration', path: '/registration', component: Registration },
@@ -75,7 +75,7 @@ export default (store) => {
     { name: 'list-timeline', path: '/lists/:id', component: ListTimeline },
     { name: 'list-edit', path: '/lists/:id/edit', component: ListEdit },
     { name: 'announcements', path: '/announcements', component: AnnouncementsPage },
-    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile }
+    { name: 'user-profile', path: '/:_(users)?/:name', component: UserProfile, meta: { dontScroll: true } }
   ]
 
   return routes

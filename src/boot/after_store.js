@@ -377,8 +377,9 @@ const afterStoreSetup = async ({ store, i18n }) => {
     routes: routes(store),
     scrollBehavior: (to, _from, savedPosition) => {
       if (to.matched.some(m => m.meta.dontScroll)) {
-        return false
+        return {}
       }
+
       return savedPosition || { left: 0, top: 0 }
     }
   })
