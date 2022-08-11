@@ -56,7 +56,7 @@ const defaultState = {
   virtualScrolling: true,
   sensitiveByDefault: false,
   sensitiveIfSubject: true,
-  renderMisskeyMarkdown: false,
+  renderMisskeyMarkdown: true,
   renderMfmOnHover: false,
   conversationDisplay: 'linear',
   conversationTreeAdvanced: false,
