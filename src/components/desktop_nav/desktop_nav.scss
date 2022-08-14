@@ -15,16 +15,16 @@
     display: grid;
     grid-template-rows: var(--navbar-height);
     grid-template-columns: 2fr auto 2fr;
-    grid-template-areas: "sitename logo actions";
+    grid-template-areas: "nav-left logo actions";
     box-sizing: border-box;
     padding: 0 1.2em;
     margin: auto;
-    max-width: 980px;
+    max-width: 1110px;
   }
 
   &.-logoLeft .inner-nav {
     grid-template-columns: auto 2fr 2fr;
-    grid-template-areas: "logo sitename actions";
+    grid-template-areas: "logo nav-left actions";
   }
 
   .button-default {
@@ -84,14 +84,21 @@
   }
 
   .nav-icon {
-    margin-left: 1em;
+    margin-left: 0.2em;
     width: 2em;
     height: 100%;
-    font-size: 130%;
     text-align: center;
 
-    &-logout {
-      margin-left: 2em;
+    &.router-link-active {
+      font-size: 1.2em;
+      margin-top: 0.05em;
+
+      .svg-inline--fa {
+        font-weight: bolder;
+        color: $fallback--text;
+        color: var(--selectedMenuText, $fallback--text);
+        --lightText: var(--selectedMenuLightText, $fallback--lightText);
+      }
     }
 
     .svg-inline--fa {
@@ -100,8 +107,25 @@
     }
   }
 
-  .sitename {
-    grid-area: sitename;
+  .-wide {
+    .nav-icon {
+      margin-left: 0.7em;
+    }
+  }
+
+  .left {
+    padding-left: 5px;
+    display: flex;
+  }
+
+  .nav-left-wrapper {
+    grid-area: nav-left;
+
+    .favicon {
+      height: 28px;
+      vertical-align: middle;
+      padding-right: 5px;
+    }
   }
 
   .actions {

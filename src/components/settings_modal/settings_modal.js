@@ -14,6 +14,7 @@ import {
   faTimes,
   faFileUpload,
   faFileDownload,
+  faSignOutAlt,
   faChevronDown
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -28,6 +29,7 @@ library.add(
   faWindowMinimize,
   faFileUpload,
   faFileDownload,
+  faSignOutAlt,
   faChevronDown
 )
 
@@ -65,6 +67,11 @@ const SettingsModal = {
   methods: {
     closeModal () {
       this.$store.dispatch('closeSettingsModal')
+    },
+    logout () {
+      this.$router.replace('/main/public')
+      this.$store.dispatch('closeSettingsModal')
+      this.$store.dispatch('logout')
     },
     peekModal () {
       this.$store.dispatch('togglePeekSettingsModal')
@@ -150,6 +157,7 @@ const SettingsModal = {
     }
   },
   computed: {
+    currentUser () { return this.$store.state.users.currentUser },
     currentSaveStateNotice () {
       return this.$store.state.interface.settings.currentSaveStateNotice
     },

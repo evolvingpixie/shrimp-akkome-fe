@@ -45,7 +45,7 @@
             <FAIcon
               fixed-width
               class="fa-scale-110"
-              icon="bell"
+              icon="bolt"
             />{{ $t("nav.interactions") }}
           </router-link>
         </li>

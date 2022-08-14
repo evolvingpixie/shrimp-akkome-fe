@@ -5,16 +5,79 @@
     :class="{ '-logoLeft': logoLeft }"
     @click="scrollToTop()"
   >
-    <div class="inner-nav">
-      <div class="item sitename">
+    <div
+      class="inner-nav"
+      :class="{ '-wide': showWiderShortcuts }"
+    >
+      <div class="item nav-left-wrapper">
         <router-link
-          v-if="!hideSitename"
-          class="site-name"
+          class="site-brand"
           :to="{ name: 'root' }"
           active-class="home"
         >
-          {{ sitename }}
+          <img
+            v-if="!hideSiteFavicon"
+            class="favicon"
+            src="/favicon.png"
+          >
+          <span
+            v-if="!hideSiteName"
+            class="site-name"
+          >
+            {{ sitename }}
+          </span>
         </router-link>
+        <div
+          v-if="(currentUser || !privateMode) && showNavShortcuts"
+          class="nav-items left"
+        >
+          <router-link
+            v-if="currentUser"
+            :to="{ name: 'friends' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="home"
+              :title="$t('nav.home_timeline')"
+            />
+          </router-link>
+          <router-link
+            :to="{ name: 'public-timeline' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="users"
+              :title="$t('nav.public_tl')"
+            />
+          </router-link>
+          <router-link
+            :to="{ name: 'public-external-timeline' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="globe"
+              :title="$t('nav.twkn')"
+            />
+          </router-link>
+          <router-link
+            v-if="currentUser"
+            :to="{ name: 'bubble-timeline' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="circle"
+              :title="$t('nav.bubble_timeline')"
+            />
+          </router-link>
+        </div>
       </div>
       <router-link
         class="logo"
@@ -36,6 +99,46 @@
           @toggled="onSearchBarToggled"
           @click.stop
         />
+        <div
+          v-if="(currentUser || !privateMode) && showNavShortcuts"
+          class="nav-items right"
+        >
+          <router-link
+            class="nav-icon"
+            :to="{ name: 'interactions', params: { username: currentUser.screen_name } }"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="bolt"
+              :title="$t('nav.interactions')"
+            />
+          </router-link>
+          <router-link
+            v-if="currentUser"
+            :to="{ name: 'lists' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="list"
+              :title="$t('nav.lists')"
+            />
+          </router-link>
+          <router-link
+            v-if="currentUser"
+            :to="{ name: 'bookmarks' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="bookmark"
+              :title="$t('nav.bookmarks')"
+            />
+          </router-link>
+        </div>
         <button
           class="button-unstyled nav-icon"
           @click.stop="openSettingsModal"
@@ -61,18 +164,6 @@
             :title="$t('nav.administration')"
           />
         </a>
-        <button
-          v-if="currentUser"
-          class="button-unstyled nav-icon nav-icon-logout"
-          @click.prevent="logout"
-        >
-          <FAIcon
-            fixed-width
-            class="fa-scale-110 fa-old-padding"
-            icon="sign-out-alt"
-            :title="$t('login.logout')"
-          />
-        </button>
       </div>
     </div>
   </nav>

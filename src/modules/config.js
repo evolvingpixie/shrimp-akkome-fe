@@ -36,6 +36,10 @@ export const defaultState = {
   muteBotStatuses: undefined, // instance default
   collapseMessageWithSubject: undefined, // instance default
   padEmoji: true,
+  showNavShortcuts: undefined, // instance default
+  showWiderShortcuts: undefined, // instance default
+  hideSiteFavicon: undefined, // instance default
+  hideSiteName: undefined, // instance default
   hideAttachments: false,
   hideAttachmentsInConv: false,
   maxThumbnails: 16,

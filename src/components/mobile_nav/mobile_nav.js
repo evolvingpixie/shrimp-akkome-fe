@@ -41,7 +41,12 @@ const MobileNav = {
     unseenNotificationsCount () {
       return this.unseenNotifications.length
     },
-    hideSitename () { return this.$store.state.instance.hideSitename },
+    mergedConfig () {
+      return this.$store.getters.mergedConfig
+    },
+    hideSiteName () {
+      return this.mergedConfig.hideSiteName
+    },
     sitename () { return this.$store.state.instance.name }
   },
   methods: {

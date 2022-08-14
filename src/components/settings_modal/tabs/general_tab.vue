@@ -26,6 +26,38 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting
+            path="hideSiteFavicon"
+            expert="1"
+          >
+            {{ $t('settings.hide_site_favicon') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="hideSiteName"
+            expert="1"
+          >
+            {{ $t('settings.hide_site_name') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="showNavShortcuts"
+            expert="1"
+          >
+            {{ $t('settings.show_nav_shortcuts') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="showWiderShortcuts"
+            expert="1"
+          >
+            {{ $t('settings.show_wider_shortcuts') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting path="stopGifs">
             {{ $t('settings.stop_gifs') }}
           </BooleanSetting>

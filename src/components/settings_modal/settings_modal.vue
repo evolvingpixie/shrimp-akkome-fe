@@ -111,6 +111,20 @@
           id="unscrolled-content"
           class="extra-content"
         />
+        <button
+          v-if="currentUser"
+          class="button-default logout-button"
+          :title="$t('login.logout')"
+          :aria-label="$t('login.logout')"
+          @click.prevent="logout"
+        >
+          <FAIcon
+            fixed-width
+            class="fa-scale-110 fa-old-padding"
+            icon="sign-out-alt"
+          />
+          <span>{{ $t('login.logout') }}</span>
+        </button>
       </div>
     </div>
   </Modal>

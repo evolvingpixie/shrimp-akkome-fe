@@ -71,5 +71,11 @@
       display: flex;
       flex-grow: 1;
     }
+
+    .logout-button {
+      position: absolute;
+      right: 20px;
+      padding-right: 10px;
+    }
   }
 }

@@ -22,7 +22,7 @@
           />
         </button>
         <router-link
-          v-if="!hideSitename"
+          v-if="!hideSiteName"
           class="site-name"
           :to="{ name: 'root' }"
           active-class="home"
