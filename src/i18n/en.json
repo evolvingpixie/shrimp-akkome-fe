@@ -616,6 +616,7 @@
         "show_admin_badge": "Show \"Admin\" badge in my profile",
         "show_moderator_badge": "Show \"Moderator\" badge in my profile",
         "show_nav_shortcuts": "Show extra navigation shortcuts in top panel",
+        "show_panel_nav_shortcuts": "Show timeline navigation shortcuts at the top of the panel",
         "show_scrollbars": "Show side column's scrollbars",
         "show_wider_shortcuts": "Show wider gap between top panel shortcuts",
         "show_yous": "Show (You)s",

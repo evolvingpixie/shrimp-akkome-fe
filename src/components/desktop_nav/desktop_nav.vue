@@ -55,17 +55,6 @@
             />
           </router-link>
           <router-link
-            :to="{ name: 'public-external-timeline' }"
-            class="nav-icon"
-          >
-            <FAIcon
-              fixed-width
-              class="fa-scale-110 fa-old-padding"
-              icon="globe"
-              :title="$t('nav.twkn')"
-            />
-          </router-link>
-          <router-link
             v-if="currentUser"
             :to="{ name: 'bubble-timeline' }"
             class="nav-icon"
@@ -75,6 +64,17 @@
               class="fa-scale-110 fa-old-padding"
               icon="circle"
               :title="$t('nav.bubble_timeline')"
+            />
+          </router-link>
+          <router-link
+            :to="{ name: 'public-external-timeline' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="globe"
+              :title="$t('nav.twkn')"
             />
           </router-link>
         </div>
@@ -105,6 +105,7 @@
         >
           <router-link
             class="nav-icon"
+            v-if="currentUser"
             :to="{ name: 'interactions', params: { username: currentUser.screen_name } }"
           >
             <FAIcon

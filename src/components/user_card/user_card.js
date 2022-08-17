@@ -69,6 +69,7 @@ export default {
       return `${serverUrl.protocol}//${serverUrl.host}/main/ostatus`
     },
     loggedIn () {
+      console.log({ ...this.$store.state.users.currentUser })
       return this.$store.state.users.currentUser
     },
     dailyAvg () {

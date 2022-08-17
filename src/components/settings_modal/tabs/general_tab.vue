@@ -51,6 +51,14 @@
         </li>
         <li>
           <BooleanSetting
+            path="showPanelNavShortcuts"
+            expert="1"
+          >
+            {{ $t('settings.show_panel_nav_shortcuts') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
             path="showWiderShortcuts"
             expert="1"
           >
