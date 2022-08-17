@@ -124,6 +124,11 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('hideBotIndication')
   copyInstanceOption('hideUserStats')
   copyInstanceOption('hideFilteredStatuses')
+  copyInstanceOption('hideSiteName')
+  copyInstanceOption('hideSiteFavicon')
+  copyInstanceOption('showWiderShortcuts')
+  copyInstanceOption('showNavShortcuts')
+  copyInstanceOption('showPanelNavShortcuts')
   copyInstanceOption('logo')
 
   store.dispatch('setInstanceOption', {
@@ -154,6 +159,7 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('alwaysShowSubjectInput')
   copyInstanceOption('showFeaturesPanel')
   copyInstanceOption('hideSitename')
+  copyInstanceOption('renderMisskeyMarkdown')
   copyInstanceOption('sidebarRight')
 
   return store.dispatch('setTheme', config['theme'])

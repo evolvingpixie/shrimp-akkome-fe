@@ -589,7 +589,7 @@ const users = {
               const response = data.error
               // Authentication failed
               commit('endLogin')
-              if (response.status === 401) {
+              if (response.status === 401 || response.status === 403) {
                 reject(new Error('Wrong username or password'))
               } else {
                 reject(new Error('An error occurred, please try again'))
