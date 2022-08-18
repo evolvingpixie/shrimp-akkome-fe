@@ -10,11 +10,6 @@ import HashtagLink from 'src/components/hashtag_link/hashtag_link.vue'
 
 import './rich_content.scss'
 
-const selectContent = (html, sourceContent, mfm) => {
-  if (!mfm) return html
-  return sourceContent === '' ? html : sourceContent
-}
-
 /**
  * RichContent, The Über-powered component for rendering Post HTML.
  *
@@ -71,11 +66,6 @@ export default {
       required: false,
       type: Boolean,
       default: false
-    },
-    sourceContent: {
-      required: false,
-      type: String,
-      default: ''
     }
   },
   // NEVER EVER TOUCH DATA INSIDE RENDER
@@ -84,8 +74,7 @@ export default {
     const greentext = this.mfm ? false : this.greentext
 
     // Pre-process HTML
-    const useContent = selectContent(this.html, this.sourceContent, this.mfm)
-    const { newHtml: html } = preProcessPerLine(useContent, greentext)
+    const { newHtml: html } = preProcessPerLine(this.html, greentext)
     let currentMentions = null // Current chain of mentions, we group all mentions together
     // This is used to recover spacing removed when parsing mentions
     let lastSpacing = ''
@@ -180,7 +169,7 @@ export default {
     }
 
     // Processor to use with html_tree_converter
-    const processItem = (item, index, array) => {
+    const processItem = (item, index, array, what) => {
       // Handle text nodes - just add emoji
       if (typeof item === 'string') {
         const emptyText = item.trim() === ''

@@ -52,7 +52,6 @@
             :emoji="status.emojis"
             :handle-links="true"
             :mfm="renderMisskeyMarkdown && (status.media_type === 'text/x.misskeymarkdown')"
-            :sourceContent="status.source_content"
             :greentext="mergedConfig.greentext"
             :attentions="status.attentions"
             @parseReady="onParseReady"

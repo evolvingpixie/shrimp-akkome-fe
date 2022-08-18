@@ -103,6 +103,9 @@ const StatusContent = {
     renderMfmOnHover () {
       return this.mergedConfig.renderMfmOnHover
     },
+    renderMisskeyMarkdown () {
+      return this.mergedConfig.renderMisskeyMarkdown
+    },
     ...mapGetters(['mergedConfig']),
     ...mapState({
       currentUser: state => state.users.currentUser
