@@ -1,5 +1,7 @@
 {
     "about": {
+        "bubble_instances": "Instancias de burbuja local",
+        "bubble_instances_description": "Instancias elegidas por los/las adminstradores/as para representar el área local de esta instancia",
         "mrf": {
             "federation": "Federación",
             "keyword": {
@@ -137,7 +139,8 @@
             "direct": "Directo",
             "local": "Local - sólo tu instancia puede ver esta publicación",
             "private": "Sólo para seguidores",
-            "public": "Público"
+            "public": "Público",
+            "unlisted": "No listado"
         },
         "show_less": "Mostrar menos",
         "show_more": "Mostrar más",
@@ -164,6 +167,8 @@
     "lists": {
         "create": "Crear",
         "delete": "Eliminar lista",
+        "lists": "Listas",
+        "new": "Nueva Lista",
         "save": "Guardar cambios",
         "search": "Buscar cuentas",
         "title": "Título de la lista"
@@ -193,6 +198,7 @@
     "nav": {
         "about": "Acerca de",
         "administration": "Administración",
+        "announcements": "Anuncios",
         "back": "Volver",
         "bookmarks": "Marcadores",
         "chats": "Chats",
@@ -200,13 +206,16 @@
         "friend_requests": "Solicitudes de seguimiento",
         "home_timeline": "Línea temporal personal",
         "interactions": "Interacciones",
+        "lists": "Listas",
         "mentions": "Menciones",
         "preferences": "Preferencias",
+        "public_timeline_description": "Publicaciones públicas de esta instancia",
         "public_tl": "Línea temporal pública",
         "search": "Buscar",
         "timeline": "Línea Temporal",
         "timelines": "Líneas de Tiempo",
         "twkn": "Red Conocida",
+        "twkn_timeline_description": "Publicaciones de la red conocida",
         "user_search": "Búsqueda de Usuarios",
         "who_to_follow": "A quién seguir"
     },
