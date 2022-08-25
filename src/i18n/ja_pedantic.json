@@ -25,6 +25,7 @@
                 "media_removal_desc": "このインスタンスでは、以下のインスタンスからの投稿に対して、メディアを除去します:",
                 "quarantine": "検疫",
                 "quarantine_desc": "このインスタンスでは、以下のインスタンスに対して公開投稿のみを送信します:",
+                "reason": "理由",
                 "reject": "拒否",
                 "reject_desc": "このインスタンスでは、以下のインスタンスからのメッセージを受け付けません:",
                 "simple_policies": "インスタンス固有のポリシー"
@@ -33,7 +34,19 @@
         "staff": "スタッフ"
     },
     "announcements": {
-        "page_header": "お知らせ"
+        "all_day_prompt": "一日中",
+        "cancel_edit_action": "キャンセル",
+        "delete_action": "削除",
+        "edit_action": "更新",
+        "end_time_display": "{time}に終わる",
+        "end_time_prompt": "終了時間 ",
+        "mark_as_read_action": "読んだ",
+        "page_header": "お知らせ",
+        "post_error": "エラーが発生しました： {error}",
+        "post_placeholder": "コンテンツ",
+        "published_time_display": "{time}に告知されました",
+        "start_time_prompt": "開始時間 ",
+        "title": "お知らせ"
     },
     "chats": {
         "chats": "チャット一覧",
@@ -115,6 +128,13 @@
             "admin": "管理者",
             "moderator": "モデレーター"
         },
+        "scope_in_timeline": {
+            "direct": "ダイレクト",
+            "local": "ローカル：このインスタンスのユーザーしか見えません",
+            "private": "フォロワー限定",
+            "public": "公開",
+            "unlisted": "アンリステッド"
+        },
         "show_less": "たたむ",
         "show_more": "もっと見る",
         "submit": "送信",
@@ -136,6 +156,14 @@
         "follows": "新しいフォロワー",
         "load_older": "古いインタラクションを見る",
         "moves": "ユーザーの引っ越し"
+    },
+    "lists": {
+        "delete": "削除",
+        "lists": "リスト",
+        "new": "リスト作成",
+        "save": "OK",
+        "search": "ユーザー探索",
+        "title": "リスト名"
     },
     "login": {
         "authentication_code": "認証コード",
@@ -258,6 +286,7 @@
             "unlisted": "アンリステッド: 公開タイムラインに届きません"
         },
         "scope_notice": {
+            "local": "このインスタンスのユーザーしか見えません",
             "private": "この投稿は、あなたのフォロワーだけが、見ることができます",
             "public": "この投稿は、誰でも見ることができます",
             "unlisted": "この投稿は、パブリックタイムラインと、接続しているすべてのネットワークには、表示されません"
@@ -268,6 +297,7 @@
         "bio_placeholder": "例:\nこんにちは。私は玲音。\n私はアニメのキャラクターで、日本の郊外に住んでいます。私をWiredで見たことがあるかもしれません。",
         "captcha": "CAPTCHA",
         "email": "Eメール",
+        "email_language": "サーバーからのメールの言語",
         "fullname": "スクリーンネーム",
         "fullname_placeholder": "例: 岩倉玲音",
         "new_captcha": "文字が読めないときは、画像をクリックすると、新しい画像になります",
@@ -304,6 +334,11 @@
     },
     "settings": {
         "accent": "アクセント",
+        "account_backup": "アカウントのバックアップ",
+        "account_backup_description": "投稿やアカウント情報をダウンロードできますが、インポートすることがまだできません",
+        "account_backup_table_head": "バックアップ",
+        "account_privacy": "プライバシー",
+        "add_backup": "バックアップ作成",
         "allow_following_move": "フォロー中のアカウントが引っ越したとき、自動フォローを許可する",
         "always_show_post_button": "投稿ボタンを常に表示",
         "app_name": "アプリの名称",
