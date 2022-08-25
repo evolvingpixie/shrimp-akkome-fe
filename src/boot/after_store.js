@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import vClickOutside from 'click-outside-vue3'
@@ -58,6 +59,10 @@ const getInstanceConfig = async ({ store }) => {
 
       store.dispatch('setInstanceOption', { name: 'textlimit', value: textlimit })
       store.dispatch('setInstanceOption', { name: 'accountApprovalRequired', value: data.approval_required })
+      // don't override cookie if set
+      if (!Cookies.get('userLanguage')) {
+        store.dispatch('setOption', { name: 'interfaceLanguage', value: data.languages[0] })
+      }
 
       if (vapidPublicKey) {
         store.dispatch('setInstanceOption', { name: 'vapidPublicKey', value: vapidPublicKey })
