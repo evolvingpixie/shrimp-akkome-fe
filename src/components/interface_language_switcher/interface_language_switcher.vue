@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FAIcon icon="globe" style="color: white;" /> {{ ' ' }}
     <label for="interface-language-switcher">
       {{ promptText }}
     </label>

@@ -49,6 +49,20 @@ const preloadFetch = async (request) => {
   }
 }
 
+const resolveLanguage = (instanceLanguages) => {
+  // First language in navigator.languages that is listed as an instance language
+  // falls back to first instance language
+  const navigatorLanguages = navigator.languages.map((x) => x.split('-')[0])
+
+  for (const navLanguage of navigatorLanguages) {
+    if (instanceLanguages.includes(navLanguage)) {
+      return navLanguage
+    }
+  }
+
+  return instanceLanguages[0]
+}
+
 const getInstanceConfig = async ({ store }) => {
   try {
     const res = await preloadFetch('/api/v1/instance')
@@ -61,7 +75,7 @@ const getInstanceConfig = async ({ store }) => {
       store.dispatch('setInstanceOption', { name: 'accountApprovalRequired', value: data.approval_required })
       // don't override cookie if set
       if (!Cookies.get('userLanguage')) {
-        store.dispatch('setOption', { name: 'interfaceLanguage', value: data.languages[0] })
+        store.dispatch('setOption', { name: 'interfaceLanguage', value: resolveLanguage(data.languages) })
       }
 
       if (vapidPublicKey) {
