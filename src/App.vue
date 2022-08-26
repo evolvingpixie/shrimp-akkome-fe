@@ -59,7 +59,7 @@
     <UserReportingModal />
     <PostStatusModal />
     <SettingsModal />
-    <div id="modal" />
+    <UpdateNotification />
     <GlobalNoticeList />
   </div>
 </template>

@@ -39,7 +39,7 @@
     right: 0;
     top: 0;
     background: rgba(27,31,35,.5);
-    z-index: 99;
+    z-index: 2000;
   }
 }
 
@@ -51,7 +51,7 @@
   margin: 15vh auto;
   position: fixed;
   transform: translateX(-50%);
-  z-index: 999;
+  z-index: 2001;
   cursor: default;
   display: block;
   background-color: $fallback--bg;

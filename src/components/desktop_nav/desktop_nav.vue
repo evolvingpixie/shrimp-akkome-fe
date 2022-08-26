@@ -167,6 +167,18 @@
         </a>
       </div>
     </div>
+    <teleport to="#modal">
+      <confirm-modal
+        v-if="showingConfirmLogout"
+        :title="$t('login.logout_confirm_title')"
+        :confirm-text="$t('login.logout_confirm_accept_button')"
+        :cancel-text="$t('login.logout_confirm_cancel_button')"
+        @accepted="doLogout"
+        @cancelled="hideConfirmLogout"
+      >
+        {{ $t('login.logout_confirm') }}
+      </confirm-modal>
+    </teleport>
   </nav>
 </template>
 <script src="./desktop_nav.js"></script>

@@ -33,6 +33,18 @@
     >
       {{ status.repeat_num }}
     </span>
+    <teleport to="#modal">
+      <confirm-modal
+        v-if="showingConfirmDialog"
+        :title="$t('status.repeat_confirm_title')"
+        :confirm-text="$t('status.repeat_confirm_accept_button')"
+        :cancel-text="$t('status.repeat_confirm_cancel_button')"
+        @accepted="doRetweet"
+        @cancelled="hideConfirmDialog"
+      >
+        {{ $t('status.repeat_confirm') }}
+      </confirm-modal>
+    </teleport>
   </div>
 </template>
 

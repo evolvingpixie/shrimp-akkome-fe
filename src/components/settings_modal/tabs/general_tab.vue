@@ -172,6 +172,77 @@
             {{ $t('settings.autohide_floating_post_button') }}
           </BooleanSetting>
         </li>
+        <li>
+          <h3>{{ $t('settings.columns') }}</h3>
+        </li>
+        <li>
+          <BooleanSetting path="disableStickyHeaders">
+            {{ $t('settings.disable_sticky_headers') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="showScrollbars">
+            {{ $t('settings.show_scrollbars') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="sidebarRight">
+            {{ $t('settings.right_sidebar') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <ChoiceSetting
+            v-if="user"
+            id="thirdColumnMode"
+            path="thirdColumnMode"
+            :options="thirdColumnModeOptions"
+          >
+            {{ $t('settings.third_column_mode') }}
+          </ChoiceSetting>
+        </li>
+        <li>
+          <h3>{{ $t('settings.confirmation_dialogs') }}</h3>
+        </li>
+        <li class="select-multiple">
+          <span class="label">{{ $t('settings.confirm_dialogs') }}</span>
+          <ul class="option-list">
+            <li>
+              <BooleanSetting path="modalOnRepeat">
+                {{ $t('settings.confirm_dialogs_repeat') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnUnfollow">
+                {{ $t('settings.confirm_dialogs_unfollow') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnBlock">
+                {{ $t('settings.confirm_dialogs_block') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnMute">
+                {{ $t('settings.confirm_dialogs_mute') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnDelete">
+                {{ $t('settings.confirm_dialogs_delete') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnApproveFollow">
+                {{ $t('settings.confirm_dialogs_approve_follow') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnDenyFollow">
+                {{ $t('settings.confirm_dialogs_deny_follow') }}
+              </BooleanSetting>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
     <div class="setting-item">

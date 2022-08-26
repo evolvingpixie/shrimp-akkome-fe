@@ -81,6 +81,14 @@ export const defaultState = {
   minimalScopesMode: undefined, // instance default
   // This hides statuses filtered via a word filter
   hideFilteredStatuses: undefined, // instance default
+  modalOnRepeat: undefined, // instance default
+  modalOnUnfollow: undefined, // instance default
+  modalOnBlock: undefined, // instance default
+  modalOnMute: undefined, // instance default
+  modalOnDelete: undefined, // instance default
+  modalOnLogout: undefined, // instance default
+  modalOnApproveFollow: undefined, // instance default
+  modalOnDenyFollow: undefined, // instance default
   playVideosInModal: false,
   useOneClickNsfw: false,
   useContainFit: true,
