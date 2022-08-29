@@ -157,6 +157,16 @@
           </ul>
         </li>
         <li>
+          <p>
+            <interface-language-switcher
+              :globe-icon="false"
+              :prompt-text="$t('settings.translation_language')"
+              :language="translationLanguage"
+              :set-language="setTranslationLanguage"
+            />
+          </p>
+        </li>
+        <li>
           <BooleanSetting
             path="alwaysShowNewPostButton"
             expert="1"

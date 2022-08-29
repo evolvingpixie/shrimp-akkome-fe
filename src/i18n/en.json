@@ -794,6 +794,7 @@
         "third_column_mode_postform": "Main post form and navigation",
         "token": "Token",
         "tooltipRadius": "Tooltips/alerts",
+        "translation_language": "Automatic Translation Language",
         "tree_advanced": "Allow more flexible navigation in tree view",
         "tree_fade_ancestors": "Display ancestors of the current post in faint text",
         "type_domains_to_mute": "Search domains to mute",
