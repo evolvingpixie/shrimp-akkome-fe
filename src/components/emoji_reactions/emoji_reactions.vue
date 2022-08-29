@@ -8,7 +8,6 @@
       <button
         class="emoji-reaction btn button-default"
         :class="{ 'picked-reaction': reactedWith(reaction.name), 'not-clickable': !loggedIn }"
-        :disabled="!isLocalReaction(reaction.url)"
         @click="emojiOnClick(reaction.name, $event)"
         @mouseenter="fetchEmojiReactionsByIfMissing()"
       >

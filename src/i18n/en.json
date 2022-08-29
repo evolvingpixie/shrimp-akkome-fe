@@ -875,6 +875,8 @@
         "thread_show": "Show this thread",
         "thread_show_full": "Show everything under this thread ({numStatus} post in total, max depth {depth}) | Show everything under this thread ({numStatus} posts in total, max depth {depth})",
         "thread_show_full_with_icon": "{icon} {text}",
+        "translate": "Translate",
+        "translated_from": "Translated from {language}",
         "unbookmark": "Unbookmark",
         "unmute_conversation": "Unmute conversation",
         "unpin": "Unpin from profile",

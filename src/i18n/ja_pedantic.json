@@ -791,6 +791,8 @@
         "status_unavailable": "利用できません",
         "thread_muted": "ミュートされたスレッド",
         "thread_muted_and_words": "以下の単語を含むため:",
+        "translate": "翻訳",
+        "translated_from": "{language}から翻訳されました",
         "unbookmark": "ブックマーク解除",
         "unmute_conversation": "スレッドのミュートを解除",
         "unpin": "プロフィールのピン留めを外す",

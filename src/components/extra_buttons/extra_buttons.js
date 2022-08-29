@@ -55,6 +55,12 @@ const ExtraButtons = {
     hideDeleteStatusConfirmDialog () {
       this.showingDeleteDialog = false
     },
+
+    translateStatus () {
+      this.$store.dispatch('translateStatus', { id: this.status.id, language: this.$store.state.instance.interfaceLanguage })
+        .then(() => this.$emit('onSuccess'))
+        .catch(err => this.$emit('onError', err.error.error))
+    },
     pinStatus () {
       this.$store.dispatch('pinStatus', this.status.id)
         .then(() => this.$emit('onSuccess'))
@@ -109,6 +115,9 @@ const ExtraButtons = {
     },
     canMute () {
       return !!this.currentUser
+    },
+    canTranslate () {
+      return this.$store.state.instance.translationEnabled === true
     },
     statusLink () {
       return `${this.$store.state.instance.server}${this.$router.resolve({ name: 'conversation', params: { id: this.status.id } }).href}`

@@ -425,6 +425,10 @@ export const mutations = {
       state.conversationsObject[newStatus.statusnet_conversation_id].forEach(status => { status.thread_muted = newStatus.thread_muted })
     }
   },
+  setTranslatedStatus (state, { id, translation }) {
+    const newStatus = state.allStatusesObject[id]
+    newStatus.translation = translation
+  },
   setRetweeted (state, { status, value }) {
     const newStatus = state.allStatusesObject[status.id]
 
@@ -636,6 +640,10 @@ const statuses = {
     unpinStatus ({ rootState, dispatch }, statusId) {
       rootState.api.backendInteractor.unpinOwnStatus({ id: statusId })
         .then((status) => dispatch('addNewStatuses', { statuses: [status] }))
+    },
+    translateStatus ({ rootState, commit }, { id, translation, language }) {
+      return rootState.api.backendInteractor.translateStatus({ id: id, translation, language })
+        .then((translation) => commit('setTranslatedStatus', { id, translation }))
     },
     muteConversation ({ rootState, commit }, statusId) {
       return rootState.api.backendInteractor.muteConversation({ id: statusId })
