@@ -57,7 +57,8 @@ const ExtraButtons = {
     },
 
     translateStatus () {
-      this.$store.dispatch('translateStatus', { id: this.status.id, language: this.$store.state.instance.interfaceLanguage })
+      const translateTo = this.$store.getters.mergedConfig.translationLanguage || this.$store.state.instance.interfaceLanguage
+      this.$store.dispatch('translateStatus', { id: this.status.id, language: translateTo })
         .then(() => this.$emit('onSuccess'))
         .catch(err => this.$emit('onError', err.error.error))
     },
