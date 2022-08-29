@@ -116,6 +116,17 @@
             :icon="['far', 'flag']"
           /><span>{{ $t("user_card.report") }}</span>
         </button>
+        <button
+          v-if="canTranslate"
+          class="button-default dropdown-item dropdown-item-icon"
+          @click.prevent="translateStatus"
+          @click="close"
+        >
+          <FAIcon
+            fixed-width
+            icon="globe"
+          /><span>{{ $t("status.translate") }}</span>
+        </button>
       </div>
     </template>
     <template v-slot:trigger>

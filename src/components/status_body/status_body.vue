@@ -56,6 +56,23 @@
             :attentions="status.attentions"
             @parseReady="onParseReady"
           />
+          <div
+            v-if="status.translation"
+            class="translation"
+          >
+            <h4>{{ $t('status.translated_from', { language: status.translation.detected_language }) }}</h4>
+            <RichContent
+              :class="{ '-single-line': singleLine }"
+              class="text media-body"
+              :html="status.translation.text"
+              :emoji="status.emojis"
+              :handle-links="true"
+              :mfm="renderMisskeyMarkdown && (status.media_type === 'text/x.misskeymarkdown')"
+              :greentext="mergedConfig.greentext"
+              :attentions="status.attentions"
+              @parseReady="onParseReady"
+            />
+          </div>
         </div>
         <button
           v-show="hideSubjectStatus"
