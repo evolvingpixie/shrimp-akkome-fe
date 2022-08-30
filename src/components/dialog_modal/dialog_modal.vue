@@ -54,6 +54,7 @@
   z-index: 2001;
   cursor: default;
   display: block;
+  width: max-content;
   background-color: $fallback--bg;
   background-color: var(--bg, $fallback--bg);
 
