@@ -116,7 +116,7 @@ export const defaultState = {
   conversationTreeFadeAncestors: undefined, // instance default
   maxDepthInThread: undefined, // instance default
   translationLanguage: undefined, // instance default,
-  supportedTranslationLanguages: [] // instance default
+  supportedTranslationLanguages: {} // instance default
 }
 
 // caching the instance default properties
