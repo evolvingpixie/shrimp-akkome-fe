@@ -255,7 +255,7 @@ const api = {
     getSupportedTranslationlanguages (store) {
       store.state.backendInteractor.getSupportedTranslationlanguages({ store })
         .then((data) => {
-          store.dispatch('setInstanceOption', { name: 'supportedTranslationLanguages', value: data })
+          store.dispatch('setOption', { name: 'supportedTranslationLanguages', value: data })
         })
     },
 

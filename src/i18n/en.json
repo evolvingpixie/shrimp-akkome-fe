@@ -846,6 +846,7 @@
         "mute_conversation": "Mute conversation",
         "nsfw": "NSFW",
         "open_gallery": "Open gallery",
+        "override_translation_source_language": "Override source language",
         "pin": "Pin on profile",
         "pinned": "Pinned",
         "plus_more": "+{number} more",

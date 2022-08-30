@@ -641,8 +641,8 @@ const statuses = {
       rootState.api.backendInteractor.unpinOwnStatus({ id: statusId })
         .then((status) => dispatch('addNewStatuses', { statuses: [status] }))
     },
-    translateStatus ({ rootState, commit }, { id, translation, language }) {
-      return rootState.api.backendInteractor.translateStatus({ id: id, translation, language })
+    translateStatus ({ rootState, commit }, { id, translation, language, from }) {
+      return rootState.api.backendInteractor.translateStatus({ id: id, translation, language, from })
         .then((translation) => commit('setTranslatedStatus', { id, translation }))
     },
     muteConversation ({ rootState, commit }, statusId) {

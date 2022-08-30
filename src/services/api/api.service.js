@@ -744,8 +744,9 @@ const getSupportedTranslationlanguages = ({ credentials }) => {
   return promisedRequest({ url: AKKOMA_LANGUAGES_URL, credentials })
 }
 
-const translateStatus = ({ id, credentials, language }) => {
-  return promisedRequest({ url: AKKOMA_TRANSLATE_URL(id, language), method: 'GET', credentials })
+const translateStatus = ({ id, credentials, language, from }) => {
+  const queryString = from ? `?from=${from}` : ''
+  return promisedRequest({ url: AKKOMA_TRANSLATE_URL(id, language) + queryString, method: 'GET', credentials })
     .then((data) => {
       return data
     })
