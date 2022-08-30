@@ -252,6 +252,12 @@ const api = {
       if (!fetcher) return
       store.commit('removeFetcher', { fetcherName: 'announcements', fetcher })
     },
+    getSupportedTranslationlanguages (store) {
+      store.state.backendInteractor.getSupportedTranslationlanguages({ store })
+        .then((data) => {
+          store.dispatch('setInstanceOption', { name: 'supportedTranslationLanguages', value: data })
+        })
+    },
 
     // Pleroma websocket
     setWsToken (store, token) {

@@ -83,6 +83,9 @@ const GeneralTab = {
         this.$store.dispatch('setOption', { name: 'interfaceLanguage', value: val })
       }
     },
+    translationLanguages () {
+      return (this.$store.getters.mergedConfig.supportedTranslationLanguages || []).map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
+    },
     translationLanguage: {
       get: function () { return this.$store.getters.mergedConfig.translationLanguage },
       set: function (val) {

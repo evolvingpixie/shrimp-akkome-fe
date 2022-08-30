@@ -157,14 +157,14 @@
           </ul>
         </li>
         <li>
-          <p>
-            <interface-language-switcher
-              :globe-icon="false"
-              :prompt-text="$t('settings.translation_language')"
-              :language="translationLanguage"
-              :set-language="setTranslationLanguage"
-            />
-          </p>
+          <ChoiceSetting
+            v-if="user && (translationLanguages.length > 0)"
+            id="translationLanguage"
+            path="translationLanguage"
+            :options="translationLanguages"
+          >
+            {{ $t('settings.translation_language') }}
+          </ChoiceSetting>
         </li>
         <li>
           <BooleanSetting

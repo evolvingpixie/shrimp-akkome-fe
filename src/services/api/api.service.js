@@ -31,6 +31,7 @@ const MASTODON_LOGIN_URL = '/api/v1/accounts/verify_credentials'
 const MASTODON_REGISTRATION_URL = '/api/v1/accounts'
 const MASTODON_USER_FAVORITES_TIMELINE_URL = '/api/v1/favourites'
 const MASTODON_USER_NOTIFICATIONS_URL = '/api/v1/notifications'
+const AKKOMA_LANGUAGES_URL = '/api/v1/akkoma/translation/languages'
 const AKKOMA_TRANSLATE_URL = (id, lang) => `/api/v1/statuses/${id}/translations/${lang}`
 const MASTODON_DISMISS_NOTIFICATION_URL = id => `/api/v1/notifications/${id}/dismiss`
 const MASTODON_FAVORITE_URL = id => `/api/v1/statuses/${id}/favourite`
@@ -737,6 +738,10 @@ const retweet = ({ id, credentials }) => {
 const unretweet = ({ id, credentials }) => {
   return promisedRequest({ url: MASTODON_UNRETWEET_URL(id), method: 'POST', credentials })
     .then((data) => parseStatus(data))
+}
+
+const getSupportedTranslationlanguages = ({ credentials }) => {
+  return promisedRequest({ url: AKKOMA_LANGUAGES_URL, credentials })
 }
 
 const translateStatus = ({ id, credentials, language }) => {
@@ -1585,7 +1590,8 @@ const apiService = {
   editAnnouncement,
   deleteAnnouncement,
   adminFetchAnnouncements,
-  translateStatus
+  translateStatus,
+  getSupportedTranslationlanguages
 }
 
 export default apiService
