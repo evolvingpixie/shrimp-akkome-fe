@@ -102,10 +102,9 @@ const UserProfile = {
       if (this.isUs) timelineTabMap['favorites'] = 'favorites'
 
       const timeline = timelineTabMap[nextTab]
-      const lastTimeline = timelineTabMap[previousTab]
+
       if (timeline) {
         this.stopFetching()
-        if (lastTimeline) this.$store.commit('clearTimeline', { timeline: lastTimeline })
         this.$store.dispatch('startFetchingTimeline', { timeline: timeline, userId: this.userId })
       }
     },
