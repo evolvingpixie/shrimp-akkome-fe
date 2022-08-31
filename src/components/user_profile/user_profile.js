@@ -48,8 +48,9 @@ const UserProfile = {
   },
   created () {
     const routeParams = this.$route.params
+    const hash = get(this.$route, 'hash', defaultTabKey).replace(/^#/, '')
+    if (hash !== '') this.tab = hash
     this.load(routeParams.name || routeParams.id)
-    this.tab = get(this.$route, 'query.hash', defaultTabKey).replace(/^#/, '')
   },
   unmounted () {
     this.stopFetching()
@@ -91,23 +92,31 @@ const UserProfile = {
     setFooterRef (el) {
       this.footerRef = el
     },
-    load (userNameOrId) {
-      const startFetchingTimeline = (timeline, userId) => {
-        // Clear timeline only if load another user's profile
-        if (userId !== this.$store.state.statuses.timelines[timeline].userId) {
-          this.$store.commit('clearTimeline', { timeline })
-        }
-        this.$store.dispatch('startFetchingTimeline', { timeline, userId })
+    onRouteChange (previousTab, nextTab) {
+      const timelineTabMap = {
+        statuses: 'user',
+        replies: 'replies',
+        media: 'media'
       }
+      // only we can see our own favourites
+      if (this.isUs) timelineTabMap['favorites'] = 'favorites'
 
+      const timeline = timelineTabMap[nextTab]
+      const lastTimeline = timelineTabMap[previousTab]
+      if (timeline) {
+        this.stopFetching()
+        if (lastTimeline) this.$store.commit('clearTimeline', { timeline: lastTimeline })
+        this.$store.dispatch('startFetchingTimeline', { timeline: timeline, userId: this.userId })
+      }
+    },
+    load (userNameOrId) {
       const loadById = (userId) => {
         this.userId = userId
-        startFetchingTimeline('user', userId)
-        startFetchingTimeline('replies', userId)
-        startFetchingTimeline('media', userId)
-        if (this.isUs) {
-          startFetchingTimeline('favorites', userId)
-        }
+        const timelines = ['user', 'favorites', 'replies', 'media']
+        timelines.forEach((timeline) => {
+          this.$store.commit('clearTimeline', { timeline: timeline })
+        })
+        this.onRouteChange(null, this.tab)
         // Fetch all pinned statuses immediately
         this.$store.dispatch('fetchPinnedStatuses', userId)
       }
@@ -182,7 +191,9 @@ const UserProfile = {
       }
     },
     '$route.hash': function (newVal) {
+      const oldTab = this.tab
       this.tab = newVal.replace(/^#/, '') || defaultTabKey
+      this.onRouteChange(oldTab, this.tab)
     }
   },
   components: {
