@@ -121,7 +121,11 @@ const ExtraButtons = {
       return this.$store.state.instance.translationEnabled === true
     },
     statusLink () {
-      return `${this.$store.state.instance.server}${this.$router.resolve({ name: 'conversation', params: { id: this.status.id } }).href}`
+      if (this.status.is_local) {
+        return `${this.$store.state.instance.server}${this.$router.resolve({ name: 'conversation', params: { id: this.status.id } }).href}`
+      } else {
+        return this.status.external_url
+      }
     },
     shouldConfirmDelete () {
       return this.$store.getters.mergedConfig.modalOnDelete
