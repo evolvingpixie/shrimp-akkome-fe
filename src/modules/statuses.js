@@ -64,7 +64,8 @@ export const defaultState = () => ({
     dms: emptyTl(),
     bookmarks: emptyTl(),
     list: emptyTl(),
-    bubble: emptyTl()
+    bubble: emptyTl(),
+    replies: emptyTl()
   }
 })
 
@@ -183,7 +184,7 @@ const addNewStatuses = (state, { statuses, showImmediately = false, timeline, us
   // This makes sure that user timeline won't get data meant for other
   // user. I.e. opening different user profiles makes request which could
   // return data late after user already viewing different user profile
-  if ((timeline === 'user' || timeline === 'media') && timelineObject.userId !== userId) {
+  if ((timeline === 'user' || timeline === 'media' || timeline === 'replies') && timelineObject.userId !== userId) {
     return
   }
 

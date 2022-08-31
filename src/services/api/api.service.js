@@ -617,6 +617,7 @@ const fetchTimeline = ({
     notifications: MASTODON_USER_NOTIFICATIONS_URL,
     'publicAndExternal': MASTODON_PUBLIC_TIMELINE,
     user: MASTODON_USER_TIMELINE_URL,
+    replies: MASTODON_USER_TIMELINE_URL,
     media: MASTODON_USER_TIMELINE_URL,
     list: MASTODON_LIST_TIMELINE_URL,
     favorites: MASTODON_USER_FAVORITES_TIMELINE_URL,
@@ -628,7 +629,7 @@ const fetchTimeline = ({
 
   let url = timelineUrls[timeline]
 
-  if (timeline === 'user' || timeline === 'media') {
+  if (timeline === 'user' || timeline === 'media' || timeline === 'replies') {
     url = url(userId)
   }
 
@@ -659,6 +660,9 @@ const fetchTimeline = ({
   }
   if (replyVisibility !== 'all') {
     params.push(['reply_visibility', replyVisibility])
+  }
+  if (timeline === 'user') {
+    params.push(['exclude_replies', 1])
   }
 
   params.push(['limit', 20])

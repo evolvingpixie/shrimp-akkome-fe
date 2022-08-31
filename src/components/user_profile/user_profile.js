@@ -58,6 +58,9 @@ const UserProfile = {
     timeline () {
       return this.$store.state.statuses.timelines.user
     },
+    replies () {
+      return this.$store.state.statuses.timelines.replies
+    },
     favorites () {
       return this.$store.state.statuses.timelines.favorites
     },
@@ -100,6 +103,7 @@ const UserProfile = {
       const loadById = (userId) => {
         this.userId = userId
         startFetchingTimeline('user', userId)
+        startFetchingTimeline('replies', userId)
         startFetchingTimeline('media', userId)
         if (this.isUs) {
           startFetchingTimeline('favorites', userId)
@@ -137,6 +141,7 @@ const UserProfile = {
     },
     stopFetching () {
       this.$store.dispatch('stopFetchingTimeline', 'user')
+      this.$store.dispatch('stopFetchingTimeline', 'replies')
       this.$store.dispatch('stopFetchingTimeline', 'favorites')
       this.$store.dispatch('stopFetchingTimeline', 'media')
     },

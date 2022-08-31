@@ -79,6 +79,18 @@
           :in-profile="true"
           :footer-slipgate="footerRef"
         />
+        <Timeline
+          key="replies"
+          :label="$t('user_card.replies')"
+          :count="user.statuses_count"
+          :embedded="true"
+          :title="$t('user_card.replies')"
+          :timeline="replies"
+          timeline-name="replies"
+          :user-id="userId"
+          :in-profile="true"
+          :footer-slipgate="footerRef"
+        />
         <div
           v-if="followsTabVisible"
           key="followees"
