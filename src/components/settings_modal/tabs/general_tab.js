@@ -43,6 +43,11 @@ const GeneralTab = {
         value: mode,
         label: this.$t(`settings.third_column_mode_${mode}`)
       })),
+      userProfileDefaultTabOptions: ['statuses', 'replies'].map(tab => ({
+        key: tab,
+        value: tab,
+        label: this.$t(`user_card.${tab}`)
+      })),
       loopSilentAvailable:
       // Firefox
       Object.getOwnPropertyDescriptor(HTMLVideoElement.prototype, 'mozHasAudio') ||

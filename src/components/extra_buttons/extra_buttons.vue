@@ -126,6 +126,16 @@
             fixed-width
             icon="globe"
           /><span>{{ $t("status.translate") }}</span>
+
+          <template v-if="noTranslationTargetSet">
+            <span class="dropdown-item-icon__badge warning">
+              <FAIcon
+                fixed-width
+                icon="exclamation-triangle"
+                name="test"
+              />
+            </span>
+          </template>
         </button>
       </div>
     </template>

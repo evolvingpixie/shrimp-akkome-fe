@@ -116,7 +116,8 @@ export const defaultState = {
   conversationTreeFadeAncestors: undefined, // instance default
   maxDepthInThread: undefined, // instance default
   translationLanguage: undefined, // instance default,
-  supportedTranslationLanguages: {} // instance default
+  supportedTranslationLanguages: {}, // instance default
+  userProfileDefaultTab: 'statuses'
 }
 
 // caching the instance default properties

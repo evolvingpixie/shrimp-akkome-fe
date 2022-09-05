@@ -33,22 +33,21 @@ const FriendList = withLoadMore({
   additionalPropNames: ['userId']
 })(List)
 
-const defaultTabKey = 'statuses'
-
 const UserProfile = {
   data () {
     return {
       error: false,
       userId: null,
-      tab: defaultTabKey,
+      tab: 'statuses',
       footerRef: null,
       note: null,
       noteLoading: false
     }
   },
   created () {
+    const defaultTabKey = this.defaultTabKey
     const routeParams = this.$route.params
-    const hash = get(this.$route, 'hash', defaultTabKey).replace(/^#/, '')
+    const hash = (get(this.$route, 'hash') || defaultTabKey).replace(/^#/, '')
     if (hash !== '') this.tab = hash
     this.load(routeParams.name || routeParams.id)
   },
@@ -86,6 +85,9 @@ const UserProfile = {
     },
     currentUser () {
       return this.$store.state.users.currentUser
+    },
+    defaultTabKey () {
+      return this.$store.getters.mergedConfig.userProfileDefaultTab || 'statuses'
     }
   },
   methods: {
@@ -191,7 +193,7 @@ const UserProfile = {
     },
     '$route.hash': function (newVal) {
       const oldTab = this.tab
-      this.tab = newVal.replace(/^#/, '') || defaultTabKey
+      this.tab = newVal.replace(/^#/, '') || this.defaultTabKey
       this.onRouteChange(oldTab, this.tab)
     }
   },

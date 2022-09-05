@@ -55,8 +55,10 @@ const ExtraButtons = {
     hideDeleteStatusConfirmDialog () {
       this.showingDeleteDialog = false
     },
-
     translateStatus () {
+      if (this.noTranslationTargetSet) {
+        this.$store.dispatch('pushGlobalNotice', { messageKey: 'toast.no_translation_target_set', level: 'info' })
+      }
       const translateTo = this.$store.getters.mergedConfig.translationLanguage || this.$store.state.instance.interfaceLanguage
       this.$store.dispatch('translateStatus', { id: this.status.id, language: translateTo })
         .then(() => this.$emit('onSuccess'))
@@ -119,6 +121,9 @@ const ExtraButtons = {
     },
     canTranslate () {
       return this.$store.state.instance.translationEnabled === true
+    },
+    noTranslationTargetSet () {
+      return this.$store.getters.mergedConfig.translationLanguage === undefined
     },
     statusLink () {
       if (this.status.is_local) {

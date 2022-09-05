@@ -806,6 +806,7 @@
         "use_one_click_nsfw": "Open NSFW attachments with just one click",
         "user_mutes": "Users",
         "user_profiles": "User Profiles",
+        "user_profile_default_tab": "Default Tab on User Profile",
         "user_settings": "User Settings",
         "valid_until": "Valid until",
         "values": {
@@ -920,6 +921,9 @@
         "socket_broke": "Realtime connection lost: CloseEvent code {0}",
         "socket_reconnected": "Realtime connection established",
         "up_to_date": "Up-to-date"
+    },
+    "toast": {
+      "no_translation_target_set": "No translation target language set - this may fail. Please set a target language in your settings."
     },
     "tool_tip": {
         "accept_follow_request": "Accept follow request",

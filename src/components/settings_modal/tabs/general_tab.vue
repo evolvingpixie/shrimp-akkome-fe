@@ -15,11 +15,6 @@
             {{ $t('settings.hide_isp') }}
           </BooleanSetting>
         </li>
-        <li>
-          <BooleanSetting path="sidebarRight">
-            {{ $t('settings.right_sidebar') }}
-          </BooleanSetting>
-        </li>
         <li v-if="instanceWallpaperUsed">
           <BooleanSetting path="hideInstanceWallpaper">
             {{ $t('settings.hide_wallpaper') }}
@@ -104,41 +99,7 @@
             {{ $t('settings.virtual_scrolling') }}
           </BooleanSetting>
         </li>
-        <li>
-          <BooleanSetting path="disableStickyHeaders">
-            {{ $t('settings.disable_sticky_headers') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="showScrollbars">
-            {{ $t('settings.show_scrollbars') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <ChoiceSetting
-            v-if="user"
-            id="thirdColumnMode"
-            path="thirdColumnMode"
-            :options="thirdColumnModeOptions"
-          >
-            {{ $t('settings.third_column_mode') }}
-          </ChoiceSetting>
-        </li>
-        <li>
-          <BooleanSetting path="minimalScopesMode">
-            {{ $t('settings.minimal_scopes_mode') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="sensitiveByDefault">
-            {{ $t('settings.sensitive_by_default') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="sensitiveIfSubject">
-            {{ $t('settings.sensitive_if_subject') }}
-          </BooleanSetting>
-        </li>
+
         <li>
           <BooleanSetting path="renderMisskeyMarkdown">
             {{ $t('settings.render_mfm') }}
@@ -155,6 +116,15 @@
               </BooleanSetting>
             </li>
           </ul>
+        </li>
+        <li>
+          <ChoiceSetting
+            id="userProfileDefaultTab"
+            path="userProfileDefaultTab"
+            :options="userProfileDefaultTabOptions"
+          >
+            {{ $t('settings.user_profile_default_tab') }}
+          </ChoiceSetting>
         </li>
         <li>
           <ChoiceSetting
@@ -488,9 +458,19 @@
           </label>
         </li>
         <li>
+          <BooleanSetting path="minimalScopesMode">
+            {{ $t('settings.minimal_scopes_mode') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <!-- <BooleanSetting path="serverSide_defaultNSFW"> -->
           <BooleanSetting path="sensitiveByDefault">
             {{ $t('settings.sensitive_by_default') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="sensitiveIfSubject">
+            {{ $t('settings.sensitive_if_subject') }}
           </BooleanSetting>
         </li>
         <li>
