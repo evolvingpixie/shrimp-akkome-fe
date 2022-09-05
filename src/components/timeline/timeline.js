@@ -150,6 +150,9 @@ const Timeline = {
         this.$store.commit('showNewStatuses', { timeline: this.timelineName })
         this.paused = false
       }
+      if (!this.inProfile) {
+        window.scrollTo({ top: 0 })
+      }
     },
     fetchOlderStatuses: throttle(function () {
       const store = this.$store
