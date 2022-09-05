@@ -98,7 +98,6 @@
     "features_panel": {
         "media_proxy": "Mediaproxy",
         "scope_options": "Zichtbaarheidsopties",
-        "shout": "Shoutbox",
         "text_limit": "Tekstlimiet",
         "title": "Functies",
         "upload_limit": "Upload limiet",
