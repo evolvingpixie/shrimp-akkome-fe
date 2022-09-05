@@ -46,14 +46,6 @@ const EmojiReactions = {
     reactedWith (emoji) {
       return this.status.emoji_reactions.find(r => r.name === emoji).me
     },
-    isLocalReaction (emojiUrl) {
-      if (!emojiUrl) return true
-      const reacted = this.accountsForEmoji[emojiUrl]
-      if (reacted.length === 0) {
-        return true
-      }
-      return reacted[0].is_local
-    },
     fetchEmojiReactionsByIfMissing () {
       const hasNoAccounts = this.status.emoji_reactions.find(r => !r.accounts)
       if (hasNoAccounts) {
