@@ -104,8 +104,8 @@
           class="nav-items right"
         >
           <router-link
-            class="nav-icon"
             v-if="currentUser"
+            class="nav-icon"
             :to="{ name: 'interactions', params: { username: currentUser.screen_name } }"
           >
             <FAIcon
