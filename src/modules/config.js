@@ -34,7 +34,7 @@ export const defaultState = {
   hideThreadsWithBlockedUsers: undefined, // instance default
   hideWordFilteredPosts: undefined, // instance default
   muteBotStatuses: undefined, // instance default
-  collapseMessageWithSubject: undefined, // instance default
+  collapseMessageWithSubject: true, // instance default
   padEmoji: true,
   showNavShortcuts: undefined, // instance default
   showPanelNavShortcuts: undefined, // instance default
