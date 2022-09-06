@@ -1,6 +1,8 @@
 import { reduce, filter, findIndex, clone, get } from 'lodash'
 import Status from '../status/status.vue'
 import ThreadTree from '../thread_tree/thread_tree.vue'
+import { WSConnectionStatus } from '../../services/api/api.service.js'
+import { mapGetters, mapState } from 'vuex'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -76,6 +78,9 @@ const conversation = {
       // there is a -2 here
       const maxDepth = this.$store.getters.mergedConfig.maxDepthInThread - 2
       return maxDepth >= 1 ? maxDepth : 1
+    },
+    streamingEnabled () {
+      return this.mergedConfig.useStreamingApi && this.mastoUserSocketStatus === WSConnectionStatus.JOINED
     },
     displayStyle () {
       return this.$store.getters.mergedConfig.conversationDisplay
@@ -339,7 +344,11 @@ const conversation = {
     },
     maybeHighlight () {
       return this.isExpanded ? this.highlight : null
-    }
+    },
+    ...mapGetters(['mergedConfig']),
+    ...mapState({
+      mastoUserSocketStatus: state => state.api.mastoUserSocketStatus
+    })
   },
   components: {
     Status,
@@ -395,6 +404,11 @@ const conversation = {
     setHighlight (id) {
       if (!id) return
       this.highlight = id
+
+      if (!this.streamingEnabled) {
+        this.$store.dispatch('fetchStatus', id)
+      }
+
       this.$store.dispatch('fetchFavsAndRepeats', id)
       this.$store.dispatch('fetchEmojiReactionsBy', id)
     },

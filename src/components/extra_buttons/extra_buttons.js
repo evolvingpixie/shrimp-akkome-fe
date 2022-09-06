@@ -7,7 +7,8 @@ import {
   faEyeSlash,
   faThumbtack,
   faShareAlt,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faHistory
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faBookmark as faBookmarkReg,
@@ -22,7 +23,8 @@ library.add(
   faThumbtack,
   faShareAlt,
   faExternalLinkAlt,
-  faFlag
+  faFlag,
+  faHistory
 )
 
 const ExtraButtons = {
@@ -101,6 +103,25 @@ const ExtraButtons = {
     },
     reportStatus () {
       this.$store.dispatch('openUserReportingModal', { userId: this.status.user.id, statusIds: [this.status.id] })
+    },
+    editStatus () {
+      this.$store.dispatch('fetchStatusSource', { id: this.status.id })
+        .then(data => this.$store.dispatch('openEditStatusModal', {
+          statusId: this.status.id,
+          subject: data.spoiler_text,
+          statusText: data.text,
+          statusIsSensitive: this.status.nsfw,
+          statusPoll: this.status.poll,
+          statusFiles: [...this.status.attachments],
+          visibility: this.status.visibility,
+          statusContentType: data.content_type
+        }))
+    },
+    showStatusHistory () {
+      const originalStatus = { ...this.status }
+      const stripFieldsList = ['attachments', 'created_at', 'emojis', 'text', 'raw_html', 'nsfw', 'poll', 'summary', 'summary_raw_html']
+      stripFieldsList.forEach(p => delete originalStatus[p])
+      this.$store.dispatch('openStatusHistoryModal', originalStatus)
     }
   },
   computed: {
@@ -134,7 +155,11 @@ const ExtraButtons = {
     },
     shouldConfirmDelete () {
       return this.$store.getters.mergedConfig.modalOnDelete
-    }
+    },
+    isEdited () {
+      return this.status.edited_at !== null
+    },
+    editingAvailable () { return this.$store.state.instance.editingAvailable }
   }
 }
 

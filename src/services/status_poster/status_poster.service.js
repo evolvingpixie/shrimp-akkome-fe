@@ -49,6 +49,47 @@ const postStatus = ({
     })
 }
 
+const editStatus = ({
+  store,
+  statusId,
+  status,
+  spoilerText,
+  sensitive,
+  poll,
+  media = [],
+  contentType = 'text/plain'
+}) => {
+  const mediaIds = map(media, 'id')
+
+  return apiService.editStatus({
+    id: statusId,
+    credentials: store.state.users.currentUser.credentials,
+    status,
+    spoilerText,
+    sensitive,
+    poll,
+    mediaIds,
+    contentType
+  })
+    .then((data) => {
+      if (!data.error) {
+        store.dispatch('addNewStatuses', {
+          statuses: [data],
+          timeline: 'friends',
+          showImmediately: true,
+          noIdUpdate: true // To prevent missing notices on next pull.
+        })
+      }
+      return data
+    })
+    .catch((err) => {
+      console.error('Error editing status', err)
+      return {
+        error: err.message
+      }
+    })
+}
+
 const uploadMedia = ({ store, formData }) => {
   const credentials = store.state.users.currentUser.credentials
   return apiService.uploadMedia({ credentials, formData })
@@ -61,6 +102,7 @@ const setMediaDescription = ({ store, id, description }) => {
 
 const statusPosterService = {
   postStatus,
+  editStatus,
   uploadMedia,
   setMediaDescription
 }

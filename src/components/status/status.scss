@@ -160,7 +160,8 @@
     margin-right: 0.2em;
   }
 
-  & .heading-reply-row {
+  & .heading-reply-row,
+  & .heading-edited-row {
     position: relative;
     align-content: baseline;
     font-size: 0.85em;

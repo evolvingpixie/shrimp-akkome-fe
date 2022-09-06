@@ -273,6 +273,7 @@ const getNodeInfo = async ({ store }) => {
       store.dispatch('setInstanceOption', { name: 'mediaProxyAvailable', value: features.includes('media_proxy') })
       store.dispatch('setInstanceOption', { name: 'safeDM', value: features.includes('safe_dm_mentions') })
       store.dispatch('setInstanceOption', { name: 'pollsAvailable', value: features.includes('polls') })
+      store.dispatch('setInstanceOption', { name: 'editingAvailable', value: features.includes('editing') })
       store.dispatch('setInstanceOption', { name: 'pollLimits', value: metadata.pollLimits })
       store.dispatch('setInstanceOption', { name: 'mailerEnabled', value: metadata.mailerEnabled })
       store.dispatch('setInstanceOption', { name: 'translationEnabled', value: features.includes('akkoma:machine_translation') })
