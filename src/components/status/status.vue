@@ -338,18 +338,12 @@
                 tag="span"
               >
                 <template #time>
-                  <i18n-t
-                    keypath="time.in_past"
-                    tag="span"
-                  >
-                    <template>
-                      <Timeago
-                        :time="status.edited_at"
-                        :auto-update="60"
-                        :long-format="true"
-                      />
-                    </template>
-                  </i18n-t>
+                  <Timeago
+                    :time="status.edited_at"
+                    :auto-update="60"
+                    :long-format="true"
+                    :with-direction="true"
+                  />
                 </template>
               </i18n-t>
             </div>
