@@ -279,10 +279,12 @@
             "text/plain": "Texte brut",
             "text/x.misskeymarkdown": "Markdown (Misskey)"
         },
-        "content_warning": "Sujet (optionnel)",
+        "content_warning": "Avertissement (optionnel)",
         "default": "Je viens d'arriver au QG de la NERV",
         "direct_warning_to_all": "Ce message sera visible pour toutes les personnes mentionnées.",
         "direct_warning_to_first_only": "Ce message sera visible uniquement pour personnes mentionnées au début du message.",
+        "edit_remote_warning": "Les modifications apportées au status pourraient ne pas être visible sur certaines instances !",
+        "edit_status": "Modifier le statut",
         "empty_status_error": "Impossible de publier un statut vide sans pièces-jointes",
         "media_description": "Description de la pièce-jointe",
         "media_description_error": "Échec de téléversement du media, essayez encore",
