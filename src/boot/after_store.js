@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import vClickOutside from 'click-outside-vue3'
@@ -48,6 +49,20 @@ const preloadFetch = async (request) => {
   }
 }
 
+const resolveLanguage = (instanceLanguages) => {
+  // First language in navigator.languages that is listed as an instance language
+  // falls back to first instance language
+  const navigatorLanguages = navigator.languages.map((x) => x.split('-')[0])
+
+  for (const navLanguage of navigatorLanguages) {
+    if (instanceLanguages.includes(navLanguage)) {
+      return navLanguage
+    }
+  }
+
+  return instanceLanguages[0]
+}
+
 const getInstanceConfig = async ({ store }) => {
   try {
     const res = await preloadFetch('/api/v1/instance')
@@ -58,6 +73,10 @@ const getInstanceConfig = async ({ store }) => {
 
       store.dispatch('setInstanceOption', { name: 'textlimit', value: textlimit })
       store.dispatch('setInstanceOption', { name: 'accountApprovalRequired', value: data.approval_required })
+      // don't override cookie if set
+      if (!Cookies.get('userLanguage')) {
+        store.dispatch('setOption', { name: 'interfaceLanguage', value: resolveLanguage(data.languages) })
+      }
 
       if (vapidPublicKey) {
         store.dispatch('setInstanceOption', { name: 'vapidPublicKey', value: vapidPublicKey })
@@ -124,6 +143,11 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('hideBotIndication')
   copyInstanceOption('hideUserStats')
   copyInstanceOption('hideFilteredStatuses')
+  copyInstanceOption('hideSiteName')
+  copyInstanceOption('hideSiteFavicon')
+  copyInstanceOption('showWiderShortcuts')
+  copyInstanceOption('showNavShortcuts')
+  copyInstanceOption('showPanelNavShortcuts')
   copyInstanceOption('logo')
 
   store.dispatch('setInstanceOption', {
@@ -154,6 +178,7 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('alwaysShowSubjectInput')
   copyInstanceOption('showFeaturesPanel')
   copyInstanceOption('hideSitename')
+  copyInstanceOption('renderMisskeyMarkdown')
   copyInstanceOption('sidebarRight')
 
   return store.dispatch('setTheme', config['theme'])
@@ -248,8 +273,10 @@ const getNodeInfo = async ({ store }) => {
       store.dispatch('setInstanceOption', { name: 'mediaProxyAvailable', value: features.includes('media_proxy') })
       store.dispatch('setInstanceOption', { name: 'safeDM', value: features.includes('safe_dm_mentions') })
       store.dispatch('setInstanceOption', { name: 'pollsAvailable', value: features.includes('polls') })
+      store.dispatch('setInstanceOption', { name: 'editingAvailable', value: features.includes('editing') })
       store.dispatch('setInstanceOption', { name: 'pollLimits', value: metadata.pollLimits })
       store.dispatch('setInstanceOption', { name: 'mailerEnabled', value: metadata.mailerEnabled })
+      store.dispatch('setInstanceOption', { name: 'translationEnabled', value: features.includes('akkoma:machine_translation') })
 
       const uploadLimits = metadata.uploadLimits
       store.dispatch('setInstanceOption', { name: 'uploadlimit', value: parseInt(uploadLimits.general) })
@@ -371,6 +398,7 @@ const afterStoreSetup = async ({ store, i18n }) => {
   store.dispatch('startFetchingAnnouncements')
   getTOS({ store })
   getStickers({ store })
+  store.dispatch('getSupportedTranslationlanguages')
 
   const router = createRouter({
     history: createWebHistory(),

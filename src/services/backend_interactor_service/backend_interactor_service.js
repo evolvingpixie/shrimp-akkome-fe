@@ -40,6 +40,10 @@ const backendInteractorService = credentials => ({
     return ProcessedWS({ url, id: 'User' })
   },
 
+  getSupportedTranslationlanguages ({ store }) {
+    return apiService.getSupportedTranslationlanguages({ store, credentials })
+  },
+
   ...Object.entries(apiService).reduce((acc, [key, func]) => {
     return {
       ...acc,

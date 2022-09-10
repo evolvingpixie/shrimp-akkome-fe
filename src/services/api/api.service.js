@@ -1,5 +1,5 @@
 import { each, map, concat, last, get } from 'lodash'
-import { parseStatus, parseUser, parseNotification, parseAttachment, parseLinkHeaderPagination } from '../entity_normalizer/entity_normalizer.service.js'
+import { parseStatus, parseSource, parseUser, parseNotification, parseAttachment, parseLinkHeaderPagination } from '../entity_normalizer/entity_normalizer.service.js'
 import { RegistrationError, StatusCodeError } from '../errors/errors'
 
 /* eslint-env browser */
@@ -31,6 +31,8 @@ const MASTODON_LOGIN_URL = '/api/v1/accounts/verify_credentials'
 const MASTODON_REGISTRATION_URL = '/api/v1/accounts'
 const MASTODON_USER_FAVORITES_TIMELINE_URL = '/api/v1/favourites'
 const MASTODON_USER_NOTIFICATIONS_URL = '/api/v1/notifications'
+const AKKOMA_LANGUAGES_URL = '/api/v1/akkoma/translation/languages'
+const AKKOMA_TRANSLATE_URL = (id, lang) => `/api/v1/statuses/${id}/translations/${lang}`
 const MASTODON_DISMISS_NOTIFICATION_URL = id => `/api/v1/notifications/${id}/dismiss`
 const MASTODON_FAVORITE_URL = id => `/api/v1/statuses/${id}/favourite`
 const MASTODON_UNFAVORITE_URL = id => `/api/v1/statuses/${id}/unfavourite`
@@ -50,6 +52,8 @@ const MASTODON_USER_HOME_TIMELINE_URL = '/api/v1/timelines/home'
 const AKKOMA_BUBBLE_TIMELINE_URL = '/api/v1/timelines/bubble'
 const MASTODON_STATUS_URL = id => `/api/v1/statuses/${id}`
 const MASTODON_STATUS_CONTEXT_URL = id => `/api/v1/statuses/${id}/context`
+const MASTODON_STATUS_SOURCE_URL = id => `/api/v1/statuses/${id}/source`
+const MASTODON_STATUS_HISTORY_URL = id => `/api/v1/statuses/${id}/history`
 const MASTODON_USER_URL = id => `/api/v1/accounts/${id}?with_relationships=true`
 const MASTODON_USER_RELATIONSHIPS_URL = '/api/v1/accounts/relationships'
 const MASTODON_USER_TIMELINE_URL = id => `/api/v1/accounts/${id}/statuses`
@@ -510,6 +514,31 @@ const fetchStatus = ({ id, credentials }) => {
     .then((data) => parseStatus(data))
 }
 
+const fetchStatusSource = ({ id, credentials }) => {
+  let url = MASTODON_STATUS_SOURCE_URL(id)
+  return fetch(url, { headers: authHeaders(credentials) })
+    .then((data) => {
+      if (data.ok) {
+        return data
+      }
+      throw new Error('Error fetching source', data)
+    })
+    .then((data) => data.json())
+    .then((data) => parseSource(data))
+}
+
+const fetchStatusHistory = ({ status, credentials }) => {
+  let url = MASTODON_STATUS_HISTORY_URL(status.id)
+  return promisedRequest({ url, credentials })
+    .then((data) => {
+      data.reverse()
+      return data.map((item) => {
+        item.originalStatus = status
+        return parseStatus(item)
+      })
+    })
+}
+
 const tagUser = ({ tag, credentials, user }) => {
   const screenName = user.screen_name
   const form = {
@@ -615,6 +644,7 @@ const fetchTimeline = ({
     notifications: MASTODON_USER_NOTIFICATIONS_URL,
     'publicAndExternal': MASTODON_PUBLIC_TIMELINE,
     user: MASTODON_USER_TIMELINE_URL,
+    replies: MASTODON_USER_TIMELINE_URL,
     media: MASTODON_USER_TIMELINE_URL,
     list: MASTODON_LIST_TIMELINE_URL,
     favorites: MASTODON_USER_FAVORITES_TIMELINE_URL,
@@ -626,7 +656,7 @@ const fetchTimeline = ({
 
   let url = timelineUrls[timeline]
 
-  if (timeline === 'user' || timeline === 'media') {
+  if (timeline === 'user' || timeline === 'media' || timeline === 'replies') {
     url = url(userId)
   }
 
@@ -657,6 +687,9 @@ const fetchTimeline = ({
   }
   if (replyVisibility !== 'all') {
     params.push(['reply_visibility', replyVisibility])
+  }
+  if (timeline === 'user') {
+    params.push(['exclude_replies', 1])
   }
 
   params.push(['limit', 20])
@@ -738,6 +771,18 @@ const unretweet = ({ id, credentials }) => {
     .then((data) => parseStatus(data))
 }
 
+const getSupportedTranslationlanguages = ({ credentials }) => {
+  return promisedRequest({ url: AKKOMA_LANGUAGES_URL, credentials })
+}
+
+const translateStatus = ({ id, credentials, language, from }) => {
+  const queryString = from ? `?from=${from}` : ''
+  return promisedRequest({ url: AKKOMA_TRANSLATE_URL(id, language) + queryString, method: 'GET', credentials })
+    .then((data) => {
+      return data
+    })
+}
+
 const bookmarkStatus = ({ id, credentials }) => {
   return promisedRequest({
     url: MASTODON_BOOKMARK_STATUS_URL(id),
@@ -812,6 +857,54 @@ const postStatus = ({
     body: form,
     method: 'POST',
     headers: postHeaders
+  })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => data.error ? data : parseStatus(data))
+}
+
+const editStatus = ({
+  id,
+  credentials,
+  status,
+  spoilerText,
+  sensitive,
+  poll,
+  mediaIds = [],
+  contentType
+}) => {
+  const form = new FormData()
+  const pollOptions = poll.options || []
+
+  form.append('status', status)
+  if (spoilerText) form.append('spoiler_text', spoilerText)
+  if (sensitive) form.append('sensitive', sensitive)
+  if (contentType) form.append('content_type', contentType)
+  mediaIds.forEach(val => {
+    form.append('media_ids[]', val)
+  })
+
+  if (pollOptions.some(option => option !== '')) {
+    const normalizedPoll = {
+      expires_in: poll.expiresIn,
+      multiple: poll.multiple
+    }
+    Object.keys(normalizedPoll).forEach(key => {
+      form.append(`poll[${key}]`, normalizedPoll[key])
+    })
+
+    pollOptions.forEach(option => {
+      form.append('poll[options][]', option)
+    })
+  }
+
+  let putHeaders = authHeaders(credentials)
+
+  return fetch(MASTODON_STATUS_URL(id), {
+    body: form,
+    method: 'PUT',
+    headers: putHeaders
   })
     .then((response) => {
       return response.json()
@@ -1375,7 +1468,8 @@ const MASTODON_STREAMING_EVENTS = new Set([
   'update',
   'notification',
   'delete',
-  'filters_changed'
+  'filters_changed',
+  'status.update'
 ])
 
 const PLEROMA_STREAMING_EVENTS = new Set([
@@ -1456,6 +1550,8 @@ export const handleMastoWS = (wsEvent) => {
     const data = payload ? JSON.parse(payload) : null
     if (event === 'update') {
       return { event, status: parseStatus(data) }
+    } else if (event === 'status.update') {
+      return { event, status: parseStatus(data) }
     } else if (event === 'notification') {
       return { event, notification: parseNotification(data) }
     }
@@ -1480,6 +1576,8 @@ const apiService = {
   fetchPinnedStatuses,
   fetchConversation,
   fetchStatus,
+  fetchStatusSource,
+  fetchStatusHistory,
   fetchFriends,
   exportFriends,
   fetchFollowers,
@@ -1500,6 +1598,7 @@ const apiService = {
   bookmarkStatus,
   unbookmarkStatus,
   postStatus,
+  editStatus,
   deleteStatus,
   uploadMedia,
   setMediaDescription,
@@ -1576,7 +1675,9 @@ const apiService = {
   postAnnouncement,
   editAnnouncement,
   deleteAnnouncement,
-  adminFetchAnnouncements
+  adminFetchAnnouncements,
+  translateStatus,
+  getSupportedTranslationlanguages
 }
 
 export default apiService

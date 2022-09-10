@@ -10,7 +10,9 @@ import MobilePostStatusButton from './components/mobile_post_status_button/mobil
 import MobileNav from './components/mobile_nav/mobile_nav.vue'
 import DesktopNav from './components/desktop_nav/desktop_nav.vue'
 import UserReportingModal from './components/user_reporting_modal/user_reporting_modal.vue'
+import EditStatusModal from './components/edit_status_modal/edit_status_modal.vue'
 import PostStatusModal from './components/post_status_modal/post_status_modal.vue'
+import StatusHistoryModal from './components/status_history_modal/status_history_modal.vue'
 import GlobalNoticeList from './components/global_notice_list/global_notice_list.vue'
 import { windowWidth, windowHeight } from './services/window_utils/window_utils'
 import { mapGetters } from 'vuex'
@@ -33,6 +35,8 @@ export default {
     SettingsModal,
     UserReportingModal,
     PostStatusModal,
+    EditStatusModal,
+    StatusHistoryModal,
     GlobalNoticeList
   },
   data: () => ({
@@ -83,6 +87,7 @@ export default {
       return this.$store.getters.mergedConfig.alwaysShowNewPostButton || this.layoutType === 'mobile'
     },
     showFeaturesPanel () { return this.$store.state.instance.showFeaturesPanel },
+    editingAvailable () { return this.$store.state.instance.editingAvailable },
     layoutType () { return this.$store.state.interface.layoutType },
     privateMode () { return this.$store.state.instance.private },
     reverseLayout () {

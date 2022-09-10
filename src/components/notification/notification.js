@@ -5,6 +5,7 @@ import UserAvatar from '../user_avatar/user_avatar.vue'
 import UserCard from '../user_card/user_card.vue'
 import Timeago from '../timeago/timeago.vue'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
+import ConfirmModal from '../confirm_modal/confirm_modal.vue'
 import { isStatusNotification } from '../../services/notification_utils/notification_utils.js'
 import { highlightClass, highlightStyle } from '../../services/user_highlighter/user_highlighter.js'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
@@ -36,7 +37,9 @@ const Notification = {
     return {
       userExpanded: false,
       betterShadow: this.$store.state.interface.browserSupport.cssFilter,
-      unmuted: false
+      unmuted: false,
+      showingApproveConfirmDialog: false,
+      showingDenyConfirmDialog: false
     }
   },
   props: [ 'notification' ],
@@ -46,7 +49,8 @@ const Notification = {
     UserCard,
     Timeago,
     Status,
-    RichContent
+    RichContent,
+    ConfirmModal
   },
   methods: {
     toggleUserExpanded () {
@@ -61,7 +65,26 @@ const Notification = {
     toggleMute () {
       this.unmuted = !this.unmuted
     },
+    showApproveConfirmDialog () {
+      this.showingApproveConfirmDialog = true
+    },
+    hideApproveConfirmDialog () {
+      this.showingApproveConfirmDialog = false
+    },
+    showDenyConfirmDialog () {
+      this.showingDenyConfirmDialog = true
+    },
+    hideDenyConfirmDialog () {
+      this.showingDenyConfirmDialog = false
+    },
     approveUser () {
+      if (this.shouldConfirmApprove) {
+        this.showApproveConfirmDialog()
+      } else {
+        this.doApprove()
+      }
+    },
+    doApprove () {
       this.$store.state.api.backendInteractor.approveUser({ id: this.user.id })
       this.$store.dispatch('removeFollowRequest', this.user)
       this.$store.dispatch('markSingleNotificationAsSeen', { id: this.notification.id })
@@ -71,13 +94,22 @@ const Notification = {
           notification.type = 'follow'
         }
       })
+      this.hideApproveConfirmDialog()
     },
     denyUser () {
+      if (this.shouldConfirmDeny) {
+        this.showDenyConfirmDialog()
+      } else {
+        this.doDeny()
+      }
+    },
+    doDeny () {
       this.$store.state.api.backendInteractor.denyUser({ id: this.user.id })
         .then(() => {
           this.$store.dispatch('dismissNotificationLocal', { id: this.notification.id })
           this.$store.dispatch('removeFollowRequest', this.user)
         })
+      this.hideDenyConfirmDialog()
     }
   },
   computed: {
@@ -106,6 +138,15 @@ const Notification = {
     },
     isStatusNotification () {
       return isStatusNotification(this.notification.type)
+    },
+    mergedConfig () {
+      return this.$store.getters.mergedConfig
+    },
+    shouldConfirmApprove () {
+      return this.mergedConfig.modalOnApproveFollow
+    },
+    shouldConfirmDeny () {
+      return this.mergedConfig.modalOnDenyFollow
     },
     ...mapState({
       currentUser: state => state.users.currentUser

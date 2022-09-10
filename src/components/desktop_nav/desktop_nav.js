@@ -1,4 +1,5 @@
 import SearchBar from 'components/search_bar/search_bar.vue'
+import ConfirmModal from '../confirm_modal/confirm_modal.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faSignInAlt,
@@ -38,7 +39,8 @@ library.add(
 
 export default {
   components: {
-    SearchBar
+    SearchBar,
+    ConfirmModal
   },
   data: () => ({
     searchBarHidden: true,
@@ -48,7 +50,8 @@ export default {
         window.CSS.supports('-moz-mask-size', 'contain') ||
         window.CSS.supports('-ms-mask-size', 'contain') ||
         window.CSS.supports('-o-mask-size', 'contain')
-    )
+    ),
+    showingConfirmLogout: false
   }),
   computed: {
     enableMask () { return this.supportsMask && this.$store.state.instance.logoMask },
@@ -92,7 +95,10 @@ export default {
     hideSitename () { return this.$store.state.instance.hideSitename },
     logoLeft () { return this.$store.state.instance.logoLeft },
     currentUser () { return this.$store.state.users.currentUser },
-    privateMode () { return this.$store.state.instance.private }
+    privateMode () { return this.$store.state.instance.private },
+    shouldConfirmLogout () {
+      return this.$store.getters.mergedConfig.modalOnLogout
+    }
   },
   methods: {
     scrollToTop () {

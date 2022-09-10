@@ -15,11 +15,6 @@
             {{ $t('settings.hide_isp') }}
           </BooleanSetting>
         </li>
-        <li>
-          <BooleanSetting path="sidebarRight">
-            {{ $t('settings.right_sidebar') }}
-          </BooleanSetting>
-        </li>
         <li v-if="instanceWallpaperUsed">
           <BooleanSetting path="hideInstanceWallpaper">
             {{ $t('settings.hide_wallpaper') }}
@@ -47,6 +42,14 @@
             expert="1"
           >
             {{ $t('settings.show_nav_shortcuts') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting
+            path="showPanelNavShortcuts"
+            expert="1"
+          >
+            {{ $t('settings.show_panel_nav_shortcuts') }}
           </BooleanSetting>
         </li>
         <li>
@@ -96,41 +99,7 @@
             {{ $t('settings.virtual_scrolling') }}
           </BooleanSetting>
         </li>
-        <li>
-          <BooleanSetting path="disableStickyHeaders">
-            {{ $t('settings.disable_sticky_headers') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="showScrollbars">
-            {{ $t('settings.show_scrollbars') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <ChoiceSetting
-            v-if="user"
-            id="thirdColumnMode"
-            path="thirdColumnMode"
-            :options="thirdColumnModeOptions"
-          >
-            {{ $t('settings.third_column_mode') }}
-          </ChoiceSetting>
-        </li>
-        <li>
-          <BooleanSetting path="minimalScopesMode">
-            {{ $t('settings.minimal_scopes_mode') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="sensitiveByDefault">
-            {{ $t('settings.sensitive_by_default') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting path="sensitiveIfSubject">
-            {{ $t('settings.sensitive_if_subject') }}
-          </BooleanSetting>
-        </li>
+
         <li>
           <BooleanSetting path="renderMisskeyMarkdown">
             {{ $t('settings.render_mfm') }}
@@ -149,6 +118,25 @@
           </ul>
         </li>
         <li>
+          <ChoiceSetting
+            id="userProfileDefaultTab"
+            path="userProfileDefaultTab"
+            :options="userProfileDefaultTabOptions"
+          >
+            {{ $t('settings.user_profile_default_tab') }}
+          </ChoiceSetting>
+        </li>
+        <li>
+          <ChoiceSetting
+            v-if="user && (translationLanguages.length > 0)"
+            id="translationLanguage"
+            path="translationLanguage"
+            :options="translationLanguages"
+          >
+            {{ $t('settings.translation_language') }}
+          </ChoiceSetting>
+        </li>
+        <li>
           <BooleanSetting
             path="alwaysShowNewPostButton"
             expert="1"
@@ -163,6 +151,77 @@
           >
             {{ $t('settings.autohide_floating_post_button') }}
           </BooleanSetting>
+        </li>
+        <li>
+          <h3>{{ $t('settings.columns') }}</h3>
+        </li>
+        <li>
+          <BooleanSetting path="disableStickyHeaders">
+            {{ $t('settings.disable_sticky_headers') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="showScrollbars">
+            {{ $t('settings.show_scrollbars') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="sidebarRight">
+            {{ $t('settings.right_sidebar') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <ChoiceSetting
+            v-if="user"
+            id="thirdColumnMode"
+            path="thirdColumnMode"
+            :options="thirdColumnModeOptions"
+          >
+            {{ $t('settings.third_column_mode') }}
+          </ChoiceSetting>
+        </li>
+        <li>
+          <h3>{{ $t('settings.confirmation_dialogs') }}</h3>
+        </li>
+        <li class="select-multiple">
+          <span class="label">{{ $t('settings.confirm_dialogs') }}</span>
+          <ul class="option-list">
+            <li>
+              <BooleanSetting path="modalOnRepeat">
+                {{ $t('settings.confirm_dialogs_repeat') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnUnfollow">
+                {{ $t('settings.confirm_dialogs_unfollow') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnBlock">
+                {{ $t('settings.confirm_dialogs_block') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnMute">
+                {{ $t('settings.confirm_dialogs_mute') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnDelete">
+                {{ $t('settings.confirm_dialogs_delete') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnApproveFollow">
+                {{ $t('settings.confirm_dialogs_approve_follow') }}
+              </BooleanSetting>
+            </li>
+            <li>
+              <BooleanSetting path="modalOnDenyFollow">
+                {{ $t('settings.confirm_dialogs_deny_follow') }}
+              </BooleanSetting>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -399,9 +458,19 @@
           </label>
         </li>
         <li>
+          <BooleanSetting path="minimalScopesMode">
+            {{ $t('settings.minimal_scopes_mode') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <!-- <BooleanSetting path="serverSide_defaultNSFW"> -->
           <BooleanSetting path="sensitiveByDefault">
             {{ $t('settings.sensitive_by_default') }}
+          </BooleanSetting>
+        </li>
+        <li>
+          <BooleanSetting path="sensitiveIfSubject">
+            {{ $t('settings.sensitive_if_subject') }}
           </BooleanSetting>
         </li>
         <li>

@@ -64,7 +64,8 @@ export const defaultState = () => ({
     dms: emptyTl(),
     bookmarks: emptyTl(),
     list: emptyTl(),
-    bubble: emptyTl()
+    bubble: emptyTl(),
+    replies: emptyTl()
   }
 })
 
@@ -183,7 +184,7 @@ const addNewStatuses = (state, { statuses, showImmediately = false, timeline, us
   // This makes sure that user timeline won't get data meant for other
   // user. I.e. opening different user profiles makes request which could
   // return data late after user already viewing different user profile
-  if ((timeline === 'user' || timeline === 'media') && timelineObject.userId !== userId) {
+  if ((timeline === 'user' || timeline === 'media' || timeline === 'replies') && timelineObject.userId !== userId) {
     return
   }
 
@@ -248,6 +249,9 @@ const addNewStatuses = (state, { statuses, showImmediately = false, timeline, us
 
   const processors = {
     'status': (status) => {
+      addStatus(status, showImmediately)
+    },
+    'edit': (status) => {
       addStatus(status, showImmediately)
     },
     'retweet': (status) => {
@@ -424,6 +428,10 @@ export const mutations = {
     if (newStatus.thread_muted !== undefined) {
       state.conversationsObject[newStatus.statusnet_conversation_id].forEach(status => { status.thread_muted = newStatus.thread_muted })
     }
+  },
+  setTranslatedStatus (state, { id, translation }) {
+    const newStatus = state.allStatusesObject[id]
+    newStatus.translation = translation
   },
   setRetweeted (state, { status, value }) {
     const newStatus = state.allStatusesObject[status.id]
@@ -602,6 +610,12 @@ const statuses = {
       return rootState.api.backendInteractor.fetchStatus({ id })
         .then((status) => dispatch('addNewStatuses', { statuses: [status] }))
     },
+    fetchStatusSource ({ rootState, dispatch }, status) {
+      return apiService.fetchStatusSource({ id: status.id, credentials: rootState.users.currentUser.credentials })
+    },
+    fetchStatusHistory ({ rootState, dispatch }, status) {
+      return apiService.fetchStatusHistory({ status })
+    },
     deleteStatus ({ rootState, commit }, status) {
       commit('setDeleted', { status })
       apiService.deleteStatus({ id: status.id, credentials: rootState.users.currentUser.credentials })
@@ -636,6 +650,10 @@ const statuses = {
     unpinStatus ({ rootState, dispatch }, statusId) {
       rootState.api.backendInteractor.unpinOwnStatus({ id: statusId })
         .then((status) => dispatch('addNewStatuses', { statuses: [status] }))
+    },
+    translateStatus ({ rootState, commit }, { id, translation, language, from }) {
+      return rootState.api.backendInteractor.translateStatus({ id: id, translation, language, from })
+        .then((translation) => commit('setTranslatedStatus', { id, translation }))
     },
     muteConversation ({ rootState, commit }, statusId) {
       return rootState.api.backendInteractor.muteConversation({ id: statusId })

@@ -74,6 +74,28 @@
           /><span>{{ $t("status.unbookmark") }}</span>
         </button>
         <button
+          v-if="ownStatus && editingAvailable"
+          class="button-default dropdown-item dropdown-item-icon"
+          @click.prevent="editStatus"
+          @click="close"
+        >
+          <FAIcon
+            fixed-width
+            icon="pen"
+          /><span>{{ $t("status.edit") }}</span>
+        </button>
+        <button
+          v-if="isEdited && editingAvailable"
+          class="button-default dropdown-item dropdown-item-icon"
+          @click.prevent="showStatusHistory"
+          @click="close"
+        >
+          <FAIcon
+            fixed-width
+            icon="history"
+          /><span>{{ $t("status.edit_history") }}</span>
+        </button>
+        <button
           v-if="canDelete"
           class="button-default dropdown-item dropdown-item-icon"
           @click.prevent="deleteStatus"
@@ -116,6 +138,27 @@
             :icon="['far', 'flag']"
           /><span>{{ $t("user_card.report") }}</span>
         </button>
+        <button
+          v-if="canTranslate"
+          class="button-default dropdown-item dropdown-item-icon"
+          @click.prevent="translateStatus"
+          @click="close"
+        >
+          <FAIcon
+            fixed-width
+            icon="globe"
+          /><span>{{ $t("status.translate") }}</span>
+
+          <template v-if="noTranslationTargetSet">
+            <span class="dropdown-item-icon__badge warning">
+              <FAIcon
+                fixed-width
+                icon="exclamation-triangle"
+                name="test"
+              />
+            </span>
+          </template>
+        </button>
       </div>
     </template>
     <template v-slot:trigger>
@@ -125,6 +168,18 @@
           icon="ellipsis-h"
         />
       </button>
+      <teleport to="#modal">
+        <ConfirmModal
+          v-if="showingDeleteDialog"
+          :title="$t('status.delete_confirm_title')"
+          :cancel-text="$t('status.delete_confirm_cancel_button')"
+          :confirm-text="$t('status.delete_confirm_accept_button')"
+          @cancelled="hideDeleteStatusConfirmDialog"
+          @accepted="doDeleteStatus"
+        >
+          {{ $t('status.delete_confirm') }}
+        </ConfirmModal>
+      </teleport>
     </template>
   </Popover>
 </template>

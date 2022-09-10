@@ -14,6 +14,28 @@
         {{ $t('user_card.deny') }}
       </button>
     </div>
+    <teleport to="#modal">
+      <confirm-modal
+        v-if="showingApproveConfirmDialog"
+        :title="$t('user_card.approve_confirm_title')"
+        :confirm-text="$t('user_card.approve_confirm_accept_button')"
+        :cancel-text="$t('user_card.approve_confirm_cancel_button')"
+        @accepted="doApprove"
+        @cancelled="hideApproveConfirmDialog"
+      >
+        {{ $t('user_card.approve_confirm', { user: user.screen_name_ui }) }}
+      </confirm-modal>
+      <confirm-modal
+        v-if="showingDenyConfirmDialog"
+        :title="$t('user_card.deny_confirm_title')"
+        :confirm-text="$t('user_card.deny_confirm_accept_button')"
+        :cancel-text="$t('user_card.deny_confirm_cancel_button')"
+        @accepted="doDeny"
+        @cancelled="hideDenyConfirmDialog"
+      >
+        {{ $t('user_card.deny_confirm', { user: user.screen_name_ui }) }}
+      </confirm-modal>
+    </teleport>
   </basic-user-card>
 </template>
 

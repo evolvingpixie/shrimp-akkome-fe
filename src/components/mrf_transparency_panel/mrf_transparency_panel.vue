@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="federationPolicy"
+    v-if="hasInstanceSpecificPolicies"
     class="mrf-transparency-panel"
   >
     <div class="panel panel-default base01-background">

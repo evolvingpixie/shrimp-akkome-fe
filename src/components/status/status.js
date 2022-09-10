@@ -437,6 +437,12 @@ const Status = {
     },
     visibilityLocalized () {
       return this.$i18n.t('general.scope_in_timeline.' + this.status.visibility)
+    },
+    isEdited () {
+      return this.status.edited_at !== null
+    },
+    editingAvailable () {
+      return this.$store.state.instance.editingAvailable
     }
   },
   methods: {

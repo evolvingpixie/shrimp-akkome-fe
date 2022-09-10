@@ -2,6 +2,7 @@ import Status from '../status/status.vue'
 import timelineFetcher from '../../services/timeline_fetcher/timeline_fetcher.service.js'
 import Conversation from '../conversation/conversation.vue'
 import TimelineMenu from '../timeline_menu/timeline_menu.vue'
+import TimelineMenuTabs from '../timeline_menu_tabs/timeline_menu_tabs.vue'
 import TimelineQuickSettings from './timeline_quick_settings.vue'
 import { debounce, throttle, keyBy } from 'lodash'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -39,6 +40,7 @@ const Timeline = {
     Status,
     Conversation,
     TimelineMenu,
+    TimelineMenuTabs,
     TimelineQuickSettings
   },
   computed: {
@@ -85,6 +87,9 @@ const Timeline = {
     },
     virtualScrollingEnabled () {
       return this.$store.getters.mergedConfig.virtualScrolling
+    },
+    showPanelNavShortcuts () {
+      return this.$store.getters.mergedConfig.showPanelNavShortcuts
     }
   },
   created () {
@@ -145,7 +150,9 @@ const Timeline = {
         this.$store.commit('showNewStatuses', { timeline: this.timelineName })
         this.paused = false
       }
-      window.scrollTo({ top: 0 })
+      if (!this.inProfile) {
+        window.scrollTo({ top: 0 })
+      }
     },
     fetchOlderStatuses: throttle(function () {
       const store = this.$store

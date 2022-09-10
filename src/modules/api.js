@@ -98,6 +98,13 @@ const api = {
                   showImmediately: timelineData.visibleStatuses.length === 0,
                   timeline: 'friends'
                 })
+              } else if (message.event === 'status.update') {
+                dispatch('addNewStatuses', {
+                  statuses: [message.status],
+                  userId: false,
+                  showImmediately: message.status.id in timelineData.visibleStatusesObject,
+                  timeline: 'friends'
+                })
               } else if (message.event === 'delete') {
                 dispatch('deleteStatusById', message.id)
               }
@@ -251,6 +258,12 @@ const api = {
       const fetcher = store.state.fetchers.announcements
       if (!fetcher) return
       store.commit('removeFetcher', { fetcherName: 'announcements', fetcher })
+    },
+    getSupportedTranslationlanguages (store) {
+      store.state.backendInteractor.getSupportedTranslationlanguages({ store })
+        .then((data) => {
+          store.dispatch('setOption', { name: 'supportedTranslationLanguages', value: data })
+        })
     },
 
     // Pleroma websocket

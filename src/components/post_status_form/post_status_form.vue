@@ -67,6 +67,13 @@
           <span v-else>{{ $t('post_status.direct_warning_to_all') }}</span>
         </p>
         <div
+          v-if="isEdit"
+          class="visibility-notice edit-warning"
+        >
+          <p>{{ $t('post_status.edit_remote_warning') }}</p>
+          <p>{{ $t('post_status.edit_unsupported_warning') }}</p>
+        </div>
+        <div
           v-if="!disablePreview"
           class="preview-heading faint"
         >
@@ -180,6 +187,7 @@
           class="visibility-tray"
         >
           <scope-selector
+            v-if="!disableVisibilitySelector"
             :show-all="showAllScopes"
             :user-default="userDefaultScope"
             :original-scope="copyMessageScope"
@@ -418,6 +426,16 @@
     justify-content: space-between;
     padding-top: 5px;
     align-items: baseline;
+  }
+
+  .visibility-notice.edit-warning {
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
   }
 
   .media-upload-icon, .poll-icon, .emoji-icon {

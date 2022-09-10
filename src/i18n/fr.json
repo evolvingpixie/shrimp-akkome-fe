@@ -1,5 +1,7 @@
 {
     "about": {
+        "bubble_instances": "Les instances de la bulle locale",
+        "bubble_instances_description": "Des instances choisies par l'administration pour representer la région de cette instance",
         "mrf": {
             "federation": "Fédération",
             "keyword": {
@@ -96,7 +98,6 @@
     "features_panel": {
         "media_proxy": "Proxy pièce-jointes",
         "scope_options": "Options de visibilité",
-        "shout": "Shoutbox",
         "text_limit": "Limite du texte",
         "title": "Fonctionnalités",
         "upload_limit": "Limite de téléversement",
@@ -136,6 +137,7 @@
         },
         "scope_in_timeline": {
             "direct": "Direct",
+            "local": "Local - visible seulement sur cette instance",
             "private": "Abonné·e·s uniquement",
             "public": "Public",
             "unlisted": "Non-listé"
@@ -281,11 +283,11 @@
         "default": "Je viens d'arriver au QG de la NERV",
         "direct_warning_to_all": "Ce message sera visible pour toutes les personnes mentionnées.",
         "direct_warning_to_first_only": "Ce message sera visible uniquement pour personnes mentionnées au début du message.",
-        "empty_status_error": "Impossible de poster un statut vide sans pièces-jointes",
+        "empty_status_error": "Impossible de publier un statut vide sans pièces-jointes",
         "media_description": "Description de la pièce-jointe",
         "media_description_error": "Échec de téléversement du media, essayez encore",
         "media_not_sensitive_warning": "Il y a un avertissment, mais les pièces jointes ne sont pas marquées comme sensibles !",
-        "new_status": "Poster un nouveau statut",
+        "new_status": "Nouveau statut",
         "post": "Post",
         "posting": "Envoi en cours",
         "preview": "Prévisualisation",
@@ -306,7 +308,7 @@
     },
     "registration": {
         "bio": "Biographie",
-        "bio_placeholder": "ex.\nSalut, je suis Lain\nJe suis une héroïne d'animation qui vit dans une banlieue japonaise. Vous me connaissez peut-être du Wired.",
+        "bio_placeholder": "ex :\nSalut, je me présente ici !\nJ’adore les animés et les jeux vidéos. J’espère qu'on peut être amis⋅ies !",
         "captcha": "CAPTCHA",
         "email": "Courriel",
         "email_language": "Dans quelle langue souhaitez-vous recevoir des courriels ?",
@@ -458,6 +460,8 @@
         "hide_muted_threads": "Masquer les fils de discussion silenciés",
         "hide_post_stats": "Masquer les statistiques des messages (ex. le nombre de favoris)",
         "hide_shoutbox": "Cacher la shoutbox de l'instance",
+        "hide_site_favicon": "Ne pas afficher le favicon de l’instance dans le panneau supérieur",
+        "hide_site_name": "Ne pas afficher le nom de l'instance dans le panneau supérieur",
         "hide_threads_with_blocked_users": "Masquer les fils qui mentionnent les personnes bloquées",
         "hide_user_stats": "Masquer les statistiques de compte (ex. le nombre de suivis)",
         "hide_wallpaper": "Cacher le fond d'écran",
@@ -576,6 +580,7 @@
         "remove_alias": "Supprimer ce pseudo",
         "remove_backup": "Supprimer",
         "render_mfm": "Afficher le contenu Misskey Markdown",
+        "render_mfm_on_hover": "Rester sur du contenu MFM pour déclencher les animations",
         "replies_in_timeline": "Réponses dans le flux",
         "reply_visibility_all": "Montrer toutes les réponses",
         "reply_visibility_following": "Afficher uniquement les réponses adressées à moi ou aux personnes que je suis",
@@ -609,7 +614,10 @@
         "settings": "Paramètres",
         "show_admin_badge": "Afficher le badge d'Admin sur mon profil",
         "show_moderator_badge": "Afficher le badge de Modo' sur mon profil",
+        "show_nav_shortcuts": "Afficher plus de raccourcis de navigations dans le panneau supérieur",
+        "show_panel_nav_shortcuts": "Afficher les raccourcis de navigation du flux dans le panneau supérieur",
         "show_scrollbars": "Afficher la barre de défilement",
+        "show_wider_shortcuts": "Plus d'espace entre les raccourcis dans le panneau supérieur",
         "show_yous": "Afficher « Vous : »",
         "stop_gifs": "N'animer les GIFS que lors du survol du curseur de la souris",
         "streaming": "Charger automatiquement les nouveaux statuts lorsque vous êtes au haut de la page",

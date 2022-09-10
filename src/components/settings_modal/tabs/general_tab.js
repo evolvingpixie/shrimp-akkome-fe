@@ -43,6 +43,11 @@ const GeneralTab = {
         value: mode,
         label: this.$t(`settings.third_column_mode_${mode}`)
       })),
+      userProfileDefaultTabOptions: ['statuses', 'replies'].map(tab => ({
+        key: tab,
+        value: tab,
+        label: this.$t(`user_card.${tab}`)
+      })),
       loopSilentAvailable:
       // Firefox
       Object.getOwnPropertyDescriptor(HTMLVideoElement.prototype, 'mozHasAudio') ||
@@ -50,6 +55,7 @@ const GeneralTab = {
       Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, 'webkitAudioDecodedByteCount') ||
       // Future spec, still not supported in Nightly 63 as of 08/2018
       Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, 'audioTracks')
+
     }
   },
   components: {
@@ -82,11 +88,23 @@ const GeneralTab = {
         this.$store.dispatch('setOption', { name: 'interfaceLanguage', value: val })
       }
     },
+    translationLanguages () {
+      return (this.$store.getters.mergedConfig.supportedTranslationLanguages.target || []).map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
+    },
+    translationLanguage: {
+      get: function () { return this.$store.getters.mergedConfig.translationLanguage },
+      set: function (val) {
+        this.$store.dispatch('setOption', { name: 'translationLanguage', value: val })
+      }
+    },
     ...SharedComputedObject()
   },
   methods: {
     changeDefaultScope (value) {
       this.$store.dispatch('setServerSideOption', { name: 'defaultScope', value })
+    },
+    setTranslationLanguage (value) {
+      this.$store.dispatch('setOption', { name: 'translationLanguage', value })
     }
   }
 }

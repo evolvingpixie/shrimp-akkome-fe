@@ -33,23 +33,23 @@ const FriendList = withLoadMore({
   additionalPropNames: ['userId']
 })(List)
 
-const defaultTabKey = 'statuses'
-
 const UserProfile = {
   data () {
     return {
       error: false,
       userId: null,
-      tab: defaultTabKey,
+      tab: 'statuses',
       footerRef: null,
       note: null,
       noteLoading: false
     }
   },
   created () {
+    const defaultTabKey = this.defaultTabKey
     const routeParams = this.$route.params
+    const hash = (get(this.$route, 'hash') || defaultTabKey).replace(/^#/, '')
+    if (hash !== '') this.tab = hash
     this.load(routeParams.name || routeParams.id)
-    this.tab = get(this.$route, 'query.hash', defaultTabKey).replace(/^#/, '')
   },
   unmounted () {
     this.stopFetching()
@@ -57,6 +57,9 @@ const UserProfile = {
   computed: {
     timeline () {
       return this.$store.state.statuses.timelines.user
+    },
+    replies () {
+      return this.$store.state.statuses.timelines.replies
     },
     favorites () {
       return this.$store.state.statuses.timelines.favorites
@@ -82,28 +85,39 @@ const UserProfile = {
     },
     currentUser () {
       return this.$store.state.users.currentUser
+    },
+    defaultTabKey () {
+      return this.$store.getters.mergedConfig.userProfileDefaultTab || 'statuses'
     }
   },
   methods: {
     setFooterRef (el) {
       this.footerRef = el
     },
-    load (userNameOrId) {
-      const startFetchingTimeline = (timeline, userId) => {
-        // Clear timeline only if load another user's profile
-        if (userId !== this.$store.state.statuses.timelines[timeline].userId) {
-          this.$store.commit('clearTimeline', { timeline })
-        }
-        this.$store.dispatch('startFetchingTimeline', { timeline, userId })
+    onRouteChange (previousTab, nextTab) {
+      const timelineTabMap = {
+        statuses: 'user',
+        replies: 'replies',
+        media: 'media'
       }
+      // only we can see our own favourites
+      if (this.isUs) timelineTabMap['favorites'] = 'favorites'
 
+      const timeline = timelineTabMap[nextTab]
+
+      if (timeline) {
+        this.stopFetching()
+        this.$store.dispatch('startFetchingTimeline', { timeline: timeline, userId: this.userId })
+      }
+    },
+    load (userNameOrId) {
       const loadById = (userId) => {
         this.userId = userId
-        startFetchingTimeline('user', userId)
-        startFetchingTimeline('media', userId)
-        if (this.isUs) {
-          startFetchingTimeline('favorites', userId)
-        }
+        const timelines = ['user', 'favorites', 'replies', 'media']
+        timelines.forEach((timeline) => {
+          this.$store.commit('clearTimeline', { timeline: timeline })
+        })
+        this.onRouteChange(null, this.tab)
         // Fetch all pinned statuses immediately
         this.$store.dispatch('fetchPinnedStatuses', userId)
       }
@@ -137,6 +151,7 @@ const UserProfile = {
     },
     stopFetching () {
       this.$store.dispatch('stopFetchingTimeline', 'user')
+      this.$store.dispatch('stopFetchingTimeline', 'replies')
       this.$store.dispatch('stopFetchingTimeline', 'favorites')
       this.$store.dispatch('stopFetchingTimeline', 'media')
     },
@@ -177,7 +192,9 @@ const UserProfile = {
       }
     },
     '$route.hash': function (newVal) {
-      this.tab = newVal.replace(/^#/, '') || defaultTabKey
+      const oldTab = this.tab
+      this.tab = newVal.replace(/^#/, '') || this.defaultTabKey
+      this.onRouteChange(oldTab, this.tab)
     }
   },
   components: {

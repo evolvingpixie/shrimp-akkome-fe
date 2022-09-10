@@ -1,7 +1,7 @@
 <template>
   <div
     class="StatusContent"
-    :class="{ '-compact': compact, 'mfm-hover': renderMfmOnHover }"
+    :class="{ '-compact': compact, 'mfm-hover': renderMfmOnHover, 'mfm-disabled': !renderMisskeyMarkdown }"
   >
     <slot name="header" />
     <StatusBody
@@ -78,7 +78,12 @@
 
   &.mfm-hover:not(:hover) {
     .mfm {
-      animation: none;
+      animation: none !important;
+    }
+  }
+  &.mfm-disabled {
+    .mfm {
+      animation: none !important;
     }
   }
 }

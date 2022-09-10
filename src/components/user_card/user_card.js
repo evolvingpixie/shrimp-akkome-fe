@@ -6,6 +6,7 @@ import ModerationTools from '../moderation_tools/moderation_tools.vue'
 import AccountActions from '../account_actions/account_actions.vue'
 import Select from '../select/select.vue'
 import RichContent from 'src/components/rich_content/rich_content.jsx'
+import ConfirmModal from '../confirm_modal/confirm_modal.vue'
 import generateProfileLink from 'src/services/user_profile_link_generator/user_profile_link_generator'
 import { mapGetters } from 'vuex'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -32,7 +33,8 @@ export default {
   data () {
     return {
       followRequestInProgress: false,
-      betterShadow: this.$store.state.interface.browserSupport.cssFilter
+      betterShadow: this.$store.state.interface.browserSupport.cssFilter,
+      showingConfirmMute: false
     }
   },
   created () {
@@ -69,6 +71,7 @@ export default {
       return `${serverUrl.protocol}//${serverUrl.host}/main/ostatus`
     },
     loggedIn () {
+      console.log({ ...this.$store.state.users.currentUser })
       return this.$store.state.users.currentUser
     },
     dailyAvg () {
@@ -112,6 +115,9 @@ export default {
     hideFollowersCount () {
       return this.isOtherUser && this.user.hide_followers_count
     },
+    shouldConfirmMute () {
+      return this.mergedConfig.modalOnMute
+    },
     ...mapGetters(['mergedConfig'])
   },
   components: {
@@ -122,14 +128,29 @@ export default {
     ProgressButton,
     FollowButton,
     Select,
-    RichContent
+    RichContent,
+    ConfirmModal
   },
   methods: {
     refetchRelationship () {
       return this.$store.dispatch('fetchUserRelationship', this.user.id)
     },
+    showConfirmMute () {
+      this.showingConfirmMute = true
+    },
+    hideConfirmMute () {
+      this.showingConfirmMute = false
+    },
     muteUser () {
+      if (!this.shouldConfirmMute) {
+        this.doMuteUser()
+      } else {
+        this.showConfirmMute()
+      }
+    },
+    doMuteUser () {
       this.$store.dispatch('muteUser', this.user.id)
+      this.hideConfirmMute()
     },
     unmuteUser () {
       this.$store.dispatch('unmuteUser', this.user.id)

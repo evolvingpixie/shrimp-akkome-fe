@@ -9,6 +9,7 @@ import {
   faLink,
   faPollH
 } from '@fortawesome/free-solid-svg-icons'
+import Select from 'src/components/select/select.vue'
 
 library.add(
   faFile,
@@ -39,7 +40,8 @@ const StatusContent = {
     return {
       postLength: this.status.text.length,
       parseReadyDone: false,
-      renderMisskeyMarkdown
+      renderMisskeyMarkdown,
+      translateFrom: null
     }
   },
   computed: {
@@ -80,10 +82,14 @@ const StatusContent = {
     attachmentTypes () {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
+    translationLanguages () {
+      return (this.$store.getters.mergedConfig.supportedTranslationLanguages.source || []).map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
+    },
     ...mapGetters(['mergedConfig'])
   },
   components: {
-    RichContent
+    RichContent,
+    Select
   },
   mounted () {
     this.status.attentions && this.status.attentions.forEach(attn => {
@@ -126,6 +132,10 @@ const StatusContent = {
     },
     generateTagLink (tag) {
       return `/tag/${tag}`
+    },
+    translateStatus () {
+      const translateTo = this.$store.getters.mergedConfig.translationLanguage || this.$store.state.instance.interfaceLanguage
+      this.$store.dispatch('translateStatus', { id: this.status.id, language: translateTo, from: this.translateFrom })
     }
   }
 }

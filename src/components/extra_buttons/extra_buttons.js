@@ -1,4 +1,5 @@
 import Popover from '../popover/popover.vue'
+import ConfirmModal from '../confirm_modal/confirm_modal.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faEllipsisH,
@@ -6,7 +7,8 @@ import {
   faEyeSlash,
   faThumbtack,
   faShareAlt,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faHistory
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faBookmark as faBookmarkReg,
@@ -21,18 +23,48 @@ library.add(
   faThumbtack,
   faShareAlt,
   faExternalLinkAlt,
-  faFlag
+  faFlag,
+  faHistory
 )
 
 const ExtraButtons = {
-  props: [ 'status' ],
-  components: { Popover },
+  props: ['status'],
+  components: {
+    Popover,
+    ConfirmModal
+  },
+  data () {
+    return {
+      expanded: false,
+      showingDeleteDialog: false
+    }
+  },
   methods: {
     deleteStatus () {
-      const confirmed = window.confirm(this.$t('status.delete_confirm'))
-      if (confirmed) {
-        this.$store.dispatch('deleteStatus', { id: this.status.id })
+      if (this.shouldConfirmDelete) {
+        this.showDeleteStatusConfirmDialog()
+      } else {
+        this.doDeleteStatus()
       }
+    },
+    doDeleteStatus () {
+      this.$store.dispatch('deleteStatus', { id: this.status.id })
+      this.hideDeleteStatusConfirmDialog()
+    },
+    showDeleteStatusConfirmDialog () {
+      this.showingDeleteDialog = true
+    },
+    hideDeleteStatusConfirmDialog () {
+      this.showingDeleteDialog = false
+    },
+    translateStatus () {
+      if (this.noTranslationTargetSet) {
+        this.$store.dispatch('pushGlobalNotice', { messageKey: 'toast.no_translation_target_set', level: 'info' })
+      }
+      const translateTo = this.$store.getters.mergedConfig.translationLanguage || this.$store.state.instance.interfaceLanguage
+      this.$store.dispatch('translateStatus', { id: this.status.id, language: translateTo })
+        .then(() => this.$emit('onSuccess'))
+        .catch(err => this.$emit('onError', err.error.error))
     },
     pinStatus () {
       this.$store.dispatch('pinStatus', this.status.id)
@@ -71,6 +103,25 @@ const ExtraButtons = {
     },
     reportStatus () {
       this.$store.dispatch('openUserReportingModal', { userId: this.status.user.id, statusIds: [this.status.id] })
+    },
+    editStatus () {
+      this.$store.dispatch('fetchStatusSource', { id: this.status.id })
+        .then(data => this.$store.dispatch('openEditStatusModal', {
+          statusId: this.status.id,
+          subject: data.spoiler_text,
+          statusText: data.text,
+          statusIsSensitive: this.status.nsfw,
+          statusPoll: this.status.poll,
+          statusFiles: [...this.status.attachments],
+          visibility: this.status.visibility,
+          statusContentType: data.content_type
+        }))
+    },
+    showStatusHistory () {
+      const originalStatus = { ...this.status }
+      const stripFieldsList = ['attachments', 'created_at', 'emojis', 'text', 'raw_html', 'nsfw', 'poll', 'summary', 'summary_raw_html']
+      stripFieldsList.forEach(p => delete originalStatus[p])
+      this.$store.dispatch('openStatusHistoryModal', originalStatus)
     }
   },
   computed: {
@@ -89,9 +140,26 @@ const ExtraButtons = {
     canMute () {
       return !!this.currentUser
     },
+    canTranslate () {
+      return this.$store.state.instance.translationEnabled === true
+    },
+    noTranslationTargetSet () {
+      return this.$store.getters.mergedConfig.translationLanguage === undefined
+    },
     statusLink () {
-      return `${this.$store.state.instance.server}${this.$router.resolve({ name: 'conversation', params: { id: this.status.id } }).href}`
-    }
+      if (this.status.is_local) {
+        return `${this.$store.state.instance.server}${this.$router.resolve({ name: 'conversation', params: { id: this.status.id } }).href}`
+      } else {
+        return this.status.external_url
+      }
+    },
+    shouldConfirmDelete () {
+      return this.$store.getters.mergedConfig.modalOnDelete
+    },
+    isEdited () {
+      return this.status.edited_at !== null
+    },
+    editingAvailable () { return this.$store.state.instance.editingAvailable }
   }
 }
 

@@ -34,9 +34,10 @@ export const defaultState = {
   hideThreadsWithBlockedUsers: undefined, // instance default
   hideWordFilteredPosts: undefined, // instance default
   muteBotStatuses: undefined, // instance default
-  collapseMessageWithSubject: undefined, // instance default
+  collapseMessageWithSubject: true, // instance default
   padEmoji: true,
   showNavShortcuts: undefined, // instance default
+  showPanelNavShortcuts: undefined, // instance default
   showWiderShortcuts: undefined, // instance default
   hideSiteFavicon: undefined, // instance default
   hideSiteName: undefined, // instance default
@@ -80,6 +81,14 @@ export const defaultState = {
   minimalScopesMode: undefined, // instance default
   // This hides statuses filtered via a word filter
   hideFilteredStatuses: undefined, // instance default
+  modalOnRepeat: undefined, // instance default
+  modalOnUnfollow: undefined, // instance default
+  modalOnBlock: undefined, // instance default
+  modalOnMute: undefined, // instance default
+  modalOnDelete: undefined, // instance default
+  modalOnLogout: undefined, // instance default
+  modalOnApproveFollow: undefined, // instance default
+  modalOnDenyFollow: undefined, // instance default
   playVideosInModal: false,
   useOneClickNsfw: false,
   useContainFit: true,
@@ -105,7 +114,10 @@ export const defaultState = {
   conversationTreeAdvanced: undefined, // instance default
   conversationOtherRepliesButton: undefined, // instance default
   conversationTreeFadeAncestors: undefined, // instance default
-  maxDepthInThread: undefined // instance default
+  maxDepthInThread: undefined, // instance default
+  translationLanguage: undefined, // instance default,
+  supportedTranslationLanguages: {}, // instance default
+  userProfileDefaultTab: 'statuses'
 }
 
 // caching the instance default properties
@@ -178,6 +190,7 @@ const config = {
         case 'interfaceLanguage':
           messages.setLanguage(this.getters.i18n, value)
           Cookies.set(BACKEND_LANGUAGE_COOKIE_NAME, localeService.internalToBackendLocale(value))
+          dispatch('setInstanceOption', { name: 'interfaceLanguage', value })
           break
         case 'thirdColumnMode':
           dispatch('setLayoutWidth', undefined)

@@ -56,6 +56,44 @@
             :attentions="status.attentions"
             @parseReady="onParseReady"
           />
+          <div
+            v-if="status.translation"
+            class="translation"
+          >
+            <h4>{{ $t('status.translated_from', { language: status.translation.detected_language }) }}</h4>
+            <RichContent
+              :class="{ '-single-line': singleLine }"
+              class="text media-body"
+              :html="status.translation.text"
+              :emoji="status.emojis"
+              :handle-links="true"
+              :mfm="renderMisskeyMarkdown && (status.media_type === 'text/x.misskeymarkdown')"
+              :greentext="mergedConfig.greentext"
+              :attentions="status.attentions"
+              @parseReady="onParseReady"
+            />
+            <div>
+              <label class="label">{{ $t('status.override_translation_source_language') }}</label>
+              {{ ' ' }}
+              <Select
+                id="source-language-switcher"
+                v-model="translateFrom"
+                class="preset-switcher"
+              >
+                <option
+                  v-for="language in translationLanguages"
+                  :key="language.key"
+                  :value="language.value"
+                >
+                  {{ language.label }}
+                </option>
+              </Select>
+              {{ ' ' }}
+              <button @click="translateStatus" class="btn button-default">
+                {{ $t('status.translate') }}
+              </button>
+            </div>
+          </div>
         </div>
         <button
           v-show="hideSubjectStatus"

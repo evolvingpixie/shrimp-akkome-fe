@@ -329,6 +329,24 @@
                 class="mentions-line"
               />
             </div>
+            <div
+              v-if="isEdited && editingAvailable && !isPreview"
+              class="heading-edited-row"
+            >
+              <i18n-t
+                keypath="status.edited_at"
+                tag="span"
+              >
+                <template #time>
+                  <Timeago
+                    :time="status.edited_at"
+                    :auto-update="60"
+                    :long-format="true"
+                    :with-direction="true"
+                  />
+                </template>
+              </i18n-t>
+            </div>
           </div>
 
           <StatusContent

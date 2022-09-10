@@ -79,6 +79,18 @@
           :in-profile="true"
           :footer-slipgate="footerRef"
         />
+        <Timeline
+          key="replies"
+          :label="$t('user_card.replies')"
+          :count="user.statuses_count"
+          :embedded="true"
+          :title="$t('user_card.replies')"
+          :timeline="replies"
+          timeline-name="replies"
+          :user-id="userId"
+          :in-profile="true"
+          :footer-slipgate="footerRef"
+        />
         <div
           v-if="followsTabVisible"
           key="followees"
@@ -109,7 +121,6 @@
         <Timeline
           key="media"
           :label="$t('user_card.media')"
-          :disabled="!media.visibleStatuses.length"
           :embedded="true"
           :title="$t('user_card.media')"
           timeline-name="media"
@@ -122,7 +133,7 @@
           v-if="isUs"
           key="favorites"
           :label="$t('user_card.favorites')"
-          :disabled="!favorites.visibleStatuses.length"
+          :disabled="!isUs"
           :embedded="true"
           :title="$t('user_card.favorites')"
           timeline-name="favorites"

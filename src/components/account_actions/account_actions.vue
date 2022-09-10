@@ -59,6 +59,27 @@
         </button>
       </template>
     </Popover>
+    <teleport to="#modal">
+      <confirm-modal
+        v-if="showingConfirmBlock"
+        :title="$t('user_card.block_confirm_title')"
+        :confirm-text="$t('user_card.block_confirm_accept_button')"
+        :cancel-text="$t('user_card.block_confirm_cancel_button')"
+        @accepted="doBlockUser"
+        @cancelled="hideConfirmBlock"
+      >
+        <i18n-t
+          keypath="user_card.block_confirm"
+          tag="span"
+        >
+          <template v-slot:user>
+            <span
+              v-text="user.screen_name_ui"
+            />
+          </template>
+        </i18n-t>
+      </confirm-modal>
+    </teleport>
   </div>
 </template>
 

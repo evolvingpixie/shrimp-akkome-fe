@@ -4,6 +4,12 @@
   display: flex;
   flex-direction: column;
 
+  .translation {
+    border: 1px solid var(--accent, $fallback--link);
+    border-radius: var(--panelRadius, $fallback--panelRadius);
+    margin-top: 1em;
+    padding: 0.5em;
+  }
   .emoji {
     --_still_image-label-scale: 0.5;
     --emoji-size: 38px;

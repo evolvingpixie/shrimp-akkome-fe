@@ -55,17 +55,6 @@
             />
           </router-link>
           <router-link
-            :to="{ name: 'public-external-timeline' }"
-            class="nav-icon"
-          >
-            <FAIcon
-              fixed-width
-              class="fa-scale-110 fa-old-padding"
-              icon="globe"
-              :title="$t('nav.twkn')"
-            />
-          </router-link>
-          <router-link
             v-if="currentUser"
             :to="{ name: 'bubble-timeline' }"
             class="nav-icon"
@@ -75,6 +64,17 @@
               class="fa-scale-110 fa-old-padding"
               icon="circle"
               :title="$t('nav.bubble_timeline')"
+            />
+          </router-link>
+          <router-link
+            :to="{ name: 'public-external-timeline' }"
+            class="nav-icon"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="globe"
+              :title="$t('nav.twkn')"
             />
           </router-link>
         </div>
@@ -104,6 +104,7 @@
           class="nav-items right"
         >
           <router-link
+            v-if="currentUser"
             class="nav-icon"
             :to="{ name: 'interactions', params: { username: currentUser.screen_name } }"
           >
@@ -166,6 +167,18 @@
         </a>
       </div>
     </div>
+    <teleport to="#modal">
+      <confirm-modal
+        v-if="showingConfirmLogout"
+        :title="$t('login.logout_confirm_title')"
+        :confirm-text="$t('login.logout_confirm_accept_button')"
+        :cancel-text="$t('login.logout_confirm_cancel_button')"
+        @accepted="doLogout"
+        @cancelled="hideConfirmLogout"
+      >
+        {{ $t('login.logout_confirm') }}
+      </confirm-modal>
+    </teleport>
   </nav>
 </template>
 <script src="./desktop_nav.js"></script>

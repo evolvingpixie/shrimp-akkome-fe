@@ -1,5 +1,10 @@
 <template>
   <div>
+    <FAIcon
+      v-if="globeIcon"
+      icon="globe"
+    />
+    {{ ' ' }}
     <label for="interface-language-switcher">
       {{ promptText }}
     </label>
@@ -39,6 +44,10 @@ export default {
     setLanguage: {
       type: Function,
       required: true
+    },
+    globeIcon: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {

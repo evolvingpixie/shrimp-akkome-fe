@@ -13,13 +13,13 @@
           <span v-if="user.is_local">
             <button
               class="button-default dropdown-item"
-              @click="toggleRight(&quot;admin&quot;)"
+              @click="toggleRight('admin')"
             >
               {{ $t(!!user.rights.admin ? 'user_card.admin_menu.revoke_admin' : 'user_card.admin_menu.grant_admin') }}
             </button>
             <button
               class="button-default dropdown-item"
-              @click="toggleRight(&quot;moderator&quot;)"
+              @click="toggleRight('moderator')"
             >
               {{ $t(!!user.rights.moderator ? 'user_card.admin_menu.revoke_moderator' : 'user_card.admin_menu.grant_moderator') }}
             </button>
@@ -167,6 +167,7 @@
 
 .moderation-tools-popover {
   height: 100%;
+  z-index: 999;
   .trigger {
     display: flex !important;
     height: 100%;

@@ -58,8 +58,10 @@
     <MobilePostStatusButton />
     <UserReportingModal />
     <PostStatusModal />
+    <EditStatusModal v-if="editingAvailable" />
+    <StatusHistoryModal v-if="editingAvailable" />
     <SettingsModal />
-    <div id="modal" />
+    <UpdateNotification />
     <GlobalNoticeList />
   </div>
 </template>
