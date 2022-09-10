@@ -138,7 +138,7 @@ const EmojiPicker = {
       if (this.keyword === '') return list
       const regex = new RegExp(escapeRegExp(trim(this.keyword)), 'i')
       return list.filter(emoji => {
-        return regex.test(emoji.displayText)
+        return (regex.test(emoji.displayText) || (!emoji.imageUrl && emoji.replacement === this.keyword))
       })
     }
   },
