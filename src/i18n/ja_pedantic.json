@@ -164,6 +164,14 @@
         "load_older": "古いインタラクションを見る",
         "moves": "ユーザーの引っ越し"
     },
+    "languages": {
+       "en": "英語",
+       "ja": "日本語",
+       "zh": "中国語",
+       "translated_from": {
+         "en": "英語から翻訳しました"
+       }
+    },
     "lists": {
         "create": "作成",
         "delete": "削除",

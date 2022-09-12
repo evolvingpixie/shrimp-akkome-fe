@@ -60,7 +60,7 @@
             v-if="status.translation"
             class="translation"
           >
-            <h4>{{ $t('status.translated_from', { language: status.translation.detected_language }) }}</h4>
+            <h4>{{ $t(`languages.translated_from.${status.translation.detected_language.toLowerCase()}`) }}</h4>
             <RichContent
               :class="{ '-single-line': singleLine }"
               class="text media-body"
@@ -85,7 +85,7 @@
                   :key="language.key"
                   :value="language.value"
                 >
-                  {{ language.label }}
+                  {{ $t(`languages.${language.value.toLowerCase()}`) }}
                 </option>
               </Select>
               {{ ' ' }}
