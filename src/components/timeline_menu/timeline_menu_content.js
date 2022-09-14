@@ -23,7 +23,8 @@ const TimelineMenuContent = {
     ...mapState({
       currentUser: state => state.users.currentUser,
       privateMode: state => state.instance.private,
-      federating: state => state.instance.federating
+      federating: state => state.instance.federating,
+      showBubbleTimeline: state => (state.instance.localBubbleInstances.length > 0)
     })
   }
 }

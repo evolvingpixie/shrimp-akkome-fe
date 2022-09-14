@@ -135,7 +135,6 @@
   a {
     display: block;
     padding: 0.6em 0.65em;
-    padding-bottom: 0;
 
     &:hover {
       background-color: $fallback--lightBg;

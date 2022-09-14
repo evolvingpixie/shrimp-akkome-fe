@@ -16,7 +16,7 @@
         >{{ $t("nav.home_timeline") }}</span>
       </router-link>
     </li>
-    <li v-if="currentUser">
+    <li v-if="currentUser && showBubbleTimeline">
       <router-link
         class="menu-item"
         :to="{ name: 'bubble-timeline' }"

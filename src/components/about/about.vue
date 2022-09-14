@@ -3,7 +3,7 @@
     <instance-specific-panel v-if="showInstanceSpecificPanel" />
     <staff-panel />
     <terms-of-service-panel />
-    <LocalBubblePanel />
+    <LocalBubblePanel v-if="showLocalBubblePanel" />
     <MRFTransparencyPanel />
     <features-panel v-if="showFeaturesPanel" />
   </div>
