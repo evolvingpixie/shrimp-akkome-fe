@@ -29,6 +29,13 @@
             />
           </template>
           <button
+            v-if="relationship.followed_by"
+            class="btn button-default btn-block dropdown-item"
+            @click="removeUserFromFollowers"
+          >
+            {{ $t('user_card.remove_this_follower') }}
+          </button>
+          <button
             v-if="relationship.blocking"
             class="btn button-default btn-block dropdown-item"
             @click="unblockUser"
