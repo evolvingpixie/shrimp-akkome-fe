@@ -1,6 +1,7 @@
 import BasicUserCard from '../basic_user_card/basic_user_card.vue'
 import RemoteFollow from '../remote_follow/remote_follow.vue'
 import FollowButton from '../follow_button/follow_button.vue'
+import RemoveFollowerButton from '../remove_follower_button/remove_follower_button.vue'
 
 const FollowCard = {
   props: [
@@ -10,7 +11,8 @@ const FollowCard = {
   components: {
     BasicUserCard,
     RemoteFollow,
-    FollowButton
+    FollowButton,
+    RemoveFollowerButton
   },
   computed: {
     isMe () {

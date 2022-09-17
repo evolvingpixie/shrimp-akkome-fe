@@ -33,7 +33,7 @@
             class="btn button-default btn-block dropdown-item"
             @click="removeUserFromFollowers"
           >
-            {{ $t('user_card.remove_this_follower') }}
+            {{ $t('user_card.remove_follower') }}
           </button>
           <button
             v-if="relationship.blocking"
