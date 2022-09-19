@@ -3,7 +3,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## Unreleased
+## 2022.09 - 2022-09-10
+### Added
+- Automatic post translations. Must be configured on the backend in order to work.
+- Post editing, including a log of previous edits.
+
+### Changed
+- Top bar now has navigation shortcuts. Can be enabled or disabled by admins or users.
+- Optional replacement of timeline drop-down with navigation buttons. Also configurable.
+- Posts and posts with replies are now separated on user profiles.
+- Custom emoji from remote instances on a post can now also be used.
+
+## 2022.08 - 2022-08-12
+### Added
+- Ability to quote public and unlisted posts
+- Bubble timeline
+
+### Changed
+- Emoji in emoji picker is separated by packs
+
+### Removed
+- Chats, they were half-baked. Just use PMs.
+
+## 2022.07 - 2022-07-16
 ### Fixed
 - AdminFE button no longer scrolls page to top when clicked
 - Pinned statuses no longer appear at bottom of user timeline (still appear as part of the timeline when fetched deep enough)
@@ -16,6 +38,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Attachments are ALWAYS in same order as user uploaded, no more "videos first"
 - Attachment description is prefilled with backend-provided default when uploading
 - Proper visual feedback that next image is loading when browsing
+- Misskey-Flavoured Markdown support
+- Custom emoji reactions
 
 ### Changed
 - (You)s are optional (opt-in) now, bolding your nickname is also optional (opt-out)
