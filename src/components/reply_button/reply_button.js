@@ -9,6 +9,9 @@ const ReplyButton = {
   computed: {
     loggedIn () {
       return !!this.$store.state.users.currentUser
+    },
+    remoteInteractionLink () {
+      return this.$store.getters.remoteInteractionLink({ statusId: this.status.id })
     }
   }
 }

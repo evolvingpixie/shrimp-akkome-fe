@@ -13,13 +13,19 @@
         :spin="animated"
       />
     </button>
-    <span v-else>
+    <a
+      v-else
+      class="button-unstyled interactive"
+      target="_blank"
+      role="button"
+      :href="remoteInteractionLink"
+    >
       <FAIcon
         class="fa-scale-110 fa-old-padding"
         :title="$t('tool_tip.favorite')"
         :icon="['far', 'star']"
       />
-    </span>
+    </a>
     <span
       v-if="!mergedConfig.hidePostStats && status.fave_num > 0"
       class="action-counter"

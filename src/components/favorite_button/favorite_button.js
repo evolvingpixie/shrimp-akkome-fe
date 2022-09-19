@@ -31,7 +31,10 @@ const FavoriteButton = {
     }
   },
   computed: {
-    ...mapGetters(['mergedConfig'])
+    ...mapGetters(['mergedConfig']),
+    remoteInteractionLink () {
+      return this.$store.getters.remoteInteractionLink({ statusId: this.status.id })
+    }
   }
 }
 

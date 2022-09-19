@@ -51,6 +51,9 @@ const RetweetButton = {
     },
     shouldConfirmRepeat () {
       return this.mergedConfig.modalOnRepeat
+    },
+    remoteInteractionLink () {
+      return this.$store.getters.remoteInteractionLink({ statusId: this.status.id })
     }
   }
 }
