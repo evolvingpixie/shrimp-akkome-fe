@@ -20,6 +20,9 @@ const About = {
       return this.$store.state.instance.showInstanceSpecificPanel &&
         !this.$store.getters.mergedConfig.hideISP &&
         this.$store.state.instance.instanceSpecificPanelContent
+    },
+    showLocalBubblePanel () {
+      return this.$store.state.instance.localBubbleInstances.length > 0
     }
   }
 }
