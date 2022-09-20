@@ -3,6 +3,16 @@ import { WSConnectionStatus } from '../services/api/api.service.js'
 
 const retryTimeout = (multiplier) => 1000 * multiplier
 
+const isVisible = (store, message, visibility) => {
+  if (visibility === 'all') {
+    return true
+  } else if (visibility === 'following') {
+    return store.getters.relationship(message.in_reply_to_user_id).following
+  } else if (visibility === 'self') {
+    return message.in_reply_to_user_id === store.rootState.users.currentUser.id
+  }
+  return false
+}
 const api = {
   state: {
     retryMultiplier: 1,
@@ -85,20 +95,21 @@ const api = {
           state.mastoUserSocket.addEventListener(
             'message',
             ({ detail: message }) => {
+              const replyVisibility = rootState.config.replyVisibility
               if (!message) return // pings
               if (message.event === 'notification') {
                 dispatch('addNewNotifications', {
                   notifications: [message.notification],
                   older: false
                 })
-              } else if (message.event === 'update') {
+              } else if (message.event === 'update' && isVisible(store, message.status, replyVisibility)) {
                 dispatch('addNewStatuses', {
                   statuses: [message.status],
                   userId: false,
                   showImmediately: timelineData.visibleStatuses.length === 0,
                   timeline: 'friends'
                 })
-              } else if (message.event === 'status.update') {
+              } else if (message.event === 'status.update' && isVisible(store, message.status, replyVisibility)) {
                 dispatch('addNewStatuses', {
                   statuses: [message.status],
                   userId: false,
