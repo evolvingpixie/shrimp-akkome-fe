@@ -96,6 +96,17 @@
           /><span>{{ $t("status.edit_history") }}</span>
         </button>
         <button
+          v-if="ownStatus"
+          class="button-default dropdown-item dropdown-item-icon"
+          @click.prevent="redraftStatus"
+          @click="close"
+        >
+          <FAIcon
+            fixed-width
+            icon="file-pen"
+          /><span>{{ $t("status.redraft") }}</span>
+        </button>
+        <button
           v-if="canDelete"
           class="button-default dropdown-item dropdown-item-icon"
           @click.prevent="deleteStatus"
@@ -178,6 +189,16 @@
           @accepted="doDeleteStatus"
         >
           {{ $t('status.delete_confirm') }}
+        </ConfirmModal>
+        <ConfirmModal
+          v-if="showingRedraftDialog"
+          :title="$t('status.redraft_confirm_title')"
+          :cancel-text="$t('status.redraft_confirm_cancel_button')"
+          :confirm-text="$t('status.redraft_confirm_accept_button')"
+          @cancelled="hideRedraftStatusConfirmDialog"
+          @accepted="doRedraftStatus"
+        >
+          {{ $t('status.redraft_confirm') }}
         </ConfirmModal>
       </teleport>
     </template>

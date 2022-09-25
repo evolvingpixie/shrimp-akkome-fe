@@ -28,7 +28,8 @@ const PostStatusModal = {
   },
   watch: {
     params (newVal, oldVal) {
-      if (get(newVal, 'repliedUser.id') !== get(oldVal, 'repliedUser.id')) {
+      if (get(newVal, 'repliedUser.id') !== get(oldVal, 'repliedUser.id') ||
+          get(newVal, 'statusId') !== get(oldVal, 'statusId')) {
         this.resettingForm = true
         this.$nextTick(() => {
           this.resettingForm = false

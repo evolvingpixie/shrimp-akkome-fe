@@ -86,7 +86,8 @@ const PostStatusForm = {
     'fileLimit',
     'submitOnEnter',
     'emojiPickerPlacement',
-    'optimisticPosting'
+    'optimisticPosting',
+    'isRedraft'
   ],
   emits: [
     'posted',
@@ -141,7 +142,7 @@ const PostStatusForm = {
       contentType
     }
 
-    if (this.statusId) {
+    if (this.statusId || this.isRedraft) {
       const statusContentType = this.statusContentType || contentType
       statusParams = {
         spoilerText: this.subject || '',
@@ -259,7 +260,7 @@ const PostStatusForm = {
       return this.newStatus.files.length >= this.fileLimit
     },
     isEdit () {
-      return typeof this.statusId !== 'undefined' && this.statusId.trim() !== ''
+      return typeof this.statusId !== 'undefined' && this.statusId.trim() !== '' && !this.isRedraft
     },
     ...mapGetters(['mergedConfig']),
     ...mapState({

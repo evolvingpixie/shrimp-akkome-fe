@@ -8,7 +8,8 @@ import {
   faThumbtack,
   faShareAlt,
   faExternalLinkAlt,
-  faHistory
+  faHistory,
+  faFilePen
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faBookmark as faBookmarkReg,
@@ -24,7 +25,8 @@ library.add(
   faShareAlt,
   faExternalLinkAlt,
   faFlag,
-  faHistory
+  faHistory,
+  faFilePen
 )
 
 const ExtraButtons = {
@@ -36,7 +38,8 @@ const ExtraButtons = {
   data () {
     return {
       expanded: false,
-      showingDeleteDialog: false
+      showingDeleteDialog: false,
+      showingRedraftDialog: false
     }
   },
   methods: {
@@ -122,6 +125,34 @@ const ExtraButtons = {
       const stripFieldsList = ['attachments', 'created_at', 'emojis', 'text', 'raw_html', 'nsfw', 'poll', 'summary', 'summary_raw_html']
       stripFieldsList.forEach(p => delete originalStatus[p])
       this.$store.dispatch('openStatusHistoryModal', originalStatus)
+    },
+    redraftStatus () {
+      if (this.shouldConfirmDelete) {
+        this.showRedraftStatusConfirmDialog()
+      } else {
+        this.doRedraftStatus()
+      }
+    },
+    doRedraftStatus () {
+      this.$store.dispatch('fetchStatusSource', { id: this.status.id })
+        .then(data => this.$store.dispatch('openPostStatusModal', {
+          isRedraft: true,
+          statusId: this.status.id,
+          subject: data.spoiler_text,
+          statusText: data.text,
+          statusIsSensitive: this.status.nsfw,
+          statusPoll: this.status.poll,
+          statusFiles: [...this.status.attachments],
+          statusScope: this.status.visibility,
+          statusContentType: data.content_type
+        }))
+      this.doDeleteStatus()
+    },
+    showRedraftStatusConfirmDialog () {
+      this.showingRedraftDialog = true
+    },
+    hideRedraftStatusConfirmDialog () {
+      this.showingRedraftDialog = false
     }
   },
   computed: {
