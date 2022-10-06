@@ -8,11 +8,12 @@ import SharedComputedObject from '../helpers/shared_computed_object.js'
 import ServerSideIndicator from '../helpers/server_side_indicator.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faGlobe
+  faGlobe, faSync
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
-  faGlobe
+  faGlobe,
+  faSync
 )
 
 const GeneralTab = {
@@ -48,6 +49,8 @@ const GeneralTab = {
         value: tab,
         label: this.$t(`user_card.${tab}`)
       })),
+      profilesExpanded: false,
+      newProfileName: '',
       loopSilentAvailable:
       // Firefox
       Object.getOwnPropertyDescriptor(HTMLVideoElement.prototype, 'mozHasAudio') ||
@@ -88,8 +91,22 @@ const GeneralTab = {
         this.$store.dispatch('setOption', { name: 'interfaceLanguage', value: val })
       }
     },
+    settingsProfiles () {
+      return (this.$store.state.instance.settingsProfiles || [])
+    },
+    settingsProfile: {
+      get: function () { return this.$store.getters.mergedConfig.profile },
+      set: function (val) {
+        this.$store.dispatch('setOption', { name: 'profile', value: val })
+        this.$store.dispatch('getSettingsProfile')
+      }
+    },
+    settingsVersion () {
+      return this.$store.getters.mergedConfig.profileVersion
+    },
     translationLanguages () {
-      return (this.$store.getters.mergedConfig.supportedTranslationLanguages.target || []).map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
+      const langs = this.$store.state.instance.translationLanguages || []
+      return (langs || []).map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
     },
     translationLanguage: {
       get: function () { return this.$store.getters.mergedConfig.translationLanguage },
@@ -105,6 +122,30 @@ const GeneralTab = {
     },
     setTranslationLanguage (value) {
       this.$store.dispatch('setOption', { name: 'translationLanguage', value })
+    },
+    toggleExpandedSettings () {
+      this.profilesExpanded = !this.profilesExpanded
+    },
+    loadSettingsProfile (name) {
+      this.$store.commit('setOption', { name: 'profile', value: name })
+      this.$store.dispatch('getSettingsProfile', true)
+    },
+    createSettingsProfile () {
+      this.$store.dispatch('setOption', { name: 'profile', value: this.newProfileName })
+      this.$store.dispatch('setOption', { name: 'profileVersion', value: 1 })
+      this.$store.dispatch('syncSettings')
+      this.newProfileName = ''
+    },
+    forceSync () {
+      this.$store.dispatch('getSettingsProfile')
+    },
+    refreshProfiles () {
+      this.$store.dispatch('listSettingsProfiles')
+    },
+    deleteSettingsProfile (name) {
+      if (confirm(this.$t('settings.settings_profile_delete_confirm'))) {
+        this.$store.dispatch('deleteSettingsProfile', name)
+      }
     }
   }
 }

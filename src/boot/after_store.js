@@ -398,7 +398,6 @@ const afterStoreSetup = async ({ store, i18n }) => {
   store.dispatch('startFetchingAnnouncements')
   getTOS({ store })
   getStickers({ store })
-  store.dispatch('getSupportedTranslationlanguages')
 
   const router = createRouter({
     history: createWebHistory(),

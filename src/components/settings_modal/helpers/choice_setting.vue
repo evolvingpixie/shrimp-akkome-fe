@@ -16,7 +16,11 @@
         :value="option.value"
       >
         {{ option.label }}
-        {{ option.value === defaultState ? $t('settings.instance_default_simple') : '' }}
+        <template
+          v-if="hideDefaultLabel !== true"
+        >
+          {{ option.value === defaultState ? $t('settings.instance_default_simple') : '' }}
+        </template>
       </option>
     </Select>
     <ModifiedIndicator :changed="isChanged" />

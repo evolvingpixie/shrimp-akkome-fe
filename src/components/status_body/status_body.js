@@ -83,7 +83,7 @@ const StatusContent = {
       return this.status.attachments.map(file => fileType.fileType(file.mimetype))
     },
     translationLanguages () {
-      return (this.$store.getters.mergedConfig.supportedTranslationLanguages.source || []).map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
+      return (this.$store.state.instance.supportedTranslationLanguages.source || []).map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
     },
     ...mapGetters(['mergedConfig'])
   },

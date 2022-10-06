@@ -21,6 +21,8 @@ export const multiChoiceProperties = [
 ]
 
 export const defaultState = {
+  profile: 'default',
+  profileVersion: 0,
   expertLevel: 0, // used to track which settings to show and hide
   colors: {},
   theme: undefined,
@@ -160,6 +162,42 @@ const config = {
     }
   },
   actions: {
+    syncSettings: (store) => {
+      store.commit('setOption', { name: 'profileVersion', value: store.state.profileVersion + 1 })
+      const notice = {
+        level: 'info',
+        messageKey: 'settings_profile.synchronizing',
+        messageArgs: { profile: store.state.profile },
+        timeout: 5000
+      }
+      store.dispatch('pushGlobalNotice', notice)
+      store.rootState.api.backendInteractor.saveSettingsProfile({
+        settings: store.state, profileName: store.state.profile, version: store.state.profileVersion
+      }).then(() => {
+        store.dispatch('removeGlobalNotice', notice)
+        store.dispatch('pushGlobalNotice', {
+          level: 'success',
+          messageKey: 'settings_profile.synchronized',
+          messageArgs: { profile: store.state.profile },
+          timeout: 2000
+        })
+        store.dispatch('listSettingsProfiles')
+      }).catch((err) => {
+        store.dispatch('removeGlobalNotice', notice)
+        store.dispatch('pushGlobalNotice', {
+          level: 'error',
+          messageKey: 'settings_profile.synchronization_error',
+          messageArgs: { error: err.message },
+          timeout: 5000
+        })
+        console.error(err)
+      })
+    },
+    deleteSettingsProfile (store, name) {
+      store.rootState.api.backendInteractor.deleteSettingsProfile({ profileName: name }).then(() => {
+        store.dispatch('listSettingsProfiles')
+      })
+    },
     loadSettings ({ dispatch }, data) {
       const knownKeys = new Set(Object.keys(defaultState))
       const presentKeys = new Set(Object.keys(data))
@@ -177,8 +215,11 @@ const config = {
     setHighlight ({ commit, dispatch }, { user, color, type }) {
       commit('setHighlight', { user, color, type })
     },
-    setOption ({ commit, dispatch }, { name, value }) {
+    setOption ({ commit, dispatch }, { name, value, manual }) {
       commit('setOption', { name, value })
+      if (manual === true) {
+        dispatch('syncSettings')
+      }
       switch (name) {
         case 'theme':
           setPreset(value)
@@ -196,6 +237,36 @@ const config = {
           dispatch('setLayoutWidth', undefined)
           break
       }
+    },
+    getSettingsProfile (store, forceUpdate = false) {
+      const profile = store.state.profile
+      store.rootState.api.backendInteractor.getSettingsProfile({ store, profileName: profile })
+        .then(({ settings, version }) => {
+          console.log('found settings version', version)
+          if (forceUpdate || (version > store.state.profileVersion)) {
+            store.commit('setOption', { name: 'profileVersion', value: version })
+            Object.entries(settings).forEach(([name, value]) => {
+              if (store.state[name] !== value) {
+                store.dispatch('setOption', { name, value })
+              }
+            })
+          } else {
+            console.log('settings are up to date')
+          }
+        })
+        .catch((err) => {
+          console.error(`could not fetch profile ${profile}`, err)
+          if (err.statusCode === 404) {
+            // create profile
+            store.dispatch('pushGlobalNotice', {
+              level: 'warning',
+              messageKey: 'settings_profile.creating',
+              messageArgs: { profile },
+              timeout: 5000
+            })
+            store.dispatch('syncSettings')
+          }
+        })
     }
   }
 }

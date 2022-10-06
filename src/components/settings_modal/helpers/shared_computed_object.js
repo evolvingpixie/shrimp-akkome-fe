@@ -19,7 +19,7 @@ const SharedComputedObject = () => ({
     .map(key => [key, {
       get () { return this.$store.getters.mergedConfig[key] },
       set (value) {
-        this.$store.dispatch('setOption', { name: key, value })
+        this.$store.dispatch('setOption', { name: key, value, manual: true })
       }
     }])
     .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
@@ -27,7 +27,7 @@ const SharedComputedObject = () => ({
     .map(key => ['serverSide_' + key, {
       get () { return this.$store.state.serverSideConfig[key] },
       set (value) {
-        this.$store.dispatch('setServerSideOption', { name: key, value })
+        this.$store.dispatch('setServerSideOption', { name: key, value, manual: true })
       }
     }])
     .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),

@@ -102,6 +102,8 @@ const PLEROMA_ANNOUNCEMENTS_URL = '/api/v1/pleroma/admin/announcements'
 const PLEROMA_POST_ANNOUNCEMENT_URL = '/api/v1/pleroma/admin/announcements'
 const PLEROMA_EDIT_ANNOUNCEMENT_URL = id => `/api/v1/pleroma/admin/announcements/${id}`
 const PLEROMA_DELETE_ANNOUNCEMENT_URL = id => `/api/v1/pleroma/admin/announcements/${id}`
+const AKKOMA_SETTING_PROFILE_URL = (name) => `/api/v1/akkoma/frontend_settings/pleroma-fe/${name}`
+const AKKOMA_SETTING_PROFILE_LIST = `/api/v1/akkoma/frontend_settings/pleroma-fe`
 
 const oldfetch = window.fetch
 
@@ -1451,6 +1453,40 @@ const deleteAnnouncement = ({ id, credentials }) => {
   })
 }
 
+const getSettingsProfile = ({ profileName, credentials }) => {
+  return promisedRequest({
+    url: AKKOMA_SETTING_PROFILE_URL(profileName),
+    credentials
+  })
+}
+
+const saveSettingsProfile = ({ profileName, credentials, settings, version }) => {
+  return promisedRequest({
+    url: AKKOMA_SETTING_PROFILE_URL(profileName),
+    method: 'PUT',
+    credentials,
+    payload: {
+      settings,
+      version
+    }
+  })
+}
+
+const deleteSettingsProfile = ({ profileName, credentials }) => {
+  return promisedRequest({
+    url: AKKOMA_SETTING_PROFILE_URL(profileName),
+    method: 'DELETE',
+    credentials
+  })
+}
+
+const listSettingsProfiles = ({ credentials }) => {
+  return promisedRequest({
+    url: AKKOMA_SETTING_PROFILE_LIST,
+    credentials
+  })
+}
+
 export const getMastodonSocketURI = ({ credentials, stream, args = {} }) => {
   return Object.entries({
     ...(credentials
@@ -1677,7 +1713,11 @@ const apiService = {
   deleteAnnouncement,
   adminFetchAnnouncements,
   translateStatus,
-  getSupportedTranslationlanguages
+  getSupportedTranslationlanguages,
+  getSettingsProfile,
+  saveSettingsProfile,
+  listSettingsProfiles,
+  deleteSettingsProfile
 }
 
 export default apiService

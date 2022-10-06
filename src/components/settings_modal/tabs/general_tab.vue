@@ -1,7 +1,6 @@
 <template>
   <div :label="$t('settings.general')">
     <div class="setting-item">
-      <h2>{{ $t('settings.interface') }}</h2>
       <ul class="setting-list">
         <li>
           <interface-language-switcher
@@ -10,6 +9,94 @@
             :set-language="val => language = val"
           />
         </li>
+        <li
+          v-if="user && (settingsProfiles.length > 0)"
+        >
+          <h2>{{ $t('settings.settings_profile') }}</h2>
+          <p>
+            {{ $t('settings.settings_profile_currently', { name: settingsProfile, version: settingsVersion }) }}
+            <button
+              class="btn button-default"
+              @click="forceSync()"
+            >
+              {{ $t('settings.settings_profile_force_sync') }}
+            </button>
+
+          </p>
+          <div
+            @click="toggleExpandedSettings"
+          >
+            <template
+              v-if="profilesExpanded"
+            >
+              <button class="btn button-default">
+                {{ $t('settings.settings_profiles_unshow') }}
+              </button>
+            </template>
+            <template
+              v-else
+            >
+              <button class="btn button-default">
+                {{ $t('settings.settings_profiles_show') }}
+              </button>
+            </template>
+          </div>
+          <br>
+          <template
+            v-if="profilesExpanded"
+          >
+
+            <div
+              v-for="profile in settingsProfiles"
+              :key="profile.id"
+              class="settings-profile"
+            >
+              <h4>{{ profile.name }} ({{ profile.version }})</h4>
+              <template
+                v-if="settingsProfile === profile.name"
+              >
+                {{ $t('settings.settings_profile_in_use') }}
+              </template>
+              <template
+                v-else
+              >
+                <button
+                  class="btn button-default"
+                  @click="loadSettingsProfile(profile.name)"
+                >
+                  {{ $t('settings.settings_profile_use') }}
+                </button>
+                <button
+                  class="btn button-default"
+                  @click="deleteSettingsProfile(profile.name)"
+                >
+                  {{ $t('settings.settings_profile_delete') }}
+                </button>
+              </template>
+            </div>
+            <button class="btn button-default" @click="refreshProfiles()">
+              {{ $t('settings.settings_profiles_refresh') }}
+              <FAIcon icon="sync" @click="refreshProfiles()" />
+            </button>
+            <h3>{{ $t('settings.settings_profile_creation') }}</h3>
+            <label for="settings-profile-new-name">
+              {{ $t('settings.settings_profile_creation_new_name_label') }}
+            </label>
+            <input v-model="newProfileName" id="settings-profile-new-name">
+            <button
+              class="btn button-default"
+              @click="createSettingsProfile"
+            >
+              {{ $t('settings.settings_profile_creation_submit') }}
+            </button>
+          </template>
+        </li>
+      </ul>
+    </div>
+
+    <div class="setting-item">
+      <h2>{{ $t('settings.interface') }}</h2>
+      <ul class="setting-list">
         <li v-if="instanceSpecificPanelPresent">
           <BooleanSetting path="hideISP">
             {{ $t('settings.hide_isp') }}
@@ -463,7 +550,6 @@
           </BooleanSetting>
         </li>
         <li>
-          <!-- <BooleanSetting path="serverSide_defaultNSFW"> -->
           <BooleanSetting path="sensitiveByDefault">
             {{ $t('settings.sensitive_by_default') }}
           </BooleanSetting>
@@ -546,3 +632,13 @@
 </template>
 
 <script src="./general_tab.js"></script>
+<style lang="scss">
+.settings-profile {
+  margin-bottom: 1em;
+}
+
+#settings-profile-new-name {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+</style>

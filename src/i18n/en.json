@@ -693,6 +693,19 @@
         "setting_changed": "Setting is different from default",
         "setting_server_side": "This setting is tied to your profile and affects all sessions and clients",
         "settings": "Settings",
+        "settings_profile": "Settings Profiles",
+        "settings_profile_currently": "Currently using {name} (version: {version})",
+        "settings_profiles_show": "Show all settings profiles",
+        "settings_profiles_unshow": "Hide all settings profiles",
+        "settings_profile_in_use": "In use",
+        "settings_profile_creation": "Create new profile",
+        "settings_profile_creation_submit": "Create",
+        "settings_profile_creation_new_name_label": "Name",
+        "settings_profile_use": "Use",
+        "settings_profile_delete": "Delete",
+        "settings_profile_delete_confirm": "Do you really want to delete this profile?",
+        "settings_profile_force_sync": "Synchronize",
+        "settings_profiles_refresh": "Reload settings profiles",
         "show_admin_badge": "Show \"Admin\" badge in my profile",
         "show_moderator_badge": "Show \"Moderator\" badge in my profile",
         "show_nav_shortcuts": "Show extra navigation shortcuts in top panel",
@@ -891,6 +904,12 @@
         "virtual_scrolling": "Optimize timeline rendering",
         "word_filter": "Word filter",
         "wordfilter": "Wordfilter"
+    },
+    "settings_profile": {
+      "synchronizing": "Synchronizing setting profile \"{profile}\"...",
+      "synchronized": "Synchronized settings!",
+      "synchronization_error": "Could not synchronize settings: {err}",
+      "creating": "Creating new setting profile \"{profile}\"..."
     },
     "status": {
         "ancestor_follow": "See {numReplies} other reply under this post | See {numReplies} other replies under this post",

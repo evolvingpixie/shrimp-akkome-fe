@@ -562,6 +562,8 @@ const users = {
 
                 // Start fetching notifications
                 store.dispatch('startFetchingNotifications')
+
+                store.dispatch('startFetchingConfig')
               }
 
               if (store.getters.mergedConfig.useStreamingApi) {
@@ -581,6 +583,9 @@ const users = {
 
               store.dispatch('setLayoutWidth', windowWidth())
               store.dispatch('setLayoutHeight', windowHeight())
+              store.dispatch('getSupportedTranslationlanguages')
+              store.dispatch('getSettingsProfile')
+              store.dispatch('listSettingsProfiles')
 
               // Fetch our friends
               store.rootState.api.backendInteractor.fetchFriends({ id: user.id })

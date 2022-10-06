@@ -12,7 +12,8 @@ export default {
     'path',
     'disabled',
     'options',
-    'expert'
+    'expert',
+    'hideDefaultLabel'
   ],
   computed: {
     pathDefault () {

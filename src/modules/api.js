@@ -273,10 +273,15 @@ const api = {
     getSupportedTranslationlanguages (store) {
       store.state.backendInteractor.getSupportedTranslationlanguages({ store })
         .then((data) => {
-          store.dispatch('setOption', { name: 'supportedTranslationLanguages', value: data })
+          store.dispatch('setInstanceOption', { name: 'supportedTranslationLanguages', value: data })
         })
     },
-
+    listSettingsProfiles (store) {
+      store.state.backendInteractor.listSettingsProfiles({ store })
+        .then((data) => {
+          store.commit('setInstanceOption', { name: 'settingsProfiles', value: data })
+        })
+    },
     // Pleroma websocket
     setWsToken (store, token) {
       store.commit('setWsToken', token)
