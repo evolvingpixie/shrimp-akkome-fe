@@ -211,7 +211,17 @@ const api = {
         ...rest
       })
     },
+    startFetchingConfig (store) {
+      if (store.state.fetchers.config) return
 
+      const fetcher = store.state.backendInteractor.startFetchingConfig({ store })
+      store.commit('addFetcher', { fetcherName: 'config', fetcher })
+    },
+    stopFetchingConfig (store) {
+      const fetcher = store.state.fetchers.config
+      if (!fetcher) return
+      store.commit('removeFetcher', { fetcherName: 'config', fetcher })
+    },
     // Notifications
     startFetchingNotifications (store) {
       if (store.state.fetchers.notifications) return

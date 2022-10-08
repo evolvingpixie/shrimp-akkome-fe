@@ -529,6 +529,7 @@ const users = {
           store.commit('setBackendInteractor', backendInteractorService(store.getters.getToken()))
           store.dispatch('stopFetchingNotifications')
           store.dispatch('stopFetchingFollowRequests')
+          store.dispatch('stopFetchingConfig')
           store.commit('clearNotifications')
           store.commit('resetStatuses')
           store.dispatch('setLastTimeline', 'public-timeline')
@@ -570,8 +571,6 @@ const users = {
 
                 // Start fetching notifications
                 store.dispatch('startFetchingNotifications')
-
-                store.dispatch('startFetchingConfig')
               }
 
               if (store.getters.mergedConfig.useStreamingApi) {
@@ -594,6 +593,7 @@ const users = {
               store.dispatch('getSupportedTranslationlanguages')
               store.dispatch('getSettingsProfile')
               store.dispatch('listSettingsProfiles')
+              store.dispatch('startFetchingConfig')
 
               // Fetch our friends
               store.rootState.api.backendInteractor.fetchFriends({ id: user.id })
