@@ -148,6 +148,7 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('showWiderShortcuts')
   copyInstanceOption('showNavShortcuts')
   copyInstanceOption('showPanelNavShortcuts')
+  copyInstanceOption('stopGifs')
   copyInstanceOption('logo')
 
   store.dispatch('setInstanceOption', {
