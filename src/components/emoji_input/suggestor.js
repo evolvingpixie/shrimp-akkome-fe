@@ -1,3 +1,6 @@
+const MFM_TAGS = ['blur', 'bounce', 'flip', 'font', 'jelly', 'jump', 'rainbow', 'rotate', 'shake', 'sparkle', 'spin', 'tada', 'twitch', 'x2', 'x3', 'x4']
+  .map(tag => ({ displayText: tag, detailText: '$[' + tag + ' ]', replacement: '$[' + tag + ' ]', mfm: true }))
+
 /**
  * suggest - generates a suggestor function to be used by emoji-input
  * data: object providing source information for specific types of suggestions:
@@ -20,6 +23,10 @@ export default data => {
     }
     if (firstChar === '@' && usersCurry) {
       return usersCurry(input)
+    }
+    if (firstChar === '$') {
+      return MFM_TAGS
+        .filter(({ replacement }) => replacement.toLowerCase().indexOf(input) !== -1)
     }
     return []
   }

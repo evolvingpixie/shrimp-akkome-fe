@@ -42,7 +42,7 @@
           :class="{ highlighted: index === highlighted }"
           @click.stop.prevent="onClick($event, suggestion)"
         >
-          <span class="image">
+          <span v-if="!suggestion.mfm" class="image">
             <img
               v-if="suggestion.img"
               :src="suggestion.img"

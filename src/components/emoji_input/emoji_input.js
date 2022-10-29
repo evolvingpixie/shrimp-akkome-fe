@@ -178,7 +178,7 @@ const EmojiInput = {
     textAtCaret: async function (newWord) {
       const firstchar = newWord.charAt(0)
       this.suggestions = []
-      if (newWord === firstchar) return
+      if (newWord === firstchar && firstchar !== '$') return
       const matchedSuggestions = await this.suggest(newWord)
       // Async: cancel if textAtCaret has changed during wait
       if (this.textAtCaret !== newWord) return
@@ -277,7 +277,6 @@ const EmojiInput = {
     },
     replaceText (e, suggestion) {
       const len = this.suggestions.length || 0
-      if (this.textAtCaret.length === 1) { return }
       if (len > 0 || suggestion) {
         const chosenSuggestion = suggestion || this.suggestions[this.highlighted]
         const replacement = chosenSuggestion.replacement
