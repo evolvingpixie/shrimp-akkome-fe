@@ -82,8 +82,15 @@
     }
   }
   &.mfm-disabled {
+    span {
+      font-size: 100% !important;
+    }
     .mfm {
       animation: none !important;
+    }
+    .emoji {
+      width: 32px !important;
+      height: 32px !important;
     }
   }
 }
