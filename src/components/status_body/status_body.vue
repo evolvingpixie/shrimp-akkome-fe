@@ -1,7 +1,7 @@
 <template>
   <div
     class="StatusBody"
-    :class="{ '-compact': compact }"
+    :class="{ '-compact': compact, 'mfm-disabled': !renderMisskeyMarkdown }"
   >
     <div class="body">
       <div
