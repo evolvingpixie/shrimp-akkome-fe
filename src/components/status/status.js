@@ -460,6 +460,16 @@ const Status = {
           return 'globe'
       }
     },
+    faviconAlt (status) {
+      if (!status.user.instance) {
+        return ''
+      }
+      const software = ((status.user.instance) && (status.user.instance.nodeinfo) && (status.user.instance.nodeinfo.software)) || {}
+      if (software.name) {
+        return `${status.user.instance.name} (${software.name || ''} ${software.version || ''})`
+      }
+      return ''
+    },
     showError (error) {
       this.error = error
     },

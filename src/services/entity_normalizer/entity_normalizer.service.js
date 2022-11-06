@@ -88,6 +88,9 @@ export const parseUser = (data) => {
     output.friends_count = data.following_count
 
     output.bot = data.bot
+    if (data.akkoma) {
+      output.instance = data.akkoma.instance
+    }
 
     if (data.pleroma) {
       const relationship = data.pleroma.relationship

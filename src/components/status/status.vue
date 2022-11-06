@@ -177,6 +177,7 @@
                   v-if="!!(status.user && status.user.favicon)"
                   class="status-favicon"
                   :src="status.user.favicon"
+                  :title="faviconAlt(status)"
                 >
               </div>
 
