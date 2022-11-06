@@ -32,6 +32,7 @@ const SearchBar = {
       this.$emit('toggled', this.hidden)
       this.$nextTick(() => {
         if (!this.hidden) {
+          this.searchTerm = undefined
           this.$refs.searchInput.focus()
         }
       })
