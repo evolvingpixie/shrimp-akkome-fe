@@ -163,6 +163,7 @@ const api = {
                 dispatch('startFetchingTimeline', { timeline: 'friends' })
                 dispatch('startFetchingNotifications')
                 dispatch('startFetchingAnnouncements')
+                dispatch('startFetchingReports')
                 dispatch('pushGlobalNotice', {
                   level: 'error',
                   messageKey: 'timeline.socket_broke',
@@ -280,6 +281,19 @@ const api = {
       if (!fetcher) return
       store.commit('removeFetcher', { fetcherName: 'announcements', fetcher })
     },
+
+    // Reports
+    startFetchingReports (store) {
+      if (store.state.fetchers['reports']) return
+      const fetcher = store.state.backendInteractor.startFetchingReports({ store })
+      store.commit('addFetcher', { fetcherName: 'reports', fetcher })
+    },
+    stopFetchingReports (store) {
+      const fetcher = store.state.fetchers.reports
+      if (!fetcher) return
+      store.commit('removeFetcher', { fetcherName: 'reports', fetcher })
+    },
+
     getSupportedTranslationlanguages (store) {
       store.state.backendInteractor.getSupportedTranslationlanguages({ store })
         .then((data) => {

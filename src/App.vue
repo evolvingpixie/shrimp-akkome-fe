@@ -61,6 +61,7 @@
     <EditStatusModal v-if="editingAvailable" />
     <StatusHistoryModal v-if="editingAvailable" />
     <SettingsModal />
+    <ModModal />
     <GlobalNoticeList />
   </div>
 </template>

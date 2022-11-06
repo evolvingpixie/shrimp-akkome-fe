@@ -1,5 +1,5 @@
 import { each, map, concat, last, get } from 'lodash'
-import { parseStatus, parseSource, parseUser, parseNotification, parseAttachment, parseLinkHeaderPagination } from '../entity_normalizer/entity_normalizer.service.js'
+import { parseStatus, parseSource, parseUser, parseNotification, parseReport, parseAttachment, parseLinkHeaderPagination } from '../entity_normalizer/entity_normalizer.service.js'
 import { RegistrationError, StatusCodeError } from '../errors/errors'
 
 /* eslint-env browser */
@@ -19,6 +19,9 @@ const ADMIN_USERS_URL = '/api/pleroma/admin/users'
 const SUGGESTIONS_URL = '/api/v1/suggestions'
 const NOTIFICATION_SETTINGS_URL = '/api/pleroma/notification_settings'
 const NOTIFICATION_READ_URL = '/api/v1/pleroma/notifications/read'
+const ADMIN_REPORTS_URL = '/api/v1/pleroma/admin/reports'
+const ADMIN_REPORT_NOTES_URL = id => `/api/v1/pleroma/admin/reports/${id}/notes`
+const ADMIN_REPORT_NOTE_URL = (report, note) => `/api/v1/pleroma/admin/reports/${report}/notes/${note}`
 
 const MFA_SETTINGS_URL = '/api/pleroma/accounts/mfa'
 const MFA_BACKUP_CODES_URL = '/api/pleroma/accounts/mfa/backup_codes'
@@ -342,7 +345,7 @@ const fetchUserRelationship = ({ id, credentials }) => {
       return new Promise((resolve, reject) => response.json()
         .then((json) => {
           if (!response.ok) {
-            return reject(new StatusCodeError(response.status, json, { url }, response))
+            return reject(new StatusCodeError(400, json, { url }, response))
           }
           return resolve(json)
         }))
@@ -632,6 +635,57 @@ const deleteUser = ({ credentials, user }) => {
   return fetch(`${ADMIN_USERS_URL}?nickname=${screenName}`, {
     method: 'DELETE',
     headers: headers
+  })
+}
+
+const getReports = ({ state, limit, page, pageSize, credentials }) => {
+  let url = ADMIN_REPORTS_URL
+  const args = [
+    state && `state=${state}`,
+    limit && `limit=${limit}`,
+    page && `page=${page}`,
+    pageSize && `page_size=${pageSize}`
+  ].filter(_ => _).join('&')
+
+  url = url + (args ? '?' + args : '')
+  return fetch(url, { headers: authHeaders(credentials) })
+    .then((data) => data.json())
+    .then((data) => data.reports.map(parseReport))
+}
+
+const updateReportStates = ({ credentials, reports }) => {
+  // reports syntax: [{ id: int, state: string }...]
+  const updates = {
+    reports: reports.map(report => {
+      return {
+        id: report.id.toString(),
+        state: report.state
+      }
+    })
+  }
+
+  return promisedRequest({
+    url: ADMIN_REPORTS_URL,
+    method: 'PATCH',
+    payload: updates,
+    credentials
+  })
+}
+
+const addNoteToReport = ({ id, note, credentials }) => {
+  return promisedRequest({
+    url: ADMIN_REPORT_NOTES_URL(id),
+    method: 'POST',
+    payload: { content: note },
+    credentials
+  })
+}
+
+const deleteNoteFromReport = ({ report, note, credentials }) => {
+  return promisedRequest({
+    url: ADMIN_REPORT_NOTE_URL(report, note),
+    method: 'DELETE',
+    credentials
   })
 }
 
@@ -1726,7 +1780,11 @@ const apiService = {
   getSettingsProfile,
   saveSettingsProfile,
   listSettingsProfiles,
-  deleteSettingsProfile
+  deleteSettingsProfile,
+  getReports,
+  updateReportStates,
+  addNoteToReport,
+  deleteNoteFromReport
 }
 
 export default apiService

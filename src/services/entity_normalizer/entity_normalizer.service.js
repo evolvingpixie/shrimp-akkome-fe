@@ -429,6 +429,24 @@ export const parseNotification = (data) => {
   return output
 }
 
+export const parseReport = (data) => {
+  const report = {}
+
+  report.account = parseUser(data.account)
+  report.actor = parseUser(data.actor)
+  report.statuses = data.statuses.map(parseStatus)
+  report.notes = data.notes.map(note => {
+    note.user = parseUser(note.user)
+    return note
+  })
+  report.state = data.state
+  report.content = data.content
+  report.created_at = data.created_at
+  report.id = data.id
+
+  return report
+}
+
 const isNsfw = (status) => {
   const nsfwRegex = /#nsfw/i
   return (status.tags || []).includes('nsfw') || !!(status.text || '').match(nsfwRegex)

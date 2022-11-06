@@ -1,0 +1,83 @@
+@import '../../../../_variables.scss';
+.report-card {
+  .report-body {
+    & > * {
+      padding: 1em;
+    }
+
+    & > :not(:last-child) {
+      border-bottom: 1px solid;
+      border-bottom-color: var(--border, #222);
+    }
+
+    .report-content {
+      white-space: pre-wrap;
+    }
+
+    .report-author {
+      padding-top: 0.5em;
+    }
+    .small-avatar {
+      height: 25px;
+      width: 25px;
+      padding-right: 0.4em;
+      vertical-align: middle;
+    }
+
+    .dropdown {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+
+      .dropdown-header {
+        padding: 1em;
+        color: var(--link, $fallback--link);
+
+        &:hover {
+          background-color: var(--selectedMenu, $fallback--lightBg);
+          color: var(--selectedMenuText, $fallback--link);
+        }
+      }
+    }
+
+    .report-note {
+      padding: 1em;
+
+      .note-header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 0.5em;
+      }
+
+      button {
+        margin-left: 0.5em;
+      }
+    }
+
+    .report-add-note {
+      textarea {
+        resize: none;
+      }
+
+      button {
+        min-height: 2em;
+        min-width: 10em;
+        padding: 0 2em;
+        margin-top: 0.5em;
+      }
+    }
+  }
+
+  .panel-footer {
+    display: flex;
+    & > * {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.reports-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

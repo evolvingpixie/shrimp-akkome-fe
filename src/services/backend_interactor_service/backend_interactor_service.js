@@ -5,6 +5,7 @@ import followRequestFetcher from '../../services/follow_request_fetcher/follow_r
 import listsFetcher from '../../services/lists_fetcher/lists_fetcher.service.js'
 import announcementsFetcher from '../../services/announcements_fetcher/announcements_fetcher.service.js'
 import configFetcher from '../config_fetcher/config_fetcher.service.js'
+import reportsFetcher from '../reports_fetcher/reports_fetcher.service.js'
 
 const backendInteractorService = credentials => ({
   startFetchingTimeline ({ timeline, store, userId = false, listId = false, tag }) {
@@ -37,6 +38,10 @@ const backendInteractorService = credentials => ({
 
   startFetchingAnnouncements ({ store }) {
     return announcementsFetcher.startFetching({ store, credentials })
+  },
+
+  startFetchingReports ({ store, state, limit, page, pageSize }) {
+    return reportsFetcher.startFetching({ store, credentials, state, limit, page, pageSize })
   },
 
   startUserSocket ({ store }) {

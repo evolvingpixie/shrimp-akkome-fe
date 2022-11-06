@@ -2,6 +2,9 @@ const defaultState = {
   settingsModalState: 'hidden',
   settingsModalLoaded: false,
   settingsModalTargetTab: null,
+  modModalState: 'hidden',
+  modModalLoaded: false,
+  modModalTargetTab: null,
   settings: {
     currentSaveStateNotice: null,
     noticeClearTimeout: null,
@@ -63,6 +66,30 @@ const interfaceMod = {
     setSettingsModalTargetTab (state, value) {
       state.settingsModalTargetTab = value
     },
+    closeModModal (state) {
+      state.modModalState = 'hidden'
+    },
+    togglePeekModModal (state) {
+      switch (state.modModalState) {
+        case 'minimized':
+          state.modModalState = 'visible'
+          return
+        case 'visible':
+          state.modModalState = 'minimized'
+          return
+        default:
+          throw new Error('Illegal minimization state of mod modal')
+      }
+    },
+    openModModal (state) {
+      state.modModalState = 'visible'
+      if (!state.modModalLoaded) {
+        state.modModalLoaded = true
+      }
+    },
+    setModModalTargetTab (state, value) {
+      state.modModalTargetTab = value
+    },
     pushGlobalNotice (state, notice) {
       state.globalNotices.push(notice)
     },
@@ -104,6 +131,18 @@ const interfaceMod = {
     openSettingsModalTab ({ commit }, value) {
       commit('setSettingsModalTargetTab', value)
       commit('openSettingsModal')
+    },
+    closeModModal ({ commit }) {
+      commit('closeModModal')
+    },
+    openModModal ({ commit }) {
+      commit('openModModal')
+    },
+    togglePeekModModal ({ commit }) {
+      commit('togglePeekModModal')
+    },
+    clearModModalTargetTab ({ commit }) {
+      commit('setModModalTargetTab', null)
     },
     pushGlobalNotice (
       { commit, dispatch, state },

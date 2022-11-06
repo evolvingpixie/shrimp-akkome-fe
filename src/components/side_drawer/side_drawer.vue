@@ -144,6 +144,21 @@
           </router-link>
         </li>
         <li
+          v-if="currentUser && currentUser.role === 'admin' || currentUser.role === 'moderator'"
+          @click="toggleDrawer"
+        >
+          <button
+            class="button-unstyled -link -fullwidth"
+            @click="openModModal"
+          >
+            <FAIcon
+              fixed-width
+              class="fa-scale-110 fa-old-padding"
+              icon="user-tie"
+            /> {{ $t("nav.moderation") }}
+          </button>
+        </li>
+        <li
           v-if="currentUser && currentUser.role === 'admin'"
           @click="toggleDrawer"
         >

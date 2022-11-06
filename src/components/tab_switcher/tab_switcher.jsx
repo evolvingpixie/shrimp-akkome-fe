@@ -64,8 +64,12 @@ export default {
     settingsModalVisible () {
       return this.settingsModalState === 'visible'
     },
+    modModalVisible () {
+      return this.modModalState === 'visible'
+    },
     ...mapState({
-      settingsModalState: state => state.interface.settingsModalState
+      settingsModalState: state => state.interface.settingsModalState,
+      modModalState: state => state.interface.modModalState
     })
   },
   beforeUpdate () {

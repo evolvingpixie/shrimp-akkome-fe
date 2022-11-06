@@ -1,0 +1,21 @@
+@import 'src/_variables.scss';
+.mod_tab-switcher {
+  height: 100%;
+
+  .content {
+    margin: 1em 1em 1.4em;
+
+    > div {
+      margin-bottom: .5em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 100%;
+      height: 100px;
+    }
+  }
+}

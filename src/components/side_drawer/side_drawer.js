@@ -15,7 +15,8 @@ import {
   faTachometerAlt,
   faCog,
   faInfoCircle,
-  faList
+  faList,
+  faUserTie
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -30,7 +31,8 @@ library.add(
   faTachometerAlt,
   faCog,
   faInfoCircle,
-  faList
+  faList,
+  faUserTie
 )
 
 const SideDrawer = {
@@ -102,6 +104,9 @@ const SideDrawer = {
     },
     openSettingsModal () {
       this.$store.dispatch('openSettingsModal')
+    },
+    openModModal () {
+      this.$store.dispatch('openModModal')
     }
   }
 }

@@ -266,6 +266,31 @@
         "next": "Next",
         "previous": "Previous"
     },
+    "moderation": {
+      "moderation": "Moderation",
+      "reports": {
+        "add_note": "Add note",
+        "close": "Close",
+        "delete_note": "Delete",
+        "delete_note_accept": "Yes, delete it",
+        "delete_note_cancel": "No, keep it",
+        "delete_note_confirm": "Are you sure you want to delete this note?",
+        "delete_note_title": "Confirm deletion",
+        "no_content": "No description given",
+        "note_placeholder": "Leave a note...",
+        "notes": "notes",
+        "reopen": "Reopen",
+        "report": "Report on",
+        "reports": "Reports",
+        "resolve": "Resolve",
+        "show_closed": "Show closed",
+        "statuses": "statuses",
+        "tag_policy_notice": "Enable the TagPolicy MRF to set post restrictions",
+        "tags": "Set post restrictions"
+      },
+      "statuses": "Statuses",
+      "users": "Users"
+    },
     "nav": {
         "about": "About",
         "administration": "Administration",
@@ -282,6 +307,7 @@
         "interactions": "Interactions",
         "lists": "Lists",
         "mentions": "Mentions",
+        "moderation": "Moderation",
         "preferences": "Preferences",
         "public_timeline_description": "Public posts from this instance",
         "public_tl": "Public timeline",
