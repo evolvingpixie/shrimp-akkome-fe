@@ -151,7 +151,7 @@ const ProfileTab = {
       return false
     },
     deleteField (index, event) {
-      this.$delete(this.newFields, index)
+      this.newFields.splice(index, 1)
     },
     uploadFile (slot, e) {
       const file = e.target.files[0]
