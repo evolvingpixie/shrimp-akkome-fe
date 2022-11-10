@@ -148,7 +148,7 @@ const PostStatusForm = {
         spoilerText: this.subject || '',
         status: this.statusText || '',
         sensitiveIfSubject,
-        nsfw: this.statusIsSensitive || !!sensitiveByDefault,
+        nsfw: this.statusIsSensitive || (sensitiveIfSubject && this.subject) || !!sensitiveByDefault,
         files: this.statusFiles || [],
         poll: this.statusPoll || {},
         mediaDescriptions: this.statusMediaDescriptions || {},
@@ -418,7 +418,7 @@ const PostStatusForm = {
     addMediaFile (fileInfo) {
       this.newStatus.files.push(fileInfo)
 
-      if (this.newStatus.sensitiveIfSubject && this.newStatus.spoilerText !== '') {
+      if (this.$store.getters.mergedConfig.sensitiveIfSubject && this.newStatus.spoilerText !== '') {
         this.newStatus.nsfw = true
       }
       this.$emit('resize', { delayed: true })
@@ -498,7 +498,7 @@ const PostStatusForm = {
       })
     },
     onSubjectInput (e) {
-      if (this.newStatus.sensitiveIfSubject) {
+      if (this.$store.getters.mergedConfig.sensitiveIfSubject) {
         this.newStatus.nsfw = true
       }
     },
