@@ -123,6 +123,12 @@
             {{ $t('user_card.follows_you') }}
           </div>
           <div
+            v-if="relationship.requested_by && loggedIn && isOtherUser"
+            class="requested_by"
+          >
+            {{ $t('user_card.requested_by') }}
+          </div>
+          <div
             v-if="isOtherUser && (loggedIn || !switcher)"
             class="highlighter"
           >

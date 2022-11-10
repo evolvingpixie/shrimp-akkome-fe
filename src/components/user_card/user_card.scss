@@ -235,7 +235,7 @@
     line-height: 22px;
     flex-wrap: wrap;
 
-    .following {
+    .following, .requested_by {
       flex: 1 0 auto;
       margin: 0;
       margin-bottom: .25em;
