@@ -258,7 +258,11 @@
         "placeholder": "myusername",
         "recovery_code": "Recovery code",
         "register": "Register",
-        "username": "Username"
+        "username": "Username",
+        "logout_confirm_cancel_button": "Cancel",
+        "logout_confirm_accept_button": "Log out",
+        "logout_confirm": "Are you sure you want to log out?",
+        "logout_confirm_title": "Log out"
     },
     "media_modal": {
         "counter": "{current} / {total}",
@@ -1127,6 +1131,7 @@
         "followers": "Followers",
         "following": "Following!",
         "follows_you": "Follows you!",
+        "requested_by": "Has requested to follow you",
         "hidden": "Hidden",
         "hide_repeats": "Hide repeats",
         "highlight": {
