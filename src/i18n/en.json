@@ -273,6 +273,7 @@
     "moderation": {
       "moderation": "Moderation",
       "reports": {
+        "no_reports": "No reports to show",
         "add_note": "Add note",
         "close": "Close",
         "delete_note": "Delete",
