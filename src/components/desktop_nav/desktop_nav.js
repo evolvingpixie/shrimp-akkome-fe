@@ -100,6 +100,9 @@ export default {
     privateMode () { return this.$store.state.instance.private },
     shouldConfirmLogout () {
       return this.$store.getters.mergedConfig.modalOnLogout
+    },
+    showBubbleTimeline () {
+      return this.$store.state.instance.localBubbleInstances.length > 0
     }
   },
   methods: {

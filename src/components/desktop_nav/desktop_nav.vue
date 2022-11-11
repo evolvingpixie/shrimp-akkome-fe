@@ -55,7 +55,7 @@
             />
           </router-link>
           <router-link
-            v-if="currentUser"
+            v-if="currentUser && showBubbleTimeline"
             :to="{ name: 'bubble-timeline' }"
             class="nav-icon"
           >
