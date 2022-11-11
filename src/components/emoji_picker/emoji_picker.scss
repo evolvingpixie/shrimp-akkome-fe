@@ -1,5 +1,25 @@
 @import '../../_variables.scss';
 
+.Notification {
+  .emoji-picker {
+    min-width: 160%;
+    width: 150%;
+    overflow: hidden;
+    left: -70%;
+    max-width: 100%;
+    @media (min-width: 800px) and (max-width: 1300px) {
+      left: -50%;
+      min-width: 50%;
+      max-width: 130%;
+    }
+
+    @media (max-width: 800px) {
+      left: -10%;
+      min-width: 50%;
+      max-width: 130%;
+    }
+  }
+}
 .emoji-picker {
   display: flex;
   flex-direction: column;
