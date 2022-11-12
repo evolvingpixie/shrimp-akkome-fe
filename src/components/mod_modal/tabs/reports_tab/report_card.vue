@@ -54,7 +54,7 @@
           class="button button-unstyled dropdown-header"
           @click="toggleStatuses"
         >
-          {{ this.statuses.length + ' ' + $t('moderation.reports.statuses') }}
+          {{ $tc('moderation.reports.statuses', statuses.length - 1, { count: statuses.length }) }}
           <FAIcon
             class="timelines-chevron"
             fixed-width
@@ -81,7 +81,7 @@
           class="button button-unstyled dropdown-header"
           @click="toggleNotes"
         >
-          {{ this.notes.length + ' ' + $t('moderation.reports.notes') }}
+          {{ $tc('moderation.reports.notes', notes.length - 1, { count: notes.length }) }}
           <FAIcon
             class="timelines-chevron"
             fixed-width
