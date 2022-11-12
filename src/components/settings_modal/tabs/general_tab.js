@@ -105,8 +105,12 @@ const GeneralTab = {
       return this.$store.getters.mergedConfig.profileVersion
     },
     translationLanguages () {
-      const langs = this.$store.state.instance.supportedTranslationLanguages || { source: [] }
-      return langs.source.map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
+      const langs = this.$store.state.instance.supportedTranslationLanguages
+      if (langs && langs.source) {
+        return langs.source.map(lang => ({ key: lang.code, value: lang.code, label: lang.name }))
+      }
+
+      return []
     },
     translationLanguage: {
       get: function () { return this.$store.getters.mergedConfig.translationLanguage },
