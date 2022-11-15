@@ -123,45 +123,6 @@ export default {
       }
     }
 
-    const renderMisskeyMarkdown = (content) => {
-      // Untangle code blocks from <br> tags and other html encodings
-      const codeblocks = content.match(/(<br\/>)?(~~~|```)\w*<br\/>.+?<br\/>\2\1?/g)
-      if (codeblocks) {
-        codeblocks.forEach((pre) => {
-          content = content.replace(pre,
-            pre.replaceAll('<br/>', '\n')
-              .replaceAll('&amp;', '&')
-              .replaceAll('&lt;', '<')
-              .replaceAll('&gt;', '>')
-              .replaceAll('&quot', '"')
-              .replaceAll('&#39;', "'")
-          )
-        })
-      }
-      const mfmHtml = document.createElement('template')
-      mfmHtml.innerHTML = marked.parse(content)
-
-      // Add options with set values to CSS
-      if (mfmHtml.content.firstChild) {
-        Array.from(mfmHtml.content.firstChild.getElementsByClassName('mfm')).map((el) => {
-          if (el.dataset.speed) {
-            el.style.animationDuration = el.dataset.speed
-          }
-          if (el.dataset.deg) {
-            el.style.transform = `rotate(${el.dataset.deg}deg)`
-          }
-          if (Array.from(el.classList).includes('_mfm_font_')) {
-            const font = Object.keys(el.dataset)[0]
-            if (['serif', 'monospace', 'cursive', 'fantasy', 'emoji', 'math'].includes(font)) {
-              el.style.fontFamily = font
-            }
-          }
-        })
-      }
-
-      return mfmHtml.innerHTML
-    }
-
     // Processor to use with html_tree_converter
     const processItem = (item, index, array, what) => {
       // Handle text nodes - just add emoji
@@ -299,7 +260,7 @@ export default {
       return item
     }
 
-    const pass1 = convertHtmlToTree(this.mfm ? renderMisskeyMarkdown(html) : html).map(processItem)
+    const pass1 = convertHtmlToTree(html).map(processItem)
     const pass2 = [...pass1].reverse().map(processItemReverse).reverse()
     // DO NOT USE SLOTS they cause a re-render feedback loop here.
     // slots updated -> rerender -> emit -> update up the tree -> rerender -> ...
