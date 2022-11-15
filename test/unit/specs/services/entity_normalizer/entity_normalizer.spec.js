@@ -194,8 +194,9 @@ describe('API Entities normalizer', () => {
 
         expect(parsedPost).to.have.property('type', 'status')
         expect(parsedRepeat).to.have.property('type', 'retweet')
+        console.log(parsedRepeat)
         expect(parsedRepeat).to.have.property('retweeted_status')
-        expect(parsedRepeat).to.have.deep.property('retweeted_status.id', 'deadbeef')
+        expect(parsedRepeat).to.have.nested.property('retweeted_status.id', 'deadbeef')
       })
 
       it('sets nsfw for statuses with the #nsfw tag', () => {
@@ -229,7 +230,7 @@ describe('API Entities normalizer', () => {
         expect(parsedPost).to.have.property('type', 'status')
         expect(parsedRepeat).to.have.property('type', 'retweet')
         expect(parsedRepeat).to.have.property('retweeted_status')
-        expect(parsedRepeat).to.have.deep.property('retweeted_status.id', 'deadbeef')
+        expect(parsedRepeat).to.have.nested.property('retweeted_status.id', 'deadbeef')
       })
     })
   })
@@ -284,9 +285,9 @@ describe('API Entities normalizer', () => {
       })
       expect(parseNotification(notif)).to.have.property('id', 123)
       expect(parseNotification(notif)).to.have.property('seen', false)
-      expect(parseNotification(notif)).to.have.deep.property('status.id', '444')
-      expect(parseNotification(notif)).to.have.deep.property('action.id', '444')
-      expect(parseNotification(notif)).to.have.deep.property('from_profile.id', 'spurdo')
+      expect(parseNotification(notif)).to.have.nested.property('status.id', '444')
+      expect(parseNotification(notif)).to.have.nested.property('action.id', '444')
+      expect(parseNotification(notif)).to.have.nested.property('from_profile.id', 'spurdo')
     })
 
     it('correctly normalizes favorite notifications', () => {
@@ -303,9 +304,9 @@ describe('API Entities normalizer', () => {
       expect(parseNotification(notif)).to.have.property('id', 123)
       expect(parseNotification(notif)).to.have.property('type', 'like')
       expect(parseNotification(notif)).to.have.property('seen', true)
-      expect(parseNotification(notif)).to.have.deep.property('status.id', '4412')
-      expect(parseNotification(notif)).to.have.deep.property('action.id', '444')
-      expect(parseNotification(notif)).to.have.deep.property('from_profile.id', 'spurdo')
+      expect(parseNotification(notif)).to.have.nested.property('status.id', '4412')
+      expect(parseNotification(notif)).to.have.nested.property('action.id', '444')
+      expect(parseNotification(notif)).to.have.nested.property('from_profile.id', 'spurdo')
     })
   })
 

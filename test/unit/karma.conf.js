@@ -4,7 +4,7 @@
 //   https://github.com/webpack/karma-webpack
 
 // var path = require('path')
-var merge = require('webpack-merge')
+var { merge } = require('webpack-merge')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var baseConfig = require('../../build/webpack.base.conf')
 var utils = require('../../build/utils')
@@ -16,7 +16,7 @@ var webpackConfig = merge(baseConfig, {
   module: {
     rules: utils.styleLoaders()
   },
-  devtool: '#inline-source-map',
+  devtool: 'inline-source-map',
   // vue: {
   //   loaders: {
   //     js: 'isparta'

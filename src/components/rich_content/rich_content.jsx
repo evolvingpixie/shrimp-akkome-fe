@@ -138,12 +138,6 @@ export default {
           )
         })
       }
-
-      marked.use(markedMfm, {
-        mangle: false,
-        gfm: false,
-        breaks: true
-      })
       const mfmHtml = document.createElement('template')
       mfmHtml.innerHTML = marked.parse(content)
 

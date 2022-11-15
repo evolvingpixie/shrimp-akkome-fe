@@ -1,5 +1,3 @@
-import runtime from 'serviceworker-webpack-plugin/lib/runtime'
-
 function urlBase64ToUint8Array (base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4)
   const base64 = (base64String + padding)
@@ -15,7 +13,7 @@ function isPushSupported () {
 }
 
 function getOrCreateServiceWorker () {
-  return runtime.register()
+  return navigator.serviceWorker.register('/sw-pleroma.js')
     .catch((err) => console.error('Unable to get or create a service worker.', err))
 }
 

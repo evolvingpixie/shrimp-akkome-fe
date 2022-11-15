@@ -2,7 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var webpack = require('webpack')
-var merge = require('webpack-merge')
+var { merge } = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -19,7 +19,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, extract: true })
   },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
+  devtool: 'source-map',
   optimization: {
     minimize: true,
     splitChunks: {
@@ -62,7 +62,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'auto'
     }),
     // split vendor js into its own file
     // extract webpack runtime and module manifest to its own file in order to

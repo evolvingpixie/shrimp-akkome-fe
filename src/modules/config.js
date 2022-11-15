@@ -76,11 +76,9 @@ export const defaultState = {
   hideScopeNotice: false,
   useStreamingApi: false,
   sidebarRight: undefined, // instance default
-  scopeCopy: undefined, // instance default
   subjectLineBehavior: undefined, // instance default
   alwaysShowSubjectInput: undefined, // instance default
   postContentType: undefined, // instance default
-  minimalScopesMode: undefined, // instance default
   // This hides statuses filtered via a word filter
   hideFilteredStatuses: undefined, // instance default
   modalOnRepeat: undefined, // instance default

@@ -70,9 +70,6 @@ Default post formatting option (markdown/bbcode/plaintext/etc...)
 ### `redirectRootNoLogin`, `redirectRootLogin`
 These two settings should point to where FE should redirect visitor when they login/open up website root
 
-### `scopeCopy`
-Copy post scope (visibility) when replying to a post. Instance-default.
-
 ### `sidebarRight`
 Change alignment of sidebar and panels to the right. Defaults to `false`.
 

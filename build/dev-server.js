@@ -29,18 +29,6 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler)
-// force page reload when html-webpack-plugin template changes
-compiler.plugin('compilation', function (compilation) {
-  compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-    // FIXME: This supposed to reload whole page when index.html is changed,
-    // however now it reloads entire page on every breath, i suppose the order
-    // of plugins changed or something. It's a minor thing and douesn't hurt
-    // disabling it, constant reloads hurt much more
-
-    // hotMiddleware.publish({ action: 'reload' })
-    // cb()
-  })
-})
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {

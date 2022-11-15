@@ -227,7 +227,7 @@ const Attachment = {
       this.$emit('resize', newHeight)
     },
     postStatus (event) {
-      console.log(this.statusForm.postStatus(event, this.statusForm.newStatus))
+      this.statusForm.postStatus(event, this.statusForm.newStatus)
     }
   }
 }

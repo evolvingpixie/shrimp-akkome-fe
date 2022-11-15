@@ -753,7 +753,6 @@ export default {
     selected () {
       this.selectedTheme = Object.entries(this.availableStyles).find(([k, s]) => {
         if (Array.isArray(s)) {
-          console.log(s[0] === this.selected, this.selected)
           return s[0] === this.selected
         } else {
           return s.name === this.selected

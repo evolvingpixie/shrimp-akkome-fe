@@ -13,6 +13,14 @@ library.add(
   faLockOpen
 )
 
+const SCOPE_LEVELS = {
+  'direct': 0,
+  'private': 1,
+  'local': 2,
+  'unlisted': 2,
+  'public': 3
+}
+
 const ScopeSelector = {
   props: [
     'showAll',
@@ -57,11 +65,15 @@ const ScopeSelector = {
   },
   methods: {
     shouldShow (scope) {
-      return this.showAll ||
-        this.currentScope === scope ||
-        this.originalScope === scope ||
-        this.userDefault === scope ||
-        scope === 'direct'
+      if (!this.originalScope) {
+        return true
+      }
+
+      if (this.originalScope === 'local') {
+        return scope === 'direct' || scope === 'local'
+      }
+
+      return SCOPE_LEVELS[scope] <= SCOPE_LEVELS[this.originalScope]
     },
     changeVis (scope) {
       this.currentScope = scope

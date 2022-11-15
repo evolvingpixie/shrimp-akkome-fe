@@ -3,7 +3,7 @@ pipeline:
     when:
       event:
       - pull_request
-    image: node:16
+    image: node:18
     commands:
     - yarn
     - yarn lint
@@ -13,7 +13,7 @@ pipeline:
     when:
       event:
       - pull_request
-    image: node:16
+    image: node:18
     commands:
     - apt update
     - apt install firefox-esr -y --no-install-recommends
@@ -27,7 +27,7 @@ pipeline:
       branch:
       - develop
       - stable
-    image: node:16
+    image: node:18
     commands:
     - yarn
     - yarn build
@@ -39,7 +39,7 @@ pipeline:
       branch:
       - develop
       - stable
-    image: node:16
+    image: node:18
     secrets:
     - SCW_ACCESS_KEY
     - SCW_SECRET_KEY

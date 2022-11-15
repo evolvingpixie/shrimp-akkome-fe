@@ -188,7 +188,6 @@
         >
           <scope-selector
             v-if="!disableVisibilitySelector"
-            :show-all="showAllScopes"
             :user-default="userDefaultScope"
             :original-scope="copyMessageScope"
             :initial-scope="newStatus.visibility"

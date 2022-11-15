@@ -181,9 +181,6 @@ const PostStatusForm = {
     userDefaultScope () {
       return this.$store.state.users.currentUser.default_scope
     },
-    showAllScopes () {
-      return !this.mergedConfig.minimalScopesMode
-    },
     emojiUserSuggestor () {
       return suggestor({
         emoji: [
@@ -224,9 +221,6 @@ const PostStatusForm = {
     },
     isOverLengthLimit () {
       return this.hasStatusLengthLimit && (this.charactersLeft < 0)
-    },
-    minimalScopesMode () {
-      return this.$store.state.instance.minimalScopesMode
     },
     alwaysShowSubject () {
       return this.mergedConfig.alwaysShowSubjectInput
@@ -647,10 +641,8 @@ const PostStatusForm = {
         if (this.copyMessageScope === 'direct') {
           return this.copyMessageScope
         }
-        if (this.$store.getters.mergedConfig.scopeCopy) {
-          if (this.copyMessageScope !== 'public' && this.$store.state.users.currentUser.default_scope !== 'private') {
-            return this.copyMessageScope
-          }
+        if (this.copyMessageScope !== 'public' && this.$store.state.users.currentUser.default_scope !== 'private') {
+          return this.copyMessageScope
         }
       }
       return this.$store.state.users.currentUser.default_scope

@@ -126,7 +126,7 @@ const Timeline = {
     this.$store.commit('setLoading', { timeline: this.timelineName, value: false })
   },
   methods: {
-    stopBlockingClicks: debounce(function () {
+    stopBlockingClicks: debounce( function()  {
       this.blockingClicks = false
     }, 1000),
     blockClicksTemporarily () {
@@ -154,7 +154,7 @@ const Timeline = {
         window.scrollTo({ top: 0 })
       }
     },
-    fetchOlderStatuses: throttle(function () {
+    fetchOlderStatuses: throttle( function () {
       const store = this.$store
       const credentials = store.state.users.currentUser.credentials
       store.commit('setLoading', { timeline: this.timelineName, value: true })
@@ -188,7 +188,7 @@ const Timeline = {
 
       const centerOfScreen = window.pageYOffset + (window.innerHeight * 0.5)
 
-      // Start from approximating the index of some visible status by using the
+      // Start from approximating the index of some visible status by using
       // the center of the screen on the timeline.
       let approxIndex = Math.floor(statuses.length * (centerOfScreen / height))
       let err = statuses[approxIndex].getBoundingClientRect().y
@@ -226,7 +226,7 @@ const Timeline = {
         this.fetchOlderStatuses()
       }
     },
-    handleScroll: throttle(function (e) {
+    handleScroll: throttle( function (e)  {
       this.determineVisibleStatuses()
       this.scrollLoad(e)
     }, 200),

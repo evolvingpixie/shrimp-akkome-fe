@@ -175,7 +175,6 @@ const SettingsModal = {
         return this.$store.state.config.expertLevel > 0
       },
       set (value) {
-        console.log(value)
         this.$store.dispatch('setOption', { name: 'expertLevel', value: value ? 1 : 0 })
       }
     }

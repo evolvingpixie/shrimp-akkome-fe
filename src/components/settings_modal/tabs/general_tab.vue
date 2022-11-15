@@ -537,17 +537,11 @@
             {{ $t('settings.default_vis') }} <ServerSideIndicator :server-side="true" />
             <ScopeSelector
               class="scope-selector"
-              :show-all="true"
               :user-default="serverSide_defaultScope"
               :initial-scope="serverSide_defaultScope"
               :on-scope-change="changeDefaultScope"
             />
           </label>
-        </li>
-        <li>
-          <BooleanSetting path="minimalScopesMode">
-            {{ $t('settings.minimal_scopes_mode') }}
-          </BooleanSetting>
         </li>
         <li>
           <BooleanSetting path="sensitiveByDefault">
@@ -557,14 +551,6 @@
         <li>
           <BooleanSetting path="sensitiveIfSubject">
             {{ $t('settings.sensitive_if_subject') }}
-          </BooleanSetting>
-        </li>
-        <li>
-          <BooleanSetting
-            path="scopeCopy"
-            expert="1"
-          >
-            {{ $t('settings.scope_copy') }}
           </BooleanSetting>
         </li>
         <li>
@@ -593,14 +579,6 @@
           >
             {{ $t('settings.post_status_content_type') }}
           </ChoiceSetting>
-        </li>
-        <li>
-          <BooleanSetting
-            path="minimalScopesMode"
-            expert="1"
-          >
-            {{ $t('settings.minimal_scopes_mode') }}
-          </BooleanSetting>
         </li>
         <li>
           <BooleanSetting

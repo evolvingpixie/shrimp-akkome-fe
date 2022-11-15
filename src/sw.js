@@ -5,7 +5,9 @@ import { parseNotification } from './services/entity_normalizer/entity_normalize
 import { prepareNotificationObject } from './services/notification_utils/notification_utils.js'
 import { createI18n } from 'vue-i18n'
 import messages from './i18n/service_worker_messages.js'
+import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
 
+precacheAndRoute(self.__WB_MANIFEST);
 const i18n = createI18n({
   // By default, use the browser locale, we will update it if neccessary
   locale: 'en',

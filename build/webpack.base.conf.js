@@ -2,8 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
-var CopyPlugin = require('copy-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 var { VueLoaderPlugin } = require('vue-loader')
 
 var env = process.env.NODE_ENV
@@ -20,6 +19,7 @@ module.exports = {
     app: './src/main.js'
   },
   output: {
+    hashFunction: "sha256", // Workaround for builds with OpenSSL 3.
     path: config.build.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
     filename: '[name].js'
@@ -34,6 +34,9 @@ module.exports = {
     modules: [
       path.join(__dirname, '../node_modules')
     ],
+    fallback: {
+      "url": require.resolve("url/"),
+    },
     alias: {
       'static': path.resolve(__dirname, '../static'),
       'src': path.resolve(__dirname, '../src'),
@@ -116,23 +119,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new ServiceWorkerWebpackPlugin({
-      entry: path.join(__dirname, '..', 'src/sw.js'),
-      filename: 'sw-pleroma.js'
+    new WorkboxPlugin.InjectManifest({
+      swSrc: path.join(__dirname, '..', 'src/sw.js'),
+      swDest: 'sw-pleroma.js',
+      maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
     }),
-    new VueLoaderPlugin(),
-    // This copies Ruffle's WASM to a directory so that JS side can access it
-    new CopyPlugin({
-      patterns: [
-        {
-          from: "node_modules/ruffle-mirror/*",
-          to: "static/ruffle",
-          flatten: true
-        },
-      ],
-      options: {
-        concurrency: 100,
-      },
-    })
+    new VueLoaderPlugin()
   ]
 }
