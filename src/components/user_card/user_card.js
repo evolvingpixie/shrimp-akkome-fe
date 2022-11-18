@@ -154,14 +154,6 @@ export default {
     unmuteUser () {
       this.$store.dispatch('unmuteUser', this.user.id)
     },
-    muteDomain () {
-      this.$store.dispatch('muteDomain', this.user.screen_name.split('@')[1])
-        .then(() => this.refetchRelationship())
-    },
-    unmuteDomain () {
-      this.$store.dispatch('unmuteDomain', this.user.screen_name.split('@')[1])
-        .then(() => this.refetchRelationship())
-    },
     subscribeUser () {
       return this.$store.dispatch('subscribeUser', this.user.id)
     },
