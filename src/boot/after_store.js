@@ -150,6 +150,7 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
   copyInstanceOption('showPanelNavShortcuts')
   copyInstanceOption('stopGifs')
   copyInstanceOption('logo')
+  copyInstanceOption('conversationDisplay')
 
   store.dispatch('setInstanceOption', {
     name: 'logoMask',

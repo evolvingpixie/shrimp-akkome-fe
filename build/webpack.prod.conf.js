@@ -32,6 +32,11 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[name].[chunkhash].js')
   },
   plugins: [
+    new WorkboxPlugin.InjectManifest({
+      swSrc: path.join(__dirname, '..', 'src/sw.js'),
+      swDest: 'sw-pleroma.js',
+      maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
+    }),
     // http://vuejs.github.io/vue-loader/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env,

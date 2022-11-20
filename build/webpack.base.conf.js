@@ -119,11 +119,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new WorkboxPlugin.InjectManifest({
-      swSrc: path.join(__dirname, '..', 'src/sw.js'),
-      swDest: 'sw-pleroma.js',
-      maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
-    }),
     new VueLoaderPlugin()
   ]
 }
