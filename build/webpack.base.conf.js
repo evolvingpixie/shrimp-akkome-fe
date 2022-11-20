@@ -2,7 +2,6 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-const WorkboxPlugin = require('workbox-webpack-plugin');
 var { VueLoaderPlugin } = require('vue-loader')
 
 var env = process.env.NODE_ENV

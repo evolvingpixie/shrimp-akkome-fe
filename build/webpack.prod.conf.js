@@ -2,6 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var webpack = require('webpack')
+const WorkboxPlugin = require('workbox-webpack-plugin');
 var { merge } = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin')
