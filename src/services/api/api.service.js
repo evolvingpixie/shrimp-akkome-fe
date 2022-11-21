@@ -650,7 +650,7 @@ const getReports = ({ state, limit, page, pageSize, credentials }) => {
   url = url + (args ? '?' + args : '')
   return fetch(url, { headers: authHeaders(credentials) })
     .then((data) => data.json())
-    .then((data) => data.reports.map(parseReport))
+    .then((data) => data?.reports?.map(parseReport) ?? [])
 }
 
 const updateReportStates = ({ credentials, reports }) => {
