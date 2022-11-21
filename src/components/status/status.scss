@@ -130,6 +130,13 @@
   .heading-left {
     display: flex;
     min-width: 0;
+    flex-wrap: wrap;
+    img {
+      aspect-ratio: 1 / 1;
+    }
+    .nowrap{
+      white-space: nowrap;
+    }
   }
 
   .heading-right {
@@ -139,6 +146,8 @@
     .button-unstyled {
       padding: 5px;
       margin: -5px;
+
+      height: min-content;
 
       &:hover svg {
         color: $fallback--lightText;
