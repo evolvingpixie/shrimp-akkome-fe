@@ -62,6 +62,10 @@ const EmojiPicker = {
       this.scrolledGroup(target)
       this.triggerLoadMore(target)
     },
+    onWheel (e) {
+      e.preventDefault()
+      this.$refs['emoji-tabs'].scrollBy(e.deltaY, 0)
+    },
     highlight (key) {
       this.setShowStickers(false)
       this.activeGroup = key

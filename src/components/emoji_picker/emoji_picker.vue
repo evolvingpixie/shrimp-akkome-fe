@@ -1,7 +1,11 @@
 <template>
   <div class="emoji-picker panel panel-default panel-body">
     <div class="heading">
-      <span class="emoji-tabs">
+      <span
+        class="emoji-tabs"
+        @wheel="onWheel"
+        ref="emoji-tabs"
+      >
         <span
           v-for="group in emojis"
           :key="group.id"
