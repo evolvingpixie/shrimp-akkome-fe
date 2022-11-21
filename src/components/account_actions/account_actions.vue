@@ -55,6 +55,20 @@
           >
             {{ $t('user_card.report') }}
           </button>
+          <button
+            v-if="relationship.domain_blocking"
+            class="btn button-default btn-block dropdown-item"
+            @click="unmuteDomain"
+          >
+            {{ $t('user_card.domain_muted') }}
+          </button>
+          <button
+            v-else-if="!user.is_local"
+            class="btn button-default btn-block dropdown-item"
+            @click="muteDomain"
+          >
+            {{ $t('user_card.mute_domain') }}
+          </button>
         </div>
       </template>
       <template v-slot:trigger>
