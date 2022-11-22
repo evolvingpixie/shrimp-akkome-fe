@@ -33,6 +33,8 @@ const FriendList = withLoadMore({
   additionalPropNames: ['userId']
 })(List)
 
+const isUserPage = ({ name }) => name === 'user-profile' || name === 'external-user-profile'
+
 const UserProfile = {
   data () {
     return {
@@ -182,12 +184,12 @@ const UserProfile = {
   },
   watch: {
     '$route.params.id': function (newVal) {
-      if (newVal) {
+      if (isUserPage(this.$route) && newVal) {
         this.switchUser(newVal)
       }
     },
     '$route.params.name': function (newVal) {
-      if (newVal) {
+      if (isUserPage(this.$route) && newVal) {
         this.switchUser(newVal)
       }
     },

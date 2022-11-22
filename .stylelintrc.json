@@ -1,19 +1,13 @@
 {
   "extends": [
-    "stylelint-rscss/config",
+    "stylelint-config-recommended-vue/scss",
     "stylelint-config-recommended",
     "stylelint-config-standard"
   ],
+  "customSyntax": "postcss-scss",
   "rules": {
     "declaration-no-important": true,
-    "rscss/no-descendant-combinator": false,
-    "rscss/class-format": [
-      true,
-      {
-        "component": "pascal-case",
-        "variant": "^-[a-z]\\w+",
-        "element": "^[a-z]\\w+"
-      }
-    ]
+    "selector-class-pattern": null,
+    "custom-property-pattern": null
   }
 }

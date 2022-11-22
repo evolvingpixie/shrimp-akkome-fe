@@ -7,7 +7,7 @@ pipeline:
     commands:
     - yarn
     - yarn lint
-    - yarn stylelint
+    #- yarn stylelint
 
   test:
     when:
