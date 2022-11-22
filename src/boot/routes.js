@@ -22,6 +22,8 @@ import Lists from 'components/lists/lists.vue'
 import ListTimeline from 'components/list_timeline/list_timeline.vue'
 import ListEdit from 'components/list_edit/list_edit.vue'
 import AnnouncementsPage from 'components/announcements_page/announcements_page.vue'
+import RegistrationRequestSent from 'components/registration_request_sent/registration_request_sent.vue'
+import AwaitingEmailConfirmation from 'components/awaiting_email_confirmation/awaiting_email_confirmation.vue'
 
 export default (store) => {
   const validateAuthenticatedRoute = (to, from, next) => {
@@ -62,6 +64,8 @@ export default (store) => {
     { name: 'interactions', path: '/users/:username/interactions', component: Interactions, beforeEnter: validateAuthenticatedRoute },
     { name: 'dms', path: '/users/:username/dms', component: DMs, beforeEnter: validateAuthenticatedRoute },
     { name: 'registration', path: '/registration', component: Registration },
+    { name: 'registration-request-sent', path: '/registration-request-sent', component: RegistrationRequestSent },
+    { name: 'awaiting-email-confirmation', path: '/awaiting-email-confirmation', component: AwaitingEmailConfirmation },
     { name: 'password-reset', path: '/password-reset', component: PasswordReset, props: true },
     { name: 'registration-token', path: '/registration/:token', component: Registration },
     { name: 'friend-requests', path: '/friend-requests', component: FollowRequests, beforeEnter: validateAuthenticatedRoute },

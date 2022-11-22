@@ -177,6 +177,7 @@
             <div
               v-if="accountApprovalRequired"
               class="form-group"
+              :class="{ 'form-group--error': v$.user.reason.$error }"
             >
               <label
                 class="form--label"

@@ -489,9 +489,17 @@ const users = {
         let data = await rootState.api.backendInteractor.register(
           { params: { ...userInfo } }
         )
-        store.commit('signUpSuccess')
-        store.commit('setToken', data.access_token)
-        store.dispatch('loginUser', data.access_token)
+        if (data.identifier === 'awaiting_approval' || data.identifier === 'missing_confirmed_email') {
+          store.commit('signUpSuccess')
+          return data
+        } else if (data.me !== undefined) {
+          store.commit('signUpSuccess')
+          store.commit('setToken', data.access_token)
+          store.dispatch('loginUser', data.access_token)
+          return data
+        } else {
+          store.commit('signUpFailure', data)
+        }
       } catch (e) {
         let errors = e.message
         store.commit('signUpFailure', errors)

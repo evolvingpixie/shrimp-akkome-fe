@@ -79,8 +79,16 @@ const registration = {
 
       if (!this.v$.$invalid) {
         try {
-          await this.signUp(this.user)
-          this.$router.push({ name: 'friends' })
+          const data = await this.signUp(this.user)
+          if (data.me) {
+            this.$router.push({ name: 'friends' })
+          } else if (data.identifier === 'awaiting_approval') {
+            this.$router.push({ name: 'registration-request-sent' })
+          } else if (data.identifier === 'missing_confirmed_email') {
+            this.$router.push({ name: 'awaiting-email-confirmation' })
+          } else {
+            console.warn('Unknown response from sign up', data)
+          }
         } catch (error) {
           console.warn('Registration failed: ', error)
           this.setCaptcha()

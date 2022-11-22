@@ -409,6 +409,8 @@
         }
     },
     "registration": {
+        "awaiting_email_confirmation_title": "Awaiting email confirmation",
+        "awaiting_email_confirmation": "Your account has been registered and an email has been sent to your address. Please check the email to complete registration.",
         "bio": "Bio",
         "bio_placeholder": "e.g.\nHi! Welcome to my bio.\nI love watching anime and playing games. I hope we can be friends!",
         "captcha": "CAPTCHA",
@@ -422,6 +424,8 @@
         "reason_placeholder": "This instance approves registrations manually.\nLet the administration know why you want to register.",
         "register": "Register",
         "registration": "Registration",
+        "request_sent": "Your registration request has been sent for approval. You will receive an email when your account is approved.",
+        "request_sent_title": "Registration request sent",
         "token": "Invite token",
         "username_placeholder": "e.g. akko",
         "validations": {
