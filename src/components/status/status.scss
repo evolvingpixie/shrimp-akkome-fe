@@ -302,10 +302,12 @@
     position: relative;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
     margin-top: var(--status-margin, $status-margin);
 
     > * {
-      max-width: 4em;
+      min-width: fit-content;
       flex: 1;
     }
   }
