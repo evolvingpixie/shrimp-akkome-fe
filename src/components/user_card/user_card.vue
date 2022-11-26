@@ -67,6 +67,17 @@
                   icon="external-link-alt"
                 />
               </a>
+              <a
+                v-if="isOtherUser"
+                :href="user.statusnet_profile_url + '.rss'"
+                target="_blank"
+                class="button-unstyled external-link-button"
+              >
+                <FAIcon
+                  class="icon"
+                  icon="rss"
+                />
+              </a>
               <AccountActions
                 v-if="isOtherUser && loggedIn"
                 :user="user"
