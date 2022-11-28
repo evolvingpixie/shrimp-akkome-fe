@@ -536,6 +536,8 @@
         "enter_current_password_to_confirm": "Enter your current password to confirm your identity",
         "expert_mode": "Show advanced",
         "export_theme": "Save preset",
+        "expire_posts_enabled": "Delete posts after a set amount of days",
+        "expire_posts_input_placeholder": "Number of days",
         "file_export_import": {
             "backup_restore": "Settings backup",
             "backup_settings": "Backup settings to file",

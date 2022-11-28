@@ -90,6 +90,7 @@ export const parseUser = (data) => {
     output.bot = data.bot
     if (data.akkoma) {
       output.instance = data.akkoma.instance
+      output.status_ttl_days = data.akkoma.status_ttl_days
     }
 
     if (data.pleroma) {
