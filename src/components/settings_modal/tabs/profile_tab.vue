@@ -90,6 +90,20 @@
         </Checkbox>
       </p>
       <p>
+        <Checkbox v-model="expirePosts">
+          {{ $t('settings.expire_posts_enabled') }}
+        </Checkbox>
+        <input
+          v-model="newPostTTLDays"
+          :disabled="!expirePosts"
+          type="number"
+          min="1"
+          max="730"
+          class="expire-posts-days"
+          :placeholder="$t('settings.expire_posts_input_placeholder')"
+        />
+      </p>
+      <p>
         <interface-language-switcher
           :prompt-text="$t('settings.email_language')"
           :language="emailLanguage"
