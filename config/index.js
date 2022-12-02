@@ -38,6 +38,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+     '/manifest.json': {
+        target,
+        changeOrigin: true,
+        cookieDomainRewrite: 'localhost'
+      },
       '/api': {
         target,
         changeOrigin: true,
