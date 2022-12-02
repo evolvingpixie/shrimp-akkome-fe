@@ -73,6 +73,7 @@
 
   .search-bar-input {
     flex: 1 0 auto;
+    margin-left: 0.5em;
   }
 
   .cancel-search {
