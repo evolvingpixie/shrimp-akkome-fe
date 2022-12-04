@@ -1055,7 +1055,9 @@
         "show_new": "Show new",
         "socket_broke": "Realtime connection lost: CloseEvent code {0}",
         "socket_reconnected": "Realtime connection established",
-        "up_to_date": "Up-to-date"
+        "up_to_date": "Up-to-date",
+        "follow_tag": "Follow hashtag",
+        "unfollow_tag": "Unfollow hashtag"
     },
     "toast": {
         "no_translation_target_set": "No translation target language set - this may fail. Please set a target language in your settings."

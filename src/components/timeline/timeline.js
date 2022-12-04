@@ -6,11 +6,13 @@ import TimelineMenuTabs from '../timeline_menu_tabs/timeline_menu_tabs.vue'
 import TimelineQuickSettings from './timeline_quick_settings.vue'
 import { debounce, throttle, keyBy } from 'lodash'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCircleNotch, faCog } from '@fortawesome/free-solid-svg-icons'
+import { faCircleNotch, faCog, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faCircleNotch,
-  faCog
+  faCog,
+  faPlus,
+  faMinus
 )
 
 const Timeline = {
@@ -90,6 +92,15 @@ const Timeline = {
     },
     showPanelNavShortcuts () {
       return this.$store.getters.mergedConfig.showPanelNavShortcuts
+    },
+    currentUser () {
+      return this.$store.state.users.currentUser
+    },
+    tagData () {
+      return this.$store.state.tags.tags[this.tag]
+    },
+    tagFollowed () {
+      return this.$store.state.tags.tags[this.tag]?.following
     }
   },
   created () {
@@ -118,6 +129,10 @@ const Timeline = {
     }
     window.addEventListener('keydown', this.handleShortKey)
     setTimeout(this.determineVisibleStatuses, 250)
+
+    if (this.tag) {
+      this.$store.dispatch('getTag', this.tag)
+    }
   },
   unmounted () {
     window.removeEventListener('scroll', this.handleScroll)
@@ -232,6 +247,12 @@ const Timeline = {
     }, 200),
     handleVisibilityChange () {
       this.unfocused = document.hidden
+    },
+    followTag (tag) {
+      return this.$store.dispatch('followTag', tag)
+    },
+    unfollowTag (tag) {
+      return this.$store.dispatch('unfollowTag', tag)
     }
   },
   watch: {

@@ -21,6 +21,36 @@
         {{ $t('timeline.up_to_date') }}
       </div>
       <TimelineQuickSettings v-if="!embedded" />
+      <div
+        v-if="currentUser && tag !== undefined && tagData && !tagFollowed"
+        class="followTag"
+      >
+        <button
+          class="button-default"
+          :title="$t('timeline.follow_tag')"
+          @click="followTag(tag)"
+        >
+          <FAIcon
+            size="sm"
+            icon="plus"
+          />
+        </button>
+      </div>
+      <div
+        v-if="currentUser && tag !== undefined && tagData && tagFollowed"
+        class="followTag"
+      >
+        <button
+          class="button-default"
+          :title="$t('timeline.unfollow_tag')"
+          @click="unfollowTag(tag)"
+        >
+          <FAIcon
+            size="sm"
+            icon="minus"
+          />
+        </button>
+      </div>
     </div>
     <div :class="classes.body">
       <div

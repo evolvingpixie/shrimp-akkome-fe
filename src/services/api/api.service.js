@@ -108,6 +108,9 @@ const PLEROMA_EDIT_ANNOUNCEMENT_URL = id => `/api/v1/pleroma/admin/announcements
 const PLEROMA_DELETE_ANNOUNCEMENT_URL = id => `/api/v1/pleroma/admin/announcements/${id}`
 const AKKOMA_SETTING_PROFILE_URL = (name) => `/api/v1/akkoma/frontend_settings/pleroma-fe/${name}`
 const AKKOMA_SETTING_PROFILE_LIST = `/api/v1/akkoma/frontend_settings/pleroma-fe`
+const MASTODON_TAG_URL = (name) => `/api/v1/tags/${name}`
+const MASTODON_FOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/follow`
+const MASTODON_UNFOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/unfollow`
 
 const oldfetch = window.fetch
 
@@ -1549,6 +1552,29 @@ const listSettingsProfiles = ({ credentials }) => {
   })
 }
 
+const getHashtag = ({ tag, credentials }) => {
+  return promisedRequest({
+    url: MASTODON_TAG_URL(tag),
+    credentials
+  })
+}
+
+const followHashtag = ({ tag, credentials }) => {
+  return promisedRequest({
+    url: MASTODON_FOLLOW_TAG_URL(tag),
+    method: 'POST',
+    credentials
+  })
+}
+
+const unfollowHashtag = ({ tag, credentials }) => {
+  return promisedRequest({
+    url: MASTODON_UNFOLLOW_TAG_URL(tag),
+    method: 'POST',
+    credentials
+  })
+}
+
 export const getMastodonSocketURI = ({ credentials, stream, args = {} }) => {
   return Object.entries({
     ...(credentials
@@ -1784,7 +1810,10 @@ const apiService = {
   getReports,
   updateReportStates,
   addNoteToReport,
-  deleteNoteFromReport
+  deleteNoteFromReport,
+  getHashtag,
+  followHashtag,
+  unfollowHashtag
 }
 
 export default apiService
