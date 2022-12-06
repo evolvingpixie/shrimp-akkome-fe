@@ -16,7 +16,6 @@
         class="fa-scale-110 fa-old-padding"
       />
     </button>
-    {{ ' ' }}
     <button
       v-if="showPrivate"
       class="button-unstyled scope"
@@ -30,7 +29,6 @@
         class="fa-scale-110 fa-old-padding"
       />
     </button>
-    {{ ' ' }}
     <button
       v-if="showUnlisted"
       class="button-unstyled scope"
@@ -44,7 +42,6 @@
         class="fa-scale-110 fa-old-padding"
       />
     </button>
-    {{ ' ' }}
     <button
       v-if="showPublic"
       class="button-unstyled scope"
@@ -87,6 +84,7 @@
     min-width: 1.3em;
     min-height: 1.3em;
     text-align: center;
+    margin-right: 0.4em;
 
     &.selected svg {
       color: $fallback--lightText;
