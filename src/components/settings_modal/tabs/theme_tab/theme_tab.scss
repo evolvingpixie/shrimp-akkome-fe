@@ -284,7 +284,6 @@
     box-shadow: none;
     background: transparent;
     color: var(--faint, $fallback--faint);
-    align-self: stretch;
   }
 
   .theme-color-cl,
@@ -318,11 +317,11 @@
 
 .extra-content {
   .apply-container {
+    padding-left: 15vw;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-grow: 1;
-
     .btn {
       flex-grow: 1;
       min-height: 2em;

@@ -76,6 +76,10 @@
       position: absolute;
       right: 20px;
       padding-right: 10px;
+
+      @media all and (max-width: 800px) {
+        display: none;
+      }
     }
   }
 }

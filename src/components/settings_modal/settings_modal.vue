@@ -44,6 +44,10 @@
       <div class="panel-body">
         <SettingsModalContent v-if="modalOpenedOnce" />
       </div>
+      <span
+        id="unscrolled-content"
+        class="extra-content"
+      />
       <div class="panel-footer settings-footer">
         <Popover
           class="export"
@@ -53,7 +57,7 @@
           :bound-to="{ x: 'container' }"
           remove-padding
         >
-          <template v-slot:trigger>
+          <template #trigger>
             <button
               class="btn button-default"
               :title="$t('general.close')"
@@ -65,7 +69,7 @@
               />
             </button>
           </template>
-          <template v-slot:content="{close}">
+          <template #content="{close}">
             <div class="dropdown-menu">
               <button
                 class="button-default dropdown-item dropdown-item-icon"
@@ -103,14 +107,11 @@
 
         <Checkbox
           :model-value="!!expertLevel"
+          class="expertMode"
           @update:modelValue="expertLevel = Number($event)"
         >
           {{ $t("settings.expert_mode") }}
         </Checkbox>
-        <span
-          id="unscrolled-content"
-          class="extra-content"
-        />
         <button
           v-if="currentUser"
           class="button-default logout-button"
