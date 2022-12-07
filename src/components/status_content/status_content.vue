@@ -68,7 +68,6 @@
 .StatusContent {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
 
   img, video {
     &.emoji {

@@ -42,6 +42,10 @@
     display: flex;
     padding: var(--status-margin, $status-margin);
 
+    .content {
+      overflow: hidden;
+    }
+
     > * {
       min-width: 0;
     }
