@@ -283,13 +283,18 @@
             "no_content": "説明なし",
             "no_reports": "通報なし",
             "note_placeholder": "メモ",
-            "notes": "メモ",
+            "notes": "{count}件",
             "reopen": "再開",
             "report": "通報：",
             "reports": "通報",
             "resolve": "完了",
-            "show_closed": "完了した通報を表示"
-        }
+            "show_closed": "完了した通報を表示",
+            "statuses": "{count}件",
+            "tag_policy_notice": "TagPolicyのMRFをONにしてください",
+            "tags": "ポスト制限を付ける"
+        },
+        "statuses": "ポスト",
+        "users": "ユーザー"
     },
     "nav": {
         "about": "このインスタンスについて",
@@ -404,6 +409,8 @@
         }
     },
     "registration": {
+        "awaiting_email_confirmation": "あなたにメールが送られました。メールをご覧くださって、リンクをクリックしてください",
+        "awaiting_email_confirmation_title": "メール確認中",
         "bio": "プロフィール",
         "bio_placeholder": "例:\nこんにちは。私は玲音。\n私はアニメのキャラクターで、日本の郊外に住んでいます。私をWiredで見たことがあるかもしれません。",
         "captcha": "CAPTCHA",
@@ -417,6 +424,8 @@
         "reason_placeholder": "このインスタンスは、新規登録を手動で受け付けています。\n登録したい理由を、インスタンスの管理者に教えてください。",
         "register": "登録",
         "registration": "登録",
+        "request_sent": "登録リクエストを送りました。登録受け入れたらメールが届きます。",
+        "request_sent_title": "登録リクエストを送りました",
         "token": "招待トークン",
         "username_placeholder": "例: lain",
         "validations": {
@@ -526,6 +535,8 @@
         "enable_web_push_notifications": "ウェブプッシュ通知を許可する",
         "enter_current_password_to_confirm": "あなたのアイデンティティを証明するため、現在のパスワードを入力してください",
         "expert_mode": "詳細設定を表示",
+        "expire_posts_enabled": "自動削除",
+        "expire_posts_input_placeholder": "日数",
         "export_theme": "保存",
         "file_export_import": {
             "backup_restore": "設定をバックアップ",
@@ -1035,6 +1046,7 @@
         "collapse": "たたむ",
         "conversation": "スレッド",
         "error": "タイムラインの読み込みに失敗しました: {0}",
+        "follow_tag": "タグをフォロー",
         "load_older": "古い投稿",
         "no_more_statuses": "これで終わりです",
         "no_retweet_hint": "投稿を「フォロワーのみ」または「ダイレクト」にすると、リピートできなくなります",
@@ -1044,6 +1056,7 @@
         "show_new": "読み込み",
         "socket_broke": "コード{0}によりリアルタイム接続が切断されました",
         "socket_reconnected": "リアルタイム接続が確立されました",
+        "unfollow_tag": "タグのフォローを解除",
         "up_to_date": "最新"
     },
     "toast": {
