@@ -20,6 +20,6 @@ Frontend version:
 
 ## Relative severity (does this prevent you from using the software as normal?)
 
-[] High - I cannot use the software
-[] Medium - I cannot use it as easily as I'd like
-[] Low - I can get by
+[] I cannot use the software
+[] I cannot use it as easily as I'd like
+[] I can manage
