@@ -730,7 +730,7 @@
         "settings_profile_creation": "Crear nuevo perfil",
         "settings_profile_creation_new_name_label": "Nombre",
         "settings_profile_creation_submit": "Crear",
-        "settings_profile_currently": "Actualmente usando {nombre} (versión: {versión})",
+        "settings_profile_currently": "Actualmente usando {nombre} (versión: {version})",
         "settings_profile_delete": "Eliminar",
         "settings_profile_delete_confirm": "¿Realmente quieres eliminar este perfil?",
         "settings_profile_force_sync": "Sincronizar",
