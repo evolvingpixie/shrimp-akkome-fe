@@ -1335,7 +1335,7 @@ const fetchEmojiReactions = ({ id, credentials }) => {
 
 const reactWithEmoji = ({ id, emoji, credentials }) => {
   return promisedRequest({
-    url: PLEROMA_EMOJI_REACT_URL(id, emoji),
+    url: PLEROMA_EMOJI_REACT_URL(id, encodeURIComponent(emoji)),
     method: 'PUT',
     credentials
   }).then(parseStatus)
@@ -1343,7 +1343,7 @@ const reactWithEmoji = ({ id, emoji, credentials }) => {
 
 const unreactWithEmoji = ({ id, emoji, credentials }) => {
   return promisedRequest({
-    url: PLEROMA_EMOJI_UNREACT_URL(id, emoji),
+    url: PLEROMA_EMOJI_UNREACT_URL(id, encodeURIComponent(emoji)),
     method: 'DELETE',
     credentials
   }).then(parseStatus)
