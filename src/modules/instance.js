@@ -178,7 +178,7 @@ const instance = {
 
     async getCustomEmoji ({ commit, state }) {
       try {
-        const res = await window.fetch('/api/pleroma/emoji.json')
+        const res = await window.fetch('/api/v1/pleroma/emoji')
         if (res.ok) {
           const result = await res.json()
           const values = Array.isArray(result) ? Object.assign({}, ...result) : result
