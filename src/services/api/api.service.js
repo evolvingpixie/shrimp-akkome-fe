@@ -11,11 +11,11 @@ const CHANGE_EMAIL_URL = '/api/pleroma/change_email'
 const CHANGE_PASSWORD_URL = '/api/pleroma/change_password'
 const MOVE_ACCOUNT_URL = '/api/pleroma/move_account'
 const ALIASES_URL = '/api/pleroma/aliases'
-const TAG_USER_URL = '/api/v1/pleroma/admin/users/tag'
-const PERMISSION_GROUP_URL = (screenName, right) => `/api/v1/pleroma/admin/users/${screenName}/permission_group/${right}`
-const ACTIVATE_USER_URL = '/api/v1/pleroma/admin/users/activate'
-const DEACTIVATE_USER_URL = '/api/v1/pleroma/admin/users/deactivate'
-const ADMIN_USERS_URL = '/api/v1/pleroma/admin/users'
+const TAG_USER_URL = '/api/pleroma/admin/users/tag'
+const PERMISSION_GROUP_URL = (screenName, right) => `/api/pleroma/admin/users/${screenName}/permission_group/${right}`
+const ACTIVATE_USER_URL = '/api/pleroma/admin/users/activate'
+const DEACTIVATE_USER_URL = '/api/pleroma/admin/users/deactivate'
+const ADMIN_USERS_URL = '/api/pleroma/admin/users'
 const SUGGESTIONS_URL = '/api/v1/suggestions'
 const NOTIFICATION_SETTINGS_URL = '/api/pleroma/notification_settings'
 const NOTIFICATION_READ_URL = '/api/v1/pleroma/notifications/read'
@@ -246,7 +246,7 @@ const register = ({ params, credentials }) => {
     })
 }
 
-const getCaptcha = () => fetch('/api/v1/pleroma/captcha').then(resp => resp.json())
+const getCaptcha = () => fetch('/api/pleroma/captcha').then(resp => resp.json())
 
 const authHeaders = (accessToken) => {
   if (accessToken) {
