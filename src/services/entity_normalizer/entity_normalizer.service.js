@@ -408,8 +408,10 @@ export const parseNotification = (data) => {
   if (masto) {
     output.type = mastoDict[data.type] || data.type
     output.seen = data.pleroma.is_seen
-    output.status = isStatusNotification(output.type) ? parseStatus(data.status) : null
-    output.action = output.status // TODO: Refactor, this is unneeded
+    if (data.status) {
+      output.status = isStatusNotification(output.type) ? parseStatus(data.status) : null
+      output.action = output.status // TODO: Refactor, this is unneeded
+    }
     output.target = output.type !== 'move'
       ? null
       : parseUser(data.target)
