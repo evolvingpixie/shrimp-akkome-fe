@@ -1,5 +1,16 @@
 @import '../../_variables.scss';
 
+// The worst query selector ever
+// selects ONLY emojis pickers in replies in notifications
+// who thought this was a good idea?
+.notification > .Status > .status-container > .post-status-form > form > .form-group > .emoji-input > .emoji-picker {
+  max-width: 100%;
+  left: 0;
+  @media (min-width: 1300px) {
+    left: -30px;
+  }
+}
+
 .Notification {
   .emoji-picker {
     min-width: 160%;
@@ -17,6 +28,10 @@
       left: -10%;
       min-width: 50%;
       max-width: 130%;
+    }
+
+    .Status > .emoji-picker {
+      z-index: 1000;
     }
   }
 }
