@@ -10,11 +10,13 @@ import withLoadMore from '../../hocs/with_load_more/with_load_more'
 import { debounce } from 'lodash'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faCircleNotch
+  faCircleNotch,
+  faCircleCheck
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
-  faCircleNotch
+  faCircleNotch,
+  faCircleCheck
 )
 
 const FollowerList = withLoadMore({

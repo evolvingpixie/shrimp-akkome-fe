@@ -1183,7 +1183,8 @@
     "user_profile": {
         "profile_does_not_exist": "Sorry, this profile does not exist.",
         "profile_loading_error": "Sorry, there was an error loading this profile.",
-        "timeline_title": "User timeline"
+        "timeline_title": "User timeline",
+        "field_validated": "Link Verified"
     },
     "user_reporting": {
         "add_comment_description": "The report will be sent to your instance moderators. You can provide an explanation of why you are reporting this account below:",

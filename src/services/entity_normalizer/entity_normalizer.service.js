@@ -68,13 +68,16 @@ export const parseUser = (data) => {
     output.fields_html = data.fields.map(field => {
       return {
         name: escape(field.name),
-        value: field.value
+        value: field.value,
+        verified_at: field.verified_at
       }
     })
+    console.log(output.fields_html)
     output.fields_text = data.fields.map(field => {
       return {
         name: unescape(field.name.replace(/<[^>]*>/g, '')),
-        value: unescape(field.value.replace(/<[^>]*>/g, ''))
+        value: unescape(field.value.replace(/<[^>]*>/g, '')),
+        verified_at: field.verified_at
       }
     })
 
