@@ -37,6 +37,15 @@
               :html="field.value"
               :emoji="user.emoji"
             />
+            <span
+              v-if="field.verified_at"
+              class="user-profile-field-validated"
+            >
+              <FAIcon
+                icon="check-circle"
+                :title="$t('user_profile.field_validated')"
+              />
+            </span>
           </dd>
         </dl>
       </div>
@@ -224,6 +233,11 @@
         overflow: hidden;
         padding: 0.5em 1.5em;
         box-sizing: border-box;
+      }
+
+      .user-profile-field-validated {
+        margin-left: 1rem;
+        color: green;
       }
     }
   }
