@@ -24,8 +24,7 @@ const TimelineMenuContent = {
       currentUser: state => state.users.currentUser,
       privateMode: state => state.instance.private,
       federating: state => state.instance.federating,
-      showBubbleTimeline: state => (state.instance.localBubbleInstances.length > 0),
-      restrictedTimelines: state => state.instance.restrict_unauthenticated.timelines
+      showBubbleTimeline: state => (state.instance.localBubbleInstances.length > 0)
     })
   }
 }

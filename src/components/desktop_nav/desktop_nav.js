@@ -98,15 +98,11 @@ export default {
     logoLeft () { return this.$store.state.instance.logoLeft },
     currentUser () { return this.$store.state.users.currentUser },
     privateMode () { return this.$store.state.instance.private },
-    federating () { return this.$store.state.instance.federating },
     shouldConfirmLogout () {
       return this.$store.getters.mergedConfig.modalOnLogout
     },
     showBubbleTimeline () {
       return this.$store.state.instance.localBubbleInstances.length > 0
-    },
-    restrictedTimelines () {
-      return this.$store.state.instance.restrict_unauthenticated.timelines
     }
   },
   methods: {

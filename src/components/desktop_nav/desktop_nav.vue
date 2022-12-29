@@ -44,7 +44,6 @@
             />
           </router-link>
           <router-link
-            v-if="currentUser || !(privateMode || restrictedTimelines.public)"
             :to="{ name: 'public-timeline' }"
             class="nav-icon"
           >
@@ -68,7 +67,6 @@
             />
           </router-link>
           <router-link
-            v-if="federating && (currentUser || !(privateMode || restrictedTimelines.federated))"
             :to="{ name: 'public-external-timeline' }"
             class="nav-icon"
           >

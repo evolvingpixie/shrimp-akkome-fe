@@ -32,7 +32,7 @@
         >{{ $t("nav.bubble_timeline") }}</span>
       </router-link>
     </li>
-    <li v-if="currentUser || !(privateMode || restrictedTimelines.public)">
+    <li v-if="currentUser || !privateMode">
       <router-link
         class="menu-item"
         :to="{ name: 'public-timeline' }"
@@ -48,7 +48,7 @@
         >{{ $t("nav.public_tl") }}</span>
       </router-link>
     </li>
-    <li v-if="federating && (currentUser || !(privateMode || restrictedTimelines.federated))">
+    <li v-if="federating && (currentUser || !privateMode)">
       <router-link
         class="menu-item"
         :to="{ name: 'public-external-timeline' }"
