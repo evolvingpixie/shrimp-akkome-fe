@@ -65,7 +65,7 @@
         @click.prevent.stop="toggleHidden"
       >
         <Blurhash
-          v-if="useBlurhash"
+          v-if="useBlurhash && attachment.blurhash"
           :height="512"
           :width="1024"
           :hash="attachment.blurhash"
