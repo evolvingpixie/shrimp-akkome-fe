@@ -186,7 +186,7 @@ const interfaceMod = {
       if (thirdColumnMode === 'none' || !rootState.users.currentUser) {
         commit('setLayoutType', normalOrMobile)
       } else {
-        const wideLayout = width >= 1300
+        const wideLayout = width >= 1280
         commit('setLayoutType', wideLayout ? 'wide' : normalOrMobile)
       }
     },
