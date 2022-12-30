@@ -64,7 +64,15 @@
         :title="attachment.description"
         @click.prevent.stop="toggleHidden"
       >
+        <Blurhash
+          v-if="useBlurhash"
+          :height="512"
+          :width="1024"
+          :hash="attachment.blurhash"
+          :punch="1"
+        />
         <img
+          v-else
           :key="nsfwImage"
           class="nsfw"
           :src="nsfwImage"

@@ -18,6 +18,7 @@ import {
   faPencilAlt,
   faAlignRight
 } from '@fortawesome/free-solid-svg-icons'
+import Blurhash from '../blurhash/Blurhash.vue'
 
 library.add(
   faFile,
@@ -63,7 +64,8 @@ const Attachment = {
   components: {
     Flash,
     StillImage,
-    VideoAttachment
+    VideoAttachment,
+    Blurhash
   },
   computed: {
     classNames () {
@@ -83,6 +85,9 @@ const Attachment = {
     },
     useContainFit () {
       return this.$store.getters.mergedConfig.useContainFit
+    },
+    useBlurhash () {
+      return this.$store.getters.mergedConfig.useBlurhash
     },
     placeholderName () {
       if (this.attachment.description === '' || !this.attachment.description) {

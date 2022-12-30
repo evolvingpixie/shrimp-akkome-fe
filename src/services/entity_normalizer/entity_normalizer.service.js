@@ -234,13 +234,14 @@ export const parseAttachment = (data) => {
   if (masto) {
     // Not exactly same...
     output.mimetype = data.pleroma ? data.pleroma.mime_type : data.type
-    output.meta = data.meta // not present in BE yet
+    output.meta = data.meta
     output.id = data.id
   } else {
     output.mimetype = data.mimetype
     // output.meta = ??? missing
   }
 
+  output.blurhash = data.blurhash
   output.url = data.url
   output.large_thumb_url = data.preview_url
   output.description = data.description

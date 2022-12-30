@@ -117,7 +117,8 @@ export const defaultState = {
   maxDepthInThread: undefined, // instance default
   translationLanguage: undefined, // instance default,
   supportedTranslationLanguages: {}, // instance default
-  userProfileDefaultTab: 'statuses'
+  userProfileDefaultTab: 'statuses',
+  useBlurhash: true,
 }
 
 // caching the instance default properties

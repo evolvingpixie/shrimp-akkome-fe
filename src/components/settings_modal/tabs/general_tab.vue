@@ -409,6 +409,15 @@
           </li>
           <li>
             <BooleanSetting
+              path="useBlurhash"
+              expert="1"
+              :disabled="!hideNsfw"
+            >
+              {{ $t('settings.use_blurhash') }}
+            </BooleanSetting>
+          </li>
+          <li>
+            <BooleanSetting
               path="useOneClickNsfw"
               expert="1"
               :disabled="!hideNsfw"

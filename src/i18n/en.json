@@ -939,6 +939,7 @@
             "title": "Version"
         },
         "virtual_scrolling": "Optimize timeline rendering",
+        "use_blurhash": "Use blurhashes for NSFW thumbnails",
         "word_filter": "Word filter",
         "wordfilter": "Wordfilter"
     },
