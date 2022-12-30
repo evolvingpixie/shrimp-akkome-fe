@@ -104,10 +104,9 @@
           v-if="followsTabVisible"
           key="followees"
           :label="$t('user_card.followees')"
-          :disabled="!user.friends_count"
         >
           <FriendList :user-id="userId">
-            <template v-slot:item="{item}">
+            <template #item="{item}">
               <FollowCard :user="item" />
             </template>
           </FriendList>
@@ -116,10 +115,9 @@
           v-if="followersTabVisible"
           key="followers"
           :label="$t('user_card.followers')"
-          :disabled="!user.followers_count"
         >
           <FollowerList :user-id="userId">
-            <template v-slot:item="{item}">
+            <template #item="{item}">
               <FollowCard
                 :user="item"
                 :no-follows-you="isUs"
