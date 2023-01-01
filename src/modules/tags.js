@@ -13,7 +13,6 @@ const tags = {
   },
   mutations: {
     setTag (state, { name, data }) {
-      console.log("Setting", name, {...data})
       state.tags[name] = data
     }
   },
