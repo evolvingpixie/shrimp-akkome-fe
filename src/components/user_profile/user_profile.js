@@ -13,6 +13,7 @@ import {
   faCircleNotch,
   faCircleCheck
 } from '@fortawesome/free-solid-svg-icons'
+import FollowedTagCard from '../followed_tag_card/FollowedTagCard.vue'
 
 library.add(
   faCircleNotch,
@@ -31,6 +32,14 @@ const FriendList = withLoadMore({
   fetch: (props, $store) => $store.dispatch('fetchFriends', props.userId),
   select: (props, $store) => get($store.getters.findUser(props.userId), 'friendIds', []).map(id => $store.getters.findUser(id)),
   destroy: (props, $store) => $store.dispatch('clearFriends', props.userId),
+  childPropName: 'items',
+  additionalPropNames: ['userId']
+})(List)
+
+const FollowedTagList = withLoadMore({
+  fetch: (props, $store) => $store.dispatch('fetchFollowedTags', props.userId),
+  select: (props, $store) => get($store.getters.findUser(props.userId), 'followedTagIds', []).map(id => $store.getters.findTag(id)),
+  destroy: (props, $store) => $store.dispatch('clearFollowedTags', props.userId),
   childPropName: 'items',
   additionalPropNames: ['userId']
 })(List)
@@ -202,6 +211,7 @@ const UserProfile = {
     }
   },
   components: {
+    FollowedTagCard,
     UserCard,
     Timeline,
     FollowerList,
@@ -209,7 +219,8 @@ const UserProfile = {
     FollowCard,
     TabSwitcher,
     Conversation,
-    RichContent
+    RichContent,
+    FollowedTagList,
   }
 }
 

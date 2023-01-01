@@ -59,7 +59,8 @@ const withLoadMore = ({
               this.loading = false
               this.bottomedOut = isEmpty(newEntries)
             })
-            .catch(() => {
+            .catch((e) => {
+              console.error(e)
               this.loading = false
               this.error = true
             })

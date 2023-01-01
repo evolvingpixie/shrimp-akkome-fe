@@ -105,11 +105,36 @@
           key="followees"
           :label="$t('user_card.followees')"
         >
-          <FriendList :user-id="userId">
-            <template #item="{item}">
-              <FollowCard :user="item" />
-            </template>
-          </FriendList>
+          <tab-switcher
+            :active-tab="users"
+            :render-only-focused="true"
+          >
+            <div
+              key="users"
+              :label="$t('user_card.followed_users')"
+            >
+              <FriendList :user-id="userId">
+                <template #item="{item}">
+                  <FollowCard :user="item" />
+                </template>
+              </FriendList>
+            </div>
+            <div
+              key="tags"
+              v-if="isUs"
+              :label="$t('user_card.followed_tags')"
+            >
+              <FollowedTagList
+                :user-id="userId"
+                :following="false"
+                :get-key="(item) => item.name"
+              >
+                <template #item="{item}">
+                  <FollowedTagCard :tag="item" />
+                </template>
+              </FollowedTagList>
+            </div>
+          </tab-switcher>
         </div>
         <div
           v-if="followersTabVisible"

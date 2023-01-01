@@ -1139,6 +1139,8 @@
         "follow_unfollow": "Unfollow",
         "followees": "Following",
         "followers": "Followers",
+        "followed_tags": "Followed hashtags",
+        "followed_users": "Followed users",
         "following": "Following!",
         "follows_you": "Follows you!",
         "hidden": "Hidden",

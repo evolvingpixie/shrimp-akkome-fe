@@ -1,6 +1,7 @@
 import { each, map, concat, last, get } from 'lodash'
 import { parseStatus, parseSource, parseUser, parseNotification, parseReport, parseAttachment, parseLinkHeaderPagination } from '../entity_normalizer/entity_normalizer.service.js'
 import { RegistrationError, StatusCodeError } from '../errors/errors'
+import { Url } from 'url'
 
 /* eslint-env browser */
 const MUTES_IMPORT_URL = '/api/pleroma/mutes_import'
@@ -111,6 +112,7 @@ const AKKOMA_SETTING_PROFILE_LIST = `/api/v1/akkoma/frontend_settings/pleroma-fe
 const MASTODON_TAG_URL = (name) => `/api/v1/tags/${name}`
 const MASTODON_FOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/follow`
 const MASTODON_UNFOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/unfollow`
+const MASTODON_FOLLOWED_TAGS_URL = '/api/v1/followed_tags'
 
 const oldfetch = window.fetch
 
@@ -1575,6 +1577,28 @@ const unfollowHashtag = ({ tag, credentials }) => {
   })
 }
 
+const getFollowedHashtags = ({ credentials, pagination: savedPagination }) => {
+  const queryParams = new URLSearchParams()
+  if (savedPagination?.maxId) {
+    queryParams.append('max_id', savedPagination.maxId)
+  }
+  const url = `${MASTODON_FOLLOWED_TAGS_URL}?${queryParams.toString()}`
+  let pagination = {};
+  return fetch(url, {
+    credentials
+  }).then((data) => {
+    pagination = parseLinkHeaderPagination(data.headers.get('Link'), {
+      flakeId: false
+    });
+    return data.json()
+  }).then((data) => {
+    return {
+      pagination,
+      data
+    }
+  });
+}
+
 export const getMastodonSocketURI = ({ credentials, stream, args = {} }) => {
   return Object.entries({
     ...(credentials
@@ -1813,7 +1837,8 @@ const apiService = {
   deleteNoteFromReport,
   getHashtag,
   followHashtag,
-  unfollowHashtag
+  unfollowHashtag,
+  getFollowedHashtags,
 }
 
 export default apiService
