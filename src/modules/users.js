@@ -193,11 +193,6 @@ export const mutations = {
       mergeOrAdd(state.users, state.usersObject, user)
     })
   },
-  addNewTags (state, tags) {
-    each(tags, (tag) => {
-      mergeOrAdd(state.tags, state.tagsObject, tag, 'name')
-    })
-  },
   updateUserRelationship (state, relationships) {
     relationships.forEach((relationship) => {
       state.relationships[relationship.id] = relationship
@@ -290,10 +285,6 @@ export const getters = {
   relationship: state => id => {
     const rel = id && state.relationships[id]
     return rel || { id, loading: true }
-  },
-  findTag: state => query => {
-    const result = state.tagsObject[query]
-    return result
   },
 }
 
@@ -433,7 +424,7 @@ const users = {
 
       return rootState.api.backendInteractor.getFollowedHashtags({ pagination })
         .then(({ data: tags, pagination }) => {
-          commit('addNewTags', tags)
+          each(tags, tag => commit('setTag', { name: tag.name, data: tag }))
           commit('saveFollowedTagIds', { id, followedTagIds: tags.map(tag => tag.name) })
           commit('saveFollowedTagPagination', { id, pagination })
           return tags
@@ -476,9 +467,6 @@ const users = {
     },
     addNewUsers ({ commit }, users) {
       commit('addNewUsers', users)
-    },
-    addNewTags ({ commit }, tags) {
-      commit('addNewTags', tags)
     },
     addNewStatuses (store, { statuses }) {
       const users = map(statuses, 'user')

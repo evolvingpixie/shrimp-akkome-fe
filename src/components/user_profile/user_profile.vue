@@ -106,8 +106,9 @@
           :label="$t('user_card.followees')"
         >
           <tab-switcher
-            :active-tab="users"
+            :active-tab="followsTab"
             :render-only-focused="true"
+            :on-switch="onFollowsTabSwitch"
           >
             <div
               key="users"
@@ -126,11 +127,13 @@
             >
               <FollowedTagList
                 :user-id="userId"
-                :following="false"
                 :get-key="(item) => item.name"
               >
                 <template #item="{item}">
                   <FollowedTagCard :tag="item" />
+                </template>
+                <template #empty>
+                  {{ $t('user_card.not_following_any_hashtags')}}
                 </template>
               </FollowedTagList>
             </div>

@@ -52,6 +52,7 @@ const UserProfile = {
       error: false,
       userId: null,
       tab: 'statuses',
+      followsTab: 'users',
       footerRef: null,
       note: null,
       noteLoading: false
@@ -175,6 +176,9 @@ const UserProfile = {
     onTabSwitch (tab) {
       this.tab = tab
       this.$router.replace({ hash: `#${tab}` })
+    },
+    onFollowsTabSwitch (tab) {
+      this.followsTab = tab
     },
     linkClicked ({ target }) {
       if (target.tagName === 'SPAN') {

@@ -1057,6 +1057,7 @@
         "show_new": "Show new",
         "socket_broke": "Realtime connection lost: CloseEvent code {0}",
         "socket_reconnected": "Realtime connection established",
+        "follow_tag": "Follow hashtag",
         "unfollow_tag": "Unfollow hashtag",
         "up_to_date": "Up-to-date"
     },
@@ -1179,6 +1180,9 @@
         "unfollow_confirm_accept_button": "Yes, unfollow",
         "unfollow_confirm_cancel_button": "No, don't unfollow",
         "unfollow_confirm_title": "Unfollow user",
+        "not_following_any_hashtags": "You are not following any hashtags",
+        "follow_tag": "Follow hashtag",
+        "unfollow_tag": "Unfollow hashtag",
         "unmute": "Unmute",
         "unmute_progress": "Unmuting…",
         "unsubscribe": "Unsubscribe"

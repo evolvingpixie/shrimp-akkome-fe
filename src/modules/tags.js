@@ -2,11 +2,18 @@ import { merge } from 'lodash'
 
 const tags = {
   state: {
-    // Contains key = id, value = number of trackers for this poll
+    // Contains key = name, value = tag json
     tags: {}
+  },
+  getters: {
+    findTag: state => query => {
+      const result = state.tags[query]
+      return result
+    },
   },
   mutations: {
     setTag (state, { name, data }) {
+      console.log("Setting", name, {...data})
       state.tags[name] = data
     }
   },
@@ -17,17 +24,17 @@ const tags = {
         return tag
       })
     },
-    followTag (store, tagName) {
-      return store.rootState.api.backendInteractor.followHashtag({ tag: tagName })
+    followTag ({ rootState, commit }, tagName) {
+      return rootState.api.backendInteractor.followHashtag({ tag: tagName })
         .then((resp) => {
-          store.commit('setTag', { name: tagName, data: resp })
+          commit('setTag', { name: tagName, data: resp })
           return resp
         })
     },
-    unfollowTag ({ rootState, commit }, tag) {
-      return rootState.api.backendInteractor.unfollowHashtag({ tag })
+    unfollowTag ({ rootState, commit }, tagName) {
+      return rootState.api.backendInteractor.unfollowHashtag({ tag: tagName })
         .then((resp) => {
-          commit('setTag', { name: tag, data: resp })
+          commit('setTag', { name: tagName, data: resp })
           return resp
         })
     }
