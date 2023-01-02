@@ -1,6 +1,7 @@
 // stylelint-disable rscss/class-format
 @import './_variables.scss';
-
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+@import '@floatingghost/pinch-zoom-element/dist/pinch-zoom.css';
 :root {
   --navbar-height: 3.5rem;
   --post-line-height: 1.4;

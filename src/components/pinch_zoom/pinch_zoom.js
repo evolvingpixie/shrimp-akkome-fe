@@ -1,4 +1,4 @@
-import PinchZoom from '@kazvmoe-infra/pinch-zoom-element'
+import PinchZoom from '@floatingghost/pinch-zoom-element'
 
 export default {
   methods: {

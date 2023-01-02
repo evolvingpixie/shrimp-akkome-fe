@@ -4,6 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import vClickOutside from 'click-outside-vue3'
 
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
+import { config } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false
 
 import App from '../App.vue'
 import routes from './routes'

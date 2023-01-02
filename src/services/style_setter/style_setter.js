@@ -4,12 +4,10 @@ import { getColors, computeDynamicColor, getOpacitySlot } from '../theme_data/th
 
 export const applyTheme = (input) => {
   const { rules } = generatePreset(input)
-  const head = document.head
   const body = document.body
   body.classList.add('hidden')
 
-  const styleEl = document.createElement('style')
-  head.appendChild(styleEl)
+  const styleEl = document.getElementById('theme-holder')
   const styleSheet = styleEl.sheet
 
   styleSheet.toString()
