@@ -27,6 +27,11 @@ const EmojiPicker = {
       required: false,
       type: Boolean,
       default: false
+    },
+    showKeepOpen: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   data () {

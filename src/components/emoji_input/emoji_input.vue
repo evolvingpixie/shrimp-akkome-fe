@@ -18,6 +18,7 @@
       <EmojiPicker
         v-if="enableEmojiPicker"
         ref="picker"
+        show-keep-open
         :class="{ hide: !showPicker }"
         :enable-sticker-picker="enableStickerPicker"
         class="emoji-picker-panel"

@@ -84,7 +84,10 @@
             <span :ref="'group-end-' + group.id" />
           </div>
         </div>
-        <div class="keep-open">
+        <div
+          v-if="showKeepOpen"
+          class="keep-open"
+        >
           <Checkbox v-model="keepOpen">
             {{ $t('emoji.keep_open') }}
           </Checkbox>
