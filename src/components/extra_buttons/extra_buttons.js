@@ -144,6 +144,7 @@ const ExtraButtons = {
           statusPoll: this.status.poll,
           statusFiles: [...this.status.attachments],
           statusScope: this.status.visibility,
+          statusLanguage: this.status.language,
           statusContentType: data.content_type
         }))
       this.doDeleteStatus()

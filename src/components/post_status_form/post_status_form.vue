@@ -195,6 +195,23 @@
           />
 
           <div
+            class="language-selector"
+            >
+            <Select
+              id="post-language"
+              v-model="newStatus.language"
+              class="form-control"
+            >
+              <option
+                v-for="language in isoLanguages"
+                :key="language"
+                :value="language"
+              >
+                {{ language }}
+              </option>
+            </Select>
+          </div>
+          <div
             v-if="postFormats.length > 1"
             class="text-format"
           >
