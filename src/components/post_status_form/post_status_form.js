@@ -13,6 +13,7 @@ import suggestor from '../emoji_input/suggestor.js'
 import { mapGetters, mapState } from 'vuex'
 import Checkbox from '../checkbox/checkbox.vue'
 import Select from '../select/select.vue'
+import iso6391 from 'iso-639-1'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -63,6 +64,7 @@ const PostStatusForm = {
     'statusMediaDescriptions',
     'statusScope',
     'statusContentType',
+    'statusLanguage',
     'replyTo',
     'quoteId',
     'repliedUser',
@@ -128,7 +130,7 @@ const PostStatusForm = {
       statusText = buildMentionsString({ user: this.repliedUser, attentions: this.attentions }, currentUser)
     }
 
-    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject } = this.$store.getters.mergedConfig
+    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage } = this.$store.getters.mergedConfig
 
     let statusParams = {
       spoilerText: this.subject || '',
@@ -139,6 +141,7 @@ const PostStatusForm = {
       poll: {},
       mediaDescriptions: {},
       visibility: this.suggestedVisibility(),
+      language: interfaceLanguage,
       contentType
     }
 
@@ -153,6 +156,7 @@ const PostStatusForm = {
         poll: this.statusPoll || {},
         mediaDescriptions: this.statusMediaDescriptions || {},
         visibility: this.statusScope || this.suggestedVisibility(),
+        language: this.statusLanguage || interfaceLanguage,
         contentType: statusContentType
       }
     }
@@ -259,7 +263,10 @@ const PostStatusForm = {
     ...mapGetters(['mergedConfig']),
     ...mapState({
       mobileLayout: state => state.interface.mobileLayout
-    })
+    }),
+    isoLanguages () {
+      return iso6391.getAllCodes();
+    }
   },
   watch: {
     'newStatus': {
@@ -282,6 +289,7 @@ const PostStatusForm = {
         files: [],
         visibility: newStatus.visibility,
         contentType: newStatus.contentType,
+        language: newStatus.language,
         poll: {},
         mediaDescriptions: {}
       }
@@ -341,6 +349,7 @@ const PostStatusForm = {
         inReplyToStatusId: this.replyTo,
         quoteId: this.quoteId,
         contentType: newStatus.contentType,
+        language: newStatus.language,
         poll,
         idempotencyKey: this.idempotencyKey
       }
@@ -375,6 +384,7 @@ const PostStatusForm = {
         inReplyToStatusId: this.replyTo,
         quoteId: this.quoteId,
         contentType: newStatus.contentType,
+        language: newStatus.language,
         poll: {},
         preview: true
       }).then((data) => {

@@ -13,7 +13,8 @@ const postStatus = ({
   quoteId = undefined,
   contentType = 'text/plain',
   preview = false,
-  idempotencyKey = ''
+  idempotencyKey = '',
+  language
 }) => {
   const mediaIds = map(media, 'id')
 
@@ -29,7 +30,8 @@ const postStatus = ({
     contentType,
     poll,
     preview,
-    idempotencyKey
+    idempotencyKey,
+    language
   })
     .then((data) => {
       if (!data.error && !preview) {

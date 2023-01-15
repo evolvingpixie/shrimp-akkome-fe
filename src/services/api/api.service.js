@@ -880,7 +880,8 @@ const postStatus = ({
   quoteId,
   contentType,
   preview,
-  idempotencyKey
+  idempotencyKey,
+  language
 }) => {
   const form = new FormData()
   const pollOptions = poll.options || []
@@ -891,6 +892,7 @@ const postStatus = ({
   if (visibility) form.append('visibility', visibility)
   if (sensitive) form.append('sensitive', sensitive)
   if (contentType) form.append('content_type', contentType)
+  if (language) form.append('language', language)
   mediaIds.forEach(val => {
     form.append('media_ids[]', val)
   })
