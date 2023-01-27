@@ -193,6 +193,7 @@
             <FollowButton
               :relationship="relationship"
               :user="user"
+              :disabled="relationship.blocked_by"
             />
             <template v-if="relationship.following">
               <ProgressButton
