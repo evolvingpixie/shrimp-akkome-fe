@@ -128,6 +128,12 @@
         </div>
         <div class="user-meta">
           <div
+            v-if="relationship.blocked_by && loggedIn && isOtherUser"
+            class="blocking"
+          >
+            {{ $t('user_card.blocks_you') }}
+          </div>
+          <div
             v-if="relationship.followed_by && loggedIn && isOtherUser"
             class="following"
           >
@@ -187,6 +193,7 @@
             <FollowButton
               :relationship="relationship"
               :user="user"
+              :disabled="relationship.blocked_by"
             />
             <template v-if="relationship.following">
               <ProgressButton
