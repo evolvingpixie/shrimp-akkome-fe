@@ -85,10 +85,6 @@
     flex-grow: 1;
   }
 
-  .emoji-groups {
-    min-height: 200px;
-  }
-
   .additional-tabs {
     border-left: 1px solid;
     border-left-color: $fallback--icon;
@@ -167,76 +163,12 @@
     }
   }
 
-  .emoji {
-    &-search {
-      padding: 5px;
-      flex: 0 0 auto;
+  .emoji-search {
+    padding: 5px;
+    flex: 0 0 auto;
 
-      input {
-        width: 100%;
-      }
+    input {
+      width: 100%;
     }
-
-    &-groups {
-      flex: 1 1 1px;
-      position: relative;
-      overflow: auto;
-      user-select: none;
-      mask: linear-gradient(to top, white 0, transparent 100%) bottom no-repeat,
-            linear-gradient(to bottom, white 0, transparent 100%) top no-repeat,
-            linear-gradient(to top, white, white);
-      transition: mask-size 150ms;
-      mask-size: 100% 20px, 100% 20px, auto;
-      // Autoprefixed seem to ignore this one, and also syntax is different
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      &.scrolled {
-        &-top {
-          mask-size: 100% 20px, 100% 0, auto;
-        }
-        &-bottom {
-          mask-size: 100% 0, 100% 20px, auto;
-        }
-      }
-    }
-
-    &-group {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      padding-left: 5px;
-      justify-content: left;
-
-      &-title {
-        font-size: 0.85em;
-        width: 100%;
-        margin: 0;
-
-        &.disabled {
-          display: none;
-        }
-      }
-    }
-
-    &-item {
-      width: 32px;
-      height: 32px;
-      box-sizing: border-box;
-      display: flex;
-      font-size: 32px;
-      align-items: center;
-      justify-content: center;
-      margin: 4px;
-
-      cursor: pointer;
-
-      img {
-        object-fit: contain;
-        max-width: 100%;
-        max-height: 100%;
-      }
-    }
-
   }
-
 }

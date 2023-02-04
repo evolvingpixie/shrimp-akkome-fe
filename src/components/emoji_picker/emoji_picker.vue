@@ -2,9 +2,9 @@
   <div class="emoji-picker panel panel-default panel-body">
     <div class="heading">
       <span
+        ref="emoji-tabs"
         class="emoji-tabs"
         @wheel="onWheel"
-        ref="emoji-tabs"
       >
         <span
           v-for="group in emojis"
@@ -51,39 +51,12 @@
             @input="$event.target.composing = false"
           >
         </div>
-        <div
-          ref="emoji-groups"
-          class="emoji-groups"
-          :class="groupsScrolledClass"
-          @scroll="onScroll"
-        >
-          <div
-            v-for="group in emojisView"
-            :key="group.id"
-            class="emoji-group"
-          >
-            <h6
-              :ref="'group-' + group.id"
-              class="emoji-group-title"
-            >
-              {{ group.text }}
-            </h6>
-            <span
-              v-for="emoji in group.emojis"
-              :key="group.id + emoji.displayText"
-              :title="emoji.displayText"
-              class="emoji-item"
-              @click.stop.prevent="onEmoji(emoji)"
-            >
-              <span v-if="!emoji.imageUrl">{{ emoji.replacement }}</span>
-              <img
-                v-else
-                :src="emoji.imageUrl"
-              >
-            </span>
-            <span :ref="'group-end-' + group.id" />
-          </div>
-        </div>
+        <EmojiGrid
+          ref="emojiGrid"
+          :groups="emojisView"
+          @emoji="onEmoji"
+          @active-group="onActiveGroup"
+        />
         <div
           v-if="showKeepOpen"
           class="keep-open"
