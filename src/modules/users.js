@@ -265,6 +265,12 @@ export const mutations = {
   signUpFailure (state, errors) {
     state.signUpPending = false
     state.signUpErrors = errors
+  },
+  decrementFollowRequestsCount (store) {
+    store.currentUser.follow_requests_count--
+  },
+  incrementFollowRequestsCount (store) {
+    store.currentUser.follow_requests_count++
   }
 }
 
@@ -504,6 +510,12 @@ const users = {
         store.commit('setUserForNotification', notification)
       })
     },
+    decrementFollowRequestsCount (store) {
+      store.commit('decrementFollowRequestsCount')
+    },
+    incrementFollowRequestsCount (store) {
+      store.commit('incrementFollowRequestsCount')
+    },
     searchUsers ({ rootState, commit }, { query }) {
       return rootState.api.backendInteractor.searchUsers({ query })
         .then((users) => {
@@ -567,7 +579,6 @@ const users = {
           store.dispatch('stopFetchingTimeline', 'friends')
           store.commit('setBackendInteractor', backendInteractorService(store.getters.getToken()))
           store.dispatch('stopFetchingNotifications')
-          store.dispatch('stopFetchingFollowRequests')
           store.dispatch('stopFetchingConfig')
           store.commit('clearNotifications')
           store.commit('resetStatuses')

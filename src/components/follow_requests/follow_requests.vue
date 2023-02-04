@@ -6,12 +6,11 @@
       </div>
     </div>
     <div class="panel-body">
-      <FollowRequestCard
-        v-for="request in requests"
-        :key="request.id"
-        :user="request"
-        class="list-item"
-      />
+      <FollowRequestList :user-id="userId">
+        <template #item="{item}">
+          <FollowRequestCard :user="item" />
+        </template>
+      </FollowRequestList>
     </div>
   </div>
 </template>

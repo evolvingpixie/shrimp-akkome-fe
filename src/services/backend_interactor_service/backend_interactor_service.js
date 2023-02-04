@@ -1,7 +1,6 @@
 import apiService, { getMastodonSocketURI, ProcessedWS } from '../api/api.service.js'
 import timelineFetcher from '../timeline_fetcher/timeline_fetcher.service.js'
 import notificationsFetcher from '../notifications_fetcher/notifications_fetcher.service.js'
-import followRequestFetcher from '../../services/follow_request_fetcher/follow_request_fetcher.service'
 import listsFetcher from '../../services/lists_fetcher/lists_fetcher.service.js'
 import announcementsFetcher from '../../services/announcements_fetcher/announcements_fetcher.service.js'
 import configFetcher from '../config_fetcher/config_fetcher.service.js'
@@ -26,10 +25,6 @@ const backendInteractorService = credentials => ({
 
   fetchNotifications (args) {
     return notificationsFetcher.fetchAndUpdate({ ...args, credentials })
-  },
-
-  startFetchingFollowRequests ({ store }) {
-    return followRequestFetcher.startFetching({ store, credentials })
   },
 
   startFetchingLists ({ store }) {

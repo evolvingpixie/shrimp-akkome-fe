@@ -406,14 +406,6 @@ const fetchFollowers = ({ id, maxId, sinceId, limit = 20, credentials }) => {
     .then((data) => data.json())
     .then((data) => data.map(parseUser))
 }
-
-const fetchFollowRequests = ({ credentials }) => {
-  const url = MASTODON_FOLLOW_REQUESTS_URL
-  return fetch(url, { headers: authHeaders(credentials) })
-    .then((data) => data.json())
-    .then((data) => data.map(parseUser))
-}
-
 const fetchLists = ({ credentials }) => {
   const url = MASTODON_LISTS_URL
   return fetch(url, { headers: authHeaders(credentials) })
@@ -1601,6 +1593,26 @@ const getFollowedHashtags = ({ credentials, pagination: savedPagination }) => {
   });
 }
 
+const getFollowRequests = ({ credentials, pagination: savedPagination }) => {
+  const queryParams = new URLSearchParams()
+  if (savedPagination?.maxId) {
+    queryParams.append('max_id', savedPagination.maxId)
+  }
+  const url = `${MASTODON_FOLLOW_REQUESTS_URL}?${queryParams.toString()}`
+  let pagination = {};
+  return fetch(url, {
+    credentials
+  }).then((data) => {
+    pagination = parseLinkHeaderPagination(data.headers.get('Link'), { flakeId: true });
+    return data.json()
+  }).then((data) => {
+    return {
+      pagination,
+      data: data.map(parseUser)
+    }
+  });
+}
+
 export const getMastodonSocketURI = ({ credentials, stream, args = {} }) => {
   return Object.entries({
     ...(credentials
@@ -1790,7 +1802,6 @@ const apiService = {
   mfaConfirmOTP,
   addBackup,
   listBackups,
-  fetchFollowRequests,
   fetchLists,
   createList,
   getList,
@@ -1841,6 +1852,7 @@ const apiService = {
   followHashtag,
   unfollowHashtag,
   getFollowedHashtags,
+  getFollowRequests
 }
 
 export default apiService

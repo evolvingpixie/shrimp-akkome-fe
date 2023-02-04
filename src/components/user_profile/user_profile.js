@@ -224,7 +224,7 @@ const UserProfile = {
     TabSwitcher,
     Conversation,
     RichContent,
-    FollowedTagList,
+    FollowedTagList
   }
 }
 

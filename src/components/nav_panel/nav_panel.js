@@ -33,11 +33,6 @@ library.add(
 )
 
 const NavPanel = {
-  created () {
-    if (this.currentUser && this.currentUser.locked) {
-      this.$store.dispatch('startFetchingFollowRequests')
-    }
-  },
   components: {
     TimelineMenuContent
   },
@@ -54,11 +49,13 @@ const NavPanel = {
   computed: {
     ...mapState({
       currentUser: state => state.users.currentUser,
-      followRequestCount: state => state.api.followRequests.length,
       privateMode: state => state.instance.private,
       federating: state => state.instance.federating
     }),
-    ...mapGetters(['unreadAnnouncementCount'])
+    ...mapGetters(['unreadAnnouncementCount']),
+    followRequestCount () {
+      return this.$store.state.users.currentUser.follow_requests_count
+    }
   }
 }
 

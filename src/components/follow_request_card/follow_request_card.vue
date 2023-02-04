@@ -1,5 +1,5 @@
 <template>
-  <basic-user-card :user="user">
+  <basic-user-card :user="user" v-if="show">
     <div class="follow-request-card-content-container">
       <button
         class="btn button-default"
