@@ -19,6 +19,7 @@
             :title="reaction.name"
             class="reaction-emoji"
             width="2.55em"
+            height="2.55em"
           >
           {{ reaction.count }}
         </span>
@@ -65,6 +66,7 @@
   box-sizing: border-box;
   .reaction-emoji {
     width: 2.55em !important;
+    height: 2.55em !important;
     margin-right: 0.25em;
   }
   &:focus {
