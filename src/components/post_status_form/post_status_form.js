@@ -459,25 +459,13 @@ const PostStatusForm = {
       }
 
       if (this.newStatus.status || this.newStatus.spoilerText || this.newStatus.files.length > 0 || this.newStatus.poll.length > 0) {
-        if(this.newStatus.status) {
-          console.log(this.newStatus.status)
-        }
-        if(this.newStatus.spoilerText) {
-          console.log(this.newStatus.spoilerText)
-        }
-        if(this.newStatus.files) {
-          console.log(this.newStatus.files)
-        }
-        if(this.newStatus.poll) {
-          console.log(this.newStatus.poll)
-        }
-        console.log('not empty?');
-        draftData[draftKey] = {
+          draftData[draftKey] = {
           updatedAt: new Date(),
           data: this.newStatus,
         };
 
         localStorage.setItem('drafts', JSON.stringify(draftData));
+
       } else {
         deleteDraft(draftKey);
       }
