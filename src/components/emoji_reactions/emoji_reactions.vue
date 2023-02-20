@@ -66,7 +66,7 @@
   box-sizing: border-box;
   .reaction-emoji {
     width: auto;
-    max-width: 100cqw;
+    max-width: 96cqw;
     height: 2.55em !important;
     margin-right: 0.25em;
   }
