@@ -5,15 +5,25 @@ import { map } from 'lodash'
 const retryTimeout = (multiplier) => 1000 * multiplier
 
 const isVisible = (store, message, visibility) => {
-  if (visibility === 'all') {
+  if (visibility == 'all') {
     return true
-  } else if (visibility === 'following') {
-    return store.getters.relationship(message.in_reply_to_user_id).following
-  } else if (visibility === 'self') {
+  }
+
+  if (visibility == 'following') {
+    if (message.in_reply_to_user_id === null) {
+      return true
+    } else {
+      return store.getters.relationship(message.in_reply_to_user_id).following
+    }
+  }
+
+  if (visibility == 'self') {
     return message.in_reply_to_user_id === store.rootState.users.currentUser.id
   }
+
   return false
 }
+
 const api = {
   state: {
     retryMultiplier: 1,
