@@ -71,7 +71,7 @@
 
   img, video {
     &.emoji {
-      width: 50px;
+      max-width: 100%;
       height: 50px;
     }
   }
@@ -89,7 +89,6 @@
       animation: none !important;
     }
     .emoji {
-      width: 32px !important;
       height: 32px !important;
     }
   }

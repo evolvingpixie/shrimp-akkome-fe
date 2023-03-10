@@ -18,7 +18,6 @@
             :src="reaction.url"
             :title="reaction.name"
             class="reaction-emoji"
-            width="2.55em"
             height="2.55em"
           >
           {{ reaction.count }}
@@ -50,6 +49,7 @@
   display: flex;
   margin-top: 0.25em;
   flex-wrap: wrap;
+  container-type: inline-size;
 }
 
 .unicode-emoji {
@@ -65,7 +65,8 @@
   justify-content: center;
   box-sizing: border-box;
   .reaction-emoji {
-    width: 2.55em !important;
+    width: auto;
+    max-width: 96cqw;
     height: 2.55em !important;
     margin-right: 0.25em;
   }
