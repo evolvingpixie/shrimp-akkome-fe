@@ -54,6 +54,14 @@ const pxStringToNumber = (str) => {
   return Number(str.substring(0, str.length - 2))
 }
 
+const deleteDraft = (draftKey) => {
+	const draftData = JSON.parse(localStorage.getItem('drafts') || '{}');
+
+	delete draftData[draftKey];
+
+	localStorage.setItem('drafts', JSON.stringify(draftData));
+}
+
 const PostStatusForm = {
   props: [
     'statusId',
@@ -158,6 +166,34 @@ const PostStatusForm = {
         visibility: this.statusScope || this.suggestedVisibility(),
         language: this.statusLanguage || interfaceLanguage,
         contentType: statusContentType
+      }
+    }
+
+    let draftKey = 'status';
+    if (this.replyTo) {
+      draftKey = 'reply:' + this.replyTo;
+    } else if (this.quoteId) {
+      draftKey = 'quote:' + this.quoteId;
+    }
+
+    const draft = JSON.parse(localStorage.getItem('drafts') || '{}')[draftKey];
+
+    if (draft) {
+      statusParams = {
+        spoilerText: draft.data.spoilerText,
+        status: draft.data.status,
+        sensitiveIfSubject,
+        nsfw: draft.data.nsfw,
+        files: draft.data.files,
+        poll: draft.data.poll,
+        mediaDescriptions: draft.data.mediaDescriptions,
+        visibility: draft.data.visibility,
+        language: draft.data.language,
+        contentType: draft.data.contentType
+      }
+
+      if (draft.data.poll) {
+        this.togglePollForm();
       }
     }
 
@@ -280,6 +316,7 @@ const PostStatusForm = {
     statusChanged () {
       this.autoPreview()
       this.updateIdempotencyKey()
+      this.saveDraft()
     },
     clearStatus () {
       const newStatus = this.newStatus
@@ -401,8 +438,38 @@ const PostStatusForm = {
       }).finally(() => {
         this.previewLoading = false
       })
+
+      let draftKey = 'status';
+      if (this.replyTo) {
+        draftKey = 'reply:' + this.replyTo;
+      } else if (this.quoteId) {
+        draftKey = 'quote:' + this.quoteId;
+      }
+      deleteDraft(draftKey)
     },
     debouncePreviewStatus: debounce(function () { this.previewStatus() }, 500),
+    saveDraft() {
+      const draftData = JSON.parse(localStorage.getItem('drafts') || '{}');
+
+      let draftKey = 'status';
+      if (this.replyTo) {
+        draftKey = 'reply:' + this.replyTo;
+      } else if (this.quoteId) {
+        draftKey = 'quote:' + this.quoteId;
+      }
+
+      if (this.newStatus.status || this.newStatus.spoilerText || this.newStatus.files.length > 0 || this.newStatus.poll.length > 0) {
+          draftData[draftKey] = {
+          updatedAt: new Date(),
+          data: this.newStatus,
+        };
+
+        localStorage.setItem('drafts', JSON.stringify(draftData));
+
+      } else {
+        deleteDraft(draftKey);
+      }
+    },
     autoPreview () {
       if (!this.preview) return
       this.previewLoading = true
