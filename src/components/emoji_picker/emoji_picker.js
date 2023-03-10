@@ -51,6 +51,7 @@ const EmojiPicker = {
     onEmoji (emoji) {
       const value = emoji.imageUrl ? `:${emoji.displayText}:` : emoji.replacement
       this.$emit('emoji', { insertion: value, keepOpen: this.keepOpen })
+      this.$store.commit('emojiUsed', emoji)
     },
     onWheel (e) {
       e.preventDefault()
@@ -96,6 +97,7 @@ const EmojiPicker = {
       )
     },
     emojis () {
+      const recentEmojis = this.$store.getters.recentEmojis
       const standardEmojis = this.$store.state.instance.emoji || []
       const customEmojis = this.sortedEmoji
       const emojiPacks = []
@@ -108,6 +110,15 @@ const EmojiPicker = {
         })
       })
       return [
+        {
+          id: 'recent',
+          text: this.$t('emoji.recent'),
+          first: {
+            imageUrl: '',
+            replacement: '🕒',
+          },
+          emojis: this.filterByKeyword(recentEmojis)
+        },
         {
           id: 'standard',
           text: this.$t('emoji.unicode'),

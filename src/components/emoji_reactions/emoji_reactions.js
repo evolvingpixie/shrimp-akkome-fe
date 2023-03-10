@@ -3,6 +3,11 @@ import UserListPopover from '../user_list_popover/user_list_popover.vue'
 
 const EMOJI_REACTION_COUNT_CUTOFF = 12
 
+const findEmojiByReplacement = (state, replacement) => {
+  const allEmojis = state.instance.emoji.concat(state.instance.customEmoji)
+  return allEmojis.find(emoji => emoji.replacement === replacement)
+}
+
 const EmojiReactions = {
   name: 'EmojiReactions',
   components: {
@@ -54,6 +59,8 @@ const EmojiReactions = {
     },
     reactWith (emoji) {
       this.$store.dispatch('reactWithEmoji', { id: this.status.id, emoji })
+      const emojiObject = findEmojiByReplacement(this.$store.state, emoji)
+      this.$store.commit('emojiUsed', emojiObject)
     },
     unreact (emoji) {
       this.$store.dispatch('unreactWithEmoji', { id: this.status.id, emoji })

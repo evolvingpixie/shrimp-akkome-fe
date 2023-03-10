@@ -86,7 +86,8 @@
         "load_all_hint": "Loaded first {saneAmount} emoji, loading all emoji may cause performance issues.",
         "search_emoji": "Search for an emoji",
         "stickers": "Stickers",
-        "unicode": "Unicode emoji"
+        "unicode": "Unicode emoji",
+        "recent": "Recently used"
     },
     "errors": {
         "storage_unavailable": "Pleroma could not access browser storage. Your login or your local settings won't be saved and you might encounter unexpected issues. Try enabling cookies."

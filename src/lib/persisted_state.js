@@ -19,7 +19,8 @@ const saveImmedeatelyActions = [
   'setOption',
   'setClientData',
   'setToken',
-  'clearToken'
+  'clearToken',
+  'emojiUsed',
 ]
 
 const defaultStorage = (() => {
