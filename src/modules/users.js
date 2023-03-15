@@ -637,13 +637,14 @@ const users = {
 
               // Get user mutes
               store.dispatch('fetchMutes')
-
               store.dispatch('setLayoutWidth', windowWidth())
               store.dispatch('setLayoutHeight', windowHeight())
               store.dispatch('getSupportedTranslationlanguages')
               store.dispatch('getSettingsProfile')
               store.dispatch('listSettingsProfiles')
               store.dispatch('startFetchingConfig')
+              store.dispatch('startFetchingAnnouncements')
+              store.dispatch('startFetchingReports')
 
               // Fetch our friends
               store.rootState.api.backendInteractor.fetchFriends({ id: user.id })

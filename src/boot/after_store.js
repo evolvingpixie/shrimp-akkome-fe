@@ -398,9 +398,6 @@ const afterStoreSetup = async ({ store, i18n }) => {
   ])
 
   // Start fetching things that don't need to block the UI
-  store.dispatch('fetchMutes')
-  store.dispatch('startFetchingAnnouncements')
-  store.dispatch('startFetchingReports')
   getTOS({ store })
   getStickers({ store })
 
