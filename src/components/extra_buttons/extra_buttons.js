@@ -15,6 +15,7 @@ import {
   faBookmark as faBookmarkReg,
   faFlag
 } from '@fortawesome/free-regular-svg-icons'
+import { mapState } from 'vuex'
 
 library.add(
   faEllipsisH,
@@ -191,7 +192,7 @@ const ExtraButtons = {
     isEdited () {
       return this.status.edited_at !== null
     },
-    editingAvailable () { return this.$store.state.instance.editingAvailable }
+    editingAvailable () { return this.$store.state.instance.editingAvailable },
   }
 }
 

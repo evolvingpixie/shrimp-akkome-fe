@@ -19,6 +19,7 @@ import {
   faInfoCircle,
   faUserTie
 } from '@fortawesome/free-solid-svg-icons'
+import { mapState } from 'vuex'
 
 library.add(
   faSignInAlt,
@@ -103,7 +104,10 @@ export default {
     },
     showBubbleTimeline () {
       return this.$store.state.instance.localBubbleInstances.length > 0
-    }
+    },
+    ...mapState({
+      publicTimelineVisibility: state => state.instance.publicTimelineVisibility,
+    })
   },
   methods: {
     scrollToTop () {

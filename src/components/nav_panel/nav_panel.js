@@ -50,7 +50,7 @@ const NavPanel = {
     ...mapState({
       currentUser: state => state.users.currentUser,
       privateMode: state => state.instance.private,
-      federating: state => state.instance.federating
+      federating: state => state.instance.federating,
     }),
     ...mapGetters(['unreadAnnouncementCount']),
     followRequestCount () {

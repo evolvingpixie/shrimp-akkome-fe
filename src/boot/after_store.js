@@ -322,6 +322,8 @@ const getNodeInfo = async ({ store }) => {
           : federation.enabled
       })
 
+      store.dispatch('setInstanceOption', { name: 'publicTimelineVisibility', value: metadata.publicTimelineVisibility })
+
       const accountActivationRequired = metadata.accountActivationRequired
       store.dispatch('setInstanceOption', { name: 'accountActivationRequired', value: accountActivationRequired })
 
