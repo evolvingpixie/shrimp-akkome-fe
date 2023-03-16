@@ -32,7 +32,7 @@
         >{{ $t("nav.bubble_timeline") }}</span>
       </router-link>
     </li>
-    <li v-if="(currentUser || !privateMode) && (publicTimelineVisibility?.local ?? true)">
+    <li v-if="(currentUser || !privateMode) && (currentUser || (publicTimelineVisibility?.local ?? true))">
       <router-link
         class="menu-item"
         :to="{ name: 'public-timeline' }"
@@ -48,7 +48,7 @@
         >{{ $t("nav.public_tl") }}</span>
       </router-link>
     </li>
-    <li v-if="federating && (currentUser || !privateMode) && (publicTimelineVisibility?.federated ?? true)">
+    <li v-if="federating && (currentUser || !privateMode) && (currentUser || (publicTimelineVisibility?.federated ?? true))">
       <router-link
         class="menu-item"
         :to="{ name: 'public-external-timeline' }"
