@@ -2,6 +2,11 @@ import SearchBar from 'components/search_bar/search_bar.vue'
 import ConfirmModal from '../confirm_modal/confirm_modal.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
+  publicTimelineVisible,
+  federatedTimelineVisible,
+  bubbleTimelineVisible,
+} from '../../lib/timeline_visibility'
+import {
   faSignInAlt,
   faSignOutAlt,
   faHome,
@@ -106,8 +111,9 @@ export default {
       return this.$store.state.instance.localBubbleInstances.length > 0
     },
     ...mapState({
-      publicTimelineVisibility: state => state.instance.publicTimelineVisibility,
-      federatedTimelineAvailable: state => state.instance.federatedTimelineAvailable,
+      publicTimelineVisible,
+      federatedTimelineVisible,
+      bubbleTimelineVisible,
     })
   },
   methods: {

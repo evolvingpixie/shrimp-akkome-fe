@@ -5,6 +5,11 @@ import {
   faChevronDown
 } from '@fortawesome/free-solid-svg-icons'
 import { mapState } from 'vuex'
+import {
+  publicTimelineVisible,
+  federatedTimelineVisible,
+  bubbleTimelineVisible,
+} from '../../lib/timeline_visibility'
 
 library.add(faChevronDown)
 
@@ -37,17 +42,14 @@ const TimelineMenuTabs = {
     }
   },
   computed: {
-    currentUser () {
-      return this.$store.state.users.currentUser
-    },
     privateMode () {
       return this.$store.state.instance.private
     },
     ...mapState({
       currentUser: state => state.users.currentUser,
-      publicTimelineVisibility: state => state.instance.publicTimelineVisibility,
-      federatedTimelineAvailable: state => state.instance.federatedTimelineAvailable,
-      showBubbleTimeline: state => (state.instance.localBubbleInstances.length > 0),
+      publicTimelineVisible,
+      federatedTimelineVisible,
+      bubbleTimelineVisible,
     })
   },
   methods: {
