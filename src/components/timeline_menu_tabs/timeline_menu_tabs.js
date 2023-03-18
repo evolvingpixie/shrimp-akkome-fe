@@ -46,6 +46,8 @@ const TimelineMenuTabs = {
     ...mapState({
       currentUser: state => state.users.currentUser,
       publicTimelineVisibility: state => state.instance.publicTimelineVisibility,
+      federatedTimelineAvailable: state => state.instance.federatedTimelineAvailable,
+      showBubbleTimeline: state => (state.instance.localBubbleInstances.length > 0),
     })
   },
   methods: {

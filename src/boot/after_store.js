@@ -323,6 +323,7 @@ const getNodeInfo = async ({ store }) => {
       })
 
       store.dispatch('setInstanceOption', { name: 'publicTimelineVisibility', value: metadata.publicTimelineVisibility })
+      store.dispatch('setInstanceOption', { name: 'federatedTimelineAvailable', value: metadata.federatedTimelineAvailable })
 
       const accountActivationRequired = metadata.accountActivationRequired
       store.dispatch('setInstanceOption', { name: 'accountActivationRequired', value: accountActivationRequired })

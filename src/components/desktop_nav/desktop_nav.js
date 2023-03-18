@@ -107,6 +107,7 @@ export default {
     },
     ...mapState({
       publicTimelineVisibility: state => state.instance.publicTimelineVisibility,
+      federatedTimelineAvailable: state => state.instance.federatedTimelineAvailable,
     })
   },
   methods: {
