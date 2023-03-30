@@ -103,9 +103,9 @@ export default {
     convertExpiryFromUnit (unit, amount) {
       // Note: we want seconds and not milliseconds
       switch (unit) {
-        case 'minutes': return 0.001 * amount * DateUtils.MINUTE
-        case 'hours': return 0.001 * amount * DateUtils.HOUR
-        case 'days': return 0.001 * amount * DateUtils.DAY
+        case 'minutes': return amount * DateUtils.MINUTE / 1000
+        case 'hours': return amount * DateUtils.HOUR / 1000
+        case 'days': return amount * DateUtils.DAY / 1000
       }
     },
     expiryAmountChange () {
