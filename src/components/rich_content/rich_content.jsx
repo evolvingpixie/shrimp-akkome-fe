@@ -188,7 +188,7 @@ export default {
               break
             }
           case 'span':
-            if (this.handleLinks && attrs['class'] && attrs['class'].includes('h-card')) {
+            if (this.handleLinks && attrs?.['class']?.includes?.('h-card')) {
               return ['', children.map(processItem), '']
             }
         }
