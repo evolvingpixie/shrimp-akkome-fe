@@ -169,31 +169,33 @@ const PostStatusForm = {
       }
     }
 
-    let draftKey = 'status';
-    if (this.replyTo) {
-      draftKey = 'reply:' + this.replyTo;
-    } else if (this.quoteId) {
-      draftKey = 'quote:' + this.quoteId;
-    }
-
-    const draft = JSON.parse(localStorage.getItem('drafts') || '{}')[draftKey];
-
-    if (draft) {
-      statusParams = {
-        spoilerText: draft.data.spoilerText,
-        status: draft.data.status,
-        sensitiveIfSubject,
-        nsfw: draft.data.nsfw,
-        files: draft.data.files,
-        poll: draft.data.poll,
-        mediaDescriptions: draft.data.mediaDescriptions,
-        visibility: draft.data.visibility,
-        language: draft.data.language,
-        contentType: draft.data.contentType
+    if (!this.statusId) {
+      let draftKey = 'status';
+      if (this.replyTo) {
+        draftKey = 'reply:' + this.replyTo;
+      } else if (this.quoteId) {
+        draftKey = 'quote:' + this.quoteId;
       }
 
-      if (draft.data.poll) {
-        this.togglePollForm();
+      const draft = JSON.parse(localStorage.getItem('drafts') || '{}')[draftKey];
+
+      if (draft) {
+        statusParams = {
+          spoilerText: draft.data.spoilerText,
+          status: draft.data.status,
+          sensitiveIfSubject,
+          nsfw: draft.data.nsfw,
+          files: draft.data.files,
+          poll: draft.data.poll,
+          mediaDescriptions: draft.data.mediaDescriptions,
+          visibility: draft.data.visibility,
+          language: draft.data.language,
+          contentType: draft.data.contentType
+        }
+
+        if (draft.data.poll) {
+          this.togglePollForm();
+        }
       }
     }
 
