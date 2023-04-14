@@ -644,7 +644,9 @@ const users = {
               store.dispatch('listSettingsProfiles')
               store.dispatch('startFetchingConfig')
               store.dispatch('startFetchingAnnouncements')
-              store.dispatch('startFetchingReports')
+              if (user.role === 'admin' || user.role === 'moderator') {
+                store.dispatch('startFetchingReports')
+              }
 
               // Fetch our friends
               store.rootState.api.backendInteractor.fetchFriends({ id: user.id })
