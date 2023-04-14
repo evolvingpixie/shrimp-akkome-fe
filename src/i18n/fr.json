@@ -84,6 +84,7 @@
         "keep_open": "Garder ouvert",
         "load_all": "Charger tout les {emojiAmount} émojis",
         "load_all_hint": "{saneAmount} émojis chargé, charger tout les émojis peuvent causer des problèmes de performances.",
+        "recent": "Utilisé récemment",
         "search_emoji": "Rechercher un émoji",
         "stickers": "Stickers",
         "unicode": "émoji unicode"
@@ -254,6 +255,10 @@
         "hint": "Connectez-vous pour rejoindre la discussion",
         "login": "Connexion",
         "logout": "Déconnexion",
+        "logout_confirm": "Voulez-vous vraiment vous déconnecter ?",
+        "logout_confirm_accept_button": "Déconnexion",
+        "logout_confirm_cancel_button": "Annuler",
+        "logout_confirm_title": "Déconnexion",
         "password": "Mot de passe",
         "placeholder": "mon nom d'utilisateur",
         "recovery_code": "Code de récupération",
@@ -265,6 +270,32 @@
         "hide": "Fermer la visionneuse",
         "next": "Suivant",
         "previous": "Précédent"
+    },
+    "moderation": {
+        "moderation": "Modération",
+        "reports": {
+            "add_note": "Ajouter une note",
+            "close": "Fermer",
+            "delete_note": "Supprimer",
+            "delete_note_accept": "Oui, supprimer",
+            "delete_note_cancel": "Non, abandonner",
+            "delete_note_confirm": "Voulez-vous vraiment supprimer cette note ?",
+            "delete_note_title": "Confirmer la suppression",
+            "no_content": "Description vide",
+            "no_reports": "Aucun rapport",
+            "note_placeholder": "Laisser une note",
+            "notes": "{ count } note | { count } notes",
+            "reopen": "Rouvrir",
+            "report": "Signaler",
+            "reports": "Rapports",
+            "resolve": "Résoudre",
+            "show_closed": "Afficher les rapports classés",
+            "statuses": "{ count } statut| { count } statuts",
+            "tag_policy_notice": "Activer la politique MRF pour établir les restrictions de publication",
+            "tags": "Établir les restrictions de publication"
+        },
+        "statuses": "Statuts",
+        "users": "Utilisateurs"
     },
     "nav": {
         "about": "À propos",
@@ -282,6 +313,7 @@
         "interactions": "Interactions",
         "lists": "Listes",
         "mentions": "Mentions",
+        "moderation": "Moderation",
         "preferences": "Préférences",
         "public_timeline_description": "Tous les statuts publics de cette instance",
         "public_tl": "Flux publique",
@@ -378,6 +410,8 @@
         }
     },
     "registration": {
+        "awaiting_email_confirmation": "Votre compte a été enregistré et un courriel envoyé à votre adresse. Veuillez consulter votre boîte mail pour terminer la registration.",
+        "awaiting_email_confirmation_title": "En attente de confirmation par courriel",
         "bio": "Biographie",
         "bio_placeholder": "ex :\nSalut, je me présente ici !\nJ’adore les animés et les jeux vidéos. J’espère qu'on peut être amis⋅ies !",
         "captcha": "CAPTCHA",
