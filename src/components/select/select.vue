@@ -38,7 +38,7 @@ label.Select {
     margin: 0;
     padding: 0 2em 0 .2em;
     font-family: sans-serif;
-    font-family: var(--inputFont, sans-serif);
+    font-family: var(--interfaceFont, sans-serif);
     font-size: 1em;
     width: 100%;
     z-index: 1;

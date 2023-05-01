@@ -114,7 +114,7 @@
       svg {
         width: 22px;
         margin-right: 0.75rem;
-        color: var(--menuPopoverIcon, $fallback--icon)
+        color: var(--popoverIcon, $fallback--icon)
       }
     }
 

@@ -469,7 +469,7 @@ textarea,
   color: $fallback--lightText;
   color: var(--inputText, $fallback--lightText);
   font-family: sans-serif;
-  font-family: var(--inputFont, sans-serif);
+  font-family: var(--interfaceFont, sans-serif);
   font-size: 1em;
   margin: 0;
   box-sizing: border-box;
