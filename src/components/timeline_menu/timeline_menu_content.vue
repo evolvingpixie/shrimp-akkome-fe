@@ -16,22 +16,6 @@
         >{{ $t("nav.home_timeline") }}</span>
       </router-link>
     </li>
-    <li v-if="bubbleTimelineVisible">
-      <router-link
-        class="menu-item"
-        :to="{ name: 'bubble-timeline' }"
-      >
-        <FAIcon
-          fixed-width
-          class="fa-scale-110 fa-old-padding "
-          icon="circle"
-        />
-        <span
-          :title="$t('nav.bubble_timeline_description')"
-          :aria-label="$t('nav.bubble_timeline_description')"
-        >{{ $t("nav.bubble_timeline") }}</span>
-      </router-link>
-    </li>
     <li v-if="publicTimelineVisible">
       <router-link
         class="menu-item"
@@ -46,6 +30,22 @@
           :title="$t('nav.public_timeline_description')"
           :aria-label="$t('nav.public_timeline_description')"
         >{{ $t("nav.public_tl") }}</span>
+      </router-link>
+    </li>
+    <li v-if="bubbleTimelineVisible">
+      <router-link
+        class="menu-item"
+        :to="{ name: 'bubble-timeline' }"
+      >
+        <FAIcon
+          fixed-width
+          class="fa-scale-110 fa-old-padding "
+          icon="circle"
+        />
+        <span
+          :title="$t('nav.bubble_timeline_description')"
+          :aria-label="$t('nav.bubble_timeline_description')"
+        >{{ $t("nav.bubble_timeline") }}</span>
       </router-link>
     </li>
     <li v-if="federatedTimelineVisible">
