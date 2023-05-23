@@ -90,6 +90,15 @@
         </Checkbox>
       </p>
       <p>
+        <ChoiceSetting
+          id="userAcceptsDirectMessagesFrom"
+          path="userAcceptsDirectMessagesFrom"
+          :options="userAcceptsDirectMessagesFromOptions"
+        >
+          {{ $t('settings.user_accepts_direct_messages_from') }}
+        </ChoiceSetting>
+      </p>
+      <p>
         <Checkbox v-model="expirePosts">
           {{ $t('settings.expire_posts_enabled') }}
         </Checkbox>
@@ -102,6 +111,9 @@
           class="expire-posts-days"
           :placeholder="$t('settings.expire_posts_input_placeholder')"
         />
+      </p>
+      <p>
+
       </p>
       <p>
         <interface-language-switcher

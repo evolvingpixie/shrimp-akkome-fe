@@ -929,6 +929,10 @@
         "user_profile_default_tab": "Default Tab on User Profile",
         "user_profiles": "User Profiles",
         "user_settings": "User Settings",
+        "user_accepts_direct_messages_from": "Accept DMs From",
+        "user_accepts_direct_messages_from_everybody": "Everybody",
+        "user_accepts_direct_messages_from_nobody": "Nobody",
+        "user_accepts_direct_messages_from_people_i_follow": "People I follow",
         "valid_until": "Valid until",
         "values": {
             "false": "no",

@@ -21,7 +21,6 @@
             >
               {{ $t('settings.settings_profile_force_sync') }}
             </button>
-
           </p>
           <div
             @click="toggleExpandedSettings"

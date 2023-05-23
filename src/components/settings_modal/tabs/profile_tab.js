@@ -12,6 +12,7 @@ import InterfaceLanguageSwitcher from 'src/components/interface_language_switche
 import BooleanSetting from '../helpers/boolean_setting.vue'
 import SharedComputedObject from '../helpers/shared_computed_object.js'
 import localeService from 'src/services/locale/locale.service.js'
+import ChoiceSetting from '../helpers/choice_setting.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -46,9 +47,16 @@ const ProfileTab = {
       emailLanguage: this.$store.state.users.currentUser.language || '',
       newPostTTLDays: this.$store.state.users.currentUser.status_ttl_days,
       expirePosts: this.$store.state.users.currentUser.status_ttl_days !== null,
+      userAcceptsDirectMessagesFrom: this.$store.state.users.currentUser.accepts_direct_messages_from,
+      userAcceptsDirectMessagesFromOptions: ["everybody", "nobody", "people_i_follow"].map(mode => ({
+        key: mode,
+        value: mode,
+        label: this.$t(`settings.user_accepts_direct_messages_from_${mode}`)
+      }))
     }
   },
   components: {
+    ChoiceSetting,
     ScopeSelector,
     ImageCropper,
     EmojiInput,
@@ -126,7 +134,8 @@ const ProfileTab = {
         fields_attributes: this.newFields.filter(el => el != null),
         bot: this.bot,
         show_role: this.showRole,
-        status_ttl_days: this.expirePosts ? this.newPostTTLDays : -1
+        status_ttl_days: this.expirePosts ? this.newPostTTLDays : -1,
+        accepts_direct_messages_from: this.userAcceptsDirectMessagesFrom
         /* eslint-enable camelcase */
       }
 

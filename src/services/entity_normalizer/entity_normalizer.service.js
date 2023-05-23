@@ -90,6 +90,7 @@ export const parseUser = (data) => {
     output.friends_count = data.following_count
 
     output.bot = data.bot
+    output.accepts_direct_messages_from = data.accepts_direct_messages_from
     output.follow_requests_count = data.follow_requests_count
     if (data.akkoma) {
       output.instance = data.akkoma.instance
