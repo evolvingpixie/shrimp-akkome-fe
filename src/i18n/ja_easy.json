@@ -4,6 +4,7 @@
         "mrf": {
             "federation": "フェデレーション",
             "keyword": {
+                "is_replaced_by": "→",
                 "keyword_policies": "キーワードポリシー",
                 "reject": "おことわり",
                 "replace": "おきかえ"
