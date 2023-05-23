@@ -7,14 +7,18 @@ export const applyTheme = (input) => {
   const body = document.body
   body.classList.add('hidden')
 
-  const styleEl = document.getElementById('theme-holder')
-  const styleSheet = styleEl.sheet
+  /** @type {CSSStyleSheet} */
+  const styleSheet = document.getElementById('theme-holder').sheet
 
-  styleSheet.toString()
-  styleSheet.insertRule(`:root { ${rules.radii} }`, 'index-max')
-  styleSheet.insertRule(`:root { ${rules.colors} }`, 'index-max')
-  styleSheet.insertRule(`:root { ${rules.shadows} }`, 'index-max')
-  styleSheet.insertRule(`:root { ${rules.fonts} }`, 'index-max')
+  for (let i = styleSheet.cssRules.length; i--; ) {
+    styleSheet.deleteRule(0)
+  }
+
+  styleSheet.insertRule(
+    `:root { ${rules.radii}; ${rules.colors}; ${rules.shadows}; ${rules.fonts}; }`,
+    0
+  )
+
   body.classList.remove('hidden')
 }
 
