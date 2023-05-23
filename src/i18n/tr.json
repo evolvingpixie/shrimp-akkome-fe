@@ -1,0 +1,54 @@
+{
+    "about": {
+        "bubble_instances": "Yerel Balon Örnekleri",
+        "bubble_instances_description": "Yöneticiler tarafından bu örneğin yerel alanını temsil etmesi için seçilen örnekler",
+        "mrf": {
+            "federation": "Federasyon",
+            "keyword": {
+                "ftl_removal": "\"Bilinen Tüm Ağ\" Zaman Çizelgesinden Kaldırma",
+                "is_replaced_by": "→",
+                "keyword_policies": "Anahtar kelime politikaları",
+                "reject": "Reddetmek",
+                "replace": "Yer değiştirmek"
+            },
+            "mrf_policies": "Etkinleştirilmiş MRF politikaları",
+            "mrf_policies_desc": "MRF ilkeleri, örneğin federasyon davranışını manipüle eder. Aşağıdaki politikalar etkinleştirildi:",
+            "simple": {
+                "accept": "Kabul etmek",
+                "accept_desc": "Bu örnek yalnızca aşağıdaki örneklerden gelen mesajları kabul eder:",
+                "ftl_removal": "\"Bilinen Ağ\" Zaman Çizelgesinden Kaldırma",
+                "ftl_removal_desc": "Bu örnek, şu örnekleri \"Bilinen Ağ\" zaman çizelgesinden kaldırır:",
+                "instance": "Örnek",
+                "media_nsfw": "Medya hassas olarak ayarlandı",
+                "media_nsfw_desc": "Bu örnek, medyayı aşağıdaki örneklerdeki gönderilerde hassas olarak ayarlanmasına zorlar:",
+                "media_removal": "Medya Kaldırma",
+                "media_removal_desc": "Bu örnek, aşağıdaki örneklerdeki yayınlardan medyayı kaldırır:",
+                "not_applicable": "Yok",
+                "quarantine": "Karantina",
+                "quarantine_desc": "Bu örnek, aşağıdaki örneklere gönderi göndermeyecek:",
+                "reason": "Sebep",
+                "reject": "Reddetmek",
+                "reject_desc": "Bu örnek, aşağıdaki örneklerden gelen mesajları kabul etmeyecektir:",
+                "simple_policies": "Örneğe özgü politikalar"
+            }
+        },
+        "staff": "Kadro"
+    },
+    "announcements": {
+        "all_day_prompt": "Bu tüm gün süren bir etkinlik",
+        "cancel_edit_action": "İptal etmek",
+        "close_error": "Kapalı",
+        "delete_action": "Sil",
+        "edit_action": "Düzenle",
+        "end_time_display": "{time} saatinde biter",
+        "end_time_prompt": "Bitiş zamanı: ",
+        "inactive_message": "Bu duyuru etkin değil",
+        "mark_as_read_action": "Okundu olarak işaretle",
+        "page_header": "Duyurular",
+        "post_action": "Post",
+        "post_error": "Hata: {error}",
+        "post_form_header": "Post sonrası",
+        "post_placeholder": "Duyuru içeriği",
+        "published_time_display": "{time} tarihinde yayınlandı"
+    }
+}
