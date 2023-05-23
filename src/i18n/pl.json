@@ -1,5 +1,7 @@
 {
     "about": {
+        "bubble_instances": "Instancje lokalnej bańki",
+        "bubble_instances_description": "Instancje wybrane przez administratorów w celu przedstawienia okolicy tej instancji",
         "mrf": {
             "federation": "Federacja",
             "keyword": {
@@ -16,18 +18,42 @@
                 "accept_desc": "Ta instancja akceptuje tylko posty z wymienionych instancji:",
                 "ftl_removal": "Usunięcie z „Całej znanej sieci”",
                 "ftl_removal_desc": "Ta instancja usuwa wymienionych instancje z „Całej znanej sieci”:",
+                "instance": "Instacja",
                 "media_nsfw": "Multimedia ustawione jako wrażliwe",
                 "media_nsfw_desc": "Ta instancja wymusza, by multimedia z wymienionych instancji były ustawione jako wrażliwe:",
                 "media_removal": "Usuwanie multimediów",
                 "media_removal_desc": "Ta instancja usuwa multimedia z postów od wymienionych instancji:",
+                "not_applicable": "N/A",
                 "quarantine": "Kwarantanna",
-                "quarantine_desc": "Ta instancja wysyła tylko publiczne posty do wymienionych instancji:",
+                "quarantine_desc": "Ta instancja nie wysyła postów do wymienionych instancji:",
+                "reason": "Powód",
                 "reject": "Odrzucanie",
                 "reject_desc": "Ta instancja odrzuca posty z wymienionych instancji:",
                 "simple_policies": "Zasady specyficzne dla instancji"
             }
         },
         "staff": "Administracja"
+    },
+    "announcements": {
+        "all_day_prompt": "Jest to całodzienne wydarzenie",
+        "cancel_edit_action": "Anuluj",
+        "close_error": "Zamknij",
+        "delete_action": "Usuń",
+        "edit_action": "Edytuj",
+        "end_time_display": "Kończy się o: {time}",
+        "end_time_prompt": "Koniec: ",
+        "inactive_message": "To ogłoszenie jest nieaktywne",
+        "mark_as_read_action": "Oznacz jako przeczytane",
+        "page_header": "Ogłoszenia",
+        "post_action": "Wyślij",
+        "post_error": "Błąd: {error}",
+        "post_form_header": "Wyślij ogłoszenie",
+        "post_placeholder": "Zawartość ogłoszenia",
+        "published_time_display": "Opublikowano o {time}",
+        "start_time_display": "Zaczyna się o: {time}",
+        "start_time_prompt": "Początek: ",
+        "submit_edit_action": "Wyślij",
+        "title": "Ogłoszenie"
     },
     "chats": {
         "chats": "Czaty",
@@ -58,6 +84,7 @@
         "keep_open": "Zostaw selektor otwarty",
         "load_all": "Ładuję wszystkie {emojiAmount} emoji",
         "load_all_hint": "Załadowano pierwsze {saneAmount} emoji, Załadowanie wszystkich emoji może spowodować problemy z wydajnością.",
+        "recent": "Ostatnio używane",
         "search_emoji": "Wyszukaj emoji",
         "stickers": "Naklejki",
         "unicode": "Emoji unicode"
