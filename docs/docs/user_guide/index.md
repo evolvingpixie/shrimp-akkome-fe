@@ -8,13 +8,13 @@
 >
 > --Catbag
 
-Pleroma-FE is the default user-facing frontend for Pleroma. If your instance uses Pleroma-FE, you can access it by going to your instance (e.g. <https://pleroma.soykaf.com>). After logging in you will have two columns in front of you. Here we're going to keep it to the default behaviour, but some instances swap the left and right columns. If you're on such an instance what we refer to as the left column will be on your right and vice versa.
+Akkoma-FE is the default user-facing frontend for Pleroma. If your instance uses Akkoma-FE, you can access it by going to your instance (e.g. <https://pleroma.soykaf.com>). After logging in you will have two columns in front of you. Here we're going to keep it to the default behaviour, but some instances swap the left and right columns. If you're on such an instance what we refer to as the left column will be on your right and vice versa.
 
 ### Left column
 
 - first block: This section is dedicated to [posting](posting_reading_basic_functions.md)
 - second block: Here you can switch between the different views for the right column.
-- Optional third block: This is the Instance panel that can be activated, but is deactivated by default. It's fully customisable by instance admins and by default has links to the Pleroma-FE and Mastodon-FE.
+- Optional third block: This is the Instance panel that can be activated, but is deactivated by default. It's fully customisable by instance admins and by default has links to the Akkoma-FE and Mastodon-FE.
 - fourth block: This is the Notifications block, here you will get notified whenever somebody mentions you, follows you, repeats or favorites one of your statuses
 
 ### Right column

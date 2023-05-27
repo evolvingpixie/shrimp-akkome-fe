@@ -1,8 +1,8 @@
 # Hacking, tweaking, contributing
 
-## What PleromaFE even is, how it works
+## What Akkoma-FE even is, how it works
 
-PleromaFE is an SPA (Single-Page Application) backed by [Vue](https://vuejs.org/) framework. It means that it's just a nearly-empty HTML page with bunch of JavaScript that actually generates and controls DOM (i.e. html elements) in Runtime. Currently, there's no way around it - you have to have Javascript enabled in the browser to make it work, there is a theoretical possibility to generate some HTML server-side but it's not implemented yet.
+Akkoma-FE is an SPA (Single-Page Application) backed by [Vue](https://vuejs.org/) framework. It means that it's just a nearly-empty HTML page with bunch of JavaScript that actually generates and controls DOM (i.e. html elements) in Runtime. Currently, there's no way around it - you have to have Javascript enabled in the browser to make it work, there is a theoretical possibility to generate some HTML server-side but it's not implemented yet.
 
 You can serve static html page and everything from any HTTP(S) server but currently it will try to access /api/ path at same domain it's running on, meaning that as of right now you cannot put it on one domain and access the other without proxying requests.
 
@@ -67,19 +67,19 @@ server {
 
 ### API, Data, Operations
 
-In 99% cases PleromaFE uses [MastoAPI](https://docs.joinmastodon.org/api/) with [Pleroma Extensions](https://docs.akkoma.dev/stable/differences_in_mastoapi_responses.md) to fetch the data. The rest is either QvitterAPI leftovers or pleroma-exclusive APIs. QvitterAPI doesn't exactly have documentation and uses different JSON structure and sometimes different parameters and workflows, [this](https://twitter-api.readthedocs.io/en/latest/index.html) could be a good reference though. Some pleroma-exclusive API may still be using QvitterAPI JSON structure.
+In 99% cases Akkoma-FE uses [MastoAPI](https://docs.joinmastodon.org/api/) with [Pleroma Extensions](https://docs.akkoma.dev/stable/differences_in_mastoapi_responses.md) to fetch the data. The rest is either QvitterAPI leftovers or pleroma-exclusive APIs. QvitterAPI doesn't exactly have documentation and uses different JSON structure and sometimes different parameters and workflows, [this](https://twitter-api.readthedocs.io/en/latest/index.html) could be a good reference though. Some pleroma-exclusive API may still be using QvitterAPI JSON structure.
 
-PleromaFE supports both formats by transforming them into internal format which is basically QvitterAPI one with some additions and renaming. All data is passed trough [Entity Normalizer](https://git.pleroma.social/pleroma/pleroma-fe/-/blob/develop/src/services/entity_normalizer/entity_normalizer.service.js) which can serve as a reference of API and what's actually used, it's also a host for all the hacks and data transformation.
+Akkoma-FE supports both formats by transforming them into internal format which is basically QvitterAPI one with some additions and renaming. All data is passed trough [Entity Normalizer](https://akkoma.dev/AkkomaGang/akkoma-fe/src/branch/develop/src/services/entity_normalizer/entity_normalizer.service.js) which can serve as a reference of API and what's actually used, it's also a host for all the hacks and data transformation.
 
-For most part, PleromaFE tries to store all the info it can get in global vuex store - every user and post are passed trough updating mechanism where data is either added or merged with existing data, reactively updating the information throughout UI, so if in newest request user's post counter increased, it will be instantly updated in open user profile cards. This is also used to find users, posts and sometimes to build timelines and/or request parameters.
+For most part, Akkoma-FE tries to store all the info it can get in global vuex store - every user and post are passed trough updating mechanism where data is either added or merged with existing data, reactively updating the information throughout UI, so if in newest request user's post counter increased, it will be instantly updated in open user profile cards. This is also used to find users, posts and sometimes to build timelines and/or request parameters.
 
-PleromaFE also tries to persist this store, however only stable data is stored, such as user authentication and preferences, user highlights. Persistence is performed by saving and loading chunk of vuex store in browser's LocalStorage/IndexedDB.
+Akkoma-FE also tries to persist this store, however only stable data is stored, such as user authentication and preferences, user highlights. Persistence is performed by saving and loading chunk of vuex store in browser's LocalStorage/IndexedDB.
 
 TODO: Refactor API code and document it here
 
 ### Themes
 
-PleromaFE uses custom theme "framework" which is pretty much just a style tag rendered by vue which only contains CSS3 variables. Every color used in UI should be derived from theme. Theme is stored in a JSON object containing color, opacity, shadow and font information, with most of it being optional.
+Akkoma-FE uses custom theme "framework" which is pretty much just a style tag rendered by vue which only contains CSS3 variables. Every color used in UI should be derived from theme. Theme is stored in a JSON object containing color, opacity, shadow and font information, with most of it being optional.
 
 The most basic theme can consist of 4 to 8 "basic colors", which is also what previous version of themes allowed, with all other colors being derived from those basic colors, i.e. "light background" will be "background" color lightened/darkened, "panel header" will be same as "foreground". The idea is that you can specify just basic color palette and everything else will be generated automatically, but if you really need to tweak some specific color - you can.
 

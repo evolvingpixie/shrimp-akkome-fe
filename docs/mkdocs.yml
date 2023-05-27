@@ -1,4 +1,4 @@
-site_name: Pleroma-FE Documentation
+site_name: Akkoma-FE Documentation
 theme:
   favicon: 'images/pleroma_logo_vector_bg_32.png'
   name: 'material'
@@ -14,8 +14,8 @@ theme:
 
 extra_css:
   - css/extra.css
-repo_name: 'AkkomaGang/pleroma-fe'
-repo_url: 'https://akkoma.dev/AkkomaGang/pleroma-fe'
+repo_name: 'AkkomaGang/akkoma-fe'
+repo_url: 'https://akkoma.dev/AkkomaGang/akkoma-fe'
 
 extra:
   repo_icon: gitea

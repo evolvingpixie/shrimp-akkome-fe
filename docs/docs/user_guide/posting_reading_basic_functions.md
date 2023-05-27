@@ -15,13 +15,13 @@ Posts will contain the text you are posting, but some content will be modified:
 Let's clear up some basic stuff. When you post something it's called a **post** or it could be called a **status** or even a **toot** or a **prööt** depending on whom you ask. Post has body/content but it also has some other stuff in it - from attachments, visibility scope, subject line...
 
 **Emoji** are small images embedded in text, there are two major types of emoji: [unicode emoji](https://en.wikipedia.org/wiki/Emoji) and custom emoji. While unicode emoji are universal and standardized, they can appear differently depending on where you are using them or may not appear at all on older systems. Custom emoji are a more *fun* kind - instance administrator can define many images as *custom emoji* for their users. This works very simple - custom emoji is defined by its *shortcode* and an image, so that any shortcode enclosed in colons get replaced with image if such shortcode exist.
-Let's say there's a `:pleroma:` emoji defined on an instance. That means  
-> First time using :pleroma: pleroma!  
+Let's say there's a `:akkoma:` emoji defined on an instance. That means
+> First time using :akkoma: akkoma!
 
-will become  
-> First time using ![pleroma](../assets/example_emoji.png) pleroma!  
+will become
+> First time using ![akkoma](../assets/example_emoji.png) akkoma!
 
-Note that you can only use emoji defined on your instance, you cannot "copy" someone else's emoji, and will have to ask your administrator to copy emoji from other instance to yours.  
+Note that you can only use emoji defined on your instance, you cannot "copy" someone else's emoji, and will have to ask your administrator to copy emoji from other instance to yours.
 Lastly, there's two convenience options for emoji: an emoji picker (smiley face to the right of "submit" button) and autocomplete suggestions - when you start typing :shortcode: it will automatically try to suggest you emoji and complete the shortcode for you if you select one. If emoji doesn't show up in suggestions nor in emoji picker it means there's no such emoji on your instance, if shortcode doesn't match any defined emoji it will appear as text.
 
 **Attachments** are fairly simple - you can attach any file to a post as long as the file is within maximum size limits. If you're uploading explicit material you can mark all of your attachments as sensitive (or add the `#nsfw` tag) - it will hide the images and videos behind a warning so that it won't be displayed instantly.
@@ -42,7 +42,7 @@ A few things to consider about the security and usage of these scopes:
 - Changing scopes during a thread or adding people to a direct message will not retroactively make them see the whole conversation. If you add someone to a direct message conversation, they will not see the post that happened before they were mentioned.
 * **Reply-to** if you are replying to someone, your post will also contain a note that your post is referring to the post you're replying to. Person you're replying to will receive a notification *even* if you remove them from mentioned people. You won't receive notifications when replying to your own posts, but it's useful to reply to your own posts to provide people some context if it's a follow-up to a previous post. There's a small "Reply to ..." label under post author's name which you can hover on to see what post it's referring to.
 
-Sometimes you may encounter posts that seem different than what they are supposed to. For example, you might see a direct message without any mentions in the text. This can happen because internally, the Fediverse has a different addressing mechanism similar to email, with `to` and `cc` fields. While these are not directly accessible in PleromaFE, other software in the Fediverse might generate those posts. Do not worry in these cases, these are normal and not a bug.
+Sometimes you may encounter posts that seem different than what they are supposed to. For example, you might see a direct message without any mentions in the text. This can happen because internally, the Fediverse has a different addressing mechanism similar to email, with `to` and `cc` fields. While these are not directly accessible in Akkoma-FE, other software in the Fediverse might generate those posts. Do not worry in these cases, these are normal and not a bug.
 
 ## Rich text
 
@@ -51,7 +51,7 @@ By default new posts you make are plaintext, meaning you can't make text **bold*
 Here is a small example of some text in markdown.
 
 ```
-This is an example of markdown text using **bold** and *cursive* text.  
+This is an example of markdown text using **bold** and *cursive* text.
 To get a newline we add two spaces at the end of the previous line.
 
 Let's also add a list
@@ -67,7 +67,7 @@ If you set the input-method to Markdown, and post this, it will look something l
 
 ## Misskey markdown
 
-The akkoma version of pleroma-fe includes support for writing and rendering
+Akkoma-FE includes support for writing and rendering
 misskey markdown (MFM). To write this you will need to select "MFM" from
 the content type dropdown (if supported), and then you can format text
 [in MFM](https://akkoma.dev/sfr/marked-mfm/src/branch/master/docs/syntax.md).
