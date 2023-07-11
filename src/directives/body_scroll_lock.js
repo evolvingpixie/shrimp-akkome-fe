@@ -3,11 +3,13 @@ import * as bodyScrollLock from 'body-scroll-lock'
 let previousNavPaddingRight
 let previousAppBgWrapperRight
 const lockerEls = new Set([])
+const allowedScrollableClasses = ['emoji-tabs-item', 'emoji-item']
 
 const disableBodyScroll = (el) => {
   const scrollBarGap = window.innerWidth - document.documentElement.clientWidth
   bodyScrollLock.disableBodyScroll(el, {
-    reserveScrollBarGap: true
+    reserveScrollBarGap: true,
+    allowTouchMove: el => allowedScrollableClasses.includes(el.parentElement.className),
   })
   lockerEls.add(el)
   setTimeout(() => {
