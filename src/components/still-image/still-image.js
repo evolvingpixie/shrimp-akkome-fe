@@ -13,7 +13,7 @@ const StillImage = {
     return {
       stopGifs: this.$store.getters.mergedConfig.stopGifs,
       isAnimated: false,
-      prefersReducedMotion: false
+      prefersReducedMotion: true
     }
   },
   created () {
