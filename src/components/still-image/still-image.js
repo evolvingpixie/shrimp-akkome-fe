@@ -12,12 +12,16 @@ const StillImage = {
   data () {
     return {
       stopGifs: this.$store.getters.mergedConfig.stopGifs,
-      isAnimated: false
+      isAnimated: false,
+      prefersReducedMotion: false
     }
+  },
+  created () {
+    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   },
   computed: {
     animated () {
-      return this.stopGifs && this.isAnimated
+      return this.stopGifs && this.isAnimated && this.prefersReducedMotion
     },
     style () {
       const appendPx = (str) => /\d$/.test(str) ? str + 'px' : str
