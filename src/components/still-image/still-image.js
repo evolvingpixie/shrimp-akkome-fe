@@ -11,8 +11,8 @@ const StillImage = {
   ],
   data () {
     return {
-      stopGifs: this.$store.getters.mergedConfig.stopGifs,
-      isAnimated: false
+      stopGifs: this.$store.getters.mergedConfig.stopGifs || window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      isAnimated: false,
     }
   },
   computed: {
