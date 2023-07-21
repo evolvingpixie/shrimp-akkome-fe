@@ -83,7 +83,7 @@ Here you can change your password, revoke access tokens, configure 2-factor auth
 
 ## Theme
 
-Here you can change the look and feel of Pleroma-FE. You can choose from several instance-provided presets and you can load one from file and save current theme to file. Before you apply new theme you can see what it will look like approximately in preview section.
+Here you can change the look and feel of Akkoma-FE. You can choose from several instance-provided presets and you can load one from file and save current theme to file. Before you apply new theme you can see what it will look like approximately in preview section.
 
 The themes engine was made to be easy to use while giving an option for powerful in-depth customization - you can just tweak colors on "Common" tab and leave everything else as is.
 

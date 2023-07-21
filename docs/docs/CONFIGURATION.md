@@ -1,15 +1,15 @@
-# Pleroma-FE configuration and customization for instance administrators
+# Akkoma-FE configuration and customization for instance administrators
 
-* *For user configuration, see [Pleroma-FE user guide](../user_guide)*
+* *For user configuration, see [Akkoma-FE user guide](../user_guide)*
 * *For local development server configuration, see [Hacking, tweaking, contributing](HACKING.md)*
 
 ## Where configuration is stored
 
-PleromaFE gets its configuration from several sources, in order of preference (the one above overrides ones below it)
+Akkoma-FE gets its configuration from several sources, in order of preference (the one above overrides ones below it)
 
-1. `/api/statusnet/config.json` - this is generated on Backend and contains multiple things including instance name, char limit etc. It also contains FE/Client-specific data, PleromaFE uses `pleromafe` field of it. For more info on changing config on BE, look [here](https://docs.akkoma.dev/stable/configuration/cheatsheet.md#frontend_configurations)
-2. `/static/config.json` - this is a static FE-provided file, containing only FE specific configuration. This file is completely optional and could be removed but is useful as a fallback if some configuration JSON property isn't present in BE-provided config. It's also a reference point to check what default configuration are and what JSON properties even exist. In local dev mode it could be used to override BE configuration, more about that in HACKING.md. File is located [here](https://akkoma.dev/AkkomaGang/pleroma-fe/src/branch/develop/static/config.json).
-3. Built-in defaults. Those are hard-coded defaults that are used when `/static/config.json` is not available and BE-provided configuration JSON is missing some JSON properties. ( [Code](https://akkoma.dev/AkkomaGang/pleroma-fe/src/branch/develop/src/modules/instance.js) )
+1. `/api/statusnet/config.json` - this is generated on Backend and contains multiple things including instance name, char limit etc. It also contains FE/Client-specific data, Akkoma-FE uses `pleromafe` field of it. For more info on changing config on BE, look [here](https://docs.akkoma.dev/stable/configuration/cheatsheet.md#frontend_configurations)
+2. `/static/config.json` - this is a static FE-provided file, containing only FE specific configuration. This file is completely optional and could be removed but is useful as a fallback if some configuration JSON property isn't present in BE-provided config. It's also a reference point to check what default configuration are and what JSON properties even exist. In local dev mode it could be used to override BE configuration, more about that in HACKING.md. File is located [here](https://akkoma.dev/AkkomaGang/akkoma-fe/src/branch/develop/static/config.json).
+3. Built-in defaults. Those are hard-coded defaults that are used when `/static/config.json` is not available and BE-provided configuration JSON is missing some JSON properties. ( [Code](https://akkoma.dev/AkkomaGang/akkoma-fe/src/branch/develop/src/modules/instance.js) )
 
 ## Instance-defaults
 
@@ -59,7 +59,7 @@ Instance `logo`, could be any image, including svg. By default it assumes logo u
 `logoMargin` allows you to adjust vertical margins between logo boundary and navbar borders. The idea is that to have logo's image without any extra margins and instead adjust them to your need in layout.
 
 ### `minimalScopesMode`
-Limit scope selection to *Direct*, *User default* and *Scope of post replying to*. This also makes it impossible to reply to a DM with a non-DM post from PleromaFE.
+Limit scope selection to *Direct*, *User default* and *Scope of post replying to*. This also makes it impossible to reply to a DM with a non-DM post from Akkoma-FE.
 
 ### `nsfwCensorImage`
 Use custom image for NSFW'd images
@@ -77,7 +77,7 @@ Change alignment of sidebar and panels to the right. Defaults to `false`.
 Show panel showcasing instance features/settings to logged-out visitors
 
 ### `showInstanceSpecificPanel`
-This allows you to include arbitrary HTML content in a panel below navigation menu. PleromaFE looks for an html page `instance/panel.html`, by default it's not provided in FE, but BE bundles some [default one](https://git.pleroma.social/pleroma/pleroma/blob/develop/priv/static/instance/panel.html). De-facto instance-defaults, since user can hide instance-specific panel.
+This allows you to include arbitrary HTML content in a panel below navigation menu. Akkoma-FE looks for an html page `instance/panel.html`, by default it's not provided in FE, but BE bundles some [default one](https://git.pleroma.social/pleroma/pleroma/blob/develop/priv/static/instance/panel.html). De-facto instance-defaults, since user can hide instance-specific panel.
 
 ### `subjectLineBehavior`
 How to handle subject line (CW) when replying to a post.

@@ -1,13 +1,13 @@
 # Adding stickers
 
-Pleroma-fe supports stickers, which are essentially little images stored server-side
+Akkoma-FE supports stickers, which are essentially little images stored server-side
 which can be selected by a user to automatically attach them to a post.
 
 There's no explicit setting for these, they just rely on the existence of certain files.
 
 ## Initialising the sticker config file
 
-You're probably serving pleroma-fe from your instance's `instance/static/` directory - 
+You're probably serving Akkoma-FE from your instance's `instance/static/` directory -
 this directy can also override files served at a given path.
 
 The first thing we need to do is set up our `stickers.json` file. At `instance/static/static/stickers.json`,
@@ -50,4 +50,4 @@ The `tabIcon` will appear on the sticker picker itself as a representative of th
 
 You can add as many stickers as you like. They should all be in the same directory as your `pack.json`.
 
-Now you should find that there's a sticky note icon on the emoji picker on pleroma-fe that allows you to attach stickers.
+Now you should find that there's a sticky note icon on the emoji picker on Akkoma-FE that allows you to attach stickers.
