@@ -11,17 +11,13 @@ const StillImage = {
   ],
   data () {
     return {
-      stopGifs: this.$store.getters.mergedConfig.stopGifs,
+      stopGifs: this.$store.getters.mergedConfig.stopGifs || window.matchMedia('(prefers-reduced-motion: reduce)').matches,
       isAnimated: false,
-      prefersReducedMotion: true
     }
-  },
-  created () {
-    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   },
   computed: {
     animated () {
-      return this.stopGifs && this.isAnimated && this.prefersReducedMotion
+      return this.stopGifs && this.isAnimated
     },
     style () {
       const appendPx = (str) => /\d$/.test(str) ? str + 'px' : str
