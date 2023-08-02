@@ -157,6 +157,9 @@
     box-shadow: var(--panelShadow);
     transition-property: transform;
     transition-duration: 0.25s;
+    @media (prefers-reduced-motion: reduce) {
+      transition: unset;
+    }
     transform: translateX(0);
     z-index: 1001;
     -webkit-overflow-scrolling: touch;

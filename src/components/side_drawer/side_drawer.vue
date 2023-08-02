@@ -268,6 +268,10 @@
 .side-drawer {
   overflow-x: hidden;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  @media (prefers-reduced-motion: reduce) {
+    transition-timing-function: unset;
+    transition: unset;
+  }
   transition: 0.35s;
   transition-property: transform;
   margin: 0 0 0 -100px;
