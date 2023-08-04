@@ -7,7 +7,7 @@ import {
   faStickyNote,
   faSmileBeam
 } from '@fortawesome/free-solid-svg-icons'
-import { trim, escapeRegExp, startCase } from 'lodash'
+import { trim, escapeRegExp, startCase, debounce } from 'lodash'
 
 library.add(
   faBoxOpen,
@@ -42,6 +42,9 @@ const EmojiPicker = {
     EmojiGrid
   },
   methods: {
+    debouncedSearch: debounce(function (e) {
+      this.keyword = e.target.value
+    }, 500),
     onStickerUploaded (e) {
       this.$emit('sticker-uploaded', e)
     },
@@ -84,17 +87,6 @@ const EmojiPicker = {
   computed: {
     activeGroupView () {
       return this.showingStickers ? '' : this.activeGroup
-    },
-    stickersAvailable () {
-      if (this.$store.state.instance.stickers) {
-        return this.$store.state.instance.stickers.length > 0
-      }
-      return 0
-    },
-    filteredEmoji () {
-      return this.filterByKeyword(
-        this.$store.state.instance.customEmoji || []
-      )
     },
     emojis () {
       const recentEmojis = this.$store.getters.recentEmojis
