@@ -4,6 +4,7 @@
         "mrf": {
             "federation": "フェデレーション",
             "keyword": {
+                "ftl_removal": "「せつぞくしているすべてのネットワーク」タイムラインからのぞく",
                 "is_replaced_by": "→",
                 "keyword_policies": "キーワードポリシー",
                 "reject": "おことわり",
@@ -120,7 +121,7 @@
         "error_retry": "もういちど、ためしてください",
         "flash_content": "クリックすると、Ruffle をつかって、フラッシュさくひんをひょうじします。(うまくうごかないかもしれません)",
         "flash_fail": "フラッシュさくひんのロードに、しっぱいしました。コンソールに、くわしいことがかかれています。",
-        "flash_security": "フラッシュさくひんは、あぶないことをしてくるかもしれないので、ちゅういしてください。",
+        "flash_security": "フラッシュさくひんは、あなたのコンピューターに、あぶないことをしてくるかもしれないので、ちゅういしてください。",
         "generic_error": "エラーになりました",
         "loading": "ロードしています…",
         "more": "つづき",
@@ -533,7 +534,7 @@
         "expert_mode": "こまかいせっていをひょうじ",
         "export_theme": "セーブ",
         "filtering": "フィルタリング",
-        "filtering_explanation": "これらのことばをふくむすべてのものがミュートされます。1ぎょうに1つのことばをかいてください",
+        "filtering_explanation": "これらのことばをふくむすべてのとうこうがミュートされます。1ぎょうに1つのことばをかいてください",
         "follow_export": "フォローのエクスポート",
         "follow_export_button": "エクスポート",
         "follow_import": "フォローインポート",
@@ -887,6 +888,7 @@
         "media": "メディア",
         "mention": "メンション",
         "mute": "ミュート",
+        "mute_domain": "ドメインをブロック",
         "mute_progress": "ミュートしています…",
         "muted": "ミュートしています！",
         "per_day": "/日",
@@ -897,6 +899,7 @@
         "subscribe": "サブスクライブ",
         "unblock": "ブロックをやめる",
         "unblock_progress": "ブロックをとりけしています…",
+        "unfollow_confirm": "{user}のフォローをやめますか?",
         "unmute": "ミュートをやめる",
         "unmute_progress": "ミュートをとりけしています…",
         "unsubscribe": "サブスクライブをやめる"

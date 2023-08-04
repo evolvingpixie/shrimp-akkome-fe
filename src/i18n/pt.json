@@ -30,7 +30,7 @@
                 "simple_policies": "Políticas especificas do domínio"
             }
         },
-        "staff": "Staff"
+        "staff": "Equipe"
     },
     "announcements": {
         "all_day_prompt": "Este evento dura o dia inteiro",
@@ -167,7 +167,7 @@
         "password": "Palavra-passe",
         "placeholder": "ex. lain",
         "recovery_code": "Código de recuperação",
-        "register": "Registar",
+        "register": "Registrar",
         "username": "Nome de Utilizador"
     },
     "media_modal": {
@@ -244,7 +244,7 @@
             "text/plain": "Texto puro"
         },
         "content_warning": "Assunto (opcional)",
-        "default": "Acabei de chegar a Lisboa.",
+        "default": "Acabei de chegar em",
         "direct_warning_to_all": "Esta publicação será visível para todos os utilizadores mencionados.",
         "direct_warning_to_first_only": "Esta publicação só será visível para os utilizadores mencionados no início da mensagem.",
         "empty_status_error": "Não consegues publicar um post vazio e sem ficheiros",
@@ -268,7 +268,7 @@
     },
     "registration": {
         "bio": "Biografia",
-        "bio_placeholder": "ex.\nOlá, sou a Lain\nSou uma menina de anime que vive no Japão suburbano. Devem conhecer-me do \"the Wired\".",
+        "bio_placeholder": "Ex.:\nBem-vindo a minha bio.\nEu amo assistir anime e jogar. Eu espero que possamos ser amigos!",
         "captcha": "CAPTCHA",
         "email": "Endereço de e-mail",
         "fullname": "Nome para exibição",
@@ -401,7 +401,7 @@
             "scan": {
                 "desc": "Utilizando a sua aplicação de dois fatores, faça scan deste código QR ou insira a chave de texto:",
                 "secret_code": "Chave",
-                "title": "Scan"
+                "title": "Escanear"
             },
             "setup_otp": "Configurar palavra-passe de utilização única",
             "title": "Autenticação de Dois Fatores",
@@ -566,7 +566,7 @@
                 "fine_print": "Leia nosso {0} para não aprender nada!",
                 "header": "Pré-visualizar",
                 "header_faint": "Isto está bem",
-                "input": "Acabei de chegar a Lisboa.",
+                "input": "Acabei de chegar na Lua",
                 "link": "um belo link",
                 "mono": "conteúdo",
                 "text": "Vários {0} e {1}"
@@ -648,7 +648,7 @@
         "type_domains_to_mute": "Pesquisar domínios para silenciar",
         "upload_a_photo": "Enviar uma foto",
         "useStreamingApi": "Receber publicações e notificações em tempo real",
-        "useStreamingApiWarning": "(não recomendado, experimental, pode omitir publicações)",
+        "useStreamingApiWarning": "É legal usar isso. Se der algum problema, atualize, eu acho?",
         "use_contain_fit": "Não cortar o anexo na miniatura",
         "use_one_click_nsfw": "Abrir anexos sensíveis com um clique",
         "user_mutes": "Utilizadores",

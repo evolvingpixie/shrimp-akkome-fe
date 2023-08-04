@@ -49,6 +49,86 @@
         "post_error": "Hata: {error}",
         "post_form_header": "Post sonrası",
         "post_placeholder": "Duyuru içeriği",
-        "published_time_display": "{time} tarihinde yayınlandı"
+        "published_time_display": "{time} tarihinde yayınlandı",
+        "start_time_display": "{time} saatinde başlar",
+        "start_time_prompt": "Başlangıç saati: ",
+        "submit_edit_action": "Gönder",
+        "title": "Duyuru"
+    },
+    "chats": {
+        "chats": "Sohbetler",
+        "delete": "Sil",
+        "delete_confirm": "Bu mesajı gerçekten silmek istiyor musun?",
+        "empty_chat_list_placeholder": "Henüz hiç sohbetiniz yok. Yeni bir sohbet başlatın!",
+        "empty_message_error": "Boş mesaj gönderilemiyor",
+        "error_loading_chat": "Sohbet yüklenirken bir şeyler ters gitti.",
+        "error_sending_message": "Mesajı gönderirken bir şeyler ters gitti.",
+        "message_user": "{nickname} mesajı",
+        "more": "Daha",
+        "new": "Yeni Sohbet",
+        "you": "Sen:"
+    },
+    "display_date": {
+        "today": "Bugün"
+    },
+    "domain_mute_card": {
+        "mute": "Sesini kapat",
+        "mute_progress": "Ses kapatılıyor…",
+        "unmute": "Sesini aç",
+        "unmute_progress": "Sessize alınıyor…"
+    },
+    "emoji": {
+        "add_emoji": "Emoji ekle",
+        "custom": "Özel emoji",
+        "emoji": "Emoji",
+        "keep_open": "Seçiciyi açık tut",
+        "load_all": "Tüm {emojiAmount} emoji yükleniyor",
+        "load_all_hint": "İlk {saneAmount} emoji yüklendi, tüm emojilerin yüklenmesi performans sorunlarına neden olabilir.",
+        "recent": "Son zamanlarda kullanılmış",
+        "search_emoji": "Emoji ara",
+        "stickers": "Çıkartmalar",
+        "unicode": "Unicode emojisi"
+    },
+    "errors": {
+        "storage_unavailable": "Pleroma, tarayıcı depolama alanına erişemedi. Oturum açma bilgileriniz veya yerel ayarlarınız kaydedilmeyecek ve beklenmeyen sorunlarla karşılaşabilirsiniz. Çerezleri etkinleştirmeyi deneyin."
+    },
+    "exporter": {
+        "export": "Dışa aktar",
+        "processing": "İşleniyor, yakında dosyanızı indirmeniz istenecek"
+    },
+    "features_panel": {
+        "media_proxy": "Medya proxy'si",
+        "scope_options": "Kapsam seçenekleri",
+        "text_limit": "Metin sınırı",
+        "title": "Özellikler",
+        "upload_limit": "Yükleme sınırı",
+        "who_to_follow": "Kimi takip etmeli"
+    },
+    "file_type": {
+        "audio": "Ses",
+        "file": "Dosya",
+        "image": "Resim",
+        "video": "Video"
+    },
+    "finder": {
+        "error_fetching_user": "Kullanıcı getirilirken hata oluştu",
+        "find_user": "Kullanıcı bul"
+    },
+    "general": {
+        "apply": "Uygula",
+        "cancel": "İptal",
+        "close": "Kapalı",
+        "confirm": "Onayla",
+        "disable": "Devre dışı bırak",
+        "dismiss": "Reddetmek",
+        "enable": "Etkinleştir",
+        "error_retry": "Lütfen tekrar deneyin",
+        "flash_content": "Ruffle kullanarak Flash içeriğini göstermek için tıklayın (Deneysel, çalışmayabilir).",
+        "flash_fail": "Flash içeriği yüklenemedi, ayrıntılar için konsola bakın.",
+        "flash_security": "Flash içeriği hala isteğe bağlı kod olduğundan, bunun potansiyel olarak tehlikeli olabileceğini unutmayın.",
+        "generic_error": "Bir hata oluştu",
+        "loading": "Yükleniyor…",
+        "more": "Daha",
+        "optional": "Seçenek"
     }
 }
