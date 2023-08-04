@@ -1,0 +1,215 @@
+{
+    "about": {
+        "mrf": {
+            "keyword": {
+                "keyword_policies": "Πολιτικές λέξεων-κλειδιών",
+                "reject": "Απόρριψη",
+                "replace": "Αντικατάσταση"
+            },
+            "mrf_policies": "Ενεργοποιημένες πολιτικές MRF",
+            "mrf_policies_desc": "",
+            "simple": {
+                "accept": "Αποδοχή",
+                "accept_desc": "Αυτό το instance αποδέχεται μηνύματα μόνο από τα ακόλουθα instances:",
+                "ftl_removal": "Αφαίρεση από το χρονολόγιο \"Γνωστού Δίκτυου\"",
+                "ftl_removal_desc": "Αυτό το instance αφαιρεί αυτά τα instances από το χρονολόγιο \"Γνωστού Δικτύου\":",
+                "quarantine": "Καραντίνα",
+                "quarantine_desc": "Αυτό το instance δε θα στέλνει αναρτήσεις στα ακόλουθα instances:",
+                "reason": "Λόγος",
+                "simple_policies": "Πολιτικές του instance"
+            }
+        }
+    },
+    "announcements": {
+        "all_day_prompt": "Αυτό είναι ένα ολοήμερο συμβάν",
+        "cancel_edit_action": "Ακύρωση",
+        "close_error": "Κλείσιμο",
+        "delete_action": "Διαγραφή",
+        "edit_action": "Επεξεργασία",
+        "end_time_display": "Λήγει στις {time}",
+        "page_header": "Ανακοινώσεις",
+        "title": "Ανακοίνωση"
+    },
+    "chats": {
+        "empty_message_error": "Δε μπορεί να σταλεί κενό μήνυμα",
+        "error_sending_message": "Κάτι πήγε λάθος κατά την αποστολή του μηνύματος.",
+        "message_user": "Στείλε μήνυμα στον/στην {nickname}",
+        "more": "Περισσότερα",
+        "new": "Νέο Chat",
+        "you": "Εσείς:"
+    },
+    "display_date": {
+        "today": "Σήμερα"
+    },
+    "domain_mute_card": {
+        "mute": "Σίγαση"
+    },
+    "emoji": {
+        "add_emoji": "Εισαγωγή emoji",
+        "load_all": "Φόρτωση όλων των {emojiAmount} emoji",
+        "recent": "Χρησιμοποιήθηκαν πρόσφατα",
+        "search_emoji": "Αναζήτηση για ένα emoji",
+        "stickers": "Αυτοκόλλητα"
+    },
+    "errors": {
+        "storage_unavailable": "Το Pleroma δε μπόρεσε να προσπελάσει τον αποθηκευτικό χώρο του browser. Η σύνδεσή σας ή οι τοπικές ρυθμίσεις σας δε θα αποθηκευτούν και μπορεί να αντιμετωπίσετε απρόοπτα θέματα. Προσπαθήστε να ενεργοποιήσετε τα cookies."
+    },
+    "exporter": {
+        "export": "Εξαγωγή"
+    },
+    "features_panel": {
+        "text_limit": "Όριο κειμένου"
+    },
+    "file_type": {
+        "audio": "Ήχος",
+        "file": "Αρχείο",
+        "image": "Εικόνα",
+        "video": "Βίντεο"
+    },
+    "general": {
+        "apply": "Εφαρμογή",
+        "cancel": "Ακύρωση",
+        "close": "Κλείσιμο",
+        "disable": "Απενεργοποίηση",
+        "enable": "Ενεργοποίηση",
+        "error_retry": "Παρακαλώ δοκιμάστε ξανά",
+        "flash_content": "Κάντε κλικ για την εμφάνιση Flash περιεχομένου με τη χρήση του Ruffle (Πειραματικό, μπορεί να μη λειτουργεί).",
+        "loading": "Φόρτωση…",
+        "more": "Περισσότερα",
+        "optional": "προαιρετικό",
+        "retry": "Δοκιμάστε ξανά",
+        "role": {
+            "admin": "Διαχειριστής",
+            "moderator": "Συντονιστής"
+        },
+        "scope_in_timeline": {
+            "direct": "Άμεσο",
+            "local": "Τοπικό",
+            "private": "Μόνο για ακόλουθους",
+            "public": "Δημόσιο",
+            "unlisted": "Εκτός Λίστας"
+        },
+        "show_less": "Δείξε λιγότερα",
+        "show_more": "Δείξε περισσότερα"
+    },
+    "image_cropper": {
+        "cancel": "Ακύρωση",
+        "crop_picture": "Περικοπή εικόνας",
+        "save": "Αποθήκευση",
+        "save_without_cropping": "Αποθήκευση χωρίς περικοπή"
+    },
+    "importer": {
+        "success": "Εισήχθη επιτυχώς."
+    },
+    "languages": {
+        "ar": "Αραβικά",
+        "az": "Αζερικά",
+        "bg": "Βουλγαρικά",
+        "cs": "Τσεχικά",
+        "da": "Δανικά",
+        "de": "Γερμανικά",
+        "el": "Ελληνικά",
+        "en": "Αγγλικά",
+        "eo": "Εσπεράντο",
+        "es": "Ισπανικά",
+        "fa": "Περσικά",
+        "fi": "Φινλανδικά",
+        "fr": "Γαλλικά",
+        "ga": "Ιρλανδικά",
+        "he": "Εβραϊκά",
+        "hi": "Χίντι",
+        "hu": "Ουγγρικά",
+        "id": "Ινδονησιακά",
+        "it": "Ιταλικά",
+        "ja": "Ιαπωνικά",
+        "ko": "Κορεατικά",
+        "lt": "Λιθουανικά",
+        "lv": "Λετονικά",
+        "nl": "Ολλανδικά",
+        "pl": "Πολωνικά",
+        "pt": "Πορτογαλικά",
+        "ru": "Ρωσικά",
+        "sk": "Σλοβακικά",
+        "sv": "Σουηδικά",
+        "tr": "Τουρκικά",
+        "translated_from": {
+            "ar": "Μεταφράστηκε από τα @:languages.ar",
+            "az": "Μεταφράστηκε από τα @:languages.az",
+            "bg": "Μεταφράστηκε από τα @:languages.bg",
+            "cs": "Μεταφράστηκε από τα @:languages.cs",
+            "da": "Μεταφράστηκε από τα @:languages.da",
+            "de": "Μεταφράστηκε από τα @:languages.de",
+            "el": "Μεταφράστηκε από τα @:languages.el",
+            "en": "Μεταφράστηκε από τα @:languages.en",
+            "eo": "Μεταφράστηκε από τα @:languages.eo",
+            "es": "Μεταφράστηκε από τα @:languages.es",
+            "fa": "Μεταφράστηκε από τα @:languages.fa",
+            "fi": "Μεταφράστηκε από τα @:languages.fi",
+            "fr": "Μεταφράστηκε από τα @:languages.fr",
+            "ga": "Μεταφράστηκε από τα @:languages.ga",
+            "he": "Μεταφράστηκε από τα @:languages.he",
+            "hi": "Μεταφράστηκε από τα @:languages.hi",
+            "hu": "Μεταφράστηκε από τα @:languages.hu",
+            "id": "Μεταφράστηκε από τα @:languages.id",
+            "it": "Μεταφράστηκε από τα @:languages.it",
+            "ja": "Μεταφράστηκε από τα @:languages.ja",
+            "ko": "Μεταφράστηκε από τα @:languages.ko",
+            "lt": "Μεταφράστηκε από τα @:languages.lt",
+            "lv": "Μεταφράστηκε από τα @:languages.lv",
+            "nl": "Μεταφράστηκε από τα @:languages.nl",
+            "pl": "Μεταφράστηκε από τα @:languages.pl",
+            "pt": "Μεταφράστηκε από τα @:languages.pt",
+            "ru": "Μεταφράστηκε από τα @:languages.ru",
+            "sk": "Μεταφράστηκε από τα @:languages.sk",
+            "sv": "Μεταφράστηκε από τα @:languages.sv",
+            "tr": "tr",
+            "uk": "Μεταφράστηκε από τα @:languages.uk",
+            "zh": "Μεταφράστηκε από τα @:languages.zh"
+        },
+        "uk": "Ουκρανικά",
+        "zh": "Κινεζικά"
+    },
+    "lists": {
+        "create": "Δημιουργία",
+        "delete": "Διαγραφή λίστας",
+        "lists": "Λίστες",
+        "new": "Νέα Λίστα",
+        "save": "Αποθήκευση αλλαγών",
+        "search": "Αναζήτηση χρηστών",
+        "title": "Τίτλος λίστας"
+    },
+    "login": {
+        "authentication_code": "Κωδικός επαλήθευσης",
+        "description": "Σύνδεση με OAuth",
+        "enter_recovery_code": "Εισάγετε τον κωδικό ανάκτησης",
+        "hint": "Συνδεθείτε για να μπείτε στη συζήτηση",
+        "login": "Σύνδεση",
+        "logout": "Αποσύνδεση",
+        "logout_confirm": "Θέλετε σίγουρα να αποσυνδεθείτε;",
+        "logout_confirm_accept_button": "Αποσύνδεση",
+        "logout_confirm_cancel_button": "Ακύρωση",
+        "logout_confirm_title": "Αποσύνδεση",
+        "password": "Κωδικός πρόσβασης",
+        "placeholder": "τοονομαχρηστημου",
+        "recovery_code": "Κωδικός ανάκτησης",
+        "register": "Εγγραφή",
+        "username": "Όνομα χρήστη"
+    },
+    "media_modal": {
+        "next": "Επόμενο",
+        "previous": "Προηγούμενο"
+    },
+    "moderation": {
+        "reports": {
+            "add_note": "Προσθήκη σημείωσης",
+            "close": "Κλείσιμο",
+            "delete_note": "Διαγραφή",
+            "delete_note_accept": "Ναι, διάγραψέ το",
+            "delete_note_cancel": "Όχι, κράτα το",
+            "delete_note_confirm": "Θέλετε σίγουρα να διαγράψετε αυτήν τη σημείωση;",
+            "note_placeholder": "Αφήστε μια σημείωση",
+            "notes": "{ count } σημείωση | { count } σημειώσεις",
+            "statuses": "{ count } ανάρτηση| { count } αναρτήσεις"
+        }
+    }
+}

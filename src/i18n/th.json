@@ -1,0 +1,34 @@
+{
+    "about": {
+        "bubble_instances": "เซิร์ฟเวอร์เพื่อนบ้าน",
+        "bubble_instances_description": "เซิร์ฟเวอร์ที่แอดมินตั้งค่าไว้เพื่อแสดงเป็นเพื่อนบ้าน",
+        "mrf": {
+            "keyword": {
+                "keyword_policies": "นโยบายของคีย์เวิร์ดค้นหา",
+                "reject": "ไม่อนุมัติ",
+                "replace": "แทนที่"
+            },
+            "simple": {
+                "accept": "ยอมรับ",
+                "accept_desc": "เซิร์ฟเวอร์นี้จะรับข้อความเฉพาะเซิฟร์เวอร์ต่อไปนี้:",
+                "instance": "เซิฟเวอร์",
+                "media_nsfw": "มีเดียถูกบังคับตั้งให้เป็น NSFW",
+                "not_applicable": "ไม่สามารถใช้ได้",
+                "quarantine": "คัดกรอง",
+                "reason": "เหตุผล",
+                "reject": "ปฎิเสธ"
+            }
+        },
+        "staff": "ผู้ดูแล"
+    },
+    "announcements": {
+        "cancel_edit_action": "ยกเลิก",
+        "close_error": "ปิด",
+        "delete_action": "ลบประกาศ",
+        "edit_action": "แก้ไขประกาศ",
+        "end_time_prompt": "เวลาสิ้นสุด: ",
+        "mark_as_read_action": "ตั้งเป็นอ่านแล้ว",
+        "page_header": "ประกาศ",
+        "post_action": "โพสต์"
+    }
+}
