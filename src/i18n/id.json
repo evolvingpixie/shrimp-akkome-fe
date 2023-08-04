@@ -1,11 +1,15 @@
 {
     "about": {
+        "bubble_instances": "Instance Bubble Lokal",
+        "bubble_instances_description": "Instansi yang dipilih oleh admin untuk mewakili instance ini",
         "mrf": {
             "federation": "Federasi",
             "keyword": {
                 "ftl_removal": "Penghapusan dari Linimasa \"Jaringan Yang Dikenal\"",
                 "is_replaced_by": "→",
-                "reject": "Tolak"
+                "keyword_policies": "Kebijakan Kata Kunci",
+                "reject": "Tolak",
+                "replace": "Ganti"
             },
             "mrf_policies": "Kebijakan MRF yang diaktifkan",
             "mrf_policies_desc": "Kebijakan MRF memanipulasi federasi yang terjadi pada instansi ini.  Kebijakan berikut adalah yang aktif:",
@@ -80,6 +84,7 @@
         "keep_open": "Tetap buka pemilih",
         "load_all": "Memuat semua {emojiAmount} emoji",
         "load_all_hint": "Memuat {saneAmount} emoji pertama, memuat semua emoji dapat menyebabkan masalah performa.",
+        "recent": "Baru-baru ini digunakan",
         "search_emoji": "Cari emoji",
         "stickers": "Stiker",
         "unicode": "Emoji Unicode"
@@ -93,9 +98,11 @@
     },
     "features_panel": {
         "media_proxy": "Proxy media",
+        "scope_options": "Opsi cakupan",
         "text_limit": "Batas teks",
         "title": "Fitur-fitur",
-        "upload_limit": "Batas unggahan"
+        "upload_limit": "Batas unggahan",
+        "who_to_follow": "Siapa untuk diikuti"
     },
     "file_type": {
         "audio": "Audio",
@@ -113,6 +120,7 @@
         "close": "Tutup",
         "confirm": "Konfirmasi",
         "disable": "Nonaktifkan",
+        "dismiss": "Tutup",
         "enable": "Aktifkan",
         "error_retry": "Harap coba lagi",
         "flash_content": "Klik untuk menampilkan konten Flash menggunakan Ruffle (Eksperimental, mungkin tidak bekerja).",
@@ -132,7 +140,8 @@
             "direct": "Langsung",
             "local": "Lokal - hanya instansi kamu yang dapat melihat postingan ini",
             "private": "Hanya pengikut",
-            "public": "Publik"
+            "public": "Publik",
+            "unlisted": "Tidak Tercantum"
         },
         "show_less": "Tampilkan lebih sedikit",
         "show_more": "Tampilkan lebih banyak",
@@ -227,6 +236,7 @@
     "lists": {
         "create": "Buat",
         "delete": "Hapus daftar",
+        "following_only": "Batas mengikuti",
         "lists": "Daftar",
         "new": "Buat Daftar",
         "save": "Simpan perubahan",
@@ -276,6 +286,7 @@
             "note_placeholder": "Tinggalkan catatan",
             "notes": "{ count } catatan",
             "reopen": "Buka kembali",
+            "report": "Laporan di",
             "reports": "Laporan",
             "resolve": "Selesaikan",
             "show_closed": "Tampilkan yang telah ditutup",
@@ -291,6 +302,8 @@
         "administration": "Administrasi",
         "announcements": "Pengumuman",
         "back": "Kembali",
+        "bookmarks": "Bookmark",
+        "bubble_timeline": "Timeline Bubble",
         "bubble_timeline_description": "Postingan dari instansi yang dekat dengan instansimu, yang direkomendasikan oleh admin kamu",
         "chats": "Obrolan",
         "dms": "Pesan langsung",
@@ -309,7 +322,8 @@
         "timelines": "Linimasa",
         "twkn": "Jaringan Yang Dikenal",
         "twkn_timeline_description": "Postingan dari seluruh jaringan",
-        "user_search": "Penelusuran Pengguna"
+        "user_search": "Penelusuran Pengguna",
+        "who_to_follow": "Siapa untuk diikuti"
     },
     "notifications": {
         "broken_favorite": "Postingan tak dikenal, mencarinya…",
@@ -385,7 +399,8 @@
             "direct": "Langsung - posting hanya kepada pengguna yang disebut",
             "local": "Lokal - postingan tidak akan difederasi",
             "private": "Hanya-pengikut - posting hanya kepada pengikut",
-            "public": "Publik - posting ke linimasa publik"
+            "public": "Publik - posting ke linimasa publik",
+            "unlisted": "Tidak Tercantum - Tidak memposting ke timeline publik"
         },
         "scope_notice": {
             "local": "Postingan ini tidak akan terlihat di instansi lain",
@@ -402,6 +417,7 @@
         "captcha": "CAPTCHA",
         "email": "Surel",
         "email_language": "Dalam bahasa apa kamu ingin menerima surel dari server ini?",
+        "fullname": "Tampilan Nama",
         "fullname_placeholder": "cth. Atsuko Kagari",
         "new_captcha": "Klik gambarnya untuk mendapatkan captcha baru",
         "password_confirm": "Konfirmasi kata sandi",
@@ -424,6 +440,7 @@
     },
     "remote_user_resolver": {
         "error": "Tidak ditemukan.",
+        "remote_user_resolver": "Pencarian pengguna jarak jauh",
         "searching_for": "Mencari"
     },
     "search": {
@@ -437,16 +454,22 @@
         "select_all": "Pilih semua"
     },
     "settings": {
+        "accent": "Aksen",
+        "account_alias": "Akun alias",
         "account_backup": "Pencadangan akun",
         "account_backup_description": "Ini memungkinkan kamu untuk mengunduh arsip yang berisi informasi tentang akun dan postingan kamu, namun belum bisa diimpor ke akun Pleroma.",
         "account_privacy": "Privasi",
+        "add_alias_error": "Gagal menambahkan alias: {error}",
         "add_backup": "Buat cadangan baru",
         "add_backup_error": "Gagal menambahkan cadangan baru: {error}",
+        "added_alias": "Alias telah ditambahkan.",
         "added_backup": "Cadangan baru ditambahkan.",
         "allow_following_move": "Ikuti otomatis apabila akun yang diikuti pindah",
+        "always_show_post_button": "Selalu tampilkan tombol posting baru yang mengambang",
         "app_name": "Nama aplikasi",
         "attachmentRadius": "Lampiran",
         "attachments": "Lampiran",
+        "autohide_floating_post_button": "Sembunyikan tombol buat posting secara otomatis (Ponsel)",
         "avatar": "Avatar",
         "avatarAltRadius": "Avatar (notifikasi)",
         "avatarRadius": "Avatar",
@@ -474,6 +497,8 @@
         "changed_password": "Kata sandi berhasil diubah!",
         "chatMessageRadius": "Pesan obrolan",
         "checkboxRadius": "Kotak centang",
+        "collapse_subject": "Tampilkan post dengan peringatan",
+        "columns": "Kolum",
         "composing": "Menulis",
         "confirm_dialogs": "Perlukan konfirmasi sebelum:",
         "confirm_dialogs_approve_follow": "Menerima permintaan mengikuti",
@@ -484,17 +509,23 @@
         "confirm_dialogs_repeat": "Mengulangi postingan",
         "confirm_dialogs_unfollow": "Berhenti mengikuti seseorang",
         "confirm_new_password": "Konfirmasi kata sandi baru",
+        "confirmation_dialogs": "Opsi Konfirmasi",
         "conversation_display": "Gaya tampilan percakapan",
+        "conversation_display_linear": "Gaya Linier",
         "conversation_display_tree": "Bercabang",
+        "conversation_other_replies_button": "Tampilkan tombol \"Balasan lainnya\"",
         "conversation_other_replies_button_below": "Di bawah postingan",
         "conversation_other_replies_button_inside": "Di postingan",
         "current_avatar": "Avatarmu saat ini",
+        "current_mascot": "Maskot utamamu",
         "current_password": "Kata sandi saat ini",
         "data_import_export_tab": "Impor / ekspor data",
+        "default_vis": "Cakupan visibilitas default",
         "delete_account": "Hapus akun",
         "delete_account_description": "Hapus data kamu secara permanen dan nonaktifkan akunmu.",
         "delete_account_error": "Ada masalah ketika menghapus akun kamu. Jika ini terus terjadi harap hubungi adminstrator instansi kamu.",
         "delete_account_instructions": "Ketik kata sandi kamu pada input di bawah untuk mengonfirmasi penghapusan akun.",
+        "disable_sticky_headers": "Jangan tempel tajuk kolom ke bagian atas layar",
         "discoverable": "Izinkan penelusuran akun ini pada hasil pencarian dan layanan lainnya",
         "domain_mutes": "Domain",
         "download_backup": "Unduh",
@@ -505,6 +536,7 @@
         "expert_mode": "Tampilkan pengaturan lanjutan",
         "expire_posts_enabled": "Hapus postingan setelah jumlah hari yang ditentukan",
         "expire_posts_input_placeholder": "Jumlah hari",
+        "export_theme": "Simpan preset",
         "file_export_import": {
             "backup_restore": "Pencadangan pengaturan",
             "backup_settings": "Cadangkan pengaturan ke berkas",
@@ -519,7 +551,11 @@
         },
         "filtering": "Penyaringan",
         "filtering_explanation": "Semua postingan yang mengandung kata-kata ini akan dibisukan, satu kata per baris",
+        "follow_export": "Ekspor Follow",
+        "follow_export_button": "Export yang kamu ikuti ke dalam file csv",
+        "follow_import": "Import pengikut",
         "follow_import_error": "Terjadi kesalahan ketika mengimpor pengikut",
+        "follows_imported": "Pengguna yang diikuti telak diimpor! Proses mungkin membutuhkan beberapa saat.",
         "fun": "Seru",
         "general": "Umum",
         "greentext": "Panah meme",
