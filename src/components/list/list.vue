@@ -1,9 +1,13 @@
 <template>
-  <div class="list">
+  <div
+    class="list"
+    role="list"
+  >
     <div
       v-for="item in items"
       :key="getKey(item)"
       class="list-item"
+      role="listitem"
     >
       <slot
         name="item"
