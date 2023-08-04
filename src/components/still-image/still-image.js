@@ -39,12 +39,25 @@ const StillImage = {
       this.imageLoadError && this.imageLoadError()
     },
     detectAnimation (image) {
+      // If there are no file extensions, the mimetype isn't set, and no mediaproxy is available, we can't figure out
+      // the mimetype of the image.
+      const hasFileExtension = this.src.split('/').pop().includes('.') // TODO: Better check?
+      const mediaProxyAvailable = this.$store.state.instance.mediaProxyAvailable
+      if (!hasFileExtension && this.mimetype === undefined && !mediaProxyAvailable) {
+        // It's a bit aggressive to assume all images we can't find the mimetype of is animated, but necessary for
+        // people in need of reduced motion accessibility. As such, we'll consider those images animated if the user
+        // agent is set to prefer reduced motion. Otherwise, it'll just be used as an early exit.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+          this.isAnimated = true
+        return
+      }
+
       if (this.mimetype === 'image/gif' || this.src.endsWith('.gif')) {
         this.isAnimated = true
         return
       }
       // harmless CORS errors without-- clean console with
-      if (!this.$store.state.instance.mediaProxyAvailable) return
+      if (!mediaProxyAvailable) return
       // Animated JPEGs?
       if (!(this.src.endsWith('.webp') || this.src.endsWith('.png'))) return
       // Browser Cache should ensure image doesn't get loaded twice if cache exists
