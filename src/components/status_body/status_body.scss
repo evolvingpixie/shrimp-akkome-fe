@@ -17,6 +17,9 @@
 
   .emoji:hover {
     transform: scale(1.4);
+    @media (prefers-reduced-motion: reduce) {
+      transition: unset;
+    }
     transition: 0.05s;
   }
 
