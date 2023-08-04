@@ -136,18 +136,26 @@ const ExtraButtons = {
     },
     doRedraftStatus () {
       this.$store.dispatch('fetchStatusSource', { id: this.status.id })
-        .then(data => this.$store.dispatch('openPostStatusModal', {
-          isRedraft: true,
-          statusId: this.status.id,
-          subject: data.spoiler_text,
-          statusText: data.text,
-          statusIsSensitive: this.status.nsfw,
-          statusPoll: this.status.poll,
-          statusFiles: [...this.status.attachments],
-          statusScope: this.status.visibility,
-          statusLanguage: this.status.language,
-          statusContentType: data.content_type
-        }))
+        .then(data => {
+          let repliedUserId = this.status.in_reply_to_user_id;
+          let repliedUser = this.status.attentions.filter(user =>
+            user.id === repliedUserId);
+          this.$store.dispatch('openPostStatusModal', {
+            isRedraft: true,
+            attentions: this.status.attentions,
+            statusId: this.status.id,
+            subject: data.spoiler_text,
+            statusText: data.text,
+            statusIsSensitive: this.status.nsfw,
+            statusPoll: this.status.poll,
+            statusFiles: [...this.status.attachments],
+            statusScope: this.status.visibility,
+            statusLanguage: this.status.language,
+            statusContentType: data.content_type,
+            replyTo: this.status.in_reply_to_status_id,
+            repliedUser: repliedUser
+          })
+        })
       this.doDeleteStatus()
     },
     showRedraftStatusConfirmDialog () {
