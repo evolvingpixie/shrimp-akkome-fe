@@ -1,3 +1,4 @@
+platform: linux/amd64
 pipeline:
   lint:
     when:
