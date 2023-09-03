@@ -37,11 +37,18 @@ const recentEmojis = {
 
   getters: {
     recentEmojis: (state, getters, rootState) => state.emojis.reduce((objects, displayText) => {
-      const allEmojis = rootState.instance.emoji.concat(rootState.instance.customEmoji)
-      let emojiObject = allEmojis.find(emoji => emoji.displayText === displayText)
+      let comparator = emoji => emoji.displayText === displayText
+
+      let emojiObject = rootState.instance.emoji.find(comparator)
       if (emojiObject !== undefined) {
         objects.push(emojiObject)
+      } else {
+        emojiObject = rootState.instance.customEmoji.find(comparator)
+        if (emojiObject !== undefined) {
+          objects.push(emojiObject)
+        }
       }
+
       return objects
     }, []),
   },
