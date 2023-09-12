@@ -33,7 +33,7 @@
   --_avatarShadowBox: var(--avatarStatusShadow);
   --_avatarShadowFilter: var(--avatarStatusShadowFilter);
   --_avatarShadowInset: var(--avatarStatusShadowInset);
-  --_still-image-label-visibility: hidden;
+  // --_still-image-label-visibility: hidden;
 
   display: inline-block;
   position: relative;
