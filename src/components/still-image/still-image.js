@@ -144,10 +144,14 @@ const StillImage = {
     
       // Use requestAnimationFrame to schedule the scaling to the next frame
       requestAnimationFrame(() => {
+        // Compute scaling ratio between the natural dimensions of the image and its display dimensions
+        const scalingRatioWidth = parentElement.clientWidth / image.naturalWidth;
+        const scalingRatioHeight = parentElement.clientHeight / image.naturalHeight;
+
         // Adjust for high-DPI displays
         const ratio = window.devicePixelRatio || 1;
-        canvas.width = parentElement.clientWidth * ratio;
-        canvas.height = parentElement.clientHeight * ratio;
+        canvas.width = image.naturalWidth * scalingRatioWidth * ratio;
+        canvas.height = image.naturalHeight * scalingRatioHeight * ratio;
         canvas.style.width = `${parentElement.clientWidth}px`;
         canvas.style.height = `${parentElement.clientHeight}px`;
         context.scale(ratio, ratio);
