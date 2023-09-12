@@ -60,7 +60,7 @@
   &.animated {
     &::before {
       zoom: var(--_still_image-label-scale, 1);
-      content: 'gif';
+      content: var(--image-type-label, 'A?');
       position: absolute;
       line-height: 1;
       font-size: 0.7em;
