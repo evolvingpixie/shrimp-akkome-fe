@@ -40,17 +40,21 @@ const StillImage = {
       this.imageLoadError && this.imageLoadError()
     },
     detectAnimation (image) {
-      // It's a bit aggressive to assume all images we can't find the mimetype of is animated, but necessary for
-      // people in need of reduced motion accessibility. As such, we'll consider those images animated if the user
-      // agent is set to prefer reduced motion. Otherwise, it'll just be used as an early exit.
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        this.isAnimated = true
-      }
-
       const mediaProxyAvailable = this.$store.state.instance.mediaProxyAvailable
 
       // harmless CORS errors without-- clean console with
-      if (!mediaProxyAvailable) return
+      if (!mediaProxyAvailable) {
+        // It's a bit aggressive to assume all images we can't find the mimetype of is animated, but necessary for
+        // people in need of reduced motion accessibility. As such, we'll consider those images animated if the user
+        // agent is set to prefer reduced motion. Otherwise, it'll just be used as an early exit.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          // Only for no media-proxy for now, since we're capturing gif, webp, and apng (are there others?)
+          // Since the canvas and images are not pixel-perfect matching (due to scaling),
+          // It makes the images jiggle on hover, which is not ideal for accessibility, methinks
+          this.isAnimated = true
+        }
+        return
+      }
       
       // Browser Cache should ensure image doesn't get loaded twice if cache exists
       fetch(image.src, {
