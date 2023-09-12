@@ -6,7 +6,7 @@
     :style="style"
   >
     <div
-      v-if="isAnimated && imageTypeLabel"
+      v-if="animated && imageTypeLabel"
       class="image-type-label">
         {{ imageTypeLabel }}
     </div>
