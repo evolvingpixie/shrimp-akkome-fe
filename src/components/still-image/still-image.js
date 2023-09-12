@@ -13,6 +13,7 @@ const StillImage = {
     return {
       stopGifs: this.$store.getters.mergedConfig.stopGifs || window.matchMedia('(prefers-reduced-motion: reduce)').matches,
       isAnimated: false,
+      imageTypeLabel: ''
     }
   },
   computed: {
@@ -62,20 +63,26 @@ const StillImage = {
               // Ordered from least to most intensive
               if (this.isGIF(reader.value)) {
                 this.isAnimated = true
+                this.setLabel('GIF')
                 return
               }
               if (this.isAnimatedWEBP(reader.value)) {
                 this.isAnimated = true
+                this.setLabel('WEBP')
                 return
               }
               if (this.isAnimatedPNG(reader.value)) {
                 this.isAnimated = true
+                this.setLabel('APNG')
               }
             })
         })
         .catch(() => {
           // this.imageLoadError && this.imageLoadError()
         })
+    },
+    setLabel (name) {
+      this.imageTypeLabel = name;
     },
     isGIF (data) {
       // I am a perfectly sane individual
