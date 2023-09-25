@@ -1,9 +1,15 @@
 <template>
   <div
+    ref="still-image"
     class="still-image"
     :class="{ animated: animated }"
     :style="style"
   >
+    <div
+      v-if="animated && imageTypeLabel"
+      class="image-type-label">
+        {{ imageTypeLabel }}
+    </div>
     <canvas
       v-if="animated"
       ref="canvas"
@@ -57,30 +63,26 @@
     }
   }
 
-  &.animated {
-    &::before {
-      zoom: var(--_still_image-label-scale, 1);
-      content: 'gif';
-      position: absolute;
-      line-height: 1;
-      font-size: 0.7em;
-      top: 0.5em;
-      left: 0.5em;
-      background: rgba(127, 127, 127, 0.5);
-      color: #fff;
-      display: block;
-      padding: 2px 4px;
-      border-radius: $fallback--tooltipRadius;
-      border-radius: var(--tooltipRadius, $fallback--tooltipRadius);
-      z-index: 2;
-      visibility: var(--_still-image-label-visibility, visible);
-    }
+  .image-type-label {
+    position: absolute;
+    top: 0.25em;
+    left: 0.25em;
+    line-height: 1;
+    font-size: 0.6em;
+    background: rgba(127, 127, 127, 0.5);
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: var(--tooltipRadius, $fallback--tooltipRadius);
+    z-index: 2;
+    visibility: var(--_still-image-label-visibility, visible);
+  }
 
+  &.animated {
     &:hover canvas {
       display: none;
     }
 
-    &:hover::before {
+    &:hover .image-type-label {
       visibility: var(--_still-image-label-visibility, hidden);
     }
 
