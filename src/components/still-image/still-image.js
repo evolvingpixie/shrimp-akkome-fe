@@ -42,20 +42,22 @@ const StillImage = {
     detectAnimation (image) {
       const mediaProxyAvailable = this.$store.state.instance.mediaProxyAvailable
 
-      // harmless CORS errors without-- clean console with
       if (!mediaProxyAvailable) {
         // It's a bit aggressive to assume all images we can't find the mimetype of is animated, but necessary for
         // people in need of reduced motion accessibility. As such, we'll consider those images animated if the user
         // agent is set to prefer reduced motion. Otherwise, it'll just be used as an early exit.
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          // Only for no media-proxy for now, since we're capturing gif, webp, and apng (are there others?)
           // Since the canvas and images are not pixel-perfect matching (due to scaling),
           // It makes the images jiggle on hover, which is not ideal for accessibility, methinks
           this.isAnimated = true
+          return
         }
-        return
+        this.detectWithoutMediaProxy(image)
+      } else {
+        this.detectWithMediaProxy(image)
       }
-      
+    },
+    detectAnimationWithFetch (image) {
       // Browser Cache should ensure image doesn't get loaded twice if cache exists
       fetch(image.src, {
         referrerPolicy: 'same-origin'
@@ -84,6 +86,36 @@ const StillImage = {
         .catch(() => {
           // this.imageLoadError && this.imageLoadError()
         })
+    },
+    detectWithMediaProxy (image) {
+      this.detectAnimationWithFetch(image)
+    },
+    detectWithoutMediaProxy (image) {
+      // We'll just assume that gifs and webp are animated
+      const extension = image.src.split('.').pop().toLowerCase()
+
+      if (extension === 'gif') {
+        this.isAnimated = true
+        this.setLabel('GIF')
+        return
+      }
+      if (extension === 'webp') {
+        this.isAnimated = true
+        this.setLabel('WEBP')
+        return
+      }
+      // Beware the apng! use this if ye dare
+      // if (extension === 'png') {
+      //  this.isAnimated = true
+      //  this.setLabel('PNG')
+      //  return
+      // }
+      
+      // Hail mary for extensionless
+      if (extension.includes('/')) {
+        // Don't mind the CORS error barrage
+        this.detectAnimationWithFetch(image)
+      }
     },
     setLabel (name) {
       this.imageTypeLabel = name;
