@@ -105,9 +105,12 @@
     flex: 1;
     padding-left: 0.8em;
     min-width: 0;
+  }
 
+  .heading-right, .notification-right {
     .timeago {
-      min-width: 3em;
+      display: inline-block;
+      min-width: 6em;
       text-align: right;
     }
   }
