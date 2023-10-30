@@ -8,7 +8,7 @@ const specialLanguageCodes = {
   'zh': 'zh-Hans'
 }
 
-const internalToBrowserLocale = code => specialLanguageCodes[code] || code
+const internalToBrowserLocale = fallbackCode => specialLanguageCodes[fallbackCode] || window.navigator.language || fallbackCode
 
 const internalToBackendLocale = code => internalToBrowserLocale(code).replace('_', '-')
 
