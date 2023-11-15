@@ -21,7 +21,6 @@ const defaultState = {
   background: '/static/aurora_borealis.jpg',
   collapseMessageWithSubject: true,
   greentext: false,
-  useAtIcon: false,
   mentionLinkDisplay: 'short',
   mentionLinkShowTooltip: true,
   mentionLinkShowAvatar: false,

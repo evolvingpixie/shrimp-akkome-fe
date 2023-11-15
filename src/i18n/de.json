@@ -916,7 +916,6 @@
         "upload_a_photo": "Lade ein Foto hoch",
         "useStreamingApi": "Empfange Posts und Benachrichtigungen in Echtzeit",
         "useStreamingApiWarning": "(Nicht empfohlen, experimentell, bekannt dafür, Posts zu überspringen)",
-        "use_at_icon": "{'@'}-Symbol als Icon und nicht als Text anzeigen",
         "use_blurhash": "Blurhash für NSFW-Vorschauen verwenden",
         "use_contain_fit": "Vorschaubilder nicht zuschneiden",
         "use_one_click_nsfw": "Heikle Anhänge mit nur einem Klick öffnen",

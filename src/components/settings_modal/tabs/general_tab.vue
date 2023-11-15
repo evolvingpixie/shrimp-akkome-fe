@@ -484,14 +484,6 @@
           </li>
         </ul>
         <li>
-          <BooleanSetting
-            path="useAtIcon"
-            expert="1"
-          >
-            {{ $t('settings.use_at_icon') }}
-          </BooleanSetting>
-        </li>
-        <li>
           <BooleanSetting path="mentionLinkShowAvatar">
             {{ $t('settings.mention_link_show_avatar') }}
           </BooleanSetting>

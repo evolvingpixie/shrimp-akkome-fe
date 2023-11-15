@@ -922,7 +922,6 @@
         "upload_a_photo": "上传照片",
         "useStreamingApi": "实时接收帖文和通知",
         "useStreamingApiWarning": "十分炫酷推荐使用。要是崩了试试刷新？",
-        "use_at_icon": "将 {'@'} 符号显示为图标而不是文本",
         "use_blurhash": "对NSFW的缩略图使用模糊处理",
         "use_contain_fit": "生成缩略图时不要裁剪附件",
         "use_one_click_nsfw": "点击一次以打开工作场所不适宜（NSFW）的附件",
