@@ -95,7 +95,6 @@ export const defaultState = {
   disableStickyHeaders: false,
   showScrollbars: false,
   greentext: undefined, // instance default
-  useAtIcon: undefined, // instance default
   mentionLinkDisplay: undefined, // instance default
   mentionLinkShowTooltip: undefined, // instance default
   mentionLinkShowAvatar: undefined, // instance default

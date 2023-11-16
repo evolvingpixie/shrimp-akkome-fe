@@ -922,7 +922,6 @@
         "upload_a_photo": "Upload a photo",
         "useStreamingApi": "Receive posts and notifications real-time",
         "useStreamingApiWarning": "It's cool use it. If it breaks refresh I guess?",
-        "use_at_icon": "Display {'@'} symbol as an icon instead of text",
         "use_contain_fit": "Don't crop the attachment in thumbnails",
         "use_one_click_nsfw": "Open NSFW attachments with just one click",
         "user_mutes": "Users",

@@ -920,7 +920,6 @@
         "upload_a_photo": "Envoyer une photo",
         "useStreamingApi": "Recevoir les messages et notifications en temps réel",
         "useStreamingApiWarning": "(Non recommandé, expérimental, connu pour rater des messages)",
-        "use_at_icon": "Afficher le symbol {'@'} comme une image",
         "use_contain_fit": "Ne pas rogner les miniatures des pièces-jointes",
         "use_one_click_nsfw": "Ouvrir les pièces-jointes sensibles avec un seul clic",
         "user_mutes": "Comptes",

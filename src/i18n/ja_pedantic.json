@@ -921,7 +921,6 @@
         "upload_a_photo": "画像をアップロード",
         "useStreamingApi": "投稿と通知を、すぐに受け取る",
         "useStreamingApiWarning": "（実験中で、投稿を取りこぼすかもしれないので、おすすめしません）",
-        "use_at_icon": "{'@'}マークをアイコンにする",
         "use_contain_fit": "画像のサムネイルを、切り抜かない",
         "use_one_click_nsfw": "NSFWなファイルを1クリックで開く",
         "user_mutes": "ユーザー",
