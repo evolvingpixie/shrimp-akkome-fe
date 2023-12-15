@@ -228,7 +228,7 @@ const config = {
           break
         case 'interfaceLanguage':
           messages.setLanguage(this.getters.i18n, value)
-          Cookies.set(BACKEND_LANGUAGE_COOKIE_NAME, localeService.internalToBackendLocale(value))
+          Cookies.set(BACKEND_LANGUAGE_COOKIE_NAME, localeService.internalToBackendLocale(value), {sameSite: 'Lax'})
           dispatch('setInstanceOption', { name: 'interfaceLanguage', value })
           break
         case 'thirdColumnMode':
