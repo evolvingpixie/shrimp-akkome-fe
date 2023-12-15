@@ -8,7 +8,30 @@ const specialLanguageCodes = {
   'zh': 'zh-Hans'
 }
 
-const internalToBrowserLocale = code => specialLanguageCodes[code] || code
+// Find a browser language that matches the configured UI language.
+// Browser language should match the configured generic short code prefix:
+// eg 'en-GB' browser language matches 'en' UI language.
+const findBrowserRegionMatch = genericLang => {
+  for (const blang of window.navigator.languages) {
+    if (genericLang === blang.split('-')[0])
+      return blang;
+  }
+  return null;
+}
+
+const internalToBrowserLocale = (() => {
+  const resolvedBrowserLocales = {}
+
+  return i18nLocale => {
+    if (resolvedBrowserLocales[i18nLocale]) {
+      return resolvedBrowserLocales[i18nLocale]
+    }
+    const lang = specialLanguageCodes[i18nLocale] || i18nLocale;
+    const resolved = findBrowserRegionMatch(lang) || lang;
+    resolvedBrowserLocales[i18nLocale] = resolved
+    return resolved
+  }
+})()
 
 const internalToBackendLocale = code => internalToBrowserLocale(code).replace('_', '-')
 
