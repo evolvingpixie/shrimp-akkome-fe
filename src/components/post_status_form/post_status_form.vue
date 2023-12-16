@@ -119,7 +119,7 @@
         </div>
         <EmojiInput
           ref="subject-emoji-input"
-          v-if="!disableSubject && (newStatus.spoilerText || alwaysShowSubject)"
+          v-if="subjectVisible"
           v-model="newStatus.spoilerText"
           enable-emoji-picker
           hide-emoji-button
@@ -280,6 +280,15 @@
             @click="togglePollForm"
           >
             <FAIcon icon="poll-h" />
+          </button>
+          <button
+            v-if="!disableSubject"
+            class="spoiler-icon button-unstyled"
+            :class="{ selected: subjectVisible }"
+            :title="$t('post_status.toggle_content_warning')"
+            @click="toggleSubjectVisible"
+          >
+            <FAIcon icon="eye-slash" />
           </button>
         </div>
         <button
@@ -461,7 +470,7 @@
     }
   }
 
-  .media-upload-icon, .poll-icon, .emoji-icon {
+  .media-upload-icon, .poll-icon, .emoji-icon, .spoiler-icon {
     font-size: 1.85em;
     line-height: 1.1;
     flex: 1;
@@ -504,6 +513,11 @@
 
   .poll-icon {
     order: 3;
+    justify-content: center;
+  }
+
+  .spoiler-icon {
+    order: 4;
     justify-content: right;
   }
 

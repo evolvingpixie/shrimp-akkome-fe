@@ -199,6 +199,10 @@ const PostStatusForm = {
       }
     }
 
+    // When first loading the form, hide the subject (CW) field if it's disabled or doesn't have a starting value.
+    // "disableSubject" seems to take priority over "alwaysShowSubject"
+    const showSubject = !this.disableSubject && (statusParams.spoilerText || this.alwaysShowSubject)
+
     return {
       dropFiles: [],
       uploadingFiles: false,
@@ -215,7 +219,8 @@ const PostStatusForm = {
       emojiInputShown: false,
       idempotencyKey: '',
       activeEmojiInput: undefined,
-      activeTextInput: undefined
+      activeTextInput: undefined,
+      subjectVisible: showSubject
     }
   },
   computed: {
@@ -689,6 +694,20 @@ const PostStatusForm = {
     focusSubjectInput() {
       this.activeEmojiInput = 'subject-emoji-input'
       this.activeTextInput = 'subject-input'
+    },
+    toggleSubjectVisible() {
+      // If hiding CW, then we need to clear the subject and reset focus
+      if (this.subjectVisible)
+      {
+        this.focusStatusInput()
+
+        // "nsfw" property is normally set by the @change listener, but this bypasses it.
+        // We need to clear it manually instead.
+        this.newStatus.spoilerText = ''
+        this.newStatus.nsfw = false
+      }
+
+      this.subjectVisible = !this.subjectVisible
     },
     clearError () {
       this.error = null
