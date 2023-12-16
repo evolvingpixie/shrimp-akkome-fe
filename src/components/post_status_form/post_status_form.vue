@@ -118,13 +118,16 @@
           />
         </div>
         <EmojiInput
+          ref="subject-emoji-input"
           v-if="!disableSubject && (newStatus.spoilerText || alwaysShowSubject)"
           v-model="newStatus.spoilerText"
           enable-emoji-picker
+          hide-emoji-button
           :suggest="emojiSuggestor"
           class="form-control"
         >
           <input
+            ref="subject-input"
             v-model="newStatus.spoilerText"
             type="text"
             :placeholder="$t('post_status.content_warning')"
@@ -132,6 +135,7 @@
             size="1"
             class="form-post-subject"
             @input="onSubjectInput"
+            @focus="focusSubjectInput()"
           >
         </EmojiInput>
         <i18n-t
@@ -173,6 +177,7 @@
             @input="resize"
             @compositionupdate="resize"
             @paste="paste"
+            @focus="focusStatusInput()"
           />
           <p
             v-if="hasStatusLengthLimit"

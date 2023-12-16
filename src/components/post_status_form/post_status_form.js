@@ -213,7 +213,9 @@ const PostStatusForm = {
       preview: null,
       previewLoading: false,
       emojiInputShown: false,
-      idempotencyKey: ''
+      idempotencyKey: '',
+      activeEmojiInput: undefined,
+      activeTextInput: undefined
     }
   },
   computed: {
@@ -674,8 +676,19 @@ const PostStatusForm = {
       this.$refs['emoji-input'].resize()
     },
     showEmojiPicker () {
-      this.$refs['textarea'].focus()
-      this.$refs['emoji-input'].triggerShowPicker()
+      if (!this.activeEmojiInput || !this.activeTextInput)
+        this.focusStatusInput()
+
+      this.$refs[this.activeTextInput].focus()
+      this.$refs[this.activeEmojiInput].triggerShowPicker()
+    },
+    focusStatusInput() {
+      this.activeEmojiInput = 'emoji-input'
+      this.activeTextInput = 'textarea'
+    },
+    focusSubjectInput() {
+      this.activeEmojiInput = 'subject-emoji-input'
+      this.activeTextInput = 'subject-input'
     },
     clearError () {
       this.error = null
