@@ -118,13 +118,16 @@
           />
         </div>
         <EmojiInput
-          v-if="!disableSubject && (newStatus.spoilerText || alwaysShowSubject)"
+          ref="subject-emoji-input"
+          v-if="subjectVisible"
           v-model="newStatus.spoilerText"
           enable-emoji-picker
+          hide-emoji-button
           :suggest="emojiSuggestor"
           class="form-control"
         >
           <input
+            ref="subject-input"
             v-model="newStatus.spoilerText"
             type="text"
             :placeholder="$t('post_status.content_warning')"
@@ -132,6 +135,7 @@
             size="1"
             class="form-post-subject"
             @input="onSubjectInput"
+            @focus="focusSubjectInput()"
           >
         </EmojiInput>
         <i18n-t
@@ -173,6 +177,7 @@
             @input="resize"
             @compositionupdate="resize"
             @paste="paste"
+            @focus="focusStatusInput()"
           />
           <p
             v-if="hasStatusLengthLimit"
@@ -275,6 +280,15 @@
             @click="togglePollForm"
           >
             <FAIcon icon="poll-h" />
+          </button>
+          <button
+            v-if="!disableSubject"
+            class="spoiler-icon button-unstyled"
+            :class="{ selected: subjectVisible }"
+            :title="$t('post_status.toggle_content_warning')"
+            @click="toggleSubjectVisible"
+          >
+            <FAIcon icon="eye-slash" />
           </button>
         </div>
         <button
@@ -456,7 +470,7 @@
     }
   }
 
-  .media-upload-icon, .poll-icon, .emoji-icon {
+  .media-upload-icon, .poll-icon, .emoji-icon, .spoiler-icon {
     font-size: 1.85em;
     line-height: 1.1;
     flex: 1;
@@ -499,6 +513,11 @@
 
   .poll-icon {
     order: 3;
+    justify-content: center;
+  }
+
+  .spoiler-icon {
+    order: 4;
     justify-content: right;
   }
 

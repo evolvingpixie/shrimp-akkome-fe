@@ -138,7 +138,7 @@ const PostStatusForm = {
       statusText = buildMentionsString({ user: this.repliedUser, attentions: this.attentions }, currentUser)
     }
 
-    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage } = this.$store.getters.mergedConfig
+    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage, alwaysShowSubjectInput } = this.$store.getters.mergedConfig
 
     let statusParams = {
       spoilerText: this.subject || '',
@@ -199,6 +199,10 @@ const PostStatusForm = {
       }
     }
 
+    // When first loading the form, hide the subject (CW) field if it's disabled or doesn't have a starting value.
+    // "disableSubject" seems to take priority over "alwaysShowSubjectInput".
+    const showSubject = !this.disableSubject && (statusParams.spoilerText || alwaysShowSubjectInput)
+
     return {
       dropFiles: [],
       uploadingFiles: false,
@@ -213,7 +217,10 @@ const PostStatusForm = {
       preview: null,
       previewLoading: false,
       emojiInputShown: false,
-      idempotencyKey: ''
+      idempotencyKey: '',
+      activeEmojiInput: undefined,
+      activeTextInput: undefined,
+      subjectVisible: showSubject
     }
   },
   computed: {
@@ -674,8 +681,33 @@ const PostStatusForm = {
       this.$refs['emoji-input'].resize()
     },
     showEmojiPicker () {
-      this.$refs['textarea'].focus()
-      this.$refs['emoji-input'].triggerShowPicker()
+      if (!this.activeEmojiInput || !this.activeTextInput)
+        this.focusStatusInput()
+
+      this.$refs[this.activeTextInput].focus()
+      this.$refs[this.activeEmojiInput].triggerShowPicker()
+    },
+    focusStatusInput() {
+      this.activeEmojiInput = 'emoji-input'
+      this.activeTextInput = 'textarea'
+    },
+    focusSubjectInput() {
+      this.activeEmojiInput = 'subject-emoji-input'
+      this.activeTextInput = 'subject-input'
+    },
+    toggleSubjectVisible() {
+      // If hiding CW, then we need to clear the subject and reset focus
+      if (this.subjectVisible)
+      {
+        this.focusStatusInput()
+
+        // "nsfw" property is normally set by the @change listener, but this bypasses it.
+        // We need to clear it manually instead.
+        this.newStatus.spoilerText = ''
+        this.newStatus.nsfw = false
+      }
+
+      this.subjectVisible = !this.subjectVisible
     },
     clearError () {
       this.error = null
