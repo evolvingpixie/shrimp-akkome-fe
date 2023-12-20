@@ -138,7 +138,7 @@ const PostStatusForm = {
       statusText = buildMentionsString({ user: this.repliedUser, attentions: this.attentions }, currentUser)
     }
 
-    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage } = this.$store.getters.mergedConfig
+    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage, alwaysShowSubjectInput } = this.$store.getters.mergedConfig
 
     let statusParams = {
       spoilerText: this.subject || '',
@@ -200,8 +200,8 @@ const PostStatusForm = {
     }
 
     // When first loading the form, hide the subject (CW) field if it's disabled or doesn't have a starting value.
-    // "disableSubject" seems to take priority over "alwaysShowSubject"
-    const showSubject = !this.disableSubject && (statusParams.spoilerText || this.alwaysShowSubject)
+    // "disableSubject" seems to take priority over "alwaysShowSubjectInput".
+    const showSubject = !this.disableSubject && (statusParams.spoilerText || alwaysShowSubjectInput)
 
     return {
       dropFiles: [],
