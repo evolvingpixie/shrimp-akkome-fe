@@ -7,46 +7,6 @@
     </div>
     <div class="panel-body">
       <section
-        v-if="currentUser && currentUser.role === 'admin'"
-      >
-        <div class="post-form">
-          <div class="heading">
-            <h4>{{ $t('announcements.post_form_header') }}</h4>
-          </div>
-          <div class="body">
-            <announcement-editor
-              :announcement="newAnnouncement"
-              :disabled="posting"
-            />
-          </div>
-          <div class="footer">
-            <button
-              class="btn button-default post-button"
-              :disabled="posting"
-              @click.prevent="postAnnouncement"
-            >
-              {{ $t('announcements.post_action') }}
-            </button>
-            <div
-              v-if="error"
-              class="alert error"
-            >
-              {{ $t('announcements.post_error', { error }) }}
-              <button
-                class="button-unstyled"
-                @click="clearError"
-              >
-                <FAIcon
-                  class="fa-scale-110 fa-old-padding"
-                  icon="times"
-                  :title="$t('announcements.close_error')"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section
         v-for="announcement in announcements"
         :key="announcement.id"
       >

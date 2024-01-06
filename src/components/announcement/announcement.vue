@@ -44,20 +44,6 @@
         >
           {{ $t('announcements.mark_as_read_action') }}
         </button>
-        <button
-          v-if="currentUser && currentUser.role === 'admin'"
-          class="btn button-default"
-          @click="enterEditMode"
-        >
-          {{ $t('announcements.edit_action') }}
-        </button>
-        <button
-          v-if="currentUser && currentUser.role === 'admin'"
-          class="btn button-default"
-          @click="deleteAnnouncement"
-        >
-          {{ $t('announcements.delete_action') }}
-        </button>
       </div>
       <div
         v-else

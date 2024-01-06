@@ -126,6 +126,34 @@ export const parseUser = (data) => {
       } else {
         output.role = 'member'
       }
+    } else {
+      output.relationship = {
+        muting: [],
+        blocking: [],
+        followed_by: [],
+        following: []
+      }
+
+      output.rights = {
+        moderator: false,
+        admin: false
+      }
+
+      // todo: find a better way to map masto roles to akkoma roles
+      const roles = data.roles
+      if (roles) {
+        if (!roles[0]) {
+          output.role = 'member'
+        } else if (roles[0].id === "1") {
+          output.role = 'moderator'
+          output.rights.moderator = true
+        } else if (roles[0].id === "2" || roles[0].id === "3") {
+          output.role = 'admin'
+          output.rights.admin = true
+        } else {
+          output.role = 'member'
+        }
+      }
     }
 
     if (data.source) {
@@ -297,6 +325,9 @@ export const parseStatus = (data) => {
     } else {
       output.text = data.content
       output.summary = data.spoiler_text
+      output.emoji_reactions = data.reactions
+      // todo: properly check if post is visible
+      output.parent_visible = true
     }
 
     if (data.akkoma) {
@@ -405,14 +436,16 @@ export const parseStatus = (data) => {
 export const parseNotification = (data) => {
   const mastoDict = {
     'favourite': 'like',
-    'reblog': 'repeat'
+    'reblog': 'repeat',
+    'reaction': 'pleroma:emoji_reaction'
   }
   const masto = !data.hasOwnProperty('ntype')
   const output = {}
 
   if (masto) {
     output.type = mastoDict[data.type] || data.type
-    output.seen = data.pleroma.is_seen
+    // todo: figure out how to tell if a notification has been seen or not
+    output.seen = true
     if (data.status) {
       output.status = isStatusNotification(output.type) ? parseStatus(data.status) : null
       output.action = output.status // TODO: Refactor, this is unneeded
@@ -443,15 +476,12 @@ export const parseNotification = (data) => {
 export const parseReport = (data) => {
   const report = {}
 
-  report.account = parseUser(data.account)
-  report.actor = parseUser(data.actor)
+  report.account = parseUser(data.target_account.account)
+  report.actor = parseUser(data.account.account)
   report.statuses = data.statuses.map(parseStatus)
-  report.notes = data.notes.map(note => {
-    note.user = parseUser(note.user)
-    return note
-  })
-  report.state = data.state
-  report.content = data.content
+  report.notes = []
+  report.state = data.action_taken ? "closed" : "open"
+  report.content = data.comment
   report.created_at = data.created_at
   report.id = data.id
 

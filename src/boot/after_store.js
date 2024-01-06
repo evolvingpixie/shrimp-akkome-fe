@@ -67,14 +67,26 @@ const resolveLanguage = (instanceLanguages) => {
 
 const getInstanceConfig = async ({ store }) => {
   try {
-    const res = await preloadFetch('/api/v1/instance')
+    const res = await preloadFetch('/api/v2/instance')
     if (res.ok) {
       const data = await res.json()
-      const textlimit = data.max_toot_chars
-      const vapidPublicKey = data.pleroma.vapid_public_key
+      const textlimit = data.configuration.statuses.max_characters
+      const vapidPublicKey = data.configuration.vapid.public_key
 
       store.dispatch('setInstanceOption', { name: 'textlimit', value: textlimit })
-      store.dispatch('setInstanceOption', { name: 'accountApprovalRequired', value: data.approval_required })
+      const uploadLimits = {
+        general: data.configuration.media_attachments.video_size_limit,
+        avatar: "2097152",
+        background: "2097152",
+        banner: "2097152"
+      }
+      store.dispatch('setInstanceOption', { name: 'uploadlimit', value: parseInt(uploadLimits.general) })
+      store.dispatch('setInstanceOption', { name: 'avatarlimit', value: parseInt(uploadLimits.avatar) })
+      store.dispatch('setInstanceOption', { name: 'backgroundlimit', value: parseInt(uploadLimits.background) })
+      store.dispatch('setInstanceOption', { name: 'bannerlimit', value: parseInt(uploadLimits.banner) })
+
+      store.dispatch('setInstanceOption', { name: 'postFormats', value: data.configuration.statuses.supported_mime_types })
+      store.dispatch('setInstanceOption', { name: 'accountApprovalRequired', value: data.registrations.approval_required })
       // don't override cookie if set
       if (!Cookies.get('userLanguage')) {
         store.dispatch('setOption', { name: 'interfaceLanguage', value: resolveLanguage(data.languages) })
@@ -83,6 +95,8 @@ const getInstanceConfig = async ({ store }) => {
       if (vapidPublicKey) {
         store.dispatch('setInstanceOption', { name: 'vapidPublicKey', value: vapidPublicKey })
       }
+
+      resolveStaffAccounts({ store, accounts: [data.contact.account.id] })
     } else {
       throw (res)
     }
@@ -269,42 +283,33 @@ const getNodeInfo = async ({ store }) => {
     if (res.ok) {
       const data = await res.json()
       const metadata = data.metadata
-      const features = metadata.features
       store.dispatch('setInstanceOption', { name: 'name', value: metadata.nodeName })
-      store.dispatch('setInstanceOption', { name: 'registrationOpen', value: data.openRegistrations })
-      store.dispatch('setInstanceOption', { name: 'mediaProxyAvailable', value: features.includes('media_proxy') })
-      store.dispatch('setInstanceOption', { name: 'safeDM', value: features.includes('safe_dm_mentions') })
-      store.dispatch('setInstanceOption', { name: 'pollsAvailable', value: features.includes('polls') })
-      store.dispatch('setInstanceOption', { name: 'editingAvailable', value: features.includes('editing') })
+      store.dispatch('setInstanceOption', { name: 'registrationOpen', value: false }) // registration should be done through the default interface
+      store.dispatch('setInstanceOption', { name: 'mediaProxyAvailable', value: false })
+      store.dispatch('setInstanceOption', { name: 'safeDM', value: false })
+      store.dispatch('setInstanceOption', { name: 'pollsAvailable', value: true })
+      store.dispatch('setInstanceOption', { name: 'editingAvailable', value: true })
       store.dispatch('setInstanceOption', { name: 'pollLimits', value: metadata.pollLimits })
       store.dispatch('setInstanceOption', { name: 'mailerEnabled', value: metadata.mailerEnabled })
-      store.dispatch('setInstanceOption', { name: 'translationEnabled', value: features.includes('akkoma:machine_translation') })
+      store.dispatch('setInstanceOption', { name: 'translationEnabled', value: false }) // idk
 
-      const uploadLimits = metadata.uploadLimits
-      store.dispatch('setInstanceOption', { name: 'uploadlimit', value: parseInt(uploadLimits.general) })
-      store.dispatch('setInstanceOption', { name: 'avatarlimit', value: parseInt(uploadLimits.avatar) })
-      store.dispatch('setInstanceOption', { name: 'backgroundlimit', value: parseInt(uploadLimits.background) })
-      store.dispatch('setInstanceOption', { name: 'bannerlimit', value: parseInt(uploadLimits.banner) })
-      store.dispatch('setInstanceOption', { name: 'fieldsLimits', value: metadata.fieldsLimits })
+      store.dispatch('setInstanceOption', { name: 'fieldsLimits', value: 6 }) // todo: expose this on the backend
 
-      store.dispatch('setInstanceOption', { name: 'restrictedNicknames', value: metadata.restrictedNicknames })
-      store.dispatch('setInstanceOption', { name: 'postFormats', value: metadata.postFormats })
+      store.dispatch('setInstanceOption', { name: 'restrictedNicknames', value: [] })
 
-      const suggestions = metadata.suggestions
-      store.dispatch('setInstanceOption', { name: 'suggestionsEnabled', value: suggestions.enabled })
-      store.dispatch('setInstanceOption', { name: 'suggestionsWeb', value: suggestions.web })
+      store.dispatch('setInstanceOption', { name: 'suggestionsEnabled', value: true })
+      store.dispatch('setInstanceOption', { name: 'suggestionsWeb', value: true })
 
       const software = data.software
       store.dispatch('setInstanceOption', { name: 'backendVersion', value: software.version })
       store.dispatch('setInstanceOption', { name: 'pleromaBackend', value: software.name === 'pleroma' })
 
-      const priv = metadata.private
-      store.dispatch('setInstanceOption', { name: 'private', value: priv })
+      store.dispatch('setInstanceOption', { name: 'private', value: false })
 
       const frontendVersion = window.___pleromafe_commit_hash
       store.dispatch('setInstanceOption', { name: 'frontendVersion', value: frontendVersion })
 
-      const federation = metadata.federation
+      const federation = {}
 
       store.dispatch('setInstanceOption', {
         name: 'tagPolicyAvailable',
@@ -314,7 +319,7 @@ const getNodeInfo = async ({ store }) => {
       })
 
       store.dispatch('setInstanceOption', { name: 'federationPolicy', value: federation })
-      store.dispatch('setInstanceOption', { name: 'localBubbleInstances', value: metadata.localBubbleInstances })
+      store.dispatch('setInstanceOption', { name: 'localBubbleInstances', value: [] })
       store.dispatch('setInstanceOption', {
         name: 'federating',
         value: typeof federation.enabled === 'undefined'
@@ -322,14 +327,11 @@ const getNodeInfo = async ({ store }) => {
           : federation.enabled
       })
 
-      store.dispatch('setInstanceOption', { name: 'publicTimelineVisibility', value: metadata.publicTimelineVisibility })
-      store.dispatch('setInstanceOption', { name: 'federatedTimelineAvailable', value: metadata.federatedTimelineAvailable })
+      store.dispatch('setInstanceOption', { name: 'publicTimelineVisibility', value: { bubble: false, local: true, federated: true } })
+      store.dispatch('setInstanceOption', { name: 'federatedTimelineAvailable', value: true })
 
       const accountActivationRequired = metadata.accountActivationRequired
-      store.dispatch('setInstanceOption', { name: 'accountActivationRequired', value: accountActivationRequired })
-
-      const accounts = metadata.staffAccounts
-      resolveStaffAccounts({ store, accounts })
+      store.dispatch('setInstanceOption', { name: 'accountActivationRequired', value: true })
     } else {
       throw (res)
     }

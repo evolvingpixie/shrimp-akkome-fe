@@ -20,7 +20,7 @@ const ADMIN_USERS_URL = '/api/v1/pleroma/admin/users'
 const SUGGESTIONS_URL = '/api/v1/suggestions'
 const NOTIFICATION_SETTINGS_URL = '/api/pleroma/notification_settings'
 const NOTIFICATION_READ_URL = '/api/v1/pleroma/notifications/read'
-const ADMIN_REPORTS_URL = '/api/v1/pleroma/admin/reports'
+const ADMIN_REPORTS_URL = '/api/v1/admin/reports'
 const ADMIN_REPORT_NOTES_URL = id => `/api/v1/pleroma/admin/reports/${id}/notes`
 const ADMIN_REPORT_NOTE_URL = (report, note) => `/api/v1/pleroma/admin/reports/${report}/notes/${note}`
 
@@ -99,9 +99,9 @@ const MASTODON_STREAMING = '/api/v1/streaming'
 const MASTODON_KNOWN_DOMAIN_LIST_URL = '/api/v1/instance/peers'
 const MASTODON_ANNOUNCEMENTS_URL = '/api/v1/announcements'
 const MASTODON_ANNOUNCEMENTS_DISMISS_URL = id => `/api/v1/announcements/${id}/dismiss`
-const PLEROMA_EMOJI_REACTIONS_URL = id => `/api/v1/pleroma/statuses/${id}/reactions`
-const PLEROMA_EMOJI_REACT_URL = (id, emoji) => `/api/v1/pleroma/statuses/${id}/reactions/${emoji}`
-const PLEROMA_EMOJI_UNREACT_URL = (id, emoji) => `/api/v1/pleroma/statuses/${id}/reactions/${emoji}`
+const PLEROMA_EMOJI_REACTIONS_URL = id => `/api/v1/statuses/${id}/reactions`
+const PLEROMA_EMOJI_REACT_URL = (id, emoji) => `/api/v1/statuses/${id}/react/${emoji}`
+const PLEROMA_EMOJI_UNREACT_URL = (id, emoji) => `/api/v1/statuses/${id}/react/${emoji}`
 const PLEROMA_BACKUP_URL = '/api/v1/pleroma/backups'
 const PLEROMA_ANNOUNCEMENTS_URL = '/api/v1/pleroma/admin/announcements'
 const PLEROMA_POST_ANNOUNCEMENT_URL = '/api/v1/pleroma/admin/announcements'
@@ -647,7 +647,7 @@ const getReports = ({ state, limit, page, pageSize, credentials }) => {
   url = url + (args ? '?' + args : '')
   return fetch(url, { headers: authHeaders(credentials) })
     .then((data) => data.json())
-    .then((data) => data?.reports?.map(parseReport) ?? [])
+    .then((data) => data?.map(parseReport) ?? [])
 }
 
 const updateReportStates = ({ credentials, reports }) => {

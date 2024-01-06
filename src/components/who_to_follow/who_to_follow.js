@@ -16,7 +16,7 @@ const WhoToFollow = {
   methods: {
     showWhoToFollow (reply) {
       reply.forEach((i, index) => {
-        this.$store.state.api.backendInteractor.fetchUser({ id: i.acct })
+        this.$store.state.api.backendInteractor.fetchUser({ id: i.id })
           .then((externalUser) => {
             if (!externalUser.error) {
               this.$store.commit('addNewUsers', [externalUser])

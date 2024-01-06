@@ -48,7 +48,6 @@ const announcements = {
           return store.rootState.api.backendInteractor.fetchAnnouncements()
         }
 
-        const all = await store.rootState.api.backendInteractor.adminFetchAnnouncements()
         const visible = await store.rootState.api.backendInteractor.fetchAnnouncements()
         const visibleObject = visible.reduce((a, c) => {
           a[c.id] = c
@@ -56,7 +55,7 @@ const announcements = {
         }, {})
         const getWithinVisible = announcement => visibleObject[announcement.id]
 
-        all.forEach(announcement => {
+        visible.forEach(announcement => {
           const visibleAnnouncement = getWithinVisible(announcement)
           if (!visibleAnnouncement) {
             announcement.inactive = true
@@ -65,7 +64,7 @@ const announcements = {
           }
         })
 
-        return all
+        return visible
       }
 
       return getAnnouncements()

@@ -35,7 +35,7 @@ const defaultState = {
   hideWordFilteredPosts: false,
   hidePostStats: false,
   hideBotIndication: false,
-  hideSiteFavicon: false,
+  hideSiteFavicon: true,
   hideSiteName: false,
   hideUserStats: false,
   muteBotStatuses: false,
@@ -177,22 +177,19 @@ const instance = {
 
     async getCustomEmoji ({ commit, state }) {
       try {
-        const res = await window.fetch('/api/v1/pleroma/emoji')
+        const res = await window.fetch('/api/v1/custom_emojis')
         if (res.ok) {
           const result = await res.json()
-          const values = Array.isArray(result) ? Object.assign({}, ...result) : result
-          const emoji = Object.entries(values).map(([key, value]) => {
-            const imageUrl = value.image_url
-            return {
-              displayText: key,
-              imageUrl: imageUrl ? state.server + imageUrl : value,
-              tags: imageUrl ? value.tags.sort((a, b) => a > b ? 1 : 0) : ['utf'],
-              replacement: `:${key}: `
-            }
-            // Technically could use tags but those are kinda useless right now,
-            // should have been "pack" field, that would be more useful
-          }).sort((a, b) => a.displayText.toLowerCase() > b.displayText.toLowerCase() ? 1 : -1)
-          commit('setInstanceOption', { name: 'customEmoji', value: emoji })
+          const emoji = []
+          for (const emojiobj of result) {
+            emoji.push({
+              displayText: emojiobj.shortcode,
+              imageUrl: emojiobj.url,
+              tags: emojiobj.category ? [`pack:${emojiobj.category.toLowerCase()}`] : ['pack:custom'],
+              replacement: `:${emojiobj.shortcode}: `
+            })
+          }
+          commit('setInstanceOption', { name: 'customEmoji', value: emoji.sort((a, b) => a.displayText.toLowerCase() > b.displayText.toLowerCase() ? 1 : -1) })
         } else {
           throw (res)
         }

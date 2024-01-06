@@ -9,11 +9,12 @@ function showWhoToFollow (panel, reply) {
     let user = shuffled[index]
     let img = user.avatar || this.$store.state.instance.defaultAvatar
     let name = user.acct
+    let id = user.id
 
     toFollow.img = img
     toFollow.name = name
 
-    panel.$store.state.api.backendInteractor.fetchUser({ id: name })
+    panel.$store.state.api.backendInteractor.fetchUser({ id })
       .then((externalUser) => {
         if (!externalUser.error) {
           panel.$store.commit('addNewUsers', [externalUser])
