@@ -98,7 +98,6 @@ const GeneralTab = {
       get: function () { return this.$store.getters.mergedConfig.profile },
       set: function (val) {
         this.$store.dispatch('setOption', { name: 'profile', value: val })
-        this.$store.dispatch('getSettingsProfile')
       }
     },
     settingsVersion () {
@@ -132,12 +131,10 @@ const GeneralTab = {
     },
     loadSettingsProfile (name) {
       this.$store.commit('setOption', { name: 'profile', value: name })
-      this.$store.dispatch('getSettingsProfile', true)
     },
     createSettingsProfile () {
       this.$store.dispatch('setOption', { name: 'profile', value: this.newProfileName })
       this.$store.dispatch('setOption', { name: 'profileVersion', value: 1 })
-      this.$store.dispatch('syncSettings')
       this.newProfileName = ''
     },
     forceSync () {

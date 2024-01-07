@@ -215,9 +215,6 @@ const config = {
     },
     setOption ({ commit, dispatch }, { name, value, manual }) {
       commit('setOption', { name, value })
-      if (manual === true) {
-        dispatch('syncSettings')
-      }
       switch (name) {
         case 'theme':
           setPreset(value)
