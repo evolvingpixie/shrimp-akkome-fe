@@ -326,6 +326,7 @@ export const parseStatus = (data) => {
       output.text = data.content
       output.summary = data.spoiler_text
       output.emoji_reactions = data.reactions
+      output.statusnet_conversation_id = data.conversation_id
       // todo: properly check if post is visible
       output.parent_visible = true
     }
