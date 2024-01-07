@@ -544,7 +544,7 @@ export const mutations = {
       count: reaction.count + 1,
       me: true,
       accounts: [
-        ...reaction.accounts,
+        //...reaction.accounts,
         currentUser
       ]
     }
@@ -734,7 +734,7 @@ const statuses = {
       if (!currentUser) return
 
       commit('addOwnReaction', { id, emoji, currentUser })
-      rootState.api.backendInteractor.reactWithEmoji({ id, emoji }).then(
+      rootState.api.backendInteractor.reactWithEmoji({ id, emoji: emoji.replaceAll(':', '') }).then(
         ok => {
           dispatch('fetchEmojiReactionsBy', id)
         }
@@ -745,7 +745,7 @@ const statuses = {
       if (!currentUser) return
 
       commit('removeOwnReaction', { id, emoji, currentUser })
-      rootState.api.backendInteractor.unreactWithEmoji({ id, emoji }).then(
+      rootState.api.backendInteractor.unreactWithEmoji({ id, emoji: emoji.replaceAll(':', '') }).then(
         ok => {
           dispatch('fetchEmojiReactionsBy', id)
         }

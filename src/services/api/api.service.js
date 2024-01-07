@@ -101,7 +101,7 @@ const MASTODON_ANNOUNCEMENTS_URL = '/api/v1/announcements'
 const MASTODON_ANNOUNCEMENTS_DISMISS_URL = id => `/api/v1/announcements/${id}/dismiss`
 const PLEROMA_EMOJI_REACTIONS_URL = id => `/api/v1/statuses/${id}/reactions`
 const PLEROMA_EMOJI_REACT_URL = (id, emoji) => `/api/v1/statuses/${id}/react/${emoji}`
-const PLEROMA_EMOJI_UNREACT_URL = (id, emoji) => `/api/v1/statuses/${id}/react/${emoji}`
+const PLEROMA_EMOJI_UNREACT_URL = (id, emoji) => `/api/v1/statuses/${id}/unreact/${emoji}`
 const PLEROMA_BACKUP_URL = '/api/v1/pleroma/backups'
 const PLEROMA_ANNOUNCEMENTS_URL = '/api/v1/pleroma/admin/announcements'
 const PLEROMA_POST_ANNOUNCEMENT_URL = '/api/v1/pleroma/admin/announcements'
@@ -1341,7 +1341,7 @@ const fetchEmojiReactions = ({ id, credentials }) => {
 const reactWithEmoji = ({ id, emoji, credentials }) => {
   return promisedRequest({
     url: PLEROMA_EMOJI_REACT_URL(id, encodeURIComponent(emoji)),
-    method: 'PUT',
+    method: 'POST',
     credentials
   }).then(parseStatus)
 }
@@ -1349,7 +1349,7 @@ const reactWithEmoji = ({ id, emoji, credentials }) => {
 const unreactWithEmoji = ({ id, emoji, credentials }) => {
   return promisedRequest({
     url: PLEROMA_EMOJI_UNREACT_URL(id, encodeURIComponent(emoji)),
-    method: 'DELETE',
+    method: 'POST',
     credentials
   }).then(parseStatus)
 }
