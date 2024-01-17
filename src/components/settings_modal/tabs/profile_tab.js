@@ -33,6 +33,7 @@ const ProfileTab = {
       newName: this.$store.state.users.currentUser.name_unescaped,
       newBio: unescape(this.$store.state.users.currentUser.description),
       newLocked: this.$store.state.users.currentUser.locked,
+      newPermitFollowback: this.$store.state.users.currentUser.permit_followback,
       newFields: this.$store.state.users.currentUser.fields.map(field => ({ name: field.name, value: field.value })),
       showRole: this.$store.state.users.currentUser.show_role,
       role: this.$store.state.users.currentUser.role,
@@ -135,6 +136,7 @@ const ProfileTab = {
         bot: this.bot,
         show_role: this.showRole,
         status_ttl_days: this.expirePosts ? this.newPostTTLDays : -1,
+        permit_followback: this.permit_followback,
         accepts_direct_messages_from: this.userAcceptsDirectMessagesFrom
         /* eslint-enable camelcase */
       }
