@@ -73,50 +73,6 @@
           <p>{{ $t('post_status.edit_remote_warning') }}</p>
           <p>{{ $t('post_status.edit_unsupported_warning') }}</p>
         </div>
-        <div
-          v-if="!disablePreview"
-          class="preview-heading faint"
-        >
-          <a
-            class="preview-toggle faint"
-            @click.stop.prevent="togglePreview"
-          >
-            {{ $t('post_status.preview') }}
-            <FAIcon :icon="showPreview ? 'chevron-left' : 'chevron-right'" />
-          </a>
-          <div
-            v-show="previewLoading"
-            class="preview-spinner"
-          >
-            <FAIcon
-              class="fa-old-padding"
-              spin
-              icon="circle-notch"
-            />
-          </div>
-        </div>
-        <div
-          v-if="showPreview"
-          class="preview-container"
-        >
-          <div
-            v-if="!preview"
-            class="preview-status"
-          >
-            {{ $t('general.loading') }}
-          </div>
-          <div
-            v-else-if="preview.error"
-            class="preview-status preview-error"
-          >
-            {{ preview.error }}
-          </div>
-          <StatusContent
-            v-else
-            :status="preview"
-            class="preview-status"
-          />
-        </div>
         <EmojiInput
           ref="subject-emoji-input"
           v-if="subjectVisible"
