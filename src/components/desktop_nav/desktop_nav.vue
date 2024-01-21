@@ -167,7 +167,7 @@
         </button>
         <a
           v-if="currentUser && currentUser.role === 'admin'"
-          href="/pleroma/admin/#/login-pleroma"
+          :href="'https://' + $store.getters.instanceDomain + '/admin/dashboard'"
           class="nav-icon"
           target="_blank"
           @click.stop

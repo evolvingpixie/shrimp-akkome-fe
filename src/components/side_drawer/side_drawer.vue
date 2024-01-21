@@ -163,7 +163,7 @@
           @click="toggleDrawer"
         >
           <a
-            href="/pleroma/admin/#/login-pleroma"
+            :href="'https://' + $store.getters.instanceDomain + '/admin/dashboard'"
             target="_blank"
           >
             <FAIcon
