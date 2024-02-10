@@ -87,7 +87,7 @@ const Notification = {
     doApprove () {
       this.$store.state.api.backendInteractor.approveUser({ id: this.user.id })
       this.$store.dispatch('removeFollowRequest', this.user)
-      this.$store.dispatch('markSingleNotificationAsSeen', { id: this.notification.id })
+      //this.$store.dispatch('markSingleNotificationAsSeen', { id: this.notification.id })
       this.$store.dispatch('updateNotification', {
         id: this.notification.id,
         updater: notification => {

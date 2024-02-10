@@ -446,7 +446,7 @@ export const parseNotification = (data) => {
   if (masto) {
     output.type = mastoDict[data.type] || data.type
     // todo: figure out how to tell if a notification has been seen or not
-    output.seen = true
+    output.seen = data.last_read && data.id <= data.last_read
     if (data.status) {
       output.status = isStatusNotification(output.type) ? parseStatus(data.status) : null
       output.action = output.status // TODO: Refactor, this is unneeded

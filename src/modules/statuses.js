@@ -704,11 +704,11 @@ const statuses = {
     },
     markSingleNotificationAsSeen ({ rootState, commit }, { id }) {
       commit('markSingleNotificationAsSeen', { id })
-      apiService.markNotificationsAsSeen({
+      /*apiService.markNotificationsAsSeen({
         single: true,
         id,
         credentials: rootState.users.currentUser.credentials
-      })
+      })*/
     },
     dismissNotificationLocal ({ rootState, commit }, { id }) {
       commit('dismissNotification', { id })

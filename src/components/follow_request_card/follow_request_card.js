@@ -46,7 +46,7 @@ const FollowRequestCard = {
       this.$store.dispatch('decrementFollowRequestsCount')
 
       const notifId = this.findFollowRequestNotificationId()
-      this.$store.dispatch('markSingleNotificationAsSeen', { id: notifId })
+      //this.$store.dispatch('markSingleNotificationAsSeen', { id: notifId })
       this.$store.dispatch('updateNotification', {
         id: notifId,
         updater: notification => {

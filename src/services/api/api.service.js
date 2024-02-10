@@ -113,6 +113,7 @@ const MASTODON_TAG_URL = (name) => `/api/v1/tags/${name}`
 const MASTODON_FOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/follow`
 const MASTODON_UNFOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/unfollow`
 const MASTODON_FOLLOWED_TAGS_URL = '/api/v1/followed_tags'
+const MASTODON_MARKERS_URL = '/api/v1/markers'
 
 const oldfetch = window.fetch
 
@@ -715,6 +716,16 @@ const fetchTimeline = ({
   const isNotifications = timeline === 'notifications'
   const params = []
 
+  let markers = {}
+  let markerPromise = Promise.resolve()
+  if (isNotifications) {
+    markerPromise = fetch(`${MASTODON_MARKERS_URL}?timeline=notifications`, { headers: authHeaders(credentials) })
+      .then((data) => data.json())
+      .then((data) => {
+        markers = data.notifications
+      })
+  }
+
   let url = timelineUrls[timeline]
 
   if (timeline === 'user' || timeline === 'media' || timeline === 'replies') {
@@ -781,6 +792,7 @@ const fetchTimeline = ({
         throw new Error(data.error)
       }
       if (!data.errors) {
+        if (isNotifications) data.map((val) => val.last_read = markers.last_read_id)
         return { data: data.map(isNotifications ? parseNotification : parseStatus), pagination }
       } else {
         data.status = status
@@ -1277,13 +1289,15 @@ const suggestions = ({ credentials }) => {
 const markNotificationsAsSeen = ({ id, credentials, single = false }) => {
   const body = new FormData()
 
-  if (single) {
+  /*if (single) {
     body.append('id', id)
   } else {
     body.append('max_id', id)
-  }
+  }*/
 
-  return fetch(NOTIFICATION_READ_URL, {
+  body.append('notifications[last_read_id]', id)
+
+  return fetch(MASTODON_MARKERS_URL, {
     body,
     headers: authHeaders(credentials),
     method: 'POST'
