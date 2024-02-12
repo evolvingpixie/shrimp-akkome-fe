@@ -369,7 +369,7 @@ const afterStoreSetup = async ({ store, i18n }) => {
 
   FaviconService.initFaviconService()
 
-  const overrides = window.___pleromafe_dev_overrides || {}
+  const overrides = window.___pleromafe_dev_overrides || { target: 'https://wetdry.world/' }
   const server = (typeof overrides.target !== 'undefined') ? overrides.target : window.location.origin
   store.dispatch('setInstanceOption', { name: 'server', value: server })
 
