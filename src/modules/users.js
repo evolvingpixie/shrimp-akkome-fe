@@ -135,6 +135,10 @@ export const mutations = {
     const user = state.usersObject[id]
     user['deactivated'] = deactivated
   },
+  setDisplayBackground(state, url) {
+    console.log("Commiting user profile bg mutation")
+    state.displayBackground = url
+  },
   setCurrentUser (state, user) {
     state.lastLoginName = user.screen_name
     state.currentUser = mergeWith(state.currentUser || {}, user, mergeArrayLength)
@@ -307,6 +311,7 @@ export const defaultState = {
   currentUser: false,
   users: [],
   usersObject: {},
+  displayBackground: null,
   signUpPending: false,
   signUpErrors: [],
   relationships: {},
@@ -319,6 +324,10 @@ const users = {
   mutations,
   getters,
   actions: {
+    setDisplayBackground (store, url) {
+      console.log("Performing user profile bg action...")
+      store.commit('setDisplayBackground', url)
+    },
     fetchUserIfMissing (store, id) {
       if (!store.getters.findUser(id)) {
         store.dispatch('fetchUser', id)
