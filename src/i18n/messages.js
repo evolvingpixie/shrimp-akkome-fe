@@ -21,6 +21,7 @@ const loaders = {
   ga: () => import('./ga.json'),
   he: () => import('./he.json'),
   hu: () => import('./hu.json'),
+  id: () => import('./id.json'),
   it: () => import('./it.json'),
   ja: () => import('./ja_pedantic.json'),
   ja_easy: () => import('./ja_easy.json'),
