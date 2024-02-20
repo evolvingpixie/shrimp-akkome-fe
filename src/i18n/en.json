@@ -601,6 +601,7 @@
         "list_aliases_error": "Error fetching aliases: {error}",
         "list_backups_error": "Error fetching backup list: {error}",
         "lock_account_description": "Restrict your account to approved followers only",
+        "permit_followback_description": "Automatically approve requests from already followed users",
         "loop_video": "Loop videos",
         "loop_video_silent_only": "Loop only videos without sound (i.e. Mastodon's \"gifs\")",
         "mascot": "Mastodon FE Mascot",

@@ -47,6 +47,10 @@ export const settingsMap = {
   },
   // Privacy
   'locked': 'locked',
+  'permitFollowback': {
+    get: 'akkoma.permit_followback',
+    set: 'permit_followback'
+  },
   'allowFollowingMove': {
     get: 'pleroma.allow_following_move',
     set: 'allow_following_move'
