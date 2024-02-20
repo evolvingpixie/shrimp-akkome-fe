@@ -145,10 +145,12 @@ const UserProfile = {
       if (user) {
         loadById(user.id)
         this.note = user.relationship.note
+        this.$store.dispatch('setDisplayBackground', user.background_image)
       } else {
         this.$store.dispatch('fetchUser', userNameOrId)
-          .then(({ id, relationship }) => {
+          .then(({ id, relationship, background_image }) => {
             this.note = relationship.note
+            this.$store.dispatch('setDisplayBackground', background_image)
             return loadById(id)
           })
           .catch((reason) => {
@@ -225,6 +227,9 @@ const UserProfile = {
     Conversation,
     RichContent,
     FollowedTagList
+  },
+  beforeRouteLeave(to, from) {
+    this.$store.dispatch('setDisplayBackground', null)
   }
 }
 

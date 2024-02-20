@@ -750,6 +750,7 @@
         "show_nav_shortcuts": "Show extra navigation shortcuts in top panel",
         "show_panel_nav_shortcuts": "Show timeline navigation shortcuts at the top of the panel",
         "show_scrollbars": "Show side column's scrollbars",
+        "show_page_backgrounds": "Show page-specific backgrounds, e.g. for user profiles",
         "show_wider_shortcuts": "Show wider gap between top panel shortcuts",
         "show_yous": "Show (You)s",
         "stop_gifs": "Pause animated images until you hover on them",

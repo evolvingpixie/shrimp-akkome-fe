@@ -147,6 +147,11 @@
           </BooleanSetting>
         </li>
         <li>
+          <BooleanSetting path="displayPageBackgrounds">
+            {{ $t('settings.show_page_backgrounds') }}
+          </BooleanSetting>
+        </li>
+        <li>
           <BooleanSetting path="stopGifs">
             {{ $t('settings.stop_gifs') }}
           </BooleanSetting>
