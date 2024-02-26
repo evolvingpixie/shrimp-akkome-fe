@@ -62,6 +62,13 @@ const deleteDraft = (draftKey) => {
 	localStorage.setItem('drafts', JSON.stringify(draftData));
 }
 
+const interfaceToISOLanguage = (ilang) => {
+    const sep = ilang.indexOf("_");
+    return sep < 0 ?
+        ilang :
+        ilang.substr(0, sep);
+}
+
 const PostStatusForm = {
   props: [
     'statusId',
@@ -140,6 +147,8 @@ const PostStatusForm = {
 
     const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage, alwaysShowSubjectInput } = this.$store.getters.mergedConfig
 
+    const isoLanguage = interfaceToISOLanguage(interfaceLanguage)
+
     let statusParams = {
       spoilerText: this.subject || '',
       status: statusText,
@@ -149,7 +158,7 @@ const PostStatusForm = {
       poll: {},
       mediaDescriptions: {},
       visibility: this.suggestedVisibility(),
-      language: interfaceLanguage,
+      language: isoLanguage,
       contentType
     }
 
@@ -164,7 +173,7 @@ const PostStatusForm = {
         poll: this.statusPoll || {},
         mediaDescriptions: this.statusMediaDescriptions || {},
         visibility: this.statusScope || this.suggestedVisibility(),
-        language: this.statusLanguage || interfaceLanguage,
+        language: this.statusLanguage || isoLanguage,
         contentType: statusContentType
       }
     }
