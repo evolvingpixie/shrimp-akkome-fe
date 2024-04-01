@@ -83,7 +83,7 @@
           :user="statusoid.user"
         />
         <div class="right-side faint">
-          <span
+          <div
             class="status-username repeater-name"
             :title="retweeter"
           >
@@ -100,14 +100,19 @@
               v-else
               :to="retweeterProfileLink"
             >{{ retweeter }}</router-link>
-          </span>
+          </div>
           {{ ' ' }}
-          <FAIcon
-            icon="retweet"
-            class="repeat-icon"
-            :title="$t('tool_tip.repeat')"
-          />
-          {{ $t('timeline.repeated') }}
+
+          <div
+            class="repeat-tooltip"
+          >
+             <FAIcon
+               icon="retweet"
+               class="repeat-icon"
+               :title="$t('tool_tip.repeat')"
+             />
+             {{ $t('timeline.repeated') }}
+          </div>
         </div>
       </div>
 
