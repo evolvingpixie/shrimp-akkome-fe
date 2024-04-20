@@ -4,6 +4,7 @@ import ScopeSelector from 'src/components/scope_selector/scope_selector.vue'
 import IntegerSetting from '../helpers/integer_setting.vue'
 import InterfaceLanguageSwitcher from 'src/components/interface_language_switcher/interface_language_switcher.vue'
 
+import { usePostLanguageOptions } from 'src/lib/post_language'
 import SharedComputedObject from '../helpers/shared_computed_object.js'
 import ServerSideIndicator from '../helpers/server_side_indicator.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -17,6 +18,11 @@ library.add(
 )
 
 const GeneralTab = {
+  setup() {
+    const {postLanguageOptions} = usePostLanguageOptions()
+
+    return {postLanguageOptions}
+  },
   data () {
     return {
       subjectLineOptions: ['email', 'noop', 'masto'].map(mode => ({
@@ -116,6 +122,12 @@ const GeneralTab = {
       get: function () { return this.$store.getters.mergedConfig.translationLanguage },
       set: function (val) {
         this.$store.dispatch('setOption', { name: 'translationLanguage', value: val })
+      }
+    },
+    postLanguage: {
+      get: function () { return this.$store.getters.mergedConfig.postLanguage },
+      set: function (val) {
+        this.$store.dispatch('setOption', { name: 'postLanguage', value: val })
       }
     },
     ...SharedComputedObject()
