@@ -584,6 +584,11 @@
     line-height: 1.85;
   }
 
+  .form-post-subject {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   .form-post-body {
     // TODO: make a resizable textarea component?
     box-sizing: content-box; // needed for easier computation of dynamic size
@@ -595,6 +600,8 @@
     height: calc(var(--post-line-height) * 1em);
     min-height: calc(var(--post-line-height) * 1em);
     resize: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 
     &.scrollable-form {
       overflow-y: auto;
