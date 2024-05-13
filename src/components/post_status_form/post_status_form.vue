@@ -209,10 +209,10 @@
             >
               <option
                 v-for="language in postLanguageOptions"
-                :key="language.value"
+                :key="language.key"
                 :value="language.value"
               >
-                {{ language.value }}
+                {{ language.label }}
               </option>
             </Select>
           </div>
