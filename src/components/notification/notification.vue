@@ -118,7 +118,7 @@
                 >
                   <still-image
                     v-if="notification.emoji_url !== null"
-                    class="notification-reaction-emoji emoji img"
+                    class="notification-reaction-emoji"
                     :src="notification.emoji_url"
                     :title="notification.emoji"
                     :alt="notification.emoji"
