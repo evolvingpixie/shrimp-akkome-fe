@@ -586,6 +586,15 @@
           </ChoiceSetting>
         </li>
         <li>
+          <ChoiceSetting
+            id="postLanguage"
+            path="postLanguage"
+            :options="postLanguageOptions"
+          >
+            {{ $t('settings.post_language') }}
+          </ChoiceSetting>
+        </li>
+        <li>
           <BooleanSetting
             path="alwaysShowNewPostButton"
             expert="1"

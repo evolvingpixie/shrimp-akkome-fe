@@ -208,11 +208,11 @@
               class="form-control"
             >
               <option
-                v-for="language in isoLanguages"
-                :key="language"
-                :value="language"
+                v-for="language in postLanguageOptions"
+                :key="language.key"
+                :value="language.value"
               >
-                {{ language }}
+                {{ language.label }}
               </option>
             </Select>
           </div>
