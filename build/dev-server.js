@@ -5,7 +5,7 @@ var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var opn = require('opn')
-var proxyMiddleware = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware');
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
@@ -33,10 +33,17 @@ var hotMiddleware = require('webpack-hot-middleware')(compiler)
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
   var options = proxyTable[context]
+  console.log(options);
   if (typeof options === 'string') {
     options = { target: options }
   }
-  app.use(proxyMiddleware(context, options))
+  const targetUrl = new URL(options.target);
+  // add path
+  targetUrl.pathname = context;
+  options.target = targetUrl.toString();
+
+  console.log("Proxying", context, "to", options.target);
+  app.use(context, createProxyMiddleware(options))
 })
 
 // handle fallback for HTML5 history API
