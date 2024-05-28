@@ -156,8 +156,6 @@ const PostStatusForm = {
     const { postContentType: contentType, postLanguage: defaultPostLanguage, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage, alwaysShowSubjectInput } = this.$store.getters.mergedConfig
     const postLanguage = defaultPostLanguage || interfaceLanguage
 
-    const isoLanguage = interfaceToISOLanguage(interfaceLanguage)
-
     let statusParams = {
       spoilerText: this.subject || '',
       status: statusText,
