@@ -81,4 +81,4 @@ steps:
     - mkdocs build
     - zip -r docs.zip site/*
     - cd site
-    - rclone copy . scaleway:akkoma-docs/frontend/$CI_COMMIT_BRANCH/
+    - rclone copy . scaleway:akkoma-docs/frontend/$CI_COMMIT_BRANCH/ 
