@@ -116,12 +116,13 @@
                   scope="global"
                   keypath="notifications.reacted_with"
                 >
-                  <img
+                  <still-image
                     v-if="notification.emoji_url !== null"
                     class="notification-reaction-emoji"
                     :src="notification.emoji_url"
-                    :name="notification.emoji"
-                  >
+                    :title="notification.emoji"
+                    :alt="notification.emoji"
+                  />
                   <span
                     v-else
                     class="emoji-reaction-emoji"
