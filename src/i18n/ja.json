@@ -1,0 +1,11 @@
+{
+    "about": {
+        "mrf": {
+            "keyword": {
+                "is_replaced_by": "→",
+                "replace": "置き換える"
+            },
+            "mrf_policies": "有効なMRFポリシー"
+        }
+    }
+}
