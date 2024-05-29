@@ -10,7 +10,6 @@ steps:
     commands:
     - yarn
     - yarn lint
-    #- yarn stylelint
 
   test:
     when:
