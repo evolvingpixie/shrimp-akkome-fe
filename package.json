@@ -12,8 +12,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "stylelint": "stylelint src/**/*.scss",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "lint-fix": "eslint --fix --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint src test/unit/specs test/e2e/specs",
+    "lint-fix": "eslint --fix src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
     "@babel/runtime": "7.17.8",

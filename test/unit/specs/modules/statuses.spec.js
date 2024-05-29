@@ -1,6 +1,6 @@
 import { defaultState, mutations, prepareStatus } from '../../../../src/modules/statuses.js'
 
-// eslint-disable-next-line camelcase
+ 
 const makeMockStatus = ({ id, text, type = 'status' }) => {
   return {
     id,
