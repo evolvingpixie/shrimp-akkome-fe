@@ -246,8 +246,8 @@
           ref="flash"
           class="flash"
           :src="attachment.large_thumb_url || attachment.url"
-          @playerOpened="setFlashLoaded(true)"
-          @playerClosed="setFlashLoaded(false)"
+          @player-opened="setFlashLoaded(true)"
+          @player-closed="setFlashLoaded(false)"
         />
       </span>
     </div>

@@ -69,4 +69,4 @@
     </div>
   </div>
 </template>
-<script src="./recovery_form.js" ></script>
+<script src="./recovery_form.js"></script>

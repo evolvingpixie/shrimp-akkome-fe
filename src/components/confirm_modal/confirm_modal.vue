@@ -25,6 +25,8 @@
   </dialog-modal>
 </template>
 
+<script src="./confirm_modal.js"></script>
+
 <style lang="scss" scoped>
 @import '../../_variables';
 
@@ -35,5 +37,3 @@
   }
 }
 </style>
-
-<script src="./confirm_modal.js"></script>

@@ -2,7 +2,6 @@
   <pinch-zoom
     class="pinch-zoom-parent"
     v-bind="$attrs"
-    v-on="$listeners"
   >
     <slot />
   </pinch-zoom>

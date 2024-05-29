@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script src="./staff_panel.js" ></script>
+<script src="./staff_panel.js"></script>
 
 <style lang="scss">
 

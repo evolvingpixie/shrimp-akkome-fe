@@ -85,7 +85,7 @@ const MutesAndBlocks = {
         // check is it's a local user
         if (user && user.is_local) {
           // append the instance address
-          // eslint-disable-next-line no-undef
+           
           return user.screen_name + '@' + location.hostname
         }
         return user.screen_name

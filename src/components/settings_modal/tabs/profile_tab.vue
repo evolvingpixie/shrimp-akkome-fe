@@ -110,11 +110,9 @@
           max="730"
           class="expire-posts-days"
           :placeholder="$t('settings.expire_posts_input_placeholder')"
-        />
+        >
       </p>
-      <p>
-
-      </p>
+      <p />
       <p>
         <interface-language-switcher
           :prompt-text="$t('settings.email_language')"

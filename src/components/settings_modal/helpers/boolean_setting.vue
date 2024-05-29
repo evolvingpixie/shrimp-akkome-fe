@@ -6,7 +6,7 @@
     <Checkbox
       :model-value="state"
       :disabled="disabled"
-      @update:modelValue="update"
+      @update:model-value="update"
     >
       <span
         v-if="!!$slots.default"

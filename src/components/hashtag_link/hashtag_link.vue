@@ -14,6 +14,6 @@
   </span>
 </template>
 
-<script src="./hashtag_link.js"/>
+<script src="./hashtag_link.js" />
 
-<style lang="scss" src="./hashtag_link.scss"/>
+<style lang="scss" src="./hashtag_link.scss" />

@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="panel-body">
-        <p>{{ $t("about.bubble_instances_description")}}:</p>
+        <p>{{ $t("about.bubble_instances_description") }}:</p>
         <ul>
           <li
             v-for="instance in bubbleInstances"

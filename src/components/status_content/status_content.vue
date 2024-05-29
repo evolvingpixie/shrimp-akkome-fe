@@ -14,7 +14,7 @@
       :toggle-showing-tall="toggleShowingTall"
       :toggle-expanding-subject="toggleExpandingSubject"
       :toggle-showing-long-subject="toggleShowingLongSubject"
-      @parseReady="$emit('parseReady', $event)"
+      @parse-ready="$emit('parseReady', $event)"
     >
       <div v-if="status.poll && status.poll.options && !compact">
         <Poll
@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<script src="./status_content.js" ></script>
+<script src="./status_content.js"></script>
 <style lang="scss">
 .StatusContent {
   flex: 1;

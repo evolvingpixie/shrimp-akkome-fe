@@ -368,7 +368,7 @@
               :controlled-toggle-showing-long-subject="controlledToggleShowingLongSubject"
               @mediaplay="addMediaPlaying($event)"
               @mediapause="removeMediaPlaying($event)"
-              @parseReady="setHeadTailLinks"
+              @parse-ready="setHeadTailLinks"
             />
           </div>
 
@@ -476,8 +476,8 @@
             />
             <extra-buttons
               :status="status"
-              @onError="showError"
-              @onSuccess="clearError"
+              @on-error="showError"
+              @on-success="clearError"
             />
           </div>
         </div>

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-webpack-loader-syntax */
 // This module exports only the notification part of the i18n,
 // which is useful for the service worker
 

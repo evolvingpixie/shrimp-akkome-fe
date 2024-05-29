@@ -218,7 +218,7 @@
   </div>
 </template>
 
-<script src="./side_drawer.js" ></script>
+<script src="./side_drawer.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

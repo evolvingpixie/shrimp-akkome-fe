@@ -37,5 +37,5 @@
     </span>
   </span>
 </template>
-<script src="./mentions_line.js" ></script>
+<script src="./mentions_line.js"></script>
 <style lang="scss" src="./mentions_line.scss" />

@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script src="./favorite_button.js" ></script>
+<script src="./favorite_button.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

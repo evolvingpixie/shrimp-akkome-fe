@@ -4,10 +4,10 @@
     placement="top"
     :offset="{ y: 5 }"
   >
-    <template v-slot:trigger>
+    <template #trigger>
       <slot />
     </template>
-    <template v-slot:content>
+    <template #content>
       <div class="user-list-popover">
         <template v-if="users.length">
           <div
@@ -45,7 +45,7 @@
   </Popover>
 </template>
 
-<script src="./user_list_popover.js" ></script>
+<script src="./user_list_popover.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

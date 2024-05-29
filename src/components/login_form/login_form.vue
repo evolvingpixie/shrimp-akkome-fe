@@ -90,7 +90,7 @@
   </div>
 </template>
 
-<script src="./login_form.js" ></script>
+<script src="./login_form.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

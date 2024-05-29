@@ -8,7 +8,7 @@
     <Select
       :model-value="state"
       :disabled="disabled"
-      @update:modelValue="update"
+      @update:model-value="update"
     >
       <option
         v-for="option in options"

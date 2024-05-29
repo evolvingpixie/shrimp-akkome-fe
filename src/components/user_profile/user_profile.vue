@@ -121,8 +121,8 @@
               </FriendList>
             </div>
             <div
-              key="tags"
               v-if="isUs"
+              key="tags"
               :label="$t('user_card.followed_tags')"
             >
               <FollowedTagList
@@ -133,7 +133,7 @@
                   <FollowedTagCard :tag="item" />
                 </template>
                 <template #empty>
-                  {{ $t('user_card.not_following_any_hashtags')}}
+                  {{ $t('user_card.not_following_any_hashtags') }}
                 </template>
               </FollowedTagList>
             </div>

@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script src="./avatar_list.js" ></script>
+<script src="./avatar_list.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

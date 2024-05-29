@@ -108,7 +108,7 @@
         <Checkbox
           :model-value="!!expertLevel"
           class="expertMode"
-          @update:modelValue="expertLevel = Number($event)"
+          @update:model-value="expertLevel = Number($event)"
         >
           {{ $t("settings.expert_mode") }}
         </Checkbox>

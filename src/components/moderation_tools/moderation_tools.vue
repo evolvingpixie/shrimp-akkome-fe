@@ -8,7 +8,7 @@
       @show="setToggled(true)"
       @close="setToggled(false)"
     >
-      <template v-slot:content>
+      <template #content>
         <div class="dropdown-menu">
           <span v-if="user.is_local">
             <button
@@ -122,7 +122,7 @@
           </span>
         </div>
       </template>
-      <template v-slot:trigger>
+      <template #trigger>
         <button
           class="btn button-default btn-block moderation-tools-button"
           :class="{ toggled }"
@@ -137,11 +137,11 @@
         v-if="showDeleteUserDialog"
         :on-cancel="deleteUserDialog.bind(this, false)"
       >
-        <template v-slot:header>
+        <template #header>
           {{ $t('user_card.admin_menu.delete_user') }}
         </template>
         <p>{{ $t('user_card.admin_menu.delete_user_confirmation') }}</p>
-        <template v-slot:footer>
+        <template #footer>
           <button
             class="btn button-default"
             @click="deleteUserDialog(false)"

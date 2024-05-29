@@ -67,7 +67,7 @@ const mutations = {
 
 // actions
 const actions = {
-  // eslint-disable-next-line camelcase
+   
   async login ({ state, dispatch, commit }, { access_token }) {
     commit('setToken', access_token, { root: true })
     await dispatch('loginUser', access_token, { root: true })
