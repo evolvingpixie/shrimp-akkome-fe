@@ -48,8 +48,8 @@ steps:
     - SCW_DEFAULT_ORGANIZATION_ID
     commands:
       - apt-get update && apt-get install -y rclone wget zip
-      - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.5.1/scaleway-cli_2.5.1_linux_amd64
-      - mv scaleway-cli_2.5.1_linux_amd64 scaleway-cli
+      - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.30.0/scaleway-cli_2.30.0_linux_amd64
+      - mv scaleway-cli_2.30.0_linux_amd64 scaleway-cli
       - chmod +x scaleway-cli
       - ./scaleway-cli object config install type=rclone
       - zip akkoma-fe.zip -r dist
@@ -71,8 +71,8 @@ steps:
     - SCW_DEFAULT_ORGANIZATION_ID
     commands:
     - apt-get update && apt-get install -y rclone wget git zip
-    - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.5.1/scaleway-cli_2.5.1_linux_amd64
-    - mv scaleway-cli_2.5.1_linux_amd64 scaleway-cli
+    - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.30.0/scaleway-cli_2.30.0_linux_amd64
+    - mv scaleway-cli_2.30.0_linux_amd64 scaleway-cli
     - chmod +x scaleway-cli
     - ./scaleway-cli object config install type=rclone
     - cd docs
@@ -80,4 +80,4 @@ steps:
     - mkdocs build
     - zip -r docs.zip site/*
     - cd site
-    - rclone copy . scaleway:akkoma-docs/frontend/$CI_COMMIT_BRANCH/
+    - rclone copy . scaleway:akkoma-docs/frontend/$CI_COMMIT_BRANCH/ 
