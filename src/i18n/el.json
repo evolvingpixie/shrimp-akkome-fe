@@ -18,7 +18,8 @@
                 "reason": "Λόγος",
                 "simple_policies": "Πολιτικές του instance"
             }
-        }
+        },
+        "staff": "Προσωπικό"
     },
     "announcements": {
         "all_day_prompt": "Αυτό είναι ένα ολοήμερο συμβάν",
@@ -27,10 +28,14 @@
         "delete_action": "Διαγραφή",
         "edit_action": "Επεξεργασία",
         "end_time_display": "Λήγει στις {time}",
+        "end_time_prompt": "Λήξη: ",
+        "inactive_message": "Αυτή η ανακοίνωση είναι ανενεργή",
         "page_header": "Ανακοινώσεις",
+        "post_action": "Ανάρτηση",
         "title": "Ανακοίνωση"
     },
     "chats": {
+        "delete_confirm": "Θέλετε σίγουρα να διαγράψετε αυτό το μήνυμα;",
         "empty_message_error": "Δε μπορεί να σταλεί κενό μήνυμα",
         "error_sending_message": "Κάτι πήγε λάθος κατά την αποστολή του μηνύματος.",
         "message_user": "Στείλε μήνυμα στον/στην {nickname}",

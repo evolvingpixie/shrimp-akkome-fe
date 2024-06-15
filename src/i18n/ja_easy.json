@@ -523,7 +523,7 @@
         "delete_account_description": "あなたのアカウントとメッセージが、きえます。",
         "delete_account_error": "アカウントをけすことが、できなかったかもしれません。インスタンスのアドミニストレーターに、おといあわせください。",
         "delete_account_instructions": "ほんとうにアカウントをけしてもいいなら、パスワードをかいてください。",
-        "disable_sticky_headers": "カラムヘッダーを、がめんのいちばんうえにくっつけない",
+        "disable_sticky_headers": "カラムヘッダーをがめんのいちばんうえにくっつけない",
         "discoverable": "けんさくなどのサービスで、このアカウントをみつけてもよい",
         "domain_mutes": "ドメイン",
         "download_backup": "ダウンロード",
