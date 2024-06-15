@@ -22,12 +22,12 @@
 
 <script>
 export default {
-  emits: ['update:modelValue'],
   props: [
     'modelValue',
     'indeterminate',
     'disabled'
-  ]
+  ],
+  emits: ['update:modelValue']
 }
 </script>
 

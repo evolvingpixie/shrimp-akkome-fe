@@ -22,6 +22,9 @@ export default {
       default: false
     }
   },
+  emits: [
+    'backdropClicked',
+  ],
   computed: {
     classes () {
       return {

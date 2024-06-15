@@ -267,11 +267,11 @@ const conversation = {
     },
     replies () {
       let i = 1
-      // eslint-disable-next-line camelcase
+       
       return reduce(this.conversation, (result, { id, in_reply_to_status_id }) => {
-        /* eslint-disable camelcase */
+         
         const irid = in_reply_to_status_id
-        /* eslint-enable camelcase */
+         
         if (irid) {
           result[irid] = result[irid] || []
           result[irid].push({

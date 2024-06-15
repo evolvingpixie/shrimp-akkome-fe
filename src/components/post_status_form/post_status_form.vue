@@ -118,8 +118,8 @@
           />
         </div>
         <EmojiInput
-          ref="subject-emoji-input"
           v-if="subjectVisible"
+          ref="subject-emoji-input"
           v-model="newStatus.spoilerText"
           enable-emoji-picker
           hide-emoji-button

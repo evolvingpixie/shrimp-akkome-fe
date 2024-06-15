@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script src="./who_to_follow_panel.js" ></script>
+<script src="./who_to_follow_panel.js"></script>
 
 <style lang="scss">
   .who-to-follow * {

@@ -44,9 +44,9 @@
             />
           </router-link>
           <router-link
+            v-if="publicTimelineVisible"
             :to="{ name: 'public-timeline' }"
             class="nav-icon"
-            v-if="publicTimelineVisible"
           >
             <FAIcon
               fixed-width
@@ -68,9 +68,9 @@
             />
           </router-link>
           <router-link
+            v-if="federatedTimelineVisible"
             :to="{ name: 'public-external-timeline' }"
             class="nav-icon"
-            v-if="federatedTimelineVisible"
           >
             <FAIcon
               fixed-width

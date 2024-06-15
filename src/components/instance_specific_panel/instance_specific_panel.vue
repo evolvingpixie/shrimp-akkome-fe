@@ -10,4 +10,4 @@
   </div>
 </template>
 
-<script src="./instance_specific_panel.js" ></script>
+<script src="./instance_specific_panel.js"></script>

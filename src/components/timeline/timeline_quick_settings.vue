@@ -4,7 +4,7 @@
     class="TimelineQuickSettings"
     :bound-to="{ x: 'container' }"
   >
-    <template v-slot:content>
+    <template #content>
       <div class="dropdown-menu">
         <div v-if="loggedIn">
           <button
@@ -80,7 +80,7 @@
         </button>
       </div>
     </template>
-    <template v-slot:trigger>
+    <template #trigger>
       <button class="button-unstyled">
         <FAIcon icon="filter" />
       </button>
