@@ -170,7 +170,7 @@
             cols="1"
             :disabled="posting && !optimisticPosting"
             class="form-post-body"
-            :class="{ 'scrollable-form': !!maxHeight }"
+            :class="{ 'scrollable-form': !!maxHeight, '-has-subject': subjectVisible }"
             @keydown.exact.enter="submitOnEnter && postStatus($event, newStatus)"
             @keydown.meta.enter="postStatus($event, newStatus)"
             @keydown.ctrl.enter="!submitOnEnter && postStatus($event, newStatus)"
@@ -600,8 +600,11 @@
     height: calc(var(--post-line-height) * 1em);
     min-height: calc(var(--post-line-height) * 1em);
     resize: none;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+
+    &.-has-subject {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
 
     &.scrollable-form {
       overflow-y: auto;
