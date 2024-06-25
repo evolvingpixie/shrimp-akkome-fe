@@ -266,6 +266,16 @@
       color: $fallback--cGreen;
       color: var(--cGreen, $fallback--cGreen);
     }
+
+    .right-side {
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+
+    .repeat-tooltip {
+      flex-shrink: 0;
+    }
   }
 
   .repeater-avatar {
