@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script src="./font_control.js" ></script>
+<script src="./font_control.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

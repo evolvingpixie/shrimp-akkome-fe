@@ -102,7 +102,7 @@
   </div>
 </template>
 
-<script src="./nav_panel.js" ></script>
+<script src="./nav_panel.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

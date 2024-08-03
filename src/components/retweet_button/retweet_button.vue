@@ -54,7 +54,7 @@
   </div>
 </template>
 
-<script src="./retweet_button.js" ></script>
+<script src="./retweet_button.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

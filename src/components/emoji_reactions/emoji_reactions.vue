@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script src="./emoji_reactions.js" ></script>
+<script src="./emoji_reactions.js"></script>
 <style lang="scss">
 @import '../../_variables.scss';
 

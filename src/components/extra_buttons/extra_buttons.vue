@@ -7,7 +7,7 @@
     :bound-to="{ x: 'container' }"
     remove-padding
   >
-    <template v-slot:content="{close}">
+    <template #content="{close}">
       <div class="dropdown-menu">
         <button
           v-if="canMute && !status.thread_muted"
@@ -172,7 +172,7 @@
         </button>
       </div>
     </template>
-    <template v-slot:trigger>
+    <template #trigger>
       <button class="button-unstyled popover-trigger">
         <FAIcon
           class="fa-scale-110 fa-old-padding"
@@ -205,7 +205,7 @@
   </Popover>
 </template>
 
-<script src="./extra_buttons.js" ></script>
+<script src="./extra_buttons.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

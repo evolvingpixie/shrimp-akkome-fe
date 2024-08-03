@@ -64,6 +64,11 @@ export default {
         '-' + this.layoutType
       ]
     },
+    pageBackground () {
+      return this.mergedConfig.displayPageBackgrounds
+        ? this.$store.state.users.displayBackground
+        : null
+    },
     currentUser () { return this.$store.state.users.currentUser },
     userBackground () { return this.currentUser.background_image },
     instanceBackground () {
@@ -71,7 +76,7 @@ export default {
         ? null
         : this.$store.state.instance.background
     },
-    background () { return this.userBackground || this.instanceBackground },
+    background () { return this.pageBackground || this.userBackground || this.instanceBackground },
     bgStyle () {
       if (this.background) {
         return {

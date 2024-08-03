@@ -9,11 +9,12 @@ import StatusContent from '../status_content/status_content.vue'
 import fileTypeService from '../../services/file_type/file_type.service.js'
 import { findOffset } from '../../services/offset_finder/offset_finder.service.js'
 import { reject, map, uniqBy, debounce } from 'lodash'
+import { usePostLanguageOptions } from 'src/lib/post_language'
 import suggestor from '../emoji_input/suggestor.js'
 import { mapGetters, mapState } from 'vuex'
 import Checkbox from '../checkbox/checkbox.vue'
 import Select from '../select/select.vue'
-import iso6391 from 'iso-639-1'
+
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -60,6 +61,13 @@ const deleteDraft = (draftKey) => {
 	delete draftData[draftKey];
 
 	localStorage.setItem('drafts', JSON.stringify(draftData));
+}
+
+const interfaceToISOLanguage = (ilang) => {
+    const sep = ilang.indexOf("_");
+    return sep < 0 ?
+        ilang :
+        ilang.substr(0, sep);
 }
 
 const PostStatusForm = {
@@ -129,6 +137,13 @@ const PostStatusForm = {
       this.$refs.textarea.focus()
     }
   },
+  setup() {
+    const {postLanguageOptions} = usePostLanguageOptions()
+
+    return {
+      postLanguageOptions,
+    }
+  },
   data () {
     const preset = this.$route.query.message
     let statusText = preset || ''
@@ -138,7 +153,8 @@ const PostStatusForm = {
       statusText = buildMentionsString({ user: this.repliedUser, attentions: this.attentions }, currentUser)
     }
 
-    const { postContentType: contentType, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage, alwaysShowSubjectInput } = this.$store.getters.mergedConfig
+    const { postContentType: contentType, postLanguage: defaultPostLanguage, sensitiveByDefault, sensitiveIfSubject, interfaceLanguage, alwaysShowSubjectInput } = this.$store.getters.mergedConfig
+    const postLanguage = defaultPostLanguage || interfaceToISOLanguage(interfaceLanguage)
 
     let statusParams = {
       spoilerText: this.subject || '',
@@ -149,7 +165,7 @@ const PostStatusForm = {
       poll: {},
       mediaDescriptions: {},
       visibility: this.suggestedVisibility(),
-      language: interfaceLanguage,
+      language: postLanguage,
       contentType
     }
 
@@ -164,7 +180,7 @@ const PostStatusForm = {
         poll: this.statusPoll || {},
         mediaDescriptions: this.statusMediaDescriptions || {},
         visibility: this.statusScope || this.suggestedVisibility(),
-        language: this.statusLanguage || interfaceLanguage,
+        language: this.statusLanguage || postLanguage,
         contentType: statusContentType
       }
     }
@@ -309,9 +325,6 @@ const PostStatusForm = {
     ...mapState({
       mobileLayout: state => state.interface.mobileLayout
     }),
-    isoLanguages () {
-      return iso6391.getAllCodes();
-    }
   },
   watch: {
     'newStatus': {

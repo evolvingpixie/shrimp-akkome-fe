@@ -26,7 +26,7 @@
   </label>
 </template>
 
-<script src="./media_upload.js" ></script>
+<script src="./media_upload.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

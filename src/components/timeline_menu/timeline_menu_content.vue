@@ -62,7 +62,6 @@
           :title="$t('nav.twkn_timeline_description')"
           :aria-label="$t('nav.twkn_timeline_description')"
         >{{ $t("nav.twkn") }}</span>
-
       </router-link>
     </li>
     <li v-if="currentUser">
@@ -100,7 +99,7 @@
   </ul>
 </template>
 
-<script src="./timeline_menu_content.js" ></script>
+<script src="./timeline_menu_content.js"></script>
 
 <style lang="scss">
 @import "../../_variables.scss";

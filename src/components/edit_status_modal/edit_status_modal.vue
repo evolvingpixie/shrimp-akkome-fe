@@ -2,7 +2,7 @@
   <Modal
     v-if="isFormVisible"
     class="edit-form-modal-view"
-    @backdropClicked="closeModal"
+    @backdrop-clicked="closeModal"
   >
     <div class="edit-form-modal-panel panel">
       <div class="panel-heading">
@@ -11,10 +11,10 @@
       <PostStatusForm
         class="panel-body"
         v-bind="params"
-        @posted="closeModal"
-        :disablePolls="true"
-        :disableVisibilitySelector="true"
+        :disable-polls="true"
+        :disable-visibility-selector="true"
         :post-handler="doEditStatus"
+        @posted="closeModal"
       />
     </div>
   </Modal>

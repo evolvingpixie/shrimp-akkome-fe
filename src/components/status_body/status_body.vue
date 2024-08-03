@@ -54,7 +54,7 @@
             :mfm="renderMisskeyMarkdown && (status.media_type === 'text/x.misskeymarkdown')"
             :greentext="mergedConfig.greentext"
             :attentions="status.attentions"
-            @parseReady="onParseReady"
+            @parse-ready="onParseReady"
           />
           <div
             v-if="status.translation"
@@ -70,7 +70,7 @@
               :mfm="renderMisskeyMarkdown && (status.media_type === 'text/x.misskeymarkdown')"
               :greentext="mergedConfig.greentext"
               :attentions="status.attentions"
-              @parseReady="onParseReady"
+              @parse-ready="onParseReady"
             />
             <div>
               <label class="label">{{ $t('status.override_translation_source_language') }}</label>
@@ -89,7 +89,10 @@
                 </option>
               </Select>
               {{ ' ' }}
-              <button @click="translateStatus" class="btn button-default">
+              <button
+                class="btn button-default"
+                @click="translateStatus"
+              >
                 {{ $t('status.translate') }}
               </button>
             </div>
@@ -138,5 +141,5 @@
     <slot v-if="!hideSubjectStatus" />
   </div>
 </template>
-<script src="./status_body.js" ></script>
+<script src="./status_body.js"></script>
 <style lang="scss" src="./status_body.scss" />

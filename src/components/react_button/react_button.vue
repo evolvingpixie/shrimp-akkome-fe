@@ -8,13 +8,13 @@
     remove-padding
     @show="focusInput"
   >
-    <template v-slot:content="{close}">
+    <template #content="{close}">
       <EmojiPicker
         :enable-sticker-picker="false"
         @emoji="addReaction($event, close)"
       />
     </template>
-    <template v-slot:trigger>
+    <template #trigger>
       <button
         class="button-unstyled popover-trigger"
         :title="$t('tool_tip.add_reaction')"
@@ -28,7 +28,7 @@
   </Popover>
 </template>
 
-<script src="./react_button.js" ></script>
+<script src="./react_button.js"></script>
 
 <style lang="scss">
 @import '../../_variables.scss';

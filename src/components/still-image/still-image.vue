@@ -7,8 +7,9 @@
   >
     <div
       v-if="animated && imageTypeLabel"
-      class="image-type-label">
-        {{ imageTypeLabel }}
+      class="image-type-label"
+    >
+      {{ imageTypeLabel }}
     </div>
     <canvas
       v-if="animated"

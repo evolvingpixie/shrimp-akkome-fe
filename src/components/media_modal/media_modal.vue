@@ -2,7 +2,7 @@
   <Modal
     v-if="showing"
     class="media-modal-view"
-    @backdropClicked="hideIfNotSwiped"
+    @backdrop-clicked="hideIfNotSwiped"
   >
     <SwipeClick
       v-if="type === 'image'"

@@ -14,7 +14,7 @@
       :model-value="present"
       :disabled="disabled"
       class="opt"
-      @update:modelValue="$emit('update:modelValue', !present ? fallback : undefined)"
+      @update:model-value="$emit('update:modelValue', !present ? fallback : undefined)"
     />
     <input
       :id="name"

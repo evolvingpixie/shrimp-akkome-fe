@@ -24,7 +24,7 @@
       :items="items"
       :get-key="getKey"
     >
-      <template v-slot:item="{item}">
+      <template #item="{item}">
         <div
           class="selectable-list-item-inner"
           :class="{ 'selectable-list-item-selected-inner': isSelected(item) }"
@@ -41,7 +41,7 @@
           />
         </div>
       </template>
-      <template v-slot:empty>
+      <template #empty>
         <slot name="empty" />
       </template>
     </List>

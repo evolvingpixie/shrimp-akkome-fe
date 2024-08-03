@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script src="./features_panel.js" ></script>
+<script src="./features_panel.js"></script>
 
 <style lang="scss">
   .features-panel li {

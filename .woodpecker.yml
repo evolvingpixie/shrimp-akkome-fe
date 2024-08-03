@@ -1,24 +1,25 @@
-platform: linux/amd64
-pipeline:
+labels:
+  platform: linux/amd64
+
+steps:
   lint:
     when:
       event:
       - pull_request
-    image: node:18
+    image: node:20
     commands:
     - yarn
     - yarn lint
-    #- yarn stylelint
 
   test:
     when:
       event:
       - pull_request
-    image: node:18
+    image: node:20
     commands:
     - apt update
     - apt install firefox-esr -y --no-install-recommends
-    - yarn 
+    - yarn
     - yarn unit
 
   build:
@@ -28,7 +29,7 @@ pipeline:
       branch:
       - develop
       - stable
-    image: node:18
+    image: node:20
     commands:
     - yarn
     - yarn build
@@ -40,15 +41,15 @@ pipeline:
       branch:
       - develop
       - stable
-    image: node:18
+    image: node:20
     secrets:
     - SCW_ACCESS_KEY
     - SCW_SECRET_KEY
     - SCW_DEFAULT_ORGANIZATION_ID
     commands:
       - apt-get update && apt-get install -y rclone wget zip
-      - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.5.1/scaleway-cli_2.5.1_linux_amd64
-      - mv scaleway-cli_2.5.1_linux_amd64 scaleway-cli
+      - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.30.0/scaleway-cli_2.30.0_linux_amd64
+      - mv scaleway-cli_2.30.0_linux_amd64 scaleway-cli
       - chmod +x scaleway-cli
       - ./scaleway-cli object config install type=rclone
       - zip akkoma-fe.zip -r dist
@@ -70,8 +71,8 @@ pipeline:
     - SCW_DEFAULT_ORGANIZATION_ID
     commands:
     - apt-get update && apt-get install -y rclone wget git zip
-    - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.5.1/scaleway-cli_2.5.1_linux_amd64
-    - mv scaleway-cli_2.5.1_linux_amd64 scaleway-cli
+    - wget https://github.com/scaleway/scaleway-cli/releases/download/v2.30.0/scaleway-cli_2.30.0_linux_amd64
+    - mv scaleway-cli_2.30.0_linux_amd64 scaleway-cli
     - chmod +x scaleway-cli
     - ./scaleway-cli object config install type=rclone
     - cd docs
@@ -79,4 +80,4 @@ pipeline:
     - mkdocs build
     - zip -r docs.zip site/*
     - cd site
-    - rclone copy . scaleway:akkoma-docs/frontend/$CI_COMMIT_BRANCH/
+    - rclone copy . scaleway:akkoma-docs/frontend/$CI_COMMIT_BRANCH/ 

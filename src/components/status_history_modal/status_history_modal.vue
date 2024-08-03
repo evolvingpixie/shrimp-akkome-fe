@@ -2,7 +2,7 @@
   <Modal
     v-if="modalActivated"
     class="status-history-modal-view"
-    @backdropClicked="closeModal"
+    @backdrop-clicked="closeModal"
   >
     <div class="status-history-modal-panel panel">
       <div class="panel-heading">
@@ -17,9 +17,9 @@
             v-for="status in history"
             :key="status.id"
             :statusoid="status"
-            :isPreview="true"
+            :is-preview="true"
             class="conversation-status status-fadein panel-body"
-        />
+          />
         </div>
       </div>
     </div>

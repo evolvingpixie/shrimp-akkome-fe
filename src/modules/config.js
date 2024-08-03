@@ -55,6 +55,7 @@ export const defaultState = {
   alwaysShowNewPostButton: false,
   autohideFloatingPostButton: false,
   pauseOnUnfocused: true,
+  displayPageBackgrounds: true,
   stopGifs: undefined,
   replyVisibility: 'all',
   thirdColumnMode: 'notifications',
@@ -115,6 +116,7 @@ export const defaultState = {
   conversationTreeFadeAncestors: undefined, // instance default
   maxDepthInThread: undefined, // instance default
   translationLanguage: undefined, // instance default,
+  postLanguage: undefined, // instance default,
   supportedTranslationLanguages: {}, // instance default
   userProfileDefaultTab: 'statuses',
   useBlurhash: true,

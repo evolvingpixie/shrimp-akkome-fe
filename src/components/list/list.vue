@@ -42,6 +42,7 @@ export default {
 @import '../../_variables.scss';
 
 .list {
+  min-height: 1em;
   &-item:not(:last-child) {
     border-bottom: 1px solid;
     border-bottom-color: $fallback--border;

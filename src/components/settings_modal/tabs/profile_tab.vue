@@ -110,11 +110,9 @@
           max="730"
           class="expire-posts-days"
           :placeholder="$t('settings.expire_posts_input_placeholder')"
-        />
+        >
       </p>
-      <p>
-
-      </p>
+      <p />
       <p>
         <interface-language-switcher
           :prompt-text="$t('settings.email_language')"
@@ -259,6 +257,19 @@
           <BooleanSetting path="serverSide_locked">
             {{ $t('settings.lock_account_description') }}
           </BooleanSetting>
+          <ul
+            class="setting-list suboptions"
+            :class="[{disabled: !serverSide_locked}]"
+          >
+            <li>
+              <BooleanSetting
+                path="serverSide_permitFollowback"
+                :disabled="!serverSide_locked"
+              >
+                {{ $t('settings.permit_followback_description') }}
+              </BooleanSetting>
+            </li>
+          </ul>
         </li>
         <li>
           <BooleanSetting path="serverSide_discoverable">

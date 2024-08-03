@@ -6,7 +6,7 @@
           class="small-avatar"
           :user="user"
         />
-        {{ this.user.screen_name }}
+        {{ user.screen_name }}
       </div>
       <div class="header-right">
         <Timeago

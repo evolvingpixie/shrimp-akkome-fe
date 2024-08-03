@@ -4,7 +4,7 @@
       class="panel-heading"
       @click="toggleHidden"
     >
-      <h4>{{ $t('moderation.reports.report') + ' ' + this.account.screen_name }}</h4>
+      <h4>{{ $t('moderation.reports.report') + ' ' + account.screen_name }}</h4>
       <button
         v-if="isOpen"
         class="button-default"
@@ -24,7 +24,7 @@
         class="button-default"
         @click.stop="updateReportState('open')"
       >
-          {{ $t('moderation.reports.reopen') }}
+        {{ $t('moderation.reports.reopen') }}
       </button>
     </div>
     <div
@@ -35,7 +35,10 @@
         <div v-if="content">
           {{ decode(content) }}
         </div>
-        <i v-else class="faint">
+        <i
+          v-else
+          class="faint"
+        >
           {{ $t('moderation.reports.no_content') }}
         </i>
         <div class="report-author">
@@ -43,12 +46,12 @@
             class="small-avatar"
             :user="actor"
           />
-          {{ this.actor.screen_name }}
+          {{ actor.screen_name }}
         </div>
       </div>
       <div
+        v-if="!hidden && statuses.length > 0"
         class="dropdown"
-        v-if="!hidden && this.statuses.length > 0"
       >
         <button
           class="button button-unstyled dropdown-header"
@@ -74,8 +77,8 @@
         </div>
       </div>
       <div
+        v-if="!hidden && notes.length > 0"
         class="dropdown"
-        v-if="!hidden && this.notes.length > 0"
       >
         <button
           class="button button-unstyled dropdown-header"
@@ -99,9 +102,9 @@
       </div>
       <div class="report-add-note">
         <textarea
+          v-model.trim="note"
           rows="1"
           cols="1"
-          v-model.trim="note"
           :placeholder="$t('moderation.reports.note_placeholder')"
         />
         <button
@@ -134,7 +137,7 @@
         :offset="{ y: 5 }"
         remove-padding
       >
-        <template v-slot:trigger>
+        <template #trigger>
           <button
             class="btn button-default"
             :disabled="!tagPolicyEnabled"
@@ -147,7 +150,7 @@
             />
           </button>
         </template>
-        <template v-slot:content="{close}">
+        <template #content="{close}">
           <div
             class="dropdown-menu"
             :disabled="!tagPolicyEnabled"

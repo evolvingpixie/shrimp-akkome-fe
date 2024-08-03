@@ -32,7 +32,7 @@
       :dive="dive ? () => dive(status.id) : undefined"
 
       @goto="setHighlight"
-      @toggleExpanded="toggleExpanded"
+      @toggle-expanded="toggleExpanded"
     />
     <div
       v-if="currentReplies.length && threadShowing"
