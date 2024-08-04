@@ -1,6 +1,6 @@
 import { extractCommit } from 'src/services/version/version.service'
 
-const pleromaFeCommitUrl = 'https://akkoma.dev/AkkomaGang/pleroma-fe/commit/'
+const pleromaFeCommitUrl = 'https://akkoma.dev/esm/akkoma-fe/commit/'
 const pleromaBeCommitUrl = 'https://akkoma.dev/AkkomaGang/akkoma/commit/'
 
 const VersionTab = {
@@ -16,7 +16,7 @@ const VersionTab = {
       return pleromaFeCommitUrl + this.frontendVersion
     },
     backendVersionLink () {
-      return pleromaBeCommitUrl + extractCommit(this.backendVersion)
+      return 'https://github.com/TheEssem/mastodon'
     }
   }
 }
