@@ -499,8 +499,8 @@ export const parseLinkHeaderPagination = (linkHeader, opts = {}) => {
   const flakeId = opts.flakeId
   const parsedLinkHeader = parseLinkHeader(linkHeader)
   if (!parsedLinkHeader) return
-  const maxId = parsedLinkHeader.next.max_id
-  const minId = parsedLinkHeader.prev.min_id
+  const maxId = parsedLinkHeader.next?.max_id
+  const minId = parsedLinkHeader.prev?.min_id
 
   return {
     maxId: flakeId ? maxId : parseInt(maxId, 10),

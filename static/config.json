@@ -14,7 +14,7 @@
   "logoMask": false,
   "logoLeft": false,
   "nsfwCensorImage": "",
-  "postContentType": "text/plain",
+  "postContentType": "text/x.misskeymarkdown",
   "redirectRootLogin": "/main/friends",
   "redirectRootNoLogin": "/main/public",
   "showFeaturesPanel": true,

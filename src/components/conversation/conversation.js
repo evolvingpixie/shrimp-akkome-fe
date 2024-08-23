@@ -50,6 +50,7 @@ const sortAndFilterConversation = (conversation, statusoid) => {
 const conversation = {
   data () {
     return {
+      statusIDs: [],
       highlight: null,
       expanded: false,
       threadDisplayStatusObject: {}, // id => 'showing' | 'hidden'
@@ -72,6 +73,7 @@ const conversation = {
     }
   },
   computed: {
+    
     maxDepthToShowByDefault () {
       // maxDepthInThread = max number of depths that is *visible*
       // since our depth starts with 0 and "showing" means "showing children"
@@ -142,7 +144,9 @@ const conversation = {
         return [this.status]
       }
 
-      const conversation = clone(this.$store.state.statuses.conversationsObject[this.conversationId])
+      //const conversation = clone(this.$store.state.statuses.conversationsObject[this.conversationId])
+      const conversation = clone(this.statusIDs.map((sid)=> this.$store.state.statuses.allStatusesObject[sid]))
+      
       const statusIndex = findIndex(conversation, { id: this.originalStatusId })
       if (statusIndex !== -1) {
         conversation[statusIndex] = this.status
@@ -335,7 +339,7 @@ const conversation = {
       }, {})
     },
     canDive () {
-      return this.isTreeView && this.isExpanded
+      return this.isTreeView && this.isExpandedG
     },
     focused () {
       return (id) => {
@@ -386,6 +390,9 @@ const conversation = {
             this.$store.dispatch('addNewStatuses', { statuses: ancestors })
             this.$store.dispatch('addNewStatuses', { statuses: descendants })
             this.setHighlight(this.originalStatusId)
+            console.log(descendants)
+            console.log(ancestors)
+            this.statusIDs = [...ancestors.map(a => a.id),...descendants.map(a => a.id),...[this.statusId]]
           })
       } else {
         this.$store.state.api.backendInteractor.fetchStatus({ id: this.statusId })

@@ -1287,18 +1287,20 @@ const suggestions = ({ credentials }) => {
 }
 
 const markNotificationsAsSeen = ({ id, credentials, single = false }) => {
-  const body = new FormData()
+  let url = MASTODON_MARKERS_URL
 
   /*if (single) {
     body.append('id', id)
   } else {
     body.append('max_id', id)
   }*/
+  const params = []
+  params.push(['notifications[last_read_id]', id])
 
-  body.append('notifications[last_read_id]', id)
+  const queryString = map(params, (param) => `${param[0]}=${param[1]}`).join('&')
+  url += `?${queryString}`
 
-  return fetch(MASTODON_MARKERS_URL, {
-    body,
+  return fetch(url, {
     headers: authHeaders(credentials),
     method: 'POST'
   }).then((data) => data.json())
@@ -1680,13 +1682,14 @@ export const ProcessedWS = ({
   }
   socket.addEventListener('open', (wsEvent) => {
     console.debug(`[WS][${id}] Socket connected`, wsEvent)
-    setInterval(() => {
-      try {
-        socket.send('ping')
-      } catch (e) {
-        clearInterval(this)
-      }
-    }, 30000)
+    // Iceshrimp.NET does not like pings
+    // setInterval(() => {
+    //   try {
+    //     socket.send('ping')
+    //   } catch (e) {
+    //     clearInterval(this)
+    //   }
+    // }, 30000)
   })
 
   socket.addEventListener('error', (wsEvent) => {

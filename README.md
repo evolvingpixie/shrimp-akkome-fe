@@ -1,3 +1,4 @@
+Fork of: https://akkoma.dev/esm/akkoma-fe
 # Akkoma-FE
 
 ![English OK](https://img.shields.io/badge/English-OK-blueviolet) ![日本語OK](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E-OK-blueviolet)

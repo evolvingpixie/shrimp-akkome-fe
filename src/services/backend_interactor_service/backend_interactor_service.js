@@ -35,9 +35,10 @@ const backendInteractorService = credentials => ({
     return announcementsFetcher.startFetching({ store, credentials })
   },
 
-  startFetchingReports ({ store, state, limit, page, pageSize }) {
-    return reportsFetcher.startFetching({ store, credentials, state, limit, page, pageSize })
-  },
+  // Not implimented on iceshrime.NET
+  // startFetchingReports ({ store, state, limit, page, pageSize }) {
+  //   return reportsFetcher.startFetching({ store, credentials, state, limit, page, pageSize })
+  // },
 
   startUserSocket ({ store }) {
     const serv = store.rootState.instance.server.replace('http', 'ws')

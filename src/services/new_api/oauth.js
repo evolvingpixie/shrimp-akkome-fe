@@ -12,7 +12,7 @@ export const getOrCreateApp = ({ clientId, clientSecret, instance, commit }) => 
 
   form.append('client_name', "AkkomaFE")
   form.append('redirect_uris', REDIRECT_URI)
-  form.append('scopes', 'read write follow push admin:read admin:write')
+  form.append('scopes', 'read write follow push')
 
   return window.fetch(url, {
     method: 'POST',
@@ -28,7 +28,7 @@ const login = ({ instance, clientId }) => {
     response_type: 'code',
     client_id: clientId,
     redirect_uri: REDIRECT_URI,
-    scope: 'read write follow push admin:read admin:write'
+    scope: 'read write follow push'
   }
 
   const dataString = reduce(data, (acc, v, k) => {
@@ -140,6 +140,7 @@ const revokeToken = ({ app, instance, token }) => {
 }
 
 const oauth = {
+  getOrCreateApp,
   login,
   getToken,
   getTokenWithCredentials,

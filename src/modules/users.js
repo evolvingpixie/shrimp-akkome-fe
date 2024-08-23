@@ -678,11 +678,12 @@ const users = {
               store.dispatch('fetchMutes')
               store.dispatch('setLayoutWidth', windowWidth())
               store.dispatch('setLayoutHeight', windowHeight())
-              store.dispatch('getSupportedTranslationlanguages')
+              //store.dispatch('getSupportedTranslationlanguages')
               store.dispatch('startFetchingAnnouncements')
-              if (user.role === 'admin' || user.role === 'moderator') {
-                store.dispatch('startFetchingReports')
-              }
+              // Not implimented in iceschrimp.NET
+              // if (user.role === 'admin' || user.role === 'moderator') {
+              //   store.dispatch('startFetchingReports')
+              // }
 
               // Fetch our friends
               store.rootState.api.backendInteractor.fetchFriends({ id: user.id })

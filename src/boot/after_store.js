@@ -71,7 +71,7 @@ const getInstanceConfig = async ({ store }) => {
     if (res.ok) {
       const data = await res.json()
       const textlimit = data.configuration.statuses.max_characters
-      const vapidPublicKey = data.configuration.vapid.public_key
+      const vapidPublicKey = data.configuration.vapid?.public_key
 
       store.dispatch('setInstanceOption', { name: 'textlimit', value: textlimit })
       const uploadLimits = {
@@ -89,14 +89,14 @@ const getInstanceConfig = async ({ store }) => {
       store.dispatch('setInstanceOption', { name: 'accountApprovalRequired', value: data.registrations.approval_required })
       // don't override cookie if set
       if (!Cookies.get('userLanguage')) {
-        store.dispatch('setOption', { name: 'interfaceLanguage', value: resolveLanguage(data.languages) })
+        store.dispatch('setOption', { name: 'interfaceLanguage', value: resolveLanguage(data.languages || "en-US") })
       }
 
       if (vapidPublicKey) {
         store.dispatch('setInstanceOption', { name: 'vapidPublicKey', value: vapidPublicKey })
       }
 
-      resolveStaffAccounts({ store, accounts: [data.contact.account.id] })
+      //resolveStaffAccounts({ store, accounts: [data.contact.account.id] })
     } else {
       throw (res)
     }
@@ -279,7 +279,7 @@ const resolveStaffAccounts = ({ store, accounts }) => {
 
 const getNodeInfo = async ({ store }) => {
   try {
-    const res = await preloadFetch('/nodeinfo/2.0.json')
+    const res = await preloadFetch('/nodeinfo/2.0')
     if (res.ok) {
       const data = await res.json()
       const metadata = data.metadata
@@ -297,7 +297,7 @@ const getNodeInfo = async ({ store }) => {
 
       store.dispatch('setInstanceOption', { name: 'restrictedNicknames', value: [] })
 
-      store.dispatch('setInstanceOption', { name: 'suggestionsEnabled', value: true })
+      store.dispatch('setInstanceOption', { name: 'suggestionsEnabled', value: false })
       store.dispatch('setInstanceOption', { name: 'suggestionsWeb', value: true })
 
       const software = data.software
@@ -369,7 +369,7 @@ const afterStoreSetup = async ({ store, i18n }) => {
 
   FaviconService.initFaviconService()
 
-  const overrides = window.___pleromafe_dev_overrides || { target: 'https://wetdry.world/' }
+  const overrides = window.___pleromafe_dev_overrides || { }
   const server = (typeof overrides.target !== 'undefined') ? overrides.target : window.location.origin
   store.dispatch('setInstanceOption', { name: 'server', value: server })
 
@@ -395,14 +395,14 @@ const afterStoreSetup = async ({ store, i18n }) => {
   // Most of these are preloaded into the index.html so blocking is minimized
   await Promise.all([
     checkOAuthToken({ store }),
-    getInstancePanel({ store }),
+    //getInstancePanel({ store }),
     getNodeInfo({ store }),
     getInstanceConfig({ store })
   ])
 
   // Start fetching things that don't need to block the UI
   getTOS({ store })
-  getStickers({ store })
+  // getStickers({ store })
 
   const router = createRouter({
     history: createWebHistory(),

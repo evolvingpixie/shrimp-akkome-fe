@@ -202,7 +202,7 @@ const api = {
                   dispatch("startFetchingTimeline", { timeline: "friends" });
                   dispatch("startFetchingNotifications");
                   dispatch("startFetchingAnnouncements");
-                  dispatch("startFetchingReports");
+                  //dispatch("startFetchingReports");
                   dispatch("pushGlobalNotice", {
                     level: "error",
                     messageKey: "timeline.socket_broke",
