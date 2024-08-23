@@ -390,8 +390,6 @@ const conversation = {
             this.$store.dispatch('addNewStatuses', { statuses: ancestors })
             this.$store.dispatch('addNewStatuses', { statuses: descendants })
             this.setHighlight(this.originalStatusId)
-            console.log(descendants)
-            console.log(ancestors)
             this.statusIDs = [...ancestors.map(a => a.id),...descendants.map(a => a.id),...[this.statusId]]
           })
       } else {
