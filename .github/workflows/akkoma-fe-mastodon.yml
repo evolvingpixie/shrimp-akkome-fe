@@ -22,7 +22,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: akkoma-fe-mastodon
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/evolvingpixie/shrimp-akkoma-fe:latest,ghcr.io/evolvingpixie/shrimp-akkoma-fe:${{ github.ref_name }}
