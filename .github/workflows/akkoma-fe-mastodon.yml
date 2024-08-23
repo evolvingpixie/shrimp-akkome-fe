@@ -7,6 +7,8 @@ jobs:
   docker-build-push:
     runs-on: ubuntu-latest 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -18,8 +20,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
+          context: .
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/evolvingpixie/shrimp-akkoma-fe:latest,ghcr.io/evolvingpixie/shrimp-akkoma-fe:${{ github.ref_name }}
