@@ -116,8 +116,8 @@ const getBackendProvidedConfig = async ({ store }) => {
       throw (res)
     }
   } catch (error) {
-    console.error('Could not load backend-provided frontend config, potentially fatal')
-    console.error(error)
+    console.warn('Could not load backend-provided frontend config, potentially fatal')
+    console.warn(error)
   }
 }
 
@@ -153,6 +153,7 @@ const setSettings = async ({ apiConfig, staticConfig, store }) => {
     store.dispatch('setInstanceOption', { name, value: config[name] })
   }
 
+  copyInstanceOption('server')
   copyInstanceOption('nsfwCensorImage')
   copyInstanceOption('background')
   copyInstanceOption('hidePostStats')
@@ -369,9 +370,8 @@ const afterStoreSetup = async ({ store, i18n }) => {
 
   FaviconService.initFaviconService()
 
-  const overrides = window.___pleromafe_dev_overrides || { }
+  const overrides = window.___pleromafe_dev_overrides || {}
   const server = (typeof overrides.target !== 'undefined') ? overrides.target : window.location.origin
-  store.dispatch('setInstanceOption', { name: 'server', value: server })
 
   await setConfig({ store })
 

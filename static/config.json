@@ -22,5 +22,6 @@
   "sidebarRight": false,
   "subjectLineBehavior": "email",
   "theme": "ihatebeingalive",
-  "webPushNotifications": false
+  "webPushNotifications": false,
+  "pleromaBackend": false
 }
