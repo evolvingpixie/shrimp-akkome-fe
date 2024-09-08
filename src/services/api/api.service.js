@@ -50,7 +50,7 @@ const MASTODON_FOLLOWERS_URL = id => `/api/v1/accounts/${id}/followers`
 const MASTODON_FOLLOW_REQUESTS_URL = '/api/v1/follow_requests'
 const MASTODON_APPROVE_USER_URL = id => `/api/v1/follow_requests/${id}/authorize`
 const MASTODON_DENY_USER_URL = id => `/api/v1/follow_requests/${id}/reject`
-const MASTODON_DIRECT_MESSAGES_TIMELINE_URL = '/api/v1/timelines/direct'
+const MASTODON_DIRECT_MESSAGES_TIMELINE_URL = '/api/v1/conversations'
 const MASTODON_PUBLIC_TIMELINE = '/api/v1/timelines/public'
 const MASTODON_USER_HOME_TIMELINE_URL = '/api/v1/timelines/home'
 const AKKOMA_BUBBLE_TIMELINE_URL = '/api/v1/timelines/bubble'
@@ -108,7 +108,7 @@ const PLEROMA_POST_ANNOUNCEMENT_URL = '/api/v1/pleroma/admin/announcements'
 const PLEROMA_EDIT_ANNOUNCEMENT_URL = id => `/api/v1/pleroma/admin/announcements/${id}`
 const PLEROMA_DELETE_ANNOUNCEMENT_URL = id => `/api/v1/pleroma/admin/announcements/${id}`
 const AKKOMA_SETTING_PROFILE_URL = (name) => `/api/v1/akkoma/frontend_settings/pleroma-fe/${name}`
-const AKKOMA_SETTING_PROFILE_LIST = `/api/v1/akkoma/frontend_settings/pleroma-fe`
+const AKKOMA_SETTING_PROFILE_LIST = `/api/v1/akkoma/frontend_settings/pleroma-fe`       
 const MASTODON_TAG_URL = (name) => `/api/v1/tags/${name}`
 const MASTODON_FOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/follow`
 const MASTODON_UNFOLLOW_TAG_URL = (name) => `/api/v1/tags/${name}/unfollow`
@@ -229,10 +229,10 @@ const register = ({ params, credentials }) => {
   const { nickname, ...rest } = params
   return fetch(MASTODON_REGISTRATION_URL, {
     method: 'POST',
-    headers: {
-      ...authHeaders(credentials),
-      'Content-Type': 'application/json'
-    },
+            headers: {
+              ...authHeaders(credentials),
+              'Content-Type': 'application/json'
+            },
     body: JSON.stringify({
       nickname,
       locale: 'en_US',

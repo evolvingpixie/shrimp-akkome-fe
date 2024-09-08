@@ -290,7 +290,15 @@ export const parseSource = (data) => {
   return output
 }
 
-export const parseStatus = (data) => {
+export const parseStatus = (data_in) => {
+  let data = {}
+  if (data_in.last_status) {
+    data = data_in.last_status
+  }
+  else {
+    data = data_in
+  }
+
   const output = {}
   const masto = data.hasOwnProperty('account')
 

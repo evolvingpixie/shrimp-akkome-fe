@@ -372,7 +372,7 @@ const afterStoreSetup = async ({ store, i18n }) => {
 
   const overrides = window.___pleromafe_dev_overrides || {}
   const server = (typeof overrides.target !== 'undefined') ? overrides.target : window.location.origin
-
+  store.dispatch('setInstanceOption', { name: 'server', value: server })
   await setConfig({ store })
 
   const { customTheme, customThemeSource } = store.state.config
